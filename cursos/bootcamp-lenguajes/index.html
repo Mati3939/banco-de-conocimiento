@@ -1,0 +1,1627 @@
+<!DOCTYPE html>
+<html lang="es" data-tema="oscuro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🧩 Bootcamp Lenguajes de Programación — Biblioteca</title>
+<link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../../assets/vendor/fuentes/fuentes.css">
+<link rel="stylesheet" href="../../assets/css/observatorio.css">
+<script>window.RUTA_BASE = "../../";</script>
+<script src="../../assets/vendor/katex/katex.min.js"></script>
+<script src="../../assets/vendor/katex/auto-render.min.js"></script>
+<script src="../../assets/vendor/gsap/gsap.min.js"></script>
+<script src="../../assets/vendor/gsap/ScrollTrigger.min.js"></script>
+<script src="../../assets/js/observatorio.js"></script>
+<script src="indice-curso.js"></script>
+<style>
+  .info-linea { color: var(--tinta-2); font: 13px Consolas, monospace; margin: 0 0 10px; padding: 0 28px; }
+</style>
+</head>
+<body>
+<div class="progreso-lectura"></div>
+<div class="pagina-curso">
+
+  <aside class="lateral">
+    <a class="volver" href="../../index.html">← Constelación</a>
+    <div class="curso-cabecera"><span class="emoji">🧩</span><h1>Bootcamp Lenguajes de Programación</h1></div>
+    <span class="semestre-tag" style="color:var(--s2)">Semestre 2</span>
+    <nav>
+      <div class="grupo">Unidades</div>
+      <a href="#u1">01 · Compilación e interpretación</a>
+      <a class="sub" href="#anim-compilacion">⚙️ Compilar vs interpretar</a>
+      <a href="#u2">02 · C++: punteros, memoria y clases</a>
+      <a class="sub" href="#anim-memoria">📍 Memoria y punteros</a>
+      <a href="#u3">03 · Proyecto Dudo</a>
+      <a href="#u4">04 · Java: herencia, colecciones y Swing</a>
+      <a href="#u5">05 · C#: POO, propiedades y WPF</a>
+      <a class="sub" href="#anim-polimorfismo">🧬 Polimorfismo virtual/override</a>
+      <a class="sub" href="#anim-evento">🖱️ Evento → handler</a>
+      <a href="#u6">06 · Python en el servidor</a>
+      <a href="#u7">07 · Comparación final</a>
+    </nav>
+    <div class="atajos"><kbd>Ctrl K</kbd> buscar en toda la biblioteca</div>
+  </aside>
+
+  <main class="principal">
+    <div class="principal-cabecera">
+      <span class="relleno"></span>
+      <button class="btn-buscar" type="button">🔍 Buscar <kbd>Ctrl K</kbd></button>
+      <button class="btn-tema" type="button">☀️</button>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CABECERA DEL CURSO -->
+    <!-- ============================================================ -->
+    <header class="curso-hero-v3" id="cheat" style="--ac: var(--s2)">
+      <span class="emoji-grande">🧩</span>
+      <h1>Bootcamp Lenguajes de Programación — Resumen del curso</h1>
+      <span class="semestre-tag" style="color:var(--s2)">Semestre 2</span>
+      <p class="curso-intro">
+        Bootcamp de <strong>Lenguajes de Programación</strong> (UDD), segundo semestre. Recorre la misma
+        lógica y POO en tres lenguajes compilados/tipados estáticamente — <strong>C/C++</strong>,
+        <strong>Java</strong> y <strong>C#</strong> — cerrando con interfaces de escritorio (Swing, WPF),
+        el proyecto integrador "Dudo" y una introducción a Python del lado servidor (FastAPI, WebSockets).
+      </p>
+      <ul class="mini-indice">
+        <li><a href="#u1">01 · Compilación e interpretación</a></li>
+        <li><a href="#u2">02 · C++: punteros y clases</a></li>
+        <li><a href="#u3">03 · Proyecto Dudo</a></li>
+        <li><a href="#u4">04 · Java</a></li>
+        <li><a href="#u5">05 · C#/WPF</a></li>
+        <li><a href="#u6">06 · Python en el servidor</a></li>
+        <li><a href="#u7">07 · Comparación final</a></li>
+      </ul>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 1 · COMPILACIÓN E INTERPRETACIÓN -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u1">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">01</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Compilación e interpretación</h2>
+          <p class="unidad-sub">El punto de partida del bootcamp: cómo difieren compilar y ejecutar (C++) de interpretar línea a línea (Python), y las primeras herramientas de control de flujo en C.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-paradigmas">
+        <h3>1. Compilación vs interpretación: C++ vs Python</h3>
+        <div class="tabla-scroll">
+          <table>
+            <thead><tr><th>Aspecto</th><th>C++</th><th>Python</th></tr></thead>
+            <tbody>
+              <tr><td>Ejecución</td><td>se <strong>compila</strong> a binario antes de ejecutar</td><td>se <strong>interpreta</strong> línea a línea</td></tr>
+              <tr><td>Tipado</td><td><strong>estático</strong> (se fija al declarar)</td><td><strong>dinámico</strong> (se infiere en ejecución)</td></tr>
+              <tr><td>Declaración</td><td><code>int edad;</code></td><td><code>edad = 20</code></td></tr>
+              <tr><td>Errores</td><td>muchos se detectan <strong>al compilar</strong></td><td>solo aparecen <strong>al ejecutar</strong> esa línea</td></tr>
+              <tr><td>E/S</td><td><code>cin &gt;&gt;</code> / <code>cout &lt;&lt;</code></td><td><code>input()</code> / <code>print()</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <ul>
+          <li>Python <strong>sí tiene tipos</strong>: se asignan dinámicamente en ejecución, no se declaran.</li>
+          <li>Olvidar <code>&amp;</code> en <code>scanf("%d", &amp;edad)</code> escribe en una dirección de memoria inválida.</li>
+          <li><code>cin &gt;&gt; nombre</code> con <code>string</code> corta en el primer espacio; usar <code>getline(cin, nombre)</code> para una línea completa.</li>
+        </ul>
+      </div>
+
+      <div class="materia" id="tema-c-basico">
+        <h3>2. Sintaxis y control de flujo en C</h3>
+        <pre><code>do {
+    printf("1. Comprar\n2. Ver ventas\n3. Salir\n");
+    scanf("%d", &amp;opcion);
+    switch (opcion) {
+        case 1: /* ... */ break;
+        case 2: /* ... */ break;
+        default: printf("Opción inválida.\n");
+    }
+} while (opcion != 3);</code></pre>
+        <ul>
+          <li>Menú típico: <code>switch</code> + <code>do-while</code> (evalúa la condición <em>después</em>, mínimo 1 ejecución).</li>
+          <li><code>int arr[]</code> como parámetro es en realidad un <strong>puntero</strong> al primer elemento (paso por referencia implícito).</li>
+          <li><code>const int PRECIO = 2000;</code> para valores que no cambian.</li>
+          <li>Olvidar <code>break</code> en un <code>case</code>: la ejecución "cae" al siguiente (fallthrough).</li>
+        </ul>
+      </div>
+
+      <div class="animacion" id="anim-compilacion">
+        <div class="anim-cabecera">
+          <h3>⚙️ Compilar (C++) vs interpretar (Python)</h3>
+          <p class="anim-desc">Dos carriles avanzan juntos con cada "Paso": arriba el camino compilado, abajo el interpretado, para el mismo programa (pedir nombre/edad y decir si es mayor de edad).</p>
+        </div>
+        <canvas data-alto="300"></canvas>
+        <div class="controles">
+          <button type="button" data-accion="paso">Paso</button>
+          <button type="button" class="secundario" data-accion="auto">▶ Auto</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p id="compilacion-info" class="info-linea">Presioná Paso para empezar.</p>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> el recuadro morado marca la etapa activa en cada carril. C++ pasa por <em>todas</em> las etapas de traducción antes de poder ejecutar una sola vez; Python traduce y ejecuta <em>cada línea</em> al vuelo, sin una fase de compilación previa — la idea central de la nota "Paradigmas y compilación".</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-cine">
+          <summary><span class="resumen-ejercicio">1. En C, dada la edad de un cliente, calcula el precio de su entrada de cine: <code>$2000</code> si es menor de 13, <code>$4000</code> entre 13 y 59, <code>$3000</code> si tiene 60 o más.</span> <span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int edad;
+    const int PRECIO_MENOR_13 = 2000;
+    const int PRECIO_ENTRE_13_Y_59 = 4000;
+    const int PRECIO_MAYOR_60 = 3000;
+
+    printf("Ingrese la edad del cliente: ");
+    scanf("%d", &amp;edad);
+
+    if (edad &lt; 0) {
+        printf("Edad inválida.\n");
+    } else if (edad &lt; 13) {
+        printf("Precio: $%d\n", PRECIO_MENOR_13);
+    } else if (edad &lt;= 59) {
+        printf("Precio: $%d\n", PRECIO_ENTRE_13_Y_59);
+    } else {
+        printf("Precio: $%d\n", PRECIO_MAYOR_60);
+    }
+    return 0;
+}</code></pre>
+            <p>Mismo patrón de <code>cine.c</code>: constantes para los precios y una cadena de <code>if/else if</code> que cubre los tres rangos de edad, validando primero que no sea negativa.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-contar-arreglo">
+          <summary>2. En C, dado un arreglo de 10 enteros ingresados por teclado, cuenta cuántos son pares y cuántos son mayores que el promedio. <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <pre><code>#include &lt;stdio.h&gt;
+
+int main() {
+    int arreglo[10], suma = 0, pares = 0, mayoresProm = 0;
+
+    for (int i = 0; i &lt; 10; i++) {
+        printf("Numero %d: ", i + 1);
+        scanf("%d", &amp;arreglo[i]);
+        suma += arreglo[i];
+        if (arreglo[i] % 2 == 0) pares++;
+    }
+
+    float promedio = (float)suma / 10;
+    for (int i = 0; i &lt; 10; i++) {
+        if (arreglo[i] &gt; promedio) mayoresProm++;
+    }
+
+    printf("Pares: %d\n", pares);
+    printf("Promedio: %.2f\n", promedio);
+    printf("Mayores al promedio: %d\n", mayoresProm);
+    return 0;
+}</code></pre>
+            <p>Primer <code>for</code>: lee cada valor, acumula la suma y cuenta pares en la misma pasada. El promedio necesita <strong>todos</strong> los valores, así que contar "mayores al promedio" exige un <strong>segundo</strong> <code>for</code> después de calcularlo — patrón típico de control (<code>control01_sec01.c</code>).</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 2 · C++: PUNTEROS, MEMORIA Y CLASES -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u2">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">02</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">C++: punteros, memoria y clases</h2>
+          <p class="unidad-sub">Arreglos, punteros y memoria dinámica, y las primeras clases con encapsulamiento: la base de la POO en C++ y la organización en headers/Makefile.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-punteros">
+        <h3>3. Arreglos y punteros en C++</h3>
+        <pre><code>int x = 10;
+int* p = &amp;x;      // p guarda la DIRECCIÓN de x
+cout &lt;&lt; *p;        // *p desreferencia: accede al valor apuntado (10)
+*p = 20;            // modifica x a través del puntero
+
+vector&lt;int&gt; dados;
+dados.resize(N);    // tamaño dinámico, crece/reduce en ejecución</code></pre>
+        <ul>
+          <li><strong>Arreglo estático</strong> <code>int arreglo[10];</code>: tamaño fijo en compilación.</li>
+          <li>Al pasar un arreglo a una función, se pasa un <strong>puntero</strong> al primer elemento: la función SÍ modifica el original.</li>
+          <li>Confundir <code>int* p</code> (puntero) con <code>int p</code> (valor); olvidar <code>*</code> al desreferenciar o <code>&amp;</code> al obtener la dirección.</li>
+          <li>Devolver una referencia (<code>&amp;</code>) a una variable local: queda apuntando a memoria que ya no existe.</li>
+        </ul>
+      </div>
+
+      <div class="animacion" id="anim-memoria">
+        <div class="anim-cabecera">
+          <h3>📍 Memoria: pila, punteros y montón en C++</h3>
+          <p class="anim-desc">Traza <code>int x = 10; int* p = &amp;x; *p;</code> y una extensión natural con <code>new</code> / <code>delete</code> para ver también el montón (heap).</p>
+        </div>
+        <canvas data-alto="300"></canvas>
+        <div class="controles">
+          <button type="button" data-accion="paso">Paso</button>
+          <button type="button" class="secundario" data-accion="auto">▶ Auto</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p id="memoria-info" class="info-linea">Presioná Paso para declarar la primera variable.</p>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> la <strong>pila</strong> (izquierda) guarda variables locales con su dirección simulada; el <strong>montón</strong> (derecha) aparece recién con <code>new</code>. La flecha va del puntero hacia la celda que apunta; rojo punteado = puntero colgante tras <code>delete</code> (la nota de Arreglos y punteros advierte justo sobre acceder a memoria que ya no existe).</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="materia" id="tema-clases-cpp">
+        <h3>4. Clases y objetos en C++</h3>
+        <pre><code>class Persona {
+private:                       // private por defecto en class
+    string nombre;
+    int edad;
+public:
+    Persona(string nombre, int edad) {
+        this-&gt;nombre = nombre;  // this-&gt; distingue atributo de parámetro
+        this-&gt;edad = edad;
+    }
+    void mostrarDatos() const { /* no modifica el objeto */ }
+};</code></pre>
+        <ul>
+          <li><strong>Lista de inicialización</strong>: <code>Gamer(const string&amp; n) : nickname(n) {}</code> — obligatoria para atributos <code>const</code>/referencias.</li>
+          <li>Paso por <strong>referencia constante</strong> (<code>const string&amp;</code>) evita copiar strings en los parámetros.</li>
+          <li>Método <code>const</code>: indica que no modifica el objeto; permite llamarlo sobre referencias <code>const</code>.</li>
+          <li>Declarar atributos <code>public</code> "para simplificar" rompe el encapsulamiento.</li>
+        </ul>
+      </div>
+
+      <div class="materia" id="tema-modular-cpp">
+        <h3>5. Headers y Makefile</h3>
+        <pre><code>// Videojuego.h
+#ifndef VIDEOJUEGO_H
+#define VIDEOJUEGO_H
+class Videojuego { /* ... */ };
+#endif
+
+// main.cpp — incluye headers, no las implementaciones .cpp
+#include "Videojuego.h"
+#include "Gamer.h"</code></pre>
+        <ul>
+          <li>Cada clase: un <code>.h</code> (declaración) y un <code>.cpp</code> (implementación), definida con <code>Gamer::metodo()</code>.</li>
+          <li><strong>Guardas de inclusión</strong> (<code>#ifndef</code> / <code>#define</code> / <code>#endif</code>) evitan redefiniciones si un header se incluye dos veces.</li>
+          <li>El <code>Makefile</code> compila cada <code>.cpp</code> por separado y los enlaza en un ejecutable.</li>
+          <li>Incluir un <code>.cpp</code> en vez de su <code>.h</code>: duplica código, error de "símbolo redefinido".</li>
+        </ul>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-persona">
+          <h3>1. C++: clase <code>Persona</code> con constructor</h3>
+          <pre><code>class Persona {
+private:
+    string nombre;
+    int edad;
+public:
+    Persona(string nombre, int edad) {
+        this-&gt;nombre = nombre;   // "this-&gt;" distingue el atributo del parámetro
+        this-&gt;edad = edad;
+    }
+    void mostrarDatos() {
+        cout &lt;&lt; "Nombre: " &lt;&lt; nombre &lt;&lt; endl;
+        cout &lt;&lt; "Edad: " &lt;&lt; edad &lt;&lt; " años" &lt;&lt; endl;
+    }
+};
+
+int main() {
+    Persona persona1("Carlos", 30);
+    persona1.mostrarDatos();
+    return 0;
+}</code></pre>
+          <p><code>nombre</code> y <code>edad</code> son <code>private</code> por defecto (en <code>class</code>, a diferencia de <code>struct</code>): solo se pueden tocar desde dentro de la propia clase. El constructor recibe parámetros con el <strong>mismo nombre</strong> que los atributos, por eso hace falta <code>this-&gt;</code> para decir "el atributo del objeto", no el parámetro local.</p>
+          <p><code>Persona persona1("Carlos", 30);</code> crea el objeto en la pila y llama automáticamente al constructor; <code>persona1.mostrarDatos()</code> invoca el método sobre esa instancia concreta.</p>
+          <p class="fuente">Fuente: nota "Clases y objetos en C++" (<code>persona.cpp</code>).</p>
+        </div>
+
+        <div class="ejemplo" id="ej-gamer-headers">
+          <h3>2. C++: separar una clase en <code>.h</code> / <code>.cpp</code></h3>
+          <pre><code>// Gamer.h
+#ifndef GAMER_H
+#define GAMER_H
+#include "Videojuego.h"
+#include &lt;vector&gt;
+
+class Gamer {
+private:
+    std::string nickname;
+    int edad;
+    std::vector&lt;Videojuego&gt; videojuegosFavoritos;
+public:
+    Gamer(const std::string&amp; nickname, int edad);
+    void agregarVideojuego(const Videojuego&amp; juego);
+};
+#endif
+
+// Gamer.cpp
+Gamer::Gamer(const string&amp; nickname, int edad)
+    : nickname(nickname), edad(edad) {}   // lista de inicialización
+
+void Gamer::agregarVideojuego(const Videojuego&amp; juego) {
+    videojuegosFavoritos.push_back(juego);
+}</code></pre>
+          <p>El <code>.h</code> solo declara <strong>qué</strong> existe (atributos, firmas de métodos); el <code>.cpp</code> define <strong>cómo</strong> funciona cada método, calificado con <code>Gamer::</code> para que el compilador sepa a qué clase pertenece. Las guardas <code>#ifndef GAMER_H</code> / <code>#define GAMER_H</code> / <code>#endif</code> evitan que este header se procese dos veces si dos archivos distintos lo incluyen.</p>
+          <p><code>Gamer</code> <strong>tiene</strong> un <code>vector&lt;Videojuego&gt;</code> (composición, no herencia): agregarlo con <code>push_back</code> no requiere que <code>Gamer</code> "sea un" <code>Videojuego</code>.</p>
+          <p class="fuente">Fuente: nota "Organización modular en C++: headers y Makefile" (<code>Gamer.h</code> / <code>Gamer.cpp</code>).</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-persona-getters">
+          <summary><span class="resumen-ejercicio">3. En C++, agrega getters <code>getNombre()</code> y <code>getEdad()</code> (const) a la clase <code>Persona</code> sin exponer los atributos como públicos.</span> <span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <pre><code>class Persona {
+private:
+    string nombre;
+    int edad;
+public:
+    Persona(string nombre, int edad) {
+        this-&gt;nombre = nombre;
+        this-&gt;edad = edad;
+    }
+    string getNombre() const { return nombre; }
+    int getEdad() const { return edad; }
+};
+
+int main() {
+    Persona p("Ana", 22);
+    cout &lt;&lt; p.getNombre() &lt;&lt; " tiene " &lt;&lt; p.getEdad() &lt;&lt; " años" &lt;&lt; endl;
+    return 0;
+}</code></pre>
+            <p><code>nombre</code> y <code>edad</code> siguen siendo <code>private</code>; los getters son la única vía pública para leerlos. Marcarlos <code>const</code> permite llamarlos también sobre objetos o referencias <code>const Persona&amp;</code>, ya que prometen no modificar el objeto.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-swap-punteros">
+          <summary><span class="resumen-ejercicio">4. En C++, escribe una función <code>intercambiar(int* a, int* b)</code> que cambie los valores de dos variables usando punteros.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <pre><code>void intercambiar(int* a, int* b) {
+    int temp = *a;   // guarda el valor apuntado por a
+    *a = *b;         // a pasa a valer lo que valía b
+    *b = temp;       // b pasa a valer el temp original
+}
+
+int main() {
+    int x = 5, y = 9;
+    intercambiar(&amp;x, &amp;y);        // se pasan las DIRECCIONES de x e y
+    cout &lt;&lt; "x=" &lt;&lt; x &lt;&lt; " y=" &lt;&lt; y &lt;&lt; endl;   // x=9 y=5
+    return 0;
+}</code></pre>
+            <p>Como los parámetros son punteros (<code>int*</code>), la función recibe la <strong>dirección</strong> de <code>x</code> e <code>y</code>, no una copia de sus valores. Por eso los cambios hechos con <code>*a</code> / <code>*b</code> dentro de la función se ven reflejados en <code>main</code> al volver — si los parámetros fueran <code>int a, int b</code> (por valor), el intercambio no tendría ningún efecto afuera.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 3 · PROYECTO DUDO -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u3">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">03</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Proyecto Dudo: clases anidadas y tuplas</h2>
+          <p class="unidad-sub">El proyecto integrador en C++: organizar un juego completo con clases anidadas, generación aleatoria y retorno de múltiples valores con <code>tuple</code>.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-dudo">
+        <h3>6. Proyecto Dudo: clases anidadas y tuplas</h3>
+        <pre><code>class Game {
+public:
+    // clase anidada: se referencia como Game::Player
+    class Player {
+        vector&lt;int&gt; dados;
+    public:
+        tuple&lt;int,int&gt; hacer_apuesta() {
+            int cantidad, valor;
+            cin &gt;&gt; cantidad &gt;&gt; valor;
+            return make_tuple(cantidad, valor);
+        }
+    };
+private:
+    vector&lt;Player&gt; jugadores;
+};
+// acceso por índice de la tupla
+int cantidad = get&lt;0&gt;(apuesta);</code></pre>
+        <ul>
+          <li><code>Player</code> solo tiene sentido dentro de <code>Game</code>; se referencia como <code>Game::Player</code>.</li>
+          <li><code>std::tuple&lt;int,int&gt;</code> devuelve dos valores relacionados sin crear una clase extra.</li>
+          <li><code>&lt;random&gt;</code>: <code>random_device</code> + <code>mt19937</code> + <code>uniform_int_distribution</code>, mejor que <code>rand()</code>.</li>
+          <li><code>emplace_back</code> construye in-place (evita copia extra) vs <code>push_back</code>.</li>
+        </ul>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-dudo-player">
+          <h3>3. C++: clase anidada <code>Game::Player</code> y <code>tuple</code> (Proyecto Dudo)</h3>
+          <pre><code>class Game {
+public:
+    class Player {                          // Player solo existe con sentido dentro de Game
+    private:
+        string name;
+        vector&lt;int&gt; dados;
+    public:
+        int puntos;
+        Player(string n) : name(std::move(n)), puntos(0) {}
+
+        void lanzar_dados(int N) {
+            random_device rd;
+            mt19937 gen(rd());
+            uniform_int_distribution&lt;&gt; distrib(1, 6);
+            dados.resize(N);
+            for (int i = 0; i &lt; N; ++i) dados[i] = distrib(gen);
+        }
+
+        tuple&lt;int, int&gt; hacer_apuesta() {   // devuelve DOS valores sin struct propia
+            int cantidad, valor;
+            cin &gt;&gt; cantidad &gt;&gt; valor;
+            return make_tuple(cantidad, valor);
+        }
+    };
+private:
+    vector&lt;Player&gt; jugadores;
+public:
+    void iniciar() {
+        jugadores.clear();
+        jugadores.emplace_back("Jugador 1");
+        jugadores.emplace_back("Jugador 2");
+    }
+};</code></pre>
+          <p><code>Player</code> está declarada <strong>dentro</strong> de <code>Game</code>: fuera de ella se debe escribir <code>Game::Player</code>, nunca <code>Player</code> a secas. Esto modela que un jugador solo tiene sentido en el contexto de una partida.</p>
+          <p><code>hacer_apuesta()</code> necesita devolver dos números (cantidad y valor de dado apostados); en vez de crear una <code>struct</code> nueva, usa <code>tuple&lt;int,int&gt;</code> y <code>make_tuple(...)</code>. Para leerlos: <code>get&lt;0&gt;(apuesta)</code> y <code>get&lt;1&gt;(apuesta)</code> — el índice siempre corresponde a la <em>posición</em>, no al significado. <code>jugadores.emplace_back("Jugador 1")</code> construye el <code>Player</code> directamente dentro del <code>vector</code>, sin copia extra.</p>
+          <p class="fuente">Fuente: nota "Clases anidadas y tuplas en C++: Proyecto Dudo" (<code>main.cpp</code>, Entrega 1).</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-suma-dados">
+          <summary><span class="resumen-ejercicio">5. En C++, agrega a <code>Game::Player</code> un método <code>suma_dados()</code> que retorne la suma del último lanzamiento.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <pre><code>class Player {
+private:
+    string name;
+    vector&lt;int&gt; dados;
+public:
+    Player(string n) : name(std::move(n)) {}
+
+    void lanzar_dados(int N) {
+        random_device rd;
+        mt19937 gen(rd());
+        uniform_int_distribution&lt;&gt; distrib(1, 6);
+        dados.resize(N);
+        for (int i = 0; i &lt; N; ++i) dados[i] = distrib(gen);
+    }
+
+    int suma_dados() const {
+        int total = 0;
+        for (int d : dados) total += d;
+        return total;
+    }
+};</code></pre>
+            <p><code>dados</code> ya es un <code>vector&lt;int&gt;</code> dinámico que <code>lanzar_dados(N)</code> redimensiona con <code>resize(N)</code>. <code>suma_dados()</code> solo necesita recorrerlo con un <code>for</code> basado en rango (<code>for (int d : dados)</code>) y acumular — se marca <code>const</code> porque solo lee el estado del objeto, nunca lo modifica.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 4 · JAVA: HERENCIA, COLECCIONES Y SWING -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u4">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">04</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Java: herencia, colecciones y Swing</h2>
+          <p class="unidad-sub">Herencia y polimorfismo, colecciones dinámicas con manejo de excepciones, y las primeras interfaces gráficas de escritorio con Swing.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-herencia-java">
+        <h3>7. Herencia y polimorfismo en Java</h3>
+        <pre><code>class Empleado {
+    private String nombre;
+    public Empleado(String nombre) { this.nombre = nombre; }
+    public String getNombre() { return nombre; }
+}
+
+class Gerente extends Empleado {
+    public Gerente(String nombre) {
+        super(nombre);              // constructor del padre, PRIMERA línea
+    }
+    public void asignarPresupuesto() { /* propio de Gerente */ }
+}</code></pre>
+        <ul>
+          <li><code>extends</code> hereda todo lo público/protegido; <code>super(...)</code> inicializa lo heredado.</li>
+          <li>Cada subclase puede tratarse como <code>Empleado</code>, pero agrega comportamiento propio (<code>asignarPresupuesto</code>, <code>escribirCodigo</code>).</li>
+          <li>Sin <code>super(...)</code> como primera línea (si el padre no tiene constructor vacío): error de compilación.</li>
+          <li>Acceder a un método propio de <code>Gerente</code> desde una referencia <code>Empleado</code> requiere <em>cast</em> explícito.</li>
+        </ul>
+      </div>
+
+      <div class="materia" id="tema-colecciones-java">
+        <h3>8. Colecciones y excepciones en Java</h3>
+        <pre><code>ArrayList&lt;Persona&gt; lista = new ArrayList&lt;&gt;();
+try {
+    int edad = Integer.parseInt(edadStr);   // puede lanzar NumberFormatException
+    lista.add(new Persona(nombre, edad));
+} catch (NumberFormatException ex) {
+    JOptionPane.showMessageDialog(frame, "Edad inválida.");
+}</code></pre>
+        <ul>
+          <li><code>ArrayList&lt;T&gt;</code> reemplaza arreglos fijos cuando no se sabe cuántos elementos habrá.</li>
+          <li><code>Scanner</code>: <code>nextLine()</code> texto, <code>nextInt()</code> enteros — mezclar ambos deja la siguiente lectura vacía.</li>
+          <li><code>StringBuilder</code> evita crear un <code>String</code> nuevo en cada concatenación dentro de un bucle.</li>
+          <li>No capturar <code>NumberFormatException</code> al convertir texto de un <code>JTextField</code>: el programa crashea.</li>
+        </ul>
+      </div>
+
+      <div class="materia" id="tema-swing">
+        <h3>9. Interfaces con Java Swing</h3>
+        <pre><code>JFrame frame = new JFrame("Formulario");
+frame.setLayout(null);   // posicionamiento absoluto
+JButton btn = new JButton("Mostrar");
+btn.setBounds(100, 100, 150, 25);
+frame.add(btn);
+
+btn.addActionListener(new ActionListener() {
+    public void actionPerformed(ActionEvent e) {
+        // lógica del clic
+    }
+});
+frame.setVisible(true);</code></pre>
+        <ul>
+          <li><code>JFrame</code> (ventana), <code>JLabel</code> / <code>JTextField</code> / <code>JButton</code> / <code>JTextArea</code> / <code>JOptionPane</code> (componentes).</li>
+          <li><code>setBounds(x, y, ancho, alto)</code> posiciona manualmente cada componente.</li>
+          <li>Olvidar <code>frame.setVisible(true)</code>: la ventana nunca aparece.</li>
+          <li>La lógica de negocio vive en una clase aparte (<code>Persona</code>); la GUI solo la invoca.</li>
+        </ul>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-herencia-java">
+          <h3>4. Java: herencia <code>Empleado → Gerente/Desarrollador</code></h3>
+          <pre><code>class Empleado {
+    private String nombre;
+    private int sueldo;
+
+    public Empleado(String nombre, int sueldo) {
+        this.nombre = nombre;
+        this.sueldo = sueldo;
+    }
+    public String getNombre() { return nombre; }
+    public void mostrarInfo() {
+        System.out.println("Nombre: " + nombre);
+        System.out.println("Sueldo: $" + sueldo);
+    }
+}
+
+class Gerente extends Empleado {
+    public Gerente(String nombre, int sueldo) {
+        super(nombre, sueldo);            // llama al constructor de Empleado
+    }
+    public void asignarPresupuesto() {
+        System.out.println(getNombre() + " está asignando el presupuesto.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Gerente gerente = new Gerente("Laura", 5000);
+        gerente.mostrarInfo();            // heredado de Empleado
+        gerente.asignarPresupuesto();     // propio de Gerente
+    }
+}</code></pre>
+          <p><code>class Gerente extends Empleado</code> hereda <code>nombre</code>, <code>sueldo</code>, <code>getNombre()</code> y <code>mostrarInfo()</code> sin reescribirlos. <code>super(nombre, sueldo)</code> es la <strong>primera línea obligatoria</strong> del constructor hijo: sin ella, los atributos privados heredados nunca se inicializarían (son <code>private</code> en <code>Empleado</code>, ni siquiera <code>Gerente</code> puede tocarlos directo).</p>
+          <p><code>asignarPresupuesto()</code> solo existe en <code>Gerente</code>: sería un error de compilación llamarla sobre una variable declarada como <code>Empleado</code> sin un <em>cast</em> explícito primero.</p>
+          <p class="fuente">Fuente: nota "Herencia y polimorfismo en Java" (<code>Main2.java</code>).</p>
+        </div>
+
+        <div class="ejemplo" id="ej-colecciones-swing">
+          <h3>5. Java: <code>ArrayList</code> + <code>try/catch</code> + <code>StringBuilder</code> en Swing</h3>
+          <pre><code>private static ArrayList&lt;Persona&gt; listaPersonas = new ArrayList&lt;&gt;();
+
+btnAgregar.addActionListener(new ActionListener() {
+    public void actionPerformed(ActionEvent e) {
+        String edadStr = txtEdad.getText();
+        try {
+            int edad = Integer.parseInt(edadStr);     // puede lanzar NumberFormatException
+            listaPersonas.add(new Persona(txtNombre.getText(), edad));
+            JOptionPane.showMessageDialog(frame, "Persona agregada.");
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(frame, "Edad inválida.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+});
+
+btnMostrar.addActionListener(new ActionListener() {
+    public void actionPerformed(ActionEvent e) {
+        StringBuilder sb = new StringBuilder();
+        for (Persona p : listaPersonas) sb.append(p.obtenerSaludo()).append("\n");
+        areaLista.setText(sb.toString());
+    }
+});</code></pre>
+          <p><code>ArrayList&lt;Persona&gt;</code> crece sin límite fijo, a diferencia de un arreglo de Java. <code>Integer.parseInt(edadStr)</code> lanza <code>NumberFormatException</code> si el usuario escribió letras en el <code>JTextField</code>; el <code>try/catch</code> evita que eso tumbe el programa y en su lugar muestra un diálogo de error.</p>
+          <p><code>StringBuilder</code> arma el texto final concatenando dentro de un <code>for-each</code> sin crear un <code>String</code> nuevo en cada vuelta — más eficiente que <code>+</code> repetido cuando la lista puede ser grande.</p>
+          <p class="fuente">Fuente: nota "Colecciones y manejo de excepciones en Java" (Ejemplo Swing 02, <code>Main2.java</code>).</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-cliente-java">
+          <summary><span class="resumen-ejercicio">6. En Java, crea una clase <code>Cliente</code> (nombre, correo) y una subclase <code>ClientePremium</code> que agregue <code>descuento</code> y sobrescriba un método de resumen.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <pre><code>class Cliente {
+    private String nombre;
+    private String correo;
+
+    public Cliente(String nombre, String correo) {
+        this.nombre = nombre;
+        this.correo = correo;
+    }
+    public String getNombre() { return nombre; }
+    public String resumen() {
+        return nombre + " (" + correo + ")";
+    }
+}
+
+class ClientePremium extends Cliente {
+    private double descuento;
+
+    public ClientePremium(String nombre, String correo, double descuento) {
+        super(nombre, correo);          // inicializa nombre y correo heredados
+        this.descuento = descuento;
+    }
+    @Override
+    public String resumen() {
+        return getNombre() + " — Premium (" + (int)(descuento * 100) + "% dcto.)";
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Cliente c = new Cliente("Ana", "ana@mail.com");
+        ClientePremium p = new ClientePremium("Beto", "beto@mail.com", 0.15);
+        System.out.println(c.resumen());
+        System.out.println(p.resumen());
+    }
+}</code></pre>
+            <p><code>ClientePremium extends Cliente</code> reutiliza <code>nombre</code> / <code>correo</code> vía <code>super(...)</code> y agrega <code>descuento</code> propio. <code>resumen()</code> se <strong>sobrescribe</strong> (misma firma, comportamiento distinto) — mismo patrón que <code>Gerente</code> / <code>Desarrollador</code> sobre <code>Empleado</code>, pero acá sí hay override real de un método heredado.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-edad-scanner">
+          <summary><span class="resumen-ejercicio">7. En Java, pide una edad por teclado con <code>Scanner</code> y maneja con <code>try/catch</code> el caso en que el usuario escriba texto.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <pre><code>import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Ingrese su edad: ");
+        String texto = scanner.nextLine();
+
+        try {
+            int edad = Integer.parseInt(texto);
+            if (edad &gt;= 18) {
+                System.out.println("Eres mayor de edad.");
+            } else {
+                System.out.println("Eres menor de edad.");
+            }
+        } catch (NumberFormatException ex) {
+            System.out.println("Edad inválida: debes ingresar solo números.");
+        }
+        scanner.close();
+    }
+}</code></pre>
+            <p>Se lee siempre como <code>String</code> con <code>nextLine()</code> y se convierte "a mano" con <code>Integer.parseInt(...)</code> dentro de un <code>try</code>: si el texto no es un número válido, se lanza <code>NumberFormatException</code> y el <code>catch</code> la captura sin que el programa termine abruptamente.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 5 · C#: POO, PROPIEDADES Y WPF -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u5">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">05</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">C#: POO, propiedades y WPF</h2>
+          <p class="unidad-sub">Sintaxis POO de C# con propiedades automáticas y despacho <code>virtual</code>/<code>override</code>, y el patrón XAML + code-behind para interfaces de escritorio con WPF.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-csharp">
+        <h3>10. Sintaxis y POO en C#</h3>
+        <pre><code>public abstract class Figura {
+    public virtual double CalcularArea() { return 0; }
+}
+public class Rectangulo : Figura {
+    public double Ancho { get; set; }        // propiedad, no getter/setter manual
+    public override double CalcularArea() { return Ancho * Alto; }
+}
+Console.WriteLine($"Area: {r.CalcularArea()}");  // interpolación de string</code></pre>
+        <ul>
+          <li>Herencia con <code>:</code> (no <code>extends</code>); punto de entrada <code>static void Main</code> (mayúscula).</li>
+          <li>Polimorfismo requiere <code>virtual</code> explícito en el padre y <code>override</code> en el hijo (si no, error de compilación).</li>
+          <li><code>abstract</code>: sin cuerpo, obliga a implementar. <code>virtual</code>: sí tiene cuerpo, el <code>override</code> es opcional.</li>
+        </ul>
+      </div>
+
+      <div class="animacion" id="anim-polimorfismo">
+        <div class="anim-cabecera">
+          <h3>🧬 Polimorfismo con <code>virtual</code> / <code>override</code> (C#)</h3>
+          <p class="anim-desc">Jerarquía <code>Figura</code> (abstracta) → <code>Rectangulo</code> / <code>Cuadrado</code> del Control 3 del curso. Elegí el objeto real y calculá su área: la referencia es <code>Figura</code>, pero corre la versión del tipo REAL.</p>
+        </div>
+        <canvas data-alto="320"></canvas>
+        <div class="controles">
+          <button type="button" data-accion="rectangulo">Figura f = new Rectangulo(4, 6)</button>
+          <button type="button" data-accion="cuadrado">Figura f = new Cuadrado(5)</button>
+          <button type="button" class="secundario" data-accion="calcular">▶ f.CalcularArea()</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p id="poli-info" class="info-linea">Elegí un objeto y presioná "f.CalcularArea()".</p>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> ambas subclases <strong>sobrescriben</strong> (<code>override</code>) el método <code>virtual</code> del padre. La llamada usa siempre el tipo real del objeto en tiempo de ejecución, nunca el tipo de la variable (<code>Figura</code>) que lo referencia — por eso el mismo código <code>f.CalcularArea()</code> ejecuta una fórmula distinta según qué objeto se haya creado.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="materia" id="tema-wpf">
+        <h3>11. Interfaces con WPF</h3>
+        <pre><code>&lt;!-- XAML --&gt;
+&lt;Button x:Name="btn1" Content="Agregar" Click="btn1_Click"/&gt;
+
+// code-behind (.xaml.cs)
+private void btn1_Click(object sender, RoutedEventArgs e) {
+    MediaItem m = (MediaItem)list1.SelectedItem;   // cast al tipo base
+    if (m != null) MessageBox.Show(m.GetDescripcion());  // polimorfismo
+}</code></pre>
+        <ul>
+          <li>Interfaz declarada en <strong>XAML</strong>; lógica en el <strong>code-behind</strong>, conectados por <code>x:Name</code> y eventos (<code>Click="..."</code>).</li>
+          <li><code>SelectedItem</code> es de tipo <code>object</code>: hay que castear antes de usar miembros específicos.</li>
+          <li><code>Content</code> (texto de <code>Button</code> / <code>ComboBoxItem</code>) ≠ <code>Text</code> (de <code>TextBox</code> / <code>ComboBox</code>).</li>
+        </ul>
+      </div>
+
+      <div class="animacion" id="anim-evento">
+        <div class="anim-cabecera">
+          <h3>🖱️ Evento → handler → acción (Swing / WPF)</h3>
+          <p class="anim-desc">Elegí el framework y avanzá con "Paso" la cadena completa desde el clic del usuario hasta que la interfaz se actualiza.</p>
+        </div>
+        <canvas data-alto="320"></canvas>
+        <div class="controles">
+          <button type="button" data-accion="swing">Java Swing</button>
+          <button type="button" data-accion="wpf">C# WPF</button>
+          <button type="button" data-accion="paso">Paso</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p id="evento-info" class="info-linea">Elegí un framework y presioná Paso.</p>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> cada nodo resaltado es un paso real de la cadena de eventos: en Swing el <code>ActionListener</code> reacciona al <code>ActionEvent</code>; en WPF el atributo <code>Click="btn1_Click"</code> del XAML conecta directo con el code-behind. En ambos casos la validación (<code>try/parseInt</code> o <code>int.Parse</code>) ocurre <em>antes</em> de actualizar la UI.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-figura-csharp">
+          <h3>6. C#: <code>Figura</code> / <code>Rectangulo</code> / <code>Cuadrado</code> con <code>virtual</code> / <code>override</code></h3>
+          <pre><code>public abstract class Figura
+{
+    public virtual double CalcularArea() { return 0; }
+    public virtual double CalcularPerimetro() { return 0; }
+}
+
+public class Rectangulo : Figura
+{
+    public double Ancho { get; set; }       // propiedad, no getter/setter manual
+    public double Alto { get; set; }
+    public Rectangulo(double ancho, double alto) { Ancho = ancho; Alto = alto; }
+    public override double CalcularArea() { return Ancho * Alto; }
+    public override double CalcularPerimetro() { return 2 * (Ancho + Alto); }
+}
+
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        Rectangulo r = new Rectangulo(4, 6);
+        Console.WriteLine($"Area: {r.CalcularArea()}");     // interpolación de string
+    }
+}</code></pre>
+          <p><code>Figura</code> es <code>abstract</code> y declara <code>CalcularArea()</code> como <code>virtual</code> con una implementación por defecto (retorna 0). <code>Rectangulo : Figura</code> la <strong>sobrescribe</strong> con <code>override</code>; sin <code>virtual</code> en el padre, este <code>override</code> ni siquiera compilaría.</p>
+          <p><code>Ancho</code> y <code>Alto</code> son <strong>propiedades automáticas</strong> (<code>{ get; set; }</code>): reemplazan los pares de getter/setter manuales que se escribirían en Java. <code>$"Area: {r.CalcularArea()}"</code> es interpolación de string, equivalente a <code>"Area: " + r.CalcularArea()</code>.</p>
+          <p class="fuente">Fuente: nota "Sintaxis y POO en C#" (Control 3, <code>Program.cs</code>).</p>
+        </div>
+
+        <div class="ejemplo" id="ej-wpf-mediaitem">
+          <h3>7. C#/WPF: polimorfismo en un <code>ListBox</code> con <code>MediaItem</code></h3>
+          <pre><code>internal abstract class MediaItem
+{
+    public string Titulo { get; set; }
+    public virtual string GetDescripcion() { return ""; }
+    public override string ToString() { return Titulo; }
+}
+
+internal class Pelicula : MediaItem
+{
+    public string Director { get; set; }
+    public int Duracion { get; set; }
+    public override string GetDescripcion() {
+        return Titulo + Director + Duracion.ToString();
+    }
+}
+
+// code-behind
+private void Button_Click(object sender, RoutedEventArgs e)
+{
+    MediaItem m = (MediaItem)list1.SelectedItem;   // cast al tipo base
+    if (m != null) MessageBox.Show(m.GetDescripcion());  // polimorfismo
+}</code></pre>
+          <p><code>list1</code> es un <code>ListBox</code> que guarda objetos heterogéneos (<code>Pelicula</code>, <code>Videojuego</code>) todos bajo el tipo común <code>MediaItem</code>. <code>SelectedItem</code> es de tipo genérico <code>object</code>, así que hay que castearlo a <code>MediaItem</code> antes de poder llamar <code>GetDescripcion()</code>.</p>
+          <p>Aunque la variable <code>m</code> está declarada como <code>MediaItem</code>, <code>m.GetDescripcion()</code> ejecuta la versión <strong>sobrescrita</strong> según el tipo real del objeto seleccionado (<code>Pelicula</code> o <code>Videojuego</code>) — el mismo mecanismo de despacho dinámico que el ejemplo de <code>Figura</code>, aplicado a una interfaz gráfica real.</p>
+          <p class="fuente">Fuente: nota "Interfaces de escritorio con WPF" (<code>WpfApp3</code>, <code>Models/MediaItem.cs</code> y <code>Pelicula.cs</code>).</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-circulo-csharp">
+          <summary><span class="resumen-ejercicio">8. En C#, crea una clase <code>Circulo : Figura</code> que sobrescriba <code>CalcularArea()</code> y <code>CalcularPerimetro()</code> usando $\pi r^2$ y $2\pi r$.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <pre><code>public class Circulo : Figura
+{
+    public double Radio { get; set; }
+    public Circulo(double radio) { Radio = radio; }
+
+    public override double CalcularArea() {
+        return Math.PI * Radio * Radio;
+    }
+    public override double CalcularPerimetro() {
+        return 2 * Math.PI * Radio;
+    }
+}
+
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        Figura f = new Circulo(3);                          // referencia Figura, objeto real Circulo
+        Console.WriteLine($"Area: {f.CalcularArea():F2}");    // usa la versión de Circulo
+    }
+}</code></pre>
+            <p>Igual que <code>Rectangulo</code> / <code>Cuadrado</code>: <code>Circulo</code> hereda de la <code>Figura</code> abstracta y sobrescribe ambos métodos <code>virtual</code> con <code>override</code>. Aunque <code>f</code> está declarada como <code>Figura</code>, <code>f.CalcularArea()</code> ejecuta la fórmula de <code>Circulo</code> porque el objeto real creado con <code>new</code> es un <code>Circulo</code> — el mismo despacho dinámico del visualizador de polimorfismo.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-propiedades-csharp">
+          <summary>9. En C#, convierte esta clase con getter/setter manuales en una clase con propiedad automática. <span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <pre><code>// Antes (estilo Java, getter/setter manuales)
+public class Producto {
+    private double precio;
+    public double getPrecio() { return precio; }
+    public void setPrecio(double p) { precio = p; }
+}
+
+// Después (estilo C#, propiedad automática)
+public class Producto {
+    public double Precio { get; set; }
+}
+
+// Uso
+Producto prod = new Producto();
+prod.Precio = 1990;              // llama al "set" internamente
+Console.WriteLine(prod.Precio);  // llama al "get" internamente</code></pre>
+            <p>En C#, <code>public double Precio { get; set; }</code> genera automáticamente el campo privado y los métodos de acceso — se usa como si fuera un atributo público (<code>prod.Precio = 1990;</code>) pero sigue pasando por un getter/setter por debajo. Si se necesitara validar el valor al asignar, habría que escribir el cuerpo de <code>set</code> explícitamente en vez de dejarlo automático.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 6 · PYTHON EN EL SERVIDOR -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u6">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">06</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Python en el servidor: FastAPI y tiempo real</h2>
+          <p class="unidad-sub">El giro hacia el backend: APIs REST tipadas y validadas con FastAPI/Pydantic, y comunicación bidireccional en tiempo real con WebSockets.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-fastapi">
+        <h3>12. APIs REST con FastAPI</h3>
+        <pre><code>from fastapi import FastAPI
+from pydantic import BaseModel
+
+app = FastAPI()
+
+class Item(BaseModel):
+    nombre: str
+    precio: float
+    en_stock: bool = True
+
+@app.get("/suma/{a}/{b}")
+def sumar(a: int, b: int):
+    return {"resultado": a + b}
+
+@app.post("/items/")
+def crear_item(item: Item):
+    return {"data": item}</code></pre>
+        <ul>
+          <li>Decoradores <code>@app.get</code> / <code>@app.post</code> definen endpoints; los tipos (<code>a: int</code>) habilitan validación automática.</li>
+          <li><code>BaseModel</code> (Pydantic) describe el JSON esperado; sin tipar, FastAPI no puede convertir el valor de la URL.</li>
+          <li>JSON que no cumple el modelo → error 422 automático, sin ejecutar la función.</li>
+          <li>Se corre con <code>uvicorn main:app --reload</code> (servidor ASGI).</li>
+        </ul>
+      </div>
+
+      <div class="materia" id="tema-socketio">
+        <h3>13. Tiempo real con Flask-SocketIO</h3>
+        <pre><code>@socketio.on("mensaje_privado")
+def privado(data):
+    origen, destino = data.get("origen"), data.get("destino")
+    if destino in sids_por_usuario:
+        emit("mensaje_privado", {"de": origen}, to=sids_por_usuario[destino])</code></pre>
+        <ul>
+          <li>WebSocket mantiene la conexión abierta: el servidor <strong>emite</strong> eventos cuando quiere, no solo al responder.</li>
+          <li><code>emit(..., to=sid)</code> envía a un cliente específico; sin <code>to</code>, transmite a todos (broadcast).</li>
+          <li>Revalidar el <code>token</code> JWT en cada evento sensible (la conexión persiste, a diferencia de HTTP).</li>
+          <li>SSE (unidireccional servidor→cliente) complementa a los sockets (bidireccionales) para notificaciones simples.</li>
+        </ul>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-fastapi">
+          <h3>8. Python: endpoints GET/POST con FastAPI y Pydantic</h3>
+          <pre><code>from fastapi import FastAPI
+from pydantic import BaseModel
+
+app = FastAPI()
+
+class Item(BaseModel):
+    nombre: str
+    precio: float
+    en_stock: bool = True
+
+@app.get("/suma/{a}/{b}")
+def sumar(a: int, b: int):
+    return {"resultado": a + b}
+
+@app.post("/items/")
+def crear_item(item: Item):
+    return {"mensaje": "Item recibido", "data": item}
+
+# uvicorn main:app --reload</code></pre>
+          <p><code>@app.get("/suma/{a}/{b}")</code> define un <em>path parameter</em>: <code>a</code> y <code>b</code> llegan como texto desde la URL, pero al tiparlos <code>a: int, b: int</code> FastAPI los convierte y valida automáticamente antes de ejecutar <code>sumar</code>.</p>
+          <p><code>Item(BaseModel)</code> describe la forma esperada del JSON del <em>body</em> en el POST: si falta <code>nombre</code> o <code>precio</code> tiene el tipo equivocado, FastAPI responde con error 422 <strong>sin</strong> ejecutar <code>crear_item</code>. <code>en_stock: bool = True</code> es un valor por defecto, igual que en una función normal de Python.</p>
+          <p class="fuente">Fuente: nota "APIs REST con FastAPI" (<code>FastAPI/main.py</code>).</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-fastapi-post">
+          <summary><span class="resumen-ejercicio">10. En FastAPI, crea un endpoint <code>POST /usuarios</code> que reciba un modelo <code>Usuario</code> (nombre, edad, activo=True) y lo devuelva junto con un mensaje de confirmación.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <pre><code>from fastapi import FastAPI
+from pydantic import BaseModel
+
+app = FastAPI()
+
+class Usuario(BaseModel):
+    nombre: str
+    edad: int
+    activo: bool = True
+
+@app.post("/usuarios")
+def crear_usuario(usuario: Usuario):
+    return {
+        "mensaje": f"Usuario {usuario.nombre} creado correctamente",
+        "data": usuario
+    }
+
+# uvicorn main:app --reload
+# POST /usuarios  body: {"nombre": "Ana", "edad": 22}</code></pre>
+            <p><code>Usuario(BaseModel)</code> define el contrato del JSON esperado: <code>nombre</code> y <code>edad</code> son obligatorios, <code>activo</code> es opcional con valor por defecto <code>True</code>. FastAPI valida el <em>body</em> del POST automáticamente antes de ejecutar <code>crear_usuario</code>; si falta <code>edad</code> o llega como texto no numérico, responde 422 sin llegar a correr la función — igual que en el ejemplo de <code>Item</code>.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 7 · COMPARACIÓN FINAL ENTRE LENGUAJES -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u7">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">07</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Comparación final entre lenguajes</h2>
+          <p class="unidad-sub">Un vistazo lado a lado a las cuatro sintaxis recorridas en el curso, para fijar qué cambia y qué se mantiene entre ellas.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-tabla-comparativa">
+        <h3>📊 Tabla comparativa de sintaxis — Python vs C++ vs Java vs C#</h3>
+        <div class="tabla-scroll">
+          <table>
+            <thead>
+              <tr><th>Operación</th><th>Python</th><th>C++</th><th>Java</th><th>C#</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Declarar variable</td>
+                <td><code>edad = 20</code></td>
+                <td><code>int edad = 20;</code></td>
+                <td><code>int edad = 20;</code></td>
+                <td><code>int edad = 20;</code></td>
+              </tr>
+              <tr>
+                <td>Tipado</td>
+                <td>dinámico</td>
+                <td>estático</td>
+                <td>estático</td>
+                <td>estático</td>
+              </tr>
+              <tr>
+                <td>Ciclo <code>for</code></td>
+                <td><code>for i in range(n):</code></td>
+                <td><code>for (int i=0; i&lt;n; i++)</code></td>
+                <td><code>for (int i=0; i&lt;n; i++)</code></td>
+                <td><code>for (int i=0; i&lt;n; i++)</code></td>
+              </tr>
+              <tr>
+                <td>Declarar clase</td>
+                <td><code>class Persona:</code></td>
+                <td><code>class Persona { ... };</code></td>
+                <td><code>class Persona { ... }</code></td>
+                <td><code>class Persona { ... }</code></td>
+              </tr>
+              <tr>
+                <td>Herencia</td>
+                <td><code>class Hija(Padre):</code></td>
+                <td><code>class Hija : public Padre</code></td>
+                <td><code>class Hija extends Padre</code></td>
+                <td><code>class Hija : Padre</code></td>
+              </tr>
+              <tr>
+                <td>Imprimir</td>
+                <td><code>print(x)</code></td>
+                <td><code>cout &lt;&lt; x;</code></td>
+                <td><code>System.out.println(x);</code></td>
+                <td><code>Console.WriteLine(x);</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="color:var(--tinta-2); font-size:13px; margin-top:8px;">Python resuelve el tipado en ejecución; C++/Java/C# lo exigen al declarar. La sintaxis de <code>for</code> y de clases es casi idéntica entre los tres compilados — la diferencia real está en cómo cada uno maneja memoria (C++ con punteros explícitos) y en detalles de herencia/impresión.</p>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ============================================================ */
+  /* 1. COMPILACIÓN (C++) VS INTERPRETACIÓN (Python)               */
+  /* ============================================================ */
+  Anim.registrar("anim-compilacion", function (sim) {
+    var cppEtapas = [
+      "Fuente: Ejemplo1.cpp",
+      "g++ traduce TODO el archivo",
+      "Genera Ejemplo1.exe",
+      "Ejecuta el binario (una vez)",
+      "Termina (ya traducido)"
+    ];
+    var pyEtapas = [
+      "Fuente: Ejemplo1.py",
+      "Lee línea 1: nombre=input()",
+      "Ejecuta línea 2: edad=int()",
+      "Ejecuta línea 3: if edad>=18",
+      "Fin (cada línea al vuelo)"
+    ];
+    var estado = { paso: -1, max: cppEtapas.length - 1, temporizador: null };
+
+    function detenerAuto() {
+      if (estado.temporizador) { clearInterval(estado.temporizador); estado.temporizador = null; }
+      var btn = sim.cont.querySelector('[data-accion="auto"]');
+      if (btn) btn.textContent = "▶ Auto";
+    }
+
+    function actualizarInfo() {
+      var info = document.getElementById("compilacion-info");
+      if (!info) return;
+      if (estado.paso < 0) { info.textContent = "Presioná Paso para empezar."; return; }
+      var texto = "C++: " + cppEtapas[estado.paso] + "  ·  Python: " + pyEtapas[estado.paso];
+      if (estado.paso === estado.max) texto += "  (fin de la traza)";
+      info.textContent = texto;
+    }
+
+    function paso() {
+      if (estado.paso >= estado.max) return;
+      estado.paso++;
+      if (estado.paso >= estado.max) detenerAuto();
+      actualizarInfo();
+      sim.redibujar();
+    }
+
+    function auto() {
+      if (estado.temporizador) { detenerAuto(); return; }
+      var btn = sim.cont.querySelector('[data-accion="auto"]');
+      if (btn) btn.textContent = "⏸ Pausa";
+      estado.temporizador = setInterval(function () {
+        if (estado.paso >= estado.max) { detenerAuto(); return; }
+        paso();
+      }, 1100);
+    }
+
+    function reiniciar() {
+      detenerAuto();
+      estado.paso = -1;
+      actualizarInfo();
+      sim.redibujar();
+    }
+
+    function envolverTexto(ctx, texto, maxAncho) {
+      var palabras = texto.split(" ");
+      var lineas = [], actual = "";
+      for (var i = 0; i < palabras.length; i++) {
+        var prueba = actual ? actual + " " + palabras[i] : palabras[i];
+        if (ctx.measureText(prueba).width > maxAncho && actual) {
+          lineas.push(actual);
+          actual = palabras[i];
+        } else {
+          actual = prueba;
+        }
+      }
+      if (actual) lineas.push(actual);
+      return lineas;
+    }
+
+    function dibujarCarril(ctx, w, y0, alto, etapas, activo, colorActivo) {
+      var n = etapas.length;
+      var gap = 8;
+      var boxW = (w - gap * (n + 1)) / n;
+      var borde = colorVar("--borde");
+      var panel = colorVar("--panel");
+      var tinta = colorVar("--tinta");
+      ctx.font = "10.5px Consolas, monospace";
+      for (var i = 0; i < n; i++) {
+        var bx = gap + i * (boxW + gap);
+        var esActivo = i === activo;
+        var esHecho = i < activo;
+        ctx.fillStyle = esActivo ? colorActivo : (esHecho ? colorVar("--acento-tenue") : panel);
+        ctx.fillRect(bx, y0, boxW, alto);
+        ctx.lineWidth = esActivo ? 2 : 1;
+        ctx.strokeStyle = esActivo ? colorActivo : borde;
+        ctx.strokeRect(bx, y0, boxW, alto);
+        ctx.fillStyle = esActivo ? "#fff" : tinta;
+        ctx.textAlign = "center";
+        var lineas = envolverTexto(ctx, etapas[i], boxW - 12);
+        var lineH = 13;
+        var yTexto = y0 + alto / 2 - ((lineas.length - 1) * lineH) / 2 + 4;
+        for (var L = 0; L < lineas.length; L++) {
+          ctx.fillText(lineas[L], bx + boxW / 2, yTexto + L * lineH);
+        }
+        if (i < n - 1) {
+          ctx.fillStyle = tinta;
+          ctx.fillText("→", bx + boxW + gap / 2, y0 + alto / 2 + 4);
+        }
+      }
+      ctx.textAlign = "left";
+    }
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var tinta = colorVar("--tinta");
+      ctx.font = "bold 12px Consolas, monospace";
+      ctx.fillStyle = tinta;
+      ctx.fillText("C++ (compilado)", 10, 18);
+      dibujarCarril(ctx, w, 28, 70, cppEtapas, estado.paso, colorVar("--s2"));
+      ctx.fillText("Python (interpretado)", 10, 148);
+      dibujarCarril(ctx, w, 158, 70, pyEtapas, estado.paso, colorVar("--s3"));
+      ctx.font = "12px Consolas, monospace";
+      ctx.fillStyle = colorVar("--tinta-2");
+      ctx.fillText("C++ recorre TODAS las etapas antes de ejecutar; Python traduce y ejecuta cada línea al vuelo.", 10, 262);
+    });
+
+    sim.botones({ paso: paso, auto: auto, reiniciar: reiniciar });
+    actualizarInfo();
+  });
+
+  /* ============================================================ */
+  /* 2. MEMORIA: PILA, PUNTEROS Y MONTÓN EN C++                    */
+  /* ============================================================ */
+  Anim.registrar("anim-memoria", function (sim) {
+    var pasos = [
+      { texto: "int x = 10;", nota: "x se crea en la PILA con valor 10, dirección simulada 0x1000." },
+      { texto: "int* p;", nota: "p se declara en la pila, sin inicializar (valor indefinido)." },
+      { texto: "p = &x;", nota: "p guarda la DIRECCIÓN de x (0x1000). La flecha va de p hacia x." },
+      { texto: "cout << *p;", nota: "*p DESREFERENCIA: lee el valor apuntado por p → imprime 10." },
+      { texto: "int* q = new int(99);", nota: "new reserva memoria en el MONTÓN: aparece una celda con 99 en 0x2000; q apunta ahí." },
+      { texto: "*q = 50;", nota: "*q modifica el valor en el montón a través del puntero → ahora vale 50." },
+      { texto: "delete q;", nota: "delete libera la celda del montón. q queda COLGANTE (dangling): ya no apunta a memoria válida." }
+    ];
+    var estado = { gen: null, idx: -1, temporizador: null };
+
+    function detenerAuto() {
+      if (estado.temporizador) { clearInterval(estado.temporizador); estado.temporizador = null; }
+      var btn = sim.cont.querySelector('[data-accion="auto"]');
+      if (btn) btn.textContent = "▶ Auto";
+    }
+
+    function actualizarInfo() {
+      var info = document.getElementById("memoria-info");
+      if (!info) return;
+      if (estado.idx < 0) { info.textContent = "Presioná Paso para declarar la primera variable."; return; }
+      var p = pasos[estado.idx];
+      var texto = p.texto + "  →  " + p.nota;
+      if (estado.idx === pasos.length - 1) texto += "  (fin de la traza)";
+      info.textContent = texto;
+    }
+
+    function paso() {
+      if (estado.idx >= pasos.length - 1) return;
+      estado.idx++;
+      if (estado.idx >= pasos.length - 1) detenerAuto();
+      actualizarInfo();
+      sim.redibujar();
+    }
+
+    function auto() {
+      if (estado.temporizador) { detenerAuto(); return; }
+      var btn = sim.cont.querySelector('[data-accion="auto"]');
+      if (btn) btn.textContent = "⏸ Pausa";
+      estado.temporizador = setInterval(function () {
+        if (estado.idx >= pasos.length - 1) { detenerAuto(); return; }
+        paso();
+      }, 1200);
+    }
+
+    function reiniciar() {
+      detenerAuto();
+      estado.idx = -1;
+      actualizarInfo();
+      sim.redibujar();
+    }
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var borde = colorVar("--borde");
+      var panel = colorVar("--panel");
+      var tinta = colorVar("--tinta");
+      var tinta2 = colorVar("--tinta-2");
+      var acento = colorVar("--acento");
+      var ok = colorVar("--ok");
+      var error = colorVar("--error");
+      var i = estado.idx;
+
+      var pilaX = 20, pilaW = Math.min(220, w * 0.42);
+      var montonX = w - Math.min(220, w * 0.42) - 20, montonW = Math.min(220, w * 0.42);
+
+      ctx.font = "bold 12px Consolas, monospace";
+      ctx.fillStyle = tinta2;
+      ctx.textAlign = "left";
+      ctx.fillText("PILA (stack)", pilaX, 16);
+      ctx.fillText("MONTÓN (heap)", montonX, 16);
+      ctx.strokeStyle = borde;
+      ctx.lineWidth = 1;
+      ctx.strokeRect(pilaX, 24, pilaW, h - 44);
+      ctx.strokeRect(montonX, 24, montonW, h - 44);
+
+      var xBoxY = 40, xBoxH = 40;
+      var pBoxY = 96, pBoxH = 40;
+      var qBoxY = 152, qBoxH = 40;
+      ctx.font = "13px Consolas, monospace";
+
+      // caja x
+      if (i >= 0) {
+        ctx.fillStyle = (i === 3) ? colorVar("--s3") : panel;
+        ctx.fillRect(pilaX + 14, xBoxY, pilaW - 28, xBoxH);
+        ctx.strokeStyle = (i === 3) ? colorVar("--s3") : borde;
+        ctx.lineWidth = 1.6;
+        ctx.strokeRect(pilaX + 14, xBoxY, pilaW - 28, xBoxH);
+        ctx.fillStyle = (i === 3) ? "#fff" : tinta;
+        ctx.fillText("x = 10  (0x1000)", pilaX + 24, xBoxY + 25);
+      }
+
+      // caja p
+      var pValor = i >= 2 ? "0x1000" : (i >= 1 ? "?" : null);
+      if (pValor !== null) {
+        ctx.fillStyle = (i === 2) ? ok : panel;
+        ctx.fillRect(pilaX + 14, pBoxY, pilaW - 28, pBoxH);
+        ctx.strokeStyle = (i === 2) ? ok : borde;
+        ctx.strokeRect(pilaX + 14, pBoxY, pilaW - 28, pBoxH);
+        ctx.fillStyle = (i === 2) ? "#fff" : tinta;
+        ctx.fillText("p = " + pValor, pilaX + 24, pBoxY + 25);
+      }
+
+      // flecha p -> x
+      if (i >= 2 && i !== 6) {
+        Anim.flecha(ctx, pilaX + 14, pBoxY + 8, pilaX + pilaW - 30, xBoxY + xBoxH - 6, acento, 2);
+      }
+
+      // caja q (aparece desde paso 4)
+      var qValor = i >= 4 ? "0x2000" : null;
+      if (i === 6) qValor = "0x2000 ??"; // colgante tras delete
+      if (qValor !== null) {
+        var qColor = (i === 6) ? error : ((i === 4) ? ok : panel);
+        ctx.setLineDash(i === 6 ? [5, 4] : []);
+        ctx.fillStyle = qColor === panel ? panel : qColor;
+        ctx.fillRect(pilaX + 14, qBoxY, pilaW - 28, qBoxH);
+        ctx.strokeStyle = qColor;
+        ctx.strokeRect(pilaX + 14, qBoxY, pilaW - 28, qBoxH);
+        ctx.setLineDash([]);
+        ctx.fillStyle = (qColor === error || qColor === ok) ? "#fff" : tinta;
+        ctx.fillText("q = " + qValor, pilaX + 24, qBoxY + 25);
+      }
+
+      // celda en el montón
+      if (i >= 4 && i < 6) {
+        var heapVal = (i >= 5) ? 50 : 99;
+        ctx.fillStyle = (i === 5) ? colorVar("--s3") : colorVar("--acento-tenue");
+        ctx.fillRect(montonX + 14, 40, montonW - 28, 40);
+        ctx.strokeStyle = (i === 5) ? colorVar("--s3") : acento;
+        ctx.lineWidth = 1.6;
+        ctx.strokeRect(montonX + 14, 40, montonW - 28, 40);
+        ctx.fillStyle = (i === 5) ? "#fff" : tinta;
+        ctx.fillText("*q = " + heapVal + "  (0x2000)", montonX + 24, 65);
+        if (i !== 6) Anim.flecha(ctx, pilaX + pilaW - 14, qBoxY + 20, montonX + 10, 60, ok, 2);
+      } else if (i === 6) {
+        ctx.font = "12px Consolas, monospace";
+        ctx.fillStyle = tinta2;
+        ctx.fillText("(memoria liberada con delete)", montonX + 14, 60);
+      } else {
+        ctx.font = "12px Consolas, monospace";
+        ctx.fillStyle = tinta2;
+        ctx.fillText("(vacío hasta new)", montonX + 14, 60);
+      }
+
+      if (i < 0) {
+        ctx.font = "13px Consolas, monospace";
+        ctx.fillStyle = tinta2;
+        ctx.textAlign = "center";
+        ctx.fillText("Presioná Paso para empezar la traza", w / 2, h / 2);
+        ctx.textAlign = "left";
+      }
+    });
+
+    sim.botones({ paso: paso, auto: auto, reiniciar: reiniciar });
+    actualizarInfo();
+  });
+
+  /* ============================================================ */
+  /* 3. POLIMORFISMO VIRTUAL/OVERRIDE (C#): Figura → Rectangulo/Cuadrado */
+  /* ============================================================ */
+  Anim.registrar("anim-polimorfismo", function (sim) {
+    var tipos = {
+      rectangulo: { nombre: "Rectangulo", datos: "Ancho=4, Alto=6", area: 24, formula: "Ancho * Alto" },
+      cuadrado: { nombre: "Cuadrado", datos: "Lado=5", area: 25, formula: "Lado * Lado" }
+    };
+    var estado = { tipo: null, calculado: false };
+
+    function actualizarInfo() {
+      var info = document.getElementById("poli-info");
+      if (!info) return;
+      if (!estado.tipo) { info.textContent = "Elegí un objeto y presioná \"f.CalcularArea()\"."; return; }
+      var d = tipos[estado.tipo];
+      if (!estado.calculado) {
+        info.textContent = "Figura f = new " + d.nombre + "(" + d.datos + ");  Presioná f.CalcularArea().";
+      } else {
+        info.textContent = "f.CalcularArea() → despacha a " + d.nombre + ".CalcularArea() → " + d.formula + " = " + d.area + ".";
+      }
+    }
+
+    function elegir(tipo) {
+      estado.tipo = tipo;
+      estado.calculado = false;
+      actualizarInfo();
+      sim.redibujar();
+    }
+
+    function calcular() {
+      if (!estado.tipo) return;
+      estado.calculado = true;
+      actualizarInfo();
+      sim.redibujar();
+    }
+
+    function reiniciar() {
+      estado.tipo = null;
+      estado.calculado = false;
+      actualizarInfo();
+      sim.redibujar();
+    }
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var borde = colorVar("--borde");
+      var panel = colorVar("--panel");
+      var tinta = colorVar("--tinta");
+      var acento = colorVar("--acento");
+      var ok = colorVar("--ok");
+      var s3 = colorVar("--s3");
+
+      var topW = 220, topH = 44;
+      var topX = w / 2 - topW / 2, topY = 14;
+      ctx.textAlign = "center";
+      ctx.font = "bold 12px Consolas, monospace";
+      ctx.fillStyle = panel;
+      ctx.fillRect(topX, topY, topW, topH);
+      ctx.strokeStyle = borde;
+      ctx.lineWidth = 1.6;
+      ctx.strokeRect(topX, topY, topW, topH);
+      ctx.fillStyle = tinta;
+      ctx.fillText("Figura (abstract)", topX + topW / 2, topY + 18);
+      ctx.font = "11px Consolas, monospace";
+      ctx.fillText("virtual CalcularArea()", topX + topW / 2, topY + 34);
+
+      var boxW = Math.min(200, (w - 60) / 2), boxH = 60;
+      var gap = 30;
+      var totalW = boxW * 2 + gap;
+      var startX = (w - totalW) / 2;
+      var boxY = 110;
+      var claves = ["rectangulo", "cuadrado"];
+      for (var i = 0; i < claves.length; i++) {
+        var clave = claves[i];
+        var d = tipos[clave];
+        var bx = startX + i * (boxW + gap);
+        var activo = estado.tipo === clave;
+        var relleno = activo ? (estado.calculado ? ok : s3) : panel;
+        ctx.fillStyle = relleno;
+        ctx.fillRect(bx, boxY, boxW, boxH);
+        ctx.strokeStyle = activo ? relleno : borde;
+        ctx.lineWidth = activo ? 2 : 1.4;
+        ctx.strokeRect(bx, boxY, boxW, boxH);
+        ctx.fillStyle = activo ? "#fff" : tinta;
+        ctx.font = "bold 12px Consolas, monospace";
+        ctx.fillText(d.nombre + " : Figura", bx + boxW / 2, boxY + 20);
+        ctx.font = "11px Consolas, monospace";
+        ctx.fillText("override CalcularArea()", bx + boxW / 2, boxY + 36);
+        ctx.fillText(d.formula, bx + boxW / 2, boxY + 50);
+
+        Anim.flecha(ctx, topX + topW / 2, topY + topH, bx + boxW / 2, boxY, activo ? acento : colorVar("--tinta-3"), activo ? 2.2 : 1.4);
+      }
+
+      ctx.font = "12px Consolas, monospace";
+      ctx.fillStyle = colorVar("--tinta-2");
+      if (estado.tipo && estado.calculado) {
+        var d2 = tipos[estado.tipo];
+        ctx.fillText("Resultado: " + d2.area, w / 2, boxY + boxH + 34);
+      } else if (estado.tipo) {
+        ctx.fillText("Objeto creado. Presioná f.CalcularArea() para despachar.", w / 2, boxY + boxH + 34);
+      } else {
+        ctx.fillText("Elegí Rectangulo o Cuadrado arriba en los controles.", w / 2, boxY + boxH + 34);
+      }
+      ctx.textAlign = "left";
+    });
+
+    sim.botones({ rectangulo: function () { elegir("rectangulo"); }, cuadrado: function () { elegir("cuadrado"); }, calcular: calcular, reiniciar: reiniciar });
+    actualizarInfo();
+  });
+
+  /* ============================================================ */
+  /* 4. EVENTO → HANDLER → ACCIÓN (Swing / WPF)                    */
+  /* ============================================================ */
+  Anim.registrar("anim-evento", function (sim) {
+    var cadenas = {
+      swing: [
+        "Usuario hace clic en JButton \"Mostrar Saludo\"",
+        "Swing dispara un ActionEvent",
+        "Se ejecuta actionPerformed(ActionEvent e)",
+        "Integer.parseInt(txtEdad.getText())  (dentro de try/catch)",
+        "new Persona(nombre, edad)",
+        "lblResultado.setText(persona.obtenerSaludo())"
+      ],
+      wpf: [
+        "Usuario hace clic en Button x:Name=\"btn1\"",
+        "WPF dispara el RoutedEvent Click",
+        "Se ejecuta btn1_Click(object sender, RoutedEventArgs e)",
+        "int.Parse(txt3.Text)  (construye el objeto)",
+        "new Pelicula { Titulo = ..., Director = ... }",
+        "list1.Items.Add(m)  — el ListBox se actualiza"
+      ]
+    };
+    var estado = { framework: null, idx: -1 };
+
+    function actualizarInfo() {
+      var info = document.getElementById("evento-info");
+      if (!info) return;
+      if (!estado.framework) { info.textContent = "Elegí un framework y presioná Paso."; return; }
+      if (estado.idx < 0) { info.textContent = "Presioná Paso para simular el clic."; return; }
+      var lista = cadenas[estado.framework];
+      var texto = lista[estado.idx];
+      if (estado.idx === lista.length - 1) texto += "  (cadena completa)";
+      info.textContent = texto;
+    }
+
+    function elegir(fw) {
+      estado.framework = fw;
+      estado.idx = -1;
+      actualizarInfo();
+      sim.redibujar();
+    }
+
+    function paso() {
+      if (!estado.framework) estado.framework = "swing";
+      var max = cadenas[estado.framework].length - 1;
+      if (estado.idx >= max) return;
+      estado.idx++;
+      actualizarInfo();
+      sim.redibujar();
+    }
+
+    function reiniciar() {
+      estado.idx = -1;
+      actualizarInfo();
+      sim.redibujar();
+    }
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var borde = colorVar("--borde");
+      var panel = colorVar("--panel");
+      var tinta = colorVar("--tinta");
+      var acento = colorVar("--acento");
+      var ok = colorVar("--ok");
+
+      if (!estado.framework) {
+        ctx.font = "13px Consolas, monospace";
+        ctx.fillStyle = colorVar("--tinta-2");
+        ctx.textAlign = "center";
+        ctx.fillText("Elegí Java Swing o C# WPF en los controles.", w / 2, h / 2);
+        ctx.textAlign = "left";
+        return;
+      }
+
+      var lista = cadenas[estado.framework];
+      var n = lista.length;
+      var gap = 8;
+      var boxH = (h - gap * (n + 1)) / n;
+      ctx.font = "12px Consolas, monospace";
+      for (var i = 0; i < n; i++) {
+        var by = gap + i * (boxH + gap);
+        var activo = i === estado.idx;
+        var hecho = i < estado.idx;
+        ctx.fillStyle = activo ? acento : (hecho ? colorVar("--acento-tenue") : panel);
+        ctx.fillRect(16, by, w - 32, boxH);
+        ctx.lineWidth = activo ? 2 : 1;
+        ctx.strokeStyle = activo ? acento : (hecho ? ok : borde);
+        ctx.strokeRect(16, by, w - 32, boxH);
+        ctx.fillStyle = activo ? "#fff" : tinta;
+        ctx.textAlign = "left";
+        ctx.fillText((i + 1) + ". " + lista[i], 26, by + boxH / 2 + 4);
+        if (i < n - 1) {
+          ctx.fillStyle = colorVar("--tinta-2");
+          ctx.textAlign = "center";
+          ctx.fillText("↓", w / 2, by + boxH + gap);
+        }
+      }
+      ctx.textAlign = "left";
+    });
+
+    sim.botones({ swing: function () { elegir("swing"); }, wpf: function () { elegir("wpf"); }, paso: paso, reiniciar: reiniciar });
+    actualizarInfo();
+  });
+
+})();
+</script>
+
+<script>
+  // entradas escalonadas (GSAP + ScrollTrigger vía Anim.revelar) — no rompe nada si GSAP no cargó
+  Anim.revelar(".curso-hero-v3 > *", { scroll: false, stagger: .08, distancia: 14, duracion: .8 });
+  document.querySelectorAll(".unidad").forEach(function (u) {
+    Anim.revelar(u.querySelectorAll(":scope > .unidad-cabecera, :scope > .materia, :scope > .animacion, :scope > .ejemplos-unidad, :scope > .ejercicios-unidad"), { disparador: u, stagger: .08, distancia: 16 });
+  });
+</script>
+</body>
+</html>

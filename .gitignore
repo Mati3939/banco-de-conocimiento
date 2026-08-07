@@ -1,0 +1,19 @@
+# --- Fuera del sitio publicado ---
+
+# Libro PDF y guías de estudio LaTeX (pesan ~3.8 MB y no forman parte de la web)
+libro/
+guias-estudio/
+
+# Documentación interna de trabajo
+CONVENCIONES.md
+REDISENO-v3.md
+cursos/*/plan.md
+cursos/*/RESUMEN.md
+
+# Backups de versiones anteriores
+index-v*.html
+cursos/*/index-v*.html
+
+# Sistema
+Thumbs.db
+.DS_Store

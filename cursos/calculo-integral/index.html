@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="es" data-tema="oscuro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>∫ Cálculo Integral — Biblioteca</title>
+<link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../../assets/vendor/fuentes/fuentes.css">
+<link rel="stylesheet" href="../../assets/css/observatorio.css">
+<script>window.RUTA_BASE = "../../";</script>
+<script src="../../assets/vendor/katex/katex.min.js"></script>
+<script src="../../assets/vendor/katex/auto-render.min.js"></script>
+<script src="../../assets/vendor/gsap/gsap.min.js"></script>
+<script src="../../assets/vendor/gsap/ScrollTrigger.min.js"></script>
+<script src="../../assets/js/observatorio.js"></script>
+<script src="indice-curso.js"></script>
+</head>
+<body>
+<div class="progreso-lectura"></div>
+<div class="pagina-curso">
+
+  <aside class="lateral">
+    <a class="volver" href="../../index.html">← Constelación</a>
+    <div class="curso-cabecera"><span class="emoji">∫</span><h1>Cálculo Integral</h1></div>
+    <span class="semestre-tag" style="color:var(--s3)">Semestre 3</span>
+    <nav>
+      <div class="grupo">Unidades</div>
+      <a href="#u1">01 · Primitivas y técnicas básicas</a>
+      <a href="#u2">02 · Fracciones parciales y trigonométricas</a>
+      <a href="#u3">03 · Integral definida y TFC</a>
+      <a class="sub" href="#anim-riemann">📊 Sumas de Riemann</a>
+      <a href="#u4">04 · Aplicaciones: área y volumen</a>
+      <a class="sub" href="#anim-volumen">🧊 Sólido de revolución</a>
+      <a class="sub" href="#anim-area">🌗 Área entre curvas</a>
+      <a href="#u5">05 · Longitud de arco y superficie</a>
+      <a href="#u6">06 · Polares y paramétricas</a>
+      <a href="#u7">07 · Integrales impropias</a>
+      <a href="#u8">08 · Series y series de potencias</a>
+      <a class="sub" href="#anim-taylor">📈 Polinomios de Taylor</a>
+    </nav>
+    <div class="atajos"><kbd>Ctrl K</kbd> buscar en toda la biblioteca</div>
+  </aside>
+
+  <main class="principal">
+    <div class="principal-cabecera">
+      <span class="relleno"></span>
+      <button class="btn-buscar" type="button">🔍 Buscar <kbd>Ctrl K</kbd></button>
+      <button class="btn-tema" type="button">☀️</button>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CABECERA DEL CURSO -->
+    <!-- ============================================================ -->
+    <header class="curso-hero-v3" id="cheat" style="--ac: var(--s3)">
+      <span class="emoji-grande">∫</span>
+      <h1>Cálculo Integral — Resumen del curso</h1>
+      <span class="semestre-tag" style="color:var(--s3)">Semestre 3</span>
+      <p class="curso-intro">
+        Ramo IPLC124, 2026-1 (UDD, sección Concepción). Contenido basado en las 18 notas del vault de
+        <strong>Cálculo Integral</strong> y en las guías/pautas oficiales del curso (Stewart, <em>Cálculo.
+        Trascendentes tempranas</em>). Organizado en 8 unidades: primitivas y técnicas básicas de
+        integración; fracciones parciales y funciones trigonométricas; integral definida y Teorema
+        Fundamental del Cálculo; aplicaciones de área y volumen; longitud de arco y superficie;
+        coordenadas polares y ecuaciones paramétricas; integrales impropias; y series numéricas y
+        series de potencias.
+      </p>
+      <ul class="mini-indice">
+        <li><a href="#u1">01 · Primitivas y técnicas</a></li>
+        <li><a href="#u2">02 · Fracciones y trigonométricas</a></li>
+        <li><a href="#u3">03 · Integral definida y TFC</a></li>
+        <li><a href="#u4">04 · Área y volumen</a></li>
+        <li><a href="#u5">05 · Longitud de arco</a></li>
+        <li><a href="#u6">06 · Polares y paramétricas</a></li>
+        <li><a href="#u7">07 · Impropias</a></li>
+        <li><a href="#u8">08 · Series y Taylor</a></li>
+      </ul>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 1 · PRIMITIVAS Y TÉCNICAS BÁSICAS -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u1">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">01</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Primitivas y técnicas básicas</h2>
+          <p class="unidad-sub">Antiderivadas inmediatas, sustitución e integración por partes: las tres herramientas que abren cualquier integral.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-primitivas">
+        <h3>Primitivas básicas</h3>
+        <ul>
+          <li>$\displaystyle\int x^{n}\,dx=\frac{x^{n+1}}{n+1}+C\ (n\neq-1)$</li>
+          <li>$\displaystyle\int \frac{1}{x}\,dx=\ln|x|+C$</li>
+          <li>$\displaystyle\int e^{x}\,dx=e^{x}+C\qquad \int a^{x}\,dx=\frac{a^{x}}{\ln a}+C$</li>
+          <li>$\displaystyle\int \sin x\,dx=-\cos x+C\qquad \int \cos x\,dx=\sin x+C$</li>
+          <li>$\displaystyle\int \sec^{2}x\,dx=\tan x+C$</li>
+          <li>$\displaystyle\int\frac{dx}{1+x^{2}}=\arctan x+C\qquad \int\frac{dx}{\sqrt{1-x^{2}}}=\arcsin x+C$</li>
+          <li>Linealidad: $\int(af+bg)\,dx=a\int f\,dx+b\int g\,dx$</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Regla básica de integración</span>$$\int f'(x)\,dx=f(x)+C$$</div>
+        <p style="font-size:.85rem; color:var(--futuro);">⚠️ No olvidar el $+C$; en $\int x^n dx$ con $n=-1$ usar $\ln|x|$.</p>
+      </div>
+
+      <div class="materia" id="tema-sustitucion">
+        <h3>Sustitución</h3>
+        <div class="formula-card"><span class="etiqueta">Cambio de variable</span>$$\int f(g(x))g'(x)\,dx \overset{u=g(x)}{=} \int f(u)\,du$$</div>
+        <ol>
+          <li>Elegir $u=g(x)$ (cuya derivada aparezca en el integrando).</li>
+          <li>Calcular $du=g'(x)\,dx$.</li>
+          <li>Reescribir todo en $u$ e integrar.</li>
+          <li>Volver a $x$ (en definida: cambiar también los límites).</li>
+        </ol>
+        <p style="font-size:.85rem; color:var(--futuro);">⚠️ En integrales definidas, olvidar cambiar los límites al sustituir es el error más común.</p>
+      </div>
+
+      <div class="materia" id="tema-partes">
+        <h3>Integración por partes</h3>
+        <div class="formula-card"><span class="etiqueta">Fórmula de partes</span>$$\int u\,dv = uv-\int v\,du$$</div>
+        <p>Elegir $u$ según <strong>ILATE</strong>: Inversas trig &gt; Logaritmos &gt; Algebraicas &gt; Trigonométricas &gt; Exponenciales.</p>
+        <p>Integrales <em>cíclicas</em> (ej. $\int e^x\cos x\,dx$): aplicar partes dos veces y <strong>despejar</strong> la integral original de la ecuación resultante.</p>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-primitivas">
+          <h3>1. Dos primitivas que "no se ven iguales"</h3>
+          <p>Para $f(x)=\cos(2x)\sin(2x)$, tanto $F_1(x)=\tfrac14\sin^2(2x)$ como $F_2(x)=-\tfrac14\cos^2(2x)$ son primitivas válidas de $f$ (ambas derivan a $f$), aunque no son la misma función. Esto no contradice la definición: como $\sin^2\theta+\cos^2\theta=1$,</p>
+          <p>$$F_1-F_2=\tfrac14\sin^2(2x)+\tfrac14\cos^2(2x)=\tfrac14$$</p>
+          <p>es decir, difieren en una constante — exactamente lo que predice la teoría de la integral indefinida.</p>
+          <p class="fuente">Fuente: guía semana 1.</p>
+        </div>
+
+        <div class="ejemplo" id="ej-sustitucion">
+          <h3>2. Sustitución no tan obvia</h3>
+          <p>$$I=\int\frac{3e^{2x}+e^x}{e^{2x}+2e^x+2}\,dx$$</p>
+          <p>Con $u=e^x+1$ se tiene $du=e^x dx$ y el denominador se reescribe como $u^2+1$ (completando cuadrado en $e^{2x}+2e^x+2$). El numerador también se reescribe en términos de $u$, quedando una combinación de una parte logarítmica ($\int du/u$-tipo) y una parte $\arctan$ ($\int du/(u^2+1)$).</p>
+          <p class="fuente">Fuente: guía semana 1.</p>
+        </div>
+
+        <div class="ejemplo" id="ej-partes">
+          <h3>3. Fórmula de reducción por partes</h3>
+          <p>Para $I_n=\displaystyle\int(x^2+a^2)^n\,dx$, se aplica partes con $u=(x^2+a^2)^n$, $dv=dx$:</p>
+          <p>$$du=2nx(x^2+a^2)^{n-1}dx,\quad v=x$$</p>
+          <p>$$I_n=x(x^2+a^2)^n-2n\int x^2(x^2+a^2)^{n-1}dx$$</p>
+          <p>Escribiendo $x^2=(x^2+a^2)-a^2$ dentro de la integral restante y despejando $I_n$ de la ecuación resultante (aparece $I_n$ en ambos lados), se obtiene la recursión:</p>
+          <p>$$I_n=\frac{x(x^2+a^2)^n}{2n+1}+\frac{2a^2n}{2n+1}I_{n-1}$$</p>
+          <p>El mismo truco de "despejar la integral que reaparece" se usa en $\int e^{-sx}\cos x\,dx$ (transformada de Laplace).</p>
+          <p class="fuente">Fuente: guía semana 2.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 2 · FRACCIONES PARCIALES Y TRIGONOMÉTRICAS -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u2">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">02</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Fracciones parciales y funciones trigonométricas</h2>
+          <p class="unidad-sub">Cuando la sustitución simple no alcanza: descomponer racionales, elegir la sustitución trigonométrica correcta y manejar potencias de seno/coseno.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-fracciones">
+        <h3>Fracciones parciales</h3>
+        <p>Si $\deg p\ge\deg q$, dividir primero. Factorizar $q(x)$ y agregar:</p>
+        <ul>
+          <li>$(x-a)$ simple → $\dfrac{A}{x-a}$</li>
+          <li>$(x-a)^n$ repetido → $\dfrac{A_1}{x-a}+\dots+\dfrac{A_n}{(x-a)^n}$</li>
+          <li>$(x^2+bx+c)$ irreducible → $\dfrac{Ax+B}{x^2+bx+c}$</li>
+        </ul>
+        <p>Lineales → logaritmos; cuadráticos → $\arctan$ (completando cuadrado $z^2+a^2$).</p>
+      </div>
+
+      <div class="materia" id="tema-sust-trig">
+        <h3>Sustitución trigonométrica</h3>
+        <table>
+          <tr><th>Expresión</th><th>Sustitución</th></tr>
+          <tr><td>$\sqrt{a^2-x^2}$</td><td>$x=a\sin\theta$</td></tr>
+          <tr><td>$\sqrt{a^2+x^2}$</td><td>$x=a\tan\theta$</td></tr>
+          <tr><td>$\sqrt{x^2-a^2}$</td><td>$x=a\sec\theta$</td></tr>
+        </table>
+        <p style="font-size:.85rem;">Si el radicando no es exactamente $a^2\pm x^2$, completar cuadrado antes. Volver a $x$ con un triángulo de referencia.</p>
+      </div>
+
+      <div class="materia" id="tema-trig">
+        <h3>Integrales trigonométricas</h3>
+        <p>$\int\sin^m x\cos^n x\,dx$: si $m$ o $n$ impar → $u=\cos x$ o $u=\sin x$. Si ambos pares → ángulo doble:</p>
+        <div class="formula-card"><span class="etiqueta">Ángulo doble</span>$$\sin^2x=\frac{1-\cos2x}{2},\quad \cos^2x=\frac{1+\cos2x}{2}$$</div>
+        <p><strong>Weierstrass</strong> ($u=\tan(x/2)$), para racionales de $\sin,\cos$:</p>
+        <ul>
+          <li>$\cos x=\dfrac{1-u^2}{1+u^2}$</li>
+          <li>$\sin x=\dfrac{2u}{1+u^2}$</li>
+          <li>$dx=\dfrac{2\,du}{1+u^2}$</li>
+        </ul>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-trig">
+          <h3>4. Integral trigonométrica con potencia impar</h3>
+          <p>$$I=\int\frac{dx}{\sin^3x\cos x}$$</p>
+          <p>El exponente de $\cos x$ es impar ($n=1$), así que se separa un factor $\cos x\,dx$ y se sustituye $u=\sin x$, $du=\cos x\,dx$. Como $\cos^2x=1-u^2$:</p>
+          <p>$$I=\int\frac{du}{u^3(1-u^2)}$$</p>
+          <p>que se resuelve por fracciones parciales, dando</p>
+          <p>$$I=\ln|\sin x|-\frac{1}{2\sin^2x}-\frac12\ln|1-\sin x|-\frac12\ln|1+\sin x|+C$$</p>
+          <p class="fuente">Fuente: pauta guía semana 3.</p>
+        </div>
+
+        <div class="ejemplo" id="ej-sust-trig">
+          <h3>5. Sustitución trigonométrica tras completar cuadrado</h3>
+          <p>$$I=\int\sqrt{(x-2)(4-x)}\,dx$$</p>
+          <p>Expandiendo, $(x-2)(4-x)=-x^2+6x-8=1-(x-3)^2$. Con $x-3=\sin\theta$, $dx=\cos\theta\,d\theta$:</p>
+          <p>$$I=\int\sqrt{1-(x-3)^2}\,dx=\int\cos^2\theta\,d\theta=\frac{\theta}{2}+\frac{\sin\theta\cos\theta}{2}+C$$</p>
+          <p>Volviendo a $x$ con $\theta=\arcsin(x-3)$ y $\cos\theta=\sqrt{1-(x-3)^2}$:</p>
+          <p>$$I=\frac12\Big(\arcsin(x-3)+(x-3)\sqrt{1-(x-3)^2}\Big)+C$$</p>
+          <p class="fuente">Fuente: pauta guía semana 3.</p>
+        </div>
+
+        <div class="ejemplo" id="ej-fracciones">
+          <h3>6. Fracciones parciales con factor cuadrático irreducible</h3>
+          <p>$$\int \frac{dx}{x^3+8}, \quad x^3+8=(x+2)(x^2-2x+4)$$</p>
+          <p>Descomponiendo $\dfrac{1}{x^3+8}=\dfrac{A}{x+2}+\dfrac{Bx+C}{x^2-2x+4}$ se obtiene $A=\tfrac{1}{12}$, $B=-\tfrac1{12}$, $C=\tfrac13$. Integrando (el término cuadrático requiere completar cuadrado, $x^2-2x+4=(x-1)^2+3$):</p>
+          <p>$$I=\frac{1}{12}\ln|x+2|-\frac{1}{24}\ln(x^2-2x+4)-\frac{\sqrt3}{12}\arctan\!\left(\frac{x-1}{\sqrt3}\right)+C$$</p>
+          <p class="fuente">Fuente: pauta guía semana 3.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 3 · INTEGRAL DEFINIDA Y TFC -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u3">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">03</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Integral definida y Teorema Fundamental del Cálculo</h2>
+          <p class="unidad-sub">El paso de sumas finitas a una integral, y la conexión (Barrow) que la vuelve calculable con una antiderivada.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-tfc">
+        <h3>Integral definida y TFC</h3>
+        <div class="formula-card"><span class="etiqueta">Definición (suma de Riemann)</span>$$\int_a^{b} f(x)\,dx=\lim_{n\to\infty}\sum_{i=1}^{n} f(x_i^{*})\,\Delta x$$</div>
+        <p><strong>TFC parte 1:</strong> $F(x)=\int_a^x f(t)dt \Rightarrow F'(x)=f(x)$.</p>
+        <div class="formula-card"><span class="etiqueta">TFC parte 1 — límite superior compuesto</span>$$\frac{d}{dx}\int_a^{g(x)} f(t)\,dt = f(g(x))\,g'(x)$$</div>
+        <p><strong>TFC parte 2 (Barrow):</strong> $\displaystyle\int_a^{b} f\,dx = F(b)-F(a)$.</p>
+        <p>TVM para integrales: existe $c\in[a,b]$ con $f(c)=\dfrac{1}{b-a}\int_a^b f$.</p>
+        <p style="font-size:.85rem; color:var(--futuro);">⚠️ Área con signo: si $f&lt;0$, la integral resta esa zona. Si el límite inferior también depende de $x$ (ej. $\int_{h(x)}^{g(x)} f$), hay que restar el término correspondiente: $f(g(x))g'(x)-f(h(x))h'(x)$.</p>
+      </div>
+
+      <div class="animacion" id="anim-riemann">
+        <div class="anim-cabecera">
+          <h3>📊 Sumas de Riemann</h3>
+          <p class="anim-desc">Función $f(x)=\dfrac{x^2}{4}+1$ en $[0,6]$ — valor exacto $\int_0^6 f(x)\,dx=24$.</p>
+        </div>
+        <canvas data-alto="340"></canvas>
+        <div class="controles">
+          <div class="control"><label for="sl-riemann-n">n rectángulos</label><input type="range" id="sl-riemann-n" min="1" max="80" step="1" value="10"><span class="valor"></span></div>
+          <div class="control"><label for="sl-riemann-tipo">Tipo</label><input type="range" id="sl-riemann-tipo" min="0" max="2" step="1" value="0"><span class="valor"></span></div>
+          <button type="button" data-accion="jugar">▶ Reproducir</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> como $f$ es creciente en $[0,6]$, la suma "izquierda" siempre subestima el área y la "derecha" siempre la sobrestima; con "punto medio" el error suele ser menor. Al presionar ▶, el número de rectángulos usados crece de 1 hasta $n$: observá cómo la suma converge al valor exacto (24) a medida que $n$ aumenta.</p>
+        <div class="anim-error"></div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 4 · APLICACIONES: ÁREA Y VOLUMEN -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u4">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">04</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Aplicaciones: área y volumen</h2>
+          <p class="unidad-sub">De la integral definida a superficies y sólidos reales: área entre curvas y volumen por discos/anillos o capas cilíndricas.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-area">
+        <h3>Área entre curvas</h3>
+        <div class="formula-card"><span class="etiqueta">Área entre curvas</span>$$A=\int_a^{b}\big(f(x)-g(x)\big)\,dx,\quad f\ge g\ \text{en }[a,b]$$</div>
+        <p>Si las curvas se cruzan dentro de $[a,b]$, hay que <strong>partir en tramos</strong> (la función "techo" cambia). A veces conviene integrar respecto a $y$.</p>
+      </div>
+
+      <div class="materia" id="tema-volumen">
+        <h3>Volumen de revolución</h3>
+        <p><strong>Secciones transversales:</strong> $V=\int_a^b A(x)\,dx$</p>
+        <p><strong>Discos/anillos</strong> (eje $x$): $V=\pi\displaystyle\int_a^b\big([f(x)]^2-[g(x)]^2\big)dx$</p>
+        <p><strong>Capas cilíndricas</strong> (eje $y$): $V=2\pi\displaystyle\int_a^b x\big(f(x)-g(x)\big)dx$</p>
+        <p style="font-size:.85rem; color:var(--futuro);">⚠️ En anillos: restar los <em>cuadrados</em> de los radios, no restar los radios y luego elevar.</p>
+      </div>
+
+      <div class="materia" id="tema-pappus">
+        <h3>Centro de masa y Teorema de Pappus</h3>
+        <p>Para una lámina plana de densidad constante bajo $y=f(x)$ en $[a,b]$ (con $f\ge0$), el centroide $(\bar x,\bar y)$ es:</p>
+        <div class="formula-card"><span class="etiqueta">Centroide de una región plana</span>$$\bar x=\frac{1}{A}\int_a^b x\,f(x)\,dx,\qquad \bar y=\frac{1}{A}\int_a^b \frac{[f(x)]^2}{2}\,dx$$</div>
+        <div class="formula-card"><span class="etiqueta">Teorema de Pappus</span>$$V=2\pi\,\bar d\cdot A$$</div>
+        <p>$\bar d$ es la distancia del centroide de la región (área $A$) al eje de giro. Es un atajo directo: conocido el centroide, el volumen de revolución sale sin integrar de nuevo.</p>
+        <p style="font-size:.85rem; color:var(--futuro);">⚠️ Solo vale si el eje de giro <strong>no cruza</strong> la región (si la cruza, partes se restarían con signo incorrecto).</p>
+      </div>
+
+      <div class="animacion" id="anim-volumen">
+        <div class="anim-cabecera">
+          <h3>🧊 Sólido de revolución — método de discos</h3>
+          <p class="anim-desc">Curva $f(x)=1+0.4x$ girada en torno al eje $x$ en $[a,b]$: $V=\pi\displaystyle\int_a^b [f(x)]^2\,dx$.</p>
+        </div>
+        <canvas data-alto="340"></canvas>
+        <div class="controles">
+          <div class="control"><label for="sl-vol-a">a</label><input type="range" id="sl-vol-a" min="0" max="3" step="0.1" value="0.5"><span class="valor"></span></div>
+          <div class="control"><label for="sl-vol-b">b</label><input type="range" id="sl-vol-b" min="0.5" max="4" step="0.1" value="3"><span class="valor"></span></div>
+          <div class="control"><label for="sl-vol-n">n discos</label><input type="range" id="sl-vol-n" min="1" max="40" step="1" value="12"><span class="valor"></span></div>
+          <button type="button" data-accion="jugar">▶ Reproducir</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> vista 2.5D — cada elipse representa un disco de radio $f(x_i)$ y grosor $\Delta x$. Si $a\ge b$ se ajusta automáticamente. Al presionar ▶ se revelan los discos de a uno, mostrando cómo la suma $\pi\sum r_i^2\Delta x$ (punto medio) se acerca al volumen exacto calculado con la antiderivada.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="animacion" id="anim-area">
+        <div class="anim-cabecera">
+          <h3>🌗 Área entre curvas</h3>
+          <p class="anim-desc">$f(x)=4-0.3x^2$ (parábola) y $g(x)=0.6x+0.5$ (recta): área $=\displaystyle\int_a^b |f(x)-g(x)|\,dx$.</p>
+        </div>
+        <canvas data-alto="340"></canvas>
+        <div class="controles">
+          <div class="control"><label for="sl-area-a">a</label><input type="range" id="sl-area-a" min="-4" max="3.9" step="0.1" value="-2"><span class="valor"></span></div>
+          <div class="control"><label for="sl-area-b">b</label><input type="range" id="sl-area-b" min="-3.9" max="4" step="0.1" value="2.5"><span class="valor"></span></div>
+          <button type="button" data-accion="jugar">▶ Reproducir</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> el área se calcula con $|f-g|$ integrado numéricamente (funciona aunque las curvas se crucen dentro de $[a,b]$, el error típico de no distinguir techo/piso). Al presionar ▶, una línea de barrido recorre $[a,b]$ acumulando el área hasta esa posición.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-area">
+          <h3>7. Área de región compuesta (dos tramos)</h3>
+          <p>Región entre $y=8/x$, $y=2x$, $y=x/2$: el "techo" es $y=2x$ hasta $x=2$ y luego $y=8/x$ hasta $x=4$; el "piso" siempre es $y=x/2$. Hay que <strong>separar la integral en dos tramos</strong>:</p>
+          <p>$$A=\int_0^2\Big(2x-\frac{x}{2}\Big)dx+\int_2^4\Big(\frac8x-\frac{x}{2}\Big)dx=8\ln(2)\ \text{u}^2$$</p>
+          <p>Integrando respecto a $y$ en cambio (región entre $x=y^2-2$ y $x=y$, $y\in[-1,2]$), una sola integral basta:</p>
+          <p>$$A=\int_{-1}^{2}\big(y-(y^2-2)\big)\,dy=\frac92\ \text{u}^2$$</p>
+          <p class="fuente">Fuente: pauta guía de ayudantía — Áreas entre curvas.</p>
+        </div>
+
+        <div class="ejemplo" id="ej-volumen">
+          <h3>8. Volumen por dos métodos (verificación cruzada)</h3>
+          <p>Región bajo $y=2x-x^2$ y el eje $X$, girada en torno al eje $Y$. Por <strong>anillos</strong> (integrando en $y$, con $x=1\pm\sqrt{1-y}$):</p>
+          <p>$$V_{\text{anillos}}=\pi\int_0^1\big[(1+\sqrt{1-y})^2-(1-\sqrt{1-y})^2\big]dy=\frac{8\pi}{3}$$</p>
+          <p>Por <strong>capas cilíndricas</strong> (integrando en $x$, radio $x$, altura $2x-x^2$):</p>
+          <p>$$V_{\text{capas}}=2\pi\int_0^2 x(2x-x^2)\,dx=\frac{8\pi}{3}\ \checkmark$$</p>
+          <p>Ambos métodos coinciden — buena forma de verificar el resultado.</p>
+          <p class="fuente">Fuente: pauta guía semana 8.</p>
+        </div>
+
+        <div class="ejemplo" id="ej-pappus">
+          <h3>9. Volumen del toro: Pappus vs. integral directa (verificación cruzada)</h3>
+          <p>Circunferencia de radio $a$ centrada a distancia $b$ del eje de giro ($b\gt a$, no lo cruza), girada en torno a ese eje: el sólido resultante es un <strong>toro</strong>.</p>
+          <p>Por <strong>Pappus</strong>: el área de la región es $A=\pi a^2$ y su centroide está en el centro del círculo, a distancia $\bar d=b$ del eje:</p>
+          <p>$$V=2\pi\,\bar d\cdot A=2\pi\,b\cdot\pi a^2=2\pi^2a^2b$$</p>
+          <p>Por <strong>integral directa</strong> (arandelas): para cada $x\in[-a,a]$, $y$ recorre $[\,b-\sqrt{a^2-x^2},\,b+\sqrt{a^2-x^2}\,]$; al girar, ese segmento barre una arandela de radios $R=b+\sqrt{a^2-x^2}$, $r=b-\sqrt{a^2-x^2}$:</p>
+          <p>$$V=\pi\int_{-a}^{a}\big(R^2-r^2\big)dx=\pi\int_{-a}^{a}4b\sqrt{a^2-x^2}\,dx=4\pi b\cdot\frac{\pi a^2}{2}=2\pi^2a^2b\ \checkmark$$</p>
+          <p>(la integral restante es el área de un semicírculo de radio $a$: $\pi a^2/2$). Con $a=2$, $b=5$: $V=2\pi^2(4)(5)=40\pi^2\approx394.78$ por ambos métodos.</p>
+          <p class="fuente">Fuente: notas del vault "Aplicaciones de la integral" y "Volumen de revolución" (Teorema de Pappus, Guía semana 10).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 5 · LONGITUD DE ARCO Y SUPERFICIE -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u5">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">05</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Longitud de arco y superficie</h2>
+          <p class="unidad-sub">Una aplicación más del teorema de Pitágoras al continuo: medir curvas y las superficies que generan al girar.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-longitud">
+        <h3>Longitud de arco y superficie</h3>
+        <div class="formula-card"><span class="etiqueta">Longitud de arco</span>$$L=\int_a^{b} \sqrt{1+[f'(x)]^2}\,dx$$</div>
+        <div class="formula-card"><span class="etiqueta">Área de superficie</span>$$S=2\pi\int_a^{b} f(x)\sqrt{1+[f'(x)]^2}\,dx$$</div>
+        <p style="font-size:.85rem;">$S$ corresponde al giro en torno al eje $x$. Buscar cuadrado perfecto en $1+(f')^2$ antes de integrar: suele evitar una raíz fea.</p>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-circunferencia">
+          <summary><span class="resumen-ejercicio">1. Verificá con longitud de arco el perímetro de una circunferencia de radio $a$.</span> <span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <p>Con $y=\sqrt{a^2-x^2}$ (semicircunferencia superior), $y'=\dfrac{-x}{\sqrt{a^2-x^2}}$, así $1+(y')^2=\dfrac{a^2}{a^2-x^2}$. Por simetría se integra un cuarto de vuelta y se multiplica por 4:</p>
+            <p>$$L=4\int_0^a\frac{a}{\sqrt{a^2-x^2}}\,dx=4a\Big[\arcsin(x/a)\Big]_0^a=4a\cdot\frac{\pi}{2}=2\pi a\ \checkmark$$</p>
+            <p>Coincide con la fórmula geométrica clásica $L=2\pi a$.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-arco-poly">
+          <summary><span class="resumen-ejercicio">2. Calculá la longitud de $y=\tfrac13x^3+\tfrac1{4x}$ en $[1,3]$.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>$y'=x^2-\dfrac{1}{4x^2}$. El truco: $1+(y')^2$ es un cuadrado perfecto,</p>
+            <p>$$1+(y')^2=1+x^4-\frac12+\frac{1}{16x^4}=x^4+\frac12+\frac{1}{16x^4}=\left(x^2+\frac{1}{4x^2}\right)^2$$</p>
+            <p>así se evita una raíz fea:</p>
+            <p>$$L=\int_1^3\left(x^2+\frac{1}{4x^2}\right)dx=\left[\frac{x^3}{3}-\frac{1}{4x}\right]_1^3=\frac{53}{6}$$</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 6 · POLARES Y PARAMÉTRICAS -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u6">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">06</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Coordenadas polares y ecuaciones paramétricas</h2>
+          <p class="unidad-sub">Dos formas alternativas de describir curvas cuando $y=f(x)$ no alcanza, con sus propias fórmulas de área y longitud.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-polares">
+        <h3>Coordenadas polares</h3>
+        <div class="formula-card"><span class="etiqueta">Coordenadas</span>$$x=r\cos\theta,\quad y=r\sin\theta,\quad r^2=x^2+y^2$$</div>
+        <div class="formula-card"><span class="etiqueta">Área en polares</span>$$A=\frac12\int_{\alpha}^{\beta} r(\theta)^2\,d\theta$$</div>
+        <div class="formula-card"><span class="etiqueta">Longitud en polares</span>$$L=\int_{\alpha}^{\beta}\sqrt{r^2+[r'(\theta)]^2}\,d\theta$$</div>
+        <p style="font-size:.85rem; color:var(--futuro);">⚠️ $(r,\theta)=(-r,\theta+\pi)$: al buscar intersecciones hay que igualar también las representaciones alternativas.</p>
+      </div>
+
+      <div class="materia" id="tema-parametricas">
+        <h3>Ecuaciones paramétricas</h3>
+        <div class="formula-card"><span class="etiqueta">Pendiente</span>$$\frac{dy}{dx}=\frac{y'(t)}{x'(t)}$$</div>
+        <div class="formula-card"><span class="etiqueta">Longitud</span>$$L=\int_{t_1}^{t_2}\sqrt{[x'(t)]^2+[y'(t)]^2}\,dt$$</div>
+        <p style="font-size:.85rem;">Misma idea de Pitágoras que la longitud de arco rectangular, sin necesidad de despejar $y(x)$.</p>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-area-polar">
+          <summary><span class="resumen-ejercicio">5. Calculá el área encerrada por $r=2\cos\theta$.</span> <span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <p>$r=2\cos\theta$ traza una circunferencia de radio 1 para $\theta\in[-\pi/2,\pi/2]$ (ahí $r\ge0$ recorre la curva una sola vez):</p>
+            <p>$$A=\frac12\int_{-\pi/2}^{\pi/2}(2\cos\theta)^2\,d\theta=4\int_0^{\pi/2}\cos^2\theta\,d\theta=4\cdot\frac{\pi}{4}=\pi$$</p>
+            <p>Coincide con el área de un círculo de radio 1: $\pi(1)^2=\pi$. ✓</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-cardioide">
+          <summary><span class="resumen-ejercicio">6. Calculá el perímetro de la cardioide $r=1+\sin\theta$.</span> <span class="dificultad dificil">difícil</span></summary>
+          <div class="solucion">
+            <p>$$L=\int_0^{2\pi}\sqrt{r^2+(r')^2}\,d\theta=\int_0^{2\pi}\sqrt{(1+\sin\theta)^2+\cos^2\theta}\,d\theta$$</p>
+            <p>Expandiendo dentro de la raíz: $(1+\sin\theta)^2+\cos^2\theta=2+2\sin\theta$. Con el cambio $u=\theta+\pi/2$, $2+2\sin\theta=2+2\cos u=4\cos^2(u/2)$, lo que permite quitar la raíz (salvo valor absoluto). Integrando por tramos donde $\cos(u/2)\ge0$ se llega a</p>
+            <p>$$L=8$$</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-astroide">
+          <summary><span class="resumen-ejercicio">7. Longitud del astroide $x=\cos^3t$, $y=\sin^3t$, $t\in[0,2\pi]$.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>$x'=-3\cos^2t\sin t$, $y'=3\sin^2t\cos t$, entonces</p>
+            <p>$$\sqrt{(x')^2+(y')^2}=3|\cos t\sin t|$$</p>
+            <p>Por simetría se integra un cuarto de vuelta y se multiplica por 4:</p>
+            <p>$$L=4\int_0^{\pi/2}3\cos t\sin t\,dt=12\int_0^{\pi/2}\cos t\sin t\,dt=12\cdot\frac12=6$$</p>
+            <p>Coincide con la fórmula clásica del astroide $L=6a$ para $a=1$.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-parametrica-tfc">
+          <summary><span class="resumen-ejercicio">8. Curva paramétrica definida por integrales: $x(t)=\int_1^t\frac{\cos u}{u}du$, $y(t)=\int_1^t\frac{\sin u}{u}du$, $t\in[1,\pi]$. Calculá su longitud.</span> <span class="dificultad dificil">difícil</span></summary>
+          <div class="solucion">
+            <p>Por la Parte 1 del TFC, sin necesidad de hallar primitivas explícitas: $x'(t)=\dfrac{\cos t}{t}$, $y'(t)=\dfrac{\sin t}{t}$. Entonces:</p>
+            <p>$$L=\int_1^\pi\sqrt{\frac{\cos^2t}{t^2}+\frac{\sin^2t}{t^2}}\,dt=\int_1^\pi\frac1t\,dt=\ln(\pi)-\ln(1)=\ln(\pi)$$</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 7 · INTEGRALES IMPROPIAS -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u7">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">07</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Integrales impropias</h2>
+          <p class="unidad-sub">Qué pasa cuando el intervalo es infinito o la función no está acotada: límites que a veces convergen y a veces no.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-impropias">
+        <h3>Integrales impropias</h3>
+        <div class="formula-card"><span class="etiqueta">Primera especie (límite infinito)</span>$$\int_a^{+\infty} f\,dx=\lim_{b\to+\infty}\int_a^b f\,dx$$</div>
+        <div class="formula-card"><span class="etiqueta">Segunda especie (no acotada)</span>$$\int_a^{b} f\,dx=\lim_{t\to c^-}\int_a^{t} f\;+\;\lim_{t\to c^+}\int_{t}^{b} f$$</div>
+        <p style="font-size:.85rem;">La segunda forma aplica cuando $f$ no está acotada en un punto $c\in(a,b)$: ambos límites deben existir por separado.</p>
+        <p>$\int_1^{\infty}\frac{dx}{x^p}$ converge $\iff p>1$; $\int_0^1\frac{dx}{x^p}$ converge $\iff p\lt1$.</p>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-impropia-gamma">
+          <summary><span class="resumen-ejercicio">3. Determiná si $\displaystyle\int_0^{+\infty}x^2e^{-x}\,dx$ converge y calculá su valor.</span> <span class="dificultad dificil">difícil</span></summary>
+          <div class="solucion">
+            <p>Se integra por partes dos veces (o se usa la fórmula de reducción tabular) para obtener la primitiva $-(x^2+2x+2)e^{-x}$. Luego:</p>
+            <p>$$I=\lim_{b\to+\infty}\Big[-(x^2+2x+2)e^{-x}\Big]_0^b=\lim_{b\to\infty}\Big(-(b^2+2b+2)e^{-b}\Big)+2$$</p>
+            <p>El límite es $0$ (por L'Hôpital, la exponencial domina al polinomio), entonces $I=0+2=2$. La integral <strong>converge</strong> a $2$.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-torricelli">
+          <summary><span class="resumen-ejercicio">4. La "trompeta de Torricelli": girá $y=1/x$, $x\ge1$, en torno al eje $X$. ¿El volumen y el área de superficie son finitos?</span> <span class="dificultad dificil">difícil</span></summary>
+          <div class="solucion">
+            <p>Volumen (discos):</p>
+            <p>$$V=\pi\int_1^{+\infty}\frac{dx}{x^2}=\pi\lim_{b\to\infty}\left[-\frac1x\right]_1^b=\pi(0-(-1))=\pi \quad\text{(finito)}$$</p>
+            <p>Área de superficie:</p>
+            <p>$$S=2\pi\int_1^{+\infty}\frac1x\sqrt{1+\frac{1}{x^4}}\,dx$$</p>
+            <p>Como $\sqrt{1+1/x^4}\ge1$, se compara con $2\pi\int_1^\infty \frac{dx}{x}$ (armónica continua, $p=1$), que <strong>diverge</strong>. Por comparación, $S=+\infty$.</p>
+            <p>Conclusión curiosa: el sólido tiene volumen finito ($\pi$) pero superficie infinita — se puede "llenar" con pintura pero no "pintar" por fuera.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 8 · SERIES NUMÉRICAS Y SERIES DE POTENCIAS -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u8">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">08</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Series numéricas y series de potencias</h2>
+          <p class="unidad-sub">De sumar infinitos términos a representar funciones como polinomios infinitos: criterios de convergencia y la serie de Taylor.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-series">
+        <h3>Series numéricas</h3>
+        <div class="formula-card"><span class="etiqueta">Serie geométrica</span>$$\sum_{n=0}^{\infty} r^n=\frac{1}{1-r}\ (|r|\lt1)$$</div>
+        <table>
+          <tr><th>Criterio</th><th>Cuándo</th></tr>
+          <tr><td>Comparación</td><td>se acota por serie conocida</td></tr>
+          <tr><td>Integral</td><td>$a_n=f(n)$, $f$ continua/positiva/decreciente</td></tr>
+          <tr><td>Razón (d'Alembert)</td><td>factoriales, potencias $n$-ésimas</td></tr>
+          <tr><td>Raíz (Cauchy)</td><td>$a_n=(\cdots)^n$</td></tr>
+          <tr><td>$p$-serie $\sum 1/n^p$</td><td>converge $\iff p>1$</td></tr>
+        </table>
+        <p style="font-size:.85rem;">Leibniz (alternadas): converge si $b_n\to0$ y decreciente. $a_n\to0$ es <strong>necesario, no suficiente</strong>.</p>
+      </div>
+
+      <div class="materia" id="tema-taylor">
+        <h3>Series de potencias y Taylor</h3>
+        <div class="formula-card"><span class="etiqueta">Serie de Taylor</span>$$f(x)=\sum_{n=0}^{\infty}\frac{f^{(n)}(a)}{n!}(x-a)^n$$</div>
+        <p>Desarrollos de Maclaurin ($a=0$) más usados:</p>
+        <ul>
+          <li>$\displaystyle e^x=\sum_{n=0}^\infty\frac{x^n}{n!}$</li>
+          <li>$\displaystyle \sin x=\sum_{n=0}^\infty\frac{(-1)^nx^{2n+1}}{(2n+1)!}$</li>
+          <li>$\displaystyle \cos x=\sum_{n=0}^\infty\frac{(-1)^nx^{2n}}{(2n)!}$</li>
+          <li>$\displaystyle \frac{1}{1-x}=\sum_{n=0}^\infty x^n$</li>
+          <li>$\displaystyle \ln(1+x)=\sum_{n=1}^\infty\frac{(-1)^{n-1}x^n}{n}$</li>
+          <li>$\displaystyle \arctan x=\sum_{n=0}^\infty\frac{(-1)^nx^{2n+1}}{2n+1}$</li>
+        </ul>
+        <p style="font-size:.85rem; color:var(--futuro);">⚠️ El radio $R$ no dice qué pasa en los extremos $x=a\pm R$: hay que revisarlos aparte.</p>
+      </div>
+
+      <div class="animacion" id="anim-taylor">
+        <div class="anim-cabecera">
+          <h3>📈 Polinomios de Taylor</h3>
+          <p class="anim-desc">Aproximación de Maclaurin ($a=0$) de $\sin(x)$ o $e^x$ con un polinomio de grado $n$.</p>
+        </div>
+        <canvas data-alto="340"></canvas>
+        <div class="controles">
+          <div class="control"><label for="sl-taylor-fn">Función</label><input type="range" id="sl-taylor-fn" min="0" max="1" step="1" value="0"><span class="valor"></span></div>
+          <div class="control"><label for="sl-taylor-n">Grado n</label><input type="range" id="sl-taylor-n" min="0" max="20" step="1" value="3"><span class="valor"></span></div>
+          <button type="button" data-accion="jugar">▶ Reproducir</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> la curva de trazo grueso es la función real; la de trazo fino/punteado es el polinomio de Taylor. Con ▶ el grado usado crece de 0 hasta $n$: notá que la aproximación mejora primero cerca de $x=0$ y luego se extiende hacia los bordes.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-serie-mixta">
+          <summary><span class="resumen-ejercicio">9. Sumá la serie $\displaystyle\sum_{n=0}^{\infty}\frac{(2n+1)^2}{5^n}$.</span> <span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <p>Expandiendo $(2n+1)^2=4n^2+4n+1$, se separa en tres series geométricas ponderadas por $n^2$, $n$ y constante sobre $5^n$. Usando $\sum r^n=\frac{1}{1-r}$ y sus derivadas (o identidades conocidas para $\sum n r^n$, $\sum n^2 r^n$) con $r=1/5$:</p>
+            <p>$$\sum_{n=0}^{\infty}\frac{(2n+1)^2}{5^n}=\sum\Big(\frac45\Big)^n\cdot(\text{reagrupado})=5+\frac{10}{3}+\frac54=\frac{115}{12}$$</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-serie-telescopica">
+          <summary><span class="resumen-ejercicio">10. Sumá $\displaystyle\sum_{n=1}^{\infty}\frac{2}{n^3+3n^2+2n}$.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>Factorizando el denominador: $n^3+3n^2+2n=n(n+1)(n+2)$. Por fracciones parciales,</p>
+            <p>$$\frac{2}{n(n+1)(n+2)}=\frac1n-\frac2{n+1}+\frac1{n+2}=\Big(\frac1n-\frac1{n+1}\Big)-\Big(\frac1{n+1}-\frac1{n+2}\Big)$$</p>
+            <p>Es una diferencia de dos series telescópicas:</p>
+            <p>$$\sum_{n=1}^{\infty}\Big(\frac1n-\frac1{n+1}\Big)=1,\qquad \sum_{n=1}^{\infty}\Big(\frac1{n+1}-\frac1{n+2}\Big)=\frac12$$</p>
+            <p>Entonces la suma total es $1-\tfrac12=\tfrac12$.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-criterios-convergencia">
+          <summary><span class="resumen-ejercicio">11. Determiná la convergencia de $\sum\frac{(n!)^2}{(2n)!}$, $\sum\frac{1}{\ln n}$ y $\sum\frac{\ln n}{n^2}$.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p><strong>$\sum\frac{(n!)^2}{(2n)!}$:</strong> aparecen factoriales → criterio de la razón. $\dfrac{a_{n+1}}{a_n}=\dfrac{(n+1)^2}{(2n+1)(2n+2)}\to\dfrac14\lt1$. <strong>Converge.</strong></p>
+            <p><strong>$\sum\frac{1}{\ln n}$:</strong> como $\ln n\lt n$ para $n\ge2$, se tiene $\frac1{\ln n}>\frac1n$; por comparación directa con la armónica (divergente), <strong>diverge</strong>.</p>
+            <p><strong>$\sum\frac{\ln n}{n^2}$:</strong> comparación al límite con $b_n=1/n^{3/2}$ (p-serie con $p=3/2>1$, convergente): $\lim \frac{\ln n/n^2}{1/n^{3/2}}=\lim\frac{\ln n}{\sqrt n}=0$, finito ⇒ mismo comportamiento. <strong>Converge.</strong></p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-taylor-sin3x">
+          <summary><span class="resumen-ejercicio">12. Desarrollá $\sin(3x)$ en serie de Maclaurin usando la tabla base.</span> <span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <p>Partiendo de $\sin u=\displaystyle\sum_{n=0}^\infty\frac{(-1)^nu^{2n+1}}{(2n+1)!}$ y sustituyendo $u=3x$:</p>
+            <p>$$\sin(3x)=\sum_{n=0}^\infty\frac{(-1)^n3^{2n+1}x^{2n+1}}{(2n+1)!}=3x-\frac{27x^3}{6}+\frac{243x^5}{120}-\cdots$$</p>
+            <p>Como $\sin u$ tiene $R=\infty$, la serie sustituida también converge para todo $x$ ($R=\infty$).</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function () {
+
+  /* ================= 1. Sumas de Riemann ================= */
+  Anim.registrar("anim-riemann", function (sim) {
+    var fA = 0, fB = 6;
+    function f(x) { return x * x / 4 + 1; }
+    function F(x) { return x * x * x / 12 + x; }
+    var VAL_EXACTO = F(fB) - F(fA);
+    var nMax = 10, tipo = 0; // 0 izquierda, 1 derecha, 2 medio
+    var nAnimado = 1;
+
+    // dx siempre se calcula como (b-a)/nMax, así el ancho de cada rectángulo
+    // es consistente al animar la revelación de 1 hasta nMax rectángulos.
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var dx = (fB - fA) / nMax;
+      nAnimado = sim.estaCorriendo() ? 1 + Math.floor((t * 6) % nMax) : nMax;
+      var yMax = f(fB) + 1;
+      var m = Anim.mapa(w, h, { xMin: fA - 0.6, xMax: fB + 0.6, yMin: -0.8, yMax: yMax });
+      Anim.ejes(ctx, m, w, h);
+
+      var acento = colorVar("--acento");
+      var s2 = colorVar("--s2");
+      var tinta = colorVar("--tinta");
+      var tinta2 = colorVar("--tinta-2");
+
+      ctx.save();
+      ctx.fillStyle = acento;
+      ctx.globalAlpha = 0.35;
+      ctx.strokeStyle = acento;
+      ctx.lineWidth = 1;
+      var sumaMostrada = 0;
+      for (var i = 0; i < nAnimado; i++) {
+        var xi = fA + i * dx;
+        var xm = tipo === 0 ? xi : (tipo === 1 ? xi + dx : xi + dx / 2);
+        var altura = f(xm);
+        sumaMostrada += altura * dx;
+        var px0 = m.x(xi), px1 = m.x(xi + dx);
+        var py0 = m.y(0), py1 = m.y(altura);
+        ctx.fillRect(px0, py1, px1 - px0, py0 - py1);
+        ctx.strokeRect(px0, py1, px1 - px0, py0 - py1);
+      }
+      ctx.restore();
+
+      ctx.save();
+      ctx.strokeStyle = s2;
+      ctx.lineWidth = 2.4;
+      ctx.beginPath();
+      var pasos = 120;
+      for (var k = 0; k <= pasos; k++) {
+        var x = fA - 0.5 + (fB - fA + 1) * (k / pasos);
+        var y = f(x);
+        var px = m.x(x), py = m.y(y);
+        if (k === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+      }
+      ctx.stroke();
+      ctx.restore();
+
+      ctx.save();
+      ctx.fillStyle = tinta;
+      ctx.font = "13px Consolas, monospace";
+      ctx.fillText("n usado: " + nAnimado + " / " + nMax, 10, 18);
+      ctx.fillText("Suma de Riemann ≈ " + sumaMostrada.toFixed(4), 10, 36);
+      ctx.fillStyle = tinta2;
+      ctx.fillText("Valor exacto = " + VAL_EXACTO.toFixed(4), 10, 54);
+      ctx.restore();
+    });
+
+    sim.slider("sl-riemann-n", function (v) { nMax = Math.round(v); sim.redibujar(); }, function (v) { return String(Math.round(v)); });
+    sim.slider("sl-riemann-tipo", function (v) {
+      tipo = Math.round(v);
+      sim.redibujar();
+    }, function (v) {
+      var t = Math.round(v);
+      return t === 0 ? "izquierda" : (t === 1 ? "derecha" : "medio");
+    });
+    sim.botones();
+  });
+
+  /* ================= 2. Sólido de revolución ================= */
+  Anim.registrar("anim-volumen", function (sim) {
+    function f(x) { return 1 + 0.4 * x; }
+    function F(x) { return x + 0.4 * x * x + (0.16 / 3) * x * x * x; } // antiderivada de f(x)^2 = 1+0.8x+0.16x^2
+    var a = 0.5, b = 3, n = 12;
+    var nAnimado = 1;
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var lo = Math.min(a, b), hi = Math.max(a, b);
+      if (hi - lo < 0.2) hi = lo + 0.2;
+      var dx = (hi - lo) / n;
+      nAnimado = sim.estaCorriendo() ? 1 + Math.floor((t * 5) % n) : n;
+
+      var yMax = Math.max(f(hi), f(lo)) + 0.6;
+      var m = Anim.mapa(w, h, { xMin: -0.5, xMax: 4.5, yMin: -yMax, yMax: yMax });
+      Anim.ejes(ctx, m, w, h);
+
+      var acento = colorVar("--acento");
+      var s3 = colorVar("--s3");
+      var tinta = colorVar("--tinta");
+      var tinta2 = colorVar("--tinta-2");
+      var borde = colorVar("--borde");
+
+      // envolvente f(x) y -f(x) en todo el dominio de referencia
+      ctx.save();
+      ctx.strokeStyle = borde;
+      ctx.lineWidth = 1.4;
+      ctx.setLineDash([4, 3]);
+      ctx.beginPath();
+      for (var k = 0; k <= 100; k++) {
+        var x = -0.3 + 4.6 * (k / 100);
+        var y = f(x);
+        var px = m.x(x), py = m.y(y);
+        if (k === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+      }
+      ctx.stroke();
+      ctx.beginPath();
+      for (var k2 = 0; k2 <= 100; k2++) {
+        var x2 = -0.3 + 4.6 * (k2 / 100);
+        var y2 = -f(x2);
+        var px2 = m.x(x2), py2 = m.y(y2);
+        if (k2 === 0) ctx.moveTo(px2, py2); else ctx.lineTo(px2, py2);
+      }
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.restore();
+
+      // eje de giro resaltado en [lo,hi]
+      ctx.save();
+      ctx.strokeStyle = tinta2;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(m.x(lo), m.y(0));
+      ctx.lineTo(m.x(hi), m.y(0));
+      ctx.stroke();
+      ctx.restore();
+
+      // discos (elipses 2.5D)
+      var sumaVol = 0;
+      ctx.save();
+      for (var i = 0; i < nAnimado; i++) {
+        var xm = lo + (i + 0.5) * dx;
+        var r = f(xm);
+        sumaVol += Math.PI * r * r * dx;
+        var cx = m.x(xm);
+        var cy = m.y(0);
+        var ry = Math.abs(m.y(r) - m.y(0));
+        var rx = ry * 0.28 + 3; // achatamiento para dar sensación de profundidad
+        ctx.fillStyle = acento;
+        ctx.globalAlpha = 0.28;
+        ctx.beginPath();
+        ctx.ellipse(cx, cy, rx, ry, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.globalAlpha = 1;
+        ctx.strokeStyle = s3;
+        ctx.lineWidth = 1.3;
+        ctx.stroke();
+      }
+      ctx.restore();
+
+      var vExacto = Math.PI * (F(hi) - F(lo));
+      ctx.save();
+      ctx.fillStyle = tinta;
+      ctx.font = "13px Consolas, monospace";
+      ctx.fillText("discos usados: " + nAnimado + " / " + n, 10, 18);
+      ctx.fillText("Suma de discos ≈ " + sumaVol.toFixed(4), 10, 36);
+      ctx.fillStyle = tinta2;
+      ctx.fillText("Volumen exacto (antiderivada) = " + vExacto.toFixed(4), 10, 54);
+      ctx.restore();
+    });
+
+    sim.slider("sl-vol-a", function (v) { a = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.slider("sl-vol-b", function (v) { b = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.slider("sl-vol-n", function (v) { n = Math.round(v); sim.redibujar(); }, function (v) { return String(Math.round(v)); });
+    sim.botones();
+  });
+
+  /* ================= 3. Área entre curvas ================= */
+  Anim.registrar("anim-area", function (sim) {
+    function f(x) { return 4 - 0.3 * x * x; }
+    function g(x) { return 0.6 * x + 0.5; }
+    var a = -2, b = 2.5;
+
+    // integración numérica (regla del punto medio, muy fina) de |f-g| entre p y q
+    function areaEntre(p, q, pasos) {
+      pasos = pasos || 800;
+      if (q <= p) return 0;
+      var dx = (q - p) / pasos, s = 0;
+      for (var i = 0; i < pasos; i++) {
+        var xm = p + (i + 0.5) * dx;
+        s += Math.abs(f(xm) - g(xm)) * dx;
+      }
+      return s;
+    }
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var lo = Math.min(a, b), hi = Math.max(a, b);
+      if (hi - lo < 0.2) hi = lo + 0.2;
+
+      var m = Anim.mapa(w, h, { xMin: -5, xMax: 5, yMin: -4, yMax: 6 });
+      Anim.ejes(ctx, m, w, h);
+
+      var acento = colorVar("--acento");
+      var s1 = colorVar("--s1");
+      var s2 = colorVar("--s2");
+      var tinta = colorVar("--tinta");
+      var tinta2 = colorVar("--tinta-2");
+
+      var barrido = hi;
+      var animando = sim.estaCorriendo();
+      if (animando) {
+        var ciclo = 3.0;
+        var frac = (t % ciclo) / ciclo;
+        barrido = lo + frac * (hi - lo);
+      }
+
+      // relleno región (usando |f-g| pointwise) de lo a barrido
+      ctx.save();
+      ctx.fillStyle = acento;
+      ctx.globalAlpha = 0.32;
+      var pasosDibujo = 140;
+      ctx.beginPath();
+      var primero = true;
+      for (var k = 0; k <= pasosDibujo; k++) {
+        var x = lo + (barrido - lo) * (k / pasosDibujo);
+        var yTop = Math.max(f(x), g(x));
+        var px = m.x(x), py = m.y(yTop);
+        if (primero) { ctx.moveTo(px, py); primero = false; } else ctx.lineTo(px, py);
+      }
+      for (var k2 = pasosDibujo; k2 >= 0; k2--) {
+        var x2 = lo + (barrido - lo) * (k2 / pasosDibujo);
+        var yBot = Math.min(f(x2), g(x2));
+        ctx.lineTo(m.x(x2), m.y(yBot));
+      }
+      ctx.closePath();
+      ctx.fill();
+      ctx.restore();
+
+      function curva(fn, col) {
+        ctx.save();
+        ctx.strokeStyle = col;
+        ctx.lineWidth = 2.4;
+        ctx.beginPath();
+        for (var k = 0; k <= 140; k++) {
+          var x = -5 + 10 * (k / 140);
+          var y = fn(x);
+          var px = m.x(x), py = m.y(y);
+          if (k === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+        }
+        ctx.stroke();
+        ctx.restore();
+      }
+      curva(f, s2);
+      curva(g, s1);
+
+      if (animando) {
+        ctx.save();
+        ctx.strokeStyle = tinta;
+        ctx.lineWidth = 1.5;
+        ctx.setLineDash([5, 4]);
+        ctx.beginPath();
+        ctx.moveTo(m.x(barrido), 0);
+        ctx.lineTo(m.x(barrido), h);
+        ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.restore();
+      }
+
+      var areaParcial = areaEntre(lo, barrido, 300);
+      var areaTotal = areaEntre(lo, hi, 800);
+      ctx.save();
+      ctx.fillStyle = tinta;
+      ctx.font = "13px Consolas, monospace";
+      ctx.fillText("[a,b] = [" + lo.toFixed(1) + ", " + hi.toFixed(1) + "]", 10, 18);
+      ctx.fillText("Área acumulada ≈ " + areaParcial.toFixed(4), 10, 36);
+      ctx.fillStyle = tinta2;
+      ctx.fillText("Área total en [a,b] ≈ " + areaTotal.toFixed(4), 10, 54);
+      ctx.restore();
+    });
+
+    sim.slider("sl-area-a", function (v) { a = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.slider("sl-area-b", function (v) { b = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.botones();
+  });
+
+  /* ================= 4. Polinomios de Taylor ================= */
+  Anim.registrar("anim-taylor", function (sim) {
+    var fnSel = 0; // 0 = sin(x), 1 = e^x
+    var nGrado = 3;
+    var nAnimado = 0;
+
+    function factorial(k) { var r = 1; for (var i = 2; i <= k; i++) r *= i; return r; }
+    function real(x) { return fnSel === 0 ? Math.sin(x) : Math.exp(x); }
+
+    function taylor(x, n) {
+      if (fnSel === 0) {
+        var s = 0;
+        for (var k = 0; 2 * k + 1 <= n; k++) {
+          s += Math.pow(-1, k) * Math.pow(x, 2 * k + 1) / factorial(2 * k + 1);
+        }
+        return s;
+      } else {
+        var s2 = 0;
+        for (var k2 = 0; k2 <= n; k2++) {
+          s2 += Math.pow(x, k2) / factorial(k2);
+        }
+        return s2;
+      }
+    }
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      nAnimado = sim.estaCorriendo() ? Math.floor((t * 3) % (nGrado + 1)) : nGrado;
+
+      var dom = fnSel === 0 ? { xMin: -7, xMax: 7 } : { xMin: -3, xMax: 2.5 };
+      var yRange = fnSel === 0 ? { yMin: -2.5, yMax: 2.5 } : { yMin: -1, yMax: 13 };
+      var m = Anim.mapa(w, h, { xMin: dom.xMin, xMax: dom.xMax, yMin: yRange.yMin, yMax: yRange.yMax });
+      Anim.ejes(ctx, m, w, h);
+
+      var s2 = colorVar("--s2");
+      var acento = colorVar("--acento");
+      var tinta = colorVar("--tinta");
+      var tinta2 = colorVar("--tinta-2");
+
+      // función real
+      ctx.save();
+      ctx.strokeStyle = s2;
+      ctx.lineWidth = 2.6;
+      ctx.beginPath();
+      var pasos = 180;
+      for (var k = 0; k <= pasos; k++) {
+        var x = dom.xMin + (dom.xMax - dom.xMin) * (k / pasos);
+        var y = real(x);
+        var px = m.x(x), py = m.y(y);
+        if (k === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+      }
+      ctx.stroke();
+      ctx.restore();
+
+      // polinomio de Taylor
+      ctx.save();
+      ctx.strokeStyle = acento;
+      ctx.lineWidth = 2;
+      ctx.setLineDash([2, 3]);
+      ctx.beginPath();
+      var iniciado = false;
+      for (var k2 = 0; k2 <= pasos; k2++) {
+        var x2 = dom.xMin + (dom.xMax - dom.xMin) * (k2 / pasos);
+        var y2 = taylor(x2, nAnimado);
+        if (Math.abs(y2) > 1e6 || !isFinite(y2)) continue;
+        var px2 = m.x(x2), py2 = m.y(y2);
+        if (!iniciado) { ctx.moveTo(px2, py2); iniciado = true; } else ctx.lineTo(px2, py2);
+      }
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.restore();
+
+      ctx.save();
+      ctx.fillStyle = tinta;
+      ctx.font = "13px Consolas, monospace";
+      ctx.fillText("función: " + (fnSel === 0 ? "sin(x)" : "e^x") + "   grado usado: " + nAnimado + " / " + nGrado, 10, 18);
+      ctx.fillStyle = tinta2;
+      ctx.fillText("curva gruesa = función real · curva punteada = polinomio de Taylor", 10, 36);
+      ctx.restore();
+    });
+
+    sim.slider("sl-taylor-fn", function (v) { fnSel = Math.round(v); sim.redibujar(); }, function (v) {
+      return Math.round(v) === 0 ? "sin(x)" : "eˣ";
+    });
+    sim.slider("sl-taylor-n", function (v) { nGrado = Math.round(v); sim.redibujar(); }, function (v) { return String(Math.round(v)); });
+    sim.botones();
+  });
+
+})();
+</script>
+
+<script>
+  // entradas escalonadas (GSAP + ScrollTrigger vía Anim.revelar) — no rompe nada si GSAP no cargó
+  Anim.revelar(".curso-hero-v3 > *", { scroll: false, stagger: .08, distancia: 14, duracion: .8 });
+  document.querySelectorAll(".unidad").forEach(function (u) {
+    Anim.revelar(u.querySelectorAll(":scope > .unidad-cabecera, :scope > .materia, :scope > .animacion, :scope > .ejemplos-unidad, :scope > .ejercicios-unidad"), { disparador: u, stagger: .08, distancia: 16 });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html lang="es" data-tema="oscuro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🗂️ Taller de Obtención y Preparación de Datos — Biblioteca</title>
+<link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../../assets/vendor/fuentes/fuentes.css">
+<link rel="stylesheet" href="../../assets/css/observatorio.css">
+<script>window.RUTA_BASE = "../../";</script>
+<script src="../../assets/vendor/katex/katex.min.js"></script>
+<script src="../../assets/vendor/katex/auto-render.min.js"></script>
+<script src="../../assets/vendor/gsap/gsap.min.js"></script>
+<script src="../../assets/vendor/gsap/ScrollTrigger.min.js"></script>
+<script src="../../assets/js/observatorio.js"></script>
+<script src="indice-curso.js"></script>
+<style>
+  .mini-nota { font: 12px Consolas, monospace; color: var(--tinta-2); margin: 0 0 10px; padding: 0 30px; }
+  .leyenda { display: flex; flex-wrap: wrap; gap: 14px 22px; padding: 0 30px 14px; font-size: .85rem; color: var(--tinta-2); }
+  .leyenda span { display: inline-flex; align-items: center; gap: 6px; }
+  .leyenda i { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+</style>
+</head>
+<body>
+<div class="progreso-lectura"></div>
+<div class="pagina-curso">
+
+  <aside class="lateral">
+    <a class="volver" href="../../index.html">← Constelación</a>
+    <div class="curso-cabecera"><span class="emoji">🗂️</span><h1>Taller de Obtención y Preparación de Datos</h1></div>
+    <span class="semestre-tag" style="color:var(--s2)">Semestre 2</span>
+    <nav>
+      <div class="grupo">Unidades</div>
+      <a href="#u1">01 · NumPy</a>
+      <a href="#u2">02 · Pandas</a>
+      <a href="#u3">03 · Valores nulos</a>
+      <a class="sub" href="#anim-imputacion">🩹 Imputación de nulos</a>
+      <a href="#u4">04 · Outliers</a>
+      <a class="sub" href="#anim-outliers">📦 Outliers e IQR</a>
+      <a href="#u5">05 · Data wrangling</a>
+      <a href="#u6">06 · Groupby y uniones</a>
+      <a class="sub" href="#anim-groupby">🧺 Groupby animado</a>
+      <a class="sub" href="#anim-merge">🔗 Merge / join visual</a>
+      <a href="#u7">07 · Lectura y formatos</a>
+      <a href="#u8">08 · Visualización y ética</a>
+    </nav>
+    <div class="atajos"><kbd>Ctrl K</kbd> buscar en toda la biblioteca</div>
+  </aside>
+
+  <main class="principal">
+    <div class="principal-cabecera">
+      <span class="relleno"></span>
+      <button class="btn-buscar" type="button">🔍 Buscar <kbd>Ctrl K</kbd></button>
+      <button class="btn-tema" type="button">☀️</button>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CABECERA DEL CURSO -->
+    <!-- ============================================================ -->
+    <header class="curso-hero-v3" id="cheat" style="--ac: var(--s2)">
+      <span class="emoji-grande">🗂️</span>
+      <h1>Taller de Obtención y Preparación de Datos — Resumen del curso</h1>
+      <span class="semestre-tag" style="color:var(--s2)">Semestre 2 · Datos</span>
+      <p class="curso-intro">
+        Taller de <strong>Obtención y Preparación de Datos</strong> (UDD, 2025-2, prof. Paula
+        Vásquez-Henríquez), segundo semestre. De NumPy y Pandas a un pipeline completo de limpieza:
+        valores nulos y atípicos, data wrangling (muestreo, duplicados, discretización, <code>groupby</code>,
+        uniones), obtención de datos desde archivos (CSV/Excel/JSON y formatos binarios) y visualización —
+        con código real de las clases y datasets del curso (<code>corporativo_con_nulos.csv</code>, encuesta
+        <strong>CASEN</strong>, <code>cafe_sales.csv</code>, viajes en bicicleta). Libro guía: <em>Python for
+        Data Analysis</em> (McKinney).
+      </p>
+      <ul class="mini-indice">
+        <li><a href="#u1">01 · NumPy</a></li>
+        <li><a href="#u2">02 · Pandas</a></li>
+        <li><a href="#u3">03 · Valores nulos</a></li>
+        <li><a href="#u4">04 · Outliers</a></li>
+        <li><a href="#u5">05 · Data wrangling</a></li>
+        <li><a href="#u6">06 · Groupby y uniones</a></li>
+        <li><a href="#u7">07 · Lectura y formatos</a></li>
+        <li><a href="#u8">08 · Visualización y ética</a></li>
+      </ul>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 1 · NUMPY -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u1">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">01</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">NumPy: arrays y operaciones vectorizadas</h2>
+          <p class="unidad-sub">El punto de partida de todo el curso: arrays n-dimensionales y por qué vectorizar es siempre más rápido que un <code>for</code> de Python.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-numpy-arrays">
+        <h3>Arrays NumPy: creación y dimensiones</h3>
+        <ul>
+          <li><code>ndarray</code>: contenedor n-dimensional homogéneo (mismo <code>dtype</code>), tamaño fijo al crearse.</li>
+          <li><code>shape</code> = forma (tupla); <code>size</code> = total de elementos; <code>ndim</code> = nº de ejes.</li>
+          <li>Indexado combinando <code>:</code> (eje completo) con índices puntuales: <code>C[:, 2, 1]</code>.</li>
+        </ul>
+        <pre><code>C = np.array([[[1,1],[1,2],[1,3]],
+              [[1,4],[1,5],[1,6]],
+              [[1,7],[1,8],[1,9]],
+              [[1,10],[1,11],[1,12]]])
+C.shape   # (4, 3, 2)
+C.ndim    # 3</code></pre>
+        <ul>
+          <li>Creación rápida: <code>np.zeros((2,5))</code>, <code>np.ones(5)</code>, <code>np.arange(3,10,2)</code>, <code>np.linspace(0,15,num=5)</code>, <code>np.identity(3)</code>.</li>
+          <li><strong>Error común:</strong> <code>axis=0</code> colapsa filas (suma por columna); <code>axis=1</code> colapsa columnas (suma por fila) — contraintuitivo al empezar.</li>
+        </ul>
+      </div>
+
+      <div class="materia" id="tema-numpy-vectorizado">
+        <h3>Operaciones vectorizadas</h3>
+        <ul>
+          <li>Vectorizar = operar el array completo en C, sin <code>for</code> de Python: aritmética elemento a elemento, funciones universales (<code>np.sqrt</code>, <code>np.exp</code>), agregaciones (<code>sum</code>, <code>mean</code>, <code>std</code>), <em>broadcasting</em>.</li>
+        </ul>
+        <pre><code>a * b       # elemento a elemento
+a @ b       # multiplicación matricial
+a.dot(b)    # equivalente a @
+
+b = np.array([[0, 1, 2], [3, 4, 5]])
+b.sum(axis=0)  # [3, 5, 7]  -&gt; colapsa FILAS
+b.sum(axis=1)  # [3, 12]    -&gt; colapsa COLUMNAS
+
+distancia_km = np.array([1.0, 2.0]) * 1.6   # broadcasting con escalar</code></pre>
+        <ul>
+          <li>Un bucle <code>for</code> sobre 1 millón de elementos vs. <code>array1 * array2</code>: la versión vectorizada es órdenes de magnitud más rápida (menos overhead de intérprete).</li>
+          <li><code>+=</code>/<code>*=</code> modifican el array <strong>in-place</strong>, a diferencia de crear uno nuevo.</li>
+        </ul>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-numpy-vectorizado">
+          <h3>1. Vectorización, <code>axis</code> y broadcasting</h3>
+          <pre><code>a = np.array([[1,1],[2,1]])
+b = np.array([[2,4],[3,4]])
+a * b       # elemento a elemento -&gt; [[2,4],[6,4]]
+a @ b       # multiplicación matricial -&gt; [[5,8],[7,12]]
+
+c = np.array([[0, 1, 2], [3, 4, 5]])
+c.sum(axis=0)  # array([3, 5, 7])  -&gt; colapsa FILAS, suma por columna
+c.sum(axis=1)  # array([3, 12])   -&gt; colapsa COLUMNAS, suma por fila
+
+distancia_millas = np.array([1.0, 2.0])
+distancia_km = distancia_millas * 1.6   # broadcasting: [1.6, 3.2]</code></pre>
+          <p><code>a * b</code> multiplica posición a posición; <code>a @ b</code> (o <code>a.dot(b)</code>) es la multiplicación matricial real. La "trampa" de <code>axis</code>: <code>axis=0</code> no significa "sumar filas" sino "recorrer el eje 0" (las filas), lo que produce una suma <strong>por columna</strong>. El broadcasting permite multiplicar un array por un escalar sin bucles: NumPy "estira" el <code>1.6</code> a la forma del array.</p>
+          <p class="fuente">Fuente: notas "Operaciones vectorizadas en NumPy" (Clase 01/02, Semana 1).</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-numpy-velocidad">
+          <summary><span class="resumen-ejercicio">1. Compara el tiempo de sumar 1 millón de números con un <code>for</code> vs. <code>np.sum()</code>. </span><span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <pre><code>import numpy as np, time
+
+n = 1_000_000
+datos = list(range(n))
+arr = np.arange(n)
+
+inicio = time.time()
+total_for = 0
+for x in datos:
+    total_for += x
+print("for:", time.time() - inicio, "segundos")
+
+inicio = time.time()
+total_np = arr.sum()
+print("NumPy:", time.time() - inicio, "segundos")</code></pre>
+            <p><code>np.sum()</code> recorre el array en código C compilado, sin el overhead de iterar en el intérprete de Python — la diferencia suele ser de uno o dos órdenes de magnitud, más notoria cuanto más grande es <code>n</code>.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 2 · PANDAS: SERIES Y DATAFRAMES -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u2">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">02</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Pandas: Series y DataFrames</h2>
+          <p class="unidad-sub">Series y DataFrames, las dos estructuras centrales de Pandas: cómo se seleccionan, filtran y exploran antes de tocar cualquier limpieza.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-pandas-series">
+        <h3>Series de Pandas</h3>
+        <ul>
+          <li>Array unidimensional <strong>etiquetado</strong> (índice); se crea desde lista, diccionario (llaves → índice) o escalar repetido.</li>
+        </ul>
+        <pre><code>serie_edades = pd.Series(edades, index=nombres)
+serie_edades['Ana']                  # acceso por etiqueta
+serie_edades[serie_edades &gt; 27]      # filtrado condicional
+serie_edades.apply(lambda x: x**2)
+serie_edades.idxmax()                # etiqueta del valor máximo</code></pre>
+        <ul>
+          <li>Tipos mixtos: <code>pd.Series([1,2,3.5]).dtype</code> → <code>float64</code>; <code>pd.Series([1,'texto',3.14]).dtype</code> → <code>object</code>.</li>
+          <li><strong>Error común:</strong> confundir acceso por posición (<code>serie[0]</code>) con acceso por etiqueta — si el índice es numérico, coinciden por accidente y esconden el bug.</li>
+        </ul>
+      </div>
+
+      <div class="materia" id="tema-pandas-dataframes">
+        <h3>DataFrames: selección y exploración</h3>
+        <p>Tabla 2D etiquetada; cada columna es una Serie, tipos heterogéneos, se alinea automáticamente por etiquetas.</p>
+        <div class="tabla-scroll">
+          <table>
+            <thead><tr><th>Selección</th><th>Qué hace</th></tr></thead>
+            <tbody>
+              <tr><td><code>df['col']</code></td><td>Serie (una columna)</td></tr>
+              <tr><td><code>df[['col1','col2']]</code></td><td>DataFrame de varias columnas</td></tr>
+              <tr><td><code>df.iloc[fila, col]</code></td><td>por posición numérica</td></tr>
+              <tr><td><code>df.loc[etiqueta, 'col']</code></td><td>por etiqueta de índice</td></tr>
+              <tr><td><code>df[condición]</code> / <code>df.query('expr')</code></td><td>filtrado booleano</td></tr>
+              <tr><td><code>head/tail/info/describe/shape/dtypes</code></td><td>exploración inicial obligatoria</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <pre><code>mayores_30 = df[df['edad'] &gt; 30]
+jovenes_bien_pagados = df[(df['edad'] &lt; 30) &amp; (df['salario'] &gt; 45000)]
+resultado = df.query('edad &gt; 25 and salario &lt; 50000')   # más legible</code></pre>
+        <ul>
+          <li><strong>Error común:</strong> usar <code>and</code>/<code>or</code> en vez de <code>&amp;</code>/<code>|</code> con Series, o encadenar asignaciones (<code>df[df.x&gt;0]['y']=1</code>) que disparan <code>SettingWithCopyWarning</code>.</li>
+        </ul>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-dataframe-filtrado">
+          <h3>2. Selección y filtrado booleano de un DataFrame</h3>
+          <pre><code>data = {
+    'nombre': ['Ana', 'Bruno', 'Carlos', 'Diana'],
+    'edad': [25, 30, 35, 28],
+    'ciudad': ['Santiago', 'Valparaíso', 'Concepción', 'La Serena'],
+    'salario': [45000, 52000, 48000, 50000]
+}
+df = pd.DataFrame(data)
+
+mayores_30 = df[df['edad'] &gt; 30]
+jovenes_bien_pagados = df[(df['edad'] &lt; 30) &amp; (df['salario'] &gt; 45000)]  # &amp; = AND
+no_de_santiago = df[~(df['ciudad'] == 'Santiago')]                        # ~ = NOT
+resultado = df.query('edad &gt; 25 and salario &lt; 50000')                     # más legible</code></pre>
+          <p>Cada condición booleana entre paréntesis y combinada con <code>&amp;</code>/<code>|</code>/<code>~</code> (nunca <code>and</code>/<code>or</code>/<code>not</code> de Python, que no están vectorizados para Series). <code>df.query()</code> permite escribir la misma condición como texto, más legible cuando se combinan varias.</p>
+          <p class="fuente">Fuente: nota "DataFrames de Pandas" (Clase 05/06, Semana 3).</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-series-filtro">
+          <summary><span class="resumen-ejercicio">2. Crea una <code>Serie</code> con las ventas mensuales <code>{'Ene':15000,'Feb':18000,'Mar':9000,'Abr':22000}</code> y filtra los meses sobre el promedio. </span><span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <pre><code>import pandas as pd
+
+ventas = pd.Series({'Ene': 15000, 'Feb': 18000, 'Mar': 9000, 'Abr': 22000})
+promedio = ventas.mean()                 # 16000.0
+sobre_promedio = ventas[ventas &gt; promedio]
+print(sobre_promedio)
+# Feb    18000
+# Abr    22000</code></pre>
+            <p>El diccionario se convierte directamente en Serie: las llaves (<code>'Ene'</code>, <code>'Feb'</code>...) pasan a ser el índice. <code>ventas &gt; promedio</code> genera una máscara booleana que filtra la Serie, igual que con un DataFrame.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-dataframe-query">
+          <summary><span class="resumen-ejercicio">3. Sobre un DataFrame de empleados, filtra los que tienen entre 25 y 40 años y ganan más de 40000, usando <code>&amp;</code> y con <code>query()</code>. </span><span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <pre><code>filtro_1 = df[(df['edad'] &gt;= 25) &amp; (df['edad'] &lt;= 40) &amp; (df['salario'] &gt; 40000)]
+
+filtro_2 = df.query('edad &gt;= 25 and edad &lt;= 40 and salario &gt; 40000')
+
+print(filtro_1.equals(filtro_2))   # True</code></pre>
+            <p>Ambas expresiones son equivalentes: la primera usa el operador <code>&amp;</code> (AND vectorizado) con cada condición entre paréntesis por precedencia de operadores; <code>query()</code> permite escribir la misma lógica como texto con <code>and</code>, más cómodo de leer cuando hay varias condiciones.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 3 · VALORES NULOS: MECANISMOS E IMPUTACIÓN -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u3">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">03</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Valores nulos: mecanismos e imputación</h2>
+          <p class="unidad-sub">Por qué falta un dato importa tanto como el dato mismo: diagnosticar MCAR/MAR/MNAR antes de elegir cómo imputar o eliminar.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-nulos-mecanismos">
+        <h3>Nulos: mecanismos MCAR / MAR / MNAR</h3>
+        <p>Diagnosticar <strong>por qué</strong> falta un dato antes de tratarlo:</p>
+        <div class="tabla-scroll">
+          <table>
+            <thead><tr><th>Mecanismo</th><th>Depende de</th><th>Riesgo</th></tr></thead>
+            <tbody>
+              <tr><td><strong>MCAR</strong></td><td>nada (azar puro)</td><td>reduce muestra, sin sesgo</td></tr>
+              <tr><td><strong>MAR</strong></td><td>otra variable <em>observada</em></td><td>sesgo si se ignora</td></tr>
+              <tr><td><strong>MNAR</strong></td><td>el propio valor no observado</td><td>sesgo sistemático, difícil de corregir</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <pre><code>df.isnull().sum()                       # nulos por columna
+(df.isnull().sum() / len(df)) * 100      # % por columna
+sns.heatmap(df.isnull(), cbar=True, cmap='viridis')  # patrón visual</code></pre>
+        <p>Flujo del curso: (1) detección inicial, (2) análisis de patrones (¿varía el % de nulos según categorías de otra variable?), (3) medir el impacto de cada estrategia antes de aplicarla.</p>
+      </div>
+
+      <div class="materia" id="tema-nulos-imputacion">
+        <h3>Imputación y eliminación</h3>
+        <div class="tabla-scroll">
+          <table>
+            <thead><tr><th>Tipo de variable</th><th>Estrategia recomendada</th></tr></thead>
+            <tbody>
+              <tr><td>Continua</td><td>media (~normal) o mediana (sesgada/outliers)</td></tr>
+              <tr><td>Discreta (conteo)</td><td>moda o distribución empírica</td></tr>
+              <tr><td>Nominal</td><td>moda, "Desconocido", o moda por grupo</td></tr>
+              <tr><td>Ordinal</td><td>mapear a nº, imputar, volver a mapear</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <pre><code>df['salario'].fillna(df['salario'].mean(), inplace=True)    # ~simétrica
+df['salario'].fillna(df['salario'].median(), inplace=True)  # sesgada</code></pre>
+        <p><strong>Reglas de oro:</strong> del 5% (si &lt;5% falta y es MCAR → eliminar), del 50% (si &gt;50% falta en una columna → eliminarla), del contexto (nulo con significado propio → no imputar), de validación (comparar histogramas antes/después).</p>
+      </div>
+
+      <div class="animacion" id="anim-imputacion">
+        <div class="anim-cabecera">
+          <h3>🩹 Imputación de nulos: media vs. mediana vs. ffill</h3>
+          <p class="anim-desc">Una columna <code>salario</code> con 3 valores faltantes (incluido uno junto a un outlier de 300.000) — mirá cómo cambia cada celda según la estrategia.</p>
+        </div>
+        <canvas data-alto="280"></canvas>
+        <div class="controles">
+          <button type="button" data-accion="media">media</button>
+          <button type="button" data-accion="mediana">mediana</button>
+          <button type="button" data-accion="ffill">ffill</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <div class="leyenda">
+          <span><i style="background:var(--acento-tenue); border:1px dashed var(--acento)"></i> valor imputado (era NaN)</span>
+        </div>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> el outlier de 300.000 arrastra la <strong>media</strong> muy por encima del resto de los valores; la <strong>mediana</strong> no se mueve tanto; <strong>ffill</strong> simplemente copia la fila anterior — tres resultados distintos para el mismo dato faltante.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-mar-crosstab">
+          <h3>3. Detectar el mecanismo MAR con <code>crosstab</code></h3>
+          <pre><code>for columna in vars_con_nulos:
+    mask_faltante = corporativo[columna].isnull()
+    for col in corporativo.select_dtypes(include=['object']).columns:
+        porcentajes = pd.crosstab(corporativo[col], mask_faltante, normalize='index') * 100
+        print(porcentajes[True])   # % de faltantes por categoría de 'col'</code></pre>
+          <p>Para cada columna con nulos, se cruza la máscara booleana de "falta/no falta" contra cada variable categórica del DataFrame. Si el porcentaje de faltantes en <code>salario</code> varía mucho según <code>estado_civil</code> (ej. 5% en casados vs. 40% en solteros), es indicio de <strong>MAR</strong>: la ausencia depende de una variable observada, no del propio valor.</p>
+          <p class="fuente">Fuente: nota "Valores faltantes - detección y mecanismos" (Clase 08, dataset <code>corporativo_con_nulos.csv</code>).</p>
+        </div>
+
+        <div class="ejemplo" id="ej-imputacion-grupo">
+          <h3>4. Imputación nominal por moda de grupo</h3>
+          <pre><code>def imputar_por_grupo(df, var_impute, var_grupo):
+    df_result = df.copy()
+    for grupo in df[var_grupo].unique():
+        mask_grupo = df[var_grupo] == grupo
+        moda_grupo = df.loc[mask_grupo, var_impute].dropna().mode()
+        if len(moda_grupo) &gt; 0:
+            mask_faltante = mask_grupo &amp; df[var_impute].isnull()
+            df_result.loc[mask_faltante, var_impute] = moda_grupo.iloc[0]
+    return df_result[var_impute]</code></pre>
+          <p>En vez de imputar con la moda <strong>global</strong> (que puede no tener sentido para un subgrupo), se calcula la moda <strong>dentro de cada grupo</strong> (ej. moda de <code>sistema_salud</code> por <code>región</code>) y solo se rellenan los nulos de ese grupo con su propia moda — más preciso que una imputación única para todo el DataFrame.</p>
+          <p class="fuente">Fuente: nota "Imputación y eliminación de valores faltantes" (Clase 07, Semana 4).</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-porcentaje-nulos">
+          <summary><span class="resumen-ejercicio">4. Calcula el porcentaje de nulos por columna de un DataFrame y lista las columnas con más de 30% de nulos. </span><span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <pre><code>porcentaje_nulos = (df.isnull().sum() / len(df)) * 100
+print(porcentaje_nulos.sort_values(ascending=False))
+
+columnas_criticas = porcentaje_nulos[porcentaje_nulos &gt; 30].index.tolist()
+print("Columnas con más de 30% de nulos:", columnas_criticas)</code></pre>
+            <p><code>df.isnull().sum()</code> cuenta nulos por columna; dividir por <code>len(df)</code> y multiplicar por 100 da el porcentaje. Filtrar la Serie resultante con <code>&gt; 30</code> y tomar <code>.index</code> entrega directamente los nombres de columna candidatas a eliminar (regla del 50%) o a investigar antes de imputar.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-media-vs-mediana">
+          <summary><span class="resumen-ejercicio">5. Sobre <code>salario = [45000, 48000, 50000, 47000, 300000, 46000]</code>, imputa un valor faltante con media y con mediana, y explica cuál distorsiona menos. </span><span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <pre><code>import pandas as pd
+import numpy as np
+
+s = pd.Series([45000, 48000, 50000, 47000, 300000, 46000, np.nan])
+
+media = s.mean()      # ~89333.3 (arrastrado por el outlier 300000)
+mediana = s.median()  # 47500.0 (no se mueve por el outlier)
+
+s_media = s.fillna(media)
+s_mediana = s.fillna(mediana)
+print("Con media:", s_media.iloc[-1])
+print("Con mediana:", s_mediana.iloc[-1])</code></pre>
+            <p>El outlier <code>300000</code> "arrastra" la media muy por encima del resto de los salarios (~89.333 vs. valores cercanos a 45-50 mil), mientras que la mediana (47.500) refleja mejor el "salario típico". Por eso, ante distribuciones sesgadas o con outliers, se prefiere imputar con la mediana.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 4 · DETECCIÓN DE OUTLIERS -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u4">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">04</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Detección de outliers</h2>
+          <p class="unidad-sub">Cuatro maneras de encontrar valores atípicos, y por qué la decisión de qué hacer con ellos es de negocio, no solo estadística.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-outliers">
+        <h3>Detección de outliers</h3>
+        <div class="tabla-scroll">
+          <table>
+            <thead><tr><th>Método</th><th>Regla</th><th>Cuándo usarlo</th></tr></thead>
+            <tbody>
+              <tr><td>IQR</td><td>fuera de <code>[Q1-1.5·IQR, Q3+1.5·IQR]</code></td><td>robusto, no asume normalidad</td></tr>
+              <tr><td>Z-score</td><td><code>&#124;Z&#124; &gt; 3</code></td><td>simple, pero sensible a los propios outliers</td></tr>
+              <tr><td>MAD</td><td><code>&#124;Modified Z&#124; &gt; 3.5</code></td><td>distribuciones sesgadas</td></tr>
+              <tr><td>Isolation Forest</td><td>ML, aísla anomalías</td><td>datos multidimensionales</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Un outlier puede ser un <strong>error</strong> (corregir) o un <strong>evento real</strong> (marcar, no eliminar) — la decisión depende del contexto de negocio, no solo del método.</p>
+      </div>
+
+      <div class="animacion" id="anim-outliers">
+        <div class="anim-cabecera">
+          <h3>📦 Detección de outliers: IQR + boxplot</h3>
+          <p class="anim-desc">20 salarios de ejemplo; mové el slider del factor IQR y mirá qué puntos quedan fuera del rango <code>[Q1 − f·IQR, Q3 + f·IQR]</code>.</p>
+        </div>
+        <canvas data-alto="300"></canvas>
+        <div class="controles">
+          <div class="control"><label>factor IQR</label><input type="range" id="sl-iqr" min="0.5" max="3" value="1.5" step="0.1"><span class="valor"></span></div>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> arriba, los puntos en una recta numérica (dorado = outlier con el factor actual); abajo, el boxplot con Q1/mediana/Q3 y los bigotes en el límite vigente. El valor estándar es <code>1.5</code>; subir el factor "perdona" más puntos extremos.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-outliers-metodos">
+          <h3>5. IQR vs. Z-score vs. MAD sobre la misma columna</h3>
+          <pre><code>from scipy import stats
+
+def detectar_outliers_iqr(data):
+    Q1, Q3 = data.quantile(0.25), data.quantile(0.75)
+    IQR = Q3 - Q1
+    return data[(data &lt; Q1 - 1.5*IQR) | (data &gt; Q3 + 1.5*IQR)]
+
+df['z_score'] = np.abs(stats.zscore(df['valores']))
+outliers_z = df[df['z_score'] &gt; 3]
+
+def mad_outliers(data):
+    median = np.median(data)
+    mad = np.median(np.abs(data - median))
+    modified_z = 0.6745 * (data - median) / mad
+    return np.abs(modified_z) &gt; 3.5</code></pre>
+          <p>Los tres métodos pueden marcar conjuntos distintos de outliers sobre la misma columna: IQR es robusto y no asume normalidad; Z-score usa media y desviación estándar, que ya están distorsionadas por los propios outliers (más aún en distribuciones sesgadas como salarios); MAD usa la mediana, más resistente. El curso recomienda compararlos antes de decidir.</p>
+          <p class="fuente">Fuente: nota "Detección de outliers" (Clase 12, Semana 8).</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-outliers-marca">
+          <summary><span class="resumen-ejercicio">6. Detecta outliers con IQR en una columna de ventas y márcalos en una nueva columna <code>es_outlier</code> sin eliminarlos. </span><span class="dificultad dificil">difícil</span></summary>
+          <div class="solucion">
+            <pre><code>Q1 = df['ventas'].quantile(0.25)
+Q3 = df['ventas'].quantile(0.75)
+IQR = Q3 - Q1
+limite_inf = Q1 - 1.5 * IQR
+limite_sup = Q3 + 1.5 * IQR
+
+df['es_outlier'] = (df['ventas'] &lt; limite_inf) | (df['ventas'] &gt; limite_sup)
+print(df['es_outlier'].sum(), "outliers detectados de", len(df))
+print(df[df['es_outlier']][['ventas']])</code></pre>
+            <p>En vez de <code>drop</code>, se agrega una columna booleana: preserva el dato original para inspección manual y permite decidir después si es un error de captura (corregir) o un evento real como un Black Friday (mantener y analizar aparte).</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 5 · DATA WRANGLING -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u5">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">05</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Data wrangling: muestreo, duplicados y discretización</h2>
+          <p class="unidad-sub">Las operaciones de limpieza y transformación más comunes antes de analizar: tomar muestras, deduplicar, reemplazar códigos y discretizar variables continuas.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-muestreo-orden">
+        <h3>Muestreo y ordenamiento</h3>
+        <pre><code>df.sample(n=10)                 # cantidad fija
+df.sample(frac=0.2)              # fracción
+df.sample(n=100, replace=True)   # con reemplazo (bootstrap)
+df.sample(frac=1.0)              # permutar ("barajar")
+
+df.sort_values(by='col', ascending=False)
+df.sort_index()                  # volver al orden original</code></pre>
+        <p>Muestreo <strong>estratificado</strong> (preserva proporciones): <code>groupby('col').apply(lambda x: x.sample(frac=0.1))</code>. Top-N por grupo: <code>sort_values(...).groupby('col').head(3)</code>.</p>
+      </div>
+
+      <div class="materia" id="tema-duplicados-reemplazo">
+        <h3>Duplicados y reemplazo</h3>
+        <pre><code>df.duplicated(subset=['id_vivienda','id_persona'], keep=False).sum()
+df.drop_duplicates(subset=['id_vivienda','id_persona'], keep='first')
+
+df['educ'] = df['educ'].replace(-88, np.nan)
+mapeo = {1:'FONASA', 2:'ISAPRE', -88:'No sabe'}
+df['sistema_salud'] = df['s13'].map(mapeo)   # map: NaN si no está en el diccionario</code></pre>
+        <p><strong>Error común:</strong> <code>map()</code> sin cobertura total del diccionario deja <code>NaN</code> silenciosos; <code>replace()</code> conserva el valor original si no matchea.</p>
+      </div>
+
+      <div class="materia" id="tema-discretizacion-apply">
+        <h3>Discretización y <code>apply</code></h3>
+        <pre><code>bins = [0, 18, 30, 45, 60, 100]
+etiquetas = ['0-17','18-29','30-44','45-59','60+']
+df['rango_edad'] = pd.cut(df['edad'], bins=bins, labels=etiquetas, include_lowest=True)
+
+df['quintil'] = pd.qcut(df['y1'], q=5, labels=['Q1','Q2','Q3','Q4','Q5'], duplicates='drop')</code></pre>
+        <p><code>cut</code> = rangos fijos (grupos desbalanceados posibles); <code>qcut</code> = cuantiles (grupos de tamaño similar). <code>df.apply(func, axis=1)</code> aplica lógica fila por fila cuando combina varias columnas; más lento que vectorizar, pero necesario para condicionales complejos.</p>
+      </div>
+
+      <div class="materia" id="tema-string-metodos">
+        <h3>Manipulación de cadenas de caracteres (<code>.str</code>) y regex</h3>
+        <p>Los métodos de <code>str</code> de Python (<code>.upper()</code>, <code>.strip()</code>...) no aplican directo sobre una columna: hay que pasar por el accesor <strong><code>.str</code></strong>, que los vectoriza sobre toda la Serie y maneja <code>NaN</code> automáticamente (devuelve <code>NaN</code> en vez de reventar).</p>
+        <pre><code>df['comuna'] = df['comuna'].str.strip().str.title()             # limpia espacios y capitaliza
+df['tiene_email'] = df['contacto'].str.contains('@', na=False)  # na=False evita NaN en la máscara
+df[['nombre', 'apellido']] = df['nombre_completo'].str.split(' ', n=1, expand=True)
+df['codigo_area'] = df['telefono'].str.extract(r'\((\d+)\)')      # regex con grupo de captura
+df['nombre_normalizado'] = df['nombre'].str.replace(r'\s+', ' ', regex=True).str.strip()</code></pre>
+        <ul>
+          <li><code>str.contains</code>/<code>str.match</code> aceptan expresiones regulares; <code>str.replace(..., regex=True)</code> es necesario para que el patrón se trate como regex y no como texto literal.</li>
+          <li><strong>Error común:</strong> aplicar <code>df['col'].upper()</code> directo sin <code>.str</code> — <code>AttributeError</code>, porque <code>upper()</code> es un método de <code>str</code> de Python, no de la Serie; y olvidar <code>na=False</code> en <code>str.contains</code> cuando hay nulos, lo que deja <code>NaN</code> en la máscara booleana en vez de <code>True</code>/<code>False</code> y rompe el filtrado <code>df[máscara]</code>.</li>
+        </ul>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-muestreo-estratificado">
+          <summary><span class="resumen-ejercicio">7. Toma una muestra estratificada del 15% por región, preservando las proporciones originales. </span><span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <pre><code>muestra = df.groupby('region', group_keys=False).apply(
+    lambda x: x.sample(frac=0.15, random_state=42)
+)
+
+original = df['region'].value_counts(normalize=True)
+muestreada = muestra['region'].value_counts(normalize=True)
+print(pd.DataFrame({'original': original, 'muestra': muestreada}))</code></pre>
+            <p><code>groupby('region').apply(lambda x: x.sample(frac=0.15))</code> toma el 15% <strong>dentro de cada región</strong> por separado, en vez de un 15% global que podría sobrerrepresentar regiones grandes. Comparar <code>value_counts(normalize=True)</code> antes/después verifica que las proporciones se mantuvieron.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-duplicados-codigos">
+          <summary><span class="resumen-ejercicio">8. Elimina duplicados por <code>id_persona</code> y reemplaza el código <code>-88</code> ("no sabe") por <code>NaN</code> en la columna <code>educ</code>. </span><span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <pre><code>print("Duplicados por id_persona:", df.duplicated(subset=['id_persona'], keep=False).sum())
+df_limpio = df.drop_duplicates(subset=['id_persona'], keep='first')
+
+df_limpio['educ'] = df_limpio['educ'].replace(-88, np.nan)
+print("Nulos en educ tras el reemplazo:", df_limpio['educ'].isnull().sum())</code></pre>
+            <p><code>duplicated(subset=['id_persona'])</code> detecta filas repetidas por esa clave (no por todas las columnas); <code>drop_duplicates(keep='first')</code> conserva solo la primera ocurrencia. <code>replace(-88, np.nan)</code> convierte el código de "no responde" en un nulo real, para que no se cuele como un valor numérico válido en promedios posteriores.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-indice-vulnerabilidad">
+          <summary><span class="resumen-ejercicio">9. Discretiza <code>edad</code> en 5 tramos con <code>cut</code> y calcula un índice de vulnerabilidad combinando <code>área</code>, <code>edad</code> e <code>ingreso</code> con <code>apply</code>. </span><span class="dificultad dificil">difícil</span></summary>
+          <div class="solucion">
+            <pre><code>bins = [0, 18, 30, 45, 60, 100]
+etiquetas = ['0-17', '18-29', '30-44', '45-59', '60+']
+df['rango_edad'] = pd.cut(df['edad'], bins=bins, labels=etiquetas, include_lowest=True)
+
+def calcular_vulnerabilidad(row):
+    puntos = 0
+    if row['area'] == 2: puntos += 1                          # rural
+    if row['edad'] &lt; 18 or row['edad'] &gt;= 65: puntos += 1
+    if pd.notna(row['ingreso']) and row['ingreso'] &lt; 500000: puntos += 2
+    return puntos
+
+df['indice_vulnerabilidad'] = df.apply(calcular_vulnerabilidad, axis=1)
+print(df.groupby('rango_edad')['indice_vulnerabilidad'].mean())</code></pre>
+            <p><code>pd.cut</code> con <code>include_lowest=True</code> evita que el valor mínimo (edad 0) quede fuera del primer bin. La función de <code>apply(axis=1)</code> recibe cada fila completa como Serie y puede combinar varias columnas con lógica condicional — algo que una operación vectorizada simple no permite tan directamente.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-string-limpieza">
+          <summary><span class="resumen-ejercicio">10. Limpia una columna de correos con mayúsculas y espacios inconsistentes, valida el formato con una regex simple y extrae el dominio con <code>.str.extract()</code>. </span><span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <pre><code>emails = pd.Series([' Ana.Perez@Mail.com ', 'bruno@empresa.cl', 'CARLOS@MAIL.COM  ', 'no tiene', None])
+
+limpios = emails.str.strip().str.lower()
+valido = limpios.str.contains(r'^[^@\s]+@[^@\s]+\.[^@\s]+$', regex=True, na=False)
+dominio = limpios.str.extract(r'@([\w.]+)$')
+
+resultado = pd.DataFrame({'original': emails, 'limpio': limpios, 'valido': valido, 'dominio': dominio[0]})
+print(resultado)</code></pre>
+            <p><code>.str.strip().str.lower()</code> normaliza espacios y capitalización antes de comparar nada. La regex de <code>valido</code> exige un único <code>@</code> sin espacios a cada lado y al menos un punto después (formato mínimo de correo); <code>na=False</code> hace que los valores <code>None</code>/<code>NaN</code> queden como <code>False</code> en la máscara en vez de <code>NaN</code>. <code>str.extract()</code> con un grupo de captura <code>(...)</code> devuelve solo el dominio (después del <code>@</code>); las filas sin <code>@</code> o nulas quedan como <code>NaN</code> en la columna extraída.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 6 · GROUPBY, UNIONES Y AGREGACIÓN -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u6">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">06</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Groupby, uniones y agregación</h2>
+          <p class="unidad-sub">Split-apply-combine y las cuatro formas de unir tablas: la base de cualquier pipeline de preparación de datos con más de una fuente.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-groupby">
+        <h3>Groupby y agregación</h3>
+        <pre><code>df.groupby('region')['y1'].agg(['count','mean','median','std'])
+tabla = df.groupby(['region','sexo'])['y1'].mean().unstack()
+
+df['y1_norm'] = df.groupby('region')['y1'].transform(
+    lambda x: (x - x.mean()) / x.std()
+)</code></pre>
+        <p><em>Split–apply–combine</em>: separa en grupos, aplica una función, combina resultados. <code>agg</code> colapsa (una fila por grupo); <code>transform</code> mantiene el tamaño original — ideal para volver a pegar la estadística del grupo sin un merge posterior.</p>
+      </div>
+
+      <div class="animacion" id="anim-groupby">
+        <div class="anim-cabecera">
+          <h3>🧺 Groupby animado: split → apply → combine</h3>
+          <p class="anim-desc">Ventas por categoría se van asignando a su "balde" una por una; al final se calcula la agregación elegida sobre cada grupo.</p>
+        </div>
+        <canvas data-alto="320"></canvas>
+        <div class="controles">
+          <button type="button" data-accion="paso">Paso</button>
+          <button type="button" class="secundario" data-accion="auto">▶ Auto</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+          <button type="button" class="secundario" data-accion="usar-suma">Σ suma</button>
+          <button type="button" class="secundario" data-accion="usar-promedio">x̄ promedio</button>
+        </div>
+        <p id="groupby-info" class="mini-nota">Presioná Paso para asignar la primera fila a su grupo.</p>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> izquierda = filas crudas de <code>ventas</code> sin agrupar; derecha = tres "baldes" (Electro/Ropa/Hogar). Cada Paso mueve una fila a su balde; al terminar, se muestra <code>df.groupby('categoria')['monto'].agg(...)</code> — cambiá suma/promedio y volvé a recorrer para comparar.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="materia" id="tema-reshape-pivot">
+        <h3>Reshape: <code>pivot_table</code>, <code>melt</code>, <code>stack</code>/<code>unstack</code></h3>
+        <div class="tabla-scroll">
+          <table>
+            <thead><tr><th>Método</th><th>Qué hace</th><th>Cuándo usarlo</th></tr></thead>
+            <tbody>
+              <tr><td><code>pivot_table</code></td><td>agrupa + agrega + pivotea en un solo paso (equivalente a <code>groupby().agg().unstack()</code>)</td><td>tabla resumen ancha, con <code>margins=True</code> para totales</td></tr>
+              <tr><td><code>melt</code></td><td>de formato ancho (una columna por categoría) a largo (una fila por observación)</td><td>preparar datos para <code>seaborn</code>/modelos, que casi siempre esperan formato largo</td></tr>
+              <tr><td><code>stack</code>/<code>unstack</code></td><td>mueve un nivel entre columnas e índice (genera/consume <code>MultiIndex</code>)</td><td>pivotes más finos dentro de un <code>groupby</code> jerárquico</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <pre><code>tabla_pivot = datos_casen.pivot_table(
+    index='region', columns='sexo', values='y1',
+    aggfunc='mean', margins=True, margins_name='Total'
+)   # equivalente a groupby(['region','sexo'])['y1'].mean().unstack(), pero con fila/columna de totales
+
+ventas_anchas = pd.DataFrame({
+    'producto': ['A', 'B'],
+    'Q1': [120, 80], 'Q2': [150, 95], 'Q3': [130, 100], 'Q4': [170, 110]
+})
+ventas_largas = ventas_anchas.melt(id_vars='producto', var_name='trimestre', value_name='monto')
+# 8 filas: (producto, trimestre, monto) en vez de 2 filas x 4 columnas de trimestre</code></pre>
+        <p>Con un <code>groupby(['region','sexo'])</code> el resultado queda con índice jerárquico (<strong><code>MultiIndex</code></strong>): <code>tabla.loc['Metropolitana', 'Mujer']</code> accede por tupla de niveles; <code>unstack()</code> "levanta" el último nivel del índice y lo convierte en columnas — lo mismo que hace <code>pivot_table</code>, pero en un paso separado del agrupamiento.</p>
+        <p><strong>Error común:</strong> usar <code>pivot_table</code> cuando en realidad se necesita <code>pivot</code> (sin agregación; falla si hay combinaciones duplicadas de índice/columna); y olvidar que <code>pivot_table</code> ordena las columnas alfabéticamente por defecto, lo que puede desordenar meses o trimestres si no se reindexan después.</p>
+      </div>
+
+      <div class="materia" id="tema-joins">
+        <h3>concat, merge y join</h3>
+        <div class="tabla-scroll">
+          <table>
+            <thead><tr><th><code>how=</code></th><th>Resultado</th></tr></thead>
+            <tbody>
+              <tr><td><code>inner</code></td><td>solo filas que coinciden en ambos</td></tr>
+              <tr><td><code>left</code></td><td>todas las de la izquierda, <code>NaN</code> sin match a la derecha</td></tr>
+              <tr><td><code>right</code></td><td>todas las de la derecha, <code>NaN</code> sin match a la izquierda</td></tr>
+              <tr><td><code>outer</code></td><td>todas las filas de ambos, <code>NaN</code> donde falte</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <pre><code>pd.concat([df1, df2], ignore_index=True)                 # apilar filas
+pd.merge(empleados, departamentos, on='departamento_id', how='left')
+pd.merge(ventas, productos, left_on='producto_id', right_on='id')
+df_a.join(df_b)   # atajo de merge por ÍNDICE</code></pre>
+        <p><strong>Error común:</strong> usar <code>how='inner'</code> por defecto puede hacer "desaparecer" registros válidos sin match (ej. clientes sin ventas) sin que se note.</p>
+      </div>
+
+      <div class="animacion" id="anim-merge">
+        <div class="anim-cabecera">
+          <h3>🔗 Merge / join visual: inner, left, right, outer</h3>
+          <p class="anim-desc"><code>empleados</code> (Elena, depto 40, no existe) y <code>departamentos</code> (Finanzas, depto 50, no existe) — el mismo par de tablas del ejemplo de la nota, con un <code>how</code> distinto por botón.</p>
+        </div>
+        <canvas data-alto="360"></canvas>
+        <div class="controles">
+          <button type="button" data-accion="inner">inner</button>
+          <button type="button" data-accion="left">left</button>
+          <button type="button" data-accion="right">right</button>
+          <button type="button" data-accion="outer">outer</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <div class="leyenda">
+          <span><i style="background:var(--s1)"></i> fila con match</span>
+          <span><i style="background:var(--futuro); border:1px dashed var(--tinta-3)"></i> fila con NaN (sin match)</span>
+        </div>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> arriba, las dos tablas fuente; abajo, el resultado de <code>pd.merge(empleados, departamentos, on='departamento_id', how=...)</code>. Con <code>inner</code>, Elena y Finanzas desaparecen sin aviso — la trampa más común de usar el <code>how</code> por defecto.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-groupby-transform">
+          <h3>6. <code>agg</code> múltiple + <code>transform</code> para normalizar por grupo</h3>
+          <pre><code>stats_ingreso = datos_casen.groupby('region')['y1'].agg(['count', 'mean', 'median', 'std'])
+
+def coef_variacion(x):
+    return (x.std() / x.mean()) * 100
+
+stats_custom = datos_casen.groupby('region')['y1'].agg([
+    ('promedio', 'mean'),
+    ('coef_var', coef_variacion),
+])
+
+datos_casen['y1_normalizado'] = datos_casen.groupby('region')['y1'].transform(
+    lambda x: (x - x.mean()) / x.std()
+)</code></pre>
+          <p><code>agg</code> con una lista de funciones (incluso propias, como <code>coef_variacion</code>) devuelve <strong>una fila por grupo</strong>. <code>transform</code>, en cambio, aplica la función por grupo pero devuelve un resultado del <strong>mismo tamaño</strong> que el DataFrame original: cada persona queda con su ingreso normalizado respecto al promedio y desviación de <em>su propia región</em>, sin necesitar un merge posterior.</p>
+          <p class="fuente">Fuente: nota "Agrupamiento y agregación con groupby" (Clase 17, Semana 11, dataset CASEN).</p>
+        </div>
+
+        <div class="ejemplo" id="ej-pivot-melt">
+          <h3>7. <code>pivot_table</code> con totales y <code>melt</code> para volver a formato largo</h3>
+          <pre><code>ventas = pd.DataFrame({
+    'tienda': ['Centro', 'Norte', 'Sur'],
+    'Ene': [1200, 900, 1100],
+    'Feb': [1300, 950, 1050],
+    'Mar': [1250, 1000, 1150]
+})
+
+largas = ventas.melt(id_vars='tienda', var_name='mes', value_name='monto')
+#      tienda   mes  monto
+# 0    Centro   Ene   1200
+# 1     Norte   Ene    900
+# ...           (9 filas: 3 tiendas x 3 meses)
+
+resumen = largas.pivot_table(index='tienda', values='monto', aggfunc=['sum', 'mean'])
+
+por_comuna_y_mes = datos_casen.pivot_table(
+    index='comuna', columns='mes', values='ingreso',
+    aggfunc='mean', margins=True, margins_name='Promedio general'
+)</code></pre>
+          <p><code>melt</code> convierte las tres columnas de mes en dos columnas (<code>mes</code>, <code>monto</code>) y una fila por combinación tienda-mes — el formato "largo" que <code>seaborn</code> espera para graficar por <code>hue=</code>. <code>pivot_table</code> hace el camino inverso agregando: agrupa por <code>tienda</code> (o por <code>comuna</code>/<code>mes</code>) y resume con la función elegida, con <code>margins=True</code> agregando una fila/columna de totales sin tener que calcularlos aparte.</p>
+          <p class="fuente">Fuente: Calendarización oficial TOPD 2025-2 (Clase 17-18, Semana 11 — pivoteo y despivoteo de dataframes) · <em>Python for Data Analysis</em> (McKinney), pp. 287-316.</p>
+        </div>
+
+        <div class="ejemplo" id="ej-merge-joins">
+          <h3>8. Los cuatro tipos de <code>merge</code> sobre el mismo par de tablas</h3>
+          <pre><code>empleados = pd.DataFrame({'empleado_id':[1,2,3,4,5], 'nombre':['Ana','Bruno','Carla','Diego','Elena'],
+                           'departamento_id':[10,20,10,30,40]})   # depto 40 no existe
+departamentos = pd.DataFrame({'departamento_id':[10,20,30,50], 'nombre_depto':['Ventas','Marketing','IT','Finanzas']})
+
+pd.merge(empleados, departamentos, on='departamento_id', how='inner')  # Elena y Finanzas desaparecen
+pd.merge(empleados, departamentos, on='departamento_id', how='left')   # Elena queda, NaN en nombre_depto
+pd.merge(empleados, departamentos, on='departamento_id', how='right')  # Finanzas queda, NaN en los demás campos
+pd.merge(empleados, departamentos, on='departamento_id', how='outer')  # todos, NaN donde falte</code></pre>
+          <p>Mismo par de tablas, cuatro resultados distintos según <code>how</code>. <code>inner</code> es el más "silencioso": Elena (departamento inexistente) y Finanzas (sin empleados) simplemente desaparecen sin ningún aviso — por eso conviene revisar siempre el número de filas resultante contra lo esperado.</p>
+          <p class="fuente">Fuente: nota "Unión de DataFrames - concat, merge y join" (Clase 18, Semana 12).</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-groupby-agg-transform">
+          <summary><span class="resumen-ejercicio">11. Calcula el ingreso promedio por región con <code>agg</code> y agrega una columna con el ingreso normalizado (z-score) dentro de cada región con <code>transform</code>. </span><span class="dificultad dificil">difícil</span></summary>
+          <div class="solucion">
+            <pre><code>resumen_regional = df.groupby('region')['ingreso'].agg(['count', 'mean', 'std'])
+print(resumen_regional)
+
+df['ingreso_z_region'] = df.groupby('region')['ingreso'].transform(
+    lambda x: (x - x.mean()) / x.std()
+)
+print(df[['region', 'ingreso', 'ingreso_z_region']].head())</code></pre>
+            <p><code>agg(['count','mean','std'])</code> produce una tabla resumen de una fila por región. <code>transform</code> hace el cálculo equivalente pero devuelve un valor <strong>por cada fila original</strong> del DataFrame: cada persona queda con su ingreso normalizado respecto al promedio y desviación de su propia región, listo para comparar personas de regiones distintas en la misma escala.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-pivot-melt">
+          <summary><span class="resumen-ejercicio">12. Convierte una tabla ancha de ventas mensuales (columnas <code>Ene</code>, <code>Feb</code>, <code>Mar</code>) por tienda a formato largo con <code>melt</code>, y reconstrúyela con <code>pivot_table</code> comparando que los valores coincidan. </span><span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <pre><code>ventas = pd.DataFrame({
+    'tienda': ['Centro', 'Norte', 'Sur'],
+    'Ene': [1200, 900, 1100],
+    'Feb': [1300, 950, 1050],
+    'Mar': [1250, 1000, 1150]
+})
+
+largas = ventas.melt(id_vars='tienda', var_name='mes', value_name='monto')
+
+anchas_de_vuelta = largas.pivot_table(index='tienda', columns='mes', values='monto')
+anchas_de_vuelta = anchas_de_vuelta[['Ene', 'Feb', 'Mar']]   # pivot_table ordena columnas alfabéticamente
+
+import numpy as np
+originales = ventas.set_index('tienda').values
+reconstruidos = anchas_de_vuelta.values
+print(np.allclose(originales, reconstruidos))   # True: mismos valores</code></pre>
+            <p><code>melt</code> "aplana" la tabla a formato largo; <code>pivot_table</code> vuelve a agruparla, pero por defecto aplica <code>aggfunc='mean'</code> incluso cuando cada combinación tienda-mes es única — el resultado queda en <code>float64</code> aunque el original sea <code>int64</code>, por eso se compara con <code>np.allclose()</code> en vez de <code>.equals()</code> (que exige el mismo dtype). <code>pivot_table</code> también ordena las columnas alfabéticamente por defecto (acá <code>Ene, Feb, Mar</code> coincide por casualidad con el orden cronológico), así que conviene reindexar explícitamente cuando el orden importa.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 7 · OBTENCIÓN DE DATOS: LECTURA Y FORMATOS -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u7">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">07</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Obtención de datos: lectura y formatos</h2>
+          <p class="unidad-sub">De dónde vienen los datos y en qué formato conviene guardarlos: CSV, Excel, JSON y los formatos binarios (Pickle, HDF5, Parquet) según velocidad y caso de uso.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-lectura-archivos">
+        <h3>Lectura: CSV, Excel, JSON</h3>
+        <pre><code>df = pd.read_csv('datos.csv', sep=';', decimal=',', thousands='.',
+                  na_values=['NA','N/A','null','','-'])
+
+dfs = pd.read_excel('datos.xlsx', sheet_name=None)   # dict {hoja: DataFrame}
+
+df = pd.json_normalize(data)   # aplana JSON anidado a columnas</code></pre>
+        <p><strong>Encoding:</strong> <code>utf-8</code> universal vs. <code>latin-1</code>/<code>cp1252</code> (comunes en datos chilenos, pueden fallar con tildes/ñ). Datos latinoamericanos suelen usar <code>;</code> como separador y coma como decimal — no asumir siempre <code>sep=','</code>.</p>
+      </div>
+
+      <div class="materia" id="tema-formatos-binarios">
+        <h3>Formatos binarios — Pickle, HDF5, Parquet</h3>
+        <div class="tabla-scroll">
+          <table>
+            <thead><tr><th>Formato</th><th>Velocidad (50 col × 100k filas)</th><th>Cuándo usarlo</th></tr></thead>
+            <tbody>
+              <tr><td>CSV</td><td>~5.1 s (el más lento)</td><td>legibilidad humana, interoperabilidad universal</td></tr>
+              <tr><td>Pickle</td><td>~0.01 s (el más rápido)</td><td>velocidad pura, solo Python — <strong>no abrir de fuente no confiable</strong> (riesgo de seguridad)</td></tr>
+              <tr><td>HDF5</td><td>~0.7 s</td><td>estructura jerárquica, varios DataFrames en un archivo (<code>key=</code>), lectura parcial</td></tr>
+              <tr><td>Parquet</td><td>~1.5 s</td><td>columnar, Big Data, lee solo las columnas necesarias, interoperable entre lenguajes</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <pre><code>df.to_pickle('datos.pkl');           pd.read_pickle('datos.pkl')
+df.to_hdf('datos.h5', key='ds', mode='w');  pd.read_hdf('datos.h5', key='ds')
+df.to_parquet('datos.parquet');      pd.read_parquet('datos.parquet', columns=['nombre','edad'])</code></pre>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-lectura-encoding">
+          <h3>9. Lectura robusta de CSV: encoding y parámetros reales</h3>
+          <pre><code>encodings = ['utf-8', 'latin-1', 'iso-8859-1', 'cp1252']
+for enc in encodings:
+    try:
+        df = pd.read_csv('datos.csv', encoding=enc)
+        print(f"Éxito con encoding: {enc}")
+        break
+    except UnicodeDecodeError:
+        continue
+
+df = pd.read_csv('datos.csv', sep=';', decimal=',', thousands='.',
+                  na_values=['NA', 'N/A', 'null', '', '-'])</code></pre>
+          <p>El primer bloque prueba encodings en orden hasta que uno no lance <code>UnicodeDecodeError</code> — típico con archivos de fuentes chilenas que no vienen en UTF-8. El segundo cubre tres trampas frecuentes en datos en español: separador <code>;</code> en vez de <code>,</code>, decimales con coma, y valores "nulos" que llegan como texto (<code>"NA"</code>, <code>"-"</code>) y deben declararse explícitamente en <code>na_values</code> o quedan como strings.</p>
+          <p class="fuente">Fuente: nota "Lectura de datos - CSV, Excel y JSON" (Semana 15, Control 5).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 8 · VISUALIZACIÓN Y ÉTICA -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u8">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">08</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Visualización y ética de datos</h2>
+          <p class="unidad-sub">Cerrando el pipeline: comunicar los resultados con el gráfico correcto, y hacerlo con conciencia de que ningún dato es neutral.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-visualizacion">
+        <h3>Matplotlib y Seaborn</h3>
+        <div class="tabla-scroll">
+          <table>
+            <thead><tr><th>Gráfico</th><th>Uso principal</th></tr></thead>
+            <tbody>
+              <tr><td>Línea (<code>lineplot</code>)</td><td>tendencias temporales</td></tr>
+              <tr><td>Dispersión (<code>scatterplot</code>)</td><td>relación entre 2 variables continuas; <code>hue=</code> = 3ª variable</td></tr>
+              <tr><td>Barras (<code>barplot</code>)</td><td>comparar cantidades entre categorías</td></tr>
+              <tr><td>Histograma (<code>histplot</code>)</td><td>distribución de una variable continua</td></tr>
+              <tr><td>Boxplot/violinplot</td><td>mediana, cuartiles y outliers por grupo</td></tr>
+              <tr><td>Heatmap</td><td>matrices de correlación</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>Error común:</strong> gráficos de torta con muchas categorías (el ojo compara mal ángulos); omitir <code>hue=</code> cuando el patrón real depende de una tercera variable (efecto Simpson visual).</p>
+      </div>
+
+      <div class="materia" id="tema-etica">
+        <h3>Ética y comunicación de datos</h3>
+        <p>Cinco ejes (Clase 01, basado en Kate Crawford): los datos <strong>no son neutrales</strong> · pueden reflejar <strong>sesgos</strong> sociales existentes · el <strong>contexto</strong> de recolección importa para interpretarlos · el análisis tiene <strong>impacto social</strong> real · hay que resguardar <strong>privacidad y consentimiento</strong> incluso en datos agregados.</p>
+        <p>Un mismo dataset de ventas de librería, según el método de cálculo de "crecimiento", da <strong>-7.95%</strong> (primer vs. último día) o <strong>+76.66%</strong> (promedio primeros 3 vs. últimos 3 días) — ambos matemáticamente correctos; la elección metodológica debe declararse al comunicar.</p>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ============================================================ */
+  /* 1. MERGE / JOIN VISUAL                                        */
+  /* ============================================================ */
+  Anim.registrar("anim-merge", function (sim) {
+    var empleados = [
+      { id: 1, nombre: 'Ana', dept: 10 },
+      { id: 2, nombre: 'Bruno', dept: 20 },
+      { id: 3, nombre: 'Carla', dept: 10 },
+      { id: 4, nombre: 'Diego', dept: 30 },
+      { id: 5, nombre: 'Elena', dept: 40 }
+    ];
+    var departamentos = [
+      { dept: 10, nombre_depto: 'Ventas' },
+      { dept: 20, nombre_depto: 'Marketing' },
+      { dept: 30, nombre_depto: 'IT' },
+      { dept: 50, nombre_depto: 'Finanzas' }
+    ];
+    var estado = { how: 'left' };
+
+    function calcularMerge(how) {
+      var filas = [];
+      if (how === 'inner' || how === 'left') {
+        empleados.forEach(function (e) {
+          var d = null;
+          for (var i = 0; i < departamentos.length; i++) if (departamentos[i].dept === e.dept) d = departamentos[i];
+          if (d) filas.push({ id: e.id, nombre: e.nombre, dept: e.dept, nombre_depto: d.nombre_depto, match: true });
+          else if (how === 'left') filas.push({ id: e.id, nombre: e.nombre, dept: e.dept, nombre_depto: null, match: false });
+        });
+      } else if (how === 'right') {
+        departamentos.forEach(function (d) {
+          var es = empleados.filter(function (e) { return e.dept === d.dept; });
+          if (es.length) {
+            es.forEach(function (e) { filas.push({ id: e.id, nombre: e.nombre, dept: d.dept, nombre_depto: d.nombre_depto, match: true }); });
+          } else {
+            filas.push({ id: null, nombre: null, dept: d.dept, nombre_depto: d.nombre_depto, match: false });
+          }
+        });
+      } else if (how === 'outer') {
+        empleados.forEach(function (e) {
+          var d = null;
+          for (var i = 0; i < departamentos.length; i++) if (departamentos[i].dept === e.dept) d = departamentos[i];
+          filas.push({ id: e.id, nombre: e.nombre, dept: e.dept, nombre_depto: d ? d.nombre_depto : null, match: !!d });
+        });
+        departamentos.forEach(function (d) {
+          var matched = empleados.some(function (e) { return e.dept === d.dept; });
+          if (!matched) filas.push({ id: null, nombre: null, dept: d.dept, nombre_depto: d.nombre_depto, match: false });
+        });
+      }
+      return filas;
+    }
+
+    function celda(v) { return (v === null || v === undefined) ? 'NaN' : String(v); }
+
+    function dibujarTabla(ctx, x, y, w, cols, filas, resaltar) {
+      var filaAlto = 24, headAlto = 26;
+      var colW = w / cols.length;
+      var borde = colorVar("--borde");
+      var panel = colorVar("--panel-2");
+      var tinta = colorVar("--tinta");
+      var tinta2 = colorVar("--tinta-2");
+      var s1 = colorVar("--s1");
+      var futuro = colorVar("--futuro");
+
+      ctx.font = "11px Consolas, monospace";
+      ctx.textAlign = "left";
+      ctx.fillStyle = panel;
+      ctx.fillRect(x, y, w, headAlto);
+      ctx.strokeStyle = borde;
+      ctx.strokeRect(x, y, w, headAlto);
+      cols.forEach(function (c, i) {
+        ctx.fillStyle = tinta2;
+        ctx.fillText(c, x + i * colW + 8, y + headAlto / 2 + 4);
+      });
+
+      filas.forEach(function (fila, r) {
+        var fy = y + headAlto + r * filaAlto;
+        var esMatch = resaltar ? fila.match : true;
+        ctx.fillStyle = resaltar ? (esMatch ? colorVar("--acento-tenue") : "color-mix(in srgb, " + futuro + " 18%, transparent)") : "transparent";
+        if (resaltar) { ctx.fillStyle = esMatch ? colorVar("--acento-tenue") : colorVar("--panel-2"); ctx.fillRect(x, fy, w, filaAlto); }
+        ctx.strokeStyle = (resaltar && !esMatch) ? futuro : borde;
+        if (resaltar && !esMatch) ctx.setLineDash([3, 3]);
+        ctx.strokeRect(x, fy, w, filaAlto);
+        ctx.setLineDash([]);
+        cols.forEach(function (c, i) {
+          var val = celda(fila[c]);
+          ctx.fillStyle = (resaltar && val === 'NaN') ? futuro : tinta;
+          ctx.fillText(val, x + i * colW + 8, fy + filaAlto / 2 + 4);
+        });
+      });
+      return y + headAlto + filas.length * filaAlto;
+    }
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var margen = 20;
+      var mitad = (w - margen * 3) / 2;
+
+      ctx.font = "12px Consolas, monospace";
+      ctx.fillStyle = colorVar("--tinta-2");
+      ctx.textAlign = "left";
+      ctx.fillText("empleados", margen, 14);
+      ctx.fillText("departamentos", margen * 2 + mitad, 14);
+
+      dibujarTabla(ctx, margen, 20, mitad, ['id', 'nombre', 'dept'], empleados, false);
+      dibujarTabla(ctx, margen * 2 + mitad, 20, mitad, ['dept', 'nombre_depto'], departamentos, false);
+
+      var yResultado = 20 + 26 + 5 * 24 + 22;
+      ctx.fillStyle = colorVar("--tinta-2");
+      ctx.fillText("resultado: how='" + estado.how + "'", margen, yResultado - 6);
+
+      var filas = calcularMerge(estado.how);
+      dibujarTabla(ctx, margen, yResultado, w - margen * 2, ['id', 'nombre', 'dept', 'nombre_depto'], filas, true);
+    });
+
+    function elegir(how) {
+      estado.how = how;
+      sim.redibujar();
+    }
+
+    sim.botones({
+      inner: function () { elegir('inner'); },
+      left: function () { elegir('left'); },
+      right: function () { elegir('right'); },
+      outer: function () { elegir('outer'); },
+      reiniciar: function () { estado.how = 'left'; sim.redibujar(); }
+    });
+  });
+
+  /* ============================================================ */
+  /* 2. GROUPBY ANIMADO                                             */
+  /* ============================================================ */
+  Anim.registrar("anim-groupby", function (sim) {
+    var ventas = [
+      { id: 1, cat: 'Electro', monto: 120 },
+      { id: 2, cat: 'Ropa', monto: 45 },
+      { id: 3, cat: 'Electro', monto: 80 },
+      { id: 4, cat: 'Hogar', monto: 60 },
+      { id: 5, cat: 'Ropa', monto: 30 },
+      { id: 6, cat: 'Electro', monto: 200 },
+      { id: 7, cat: 'Hogar', monto: 90 }
+    ];
+    var categorias = ['Electro', 'Ropa', 'Hogar'];
+    var estado = { gen: null, asignadas: [], terminado: false, temporizador: null, agg: 'suma' };
+
+    function* traceGen() {
+      for (var i = 0; i < ventas.length; i++) {
+        yield { tipo: 'asignar', idx: i };
+      }
+      yield { tipo: 'agregar' };
+    }
+
+    function calcularAgg() {
+      var res = {};
+      categorias.forEach(function (c) {
+        var montos = ventas.filter(function (v) { return v.cat === c; }).map(function (v) { return v.monto; });
+        if (estado.agg === 'suma') res[c] = montos.reduce(function (a, b) { return a + b; }, 0);
+        else res[c] = montos.reduce(function (a, b) { return a + b; }, 0) / montos.length;
+      });
+      return res;
+    }
+
+    function actualizarInfo() {
+      var info = document.getElementById("groupby-info");
+      if (!info) return;
+      if (!estado.asignadas.length && !estado.terminado) { info.textContent = "Presioná Paso para asignar la primera fila a su grupo."; return; }
+      if (estado.terminado) {
+        info.textContent = "Agregación (" + estado.agg + ") por categoría — fin de la traza.";
+      } else {
+        var ultimo = ventas[estado.asignadas[estado.asignadas.length - 1]];
+        info.textContent = "Fila " + ultimo.id + " (" + ultimo.cat + ", " + ultimo.monto + ") asignada a su grupo.";
+      }
+    }
+
+    function paso() {
+      if (estado.terminado) return;
+      if (!estado.gen) estado.gen = traceGen();
+      var r = estado.gen.next();
+      if (r.done) { estado.terminado = true; detenerAuto(); }
+      else if (r.value.tipo === 'asignar') { estado.asignadas.push(r.value.idx); }
+      else if (r.value.tipo === 'agregar') { estado.terminado = true; detenerAuto(); }
+      actualizarInfo();
+      sim.redibujar();
+    }
+
+    function detenerAuto() {
+      if (estado.temporizador) { clearInterval(estado.temporizador); estado.temporizador = null; }
+      var btn = sim.cont.querySelector('[data-accion="auto"]');
+      if (btn) btn.textContent = "▶ Auto";
+    }
+
+    function auto() {
+      if (estado.temporizador) { detenerAuto(); return; }
+      var btn = sim.cont.querySelector('[data-accion="auto"]');
+      if (btn) btn.textContent = "⏸ Pausa";
+      estado.temporizador = setInterval(function () {
+        if (estado.terminado) { detenerAuto(); return; }
+        paso();
+      }, 550);
+    }
+
+    function reiniciar() {
+      detenerAuto();
+      estado.gen = null; estado.asignadas = []; estado.terminado = false;
+      actualizarInfo();
+      sim.redibujar();
+    }
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var margenIzq = 20, colIzqW = Math.min(220, w * 0.38);
+      var filaAlto = 26;
+      var borde = colorVar("--borde");
+      var panel = colorVar("--panel-2");
+      var tinta = colorVar("--tinta");
+      var tinta2 = colorVar("--tinta-2");
+      var s1 = colorVar("--s1");
+      var acento = colorVar("--acento");
+      var acentoTenue = colorVar("--acento-tenue");
+
+      ctx.font = "11px Consolas, monospace";
+      ctx.textAlign = "left";
+      ctx.fillStyle = tinta2;
+      ctx.fillText("ventas (crudo)", margenIzq, 14);
+
+      ventas.forEach(function (v, i) {
+        var y = 22 + i * filaAlto;
+        var asignada = estado.asignadas.indexOf(i) !== -1;
+        ctx.fillStyle = asignada ? colorVar("--fondo-2") : panel;
+        ctx.globalAlpha = asignada ? 0.4 : 1;
+        ctx.fillRect(margenIzq, y, colIzqW, filaAlto - 4);
+        ctx.strokeStyle = borde;
+        ctx.strokeRect(margenIzq, y, colIzqW, filaAlto - 4);
+        ctx.fillStyle = tinta;
+        ctx.fillText(v.id + " · " + v.cat + " · $" + v.monto, margenIzq + 8, y + filaAlto / 2);
+        ctx.globalAlpha = 1;
+      });
+
+      var colDerX = margenIzq + colIzqW + 26;
+      var colDerW = Math.max(140, w - colDerX - margenIzq);
+      var bucketAlto = (h - 40) / categorias.length;
+
+      categorias.forEach(function (cat, ci) {
+        var by = 20 + ci * bucketAlto;
+        ctx.fillStyle = panel;
+        ctx.fillRect(colDerX, by, colDerW, bucketAlto - 10);
+        ctx.strokeStyle = borde;
+        ctx.strokeRect(colDerX, by, colDerW, bucketAlto - 10);
+        ctx.fillStyle = tinta2;
+        ctx.font = "12px Consolas, monospace";
+        ctx.fillText(cat, colDerX + 8, by + 16);
+
+        var asignadosCat = estado.asignadas.filter(function (idx) { return ventas[idx].cat === cat; });
+        ctx.font = "11px Consolas, monospace";
+        asignadosCat.forEach(function (idx, k) {
+          var chipX = colDerX + 8 + k * 46;
+          if (chipX < colDerX + colDerW - 40) {
+            ctx.fillStyle = acentoTenue;
+            ctx.fillRect(chipX, by + 22, 40, 18);
+            ctx.strokeStyle = acento;
+            ctx.strokeRect(chipX, by + 22, 40, 18);
+            ctx.fillStyle = tinta;
+            ctx.fillText(String(ventas[idx].monto), chipX + 5, by + 34);
+          }
+        });
+
+        if (estado.terminado) {
+          var agg = calcularAgg();
+          var etiqueta = (estado.agg === 'suma' ? "suma = " : "promedio = ") + agg[cat].toFixed(1);
+          ctx.fillStyle = s1;
+          ctx.font = "bold 12px Consolas, monospace";
+          ctx.fillText(etiqueta, colDerX + 8, by + bucketAlto - 18);
+          ctx.font = "11px Consolas, monospace";
+        }
+      });
+    });
+
+    sim.botones({
+      paso: paso,
+      auto: auto,
+      reiniciar: reiniciar,
+      "usar-suma": function () { estado.agg = 'suma'; actualizarInfo(); sim.redibujar(); },
+      "usar-promedio": function () { estado.agg = 'promedio'; actualizarInfo(); sim.redibujar(); }
+    });
+  });
+
+  /* ============================================================ */
+  /* 3. OUTLIERS + IQR                                              */
+  /* ============================================================ */
+  Anim.registrar("anim-outliers", function (sim) {
+    var salarios = [42, 45, 47, 44, 46, 48, 43, 49, 45, 44, 120, 46, 47, 43, 45, 44, 46, 15, 48, 45];
+    var factor = 1.5;
+
+    function cuantil(arr, q) {
+      var s = arr.slice().sort(function (a, b) { return a - b; });
+      var pos = (s.length - 1) * q;
+      var base = Math.floor(pos), rest = pos - base;
+      if (s[base + 1] !== undefined) return s[base] + rest * (s[base + 1] - s[base]);
+      return s[base];
+    }
+
+    sim.slider("sl-iqr", function (v) { factor = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var Q1 = cuantil(salarios, 0.25), Q3 = cuantil(salarios, 0.75), med = cuantil(salarios, 0.5);
+      var IQR = Q3 - Q1;
+      var lo = Q1 - factor * IQR, hi = Q3 + factor * IQR;
+      var min = Math.min.apply(null, salarios), max = Math.max.apply(null, salarios);
+      var m = Anim.mapa(w, h, { xMin: min - 10, xMax: max + 10, yMin: 0, yMax: 1 });
+
+      var borde = colorVar("--borde");
+      var tinta = colorVar("--tinta");
+      var tinta2 = colorVar("--tinta-2");
+      var s1 = colorVar("--s1");
+      var futuro = colorVar("--futuro");
+
+      var yScatter = 70;
+      ctx.strokeStyle = borde; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(0, yScatter + 40); ctx.lineTo(w, yScatter + 40); ctx.stroke();
+
+      ctx.font = "10px Consolas, monospace";
+      ctx.textAlign = "center";
+      salarios.forEach(function (v, i) {
+        var esOutlier = v < lo || v > hi;
+        var px = m.x(v);
+        var py = yScatter + 40 - ((i % 5) * 7);
+        ctx.beginPath();
+        ctx.fillStyle = esOutlier ? futuro : s1;
+        ctx.arc(px, py, 5, 0, Math.PI * 2);
+        ctx.fill();
+        if (esOutlier) { ctx.strokeStyle = futuro; ctx.lineWidth = 1.4; ctx.stroke(); }
+      });
+
+      // límites
+      ctx.strokeStyle = futuro; ctx.setLineDash([4, 3]); ctx.lineWidth = 1.3;
+      [lo, hi].forEach(function (lim) {
+        var px = m.x(lim);
+        ctx.beginPath(); ctx.moveTo(px, 15); ctx.lineTo(px, yScatter + 50); ctx.stroke();
+      });
+      ctx.setLineDash([]);
+
+      // boxplot
+      var yBox = h - 110, boxH = 34;
+      var xQ1 = m.x(Q1), xQ3 = m.x(Q3), xMed = m.x(med);
+      ctx.strokeStyle = tinta; ctx.lineWidth = 1.4;
+      ctx.beginPath(); ctx.moveTo(m.x(Math.max(lo, min)), yBox + boxH / 2); ctx.lineTo(xQ1, yBox + boxH / 2); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(xQ3, yBox + boxH / 2); ctx.lineTo(m.x(Math.min(hi, max)), yBox + boxH / 2); ctx.stroke();
+      ctx.strokeStyle = colorVar("--acento");
+      ctx.strokeRect(xQ1, yBox, xQ3 - xQ1, boxH);
+      ctx.beginPath(); ctx.moveTo(xMed, yBox); ctx.lineTo(xMed, yBox + boxH); ctx.stroke();
+
+      ctx.fillStyle = tinta2;
+      ctx.font = "11px Consolas, monospace";
+      ctx.textAlign = "left";
+      ctx.fillText("Q1=" + Q1.toFixed(1) + "  mediana=" + med.toFixed(1) + "  Q3=" + Q3.toFixed(1) + "  IQR=" + IQR.toFixed(1), 12, yBox + boxH + 22);
+      ctx.fillText("límites: [" + lo.toFixed(1) + ", " + hi.toFixed(1) + "]  ·  factor=" + factor.toFixed(1), 12, yBox + boxH + 38);
+    });
+
+    sim.botones({ reiniciar: function () { factor = 1.5; var inp = document.getElementById("sl-iqr"); if (inp) { inp.value = 1.5; inp.dispatchEvent(new Event("input")); } sim.redibujar(); } });
+  });
+
+  /* ============================================================ */
+  /* 4. IMPUTACIÓN DE NULOS                                         */
+  /* ============================================================ */
+  Anim.registrar("anim-imputacion", function (sim) {
+    var raw = [45000, null, 48000, 50000, null, 47000, 300000, null];
+    var estado = { estrategia: null };
+
+    function noNulos() { return raw.filter(function (v) { return v !== null; }); }
+    function media() { var v = noNulos(); return v.reduce(function (a, b) { return a + b; }, 0) / v.length; }
+    function mediana() {
+      var v = noNulos().slice().sort(function (a, b) { return a - b; });
+      var mid = Math.floor(v.length / 2);
+      return v.length % 2 ? v[mid] : (v[mid - 1] + v[mid]) / 2;
+    }
+    function valoresFfill() {
+      var out = raw.slice(), ultimo = null;
+      for (var i = 0; i < out.length; i++) {
+        if (out[i] === null) out[i] = ultimo; else ultimo = out[i];
+      }
+      return out;
+    }
+    function valoresImputados() {
+      if (estado.estrategia === 'media') { var m = media(); return raw.map(function (v) { return v === null ? m : v; }); }
+      if (estado.estrategia === 'mediana') { var med = mediana(); return raw.map(function (v) { return v === null ? med : v; }); }
+      if (estado.estrategia === 'ffill') return valoresFfill();
+      return raw.slice();
+    }
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var valores = valoresImputados();
+      var filaAlto = 30, x0 = 20, colW = Math.min(150, (w - 40));
+      var borde = colorVar("--borde");
+      var panel = colorVar("--panel-2");
+      var tinta = colorVar("--tinta");
+      var tinta2 = colorVar("--tinta-2");
+      var acento = colorVar("--acento");
+      var acentoTenue = colorVar("--acento-tenue");
+
+      ctx.font = "12px Consolas, monospace";
+      ctx.textAlign = "left";
+      ctx.fillStyle = tinta2;
+      ctx.fillText("índice", x0, 14);
+      ctx.fillText("salario", x0 + 90, 14);
+      ctx.fillText(estado.estrategia ? ("estrategia: " + estado.estrategia) : "elegí una estrategia", x0 + 220, 14);
+
+      raw.forEach(function (orig, i) {
+        var y = 22 + i * filaAlto;
+        var eraNulo = orig === null;
+        var val = valores[i];
+        var relleno = (eraNulo && estado.estrategia) ? acentoTenue : panel;
+        ctx.fillStyle = relleno;
+        ctx.fillRect(x0 + 90, y, colW, filaAlto - 6);
+        ctx.strokeStyle = (eraNulo && estado.estrategia) ? acento : borde;
+        if (eraNulo && estado.estrategia) ctx.setLineDash([3, 3]);
+        ctx.strokeRect(x0 + 90, y, colW, filaAlto - 6);
+        ctx.setLineDash([]);
+
+        ctx.fillStyle = tinta2;
+        ctx.fillText(String(i), x0, y + (filaAlto - 6) / 2 + 4);
+
+        ctx.fillStyle = eraNulo && !estado.estrategia ? colorVar("--futuro") : tinta;
+        var texto = (eraNulo && !estado.estrategia) ? "NaN" : Math.round(val).toString();
+        ctx.fillText(texto, x0 + 98, y + (filaAlto - 6) / 2 + 4);
+      });
+    });
+
+    sim.botones({
+      media: function () { estado.estrategia = 'media'; sim.redibujar(); },
+      mediana: function () { estado.estrategia = 'mediana'; sim.redibujar(); },
+      ffill: function () { estado.estrategia = 'ffill'; sim.redibujar(); },
+      reiniciar: function () { estado.estrategia = null; sim.redibujar(); }
+    });
+  });
+
+})();
+</script>
+
+<script>
+  // entradas escalonadas (GSAP + ScrollTrigger vía Anim.revelar) — no rompe nada si GSAP no cargó
+  Anim.revelar(".curso-hero-v3 > *", { scroll: false, stagger: .08, distancia: 14, duracion: .8 });
+  document.querySelectorAll(".unidad").forEach(function (u) {
+    Anim.revelar(u.querySelectorAll(":scope > .unidad-cabecera, :scope > .materia, :scope > .animacion, :scope > .ejemplos-unidad, :scope > .ejercicios-unidad"), { disparador: u, stagger: .08, distancia: 16 });
+  });
+</script>
+</body>
+</html>

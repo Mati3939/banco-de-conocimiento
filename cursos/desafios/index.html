@@ -1,0 +1,1502 @@
+<!DOCTYPE html>
+<html lang="es" data-tema="oscuro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🤖 Desafíos de la Ingeniería Informática — Biblioteca</title>
+<link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../../assets/vendor/fuentes/fuentes.css">
+<link rel="stylesheet" href="../../assets/css/observatorio.css">
+<script>window.RUTA_BASE = "../../";</script>
+<script src="../../assets/vendor/katex/katex.min.js"></script>
+<script src="../../assets/vendor/katex/auto-render.min.js"></script>
+<script src="../../assets/vendor/gsap/gsap.min.js"></script>
+<script src="../../assets/vendor/gsap/ScrollTrigger.min.js"></script>
+<script src="../../assets/js/observatorio.js"></script>
+<script src="indice-curso.js"></script>
+</head>
+<body>
+<div class="progreso-lectura"></div>
+<div class="pagina-curso">
+
+  <aside class="lateral">
+    <a class="volver" href="../../index.html">← Constelación</a>
+    <div class="curso-cabecera"><span class="emoji">🤖</span><h1>Desafíos de la Ingeniería Informática</h1></div>
+    <span class="semestre-tag" style="color:var(--s1)">Semestre 1 · Curso introductorio</span>
+    <nav>
+      <div class="grupo">Unidades</div>
+      <a href="#u1">01 · Pseudocódigo (PSeInt)</a>
+      <a class="sub" href="#anim-pseint-traza">🖥️ Trazador PSeInt</a>
+      <a class="sub" href="#anim-diagrama-flujo">📊 Diagrama de flujo</a>
+      <a href="#u2">02 · Bloques y robótica</a>
+      <a href="#u3">03 · Inteligencia artificial</a>
+      <a class="sub" href="#anim-perceptron">🧠 Perceptrón</a>
+      <a href="#u4">04 · Redes y protocolos</a>
+      <a class="sub" href="#anim-paquete-red">🌐 Viaje de un paquete</a>
+      <a href="#u5">05 · Desarrollo web</a>
+      <a href="#u6">06 · Proyecto de innovación</a>
+    </nav>
+    <div class="atajos"><kbd>Ctrl K</kbd> buscar en toda la biblioteca</div>
+  </aside>
+
+  <main class="principal">
+    <div class="principal-cabecera">
+      <span class="relleno"></span>
+      <button class="btn-buscar" type="button">🔍 Buscar <kbd>Ctrl K</kbd></button>
+      <button class="btn-tema" type="button">☀️</button>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CABECERA DEL CURSO -->
+    <!-- ============================================================ -->
+    <header class="curso-hero-v3" id="cheat" style="--ac: var(--s1)">
+      <span class="emoji-grande">🤖</span>
+      <h1>Desafíos de la Ingeniería Informática — Resumen del curso</h1>
+      <span class="semestre-tag" style="color:var(--s1)">Semestre 1 · Curso introductorio</span>
+      <p class="curso-intro">
+        Ramo introductorio de primer semestre (UDD, sede Concepción), organizado en torno a
+        certámenes prácticos: pseudocódigo con PSeInt, programación por bloques y robótica con
+        Mind+/Petoi, una introducción a la inteligencia artificial, redes y protocolos de internet,
+        desarrollo web básico con HTML/Bootstrap, y el proyecto de cierre de una empresa
+        tecnológica ficticia presentado en la Feria de Ciencias y Tecnología.
+      </p>
+      <ul class="mini-indice">
+        <li><a href="#u1">01 · PSeInt</a></li>
+        <li><a href="#u2">02 · Bloques y robótica</a></li>
+        <li><a href="#u3">03 · Inteligencia artificial</a></li>
+        <li><a href="#u4">04 · Redes</a></li>
+        <li><a href="#u5">05 · Desarrollo web</a></li>
+        <li><a href="#u6">06 · Proyecto</a></li>
+      </ul>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 1 · PSEUDOCÓDIGO Y ALGORITMOS (PSEINT) -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u1">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">01</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Pseudocódigo y algoritmos (PSeInt)</h2>
+          <p class="unidad-sub">El lenguaje de la lógica antes del código: variables, condicionales, ciclos y subprocesos en PSeInt.</p>
+        </div>
+      </div>
+
+<div class="materia" id="tema-pseint">
+          <h3>Pseudocódigo y algoritmos (PSeInt)</h3>
+          <ul>
+            <li>Todo algoritmo va entre <code>Proceso &lt;nombre&gt;</code> y <code>FinProceso</code> (o <code>Algoritmo</code>/<code>FinAlgoritmo</code>). No hay variables fuera de un <code>Proceso</code>/<code>SubProceso</code>.</li>
+            <li><code>Definir var Como Entero|Real|Caracter|Logico</code> · <code>Escribir "texto"</code> · <code>Leer var</code>.</li>
+            <li><strong>Asignación:</strong> <code>variable &lt;- expresión</code> (nunca con <code>=</code>, y la variable nunca va entre paréntesis).</li>
+            <li><strong>Condicional:</strong> <code>Si cond Entonces ... SiNo ... FinSi</code>; múltiple: <code>Segun var Hacer ... De Otro Modo ... FinSegun</code>.</li>
+            <li><strong>Mientras</strong> evalúa <em>antes</em> (puede no ejecutarse nunca); <strong>Repetir...Hasta Que</strong> evalúa <em>después</em> (al menos una vez).</li>
+            <li><code>Para i &lt;- 1 Hasta N Con Paso 1 Hacer ... FinPara</code>.</li>
+            <li><code>SubProceso nombre(parámetros) ... FinSubProceso</code>, con o sin retorno.</li>
+          </ul>
+          <pre><code>Mientras nota&lt;1 O nota&gt;7 Hacer
+    Escribir "Nota no válida. Debe ingresar nuevamente"
+    Leer nota
+FinMientras</code></pre>
+        </div>
+
+<div class="animacion" id="anim-pseint-traza">
+        <div class="anim-cabecera">
+          <h3>🖥️ Trazador de pseudocódigo PSeInt: validación y promedio ponderado de notas</h3>
+          <p class="anim-desc">Ejecuta línea por línea el algoritmo real de <code>calcula_promedio.psc</code>: lee y valida 4 notas, calcula el promedio ponderado y decide aprobado/reprobado.</p>
+        </div>
+        <canvas data-alto="480"></canvas>
+        <div class="controles">
+          <div class="control">
+            <label for="pseint-c1">C1</label>
+            <input type="number" id="pseint-c1" value="6.5" min="1" max="7" step="0.1">
+          </div>
+          <div class="control">
+            <label for="pseint-c2">C2</label>
+            <input type="number" id="pseint-c2" value="5.0" min="1" max="7" step="0.1">
+          </div>
+          <div class="control">
+            <label for="pseint-c3">C3</label>
+            <input type="number" id="pseint-c3" value="4.0" min="1" max="7" step="0.1">
+          </div>
+          <div class="control">
+            <label for="pseint-control">Control</label>
+            <input type="number" id="pseint-control" value="3.0" min="1" max="7" step="0.1">
+          </div>
+          <button type="button" data-accion="paso">Paso</button>
+          <button type="button" class="secundario" data-accion="auto">▶ Auto</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p id="pseint-info" style="color:var(--tinta-2); font: 13px Consolas, monospace; margin:0 0 10px; padding:0 28px;">Presiona "Reiniciar" y luego "Paso" para ejecutar el algoritmo línea por línea.</p>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> la línea resaltada es la que se está ejecutando ahora; el panel derecho muestra el valor actual de cada variable. Basado en el patrón real de <code>calcula_promedio.psc</code> del curso — cada "Paso" ejecuta una operación (leer, validar, asignar, decidir o escribir), igual que el depurador de PSeInt. Para C1 y C3 el trazador simula a propósito un primer intento inválido, para mostrar cómo <code>Mientras</code> vuelve a pedir el dato.</p>
+        <div class="anim-error"></div>
+      </div>
+
+<div class="animacion" id="anim-diagrama-flujo">
+        <div class="anim-cabecera">
+          <h3>📊 Diagrama de flujo: el mismo algoritmo, como bloques</h3>
+          <p class="anim-desc">El diagrama que PSeInt genera automáticamente a partir del pseudocódigo del trazador de arriba, bloque por bloque.</p>
+        </div>
+        <canvas data-alto="610"></canvas>
+        <div class="controles">
+          <div class="control">
+            <label for="flujo-resultado">Resultado final</label>
+            <select id="flujo-resultado">
+              <option value="aprobado">Aprobado (promedio ≥ 4)</option>
+              <option value="reprobado">Reprobado (promedio &lt; 4)</option>
+            </select>
+          </div>
+          <button type="button" data-accion="paso">Paso</button>
+          <button type="button" class="secundario" data-accion="auto">▶ Auto</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p id="flujo-info" style="color:var(--tinta-2); font: 13px Consolas, monospace; margin:0 0 10px; padding:0 28px;">Presiona "Paso" para avanzar por el diagrama.</p>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> óvalo = inicio/fin · rectángulo = proceso · rombo = decisión · paralelogramo = salida. Verde = pasos ya completados, morado = paso actual. Cada bloque "Leer y validar" resume internamente el ciclo <code>Mientras</code> correspondiente.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+<div class="ejemplo" id="ej-promedio-ponderado">
+        <h3>1. PSeInt — promedio ponderado con validación (Certamen 1)</h3>
+        <p>Patrón real de <code>calcula_promedio.psc</code>: 3 notas de certamen (30% cada una) + 1 de control (10%), cada una validada en el rango [1,7].</p>
+        <pre><code>promedio &lt;- Certamen1*0.3 + Certamen2*0.3 + Certamen3*0.3 + Control*0.1
+Si promedio &gt;= 4 Entonces
+    Escribir "Aprobado"
+SiNo
+    Escribir "Reprobado"
+FinSi</code></pre>
+        <p><strong>Con C1=6.5, C2=5.0, C3=4.0, Control=3.0:</strong></p>
+        <p>$promedio = 6.5\cdot0.3 + 5.0\cdot0.3 + 4.0\cdot0.3 + 3.0\cdot0.1 = 1.95+1.5+1.2+0.3 = 4.95$</p>
+        <p>Como $4.95 \ge 4$ → <strong>Aprobado</strong>. Reproduce esta misma traza en el visualizador de arriba.</p>
+        <p class="fuente">Fuente: nota "Pseudocódigo y algoritmos (PSeInt)" — patrón real de <code>calcula_promedio.psc</code> (Certamen 1).</p>
+      </div>
+
+<div class="ejemplo" id="ej-sueldo-liquido">
+        <h3>2. PSeInt — sueldo líquido y clasificación por edad (Certamen 1)</h3>
+        <p>El Certamen 1 también pide procesar datos de empleados: sueldo bruto, descuento AFP 11%, salud 7%, y clasificar por edad (Joven 18-35, Mayor 36-55, Experimentado 56-65).</p>
+        <pre><code>Definir bruto, afp, salud, liquido Como Real
+Definir edad Como Entero
+Leer bruto
+afp &lt;- bruto * 0.11
+salud &lt;- bruto * 0.07
+liquido &lt;- bruto - afp - salud
+Leer edad
+Si edad &gt;= 18 Y edad &lt;= 35 Entonces
+    Escribir "Joven"
+SiNo
+    Si edad &gt;= 36 Y edad &lt;= 55 Entonces
+        Escribir "Mayor"
+    SiNo
+        Escribir "Experimentado"
+    FinSi
+FinSi</code></pre>
+        <p>Con <code>bruto = 500000</code>: <code>afp = 55000</code>, <code>salud = 35000</code>, <code>liquido = 410000</code>. Con <code>edad = 30</code> → clasifica como <strong>Joven</strong>.</p>
+        <p class="fuente">Fuente: nota "Pseudocódigo y algoritmos (PSeInt)" — Certamen 1.</p>
+      </div>
+
+<div class="ejemplo" id="ej-validacion-rango">
+        <h3>3. El patrón de validación de rango, paso a paso</h3>
+        <p>El patrón más repetido del curso: repreguntar mientras el dato esté fuera de un rango válido.</p>
+        <pre><code>Leer nota
+Mientras nota&lt;1 O nota&gt;7 Hacer
+    Escribir "Nota no válida. Debe ingresar nuevamente"
+    Leer nota
+FinMientras</code></pre>
+        <p>Si el usuario ingresa <code>9</code>: <code>Mientras</code> evalúa <code>9&lt;1 O 9&gt;7</code> → verdadero (por la segunda condición) → entra al cuerpo, pide de nuevo. Si ahora ingresa <code>6.5</code>: evalúa <code>6.5&lt;1 O 6.5&gt;7</code> → falso → sale del ciclo con <code>nota=6.5</code>.</p>
+        <p style="color:var(--tinta-2)">Si el primer valor ingresado ya es válido, el cuerpo del <code>Mientras</code> nunca se ejecuta — a diferencia de <code>Repetir...Hasta Que</code>, que siempre ejecuta el cuerpo al menos una vez.</p>
+        <p class="fuente">Fuente: nota "Pseudocódigo y algoritmos (PSeInt)".</p>
+      </div>
+
+<div class="ejemplo" id="ej-iva-boleta">
+        <h3>4. PSeInt — boleta con varios productos e IVA (Práctica N°2)</h3>
+        <p>La Práctica PSeInt N°2 pide un algoritmo distinto al de validación: acumular en un ciclo <code>Para</code> el total de una boleta con al menos 2 productos, y desglosar el <strong>IVA</strong> (19% en Chile) del total.</p>
+        <pre><code>Definir cantidadProductos, i Como Entero
+Definir nombreProducto Como Caracter
+Definir totalProducto, totalNeto Como Real
+totalNeto &lt;- 0
+Escribir "¿Cuántos productos tiene la boleta?"
+Leer cantidadProductos
+Para i &lt;- 1 Hasta cantidadProductos Con Paso 1 Hacer
+    Escribir "Nombre del producto ", i, ":"
+    Leer nombreProducto
+    Escribir "Valor total del producto (incluye IVA):"
+    Leer totalProducto
+    totalNeto &lt;- totalNeto + totalProducto
+FinPara
+totalIVA &lt;- totalNeto - (totalNeto / 1.19)
+Escribir "Total Neto: ", totalNeto - totalIVA
+Escribir "Total IVA: ", totalIVA
+Escribir "MONTO TOTAL: ", totalNeto</code></pre>
+        <p>Con 2 productos de 680 y 1.000 pesos (montos ya con IVA incluido): <code>totalNeto = 1680</code>. Como el IVA está incluido en el precio, el neto se despeja con <code>totalNeto / 1.19</code>: neto $\approx 1412$, IVA $\approx 268$ pesos — el mismo desglose que exige toda boleta chilena desde la normativa del SII.</p>
+        <p style="color:var(--tinta-2)">Este algoritmo introduce un patrón distinto al de validación de rango: un ciclo <code>Para</code> que <strong>acumula</strong> (<code>totalNeto <- totalNeto + totalProducto</code>) en vez de repreguntar — la base de cualquier sumatoria en PSeInt.</p>
+        <p class="fuente">Fuente: nota "Pseudocódigo y algoritmos (PSeInt)" — Práctica PSeInt N°2 (cálculo de IVA en una boleta).</p>
+      </div>
+      </div>
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+<details class="ejercicio" id="ejer-pseint-validacion">
+        <summary><span class="resumen-ejercicio">1. Escribe en PSeInt la validación de una variable <code>edad</code> que debe estar entre 0 y 120. </span><span class="dificultad facil">fácil</span></summary>
+        <div class="solucion">
+          <pre><code>Leer edad
+Mientras edad&lt;0 O edad&gt;120 Hacer
+    Escribir "Edad no válida. Ingrese nuevamente"
+    Leer edad
+FinMientras</code></pre>
+          <p>Mismo patrón que la validación de notas (rango [1,7]) pero con los límites [0,120].</p>
+        </div>
+      </details>
+
+<details class="ejercicio" id="ejer-pseint-promedio-trazar">
+        <summary><span class="resumen-ejercicio">2. Traza el promedio ponderado del ejemplo 1 con C1=3, C2=7, C3=5, Control=6. ¿Aprobado o reprobado? </span><span class="dificultad media">media</span></summary>
+        <div class="solucion">
+          <p>$promedio = 3\cdot0.3+7\cdot0.3+5\cdot0.3+6\cdot0.1 = 0.9+2.1+1.5+0.6 = 5.1$</p>
+          <p>Como $5.1 \ge 4$ → <strong>Aprobado</strong>. Puedes verificarlo escribiendo estos valores en el trazador PSeInt de arriba.</p>
+        </div>
+      </details>
+
+<details class="ejercicio" id="ejer-pseint-segun-edad">
+        <summary><span class="resumen-ejercicio">3. Reescribe la clasificación por edad del ejemplo 2 usando <code>Segun</code> en vez de <code>Si</code> anidados. Clasifica edad=40. </span><span class="dificultad media">media</span></summary>
+        <div class="solucion">
+          <pre><code>Segun Verdadero Hacer
+    edad&gt;=18 Y edad&lt;=35: Escribir "Joven"
+    edad&gt;=36 Y edad&lt;=55: Escribir "Mayor"
+    De Otro Modo: Escribir "Experimentado"
+FinSegun</code></pre>
+          <p>Con <code>edad=40</code>: no cumple la primera opción (18-35), sí cumple la segunda (36-55) → <strong>"Mayor"</strong>.</p>
+          <p style="color:var(--tinta-2)">PSeInt permite <code>Segun Verdadero Hacer</code> con expresiones lógicas en cada caso, útil cuando las opciones no son un único valor exacto.</p>
+        </div>
+      </details>
+
+<details class="ejercicio" id="ejer-pseint-mientras-repetir">
+        <summary><span class="resumen-ejercicio">4. ¿Qué diferencia de comportamiento hay entre <code>Mientras</code> y <code>Repetir...Hasta Que</code> si el usuario ingresa una nota ya válida (p. ej. 6) la primera vez? </span><span class="dificultad facil">fácil</span></summary>
+        <div class="solucion">
+          <p>Con <code>Mientras nota&lt;1 O nota&gt;7 Hacer</code>: se evalúa la condición <strong>antes</strong> de entrar. Como <code>6&lt;1 O 6&gt;7</code> es falso, el cuerpo del ciclo <strong>nunca se ejecuta</strong> — no vuelve a pedir el dato.</p>
+          <p>Con <code>Repetir ... Hasta Que nota&gt;=1 Y nota&lt;=7</code>: el cuerpo se ejecuta <strong>al menos una vez</strong> antes de evaluar la condición, aunque el primer valor ya sea válido — pediría el dato una vez más de estar mal planteado el ciclo (por eso <code>Repetir</code> no es la elección natural para "validar antes de usar", sino para "hacer algo y comprobar después").</p>
+        </div>
+      </details>
+
+<details class="ejercicio" id="ejer-pseint-evento-comic">
+        <summary><span class="resumen-ejercicio">5. El Certamen 1 real incluye un tercer escenario: un evento de Comic donde cada asistente ingresa su tipo de público (<code>"Normal"</code>/<code>"Vip"</code>), si va de Cosplay (<code>Verdadero</code>/<code>Falso</code>) y su edad. ¿Qué validaciones de rango/dominio necesita este algoritmo, además de las de notas y sueldos ya vistas? </span><span class="dificultad media">media</span></summary>
+        <div class="solucion">
+          <pre><code>Leer publico
+Mientras publico&lt;&gt;"Normal" Y publico&lt;&gt;"Vip" Hacer
+    Escribir "Público inválido. Ingrese Normal o Vip"
+    Leer publico
+FinMientras
+Leer edad
+Mientras edad&lt;=5 Hacer
+    Escribir "Edad no válida. Debe ser mayor a 5 años"
+    Leer edad
+FinMientras</code></pre>
+          <p>Dos validaciones nuevas respecto a los ejemplos 1 y 2: el <strong>público</strong> solo acepta dos valores de texto exactos (no un rango numérico, sino un dominio de dos opciones), y la <strong>edad</strong> aquí solo tiene cota inferior (mayor a 5 años, sin límite superior) — a diferencia del rango cerrado [1,7] de las notas o [18,65] de los empleados.</p>
+          <p style="color:var(--tinta-2)">El enunciado real además pide cruzar variables: cuántos asistentes Vip van de Cosplay, y el promedio de edad de quienes van de Cosplay — lo mismo que "nota que más se repite" del primer escenario, requiere acumular contadores además de sumar y promediar.</p>
+        </div>
+      </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 2 · PROGRAMACIÓN POR BLOQUES Y ROBÓTICA -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u2">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">02</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Programación por bloques y robótica</h2>
+          <p class="unidad-sub">De la lógica de bloques a la robótica física: Mind+ y el ciclo percepción → decisión → acción de Petoi.</p>
+        </div>
+      </div>
+
+<div class="materia" id="tema-bloques">
+          <h3>Programación por bloques y robótica</h3>
+          <ul>
+            <li><strong>Mind+</strong>: entorno de bloques (tipo Scratch) que enseña lógica (secuencia, condicionales, bucles) sin sintaxis de texto; permite exportar a Python/Arduino y trabajar <strong>sin conexión</strong> (modo preparación).</li>
+            <li><strong>Petoi</strong> (Bittle/Nybble): robot cuadrúpedo. Sensores (ultrasónico, luz) + actuadores (servos, LEDs, altavoz). Ciclo <strong>percepción → decisión → acción</strong>.</li>
+            <li>Flujo: instalar Mind+ → modo Arduino → agregar extensión <strong>"Petoi Coding Blocks"</strong> → programar con bloques de skills → conectar (USB/Bluetooth) y ejecutar.</li>
+            <li>Skills reales: <code>ejecutar 'walk'</code>, <code>'sit'</code>, <code>'stand'</code>, <code>'turn'</code>, <code>'sniff'</code>, <code>esperar (n) segundos</code>, control de servos y LEDs.</li>
+            <li>Sin los <code>esperar</code>/<code>wait</code> entre movimientos, las acciones se superponen y la coreografía pierde sincronía.</li>
+          </ul>
+        </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+<div class="ejemplo" id="ej-fibonacci-bloques">
+        <h3>5. Bloques (Mind+) — Fibonacci: los primeros 50 términos</h3>
+        <p>Ejercicio real de la práctica de Mind+ del curso, representado en pseudocódigo equivalente a los bloques:</p>
+        <pre><code>Definir a, b, temp, i Como Entero
+a &lt;- 0
+b &lt;- 1
+Para i &lt;- 1 Hasta 50 Con Paso 1 Hacer
+    Escribir a
+    temp &lt;- a + b
+    a &lt;- b
+    b &lt;- temp
+FinPara</code></pre>
+        <p>Traza de los primeros términos: $0, 1, 1, 2, 3, 5, 8, 13, 21, 34, \dots$ — cada término es la suma de los dos anteriores, igual que los bloques "repetir 50 veces" + "sumar" + "mover a variable" de la práctica real.</p>
+        <p class="fuente">Fuente: nota "Programación por bloques y robótica" — práctica Mind+.</p>
+      </div>
+
+<div class="ejemplo" id="ej-rut-verificador">
+        <h3>6. Bloques — dígito verificador de RUT chileno (módulo 11)</h3>
+        <p>Otro ejercicio real de la práctica Mind+: calcular el dígito verificador (DV) de un RUT con el algoritmo módulo 11.</p>
+        <p><strong>RUT 12.345.678:</strong> se multiplica cada dígito (de derecha a izquierda) por la secuencia de pesos $2,3,4,5,6,7,2,3,\dots$ y se suman los productos:</p>
+        <div class="tabla-scroll">
+          <table>
+            <thead><tr><th>Dígito</th><th>8</th><th>7</th><th>6</th><th>5</th><th>4</th><th>3</th><th>2</th><th>1</th></tr></thead>
+            <tbody><tr><td>Peso</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>2</td><td>3</td></tr>
+            <tr><td>Producto</td><td>16</td><td>21</td><td>24</td><td>25</td><td>24</td><td>21</td><td>4</td><td>3</td></tr></tbody>
+          </table>
+        </div>
+        <p>Suma $=16+21+24+25+24+21+4+3=138$. $138 \bmod 11 = 6$. $DV = 11-6 = 5$.</p>
+        <p><strong>RUT resultante: 12.345.678-5.</strong> (Si el resultado fuera 11, el DV es 0; si fuera 10, el DV es "K".)</p>
+        <p class="fuente">Fuente: nota "Programación por bloques y robótica" — práctica Mind+ (dígito verificador de RUT).</p>
+      </div>
+
+<div class="ejemplo" id="ej-ascii-binario">
+        <h3>7. Bloques — de binario de 8 bits a carácter ASCII</h3>
+        <p>Otro problema real de la práctica Mind+: convertir un byte (8 bits) a su carácter ASCII, combinando la conversión binario→decimal con la tabla ASCII.</p>
+        <pre><code>Definir binario Como Caracter
+Definir decimal, i, bit, potencia Como Entero
+Leer binario  // ej: "01000001"
+decimal &lt;- 0
+potencia &lt;- 7
+Para i &lt;- 1 Hasta 8 Con Paso 1 Hacer
+    bit &lt;- ConvertirAEntero(SubCadena(binario, i, i))
+    decimal &lt;- decimal + bit * (2^potencia)
+    potencia &lt;- potencia - 1
+FinPara
+Escribir "Decimal: ", decimal
+Escribir "Carácter ASCII: ", ConvertirACaracter(decimal)</code></pre>
+        <p><strong>Con <code>binario = "01000001"</code>:</strong> los bits activados son las posiciones 2 y 8 (contando desde 1), con pesos $2^6=64$ y $2^0=1$. $decimal = 64+1=65$. El código ASCII 65 corresponde a la letra <strong>"A"</strong>.</p>
+        <p style="color:var(--tinta-2)">Cada posición del binario pesa una potencia de 2 decreciente (de $2^7=128$ a $2^0=1$, de izquierda a derecha) — el mismo principio de numeración posicional que convierte cualquier base a decimal.</p>
+        <p class="fuente">Fuente: nota "Programación por bloques y robótica" — práctica Mind+ (conversión binario a ASCII).</p>
+      </div>
+
+<div class="ejemplo" id="ej-perro-detector-petoi">
+        <h3>8. Robótica — perro detector de drogas en fila de pasajeros (Certamen 2)</h3>
+        <p>Ejercicio real de la práctica del Certamen 2: Petoi actúa como perro detector de la PDI, revisando uno a uno a los pasajeros de una fila.</p>
+        <pre><code>Leer cantidadPasajeros
+encontrado &lt;- Falso
+Para i &lt;- 1 Hasta cantidadPasajeros Con Paso 1 Hacer
+    ejecutar 'walk' durante 1 seg
+    ejecutar 'sniff' durante 1 seg
+    Leer tieneDroga  // simula el sensor: Verdadero/Falso
+    Si tieneDroga Entonces
+        ejecutar 'sit'
+        reproducir sonido "alerta"
+        encontrado &lt;- Verdadero
+    FinSi
+FinPara
+Si encontrado = Falso Entonces
+    ejecutar 'sit'
+    reproducir sonido "pitido" 3 veces
+FinSi</code></pre>
+        <p>Con 5 pasajeros y ningún <code>tieneDroga</code> en Verdadero, el <code>Para</code> recorre la fila completa sin activar el <code>Si</code> interno, y al salir del ciclo <code>encontrado</code> sigue en <code>Falso</code> → el perro se sienta y emite 3 pitidos. Si algún pasajero sí tiene droga, el ciclo debería terminar de inmediato en ese punto (no seguir revisando), otra decisión de diseño que la pauta deja abierta.</p>
+        <p class="fuente">Fuente: nota "Programación por bloques y robótica" — práctica Certamen 2 (perro detector).</p>
+      </div>
+
+<div class="ejemplo" id="ej-coreografia-petoi">
+        <h3>9. Robótica — coreografía grupal con Petoi (Certamen 3)</h3>
+        <p>La rúbrica del EV03 exige mínimo 15 segundos por integrante, al menos 4 skills distintos, bucles, un condicional según una variable de estado, efectos sonoros y temporizadores. Secuencia real de ejemplo:</p>
+        <pre><code>ejecutar 'walk' durante 3 seg
+ejecutar 'turn' 90°
+esperar 1 seg
+ejecutar 'sit'
+reproducir sonido "woof"
+esperar 2 seg
+ejecutar 'stand'
+Si animo = "feliz" Entonces
+    LED color verde
+SiNo
+    LED color azul
+FinSi
+ejecutar 'hi5'
+esperar 1 seg</code></pre>
+        <p>Usa 5 skills distintos (<code>walk</code>, <code>turn</code>, <code>sit</code>, <code>stand</code>, <code>hi5</code>), un condicional sobre la variable <code>animo</code>, sonido y varios <code>esperar</code> para sincronizar — cumpliendo la pauta del certamen.</p>
+        <p class="fuente">Fuente: nota "Programación por bloques y robótica" — rúbrica EV03 (Certamen 3).</p>
+      </div>
+      </div>
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+<details class="ejercicio" id="ejer-bloques-esperas">
+        <summary><span class="resumen-ejercicio">6. En esta secuencia de bloques Petoi falta algo importante. ¿Qué es y por qué? </span><span class="dificultad facil">fácil</span></summary>
+        <div class="solucion">
+          <pre><code>ejecutar 'walk' durante 3 seg
+ejecutar 'sit'
+ejecutar 'stand'</code></pre>
+          <p>Faltan los bloques <code>esperar</code>/<code>wait</code> entre acciones. Sin ellos, Mind+ puede enviar el siguiente comando antes de que el robot termine el movimiento anterior, y las acciones se <strong>superponen</strong> — la coreografía pierde sincronía (error común mencionado en la nota de robótica).</p>
+          <pre><code>ejecutar 'walk' durante 3 seg
+esperar 3 seg
+ejecutar 'sit'
+esperar 2 seg
+ejecutar 'stand'</code></pre>
+        </div>
+      </details>
+
+<details class="ejercicio" id="ejer-bloques-rut">
+        <summary><span class="resumen-ejercicio">7. Calcula el dígito verificador del RUT 8.765.432 con el algoritmo módulo 11. </span><span class="dificultad dificil">dificil</span></summary>
+        <div class="solucion">
+          <div class="tabla-scroll">
+            <table>
+              <thead><tr><th>Dígito</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th></tr></thead>
+              <tbody><tr><td>Peso</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>2</td></tr>
+              <tr><td>Producto</td><td>4</td><td>9</td><td>16</td><td>25</td><td>36</td><td>49</td><td>16</td></tr></tbody>
+            </table>
+          </div>
+          <p>Suma $=4+9+16+25+36+49+16=155$. $155 \bmod 11 = 1$. $DV = 11-1 = 10 \to$ <strong>K</strong>.</p>
+          <p>RUT resultante: <strong>8.765.432-K</strong>.</p>
+        </div>
+      </details>
+
+<details class="ejercicio" id="ejer-bloques-retos-mind">
+        <summary><span class="resumen-ejercicio">8. La práctica Mind+ real incluye tres retos de bloques más, sin robot: número de Armstrong, ciclo sexagenario chino y decodificación de teclado T9. Resuelve cada uno para el caso indicado. </span><span class="dificultad dificil">dificil</span></summary>
+        <div class="solucion">
+          <p><strong>a) Número de Armstrong — ¿153 lo es?</strong> Un número de 3 cifras es de Armstrong si la suma de cada dígito elevado al número de cifras (3) da el número original: $1^3+5^3+3^3 = 1+125+27 = 153$. Como coincide con el original → <strong>sí es un número de Armstrong</strong>.</p>
+          <p><strong>b) Ciclo sexagenario chino — ¿qué elemento y animal corresponde a 1986?</strong> El ciclo comenzó en 1984 (Madera Rata) y cada elemento se repite 2 años seguidos: 1984-85 Madera, 1986-87 Fuego. Los animales avanzan un lugar por año desde Rata: 1984 Rata, 1985 Buey, 1986 <strong>Tigre</strong>. Resultado: <strong>1986 = Fuego Tigre</strong>.</p>
+          <p><strong>c) Teclado T9 — decodifica <code>7-7777-33-444-66-8</code>.</strong> En T9: tecla 7=PQRS, 3=DEF, 4=GHI, 6=MNO, 8=TUV. Cada bloque cuenta cuántas veces se presionó la misma tecla para elegir la letra: <code>7</code>→1ª letra de PQRS = P, <code>7777</code>→4ª de PQRS = S, <code>33</code>→2ª de DEF = E, <code>444</code>→3ª de GHI = I, <code>66</code>→2ª de MNO = N, <code>8</code>→1ª de TUV = T. Resultado: <strong>"PSEINT"</strong> — el mismo patrón usado en el ejemplo real del curso (<code>222-44-444-555-33 → CHILE</code>).</p>
+          <p style="color:var(--tinta-2)">Los tres comparten la misma lógica de fondo que Fibonacci y el dígito verificador de RUT: descomponer el problema en un ciclo <code>Para</code> que procesa dígito a dígito (o carácter a carácter), acumulando un resultado — el patrón central de "Programación por bloques" más allá de mover un robot.</p>
+        </div>
+      </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 3 · INTRODUCCIÓN A LA INTELIGENCIA ARTIFICIAL -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u3">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">03</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Introducción a la inteligencia artificial</h2>
+          <p class="unidad-sub">Cómo aprende una máquina: el ciclo de la IA, los tipos de machine learning y la relación entre ML y deep learning.</p>
+        </div>
+      </div>
+
+<div class="materia" id="tema-ia">
+          <h3>Introducción a la inteligencia artificial</h3>
+          <ul>
+            <li><strong>Ciclo de la IA:</strong> recopila datos → los analiza → identifica patrones y relaciones → ajusta los parámetros de sus algoritmos → toma decisiones basadas en lo aprendido.</li>
+            <li><strong>Machine Learning:</strong> las máquinas aprenden de forma autónoma a partir de datos. Tipos: <strong>supervisado</strong> (datos etiquetados), <strong>no supervisado</strong> (sin etiquetas), <strong>por refuerzo</strong> (recompensas).</li>
+            <li><strong>Deep Learning:</strong> subconjunto del ML que usa <strong>redes neuronales</strong> inspiradas en el cerebro humano.</li>
+            <li><strong>Datos de entrenamiento</strong>: ejemplos con los que aprende el <strong>modelo</strong> (función ajustada que predice sobre datos nuevos).</li>
+            <li><strong>IA débil</strong> (actual, especializada) vs. <strong>IA fuerte/AGI</strong> (hipotética, igualaría la inteligencia humana en cualquier tarea).</li>
+            <li>Aplicaciones: voz, chatbots, visión artificial, pronóstico meteorológico, detección de anomalías.</li>
+          </ul>
+        </div>
+
+<div class="animacion" id="anim-perceptron">
+        <div class="anim-cabecera">
+          <h3>🧠 Perceptrón: ciclo de la IA (datos → ajuste → decisión)</h3>
+          <p class="anim-desc">Un clasificador lineal muy simple que ajusta sus parámetros iteración a iteración, en miniatura el mismo ciclo de la nota de IA.</p>
+        </div>
+        <canvas data-alto="360"></canvas>
+        <div class="controles">
+          <div class="control">
+            <label for="perceptron-iter">Iteraciones de entrenamiento</label>
+            <input type="range" id="perceptron-iter" min="0" max="40" value="0" step="1"><span class="valor"></span>
+          </div>
+          <button type="button" data-accion="paso">Paso</button>
+          <button type="button" class="secundario" data-accion="auto">▶ Auto</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p id="perceptron-info" style="color:var(--tinta-2); font: 13px Consolas, monospace; margin:0 0 10px; padding:0 28px;">Iteración 0: sin entrenamiento, la recta parte en cualquier posición.</p>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> puntos azules y morados son datos de entrenamiento de 2 clases (aprendizaje <strong>supervisado</strong>: cada punto trae su etiqueta). En cada iteración el perceptrón revisa un punto; si lo clasifica mal, <strong>ajusta sus parámetros</strong> (la recta se mueve) — el punto revisado se resalta en dorado si hubo ajuste, en verde si ya estaba bien clasificado. Con pocas iteraciones la recta separa mal las clases; al converger, las separa por completo.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+<details class="ejercicio" id="ejer-ia-tipos-ml">
+        <summary><span class="resumen-ejercicio">9. Clasifica cada escenario como aprendizaje supervisado, no supervisado o por refuerzo. </span><span class="dificultad facil">fácil</span></summary>
+        <div class="solucion">
+          <p><strong>a) Filtro de spam entrenado con correos ya marcados "spam"/"no spam":</strong> supervisado (datos etiquetados).</p>
+          <p><strong>b) Agrupar clientes de una tienda según su comportamiento de compra, sin categorías previas:</strong> no supervisado (sin etiquetas, busca patrones).</p>
+          <p><strong>c) Un agente que aprende a jugar recibiendo puntos cuando gana y penalizaciones cuando pierde:</strong> por refuerzo (recompensas).</p>
+        </div>
+      </details>
+
+<details class="ejercicio" id="ejer-ia-ml-vs-dl">
+        <summary><span class="resumen-ejercicio">10. "Un sistema reconoce rostros en fotos usando capas de redes neuronales entrenadas con miles de imágenes." ¿Es Machine Learning o Deep Learning? </span><span class="dificultad media">media</span></summary>
+        <div class="solucion">
+          <p>Es <strong>Deep Learning</strong>, porque usa específicamente <strong>redes neuronales</strong> (en capas) para aprender de los datos.</p>
+          <p>Pero también es correcto decir que es <strong>Machine Learning</strong>, ya que el Deep Learning es un <strong>subconjunto</strong> del Machine Learning — todo Deep Learning es ML, pero no todo ML usa redes neuronales (p. ej. un árbol de decisión también es ML sin ser DL).</p>
+        </div>
+      </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 4 · REDES Y PROTOCOLOS DE INTERNET -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u4">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">04</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Redes y protocolos de internet</h2>
+          <p class="unidad-sub">El viaje de un dato por internet: direccionamiento, transporte y los protocolos de cada capa.</p>
+        </div>
+      </div>
+
+<div class="materia" id="tema-redes">
+          <h3>Redes y protocolos de internet</h3>
+          <ul>
+            <li>Temas asignados en la tarea del curso: <strong>IPv4, IPv6, DNS, MAC Address, VPN, FTP, SMTP, DHCP, TCP vs UDP, HTTP vs HTTPS</strong>.</li>
+            <li><strong>DNS</strong> traduce nombres de dominio a direcciones IP. <strong>DHCP</strong> asigna IP automáticamente.</li>
+            <li><strong>TCP</strong> confiable y orientado a conexión; <strong>UDP</strong> más rápido, sin garantía de entrega (video en vivo, videojuegos).</li>
+            <li><strong>HTTPS</strong> = HTTP + cifrado TLS/SSL. Una <strong>VPN</strong> oculta la IP real y cifra la conexión, pero no protege de malware ni phishing.</li>
+            <li>Ver la tabla comparativa completa más abajo.</li>
+          </ul>
+        
+      <div class="bloque" id="tema-tabla-protocolos">
+          <h4>📊 Tabla comparativa de protocolos de internet</h4>
+          <div class="tabla-scroll">
+            <table>
+              <thead>
+                <tr><th>Protocolo / concepto</th><th>Capa</th><th>Función</th><th>Dato clave</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>IPv4</td><td>Red</td><td>Direccionamiento de dispositivos</td><td>32 bits, ~4300 millones de direcciones</td></tr>
+                <tr><td>IPv6</td><td>Red</td><td>Direccionamiento de dispositivos</td><td>128 bits, sucesor de IPv4</td></tr>
+                <tr><td>DNS</td><td>Aplicación</td><td>Traduce nombres de dominio a IP</td><td>ej. <code>google.com</code> → IP</td></tr>
+                <tr><td>MAC Address</td><td>Enlace</td><td>Identificador físico de la interfaz de red</td><td>único por hardware</td></tr>
+                <tr><td>DHCP</td><td>Aplicación</td><td>Asigna IP automáticamente</td><td>evita configurar IP manual</td></tr>
+                <tr><td>TCP</td><td>Transporte</td><td>Transmisión confiable, orientada a conexión</td><td>garantiza entrega y orden</td></tr>
+                <tr><td>UDP</td><td>Transporte</td><td>Transmisión rápida, sin garantías</td><td>usado en video en vivo, juegos</td></tr>
+                <tr><td>HTTP</td><td>Aplicación</td><td>Transferencia de páginas web</td><td>sin cifrado</td></tr>
+                <tr><td>HTTPS</td><td>Aplicación</td><td>HTTP + cifrado TLS/SSL</td><td>candado en el navegador</td></tr>
+                <tr><td>FTP</td><td>Aplicación</td><td>Transferencia de archivos cliente-servidor</td><td>usado para subir/bajar archivos</td></tr>
+                <tr><td>SMTP</td><td>Aplicación</td><td>Envío de correo electrónico</td><td>protocolo de salida de mail</td></tr>
+                <tr><td>VPN</td><td>—(túnel sobre varias capas)</td><td>Oculta la IP real y cifra la conexión</td><td>no protege de phishing/malware</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        </div>
+
+<div class="animacion" id="anim-paquete-red">
+        <div class="anim-cabecera">
+          <h3>🌐 El viaje de una petición web: DNS → TCP → servidor → respuesta</h3>
+          <p class="anim-desc">Sigue el recorrido real de una petición HTTP o HTTPS, salto a salto, desde la consulta DNS hasta la respuesta del servidor.</p>
+        </div>
+        <canvas data-alto="300"></canvas>
+        <div class="controles">
+          <div class="control">
+            <label for="red-protocolo">Protocolo</label>
+            <select id="red-protocolo">
+              <option value="http">HTTP</option>
+              <option value="https">HTTPS</option>
+            </select>
+          </div>
+          <button type="button" data-accion="paso">Paso</button>
+          <button type="button" class="secundario" data-accion="auto">▶ Auto</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p id="red-info" style="color:var(--tinta-2); font: 13px Consolas, monospace; margin:0 0 10px; padding:0 28px;">Selecciona HTTP o HTTPS y presiona "Paso" para seguir el recorrido.</p>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> el punto morado marca el último salto completado; los saltos anteriores quedan en verde con su etiqueta de protocolo. Con HTTPS aparece un salto extra de <strong>TLS Handshake</strong> que cifra la conexión antes de pedir el recurso — por eso el candado del navegador. Con HTTP la petición viaja en texto plano.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+<div class="ejemplo" id="ej-vpn-redes">
+        <h3>10. Redes — tarea real sobre VPN y ciberseguridad</h3>
+        <p>La tarea <code>tarea_web_redes</code> pedía explicar el protocolo/concepto asignado y sus riesgos de ciberseguridad. Para el tema VPN, la entrega real destaca:</p>
+        <ul>
+          <li><strong>Falsa sensación de seguridad:</strong> una VPN no protege contra malware, sitios falsos ni phishing.</li>
+          <li><strong>Reducción de velocidad:</strong> el tráfico cifrado pasa por un servidor intermedio.</li>
+          <li><strong>Servicios gratuitos poco confiables:</strong> algunos venden los datos del usuario.</li>
+          <li><strong>Registro de actividad:</strong> no todas las VPN cumplen la promesa de "no-logs".</li>
+        </ul>
+        <p style="color:var(--tinta-2)">Muestra que entender un protocolo implica también entender sus riesgos — no solo su función técnica.</p>
+        <p class="fuente">Fuente: nota "Redes y protocolos de internet" — tarea <code>tarea_web_redes</code> (tema VPN).</p>
+      </div>
+      </div>
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+<details class="ejercicio" id="ejer-redes-tabla-capas">
+        <summary><span class="resumen-ejercicio">11. Ordena estos protocolos de la capa más baja a la más alta: HTTP, MAC Address, TCP, IP. </span><span class="dificultad media">media</span></summary>
+        <div class="solucion">
+          <p>1) <strong>MAC Address</strong> — capa de enlace (hardware).</p>
+          <p>2) <strong>IP</strong> — capa de red (direccionamiento entre redes).</p>
+          <p>3) <strong>TCP</strong> — capa de transporte (entrega confiable extremo a extremo).</p>
+          <p>4) <strong>HTTP</strong> — capa de aplicación (lo que ve el usuario: páginas web).</p>
+          <p style="color:var(--tinta-2)">Cada capa se apoya en la anterior: HTTP viaja dentro de TCP, TCP dentro de IP, e IP se transmite finalmente por una interfaz identificada con una MAC Address.</p>
+        </div>
+      </details>
+
+<details class="ejercicio" id="ejer-redes-tcp-udp">
+        <summary><span class="resumen-ejercicio">12. ¿TCP o UDP para cada caso: (a) una videollamada en vivo, (b) descargar un archivo importante? </span><span class="dificultad facil">fácil</span></summary>
+        <div class="solucion">
+          <p><strong>(a) Videollamada en vivo → UDP.</strong> Importa más la velocidad y la fluidez que la entrega perfecta de cada paquete; perder un cuadro de video ocasionalmente es aceptable.</p>
+          <p><strong>(b) Descargar un archivo importante → TCP.</strong> Necesita que <strong>todos</strong> los datos lleguen completos y en orden, o el archivo queda corrupto — la confiabilidad importa más que la velocidad.</p>
+        </div>
+      </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 5 · DESARROLLO WEB BÁSICO (HTML/BOOTSTRAP) -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u5">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">05</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Desarrollo web básico (HTML/Bootstrap)</h2>
+          <p class="unidad-sub">Estructura HTML5 y Bootstrap para dar forma y estilo a una página sin escribir CSS propio.</p>
+        </div>
+      </div>
+
+<div class="materia" id="tema-web">
+          <h3>Desarrollo web básico (HTML/Bootstrap)</h3>
+          <ul>
+            <li>Estructura HTML5: <code>&lt;!DOCTYPE html&gt;</code>, <code>&lt;head&gt;</code> con <code>&lt;meta charset&gt;</code> y <code>&lt;title&gt;</code>, <code>&lt;body&gt;</code> con encabezados, listas y párrafos.</li>
+            <li><strong>Bootstrap CSS</strong> (vía CDN en las tareas del curso): clases <code>rounded</code> (imágenes con bordes redondeados), <code>btn btn-primary</code> / <code>btn btn-success</code> (botones sobre <code>&lt;a role="button"&gt;</code>).</li>
+            <li>Video embebido: <code>&lt;iframe src="https://www.youtube.com/embed/&lt;id&gt;"&gt;</code>.</li>
+            <li>Interactividad simple: función JS <code>toggleVisibility()</code> agrega/quita la clase <code>hidden</code>.</li>
+            <li><strong>XAMPP</strong>: Apache + MySQL/MariaDB + PHP portable, sirve la página en <code>localhost</code> para probarla — no es un hosting real.</li>
+          </ul>
+        </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+<div class="ejemplo" id="ej-web-ia-bootstrap">
+        <h3>11. Web — estructura HTML/Bootstrap real de la página sobre IA</h3>
+        <p>La página del curso sobre IA (<code>Web_inteligencia_artificial/index.html</code>) usa exactamente estos elementos:</p>
+        <pre><code>&lt;link rel="stylesheet" href="https://.../bootstrap.min.css"&gt;
+...
+&lt;img src="ia.jpg" class="rounded" alt="Inteligencia artificial"&gt;
+&lt;a href="https://es.wikipedia.org/wiki/Aprendizaje_automático"
+   class="btn btn-primary" role="button"&gt;Aprendizaje automático&lt;/a&gt;
+&lt;a href="https://es.wikipedia.org/wiki/Aprendizaje_profundo"
+   class="btn btn-success" role="button"&gt;Aprendizaje profundo&lt;/a&gt;
+&lt;iframe src="https://www.youtube.com/embed/VIDEOID"
+        title="Video explicativo" allowfullscreen&gt;&lt;/iframe&gt;</code></pre>
+        <p>Bootstrap redondea la imagen (<code>rounded</code>) y estiliza los botones (<code>btn btn-primary</code>/<code>btn btn-success</code>) sin escribir CSS propio; el <code>&lt;iframe&gt;</code> embebe el video de YouTube requerido por la pauta.</p>
+        <p class="fuente">Fuente: nota "Desarrollo web básico (HTML/Bootstrap)" — <code>Web_inteligencia_artificial/index.html</code>.</p>
+      </div>
+
+<div class="ejemplo" id="ej-web-toggle-visibility">
+        <h3>12. Web — mostrar/ocultar contenido con <code>toggleVisibility()</code></h3>
+        <p>La entrega real sobre VPN (<code>tarea_web_redes/Mi entrega/vpn.html</code>) agrega interactividad simple con JavaScript: un botón que muestra u oculta una lista, sin ningún framework.</p>
+        <pre><code>&lt;button onclick="toggleVisibility('purpose-list')"&gt;Mostrar/Ocultar detalles&lt;/button&gt;
+&lt;ul id="purpose-list" class="hidden"&gt;
+  &lt;li&gt;Privacidad: oculta la IP real...&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script&gt;
+function toggleVisibility(id) {
+    const el = document.getElementById(id);
+    if (el.classList.contains('hidden')) {
+        el.classList.remove('hidden');
+    } else {
+        el.classList.add('hidden');
+    }
+}
+&lt;/script&gt;</code></pre>
+        <p>La clase CSS <code>.hidden { display: none; }</code> arranca oculta la lista; cada clic en el botón alterna (<em>toggle</em>) esa clase con <code>classList.add</code>/<code>classList.remove</code> — el patrón más simple de interactividad sin depender de ninguna librería, complementario al estilo que aporta Bootstrap.</p>
+        <p class="fuente">Fuente: nota "Desarrollo web básico (HTML/Bootstrap)" — <code>tarea_web_redes/Mi entrega/vpn.html</code>.</p>
+      </div>
+      </div>
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+<details class="ejercicio" id="ejer-web-bootstrap-error">
+        <summary><span class="resumen-ejercicio">13. ¿Qué error hace que esta página pierda todo el estilo de Bootstrap? </span><span class="dificultad facil">fácil</span></summary>
+        <div class="solucion">
+          <pre><code>&lt;html&gt;
+&lt;body&gt;
+  &lt;h1&gt;Mi protocolo: DNS&lt;/h1&gt;
+  &lt;a href="#" class="btn btn-primary"&gt;Ver más&lt;/a&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+          <p>Falta el <code>&lt;head&gt;</code> con el <code>&lt;link rel="stylesheet"&gt;</code> a Bootstrap. Sin vincular la hoja de estilos, las clases <code>btn</code>/<code>btn-primary</code> no tienen ningún efecto visual — son solo texto plano con un nombre de clase que el navegador ignora.</p>
+          <pre><code>&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;link rel="stylesheet" href="https://.../bootstrap.min.css"&gt;
+&lt;/head&gt;</code></pre>
+        </div>
+      </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 6 · PROYECTO DE INNOVACIÓN (EMPRESA FICTICIA) -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u6">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">06</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Proyecto de innovación (empresa ficticia)</h2>
+          <p class="unidad-sub">El cierre del curso: diseñar, programar y exponer una empresa tecnológica ficticia ante público real.</p>
+        </div>
+      </div>
+
+<div class="materia" id="tema-proyecto">
+          <h3>Proyecto de innovación (empresa ficticia)</h3>
+          <ul>
+            <li>Trabajo grupal de cierre: diseñar una <strong>empresa tecnológica ficticia</strong> basada en una tecnología real, construir un sitio web que la represente y exponerla oralmente.</li>
+            <li><strong>Rúbrica, 6 criterios × 10 pts:</strong> calidad/pertinencia del sitio web · explicación técnica de la tecnología · ejemplos de aplicación · calidad de la exposición oral · balance de participación del equipo · viabilidad real de la propuesta.</li>
+            <li>Niveles de logro de "Insuficiente" (1-3 pts) a "Excelente" (10 pts) por criterio.</li>
+            <li>Cierre en la <strong>Feria de Ciencias y Tecnología</strong> (Campus Pedro de Valdivia): exposición ante público con turnos de equipo.</li>
+          </ul>
+        </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+<details class="ejercicio" id="ejer-proyecto-rubrica">
+        <summary><span class="resumen-ejercicio">14. Un grupo propone una empresa de "drones repartidores de café" sin investigar costos, regulación aérea ni proveedores. ¿Qué nivel de "viabilidad real" de la rúbrica le corresponde y por qué? </span><span class="dificultad dificil">dificil</span></summary>
+        <div class="solucion">
+          <p>Le corresponde el nivel <strong>Insuficiente (1-3 pts)</strong>: la rúbrica define ese nivel como "propuesta poco realista, sin fundamentos o con graves fallas conceptuales".</p>
+          <p>No investigar costos, regulación (permisos de vuelo, espacio aéreo) ni proveedores son exactamente el tipo de vacíos que la rúbrica penaliza en este criterio — no basta con una idea creativa o llamativa, se evalúa si tiene <strong>potencial real de implementación</strong>.</p>
+          <p style="color:var(--tinta-2)">Para subir de nivel, el grupo debería investigar al menos: costo aproximado de los drones, normativa aeronáutica civil aplicable, y un modelo de negocio con proveedores o socios concretos.</p>
+        </div>
+      </details>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ============================================================ */
+  /* 1. TRAZADOR DE PSEUDOCÓDIGO PSEINT                            */
+  /* ============================================================ */
+  Anim.registrar("anim-pseint-traza", function (sim) {
+    var codigoLineas = [
+      "Proceso CalcularPromedio",
+      "    Definir c1, c2, c3, control, promedio Como Real",
+      "    Escribir \"Ingrese nota Certamen 1:\"",
+      "    Leer c1",
+      "    Mientras c1<1 O c1>7 Hacer",
+      "        Escribir \"Nota invalida. Ingrese nuevamente:\"",
+      "        Leer c1",
+      "    FinMientras",
+      "    Escribir \"Ingrese nota Certamen 2:\"",
+      "    Leer c2",
+      "    Mientras c2<1 O c2>7 Hacer",
+      "        Escribir \"Nota invalida. Ingrese nuevamente:\"",
+      "        Leer c2",
+      "    FinMientras",
+      "    Escribir \"Ingrese nota Certamen 3:\"",
+      "    Leer c3",
+      "    Mientras c3<1 O c3>7 Hacer",
+      "        Escribir \"Nota invalida. Ingrese nuevamente:\"",
+      "        Leer c3",
+      "    FinMientras",
+      "    Escribir \"Ingrese nota Control:\"",
+      "    Leer control",
+      "    Mientras control<1 O control>7 Hacer",
+      "        Escribir \"Nota invalida. Ingrese nuevamente:\"",
+      "        Leer control",
+      "    FinMientras",
+      "    promedio <- c1*0.3 + c2*0.3 + c3*0.3 + control*0.1",
+      "    Si promedio >= 4 Entonces",
+      "        Escribir \"Promedio: \", promedio, \" - Aprobado\"",
+      "    SiNo",
+      "        Escribir \"Promedio: \", promedio, \" - Reprobado\"",
+      "    FinSi",
+      "FinProceso"
+    ];
+
+    function clamp17(v) {
+      if (isNaN(v)) return 4;
+      return Math.max(1, Math.min(7, v));
+    }
+
+    function* leerYValidar(nombre, lineaPrompt, lineaLeerInicial, lineaMientras, lineaMsg, lineaLeerLoop, intentos) {
+      yield { linea: lineaPrompt, tipo: "escribir", mensaje: "Solicita la nota (" + nombre + ")" };
+      var idx = 0;
+      var valor = intentos[idx];
+      yield { linea: lineaLeerInicial, tipo: "leer", variable: nombre, valor: valor };
+      while (valor < 1 || valor > 7) {
+        yield { linea: lineaMientras, tipo: "validar", variable: nombre, valor: valor, valido: false };
+        yield { linea: lineaMsg, tipo: "escribir", mensaje: "\"Nota inválida. Ingrese nuevamente\"" };
+        idx++;
+        valor = (idx < intentos.length) ? intentos[idx] : intentos[intentos.length - 1];
+        yield { linea: lineaLeerLoop, tipo: "leer", variable: nombre, valor: valor };
+      }
+      yield { linea: lineaMientras, tipo: "validar", variable: nombre, valor: valor, valido: true };
+      return valor;
+    }
+
+    function* trazaPromedio(valores) {
+      yield { linea: 1, tipo: "inicio", mensaje: "Inicia el proceso" };
+      yield { linea: 2, tipo: "declarar", mensaje: "Declara c1, c2, c3, control, promedio (Real)" };
+      var c1 = yield* leerYValidar("c1", 3, 4, 5, 6, 7, [8, valores.c1]);
+      var c2 = yield* leerYValidar("c2", 9, 10, 11, 12, 13, [valores.c2]);
+      var c3 = yield* leerYValidar("c3", 15, 16, 17, 18, 19, [9, valores.c3]);
+      var control = yield* leerYValidar("control", 21, 22, 23, 24, 25, [valores.control]);
+      var promedio = c1 * 0.3 + c2 * 0.3 + c3 * 0.3 + control * 0.1;
+      yield { linea: 26, tipo: "asignar", variable: "promedio", valor: promedio };
+      var aprobado = promedio >= 4;
+      yield { linea: 27, tipo: "decidir", condicion: aprobado, valor: promedio };
+      if (aprobado) {
+        yield { linea: 28, tipo: "escribir", mensaje: "Promedio: " + promedio.toFixed(2) + " - Aprobado" };
+      } else {
+        yield { linea: 29, tipo: "sino" };
+        yield { linea: 30, tipo: "escribir", mensaje: "Promedio: " + promedio.toFixed(2) + " - Reprobado" };
+      }
+      yield { linea: 31, tipo: "finsi" };
+      yield { linea: 32, tipo: "fin", mensaje: "Fin del proceso" };
+    }
+
+    var estado = { gen: null, actual: null, linea: 0, vars: {}, terminado: false };
+    var temporizador = null;
+
+    function leerInputs() {
+      return {
+        c1: clamp17(parseFloat(document.getElementById("pseint-c1").value)),
+        c2: clamp17(parseFloat(document.getElementById("pseint-c2").value)),
+        c3: clamp17(parseFloat(document.getElementById("pseint-c3").value)),
+        control: clamp17(parseFloat(document.getElementById("pseint-control").value))
+      };
+    }
+
+    function detenerAuto() {
+      if (temporizador) { clearInterval(temporizador); temporizador = null; }
+      var btn = sim.cont.querySelector('[data-accion="auto"]');
+      if (btn) btn.textContent = "▶ Auto";
+    }
+
+    function reiniciar() {
+      detenerAuto();
+      estado.gen = trazaPromedio(leerInputs());
+      estado.actual = null;
+      estado.linea = 0;
+      estado.vars = {};
+      estado.terminado = false;
+      actualizarInfo();
+      sim.redibujar();
+    }
+
+    function paso() {
+      if (estado.terminado) return;
+      if (!estado.gen) estado.gen = trazaPromedio(leerInputs());
+      var r = estado.gen.next();
+      if (r.done) {
+        estado.terminado = true;
+        detenerAuto();
+      } else {
+        var ev = r.value;
+        estado.actual = ev;
+        estado.linea = ev.linea;
+        if (ev.tipo === "declarar") estado.vars = { c1: undefined, c2: undefined, c3: undefined, control: undefined, promedio: undefined };
+        if (ev.tipo === "leer") estado.vars[ev.variable] = ev.valor;
+        if (ev.tipo === "asignar") estado.vars[ev.variable] = ev.valor;
+      }
+      actualizarInfo();
+      sim.redibujar();
+    }
+
+    function auto() {
+      if (temporizador) { detenerAuto(); return; }
+      var btn = sim.cont.querySelector('[data-accion="auto"]');
+      if (btn) btn.textContent = "⏸ Pausa";
+      temporizador = setInterval(function () {
+        if (estado.terminado) { detenerAuto(); return; }
+        paso();
+      }, 550);
+    }
+
+    function describirEvento(ev) {
+      if (!ev) return "";
+      if (ev.tipo === "inicio") return ev.mensaje + ".";
+      if (ev.tipo === "declarar") return ev.mensaje + ".";
+      if (ev.tipo === "escribir") return "Escribir: " + ev.mensaje;
+      if (ev.tipo === "leer") return "Leer " + ev.variable + " → " + ev.valor;
+      if (ev.tipo === "validar") return ev.valido
+        ? (ev.variable + " = " + ev.valor + " está en [1,7]: validación OK, sale del Mientras.")
+        : (ev.variable + " = " + ev.valor + " está fuera de [1,7]: el Mientras repite.");
+      if (ev.tipo === "asignar") return "promedio ← " + ev.valor.toFixed(3);
+      if (ev.tipo === "decidir") return ev.condicion
+        ? ("promedio(" + ev.valor.toFixed(2) + ") >= 4 es verdadero → rama Entonces")
+        : ("promedio(" + ev.valor.toFixed(2) + ") >= 4 es falso → rama SiNo");
+      if (ev.tipo === "sino") return "Toma la rama SiNo.";
+      if (ev.tipo === "finsi") return "Cierra el Si.";
+      if (ev.tipo === "fin") return ev.mensaje + ".";
+      return "";
+    }
+
+    function actualizarInfo() {
+      var info = document.getElementById("pseint-info");
+      if (!info) return;
+      if (!estado.actual) { info.textContent = "Presiona \"Paso\" para ejecutar la primera línea."; return; }
+      var texto = "Línea " + estado.linea + " — " + describirEvento(estado.actual);
+      if (estado.terminado) texto += " · Ejecución completa.";
+      info.textContent = texto;
+    }
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var panel = colorVar("--panel");
+      var acentoTenue = colorVar("--acento-tenue");
+      var acento = colorVar("--acento");
+      var tinta = colorVar("--tinta");
+      var tinta2 = colorVar("--tinta-2");
+      var borde = colorVar("--borde");
+      var ok = colorVar("--ok");
+
+      var colCodigoW = Math.min(w * 0.62, w - 190);
+      var lh = 14;
+      var y0 = 16;
+      ctx.font = "12px Consolas, monospace";
+      ctx.textAlign = "left";
+      ctx.textBaseline = "alphabetic";
+
+      for (var i = 0; i < codigoLineas.length; i++) {
+        var y = y0 + i * lh;
+        var numLinea = i + 1;
+        if (numLinea === estado.linea) {
+          ctx.fillStyle = acentoTenue;
+          ctx.fillRect(2, y - lh + 3, colCodigoW - 4, lh);
+        }
+        ctx.fillStyle = numLinea === estado.linea ? acento : tinta2;
+        ctx.fillText((numLinea < 10 ? " " : "") + numLinea, 6, y);
+        ctx.fillStyle = numLinea === estado.linea ? tinta : tinta2;
+        ctx.fillText(codigoLineas[i], 34, y);
+      }
+
+      var px = colCodigoW + 16;
+      ctx.strokeStyle = borde;
+      ctx.beginPath();
+      ctx.moveTo(colCodigoW + 6, 4);
+      ctx.lineTo(colCodigoW + 6, h - 4);
+      ctx.stroke();
+
+      ctx.fillStyle = acento;
+      ctx.font = "bold 12px Consolas, monospace";
+      ctx.fillText("Variables", px, y0);
+
+      var nombres = ["c1", "c2", "c3", "control", "promedio"];
+      for (var j = 0; j < nombres.length; j++) {
+        var y2 = y0 + 26 + j * 24;
+        var val = estado.vars[nombres[j]];
+        var txt = (val === undefined || val === null) ? "—" : (typeof val === "number" ? val.toFixed(2) : String(val));
+        var resaltar = estado.actual && (estado.actual.variable === nombres[j]);
+        ctx.fillStyle = resaltar ? acento : panel;
+        ctx.fillRect(px - 4, y2 - 14, 150, 20);
+        ctx.strokeStyle = resaltar ? acento : borde;
+        ctx.strokeRect(px - 4, y2 - 14, 150, 20);
+        ctx.fillStyle = resaltar ? "#ffffff" : tinta;
+        ctx.font = "12px Consolas, monospace";
+        ctx.fillText(nombres[j] + " = " + txt, px, y2);
+      }
+
+      if (estado.terminado) {
+        ctx.fillStyle = ok;
+        ctx.font = "bold 12px Consolas, monospace";
+        ctx.fillText("✓ Ejecución completa", px, y0 + 26 + nombres.length * 24 + 16);
+      }
+    });
+
+    ["pseint-c1", "pseint-c2", "pseint-c3", "pseint-control"].forEach(function (id) {
+      document.getElementById(id).addEventListener("change", reiniciar);
+    });
+    sim.botones({ paso: paso, auto: auto, reiniciar: reiniciar });
+    reiniciar();
+  });
+
+  /* ============================================================ */
+  /* 2. DIAGRAMA DE FLUJO ANIMADO                                  */
+  /* ============================================================ */
+  Anim.registrar("anim-diagrama-flujo", function (sim) {
+    var nodosFlujo = [
+      { id: "inicio", tipo: "ovalo", x: 300, y: 28, texto: "Inicio" },
+      { id: "declarar", tipo: "proceso", x: 300, y: 82, texto: "Declarar variables" },
+      { id: "leerC1", tipo: "proceso", x: 300, y: 136, texto: "Leer y validar C1" },
+      { id: "leerC2", tipo: "proceso", x: 300, y: 190, texto: "Leer y validar C2" },
+      { id: "leerC3", tipo: "proceso", x: 300, y: 244, texto: "Leer y validar C3" },
+      { id: "leerControl", tipo: "proceso", x: 300, y: 298, texto: "Leer y validar Control" },
+      { id: "calcular", tipo: "proceso", x: 300, y: 356, texto: "promedio = suma ponderada" },
+      { id: "decision", tipo: "rombo", x: 300, y: 424, texto: "¿promedio >= 4?" },
+      { id: "aprobado", tipo: "paralelogramo", x: 165, y: 500, texto: "Escribir Aprobado" },
+      { id: "reprobado", tipo: "paralelogramo", x: 435, y: 500, texto: "Escribir Reprobado" },
+      { id: "fin", tipo: "ovalo", x: 300, y: 570, texto: "Fin" }
+    ];
+    var conexionesFlujo = [
+      ["inicio", "declarar"], ["declarar", "leerC1"], ["leerC1", "leerC2"], ["leerC2", "leerC3"],
+      ["leerC3", "leerControl"], ["leerControl", "calcular"], ["calcular", "decision"],
+      ["decision", "aprobado"], ["decision", "reprobado"], ["aprobado", "fin"], ["reprobado", "fin"]
+    ];
+
+    function nodoPorId(id) {
+      for (var i = 0; i < nodosFlujo.length; i++) if (nodosFlujo[i].id === id) return nodosFlujo[i];
+      return null;
+    }
+
+    function dibujarTextoCentrado(ctx, texto, x, y, color) {
+      ctx.fillStyle = color;
+      ctx.font = "10px Consolas, monospace";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      var palabras = String(texto).split(" ");
+      var lineas = [];
+      var actual = "";
+      for (var i = 0; i < palabras.length; i++) {
+        var prueba = actual ? actual + " " + palabras[i] : palabras[i];
+        if (prueba.length > 20 && actual) { lineas.push(actual); actual = palabras[i]; }
+        else actual = prueba;
+      }
+      if (actual) lineas.push(actual);
+      var lh2 = 12;
+      var y0 = y - (lineas.length - 1) * lh2 / 2;
+      for (var j = 0; j < lineas.length; j++) ctx.fillText(lineas[j], x, y0 + j * lh2);
+      ctx.textBaseline = "alphabetic";
+    }
+
+    function dibujarFormaFlujo(ctx, nodo, x, y, escala, relleno, trazo, txtColor) {
+      var w = 150 * escala, h = 40 * escala;
+      ctx.fillStyle = relleno;
+      ctx.strokeStyle = trazo;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      if (nodo.tipo === "ovalo") {
+        ctx.ellipse(x, y, w / 2, h / 2, 0, 0, Math.PI * 2);
+      } else if (nodo.tipo === "rombo") {
+        ctx.moveTo(x, y - h / 2 - 8);
+        ctx.lineTo(x + w / 2 + 10, y);
+        ctx.lineTo(x, y + h / 2 + 8);
+        ctx.lineTo(x - w / 2 - 10, y);
+        ctx.closePath();
+      } else if (nodo.tipo === "paralelogramo") {
+        var d = 12 * escala;
+        ctx.moveTo(x - w / 2 + d, y - h / 2);
+        ctx.lineTo(x + w / 2, y - h / 2);
+        ctx.lineTo(x + w / 2 - d, y + h / 2);
+        ctx.lineTo(x - w / 2, y + h / 2);
+        ctx.closePath();
+      } else {
+        ctx.rect(x - w / 2, y - h / 2, w, h);
+      }
+      ctx.fill();
+      ctx.stroke();
+      dibujarTextoCentrado(ctx, nodo.texto, x, y, txtColor);
+    }
+
+    var estado = { pasos: [], indice: 0, terminado: false };
+    var temporizador = null;
+
+    function construirPasos() {
+      var resultado = document.getElementById("flujo-resultado").value;
+      var pasos = ["inicio", "declarar", "leerC1", "leerC2", "leerC3", "leerControl", "calcular", "decision"];
+      pasos.push(resultado === "reprobado" ? "reprobado" : "aprobado");
+      pasos.push("fin");
+      return pasos;
+    }
+
+    function detenerAuto() {
+      if (temporizador) { clearInterval(temporizador); temporizador = null; }
+      var btn = sim.cont.querySelector('[data-accion="auto"]');
+      if (btn) btn.textContent = "▶ Auto";
+    }
+
+    function reiniciar() {
+      detenerAuto();
+      estado.pasos = construirPasos();
+      estado.indice = 0;
+      estado.terminado = false;
+      actualizarInfo();
+      sim.redibujar();
+    }
+
+    function paso() {
+      if (estado.terminado) return;
+      if (!estado.pasos.length) estado.pasos = construirPasos();
+      estado.indice++;
+      if (estado.indice >= estado.pasos.length) {
+        estado.indice = estado.pasos.length;
+        estado.terminado = true;
+        detenerAuto();
+      }
+      actualizarInfo();
+      sim.redibujar();
+    }
+
+    function auto() {
+      if (temporizador) { detenerAuto(); return; }
+      var btn = sim.cont.querySelector('[data-accion="auto"]');
+      if (btn) btn.textContent = "⏸ Pausa";
+      temporizador = setInterval(function () {
+        if (estado.terminado) { detenerAuto(); return; }
+        paso();
+      }, 550);
+    }
+
+    function actualizarInfo() {
+      var info = document.getElementById("flujo-info");
+      if (!info) return;
+      if (estado.indice === 0) { info.textContent = "Presiona \"Paso\" para avanzar por el diagrama."; return; }
+      var idActual = estado.pasos[estado.indice - 1];
+      var nodo = nodoPorId(idActual);
+      var texto = "Paso " + estado.indice + "/" + estado.pasos.length + ": " + (nodo ? nodo.texto : idActual);
+      if (estado.terminado) texto += " · diagrama completo.";
+      info.textContent = texto;
+    }
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var escala = w / 600;
+      var borde = colorVar("--borde");
+      var panel = colorVar("--panel");
+      var acento = colorVar("--acento");
+      var s3 = colorVar("--s3");
+      var ok = colorVar("--ok");
+      var tinta = colorVar("--tinta");
+
+      ctx.strokeStyle = borde;
+      ctx.lineWidth = 1.5;
+      for (var i = 0; i < conexionesFlujo.length; i++) {
+        var a = nodoPorId(conexionesFlujo[i][0]), b = nodoPorId(conexionesFlujo[i][1]);
+        ctx.beginPath();
+        ctx.moveTo(a.x * escala, a.y * escala);
+        ctx.lineTo(b.x * escala, b.y * escala);
+        ctx.stroke();
+      }
+
+      var pasos = estado.pasos.length ? estado.pasos : construirPasos();
+      for (var j = 0; j < nodosFlujo.length; j++) {
+        var nodo = nodosFlujo[j];
+        var idx = pasos.indexOf(nodo.id);
+        var relleno = panel, trazo = borde, txtColor = tinta;
+        if (idx !== -1) {
+          if (idx < estado.indice - 1) { relleno = ok; trazo = ok; txtColor = "#ffffff"; }
+          else if (idx === estado.indice - 1) { relleno = s3; trazo = s3; txtColor = "#ffffff"; }
+          else { trazo = acento; }
+        }
+        dibujarFormaFlujo(ctx, nodo, nodo.x * escala, nodo.y * escala, escala, relleno, trazo, txtColor);
+      }
+    });
+
+    document.getElementById("flujo-resultado").addEventListener("change", reiniciar);
+    sim.botones({ paso: paso, auto: auto, reiniciar: reiniciar });
+    reiniciar();
+  });
+
+  /* ============================================================ */
+  /* 3. VIAJE DE UN PAQUETE POR LA RED                             */
+  /* ============================================================ */
+  Anim.registrar("anim-paquete-red", function (sim) {
+    var redNodos = {
+      cliente: { x: 75, y: 230 },
+      dns: { x: 300, y: 60 },
+      servidor: { x: 555, y: 230 }
+    };
+
+    function construirPasosRed(protocolo) {
+      var https = protocolo === "https";
+      var pasos = [
+        { desde: "cliente", hacia: "dns", etiqueta: "Consulta DNS (UDP:53)", mensaje: "El navegador pregunta al servidor DNS la IP de \"ejemplo.cl\"." },
+        { desde: "dns", hacia: "cliente", etiqueta: "Respuesta DNS", mensaje: "El DNS responde con la IP del servidor (p. ej. 192.0.2.10)." },
+        { desde: "cliente", hacia: "servidor", etiqueta: "TCP SYN", mensaje: "Three-way handshake TCP, paso 1: el cliente envía SYN." },
+        { desde: "servidor", hacia: "cliente", etiqueta: "TCP SYN-ACK", mensaje: "Paso 2: el servidor responde SYN-ACK." },
+        { desde: "cliente", hacia: "servidor", etiqueta: "TCP ACK", mensaje: "Paso 3: el cliente confirma con ACK. Conexión TCP establecida." }
+      ];
+      if (https) {
+        pasos.push({ desde: "cliente", hacia: "servidor", etiqueta: "TLS Handshake", mensaje: "Intercambio de certificados y claves: la conexión queda cifrada (candado del navegador)." });
+      }
+      pasos.push({
+        desde: "cliente", hacia: "servidor",
+        etiqueta: https ? "HTTPS GET (cifrado)" : "HTTP GET",
+        mensaje: "El navegador solicita el recurso " + (https ? "de forma cifrada." : "en texto plano (cualquiera en la red podría leerlo).")
+      });
+      pasos.push({
+        desde: "servidor", hacia: "cliente",
+        etiqueta: https ? "HTTPS 200 OK" : "HTTP 200 OK",
+        mensaje: "El servidor responde con el contenido" + (https ? " cifrado." : " en texto plano.")
+      });
+      return pasos;
+    }
+
+    var estado = { pasos: [], indice: 0, terminado: false };
+    var temporizador = null;
+
+    function detenerAuto() {
+      if (temporizador) { clearInterval(temporizador); temporizador = null; }
+      var btn = sim.cont.querySelector('[data-accion="auto"]');
+      if (btn) btn.textContent = "▶ Auto";
+    }
+
+    function reiniciar() {
+      detenerAuto();
+      var protocolo = document.getElementById("red-protocolo").value;
+      estado.pasos = construirPasosRed(protocolo);
+      estado.indice = 0;
+      estado.terminado = false;
+      actualizarInfo();
+      sim.redibujar();
+    }
+
+    function paso() {
+      if (estado.terminado) return;
+      if (!estado.pasos.length) { reiniciar(); return; }
+      estado.indice++;
+      if (estado.indice >= estado.pasos.length) {
+        estado.indice = estado.pasos.length;
+        estado.terminado = true;
+        detenerAuto();
+      }
+      actualizarInfo();
+      sim.redibujar();
+    }
+
+    function auto() {
+      if (temporizador) { detenerAuto(); return; }
+      var btn = sim.cont.querySelector('[data-accion="auto"]');
+      if (btn) btn.textContent = "⏸ Pausa";
+      temporizador = setInterval(function () {
+        if (estado.terminado) { detenerAuto(); return; }
+        paso();
+      }, 700);
+    }
+
+    function actualizarInfo() {
+      var info = document.getElementById("red-info");
+      if (!info) return;
+      if (estado.indice === 0) { info.textContent = "Presiona \"Paso\" para iniciar el recorrido."; return; }
+      var p = estado.pasos[estado.indice - 1];
+      var texto = "Salto " + estado.indice + "/" + estado.pasos.length + " (" + p.etiqueta + "): " + p.mensaje;
+      if (estado.terminado) texto += " · Recorrido completo.";
+      info.textContent = texto;
+    }
+
+    function redCajaNodo(ctx, nombre, etiqueta, escala) {
+      var p = redNodos[nombre];
+      var x = p.x * escala, y = p.y * escala;
+      var w = 120, h = 44;
+      ctx.fillStyle = colorVar("--panel");
+      ctx.strokeStyle = colorVar("--acento");
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      if (ctx.roundRect) ctx.roundRect(x - w / 2, y - h / 2, w, h, 8); else ctx.rect(x - w / 2, y - h / 2, w, h);
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = colorVar("--tinta");
+      ctx.font = "bold 11px Consolas, monospace";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      var lineas = etiqueta.split("\n");
+      var lh3 = 13;
+      var y0 = y - (lineas.length - 1) * lh3 / 2;
+      for (var i = 0; i < lineas.length; i++) ctx.fillText(lineas[i], x, y0 + i * lh3);
+      ctx.textBaseline = "alphabetic";
+    }
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var escala = w / 630;
+      var ok = colorVar("--ok");
+      var s3 = colorVar("--s3");
+      var tinta2 = colorVar("--tinta-2");
+      var borde = colorVar("--borde");
+
+      ctx.strokeStyle = borde;
+      ctx.setLineDash([4, 4]);
+      ctx.beginPath();
+      ctx.moveTo(redNodos.cliente.x * escala, redNodos.cliente.y * escala);
+      ctx.lineTo(redNodos.dns.x * escala, redNodos.dns.y * escala);
+      ctx.moveTo(redNodos.cliente.x * escala, redNodos.cliente.y * escala);
+      ctx.lineTo(redNodos.servidor.x * escala, redNodos.servidor.y * escala);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      var n = estado.indice;
+      var pasos = estado.pasos;
+      for (var i = 0; i < n; i++) {
+        var p = pasos[i];
+        var a = redNodos[p.desde], b = redNodos[p.hacia];
+        var completado = i < n - 1;
+        ctx.strokeStyle = completado ? ok : s3;
+        ctx.lineWidth = completado ? 2 : 3;
+        ctx.beginPath();
+        ctx.moveTo(a.x * escala, a.y * escala);
+        ctx.lineTo(b.x * escala, b.y * escala);
+        ctx.stroke();
+        var mx = (a.x + b.x) / 2 * escala, my = (a.y + b.y) / 2 * escala - (p.desde === "dns" || p.hacia === "dns" ? 0 : 10) * (i % 2 === 0 ? 1 : -1);
+        ctx.fillStyle = completado ? tinta2 : s3;
+        ctx.font = (completado ? "9px" : "bold 10px") + " Consolas, monospace";
+        ctx.textAlign = "center";
+        ctx.fillText(p.etiqueta, mx, my);
+      }
+
+      redCajaNodo(ctx, "cliente", "Cliente\n(navegador)", escala);
+      redCajaNodo(ctx, "dns", "Servidor DNS", escala);
+      redCajaNodo(ctx, "servidor", "Servidor web", escala);
+
+      if (n > 0) {
+        var ultimo = pasos[n - 1];
+        var destino = redNodos[ultimo.hacia];
+        ctx.beginPath();
+        ctx.arc(destino.x * escala, destino.y * escala - 32, 6, 0, Math.PI * 2);
+        ctx.fillStyle = s3;
+        ctx.fill();
+      }
+    });
+
+    document.getElementById("red-protocolo").addEventListener("change", reiniciar);
+    sim.botones({ paso: paso, auto: auto, reiniciar: reiniciar });
+    reiniciar();
+  });
+
+  /* ============================================================ */
+  /* 4. PERCEPTRÓN — CLASIFICADOR CONCEPTUAL                       */
+  /* ============================================================ */
+  Anim.registrar("anim-perceptron", function (sim) {
+    var perceptronDatos = [
+      { x: 1, y: 4, clase: 1 }, { x: 2, y: 5, clase: 1 }, { x: 3, y: 6, clase: 1 },
+      { x: 1, y: 6, clase: 1 }, { x: 4, y: 7, clase: 1 }, { x: 2, y: 7, clase: 1 },
+      { x: 4, y: 1, clase: -1 }, { x: 5, y: 2, clase: -1 }, { x: 6, y: 3, clase: -1 },
+      { x: 6, y: 1, clase: -1 }, { x: 7, y: 4, clase: -1 }, { x: 5, y: 1, clase: -1 }
+    ];
+    var perceptronMax = 40;
+
+    function entrenarPerceptron(maxIter) {
+      var w1 = 0, w2 = 0, b = 0, lr = 0.5;
+      var snaps = [{ w1: 0, w2: 0, b: 0, punto: null, actualizo: false }];
+      for (var i = 0; i < maxIter; i++) {
+        var p = perceptronDatos[i % perceptronDatos.length];
+        var salida = w1 * p.x + w2 * p.y + b;
+        var prediccion = salida >= 0 ? 1 : -1;
+        var actualizo = prediccion !== p.clase;
+        if (actualizo) {
+          w1 += lr * p.clase * p.x;
+          w2 += lr * p.clase * p.y;
+          b += lr * p.clase;
+        }
+        snaps.push({ w1: w1, w2: w2, b: b, punto: p, actualizo: actualizo });
+      }
+      return snaps;
+    }
+
+    var estado = { snaps: entrenarPerceptron(perceptronMax), iter: 0 };
+    var temporizador = null;
+
+    function contarErrores(w1, w2, b) {
+      var err = 0;
+      for (var i = 0; i < perceptronDatos.length; i++) {
+        var p = perceptronDatos[i];
+        var salida = w1 * p.x + w2 * p.y + b;
+        var pred = salida >= 0 ? 1 : -1;
+        if (pred !== p.clase) err++;
+      }
+      return err;
+    }
+
+    function actualizarInfo() {
+      var info = document.getElementById("perceptron-info");
+      if (!info) return;
+      var snap = estado.snaps[estado.iter];
+      var errores = contarErrores(snap.w1, snap.w2, snap.b);
+      var texto = "Iteración " + estado.iter + ": recta w1·x + w2·y + b = 0, con w1=" +
+        snap.w1.toFixed(2) + ", w2=" + snap.w2.toFixed(2) + ", b=" + snap.b.toFixed(2) +
+        " · puntos mal clasificados: " + errores + "/" + perceptronDatos.length;
+      if (errores === 0) texto += " · ¡convergió!";
+      info.textContent = texto;
+    }
+
+    function detenerAuto() {
+      if (temporizador) { clearInterval(temporizador); temporizador = null; }
+      var btn = sim.cont.querySelector('[data-accion="auto"]');
+      if (btn) btn.textContent = "▶ Auto";
+    }
+
+    function fijarIter(v) {
+      v = Math.max(0, Math.min(perceptronMax, Math.round(v)));
+      estado.iter = v;
+      var inp = document.getElementById("perceptron-iter");
+      if (inp) inp.value = v;
+      var etiqueta = inp && inp.closest(".control") ? inp.closest(".control").querySelector(".valor") : null;
+      if (etiqueta) etiqueta.textContent = String(v);
+      actualizarInfo();
+      sim.redibujar();
+    }
+
+    function reiniciar() {
+      detenerAuto();
+      estado.snaps = entrenarPerceptron(perceptronMax);
+      fijarIter(0);
+    }
+
+    function paso() {
+      fijarIter(estado.iter + 1);
+      if (estado.iter >= perceptronMax) detenerAuto();
+    }
+
+    function auto() {
+      if (temporizador) { detenerAuto(); return; }
+      if (estado.iter >= perceptronMax) fijarIter(0);
+      var btn = sim.cont.querySelector('[data-accion="auto"]');
+      if (btn) btn.textContent = "⏸ Pausa";
+      temporizador = setInterval(function () {
+        if (estado.iter >= perceptronMax) { detenerAuto(); return; }
+        paso();
+      }, 350);
+    }
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var m = Anim.mapa(w, h, { xMin: -1, xMax: 9, yMin: -1, yMax: 9 });
+      var s2 = colorVar("--s2");
+      var s3 = colorVar("--s3");
+      var tinta = colorVar("--tinta");
+      var acento = colorVar("--acento");
+      var borde = colorVar("--borde");
+
+      ctx.strokeStyle = borde;
+      ctx.lineWidth = 1;
+      ctx.strokeRect(m.x(-1) + 1, m.y(9) + 1, m.x(9) - m.x(-1) - 2, m.y(-1) - m.y(9) - 2);
+
+      var snap = estado.snaps[estado.iter];
+
+      ctx.strokeStyle = acento;
+      ctx.lineWidth = 2.5;
+      ctx.beginPath();
+      if (Math.abs(snap.w2) > 1e-6) {
+        var y1 = -(snap.w1 * (-1) + snap.b) / snap.w2;
+        var y2 = -(snap.w1 * 9 + snap.b) / snap.w2;
+        ctx.moveTo(m.x(-1), m.y(y1));
+        ctx.lineTo(m.x(9), m.y(y2));
+      } else if (Math.abs(snap.w1) > 1e-6) {
+        var xv = -snap.b / snap.w1;
+        ctx.moveTo(m.x(xv), m.y(-1));
+        ctx.lineTo(m.x(xv), m.y(9));
+      }
+      ctx.stroke();
+
+      for (var i = 0; i < perceptronDatos.length; i++) {
+        var p = perceptronDatos[i];
+        var esUltimo = snap.punto === p;
+        ctx.beginPath();
+        ctx.arc(m.x(p.x), m.y(p.y), esUltimo ? 8 : 6, 0, Math.PI * 2);
+        ctx.fillStyle = p.clase === 1 ? s2 : s3;
+        ctx.fill();
+        if (esUltimo) {
+          ctx.lineWidth = 2;
+          ctx.strokeStyle = snap.actualizo ? colorVar("--futuro") : colorVar("--ok");
+          ctx.stroke();
+        }
+      }
+
+      ctx.fillStyle = tinta;
+      ctx.font = "11px Consolas, monospace";
+      ctx.textAlign = "left";
+      ctx.fillText("● clase +1", 10, 16);
+      ctx.fillStyle = s3;
+      ctx.fillText("● clase −1", 100, 16);
+      ctx.fillStyle = tinta;
+    });
+
+    sim.slider("perceptron-iter", function (v) { fijarIter(v); }, function (v) { return String(Math.round(v)); });
+    sim.botones({ paso: paso, auto: auto, reiniciar: reiniciar });
+    actualizarInfo();
+  });
+
+})();
+</script>
+
+<script>
+  // entradas escalonadas (GSAP + ScrollTrigger vía Anim.revelar) — no rompe nada si GSAP no cargó
+  Anim.revelar(".curso-hero-v3 > *", { scroll: false, stagger: .08, distancia: 14, duracion: .8 });
+  document.querySelectorAll(".unidad").forEach(function (u) {
+    Anim.revelar(u.querySelectorAll(":scope > .unidad-cabecera, :scope > .materia, :scope > .animacion, :scope > .ejemplos-unidad, :scope > .ejercicios-unidad"), { disparador: u, stagger: .08, distancia: 16 });
+  });
+</script>
+</body>
+</html>

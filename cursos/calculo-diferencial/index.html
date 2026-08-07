@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="es" data-tema="oscuro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📈 Cálculo Diferencial — Biblioteca</title>
+<link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../../assets/vendor/fuentes/fuentes.css">
+<link rel="stylesheet" href="../../assets/css/observatorio.css">
+<script>window.RUTA_BASE = "../../";</script>
+<script src="../../assets/vendor/katex/katex.min.js"></script>
+<script src="../../assets/vendor/katex/auto-render.min.js"></script>
+<script src="../../assets/vendor/gsap/gsap.min.js"></script>
+<script src="../../assets/vendor/gsap/ScrollTrigger.min.js"></script>
+<script src="../../assets/js/observatorio.js"></script>
+<script src="indice-curso.js"></script>
+</head>
+<body>
+<div class="progreso-lectura"></div>
+<div class="pagina-curso">
+
+  <aside class="lateral">
+    <a class="volver" href="../../index.html">← Constelación</a>
+    <div class="curso-cabecera"><span class="emoji">📈</span><h1>Cálculo Diferencial</h1></div>
+    <span class="semestre-tag" style="color:var(--s2)">Semestre 2</span>
+    <nav>
+      <div class="grupo">Unidades</div>
+      <a href="#u1">01 · Límites, continuidad y asíntotas</a>
+      <a class="sub" href="#anim-laterales">➗ Límites laterales</a>
+      <a href="#u2">02 · Derivada y reglas de derivación</a>
+      <a class="sub" href="#anim-secante">📐 Secante → tangente</a>
+      <a href="#u3">03 · Derivación implícita</a>
+      <a href="#u4">04 · Regla de L'Hôpital</a>
+      <a href="#u5">05 · Teoremas de funciones derivables</a>
+      <a href="#u6">06 · Razón de cambio, diferencial y optimización</a>
+      <a class="sub" href="#anim-cubica">📊 Análisis de una cúbica</a>
+      <a class="sub" href="#anim-caja">📦 Caja de volumen máximo</a>
+    </nav>
+    <div class="atajos"><kbd>Ctrl K</kbd> buscar en toda la biblioteca</div>
+  </aside>
+
+  <main class="principal">
+    <div class="principal-cabecera">
+      <span class="relleno"></span>
+      <button class="btn-buscar" type="button">🔍 Buscar <kbd>Ctrl K</kbd></button>
+      <button class="btn-tema" type="button">☀️</button>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CABECERA DEL CURSO -->
+    <!-- ============================================================ -->
+    <header class="curso-hero-v3" id="cheat" style="--ac: var(--s2)">
+      <span class="emoji-grande">📈</span>
+      <h1>Cálculo Diferencial — Resumen del curso</h1>
+      <span class="semestre-tag" style="color:var(--s2)">Semestre 2</span>
+      <p class="curso-intro">
+        Curso de <strong>cálculo diferencial</strong> (Cálculo Diferencial UDD, sección CCP, 2025-2).
+        Secuencia real de evaluaciones: Control 1 (sucesiones) → Control 2 (límites) → Control 3
+        (límites notables/asíntotas) → Control 4 (continuidad) → Control 5 (derivada, recta tangente,
+        regla de la cadena) → Taller grupal → Control 6 (L'Hôpital, implícita, razón de cambio) →
+        Certamen 2/3 → Examen. El temario cubre desde sucesiones hasta optimización y trazado de curvas
+        (la Unidad I de sucesiones no tiene fuente tipeada propia y no se incluye acá).
+      </p>
+      <ul class="mini-indice">
+        <li><a href="#u1">01 · Límites y asíntotas</a></li>
+        <li><a href="#u2">02 · Derivada y reglas</a></li>
+        <li><a href="#u3">03 · Derivación implícita</a></li>
+        <li><a href="#u4">04 · L'Hôpital</a></li>
+        <li><a href="#u5">05 · Teoremas</a></li>
+        <li><a href="#u6">06 · Razón de cambio y optimización</a></li>
+      </ul>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 1 · LÍMITES, CONTINUIDAD Y ASÍNTOTAS -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u1">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">01</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Límites, continuidad y asíntotas</h2>
+          <p class="unidad-sub">El punto de partida del curso: qué significa que una función "se acerque" a un valor, cuándo eso coincide con estar bien definida, y cómo se traduce en el comportamiento a lo lejos o cerca de un punto prohibido.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-limites-continuidad">
+        <h3>Límites y continuidad</h3>
+        <ul>
+          <li>$\displaystyle\lim_{x\to a} f(x)=L$ existe <strong>solo si</strong> los límites
+            laterales coinciden (ver fórmula destacada).</li>
+          <li>Álgebra de límites: el límite de suma/producto/cociente es la suma/producto/cociente
+            de los límites (cociente con denominador $\neq0$).</li>
+          <li>Indeterminaciones: $\tfrac00,\ \tfrac\infty\infty,\ 0\cdot\infty,\ \infty-\infty,\ 1^{\infty}$.
+            Se levantan factorizando, racionalizando o con <a href="#u4">L'Hôpital</a>.</li>
+          <li>Notables: $\displaystyle\lim_{x\to0}\frac{\sin x}{x}=1,\quad \lim_{x\to0}\frac{1-\cos x}{x}=0$</li>
+          <li>$\displaystyle\lim_{x\to\infty}\left(1+\tfrac1x\right)^{x}=e,\quad \lim_{x\to0}\frac{e^x-1}{x}=1$</li>
+          <li>Evaluación directa: si $f$ es polinomio, $\lim_{x\to a}f(x)=f(a)$; si $q$ es racional y
+            $a\in\operatorname{Dom}(q)$, $\lim_{x\to a}q(x)=q(a)$.</li>
+          <li><strong>Continuidad en $a$:</strong> (1) $f(a)$ definida, (2) $\lim_{x\to a}f(x)$ existe,
+            (3) ambos coinciden.</li>
+          <li>Discontinuidades: <strong>evitable</strong> (límite ≠ $f(a)$ o falta), <strong>de salto</strong>
+            (laterales distintos), <strong>esencial/infinita</strong> (lateral $=\pm\infty$).</li>
+          <li><strong>TVI:</strong> $f$ continua en $[a,b]$, $k$ entre $f(a),f(b)$ ⟹ existe $c$ con $f(c)=k$.
+            <strong>Weierstrass:</strong> $f$ continua en $[a,b]$ ⟹ alcanza máx. y mín. absolutos.</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Límite en dos pasos</span>$$\lim_{x\to a^-}f(x)=\lim_{x\to a^+}f(x)=L$$</div>
+      </div>
+
+      <div class="materia" id="tema-asintotas">
+        <h3>Asíntotas</h3>
+        <ul>
+          <li><strong>Vertical</strong> en $x=a$: $\displaystyle\lim_{x\to a^{\pm}}f(x)=\pm\infty$
+            (ceros del denominador que no se cancelan con el numerador).</li>
+          <li><strong>Horizontal</strong> $y=L$: $\displaystyle\lim_{x\to\pm\infty}f(x)=L$.</li>
+          <li><strong>Oblicua</strong> $y=mx+n$ (si no hay horizontal), con $m$ y $n$ dados en las
+            fórmulas destacadas abajo.</li>
+          <li>Racional $p/q$: $\deg p\lt\deg q\Rightarrow y=0$; &nbsp; $\deg p=\deg q\Rightarrow
+            y=\tfrac{\text{coef. ppal }p}{\text{coef. ppal }q}$; &nbsp; $\deg p=\deg q+1\Rightarrow$ oblicua.</li>
+          <li>Con valor absoluto: analizar cada rama por separado según el signo dentro de $|\cdot|$.</li>
+          <li>Antes de declarar asíntota vertical, verificar que el punto <strong>no</strong> es una
+            discontinuidad evitable (numerador y denominador anulándose juntos).</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Pendiente de la oblicua</span>$$m=\lim_{x\to\infty}\frac{f(x)}{x}$$</div>
+        <div class="formula-card"><span class="etiqueta">Intercepto de la oblicua</span>$$n=\lim_{x\to\infty}\big(f(x)-mx\big)$$</div>
+      </div>
+
+      <div class="animacion" id="anim-laterales">
+        <div class="anim-cabecera">
+          <h3>➗ Límites laterales en una función a trozos</h3>
+          <p class="anim-desc">Función a trozos con un salto en $x=1$: comparás el límite lateral
+          izquierdo con el derecho para ver por qué el límite no existe ahí.</p>
+        </div>
+        <canvas data-alto="340"></canvas>
+        <div class="controles">
+          <div class="control"><label for="lat-x">$x-1$</label><input type="range" id="lat-x" min="-1" max="1" step="0.01" value="-0.6"><span class="valor"></span></div>
+          <button type="button" data-accion="jugar">▶ Reproducir</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> $f(x)=x^2+1$ si $x\lt1$; &nbsp;$f(1)=3$;
+          &nbsp;$f(x)=-x+4$ si $x>1$. El slider mueve $x$ acercándose a $1$ desde la izquierda (offset
+          $\lt 0$) o desde la derecha (offset $>0$). El punto acento marca $(x,f(x))$ en vivo. Como
+          $\lim_{x\to1^-}f(x)=2\neq3=\lim_{x\to1^+}f(x)$, el límite <strong>no existe</strong> en $x=1$
+          aunque $f(1)=3$ sí esté definido: es una discontinuidad de salto. ▶ barre automáticamente ambos
+          acercamientos.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-limite-notable">
+          <h3>1. Límite trigonométrico con cambio de variable</h3>
+          <p>Calcular $\displaystyle\lim_{x\to0}\left(1+\frac{x}{\pi}\right)^{\frac{e}{5x}}$.</p>
+          <p><strong>Solución:</strong> con el cambio $t=\tfrac{x}{\pi}$ (así $x=\pi t$, y $t\to0$ cuando $x\to0$):</p>
+          <p>$$\left(1+\frac{x}{\pi}\right)^{\frac{e}{5x}}=\left(1+t\right)^{\frac{e}{5\pi t}}=\Big[(1+t)^{1/t}\Big]^{\frac{e}{5\pi}}$$</p>
+          <p>Como $(1+t)^{1/t}\to e$ (límite notable) cuando $t\to0$:</p>
+          <p>$$\lim_{x\to0}\left(1+\frac{x}{\pi}\right)^{\frac{e}{5x}}=e^{\frac{e}{5\pi}}$$</p>
+          <p style="color:var(--tinta-2)">Técnica típica de la pauta: llevar el límite a la forma notable
+            $(1+t)^{1/t}\to e$ mediante una sustitución que deje el exponente como $1/t$.</p>
+          <p class="fuente">Fuente: Pauta Control 3, 2025-2.</p>
+        </div>
+
+        <div class="ejemplo" id="ej-continuidad-tramos">
+          <h3>2. Función continua por tramos</h3>
+          <p>Dada $f(x)=\begin{cases}-x^2-6x-5 & x\lt -1\\ a & x=-1\\ g(x) & -1\lt x\lt 1\\ b & x=1\\ 2x+5 & x>1\end{cases}$,
+          hallar $a,b$ y $g$ lineal para que $f$ sea continua en $\mathbb R$.</p>
+          <p><strong>Solución:</strong> se igualan los límites laterales en cada empalme:</p>
+          <p>$$\lim_{x\to(-1)^-}(-x^2-6x-5)=0\ \Rightarrow\ a=0,\ g(-1)=0$$</p>
+          <p>$$\lim_{x\to1^+}(2x+5)=7\ \Rightarrow\ b=7,\ g(1)=7$$</p>
+          <p>Con $g(x)=mx+n$ lineal: $m=\dfrac{7-0}{1-(-1)}=\dfrac72$, $n=\dfrac72$, es decir $g(x)=\dfrac72(x+1)$.</p>
+          <p style="color:var(--tinta-2)">Estrategia general: en cada punto de empalme, límite lateral
+            izquierdo = límite lateral derecho = valor de la función ahí.</p>
+          <p class="fuente">Fuente: Pauta Control 4, 2025-2.</p>
+        </div>
+
+        <div class="ejemplo" id="ej-asintotas-racional">
+          <h3>3. Asíntotas de una función racional</h3>
+          <p>Hallar las asíntotas de $f(x)=\dfrac{3-3x^{2}}{x^{2}+x-2}$.</p>
+          <p><strong>Solución:</strong> el denominador se factoriza $x^2+x-2=(x-1)(x+2)$, se anula en $x=1$ y
+          $x=-2$; el numerador $3-3x^2=3(1-x)(1+x)$ no se anula en esos puntos, así que ambas son
+          <strong>asíntotas verticales</strong>: $x=1$ y $x=-2$.</p>
+          <p>Como $\deg(\text{num})=\deg(\text{den})=2$, la horizontal es
+          $$y=\frac{-3}{1}=-3$$</p>
+          <p style="color:var(--tinta-2)">Antes de declarar la vertical, se verificó que el numerador no se
+            anula en los mismos puntos que el denominador (si no, sería una discontinuidad evitable).</p>
+          <p class="fuente">Fuente: Clase 8, apunte del curso.</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-limite-factorizacion">
+          <summary><span class="resumen-ejercicio">1. Calcular $\displaystyle\lim_{x\to3}\frac{x^{2}-9}{x-3}$.</span> <span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <p>Es forma $\tfrac00$; se factoriza: $$\lim_{x\to3}\frac{(x-3)(x+3)}{x-3}=\lim_{x\to3}(x+3)=6$$</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-continuidad-k">
+          <summary><span class="resumen-ejercicio">2. Hallar $k$ para que $f(x)=\begin{cases}x^2+k & x\lt2\\ 3x-1 & x\ge2\end{cases}$ sea continua en $x=2$.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>Límite izquierdo: $\displaystyle\lim_{x\to2^-}(x^2+k)=4+k$. Valor/límite derecho: $3(2)-1=5$.</p>
+            <p>Igualando: $4+k=5\Rightarrow k=1$</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-asintota-oblicua">
+          <summary><span class="resumen-ejercicio">3. Hallar las asíntotas de $f(x)=\dfrac{x^2+1}{x-1}$.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>Vertical: el denominador se anula en $x=1$ y el numerador ahí vale $2\neq0$, así que $x=1$
+            es asíntota vertical.</p>
+            <p>Como $\deg(\text{num})=\deg(\text{den})+1$, hay oblicua. Dividiendo:
+            $$\frac{x^2+1}{x-1}=x+1+\frac{2}{x-1}$$</p>
+            <p>Entonces $m=1$, $n=1$: la asíntota oblicua es $y=x+1$.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 2 · DERIVADA Y REGLAS DE DERIVACIÓN -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u2">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">02</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Derivada y reglas de derivación</h2>
+          <p class="unidad-sub">De la razón de cambio instantánea a un catálogo de reglas mecánicas: producto, cociente, cadena y la derivada logarítmica.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-derivada-reglas">
+        <h3>Derivada y reglas</h3>
+        <ul>
+          <li>Derivable ⟹ continua (no al revés: $|x|$ es continua pero no derivable en $0$).</li>
+          <li>Tangente: $y-y_0=f'(x_0)(x-x_0)$; &nbsp; Normal: $y-y_0=-\dfrac{1}{f'(x_0)}(x-x_0)$.</li>
+          <li>$(c)'=0,\ (x^n)'=nx^{n-1},\ (cf)'=cf',\ (f\pm g)'=f'\pm g'$</li>
+          <li>Producto: $(fg)'=f'g+fg'$</li>
+          <li>Cociente: $\left(\dfrac fg\right)'=\dfrac{f'g-fg'}{g^2}$</li>
+          <li>$(e^x)'=e^x,\quad (a^x)'=a^x\ln a,\quad (\ln x)'=\tfrac1x$</li>
+          <li>$(\sin x)'=\cos x,\quad (\cos x)'=-\sin x,\quad (\tan x)'=\sec^2x$</li>
+          <li>$(\arcsin x)'=\tfrac{1}{\sqrt{1-x^2}},\quad (\arctan x)'=\tfrac1{1+x^2}$</li>
+          <li>Cadena: $\dfrac{dy}{dx}=\dfrac{dy}{du}\dfrac{du}{dx}$ (ver fórmula destacada).</li>
+          <li>Logarítmica ($f^g$): $\ln y=g\ln f\Rightarrow y'=y\left[g'\ln f+\dfrac{gf'}{f}\right]$
+            (no sirve la regla de potencia ni la exponencial solas).</li>
+          <li>Orden superior: $f',f'',f''',f^{(4)},\dots$ (Leibniz: $\tfrac{dy}{dx},\tfrac{d^2y}{dx^2},\dots$).</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Definición de derivada</span>$$f'(x)=\lim_{h\to0}\frac{f(x+h)-f(x)}{h}$$</div>
+        <div class="formula-card"><span class="etiqueta">Regla de la cadena</span>$$\big(f(g(x))\big)'=f'(g(x))\cdot g'(x)$$</div>
+      </div>
+
+      <div class="materia" id="tema-cadena">
+        <h3>Regla de la cadena</h3>
+        <ul>
+          <li>Para derivar una <strong>composición</strong> $f(g(x))$, se deriva "de afuera hacia adentro":
+            la derivada de la función externa evaluada en la interna, multiplicada por la derivada de la interna.</li>
+          <li>Notación de Leibniz: si $y=f(u)$ con $u=g(x)$, entonces
+            $\dfrac{dy}{dx}=\dfrac{dy}{du}\cdot\dfrac{du}{dx}$ (ver fórmula destacada).</li>
+          <li>Ejemplos directos: $(\sin(x^2))'=\cos(x^2)\cdot2x$; &nbsp;
+            $\big((3x+1)^5\big)'=5(3x+1)^4\cdot3=15(3x+1)^4$.</li>
+          <li>Es la herramienta detrás de la <a href="#u3">derivación implícita</a> (cada término con $y$ lleva
+            factor $y'$) y de las <a href="#u6">razones de cambio relacionadas</a> (derivar respecto a $t$).</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Notación de Leibniz</span>$$\frac{dy}{dx}=\frac{dy}{du}\cdot\frac{du}{dx}$$</div>
+      </div>
+
+      <div class="materia" id="tema-orden-superior">
+        <h3>Derivadas de orden superior</h3>
+        <ul>
+          <li>Derivar la derivada, tantas veces como se necesite: $f''$ es la derivada de $f'$, $f'''$ la de
+            $f''$, y así sucesivamente.</li>
+          <li>Notación: $f'(x),f''(x),f'''(x),f^{(4)}(x),\dots,f^{(n)}(x)$; en Leibniz
+            $\dfrac{dy}{dx},\dfrac{d^2y}{dx^2},\dfrac{d^3y}{dx^3},\dots$</li>
+          <li>Usos: concavidad y puntos de inflexión (ver <a href="#u5">Unidad 5</a>), criterio de la 2ª
+            derivada para máximos/mínimos (ver <a href="#u6">Unidad 6</a>), y en física, si $s(t)$ es posición,
+            $s'(t)$ es velocidad y $s''(t)$ es aceleración.</li>
+          <li>También sirven para verificar si una función es solución de una ecuación diferencial (ver
+            ejemplo abajo).</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Notación de orden $n$</span>$$f^{(n)}(x)=\left(f^{(n-1)}\right)'(x)$$</div>
+      </div>
+
+      <div class="animacion" id="anim-secante">
+        <div class="anim-cabecera">
+          <h3>📐 Recta secante → recta tangente</h3>
+          <p class="anim-desc">Comparás la recta secante de $f(x)=0{,}2x^3-x+3$ entre $x_0$ y $x_0+h$
+          con su recta tangente en $x_0$, y mirás cómo el cociente incremental se acerca a la derivada.</p>
+        </div>
+        <canvas data-alto="360"></canvas>
+        <div class="controles">
+          <div class="control"><label for="sec-x0">$x_0$</label><input type="range" id="sec-x0" min="-2.5" max="2.5" step="0.1" value="0.5"><span class="valor"></span></div>
+          <div class="control"><label for="sec-h">$h$</label><input type="range" id="sec-h" min="-3" max="3" step="0.05" value="1.8"><span class="valor"></span></div>
+          <button type="button" data-accion="jugar">▶ Reproducir</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> la secante (violeta, punteada) pasa por
+          $(x_0,f(x_0))$ y $(x_0+h,f(x_0+h))$; su pendiente es el <strong>cociente incremental</strong>
+          $\frac{f(x_0+h)-f(x_0)}{h}$. La tangente (verde, sólida) tiene pendiente $f'(x_0)$. Achicá $|h|$
+          con el slider (o dale a ▶) y observá cómo el cociente incremental converge a $f'(x_0)$: esa es
+          exactamente la definición de derivada.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-tangente-cortes">
+          <h3>4. Recta tangente e intersecciones con los ejes</h3>
+          <p>¿En qué puntos la tangente a $y=2x^2-8x+1$ en $x=1$ interseca a los ejes?</p>
+          <p><strong>Solución:</strong> $y'=4x-8\Rightarrow y'(1)=-4=m$, &nbsp; $y(1)=-5$.</p>
+          <p>Tangente: $y-(-5)=-4(x-1)\ \Rightarrow\ y=-4x-1$</p>
+          <p>Con $y=0$: $x=-\tfrac14$ (corte en $x$); con $x=0$: $y=-1$ (corte en $y$).</p>
+          <p style="color:var(--tinta-2)">Método: derivar $f$ en general y <strong>luego</strong> evaluar en
+            $x_0$ (no al revés), armar la tangente, y recién ahí buscar los cortes.</p>
+          <p class="fuente">Fuente: Pauta Control 5, 2025-2.</p>
+        </div>
+
+        <div class="ejemplo" id="ej-cadena-composicion">
+          <h3>5. Regla de la cadena con composición de funciones</h3>
+          <p>Con $g(x)=\sin x$ y $h(x)=2\sqrt{x}$, hallar $(g\circ h)'(x)$.</p>
+          <p><strong>Solución:</strong> $(g\circ h)(x)=g(h(x))=\sin(2\sqrt{x})$. Derivando con la regla de la
+            cadena:</p>
+          <p>$$(g\circ h)'(x)=\cos(2\sqrt{x})\cdot(2\sqrt{x})'=\cos(2\sqrt{x})\cdot\frac{1}{\sqrt{x}}=\frac{\cos(2\sqrt{x})}{\sqrt{x}}$$</p>
+          <p style="color:var(--tinta-2)">La derivada externa ($\cos$) se evalúa en la función interna
+            ($2\sqrt x$) sin tocarla, y se multiplica por la derivada de la interna.</p>
+          <p class="fuente">Fuente: Pauta Control 5, 2025-2.</p>
+        </div>
+
+        <div class="ejemplo" id="ej-orden-superior-derivada">
+          <h3>6. Segunda derivada para verificar una ecuación diferencial</h3>
+          <p>Sea $y=\ln\sqrt[4]{x^{2}+1}$. Demostrar que $(x^{2}+1)y''+xy'-\dfrac{y'}{x}=0$.</p>
+          <p><strong>Solución:</strong> como $y=\tfrac14\ln(x^2+1)$, la primera derivada (regla de la cadena)
+            es:</p>
+          <p>$$y'=\frac{x}{2(x^{2}+1)}$$</p>
+          <p>Derivando de nuevo (regla del cociente):</p>
+          <p>$$y''=\frac{1-x^{2}}{2(x^{2}+1)^{2}}$$</p>
+          <p>Reemplazando en la ecuación:</p>
+          <p>$$(x^{2}+1)y''+xy'-\frac{y'}{x}=\frac{1-x^{2}}{2(x^{2}+1)}+\frac{x^{2}}{2(x^{2}+1)}-\frac{1}{2(x^{2}+1)}=\frac{(1-x^2)+x^2-1}{2(x^2+1)}=0\ \checkmark$$</p>
+          <p style="color:var(--tinta-2)">Cada término se llevó al mismo denominador $2(x^2+1)$; al sumar los
+            numeradores se cancelan y queda $0$.</p>
+          <p class="fuente">Fuente: Pauta Certamen 3, 2025-1.</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-tangente-normal">
+          <summary><span class="resumen-ejercicio">4. Para $f(x)=x^2-4x+3$, hallar las rectas tangente y normal en $x=0$.</span> <span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <p>$f(0)=3$; &nbsp; $f'(x)=2x-4\Rightarrow f'(0)=-4$</p>
+            <p>Tangente: $y-3=-4(x-0)\Rightarrow y=-4x+3$</p>
+            <p>Normal: pendiente $=-\dfrac{1}{f'(0)}=\dfrac14$, &nbsp; $y-3=\dfrac14(x-0)\Rightarrow y=\dfrac{x}{4}+3$</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-cadena-raiz">
+          <summary>5. <span class="resumen-ejercicio">Calcular la derivada de $y=\sqrt{x^{3}+1}$.</span> <span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <p>Escribiendo $y=(x^3+1)^{1/2}$ y aplicando la regla de la cadena:</p>
+            <p>$$y'=\frac12(x^3+1)^{-1/2}\cdot3x^2=\frac{3x^2}{2\sqrt{x^3+1}}$$</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-orden-superior-inflexion">
+          <summary>6. <span class="resumen-ejercicio">Hallar los puntos de inflexión de $f(x)=x^{4}-6x^{2}+1$ usando la segunda derivada.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>$f'(x)=4x^{3}-12x$, &nbsp; $f''(x)=12x^{2}-12=12(x^{2}-1)$</p>
+            <p>$f''(x)=0\Rightarrow x=\pm1$. Como $f''\lt0$ en $(-1,1)$ y $f''>0$ fuera de ese intervalo,
+              $f''$ <strong>cambia de signo</strong> en ambos puntos: hay inflexión en $x=-1$ y $x=1$.</p>
+            <p>$f(\pm1)=1-6+1=-4$, así que los puntos de inflexión son $(-1,-4)$ y $(1,-4)$.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 3 · DERIVACIÓN IMPLÍCITA -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u3">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">03</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Derivación implícita</h2>
+          <p class="unidad-sub">Cuando $y$ no está despejada: derivar igual respecto a $x$, tratando a $y$ como función de $x$, y despejar $y'$ al final.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-implicita">
+        <h3>Derivación implícita</h3>
+        <ul>
+          <li>1. Derivar <strong>ambos lados</strong> respecto a $x$.</li>
+          <li>2. Cada término con $y$ lleva factor $y'$ (regla de la cadena, $y=y(x)$).</li>
+          <li>3. <strong>Agrupar</strong> los términos con $y'$.</li>
+          <li>4. <strong>Factorizar</strong> $y'$ y despejar.</li>
+          <li>Errores típicos: olvidar el $y'$ al derivar un término con $y$; al evaluar en $(x_0,y_0)$
+            sustituir <strong>ambas</strong> coordenadas.</li>
+          <li>Base de las razones de cambio relacionadas (derivar respecto a $t$; ver <a href="#u6">Unidad 6</a>).</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Ejemplo canónico</span>$$x^2+y^2=1\ \Rightarrow\ 2x+2yy'=0\ \Rightarrow\ y'=-\frac{x}{y}$$</div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-implicita-log">
+          <h3>7. Derivación implícita con exponencial y logaritmo</h3>
+          <p>Determinar $y'$ si $e^{2y}\sqrt{x}=\cos x\cdot\ln(y^{3})$.</p>
+          <p><strong>Solución</strong> — derivando ambos lados respecto a $x$:</p>
+          <p>$$2y'e^{2y}\sqrt{x}+\frac{e^{2y}}{2\sqrt{x}}=(-\sin x)\ln(y^{3})+\cos x\cdot\frac{3y'}{y}$$</p>
+          <p>Agrupando los términos con $y'$ y factorizando:</p>
+          <p>$$y'\left[2e^{2y}\sqrt{x}-\frac{3\cos x}{y}\right]=(-\sin x)\ln(y^{3})-\frac{e^{2y}}{2\sqrt{x}}$$</p>
+          <p>$$y'=\frac{(-\sin x)\ln(y^{3})-\dfrac{e^{2y}}{2\sqrt{x}}}{2e^{2y}\sqrt{x}-\dfrac{3\cos x}{y}}$$</p>
+          <p style="color:var(--tinta-2)">Cada término con $y$ se derivó multiplicando por $y'$ (regla de la
+            cadena); recién al final se agruparon y factorizaron los términos con $y'$.</p>
+          <p class="fuente">Fuente: Pauta Control 6, 2025-2.</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-implicita-punto">
+          <summary><span class="resumen-ejercicio">7. Para $x^2+xy+y^2=7$, hallar $y'$ en el punto $(1,2)$.</span> <span class="dificultad dificil">difícil</span></summary>
+          <div class="solucion">
+            <p>Verificación: $1^2+1(2)+2^2=1+2+4=7$ ✓, el punto está en la curva.</p>
+            <p>Derivando implícitamente: $2x+y+xy'+2yy'=0\Rightarrow y'(x+2y)=-(2x+y)$</p>
+            <p>$$y'=-\frac{2x+y}{x+2y}$$</p>
+            <p>En $(1,2)$: $y'=-\dfrac{2(1)+2}{1+2(2)}=-\dfrac{4}{5}$</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 4 · REGLA DE L'HÔPITAL -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u4">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">04</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Regla de L'Hôpital</h2>
+          <p class="unidad-sub">Una herramienta puntual para las indeterminaciones $\tfrac00$ y $\tfrac\infty\infty$, apoyada en la derivada ya construida en la unidad anterior.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-lhopital">
+        <h3>Regla de L'Hôpital</h3>
+        <ul>
+          <li>Se aplica cuando $\displaystyle\lim_{x\to a}\frac{f(x)}{g(x)}$ da $\tfrac00$ o
+            $\tfrac\infty\infty$ (ver fórmula destacada; se puede aplicar repetidamente).</li>
+          <li><strong>Solo</strong> ante $\tfrac00$ o $\tfrac\infty\infty$; $0\cdot\infty$, $\infty-\infty$
+            se transforman primero a cociente.</li>
+          <li>Formas $0^0,\infty^0,1^{\infty}$: aplicar $\ln$ a la expresión (usar $\ln a^n=n\ln a$)
+            antes de derivar.</li>
+          <li><strong>Reverificar la indeterminación en cada paso</strong>: si al derivar deja de ser
+            $\tfrac00$ o $\tfrac\infty\infty$, no se puede reaplicar.</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Regla de L'Hôpital</span>$$\lim_{x\to a}\frac{f(x)}{g(x)}=\lim_{x\to a}\frac{f'(x)}{g'(x)}$$</div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-lhopital-oscilante">
+          <h3>8. L'Hôpital con función oscilante</h3>
+          <p>Calcular $\displaystyle\lim_{x\to0}\frac{x^{3}\cos\left(\tfrac1x\right)}{\sin x}$.</p>
+          <p><strong>Solución:</strong> es forma $\tfrac00$ (el numerador está acotado por $x^3\to0$).
+          Aplicando L'Hôpital:</p>
+          <p>$$\lim_{x\to0}\frac{3x^{2}\cos\left(\tfrac1x\right)+x\sin\left(\tfrac1x\right)}{\cos x}=\frac{0+0}{1}=0$$</p>
+          <p style="color:var(--tinta-2)">Aunque $x^3\cos(1/x)$ oscila, tiende a $0$ por estar acotada por
+            $x^3$; el numerador derivado también tiende a $0$ (acotado por $3x^2+x$), así que se evalúa
+            directamente sin volver a aplicar la regla.</p>
+          <p class="fuente">Fuente: Pauta Control 6, 2025-2.</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-lhopital-0-0">
+          <summary><span class="resumen-ejercicio">8. Calcular $\displaystyle\lim_{x\to0^+}x^{x}$ (forma $0^0$).</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>Sea $y=x^x$. Aplicando $\ln$: $\ln y=x\ln x$.</p>
+            <p>$$\lim_{x\to0^+}x\ln x=\lim_{x\to0^+}\frac{\ln x}{1/x}\overset{-\infty/\infty}{=}
+            \lim_{x\to0^+}\frac{1/x}{-1/x^2}=\lim_{x\to0^+}(-x)=0$$</p>
+            <p>Entonces $\ln y\to0$, así que $y=x^x\to e^{0}=1$.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 5 · TEOREMAS DE FUNCIONES DERIVABLES -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u5">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">05</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Teoremas de funciones derivables</h2>
+          <p class="unidad-sub">Fermat, Rolle y el valor medio: la teoría que respalda por qué la derivada permite estudiar crecimiento y concavidad.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-teoremas">
+        <h3>Teoremas de funciones derivables</h3>
+        <ul>
+          <li><strong>Fermat:</strong> máx./mín. relativo derivable en $c$ ⟹ $f'(c)=0$ (recíproco falso: $x^3$ en $0$).</li>
+          <li><strong>Rolle:</strong> $f$ continua en $[a,b]$, derivable en $(a,b)$, $f(a)=f(b)$ ⟹ existe
+            $c\in(a,b)$ con $f'(c)=0$.</li>
+          <li><strong>Valor medio (Lagrange):</strong> existe $c\in(a,b)$ con la igualdad de la fórmula
+            destacada (Rolle es el caso $f(a)=f(b)$).</li>
+          <li><strong>Weierstrass:</strong> $f$ continua en $[a,b]$ ⟹ alcanza máx./mín. absolutos
+            (candidatos: puntos críticos interiores + extremos $a,b$).</li>
+          <li>$f'>0\Rightarrow$ creciente; $f'\lt0\Rightarrow$ decreciente.</li>
+          <li>$f''>0\Rightarrow$ convexa; $f''\lt0\Rightarrow$ cóncava; cambio de signo de $f''\Rightarrow$ inflexión.</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Teorema del valor medio</span>$$f'(c)=\frac{f(b)-f(a)}{b-a}$$</div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-rolle">
+          <summary><span class="resumen-ejercicio">9. Verificar las hipótesis de Rolle para $f(x)=x^2-4x+3$ en $[1,3]$ y hallar $c$.</span> <span class="dificultad dificil">difícil</span></summary>
+          <div class="solucion">
+            <p>$f$ es polinomio: continua en $[1,3]$ y derivable en $(1,3)$. Además $f(1)=1-4+3=0$ y
+            $f(3)=9-12+3=0$, así que $f(1)=f(3)$: se cumplen las hipótesis de Rolle.</p>
+            <p>$f'(x)=2x-4=0\Rightarrow x=2$, y $2\in(1,3)$. Luego $c=2$.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-valor-medio">
+          <summary><span class="resumen-ejercicio">10. Hallar el $c$ del teorema del valor medio para $f(x)=x^3$ en $[0,2]$.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>$$f'(c)=\frac{f(2)-f(0)}{2-0}=\frac{8-0}{2}=4$$</p>
+            <p>$f'(x)=3x^2=4\Rightarrow x^2=\dfrac43\Rightarrow x=\dfrac{2}{\sqrt3}\approx1{,}155$</p>
+            <p>Como $\dfrac{2}{\sqrt3}\in(0,2)$, $c=\dfrac{2\sqrt3}{3}\approx1{,}155$.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 6 · RAZÓN DE CAMBIO, DIFERENCIAL Y OPTIMIZACIÓN -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u6">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">06</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Razón de cambio, diferencial y optimización</h2>
+          <p class="unidad-sub">El cierre del curso: usar la derivada para medir cuánto cambia algo, aproximar valores sin calculadora, y encontrar máximos y mínimos con sentido (analizando y trazando la curva).</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-razon-cambio">
+        <h3>Razón de cambio y diferencial</h3>
+        <ul>
+          <li>$\dfrac{dy}{dx}$ mide cuánto cambia $y$ por unidad de $x$ (si $x=t$: velocidad $=\tfrac{ds}{dt}$).</li>
+          <li><strong>Variaciones relacionadas:</strong> 1. asignar variables, 2. ecuación que las
+            relacione, 3. derivar implícitamente respecto a $t$, 4. sustituir valores numéricos
+            <strong>al final</strong> (no antes de derivar).</li>
+          <li><strong>Diferencial:</strong> $dy=f'(x)\,dx$ aproxima $\Delta y=f(x+\Delta x)-f(x)$ si
+            $\Delta x$ es pequeño (ver fórmula destacada).</li>
+          <li>Sirve para estimar valores sin calculadora y para propagar errores de medición.</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Aproximación lineal</span>$$f(x+\Delta x)\approx f(x)+f'(x)\Delta x$$</div>
+      </div>
+
+      <div class="materia" id="tema-optimizacion">
+        <h3>Optimización y análisis de funciones</h3>
+        <ul>
+          <li>Puntos críticos: $f'(x)=0$ o $f'$ no existe (ver fórmula destacada).</li>
+          <li>Criterio 1ª derivada: $f'$ pasa de $+$ a $-$ en $c$ ⟹ máximo local; de $-$ a $+$ ⟹ mínimo local.</li>
+          <li>Criterio 2ª derivada: $f'(c)=0$ y $f''(c)\lt0\Rightarrow$ máximo; $f''(c)>0\Rightarrow$ mínimo.</li>
+          <li>Optimizar con enunciado: 1. expresar la magnitud como función, 2. usar restricciones para
+            dejarla en <strong>una variable</strong>, 3. derivar e igualar a 0, 4. verificar máx/mín y
+            responder en contexto.</li>
+          <li>Estudio completo: dominio → cortes con ejes → asíntotas → crecimiento ($f'$) → concavidad
+            ($f''$) → graficar.</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Punto crítico</span>$$f'(x)=0\quad\text{(o }f'\text{ no existe)}$$</div>
+      </div>
+
+      <div class="animacion" id="anim-cubica">
+        <div class="anim-cabecera">
+          <h3>📊 Análisis de una función cúbica</h3>
+          <p class="anim-desc">Función cúbica con 4 coeficientes ajustables: mirá cómo se mueven los
+          puntos críticos y el punto de inflexión al cambiar $a,b,c,d$.</p>
+        </div>
+        <canvas data-alto="360"></canvas>
+        <div class="controles">
+          <div class="control"><label for="cub-a">$a$</label><input type="range" id="cub-a" min="-1.5" max="1.5" step="0.05" value="0.3"><span class="valor"></span></div>
+          <div class="control"><label for="cub-b">$b$</label><input type="range" id="cub-b" min="-3" max="3" step="0.1" value="-1"><span class="valor"></span></div>
+          <div class="control"><label for="cub-c">$c$</label><input type="range" id="cub-c" min="-4" max="4" step="0.1" value="0"><span class="valor"></span></div>
+          <div class="control"><label for="cub-d">$d$</label><input type="range" id="cub-d" min="-3" max="3" step="0.1" value="1"><span class="valor"></span></div>
+          <button type="button" data-accion="jugar">▶ Reproducir</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> $f(x)=ax^3+bx^2+cx+d$ (acento, sólida) y
+          $f'(x)=3ax^2+2bx+c$ (azul, punteada, escala propia). Los puntos críticos (círculos verdes, donde
+          $f'(x)=0$) se resuelven con la fórmula cuadrática; el punto de inflexión (rombo violeta, donde
+          $f''(x)=6ax+2b=0$) marca el cambio de concavidad. ▶ hace variar $a$ automáticamente para ver
+          cómo nace/desaparece un par de puntos críticos.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="animacion" id="anim-caja">
+        <div class="anim-cabecera">
+          <h3>📦 Optimización: caja de volumen máximo</h3>
+          <p class="anim-desc">Lámina cuadrada de la que se recortan esquinas para armar una caja sin
+          tapa: buscá el $x$ que maximiza el volumen.</p>
+        </div>
+        <canvas data-alto="380"></canvas>
+        <div class="controles">
+          <div class="control"><label for="caja-x">$x$ (recorte)</label><input type="range" id="caja-x" min="0.2" max="5.8" step="0.1" value="1"><span class="valor"></span></div>
+          <button type="button" data-accion="jugar">▶ Reproducir</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> lámina cuadrada de lado $L=12$; se
+          recortan cuadrados de lado $x$ en las 4 esquinas (izquierda) y se dobla para formar una caja sin
+          tapa de volumen $V(x)=x(L-2x)^2$ (derecha, curva y valor en vivo). Derivando:
+          $V'(x)=12x^2-8Lx+L^2=0\Rightarrow x=\tfrac{L}{6}=2$ (el otro valor, $x=L/2$, anula el volumen).
+          Mové el slider hasta $x=2$ y comprobá que coincide con el máximo marcado en la curva.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-razon-globo">
+          <h3>9. Razón de cambio: globo esférico</h3>
+          <p>Un globo esférico se infla a razón $\dfrac{dV}{dt}=500\ \text{cm}^3/\text{s}$. ¿A qué velocidad
+          aumenta el radio cuando $r=40\text{ cm}$?</p>
+          <p><strong>Solución:</strong> con $V=\tfrac43\pi r^{3}$, derivando implícitamente respecto a $t$:</p>
+          <p>$$\frac{dV}{dt}=4\pi r^{2}\frac{dr}{dt}\ \Rightarrow\ 500=4\pi(40)^{2}\frac{dr}{dt}\ \Rightarrow\
+          \frac{dr}{dt}=\frac{500}{6400\pi}\approx0{,}0249\ \text{cm/s}$$</p>
+          <p style="color:var(--tinta-2)">Se derivó la ecuación general primero y los valores numéricos
+            ($r=40$, $dV/dt=500$) se sustituyeron recién al final.</p>
+          <p class="fuente">Fuente: Pauta Control 6, 2025-2.</p>
+        </div>
+
+        <div class="ejemplo" id="ej-optimizacion-cociente">
+          <h3>10. Máximos, mínimos e inflexión de $f(x)=x^3/(x-1)$</h3>
+          <p>Analizar los extremos e inflexión de $f(x)=\dfrac{x^3}{x-1}$.</p>
+          <p><strong>Solución:</strong> $$f'(x)=\frac{2x^3-3x^2}{(x-1)^2}=0\ \Rightarrow\ x=0\ \vee\ x=\tfrac32$$</p>
+          <p>$$f''(x)=\frac{2x(x^2-3x+3)}{(x-1)^3}$$</p>
+          <p>$f''(0)=0$ (inflexión en $x=0$, cambia de signo); $f''(\tfrac32)>0$ (mínimo local en $x=\tfrac32$,
+          pues $f(0)\lt f(\tfrac32)$ y la tabla de signos de $f'$ da decreciente en $(-\infty,\tfrac32)$
+          (excluyendo $x=1\notin\operatorname{Dom}f$) y creciente en $(\tfrac32,\infty)$).</p>
+          <p style="color:var(--tinta-2)">Procedimiento estándar: puntos críticos con $f'=0$, clasificar con
+            el criterio de la 2ª derivada, y confirmar con la tabla de signos de $f'$.</p>
+          <p class="fuente">Fuente: Pauta Certamen 3, 2025-1.</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-escalera">
+          <summary><span class="resumen-ejercicio">11. Una escalera de $5\text{ m}$ está apoyada en una pared; la base se aleja del muro a $1\text{ m/s}$. ¿A qué velocidad baja la parte superior cuando la base está a $3\text{ m}$ del muro?</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>Sea $x$ la distancia de la base al muro e $y$ la altura sobre la pared: $x^2+y^2=25$ (Pitágoras, escalera fija).</p>
+            <p>Derivando implícitamente respecto a $t$: $2x\dfrac{dx}{dt}+2y\dfrac{dy}{dt}=0\Rightarrow
+            \dfrac{dy}{dt}=-\dfrac{x}{y}\dfrac{dx}{dt}$</p>
+            <p>Cuando $x=3$: $y=\sqrt{25-9}=4$ (triángulo 3-4-5). Con $dx/dt=1\text{ m/s}$:</p>
+            <p>$$\frac{dy}{dt}=-\frac{3}{4}(1)=-0{,}75\text{ m/s}$$</p>
+            <p style="color:var(--tinta-2)">El signo negativo indica que $y$ <strong>disminuye</strong>: la
+              parte superior baja a $0{,}75\text{ m/s}$.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-cerca-electrica">
+          <summary><span class="resumen-ejercicio">12. Terreno rectangular junto a un río: con $10\text{ m}$ de cable para cercar los otros tres lados, maximizar el área.</span> <span class="dificultad dificil">difícil</span></summary>
+          <div class="solucion">
+            <p>Sea $x$ el lado paralelo al río e $y$ los otros dos lados: $x+2y=10\Rightarrow x=10-2y$.</p>
+            <p>Área: $A(y)=y(10-2y)=10y-2y^2$</p>
+            <p>$A'(y)=10-4y=0\Rightarrow y=2{,}5$, &nbsp; $x=10-2(2{,}5)=5$</p>
+            <p>$A''(y)=-4\lt0$ ⟹ es un máximo.</p>
+            <p>$$A_{\max}=2{,}5\times5=12{,}5\text{ m}^2$$</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-diferencial-raiz">
+          <summary><span class="resumen-ejercicio">13. Aproximar $\sqrt[3]{8{,}06}$ usando la diferencial.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>Con $f(x)=\sqrt[3]{x}=x^{1/3}$, base $x=8$ (donde $f(8)=2$ es exacto), $dx=0{,}06$:</p>
+            <p>$$f'(x)=\frac{1}{3}x^{-2/3}\ \Rightarrow\ f'(8)=\frac{1}{3}\cdot\frac{1}{4}=\frac{1}{12}$$</p>
+            <p>$$dy=f'(8)\,dx=\frac{1}{12}(0{,}06)=0{,}005$$</p>
+            <p>$$\sqrt[3]{8{,}06}\approx f(8)+dy=2+0{,}005=2{,}005$$</p>
+            <p style="color:var(--tinta-2)">Valor real $\approx2{,}004996\ldots$: el error de la aproximación
+              lineal es mínimo porque $dx$ es pequeño.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function () {
+
+  function dibujarPunto(ctx, x, y, r, color) {
+    ctx.save();
+    ctx.fillStyle = color;
+    ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill();
+    ctx.restore();
+  }
+
+  function dibujarPuntoHueco(ctx, x, y, r, color, fondo) {
+    ctx.save();
+    ctx.fillStyle = fondo;
+    ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill();
+    ctx.lineWidth = 2.2; ctx.strokeStyle = color;
+    ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.stroke();
+    ctx.restore();
+  }
+
+  /* ================= 1. Secante -> tangente ================= */
+  Anim.registrar("anim-secante", function (sim) {
+    function f(x) { return 0.2 * x * x * x - x + 3; }
+    function fPrime(x) { return 0.6 * x * x - 1; }
+
+    var manualX0 = 0.5, manualH = 1.8;
+
+    function limitarH(h) {
+      if (Math.abs(h) < 0.05) h = h >= 0 ? 0.05 : -0.05;
+      return h;
+    }
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var corriendo = sim.estaCorriendo();
+      var x0 = manualX0;
+      var hVal;
+      if (corriendo) {
+        var periodo = 3.2;
+        var signo = manualH >= 0 ? 1 : -1;
+        var tMod = t % periodo;
+        var maxAbs = Math.max(Math.abs(manualH), 1.5);
+        hVal = signo * (maxAbs - (maxAbs - 0.05) * (tMod / periodo));
+      } else {
+        hVal = manualH;
+      }
+      hVal = limitarH(hVal);
+
+      var xMin = -4, xMax = 4;
+      var yMin = 0, yMax = 8;
+      var m = Anim.mapa(w, h, { xMin: xMin, xMax: xMax, yMin: yMin, yMax: yMax });
+      Anim.ejes(ctx, m, w, h);
+
+      var acento = colorVar("--acento"), s1 = colorVar("--s1"), s3 = colorVar("--s3"), tinta = colorVar("--tinta");
+
+      ctx.save();
+      ctx.strokeStyle = acento; ctx.lineWidth = 2.2;
+      ctx.beginPath();
+      var n = 100;
+      for (var i = 0; i <= n; i++) {
+        var xx = xMin + (xMax - xMin) * i / n;
+        var yy = f(xx);
+        var px = m.x(xx), py = m.y(yy);
+        if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+      }
+      ctx.stroke();
+      ctx.restore();
+
+      var x1 = x0 + hVal;
+      var y0v = f(x0), y1v = f(x1);
+      var cociente = (y1v - y0v) / hVal;
+      var pend = fPrime(x0);
+
+      // secante (extendida a todo el ancho)
+      ctx.save();
+      ctx.strokeStyle = s3; ctx.setLineDash([7, 5]); ctx.lineWidth = 2;
+      ctx.beginPath();
+      var xa = xMin, ya = y0v + cociente * (xa - x0);
+      var xb = xMax, yb = y0v + cociente * (xb - x0);
+      ctx.moveTo(m.x(xa), m.y(ya)); ctx.lineTo(m.x(xb), m.y(yb));
+      ctx.stroke();
+      ctx.restore();
+
+      // tangente (extendida a todo el ancho)
+      ctx.save();
+      ctx.strokeStyle = s1; ctx.lineWidth = 2.2;
+      ctx.beginPath();
+      var xc = xMin, yc = y0v + pend * (xc - x0);
+      var xd = xMax, yd = y0v + pend * (xd - x0);
+      ctx.moveTo(m.x(xc), m.y(yc)); ctx.lineTo(m.x(xd), m.y(yd));
+      ctx.stroke();
+      ctx.restore();
+
+      dibujarPunto(ctx, m.x(x0), m.y(y0v), 6, acento);
+      dibujarPunto(ctx, m.x(x1), m.y(y1v), 6, s3);
+
+      ctx.save();
+      ctx.font = "13px Consolas, monospace"; ctx.fillStyle = tinta;
+      ctx.fillText("x₀ = " + x0.toFixed(2) + "   h = " + hVal.toFixed(2) + "   x₀+h = " + x1.toFixed(2), 10, 18);
+      ctx.fillStyle = s3;
+      ctx.fillText("cociente incremental = " + cociente.toFixed(3), 10, 36);
+      ctx.fillStyle = s1;
+      ctx.fillText("f'(x₀) = " + pend.toFixed(3), 10, 54);
+      ctx.fillStyle = tinta;
+      ctx.fillText("|diferencia| = " + Math.abs(cociente - pend).toFixed(4), 10, 72);
+      ctx.restore();
+    });
+
+    sim.slider("sec-x0", function (v) { manualX0 = v; sim.redibujar(); }, function (v) { return v.toFixed(2); });
+    sim.slider("sec-h", function (v) { manualH = v; sim.redibujar(); }, function (v) { return v.toFixed(2); });
+    sim.botones();
+  });
+
+  /* ================= 2. Cúbica parametrizable ================= */
+  Anim.registrar("anim-cubica", function (sim) {
+    var manualA = 0.3, manualB = -1, manualC = 0, manualD = 1;
+
+    function calcular(a, b, c, d) {
+      function f(x) { return a * x * x * x + b * x * x + c * x + d; }
+      function fp(x) { return 3 * a * x * x + 2 * b * x + c; }
+      function fpp(x) { return 6 * a * x + 2 * b; }
+
+      var criticos = [];
+      if (Math.abs(a) < 1e-4) {
+        if (Math.abs(b) > 1e-4) criticos.push(-c / (2 * b));
+      } else {
+        var disc = 4 * b * b - 12 * a * c;
+        if (disc >= 0) {
+          var raiz = Math.sqrt(disc);
+          criticos.push((-2 * b + raiz) / (6 * a));
+          criticos.push((-2 * b - raiz) / (6 * a));
+        }
+      }
+      var inflexion = Math.abs(a) > 1e-4 ? (-b / (3 * a)) : null;
+
+      return { f: f, fp: fp, fpp: fpp, criticos: criticos, inflexion: inflexion };
+    }
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var corriendo = sim.estaCorriendo();
+      var a = manualA;
+      if (corriendo) {
+        a = manualA + 0.9 * Math.sin(t * 0.6);
+        if (Math.abs(a) < 0.05) a = a >= 0 ? 0.05 : -0.05;
+      }
+      var b = manualB, c = manualC, d = manualD;
+      var e = calcular(a, b, c, d);
+
+      var xMin = -4, xMax = 4;
+      var xs = [], ysF = [], ysG = [];
+      var n = 120;
+      for (var i = 0; i <= n; i++) {
+        var xx = xMin + (xMax - xMin) * i / n;
+        xs.push(xx); ysF.push(e.f(xx)); ysG.push(e.fp(xx));
+      }
+      var minF = Math.min.apply(null, ysF), maxF = Math.max.apply(null, ysF);
+      var minG = Math.min.apply(null, ysG), maxG = Math.max.apply(null, ysG);
+      if (maxF - minF < 1e-3) { maxF += 1; minF -= 1; }
+      if (maxG - minG < 1e-3) { maxG += 1; minG -= 1; }
+
+      function xPix(x) { return (x - xMin) / (xMax - xMin) * w; }
+      var padTop = 30, padBottom = 30;
+      function yPixF(v) { return h - padBottom - (v - minF) / (maxF - minF) * (h - padTop - padBottom); }
+      function yPixG(v) { return h - padBottom - (v - minG) / (maxG - minG) * (h - padTop - padBottom); }
+
+      var tinta2 = colorVar("--tinta-2");
+      ctx.save();
+      ctx.strokeStyle = tinta2; ctx.globalAlpha = 0.5; ctx.lineWidth = 1;
+      var ejeXpix = yPixF(0);
+      if (minF <= 0 && maxF >= 0) {
+        ctx.beginPath(); ctx.moveTo(0, ejeXpix); ctx.lineTo(w, ejeXpix); ctx.stroke();
+      }
+      ctx.restore();
+
+      var acento = colorVar("--acento"), s2 = colorVar("--s2"), s1 = colorVar("--s1"),
+          s3 = colorVar("--s3"), tinta = colorVar("--tinta"), panel = colorVar("--panel");
+
+      // f(x)
+      ctx.save();
+      ctx.strokeStyle = acento; ctx.lineWidth = 2.4;
+      ctx.beginPath();
+      for (i = 0; i <= n; i++) {
+        var px = xPix(xs[i]), py = yPixF(ysF[i]);
+        if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+      }
+      ctx.stroke();
+      ctx.restore();
+
+      // f'(x)
+      ctx.save();
+      ctx.strokeStyle = s2; ctx.setLineDash([6, 4]); ctx.lineWidth = 1.8;
+      ctx.beginPath();
+      for (i = 0; i <= n; i++) {
+        var px2 = xPix(xs[i]), py2 = yPixG(ysG[i]);
+        if (i === 0) ctx.moveTo(px2, py2); else ctx.lineTo(px2, py2);
+      }
+      ctx.stroke();
+      ctx.restore();
+
+      // puntos críticos
+      for (i = 0; i < e.criticos.length; i++) {
+        var xcr = e.criticos[i];
+        if (xcr >= xMin && xcr <= xMax) {
+          var ycr = e.f(xcr);
+          dibujarPuntoHueco(ctx, xPix(xcr), yPixF(ycr), 7, s1, panel);
+        }
+      }
+      // inflexión
+      if (e.inflexion !== null && e.inflexion >= xMin && e.inflexion <= xMax) {
+        var xi = e.inflexion, yi = e.f(xi);
+        ctx.save();
+        ctx.translate(xPix(xi), yPixF(yi));
+        ctx.rotate(Math.PI / 4);
+        ctx.fillStyle = s3;
+        ctx.fillRect(-6, -6, 12, 12);
+        ctx.restore();
+      }
+
+      ctx.save();
+      ctx.font = "12px Consolas, monospace"; ctx.fillStyle = tinta;
+      ctx.fillText("f(x)=" + a.toFixed(2) + "x³+" + b.toFixed(2) + "x²+" + c.toFixed(2) + "x+" + d.toFixed(2), 10, 16);
+      var txtCrit = e.criticos.length ? e.criticos.map(function (v) { return v.toFixed(2); }).join(", ") : "ninguno (real)";
+      ctx.fillStyle = s1;
+      ctx.fillText("puntos críticos x = " + txtCrit, 10, 34);
+      ctx.fillStyle = s3;
+      ctx.fillText("inflexión x = " + (e.inflexion !== null ? e.inflexion.toFixed(2) : "—"), 10, 52);
+      ctx.fillStyle = s2;
+      ctx.fillText("(línea punteada: f'(x), escala propia)", 10, h - 10);
+      ctx.restore();
+    });
+
+    sim.slider("cub-a", function (v) { manualA = v; sim.redibujar(); }, function (v) { return v.toFixed(2); });
+    sim.slider("cub-b", function (v) { manualB = v; sim.redibujar(); }, function (v) { return v.toFixed(2); });
+    sim.slider("cub-c", function (v) { manualC = v; sim.redibujar(); }, function (v) { return v.toFixed(2); });
+    sim.slider("cub-d", function (v) { manualD = v; sim.redibujar(); }, function (v) { return v.toFixed(2); });
+    sim.botones();
+  });
+
+  /* ================= 3. Límites laterales ================= */
+  Anim.registrar("anim-laterales", function (sim) {
+    var a = 1; // punto de salto
+    function fIzq(x) { return x * x + 1; }
+    function fDer(x) { return -x + 4; }
+    var limIzq = fIzq(a);   // 2
+    var limDer = fDer(a);   // 3
+    var valorEnA = 3;
+
+    var manualOffset = -0.6;
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var corriendo = sim.estaCorriendo();
+      var offset;
+      if (corriendo) {
+        var periodo = 4;
+        var tMod = t % periodo;
+        if (tMod < 2) {
+          offset = -1 + 0.98 * (tMod / 2);
+        } else {
+          offset = 1 - 0.98 * ((tMod - 2) / 2);
+        }
+      } else {
+        offset = manualOffset;
+      }
+      if (Math.abs(offset) < 0.01) offset = offset >= 0 ? 0.01 : -0.01;
+
+      var xMin = -1, xMax = 3, yMin = 0, yMax = 6;
+      var m = Anim.mapa(w, h, { xMin: xMin, xMax: xMax, yMin: yMin, yMax: yMax });
+      Anim.ejes(ctx, m, w, h);
+
+      var acento = colorVar("--acento"), s1 = colorVar("--s1"), s2 = colorVar("--s2"),
+          s3 = colorVar("--s3"), tinta = colorVar("--tinta"), panel = colorVar("--panel"), tinta2 = colorVar("--tinta-2");
+
+      // rama izquierda x < 1
+      ctx.save();
+      ctx.strokeStyle = s2; ctx.lineWidth = 2.2;
+      ctx.beginPath();
+      var n = 60;
+      for (var i = 0; i <= n; i++) {
+        var xx = xMin + (a - xMin) * i / n;
+        var px = m.x(xx), py = m.y(fIzq(xx));
+        if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+      }
+      ctx.stroke();
+      ctx.restore();
+
+      // rama derecha x > 1
+      ctx.save();
+      ctx.strokeStyle = s3; ctx.lineWidth = 2.2;
+      ctx.beginPath();
+      for (i = 0; i <= n; i++) {
+        xx = a + (xMax - a) * i / n;
+        px = m.x(xx); py = m.y(fDer(xx));
+        if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+      }
+      ctx.stroke();
+      ctx.restore();
+
+      // líneas de referencia horizontales
+      ctx.save();
+      ctx.setLineDash([5, 4]); ctx.lineWidth = 1.2;
+      ctx.strokeStyle = s2;
+      ctx.beginPath(); ctx.moveTo(0, m.y(limIzq)); ctx.lineTo(w, m.y(limIzq)); ctx.stroke();
+      ctx.strokeStyle = s3;
+      ctx.beginPath(); ctx.moveTo(0, m.y(limDer)); ctx.lineTo(w, m.y(limDer)); ctx.stroke();
+      ctx.strokeStyle = tinta2;
+      ctx.beginPath(); ctx.moveTo(m.x(a), 0); ctx.lineTo(m.x(a), h); ctx.stroke();
+      ctx.restore();
+
+      // círculo hueco en (1, 2): límite izquierdo no alcanzado
+      dibujarPuntoHueco(ctx, m.x(a), m.y(limIzq), 6, s2, panel);
+      // punto relleno en (1,3): f(1) definido, coincide con límite derecho
+      dibujarPunto(ctx, m.x(a), m.y(valorEnA), 6, s3);
+
+      // punto móvil
+      var xMovil = a + offset;
+      var yMovil = offset < 0 ? fIzq(xMovil) : fDer(xMovil);
+      dibujarPunto(ctx, m.x(xMovil), m.y(yMovil), 7, acento);
+
+      ctx.save();
+      ctx.font = "13px Consolas, monospace"; ctx.fillStyle = tinta;
+      ctx.fillText("x = " + xMovil.toFixed(3) + "   f(x) = " + yMovil.toFixed(3), 10, 18);
+      ctx.fillStyle = s2;
+      ctx.fillText("lím x→1⁻ f(x) = " + limIzq.toFixed(0), 10, 36);
+      ctx.fillStyle = s3;
+      ctx.fillText("lím x→1⁺ f(x) = " + limDer.toFixed(0) + "  (= f(1))", 10, 54);
+      ctx.fillStyle = tinta;
+      ctx.fillText("límites laterales distintos ⇒ el límite en x=1 NO existe", 10, h - 10);
+      ctx.restore();
+    });
+
+    sim.slider("lat-x", function (v) { manualOffset = v; sim.redibujar(); }, function (v) { return (1 + v).toFixed(2); });
+    sim.botones();
+  });
+
+  /* ================= 4. Caja de volumen máximo ================= */
+  Anim.registrar("anim-caja", function (sim) {
+    var L = 12;
+    function V(x) { return x * (L - 2 * x) * (L - 2 * x); }
+    var xOptimo = L / 6;
+    var vMax = V(xOptimo);
+
+    var manualX = 1;
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var corriendo = sim.estaCorriendo();
+      var x;
+      if (corriendo) {
+        x = 3 + 2.8 * Math.sin(t * 0.6);
+        if (x < 0.2) x = 0.2;
+        if (x > 5.8) x = 5.8;
+      } else {
+        x = manualX;
+      }
+
+      var acento = colorVar("--acento"), s1 = colorVar("--s1"), s3 = colorVar("--s3"),
+          tinta = colorVar("--tinta"), tinta2 = colorVar("--tinta-2");
+
+      var panelIzqAncho = w * 0.42;
+      var margen = 20;
+      var ladoPx = Math.min(panelIzqAncho - 2 * margen, h - 2 * margen);
+      var escalaNet = ladoPx / L;
+      var ox = margen, oy = (h - ladoPx) / 2;
+
+      // cuadrado completo
+      ctx.save();
+      ctx.strokeStyle = tinta2; ctx.lineWidth = 1.3;
+      ctx.strokeRect(ox, oy, ladoPx, ladoPx);
+      ctx.restore();
+
+      // esquinas recortadas
+      var xPx = x * escalaNet;
+      ctx.save();
+      ctx.fillStyle = s3; ctx.globalAlpha = 0.35;
+      ctx.fillRect(ox, oy, xPx, xPx);
+      ctx.fillRect(ox + ladoPx - xPx, oy, xPx, xPx);
+      ctx.fillRect(ox, oy + ladoPx - xPx, xPx, xPx);
+      ctx.fillRect(ox + ladoPx - xPx, oy + ladoPx - xPx, xPx, xPx);
+      ctx.restore();
+
+      // líneas de pliegue
+      ctx.save();
+      ctx.strokeStyle = acento; ctx.setLineDash([4, 3]); ctx.lineWidth = 1.3;
+      ctx.strokeRect(ox + xPx, oy + xPx, ladoPx - 2 * xPx, ladoPx - 2 * xPx);
+      ctx.restore();
+
+      ctx.save();
+      ctx.font = "12px Consolas, monospace"; ctx.fillStyle = tinta;
+      ctx.fillText("L = " + L + "   x = " + x.toFixed(2), ox, oy + ladoPx + 18);
+      ctx.restore();
+
+      // panel derecho: curva V(x)
+      var gx0 = w * 0.52, gx1 = w - 14;
+      var gy0 = 20, gy1 = h - 40;
+      var xMinG = 0, xMaxG = L / 2;
+      var yMinG = 0, yMaxG = vMax * 1.2;
+
+      function gxPix(xv) { return gx0 + (xv - xMinG) / (xMaxG - xMinG) * (gx1 - gx0); }
+      function gyPix(yv) { return gy1 - (yv - yMinG) / (yMaxG - yMinG) * (gy1 - gy0); }
+
+      ctx.save();
+      ctx.strokeStyle = tinta2; ctx.globalAlpha = 0.6; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(gx0, gy1); ctx.lineTo(gx1, gy1); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(gx0, gy0); ctx.lineTo(gx0, gy1); ctx.stroke();
+      ctx.restore();
+
+      ctx.save();
+      ctx.strokeStyle = acento; ctx.lineWidth = 2.2;
+      ctx.beginPath();
+      var n = 80;
+      for (var i = 0; i <= n; i++) {
+        var xv = xMinG + (xMaxG - xMinG) * i / n;
+        var yv = V(xv);
+        var px = gxPix(xv), py = gyPix(yv);
+        if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+      }
+      ctx.stroke();
+      ctx.restore();
+
+      // marca del óptimo
+      ctx.save();
+      ctx.strokeStyle = s1; ctx.setLineDash([5, 4]); ctx.lineWidth = 1.3;
+      ctx.beginPath(); ctx.moveTo(gxPix(xOptimo), gy1); ctx.lineTo(gxPix(xOptimo), gyPix(vMax)); ctx.stroke();
+      ctx.restore();
+      dibujarPunto(ctx, gxPix(xOptimo), gyPix(vMax), 5, s1);
+
+      // marca del valor actual
+      var vActual = V(x);
+      dibujarPunto(ctx, gxPix(x), gyPix(vActual), 6, s3);
+
+      ctx.save();
+      ctx.font = "12px Consolas, monospace"; ctx.fillStyle = tinta;
+      ctx.fillText("V(x) = x(L-2x)²", gx0, gy0 - 4);
+      ctx.fillStyle = s3;
+      ctx.fillText("V(" + x.toFixed(2) + ") = " + vActual.toFixed(1), gx0, gy1 + 18);
+      ctx.fillStyle = s1;
+      ctx.fillText("máximo real: x* = L/6 = " + xOptimo.toFixed(2) + "  →  V = " + vMax.toFixed(1), gx0, gy1 + 34);
+      ctx.restore();
+    });
+
+    sim.slider("caja-x", function (v) { manualX = v; sim.redibujar(); }, function (v) { return v.toFixed(2); });
+    sim.botones();
+  });
+
+})();
+</script>
+
+<script>
+  // entradas escalonadas (GSAP + ScrollTrigger vía Anim.revelar) — no rompe nada si GSAP no cargó
+  Anim.revelar(".curso-hero-v3 > *", { scroll: false, stagger: .08, distancia: 14, duracion: .8 });
+  document.querySelectorAll(".unidad").forEach(function (u) {
+    Anim.revelar(u.querySelectorAll(":scope > .unidad-cabecera, :scope > .materia, :scope > .animacion, :scope > .ejemplos-unidad, :scope > .ejercicios-unidad"), { disparador: u, stagger: .08, distancia: 16 });
+  });
+</script>
+</body>
+</html>

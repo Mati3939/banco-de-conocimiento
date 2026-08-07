@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="es" data-tema="oscuro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>✦ Biblioteca — Constelación de conocimiento</title>
+<link rel="stylesheet" href="assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="assets/vendor/fuentes/fuentes.css">
+<link rel="stylesheet" href="assets/css/observatorio.css">
+<style>
+/* ================================================================
+   portada v3.2 — feedback de Matías sobre v3.1: el título NO debe
+   superponerse a la constelación (el centro del grafo quedaba oculto
+   por la "zona segura"). Nuevo layout vertical: primero el bloque
+   título+buscador, y debajo una BANDA propia para la constelación
+   completa (17 nodos + etiquetas siempre visibles, cero oclusión).
+   El canvas sigue cubriendo todo el hero (estrellas de fondo), pero
+   el grafo vive sólo en la banda inferior, medida en runtime.
+   Todo SCOPED a clases de esta página; observatorio.css intacto.
+   ================================================================ */
+
+/* título sobrio (heredado de v3.1): sin gradiente completo, acento puntual */
+.hero-titulo {
+  background: none;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  -webkit-text-fill-color: initial;
+  color: var(--tinta);
+  font-weight: 600;
+  letter-spacing: -.015em;
+  font-size: clamp(2rem, 4.4vw, 3.05rem);
+}
+.hero-titulo .acento-obs {
+  background: linear-gradient(100deg, var(--s2), var(--s3));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 700;
+}
+
+/* v3.2: el bloque de contenido deja de centrarse verticalmente — se
+   ancla arriba y compacto, liberando la banda inferior para el grafo */
+.hero-contenido {
+  flex: 0 0 auto;
+  justify-content: flex-start;
+  padding: max(7vh, 56px) 20px 0;
+}
+.hero-subtitulo { margin: 10px 0 0; font-size: 1rem; }
+.buscador-lente { margin: 22px auto 0; }
+.buscador-lente .caja { padding: 14px 20px; }
+.hero-hint { margin: 14px 0 0; }
+/* la leyenda se va al fondo del hero (deja la banda intermedia al canvas) */
+.hero-leyenda { margin-top: auto; }
+
+/* transición hero → listado: fundido del fondo de estrellas (v3.1) */
+.hero-obs::after {
+  content: "";
+  position: absolute; left: 0; right: 0; bottom: 0; height: 18vh; min-height: 130px;
+  background: linear-gradient(180deg, transparent, var(--fondo) 94%);
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* listado por semestre (v3.1, sin cambios) */
+.cursos-seccion { padding-top: 46px; }
+.semestre-grupo { margin-bottom: 68px; }
+.semestre-grupo:last-of-type { margin-bottom: 0; }
+.semestre-grupo[data-sem="s1"] { --ac: var(--s1); }
+.semestre-grupo[data-sem="s2"] { --ac: var(--s2); }
+.semestre-grupo[data-sem="s3"] { --ac: var(--s3); }
+.semestre-grupo[data-sem="futuro"] { --ac: var(--futuro); }
+.semestre-cabecera { display: flex; align-items: flex-start; gap: 18px; margin-bottom: 26px; }
+.semestre-numero {
+  font-family: var(--fuente-display);
+  font-weight: 700;
+  font-size: clamp(2.2rem, 4.6vw, 3.4rem);
+  line-height: 1;
+  color: var(--ac, var(--tinta-3));
+  opacity: .3;
+  user-select: none;
+  flex-shrink: 0;
+}
+.semestre-titulo-grupo { padding-top: .32em; }
+.semestre-titulo-grupo h2 { margin: 0 0 4px; }
+.semestre-sub {
+  margin: 0; color: var(--tinta-3); font-size: .84rem;
+  font-family: var(--fuente-mono); text-transform: uppercase; letter-spacing: .06em;
+}
+
+.cursos-grid { gap: 22px; }
+.curso-card { padding: 22px 24px; gap: 16px; }
+.curso-card .emoji {
+  display: flex; align-items: center; justify-content: center;
+  width: 46px; height: 46px; flex-shrink: 0; font-size: 1.5rem;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--ac) 16%, transparent);
+}
+.curso-card .ir {
+  margin-left: auto; flex-shrink: 0;
+  color: var(--ac); font-size: 1.15rem;
+  opacity: 0; transform: translateX(-4px);
+  transition: opacity .18s ease, transform .18s ease;
+}
+.curso-card:hover .ir { opacity: 1; transform: translateX(0); }
+.curso-card:hover { transform: translateY(-4px); }
+
+@media (max-width: 640px) {
+  .semestre-cabecera { gap: 12px; }
+  .semestre-numero { font-size: 2rem; }
+  .hero-contenido { padding-top: 48px; }
+}
+</style>
+<script>window.RUTA_BASE = "./";</script>
+<script src="assets/vendor/katex/katex.min.js"></script>
+<script src="assets/vendor/katex/auto-render.min.js"></script>
+<script src="assets/vendor/gsap/gsap.min.js"></script>
+<script src="assets/vendor/gsap/ScrollTrigger.min.js"></script>
+<script src="assets/js/observatorio.js"></script>
+<script src="cursos/fisica/indice-curso.js"></script>
+<script src="cursos/algebra-lineal/indice-curso.js"></script>
+<script src="cursos/calculo-integral/indice-curso.js"></script>
+<script src="cursos/eda/indice-curso.js"></script>
+<script src="cursos/calculo-diferencial/indice-curso.js"></script>
+<script src="cursos/geometria/indice-curso.js"></script>
+<script src="cursos/intro-calculo/indice-curso.js"></script>
+<script src="cursos/algebra/indice-curso.js"></script>
+<script src="cursos/taller-programacion/indice-curso.js"></script>
+<script src="cursos/desafios/indice-curso.js"></script>
+<script src="cursos/bootcamp-lenguajes/indice-curso.js"></script>
+<script src="cursos/obtencion-datos/indice-curso.js"></script>
+<script src="cursos/diseno-servicios/indice-curso.js"></script>
+<script src="cursos/visualizacion-datos/indice-curso.js"></script>
+<script src="cursos/calculo-multivariable/indice-curso.js"></script>
+<script src="cursos/ecuaciones-diferenciales/indice-curso.js"></script>
+<script src="cursos/probabilidades/indice-curso.js"></script>
+</head>
+<body>
+
+<section class="hero-obs" id="hero">
+  <canvas id="lienzo-constelacion"></canvas>
+  <button class="btn-tema btn-tema-flotante" type="button">☀️</button>
+
+  <div class="hero-contenido">
+    <div class="hero-bloque">
+      <p class="hero-eyebrow">Ingeniería Civil en Informática</p>
+      <h1 class="hero-titulo">Constelación de <span class="acento-obs">conocimiento</span></h1>
+      <p class="hero-subtitulo">Notas, fórmulas y simulaciones interactivas de los 17 ramos del banco de conocimiento.</p>
+
+      <div class="buscador-lente">
+        <div class="caja">
+          <span class="icono">🔍</span>
+          <input type="text" id="buscador-hero" placeholder="Buscar tema, fórmula, curso…" autocomplete="off" aria-label="Buscar en la biblioteca">
+          <kbd>Ctrl K</kbd>
+        </div>
+        <div class="buscador-resultados" id="buscador-resultados"></div>
+      </div>
+
+      <p class="hero-hint">Tocá una estrella del cielo para entrar a un curso, o escribí arriba para buscar en todo.</p>
+    </div>
+  </div>
+
+  <div class="hero-leyenda">
+    <span class="leyenda"><span class="lucero s1"></span> Semestre 1</span>
+    <span class="leyenda"><span class="lucero s2"></span> Semestre 2</span>
+    <span class="leyenda"><span class="lucero s3"></span> Semestre 3</span>
+    <span class="leyenda"><span class="lucero futuro"></span> Ramos futuros</span>
+    <span class="leyenda">↓ o desplazate para ver la lista completa</span>
+  </div>
+
+  <div class="nodo-preview" id="nodo-preview"></div>
+</section>
+
+<main class="cursos-seccion">
+  <section class="semestre-grupo" data-sem="s3">
+    <header class="semestre-cabecera">
+      <span class="semestre-numero">03</span>
+      <div class="semestre-titulo-grupo">
+        <h2><span class="lucero s3"></span> Semestre 3</h2>
+        <p class="semestre-sub">5 ramos</p>
+      </div>
+    </header>
+    <div class="cursos-grid">
+      <a class="curso-card s3" href="cursos/fisica/index.html"><span class="emoji">⚛️</span><span><h3>Física</h3><p>Cinemática · Dinámica · Energía · Momentum</p></span><span class="ir">→</span></a>
+      <a class="curso-card s3" href="cursos/algebra-lineal/index.html"><span class="emoji">🔢</span><span><h3>Álgebra Lineal</h3><p>Matrices · Espacios vectoriales · Autovalores</p></span><span class="ir">→</span></a>
+      <a class="curso-card s3" href="cursos/calculo-integral/index.html"><span class="emoji">∫</span><span><h3>Cálculo Integral</h3><p>Técnicas · Aplicaciones · Series</p></span><span class="ir">→</span></a>
+      <a class="curso-card s3" href="cursos/eda/index.html"><span class="emoji">🌳</span><span><h3>Estructura de Datos y Algoritmos</h3><p>Árboles · Grafos · Heaps · Ordenamiento</p></span><span class="ir">→</span></a>
+      <a class="curso-card s3" href="cursos/diseno-servicios/index.html"><span class="emoji">🎨</span><span><h3>Taller de Diseño de Servicios</h3><p>Design thinking · Journey maps · Prototipado</p></span><span class="ir">→</span></a>
+    </div>
+  </section>
+
+  <section class="semestre-grupo" data-sem="s2">
+    <header class="semestre-cabecera">
+      <span class="semestre-numero">02</span>
+      <div class="semestre-titulo-grupo">
+        <h2><span class="lucero s2"></span> Semestre 2</h2>
+        <p class="semestre-sub">4 ramos</p>
+      </div>
+    </header>
+    <div class="cursos-grid">
+      <a class="curso-card s2" href="cursos/calculo-diferencial/index.html"><span class="emoji">📈</span><span><h3>Cálculo Diferencial</h3><p>Límites · Derivadas · Optimización</p></span><span class="ir">→</span></a>
+      <a class="curso-card s2" href="cursos/geometria/index.html"><span class="emoji">📐</span><span><h3>Geometría</h3><p>Trigonometría · Cónicas · R³</p></span><span class="ir">→</span></a>
+      <a class="curso-card s2" href="cursos/bootcamp-lenguajes/index.html"><span class="emoji">💻</span><span><h3>Bootcamp Lenguajes de Programación</h3><p>C/C++ · Java · C# / WPF</p></span><span class="ir">→</span></a>
+      <a class="curso-card s2" href="cursos/obtencion-datos/index.html"><span class="emoji">🗂️</span><span><h3>Taller de Obtención y Prep. de Datos</h3><p>NumPy · Pandas · Limpieza · Formatos</p></span><span class="ir">→</span></a>
+    </div>
+  </section>
+
+  <section class="semestre-grupo" data-sem="s1">
+    <header class="semestre-cabecera">
+      <span class="semestre-numero">01</span>
+      <div class="semestre-titulo-grupo">
+        <h2><span class="lucero s1"></span> Semestre 1</h2>
+        <p class="semestre-sub">4 ramos</p>
+      </div>
+    </header>
+    <div class="cursos-grid">
+      <a class="curso-card s1" href="cursos/intro-calculo/index.html"><span class="emoji">🧮</span><span><h3>Introducción al Cálculo</h3><p>Ecuaciones · Inecuaciones · Funciones</p></span><span class="ir">→</span></a>
+      <a class="curso-card s1" href="cursos/algebra/index.html"><span class="emoji">🔤</span><span><h3>Álgebra</h3><p>Lógica · Conjuntos · Inducción · Complejos</p></span><span class="ir">→</span></a>
+      <a class="curso-card s1" href="cursos/taller-programacion/index.html"><span class="emoji">🐍</span><span><h3>Taller de Programación</h3><p>Python · Estructuras · POO</p></span><span class="ir">→</span></a>
+      <a class="curso-card s1" href="cursos/desafios/index.html"><span class="emoji">🤖</span><span><h3>Desafíos de la Ing. Informática</h3><p>PSeInt · Robótica · IA · Redes</p></span><span class="ir">→</span></a>
+    </div>
+  </section>
+
+  <section class="semestre-grupo" data-sem="futuro">
+    <header class="semestre-cabecera">
+      <span class="semestre-numero">＋</span>
+      <div class="semestre-titulo-grupo">
+        <h2><span class="lucero futuro"></span> Ramos futuros</h2>
+        <p class="semestre-sub">4 ramos · material referencial</p>
+      </div>
+    </header>
+    <div class="banner-futuro">⚠️ Material referencial de la generación anterior (2024-2025) — el programa puede cambiar cuando curses estos ramos.</div>
+    <div class="cursos-grid">
+      <a class="curso-card futuro" href="cursos/visualizacion-datos/index.html"><span class="emoji">📊</span><span><h3>Visualización de Datos</h3><p>Gráficos · Dashboards · Streamlit · Altair</p></span><span class="ir">→</span></a>
+      <a class="curso-card futuro" href="cursos/calculo-multivariable/index.html"><span class="emoji">∇</span><span><h3>Cálculo Multivariable</h3><p>Parciales · Gradiente · Integrales múltiples</p></span><span class="ir">→</span></a>
+      <a class="curso-card futuro" href="cursos/ecuaciones-diferenciales/index.html"><span class="emoji">📉</span><span><h3>Ecuaciones Diferenciales</h3><p>1er y 2º orden · Laplace · Sistemas</p></span><span class="ir">→</span></a>
+      <a class="curso-card futuro" href="cursos/probabilidades/index.html"><span class="emoji">🎲</span><span><h3>Probabilidades y Estadística</h3><p>Distribuciones · Estimación · Hipótesis</p></span><span class="ir">→</span></a>
+    </div>
+  </section>
+
+  <p class="pie-portada">
+    Generada desde el banco de conocimiento en Obsidian · 100% offline · <kbd>Ctrl K</kbd> busca en todo
+  </p>
+</main>
+
+<script>
+(function () {
+  var CURSOS = [
+    { slug: "intro-calculo",            n: "Intro al Cálculo",        e: "🧮", g: "s1", d: "Ecuaciones, inecuaciones y funciones — la base de todo." },
+    { slug: "algebra",                  n: "Álgebra",                 e: "🔤", g: "s1", d: "Lógica, conjuntos, inducción, complejos y polinomios." },
+    { slug: "taller-programacion",      n: "Taller de Programación",  e: "🐍", g: "s1", d: "Python desde cero: estructuras, funciones y POO." },
+    { slug: "desafios",                 n: "Desafíos de la Ing.",     e: "🤖", g: "s1", d: "PSeInt, robótica, IA y redes: el panorama de la carrera." },
+    { slug: "calculo-diferencial",      n: "Cálculo Diferencial",     e: "📈", g: "s2", d: "Límites, derivadas y optimización." },
+    { slug: "geometria",                n: "Geometría",               e: "📐", g: "s2", d: "Trigonometría, cónicas y el espacio R³." },
+    { slug: "bootcamp-lenguajes",       n: "Bootcamp Lenguajes",      e: "💻", g: "s2", d: "C/C++, Java y C#: más allá de Python." },
+    { slug: "obtencion-datos",          n: "Obtención de Datos",      e: "🗂️", g: "s2", d: "NumPy, Pandas, limpieza y formatos de datos." },
+    { slug: "calculo-integral",         n: "Cálculo Integral",        e: "∫",  g: "s3", d: "Técnicas de integración, aplicaciones y series." },
+    { slug: "algebra-lineal",           n: "Álgebra Lineal",          e: "🔢", g: "s3", d: "Matrices, espacios vectoriales y autovalores." },
+    { slug: "fisica",                   n: "Física",                  e: "⚛️", g: "s3", d: "Del movimiento a las colisiones, con Newton de guía." },
+    { slug: "eda",                      n: "EDA",                     e: "🌳", g: "s3", d: "Árboles, grafos, heaps y algoritmos de ordenamiento." },
+    { slug: "diseno-servicios",         n: "Diseño de Servicios",     e: "🎨", g: "s3", d: "Design thinking, journey maps y prototipado." },
+    { slug: "visualizacion-datos",      n: "Visualización de Datos",  e: "📊", g: "futuro", d: "Gráficos y dashboards que cuentan historias." },
+    { slug: "calculo-multivariable",    n: "Multivariable",           e: "∇",  g: "futuro", d: "Derivadas parciales, gradiente e integrales múltiples." },
+    { slug: "ecuaciones-diferenciales", n: "Ecs. Diferenciales",      e: "📉", g: "futuro", d: "Modelar el cambio: EDO, Laplace y sistemas." },
+    { slug: "probabilidades",           n: "Probabilidades",          e: "🎲", g: "futuro", d: "Del azar a la inferencia estadística." }
+  ];
+  var ENLACES = [
+    ["intro-calculo", "calculo-diferencial"], ["calculo-diferencial", "calculo-integral"],
+    ["calculo-integral", "calculo-multivariable"], ["calculo-multivariable", "ecuaciones-diferenciales"],
+    ["algebra", "algebra-lineal"], ["geometria", "algebra-lineal"], ["intro-calculo", "geometria"],
+    ["taller-programacion", "bootcamp-lenguajes"], ["taller-programacion", "eda"],
+    ["taller-programacion", "obtencion-datos"], ["obtencion-datos", "visualizacion-datos"],
+    ["calculo-integral", "probabilidades"], ["desafios", "diseno-servicios"], ["algebra-lineal", "eda"]
+  ];
+  // v3.2: el grafo vive en una BANDA horizontal debajo del título (cero
+  // superposición con texto). Elipses concéntricas anchas y chatas; el hub
+  // central es la carrera y los anillos son los semestres.
+  var FR = { s1: 0.32, s2: 0.56, s3: 0.79, futuro: 1 };  // fracción del radio máximo por anillo
+  var ORDEN = { s1: 0, s2: 1, s3: 2, futuro: 3 };
+  var ANGULOS = { // grados, 0 = derecha, sentido horario en pantalla (y hacia abajo)
+    "intro-calculo": 170, "algebra": 10, "taller-programacion": 265, "desafios": 85,
+    "calculo-diferencial": 150, "geometria": 30, "bootcamp-lenguajes": 215, "obtencion-datos": 325,
+    "fisica": 165, "algebra-lineal": 235, "calculo-integral": 270, "eda": 305, "diseno-servicios": 55,
+    "calculo-multivariable": 200, "ecuaciones-diferenciales": 250, "probabilidades": 290, "visualizacion-datos": 15
+  };
+
+  var canvas = document.getElementById("lienzo-constelacion");
+  var ctx = canvas.getContext("2d");
+  var preview = document.getElementById("nodo-preview");
+  var W = 0, H = 0, dpr = 1, cx = 0, cyB = 0, bandaTop = 0, bandaBot = 0, maxRx = 0, maxRy = 0;
+  var raton = { x: -9999, y: -9999 };
+  var sobre = null;
+  var estCerca = [], estMedia = [], estLejos = [], nebulosas = [];
+  var fugaz = null;
+
+  var idxAnillo = {};
+  var nodos = CURSOS.map(function (c) {
+    idxAnillo[c.g] = idxAnillo[c.g] || 0;
+    var n = {
+      c: c, a: ANGULOS[c.slug] * Math.PI / 180, fase: Math.random() * Math.PI * 2,
+      x: 0, y: 0, p: 0, gi: ORDEN[c.g], ni: idxAnillo[c.g]
+    };
+    idxAnillo[c.g]++;
+    return n;
+  });
+  var porSlug = {};
+  nodos.forEach(function (n) { porSlug[n.c.slug] = n; });
+  var vecinos = {};
+  ENLACES.forEach(function (par) {
+    (vecinos[par[0]] = vecinos[par[0]] || {})[par[1]] = 1;
+    (vecinos[par[1]] = vecinos[par[1]] || {})[par[0]] = 1;
+  });
+
+  // ---- intro "big bang": los ramos brotan del hub hacia su órbita,
+  //      semestre por semestre; los enlaces se encienden al llegar ----
+  var reducido = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var DUR_NODO = 0.95;
+  function inicioNodo(n) { return 0.55 + n.gi * 0.5 + n.ni * 0.11; }
+  function clamp01(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
+  function easeOutBack(p) { var s = 1.4; p -= 1; return p * p * ((s + 1) * p + s) + 1; }
+  function progNodo(n, t) { return reducido ? 1 : clamp01((t - inicioNodo(n)) / DUR_NODO); }
+  function progHub(t) { return reducido ? 1 : clamp01((t - 0.12) / 0.5); }
+  function progAnillo(g, t) {
+    var m = 0;
+    for (var i = 0; i < nodos.length; i++) if (nodos[i].c.g === g) { var p = progNodo(nodos[i], t); if (p > m) m = p; }
+    return m;
+  }
+
+  function generarCapa(densidad, rMin, rMax) {
+    var arr = [];
+    for (var i = 0; i < Math.floor(W * H / densidad); i++) {
+      arr.push({
+        x: Math.random() * W, y: Math.random() * H,
+        r: rMin + Math.random() * (rMax - rMin),
+        f: Math.random() * Math.PI * 2,
+        v: .35 + Math.random() * 1.1,
+        vx: (Math.random() - .5) * 3, vy: (Math.random() - .5) * 3
+      });
+    }
+    return arr;
+  }
+
+  function medir() {
+    dpr = window.devicePixelRatio || 1;
+    W = canvas.clientWidth; H = canvas.clientHeight;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    // banda del grafo: entre el bloque título+buscador y la leyenda
+    var rc = canvas.getBoundingClientRect();
+    var topB = H * 0.44, botB = H - 66;
+    var blk = document.querySelector(".hero-bloque");
+    var ley = document.querySelector(".hero-leyenda");
+    if (blk) { var rb = blk.getBoundingClientRect(); if (rb.height > 0) topB = rb.bottom - rc.top + 26; }
+    if (ley) { var rl = ley.getBoundingClientRect(); if (rl.height > 0) botB = rl.top - rc.top - 14; }
+    if (botB - topB < 170) { botB = topB + 170; } // salvavidas: nunca subir topB por encima del título real
+    bandaTop = topB; bandaBot = botB;
+    cx = W / 2; cyB = (topB + botB) / 2;
+    var margenLateral = W >= 700 ? 150 : 44; // en escritorio deja lugar a las etiquetas
+    maxRx = Math.max(W / 2 - margenLateral, 120);
+    maxRy = Math.max((botB - topB) / 2 - 28, 66);
+
+    estLejos = generarCapa(9000, .3, .9);
+    estMedia = generarCapa(5200, .3, 1.3);
+    estCerca = generarCapa(15000, .8, 1.9);
+    nebulosas = [
+      { fx: .20, fy: .32, g: "s2", f: 0 },
+      { fx: .80, fy: .38, g: "s3", f: 2.1 },
+      { fx: .52, fy: .80, g: "futuro", f: 4.2 }
+    ];
+  }
+
+  function colores() {
+    return { s1: colorVar("--s1"), s2: colorVar("--s2"), s3: colorVar("--s3"), futuro: colorVar("--futuro"),
+             acento: colorVar("--acento"),
+             tinta: colorVar("--tinta"), tenue: colorVar("--tinta-3"), tenue2: colorVar("--tinta-2"), fondo: colorVar("--fondo") };
+  }
+  var col = null;
+  document.addEventListener("temacambiado", function () { col = colores(); });
+
+  function hexA(hex, a) {
+    if (!hex || hex.charAt(0) !== "#") return hex;
+    var h = hex.slice(1);
+    if (h.length === 3) h = h.split("").map(function (c) { return c + c; }).join("");
+    var r = parseInt(h.substr(0, 2), 16), g = parseInt(h.substr(2, 2), 16), b = parseInt(h.substr(4, 2), 16);
+    return "rgba(" + r + "," + g + "," + b + "," + a + ")";
+  }
+
+  function capa(t, estrellas, factorParalaje, factorDrift, px, py) {
+    estrellas.forEach(function (s) {
+      var a = 0.2 + 0.55 * Math.abs(Math.sin(t * s.v + s.f));
+      var dx = s.vx * factorDrift * t, dy = s.vy * factorDrift * t;
+      var x = ((s.x + dx) % (W + 40) + (W + 40)) % (W + 40) - 20;
+      var y = ((s.y + dy) % (H + 40) + (H + 40)) % (H + 40) - 20;
+      ctx.globalAlpha = a;
+      ctx.fillStyle = col.tenue;
+      ctx.beginPath(); ctx.arc(x - px * factorParalaje, y - py * factorParalaje, s.r, 0, 7); ctx.fill();
+    });
+    ctx.globalAlpha = 1;
+  }
+
+  function rombo(x, y, R) {
+    ctx.beginPath();
+    ctx.moveTo(x, y - R); ctx.quadraticCurveTo(x + R * .28, y - R * .28, x + R, y);
+    ctx.quadraticCurveTo(x + R * .28, y + R * .28, x, y + R);
+    ctx.quadraticCurveTo(x - R * .28, y + R * .28, x - R, y);
+    ctx.quadraticCurveTo(x - R * .28, y - R * .28, x, y - R);
+    ctx.fill();
+  }
+
+  function dibujar(t) {
+    if (!col) col = colores();
+    ctx.clearRect(0, 0, W, H);
+
+    // parallax sólo cuando el mouse ya entró al hero (si no, el valor centinela
+    // -9999 de `raton` corría toda la constelación fuera de su centro)
+    var dentro = raton.x > -999;
+    var mx = dentro ? (raton.x - cx) / Math.max(W, 1) : 0;
+    var my = dentro ? (raton.y - cyB) / Math.max(H, 1) : 0;
+    var px = mx * 12, py = my * 8;
+
+    // nebulosas de fondo (profundidad, deriva lenta)
+    nebulosas.forEach(function (nb, i) {
+      var x = nb.fx * W + Math.sin(t * .03 + nb.f) * 34;
+      var y = nb.fy * H + Math.cos(t * .022 + nb.f) * 22;
+      var r = W * 0.30;
+      var g = ctx.createRadialGradient(x, y, 0, x, y, r);
+      g.addColorStop(0, hexA(col[nb.g], 0.055));
+      g.addColorStop(1, "rgba(0,0,0,0)");
+      ctx.fillStyle = g;
+      ctx.beginPath(); ctx.arc(x, y, r, 0, 7); ctx.fill();
+    });
+
+    // 3 capas de estrellas con deriva y parallax por profundidad
+    capa(t, estLejos, 6, .12, px, py);
+    capa(t, estMedia, 12, .22, px, py);
+    capa(t, estCerca, 20, .35, px, py);
+
+    // estrella fugaz ocasional
+    if (!fugaz && Math.random() < 0.004) {
+      fugaz = { x: Math.random() * W * .8 + W * .1, y: Math.random() * H * .25, vx: 5 + Math.random() * 4, vy: 2 + Math.random() * 2, vida: 1 };
+    }
+    if (fugaz) {
+      fugaz.x += fugaz.vx; fugaz.y += fugaz.vy; fugaz.vida -= 0.02;
+      if (fugaz.vida <= 0 || fugaz.x > W) fugaz = null;
+      else {
+        var gf = ctx.createLinearGradient(fugaz.x - fugaz.vx * 9, fugaz.y - fugaz.vy * 9, fugaz.x, fugaz.y);
+        gf.addColorStop(0, "rgba(255,255,255,0)"); gf.addColorStop(1, "rgba(255,255,255," + (0.7 * fugaz.vida) + ")");
+        ctx.strokeStyle = gf; ctx.lineWidth = 1.6;
+        ctx.beginPath(); ctx.moveTo(fugaz.x - fugaz.vx * 9, fugaz.y - fugaz.vy * 9); ctx.lineTo(fugaz.x, fugaz.y); ctx.stroke();
+      }
+    }
+
+    // órbitas: aparecen a medida que su semestre "llega" en la intro
+    Object.keys(FR).forEach(function (g) {
+      var pa = progAnillo(g, t);
+      if (pa <= 0) return;
+      ctx.beginPath();
+      ctx.ellipse(cx - px, cyB - py, FR[g] * maxRx, FR[g] * maxRy, 0, 0, 7);
+      ctx.strokeStyle = col[g];
+      ctx.globalAlpha = 0.13 * pa;
+      ctx.setLineDash(g === "futuro" ? [5, 7] : []);
+      ctx.lineWidth = 1;
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.globalAlpha = 1;
+    });
+
+    // posiciones: órbitas que "respiran" (oscilación angular acotada, no
+    // rotación acumulativa — así las etiquetas nunca terminan chocando)
+    var etiquetasOn = W >= 700;
+    nodos.forEach(function (n) {
+      var p = progNodo(n, t);
+      n.p = p;
+      var respiro = 0.09 * Math.sin(t * 0.045 + n.gi * 1.7);
+      var deriva = 0.012 * Math.sin(t * 0.5 + n.fase);
+      var a = n.a + respiro + deriva;
+      var tx = cx - px + Math.cos(a) * FR[n.c.g] * maxRx;
+      var ty = cyB - py + Math.sin(a) * FR[n.c.g] * maxRy;
+      tx = Math.min(Math.max(tx, 100), W - 100);
+      ty = Math.min(Math.max(ty, bandaTop + 34), bandaBot - 30);
+      var e = easeOutBack(p);
+      n.x = cx + (tx - cx) * e;
+      n.y = cyB + (ty - cyB) * e;
+      n.arriba = Math.sin(a) < -0.25; // en el arco superior la etiqueta va ARRIBA del nodo
+    });
+
+    // enlaces: se encienden cuando sus dos extremos llegaron; al hacer hover
+    // se realza el nodo, sus enlaces y sus vecinos (lectura de grafo real)
+    ENLACES.forEach(function (par, idx) {
+      var A = porSlug[par[0]], B = porSlug[par[1]];
+      if (!A || !B) return;
+      var lp = clamp01((Math.min(A.p, B.p) - 0.72) / 0.28);
+      if (lp <= 0) return;
+      var activo = sobre && (sobre === A || sobre === B);
+      var apagado = sobre && !activo;
+      var pulso = 0.85 + 0.15 * Math.sin(t * 0.8 + idx * 1.3);
+      var grad = ctx.createLinearGradient(A.x, A.y, B.x, B.y);
+      grad.addColorStop(0, hexA(col[A.c.g], 1));
+      grad.addColorStop(1, hexA(col[B.c.g], 1));
+      ctx.strokeStyle = grad;
+      ctx.globalAlpha = (activo ? 0.95 : 0.34 * pulso * (apagado ? 0.35 : 1)) * lp;
+      ctx.lineWidth = activo ? 2.4 : 1.4;
+      if (activo) ctx.setLineDash([]);
+      else { ctx.setLineDash([3, 9]); ctx.lineDashOffset = -t * 22 - idx * 5; }
+      ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(B.x, B.y); ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.globalAlpha = 1;
+    });
+
+    // hub central: la carrera, de donde brota todo
+    var ph = progHub(t);
+    if (ph > 0) {
+      var eh = easeOutBack(ph);
+      var hr = 7.5 * eh * (1 + 0.08 * Math.sin(t * 1.4));
+      var haloH = ctx.createRadialGradient(cx - px, cyB - py, 0, cx - px, cyB - py, hr * 5.2);
+      haloH.addColorStop(0, col.acento); haloH.addColorStop(1, "rgba(0,0,0,0)");
+      ctx.globalAlpha = 0.30 * ph;
+      ctx.fillStyle = haloH;
+      ctx.beginPath(); ctx.arc(cx - px, cyB - py, hr * 5.2, 0, 7); ctx.fill();
+      ctx.globalAlpha = ph;
+      ctx.fillStyle = col.tinta;
+      rombo(cx - px, cyB - py, hr);
+      if (etiquetasOn) {
+        ctx.globalAlpha = 0.8 * ph;
+        ctx.font = "500 11px 'JetBrains Mono', ui-monospace, monospace";
+        ctx.textAlign = "center";
+        ctx.fillStyle = col.tenue;
+        ctx.fillText("· vos estás acá ·", cx - px, cyB - py + hr + 18);
+      }
+      ctx.globalAlpha = 1;
+    }
+
+    // nodos + etiquetas SIEMPRE visibles (ya no hay nada que tapar)
+    nodos.forEach(function (n) {
+      if (n.p <= 0) return;
+      var c = col[n.c.g];
+      var esSobre = sobre === n;
+      var esVecino = sobre && vecinos[sobre.c.slug] && vecinos[sobre.c.slug][n.c.slug];
+      var atenuar = (sobre && !esSobre && !esVecino) ? 0.38 : 1;
+      var pulso = 1 + 0.10 * Math.sin(t * 1.6 + n.fase);
+      var R = (esSobre ? 15.5 : 10.5) * pulso;
+
+      // destello de "anclaje" al terminar el viaje de la intro
+      var desde = t - (inicioNodo(n) + DUR_NODO);
+      if (!reducido && desde > 0 && desde < 0.45) {
+        var q = desde / 0.45;
+        ctx.globalAlpha = (1 - q) * 0.55;
+        ctx.strokeStyle = c;
+        ctx.lineWidth = 1.6;
+        ctx.beginPath(); ctx.arc(n.x, n.y, R + q * 30, 0, 7); ctx.stroke();
+        ctx.globalAlpha = 1;
+      }
+
+      var haloExt = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, R * 4.8);
+      haloExt.addColorStop(0, c); haloExt.addColorStop(1, "rgba(0,0,0,0)");
+      ctx.globalAlpha = (esSobre ? 0.36 : 0.18) * atenuar * n.p;
+      ctx.fillStyle = haloExt;
+      ctx.beginPath(); ctx.arc(n.x, n.y, R * 4.8, 0, 7); ctx.fill();
+
+      var halo = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, R * 3.1);
+      halo.addColorStop(0, c); halo.addColorStop(1, "rgba(0,0,0,0)");
+      ctx.globalAlpha = (esSobre ? 0.62 : 0.36) * atenuar * n.p;
+      ctx.fillStyle = halo;
+      ctx.beginPath(); ctx.arc(n.x, n.y, R * 3.1, 0, 7); ctx.fill();
+
+      ctx.globalAlpha = atenuar * n.p;
+      ctx.fillStyle = c;
+      rombo(n.x, n.y, R);
+      ctx.fillStyle = "rgba(255,255,255,.92)";
+      ctx.beginPath(); ctx.arc(n.x, n.y, R * .3, 0, 7); ctx.fill();
+      ctx.globalAlpha = 1;
+
+      // etiqueta: arriba o abajo del nodo según su arco (nunca hacia el centro
+      // apretado); en móvil (<700px) sólo aparece la del nodo tocado
+      var lp = clamp01((n.p - 0.82) / 0.18);
+      if ((etiquetasOn && lp > 0) || esSobre) {
+        ctx.globalAlpha = (esSobre ? 1 : lp) * atenuar;
+        ctx.font = (esSobre ? "600 14.5px" : "600 13px") + " 'Space Grotesk', 'Segoe UI', system-ui, sans-serif";
+        ctx.textAlign = "center";
+        var etiqueta = n.c.e + " " + n.c.n;
+        var ey = n.arriba ? (n.y - R - 12) : (n.y + R + 19);
+        ctx.lineWidth = 3;
+        ctx.strokeStyle = hexA(col.fondo, 0.75);
+        ctx.strokeText(etiqueta, n.x, ey);
+        ctx.fillStyle = esSobre ? col.tinta : col.tenue2;
+        ctx.fillText(etiqueta, n.x, ey);
+        ctx.globalAlpha = 1;
+      }
+    });
+  }
+
+  var t0 = performance.now();
+  function bucle(ahora) {
+    dibujar((ahora - t0) / 1000);
+    if (!reducido) requestAnimationFrame(bucle);
+  }
+
+  function nodoEn(x, y) {
+    var mejor = null, dist = 46;
+    nodos.forEach(function (n) {
+      if (n.p < 1) return;
+      var d = Math.hypot(n.x - x, n.y - y);
+      if (d < dist) { dist = d; mejor = n; }
+    });
+    return mejor;
+  }
+
+  canvas.addEventListener("mousemove", function (e) {
+    var r = canvas.getBoundingClientRect();
+    raton.x = e.clientX - r.left; raton.y = e.clientY - r.top;
+    var n = nodoEn(raton.x, raton.y);
+    if (n !== sobre) {
+      sobre = n;
+      canvas.style.cursor = n ? "pointer" : "default";
+      if (n) {
+        preview.innerHTML = "<h3></h3><p></p><div class='datos'></div>";
+        preview.querySelector("h3").textContent = n.c.e + " " + n.c.n;
+        preview.querySelector("p").textContent = n.c.d;
+        preview.querySelector(".datos").textContent =
+          (n.c.g === "futuro" ? "Ramo futuro (material referencial) · " : "") + "clic para abrir";
+        preview.classList.add("visible");
+      } else {
+        preview.classList.remove("visible");
+      }
+    }
+    if (sobre) {
+      var izq = Math.min(Math.max(raton.x + 20, 10), W - 340);
+      var arr = Math.min(Math.max(raton.y - 20, 10), H - 130);
+      preview.style.left = izq + "px"; preview.style.top = arr + "px";
+    }
+  });
+  canvas.addEventListener("mouseleave", function () { sobre = null; preview.classList.remove("visible"); canvas.style.cursor = "default"; });
+  canvas.addEventListener("click", function () {
+    if (sobre) window.location.href = "cursos/" + sobre.c.slug + "/index.html";
+  });
+  // en táctil: primer toque selecciona, segundo abre
+  canvas.addEventListener("touchstart", function (e) {
+    var r = canvas.getBoundingClientRect();
+    var x = e.touches[0].clientX - r.left, y = e.touches[0].clientY - r.top;
+    var n = nodoEn(x, y);
+    if (n && n === sobre) window.location.href = "cursos/" + n.c.slug + "/index.html";
+    sobre = n;
+    if (n) {
+      preview.innerHTML = "<h3></h3><p></p><div class='datos'>tocá de nuevo para abrir</div>";
+      preview.querySelector("h3").textContent = n.c.e + " " + n.c.n;
+      preview.querySelector("p").textContent = n.c.d;
+      preview.style.left = Math.min(Math.max(x + 14, 10), W - 300) + "px";
+      preview.style.top = Math.min(Math.max(y - 10, 10), H - 140) + "px";
+      preview.classList.add("visible");
+    } else preview.classList.remove("visible");
+  }, { passive: true });
+
+  window.addEventListener("resize", medir);
+  medir();
+  requestAnimationFrame(bucle);
+  if (reducido) dibujar(0);
+  // re-medir la banda cuando terminen de cargar las fuentes vendorizadas
+  // (pueden cambiar levemente el alto del bloque título+buscador)
+  if (window.document.fonts && window.document.fonts.ready) {
+    window.document.fonts.ready.then(function () { medir(); });
+  }
+})();
+</script>
+
+<script>
+  // entradas escalonadas (GSAP + ScrollTrigger vía Anim.revelar) — no rompe nada si GSAP no cargó
+  Anim.revelar(".hero-bloque > *", { scroll: false, stagger: .09, distancia: 14, duracion: .8 });
+  Anim.revelar(".hero-leyenda", { scroll: false, retraso: .5, duracion: .8 });
+  document.querySelectorAll(".cursos-seccion .cursos-grid").forEach(function (grid) {
+    Anim.revelar(grid.querySelectorAll(".curso-card"), { disparador: grid, stagger: .06, distancia: 16 });
+  });
+  document.querySelectorAll(".cursos-seccion .semestre-cabecera").forEach(function (cab) {
+    Anim.revelar(cab, { scroll: true, inicio: "top 92%", duracion: .6 });
+  });
+</script>
+
+<script>
+  // transición hero → listado: la constelación se desvanece suavemente al
+  // hacer scroll (además del fundido CSS de .hero-obs::after). Sólo si hay GSAP +
+  // ScrollTrigger y el usuario no pidió reduced-motion; si algo falla, no rompe nada.
+  (function () {
+    var reducido = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reducido || typeof window.gsap === "undefined" || !window.ScrollTrigger) return;
+    var hero = document.getElementById("hero");
+    var lienzo = document.getElementById("lienzo-constelacion");
+    if (!hero || !lienzo) return;
+    try {
+      window.gsap.registerPlugin(window.ScrollTrigger);
+      window.gsap.to(lienzo, {
+        opacity: 0.2,
+        ease: "none",
+        scrollTrigger: { trigger: hero, start: "top top", end: "bottom top", scrub: true }
+      });
+    } catch (e) { if (window.console && console.error) console.error("[fade constelación]", e); }
+  })();
+</script>
+</body>
+</html>

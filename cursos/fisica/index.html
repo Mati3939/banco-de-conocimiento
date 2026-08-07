@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="es" data-tema="oscuro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>⚛️ Física — Biblioteca</title>
+<link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../../assets/vendor/fuentes/fuentes.css">
+<link rel="stylesheet" href="../../assets/css/observatorio.css">
+<script>window.RUTA_BASE = "../../";</script>
+<script src="../../assets/vendor/katex/katex.min.js"></script>
+<script src="../../assets/vendor/katex/auto-render.min.js"></script>
+<script src="../../assets/vendor/gsap/gsap.min.js"></script>
+<script src="../../assets/vendor/gsap/ScrollTrigger.min.js"></script>
+<script src="../../assets/js/observatorio.js"></script>
+<script src="indice-curso.js"></script>
+</head>
+<body>
+<div class="progreso-lectura"></div>
+<div class="pagina-curso">
+
+  <aside class="lateral">
+    <a class="volver" href="../../index.html">← Constelación</a>
+    <div class="curso-cabecera"><span class="emoji">⚛️</span><h1>Física</h1></div>
+    <span class="semestre-tag" style="color:var(--s3)">Semestre 3</span>
+    <nav>
+      <div class="grupo">Unidades</div>
+      <a href="#u1">01 · Vectores y magnitudes</a>
+      <a href="#u2">02 · Cinemática 1D</a>
+      <a href="#u3">03 · Cinemática 2D</a>
+      <a class="sub" href="#anim-proyectil">🎯 Tiro parabólico</a>
+      <a href="#u4">04 · Movimiento circular</a>
+      <a class="sub" href="#anim-circular">🌀 Circular uniforme</a>
+      <a href="#u5">05 · Newton y DCL</a>
+      <a class="sub" href="#anim-plano">📐 Plano inclinado</a>
+      <a href="#u6">06 · Trabajo y energía</a>
+      <a href="#u7">07 · Momentum y colisiones</a>
+      <a class="sub" href="#anim-colision">💥 Colisión 1D</a>
+    </nav>
+    <div class="atajos"><kbd>Ctrl K</kbd> buscar en toda la biblioteca</div>
+  </aside>
+
+  <main class="principal">
+    <div class="principal-cabecera">
+      <span class="relleno"></span>
+      <button class="btn-buscar" type="button">🔍 Buscar <kbd>Ctrl K</kbd></button>
+      <button class="btn-tema" type="button">☀️</button>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CABECERA DEL CURSO -->
+    <!-- ============================================================ -->
+    <header class="curso-hero-v3" id="cheat" style="--ac: var(--s3)">
+      <span class="emoji-grande">⚛️</span>
+      <h1>Física — Resumen del curso</h1>
+      <span class="semestre-tag" style="color:var(--s3)">Semestre 3 · Mecánica</span>
+      <p class="curso-intro">
+        Curso de <strong>mecánica</strong> (IPLC122, Dra. Renee Mateluna Pérez). Secuencia real de
+        evaluaciones: Control 1 (vectores/cinemática) → Certamen 1 (cinemática 1D-2D) → Control 2
+        (cinemática 1D) → Control 3 (1ª ley de Newton) → Control 4 (leyes de Newton) → Certamen 2
+        (dinámica y energía) → Control 5 (colisiones elásticas) → Examen. El temario cubre desde
+        vectores hasta momentum y colisiones (no incluye gravitación, rotación de sólido rígido ni
+        oscilaciones).
+      </p>
+      <ul class="mini-indice">
+        <li><a href="#u1">01 · Vectores</a></li>
+        <li><a href="#u2">02 · Cinemática 1D</a></li>
+        <li><a href="#u3">03 · Cinemática 2D</a></li>
+        <li><a href="#u4">04 · Movimiento circular</a></li>
+        <li><a href="#u5">05 · Newton y DCL</a></li>
+        <li><a href="#u6">06 · Trabajo y energía</a></li>
+        <li><a href="#u7">07 · Momentum y colisiones</a></li>
+      </ul>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 1 · VECTORES Y MAGNITUDES -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u1">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">01</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Vectores y magnitudes</h2>
+          <p class="unidad-sub">Unidades, análisis dimensional y descomposición de vectores: el lenguaje en que está escrito todo el curso.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-vectores">
+        <h3>Magnitudes, unidades y vectores</h3>
+        <ul>
+          <li><strong>Fundamentales</strong> ($s$, $kg$, $m$, $K$…) vs. <strong>derivadas</strong> ($m/s$, $N=kg\cdot m/s^2$…).</li>
+          <li>Toda ecuación debe ser <strong>dimensionalmente consistente</strong>: revisar unidades antes de reemplazar números.</li>
+          <li>El ángulo se mide <strong>desde el eje que indique el enunciado</strong>, no siempre el eje $x$.</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Polares → cartesianas</span>$$x=r\cos\theta,\qquad y=r\sin\theta$$</div>
+        <div class="formula-card"><span class="etiqueta">Cartesianas → polares</span>$$r=\sqrt{x^{2}+y^{2}},\qquad \theta=\arctan\tfrac{y}{x}$$</div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-polares">
+          <h3>1. Coordenadas polares → cartesianas</h3>
+          <p>Una partícula recorre un arco de radio $R=30\text{ m}$ centrado en $(0,30)$. Un punto sobre
+          el arco a un ángulo $\theta$ medido desde el eje $y$ tiene posición
+          $x=R\sin\theta$, $y=30-R\cos\theta$. Hallar $\vec r$ para $\theta=45°$.</p>
+          <p><strong>Solución:</strong></p>
+          <p>$x=30\sin45°=21{,}21\text{ m}$</p>
+          <p>$y=30-30\cos45°=30-21{,}21=8{,}79\text{ m}$</p>
+          <p>$\vec r=(21{,}21\,\hat\imath+8{,}79\,\hat\jmath)\text{ m}$</p>
+          <p style="color:var(--tinta-2)">Este tipo de conversión (geometría → componentes cartesianas) es la base de casi todos los controles de cinemática.</p>
+          <p class="fuente">Fuente: Pauta Control 1, 2026-1.</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-vectores">
+          <summary><span class="resumen-ejercicio">1. Un vector tiene magnitud $r=10\text{ m}$ y ángulo $\theta=60°$ medido desde el eje $x$. Hallar sus componentes cartesianas.</span> <span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <p>$x=r\cos\theta=10\cos60°=5\text{ m}$</p>
+            <p>$y=r\sin\theta=10\sin60°=8{,}66\text{ m}$</p>
+            <p>$\vec r=(5\,\hat\imath+8{,}66\,\hat\jmath)\text{ m}$</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 2 · CINEMÁTICA 1D -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u2">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">02</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Cinemática 1D</h2>
+          <p class="unidad-sub">Movimiento rectilíneo: MRU, MRUA y caída libre sobre un solo eje.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-cinematica1d">
+        <h3>Cinemática 1D</h3>
+        <ul>
+          <li>MRU: $x(t)=x_0+v\,t$; &nbsp; $v^{2}=v_0^{2}+2a(x-x_0)$ (sin tiempo).</li>
+          <li>Caída libre: MRUA con $a=\pm g$ según el sentido positivo elegido, $g\approx9{,}8\ \text{m/s}^2$.</li>
+          <li><strong>Distancia</strong> (suma de valores absolutos) ≠ <strong>desplazamiento</strong> ($\Delta x$, con signo).</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Ecuaciones de itinerario (MRUA)</span>$$v(t)=v_0+at,\qquad x(t)=x_0+v_0 t+\tfrac12 a t^{2}$$</div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-mrua">
+          <summary><span class="resumen-ejercicio">2. Un auto parte del reposo y alcanza $20\text{ m/s}$ en $5\text{ s}$ con aceleración constante. Hallar la aceleración y la distancia recorrida.</span> <span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <p>$a=\dfrac{v-v_0}{t}=\dfrac{20-0}{5}=4\text{ m/s}^2$</p>
+            <p>$x=v_0t+\tfrac12at^2=0+\tfrac12(4)(5)^2=50\text{ m}$</p>
+            <p>Verificación con $v^2=v_0^2+2ax$: $20^2=2(4)(50)=400$ ✓</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 3 · CINEMÁTICA 2D -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u3">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">03</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Cinemática 2D — tiro parabólico</h2>
+          <p class="unidad-sub">Dos movimientos independientes (MRU en $x$, MRUA en $y$) que comparten el mismo tiempo.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-cinematica2d">
+        <h3>Cinemática 2D — tiro parabólico</h3>
+        <ul>
+          <li>$v_{0x}=v_0\cos\theta$, &nbsp; $v_{0y}=v_0\sin\theta$</li>
+          <li>Alcance (mismo nivel): $R=\dfrac{v_0^{2}\sin(2\theta)}{g}$ (máx. en $\theta=45°$); altura máxima cuando $v_y=0$.</li>
+          <li>Si el lanzamiento parte de otra altura o va bajo la horizontal, <strong>no</strong> valen las fórmulas simplificadas: resolver las ecuaciones de itinerario completas.</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Ecuaciones de itinerario en 2D</span>$$x=x_0+v_{0x}t,\qquad y=y_0+v_{0y}t-\tfrac12 g t^{2}$$</div>
+      </div>
+
+      <div class="animacion" id="anim-proyectil">
+        <div class="anim-cabecera">
+          <h3>🎯 Tiro parabólico</h3>
+          <p class="anim-desc">Trayectoria de un proyectil resolviendo las ecuaciones de itinerario completas (no solo la fórmula simplificada de alcance), porque la altura inicial y el ángulo pueden ser distintos de 0.</p>
+        </div>
+        <canvas data-alto="380"></canvas>
+        <div class="controles">
+          <div class="control"><label for="sl-proy-v0">v₀</label><input type="range" id="sl-proy-v0" min="5" max="35" step="1" value="20"><span class="valor"></span></div>
+          <div class="control"><label for="sl-proy-angulo">ángulo θ</label><input type="range" id="sl-proy-angulo" min="-30" max="80" step="1" value="45"><span class="valor"></span></div>
+          <div class="control"><label for="sl-proy-y0">altura y₀</label><input type="range" id="sl-proy-y0" min="0" max="100" step="1" value="0"><span class="valor"></span></div>
+          <button type="button" data-accion="jugar">▶ Reproducir</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> la curva de acento es la trayectoria; el punto verde es el proyectil animado; las líneas violeta punteadas marcan el alcance R y la altura máxima H, con sus valores numéricos arriba a la izquierda. Probá $v_0=25$, ángulo $=-30°$, $y_0=100$ para reproducir el ejercicio del Certamen 1 (lanzamiento bajo la horizontal desde un precipicio, alcance ≈ 74 m).</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-piedras">
+          <h3>2. Dos piedras, 1 s de diferencia, mismo impacto</h3>
+          <p>Desde un risco de $h=50\text{ m}$ se lanzan dos piedras verticalmente hacia abajo, separadas
+          por $1\text{ s}$, y ambas golpean el agua en el <strong>mismo instante</strong>. La primera tiene
+          $v_{01}=2\text{ m/s}$. ¿Con qué rapidez se debió lanzar la segunda?</p>
+          <p><strong>Solución</strong> (eje positivo hacia abajo, $t=0$ cuando se suelta la primera piedra):</p>
+          <p>Piedra 1: $50=v_{01}t_1+\tfrac12 g t_1^2=2t_1+4{,}9t_1^2\ \Rightarrow\ 4{,}9t_1^2+2t_1-50=0$</p>
+          <p>$t_1=\dfrac{-2+\sqrt{4+4(4{,}9)(50)}}{2(4{,}9)}\approx3{,}00\text{ s}$</p>
+          <p>Piedra 2 (lanzada en $t=1\text{ s}$, cae durante $t_2=t_1-1\approx2{,}00\text{ s}$):</p>
+          <p>$50=v_{02}t_2+\tfrac12 g t_2^2\ \Rightarrow\ v_{02}=\dfrac{50-4{,}9(2{,}00)^2}{2{,}00}=\dfrac{50-19{,}6}{2{,}00}\approx15{,}2\text{ m/s}$</p>
+          <p style="color:var(--tinta-2)">Método clave: plantear el itinerario de cada piedra por separado con el <strong>mismo</strong> origen y sistema de referencia, y usar tiempos de vuelo distintos ($t_1$ y $t_1-1$) para el mismo instante de llegada.</p>
+          <p class="fuente">Fuente: Pauta Control 2, 2026-1.</p>
+        </div>
+
+        <div class="ejemplo" id="ej-precipicio">
+          <h3>3. Tiro parabólico bajo la horizontal</h3>
+          <p>Desde un precipicio de $100\text{ m}$ sobre el agua se lanza una piedra a $25\text{ m/s}$, con
+          $30°$ <strong>bajo</strong> la horizontal. Hallar el alcance y la rapidez de llegada al agua.</p>
+          <p><strong>Solución</strong> (origen en el punto de lanzamiento, $y$ positivo hacia arriba):</p>
+          <p>$v_x=25\cos30°=21{,}65\text{ m/s}$ (constante); &nbsp; $v_{0y}=-25\sin30°=-12{,}5\text{ m/s}$</p>
+          <p>$y(t)=-12{,}5t-4{,}9t^2=-100\ \Rightarrow\ 4{,}9t^2+12{,}5t-100=0\ \Rightarrow\ t'=3{,}42\text{ s}$ (se descarta la raíz negativa)</p>
+          <p>Alcance: $R=v_x\,t'=21{,}65\times3{,}42\approx74\text{ m}$</p>
+          <p>$v_y(t')=-gt'-12{,}5=-9{,}8(3{,}42)-12{,}5\approx-46{,}0\text{ m/s}$</p>
+          <p>$|\vec v'|=\sqrt{v_x^2+v_y^2}=\sqrt{21{,}65^2+46{,}0^2}\approx50{,}9\text{ m/s}$, &nbsp; $\theta=\arctan\tfrac{46{,}0}{21{,}65}\approx64{,}8°$ bajo la horizontal</p>
+          <p style="color:var(--tinta-2)">El ángulo de lanzamiento es negativo (bajo la horizontal): el signo debe llevarse correctamente a $v_{0y}=v_0\sin\theta$. No sirve la fórmula simplificada $R=v_0^2\sin2\theta/g$ porque el lanzamiento no termina al mismo nivel.</p>
+          <p class="fuente">Fuente: Pauta Certamen 1, 2026-1.</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-caida-libre">
+          <summary><span class="resumen-ejercicio">3. Se lanza una pelota verticalmente hacia arriba con $v_0=15\text{ m/s}$ desde una azotea de $20\text{ m}$. Hallar el tiempo y la rapidez de llegada al suelo.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>Origen en la azotea, $y$ positivo hacia arriba: $y(t)=20+15t-4{,}9t^2=0$ (llega al suelo, $y=0$)</p>
+            <p>$4{,}9t^2-15t-20=0\ \Rightarrow\ t=\dfrac{15+\sqrt{225+392}}{9{,}8}=\dfrac{15+24{,}84}{9{,}8}\approx4{,}07\text{ s}$</p>
+            <p>$v(t)=15-9{,}8(4{,}07)\approx-24{,}9\text{ m/s}$ (24,9 m/s hacia abajo)</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-tiro-parabolico">
+          <summary><span class="resumen-ejercicio">4. Un proyectil se lanza desde el suelo a $30\text{ m/s}$ con $40°$. Hallar el alcance y la altura máxima.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>$R=\dfrac{v_0^2\sin(2\theta)}{g}=\dfrac{900\sin80°}{9{,}8}=\dfrac{900(0{,}985)}{9{,}8}\approx90{,}5\text{ m}$</p>
+            <p>$v_{0y}=30\sin40°=19{,}28\text{ m/s}$; &nbsp; $H=\dfrac{v_{0y}^2}{2g}=\dfrac{19{,}28^2}{19{,}6}\approx19{,}0\text{ m}$</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 4 · MOVIMIENTO CIRCULAR -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u4">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">04</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Movimiento circular</h2>
+          <p class="unidad-sub">Girar también es acelerar: aceleración centrípeta, cantidades angulares y fuerza centrípeta como resultante.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-circular">
+        <h3>Movimiento circular</h3>
+        <ul>
+          <li>$\omega=\dfrac{d\theta}{dt}$ (rad/s); &nbsp; $v=\omega r$; &nbsp; $\omega=2\pi f$, $T=\tfrac1f$</li>
+          <li>Fuerza centrípeta: $F_c=\dfrac{mv^{2}}{r}$ (es la <strong>resultante</strong>, no una fuerza nueva).</li>
+          <li>No uniforme: $\vec a=\vec a_{\text{rad}}+\vec a_{\tan}$, &nbsp; $a_{\tan}=r\alpha=\dfrac{dv}{dt}$. Angulares: $\omega_f=\omega_i+\alpha t$, $\theta_f=\theta_i+\omega_i t+\tfrac12\alpha t^2$.</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Aceleración centrípeta</span>$$a_c=\frac{v^{2}}{r}=\omega^{2} r,\quad\text{siempre hacia el centro}$$</div>
+      </div>
+
+      <div class="animacion" id="anim-circular">
+        <div class="anim-cabecera">
+          <h3>🌀 Movimiento circular uniforme</h3>
+          <p class="anim-desc">Partícula en movimiento circular uniforme con sus vectores de velocidad y aceleración centrípeta actualizados en cada instante.</p>
+        </div>
+        <canvas data-alto="360"></canvas>
+        <div class="controles">
+          <div class="control"><label for="sl-circ-omega">ω</label><input type="range" id="sl-circ-omega" min="0.5" max="6" step="0.1" value="2"><span class="valor"></span></div>
+          <div class="control"><label for="sl-circ-radio">radio r</label><input type="range" id="sl-circ-radio" min="0.5" max="3" step="0.1" value="1.5"><span class="valor"></span></div>
+          <button type="button" data-accion="jugar">▶ Reproducir</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> la velocidad (verde) es siempre <strong>tangente</strong> a la trayectoria; la aceleración centrípeta (violeta) apunta <strong>siempre hacia el centro</strong>, nunca hacia afuera (no existe una "fuerza centrífuga" real). Notá cómo $a_c=\omega^2r$ crece muy rápido con $\omega$.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-radio-curva">
+          <h3>4. Radio mínimo de curva</h3>
+          <p>Un auto tiene una aceleración lateral máxima de $0{,}96g=9{,}4\text{ m/s}^2$ antes de derrapar.
+          Viajando a $40\text{ m/s}$, ¿cuál es el radio mínimo de curva (sin peralte)?</p>
+          <p><strong>Solución:</strong></p>
+          <p>$a_c=\dfrac{v^2}{r}\ \Rightarrow\ r_{\min}=\dfrac{v^2}{a_{c,\max}}=\dfrac{40^2}{9{,}4}\approx170\text{ m}$</p>
+          <p style="color:var(--tinta-2)">La aceleración centrípeta máxima disponible (dada por el roce entre neumático y pavimento) limita directamente el radio: a menor radio, mayor $a_c$ requerida para la misma rapidez.</p>
+          <p class="fuente">Fuente: nota "Movimiento circular".</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-peralte">
+          <summary><span class="resumen-ejercicio">5. Una curva peraltada tiene $\theta=2°$, $R=170\text{ m}$ y $\mu_s=0{,}03$. Hallar las rapideces mínima y máxima "seguras".</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>Con roce en el límite (mismas fórmulas del problema real de peralte de la nota de Fuerzas y DCL):</p>
+            <p>$$v_{\max}=\sqrt{\dfrac{Rg(\tan\theta+\mu_s)}{1-\mu_s\tan\theta}},\qquad v_{\min}=\sqrt{\dfrac{Rg(\tan\theta-\mu_s)}{1+\mu_s\tan\theta}}$$</p>
+            <p>Con $\tan2°=0{,}0349$: $v_{\max}=\sqrt{\dfrac{170(9{,}8)(0{,}0349+0{,}03)}{1-0{,}03(0{,}0349)}}\approx10{,}4\text{ m/s}=37{,}4\text{ km/h}$</p>
+            <p>$v_{\min}=\sqrt{\dfrac{170(9{,}8)(0{,}0349-0{,}03)}{1+0{,}03(0{,}0349)}}\approx2{,}86\text{ m/s}=10{,}3\text{ km/h}$</p>
+            <p style="color:var(--tinta-2)">Coincide con los valores reales de la nota ($v_{\min}=10{,}3$ km/h, $v_{\max}=37{,}5$ km/h). Bajo $v_{\min}$ el auto resbala hacia el centro/abajo del peralte; sobre $v_{\max}$, hacia afuera/arriba.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 5 · LEYES DE NEWTON Y DCL -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u5">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">05</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Leyes de Newton y DCL</h2>
+          <p class="unidad-sub">Fuerzas, diagramas de cuerpo libre y la segunda ley en acción: del equilibrio al deslizamiento.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-newton">
+        <h3>Leyes de Newton y DCL</h3>
+        <ul>
+          <li>1ª (inercia): $\sum\vec F=0\implies\vec v=\text{cte}$. &nbsp; 3ª (acción-reacción): $\vec F_{AB}=-\vec F_{BA}$ (en cuerpos distintos).</li>
+          <li>Peso $W=mg$; Normal $N$ ⟂ a la superficie; Tensión $T$; Roce: $f_s\le\mu_sN$, $f_k=\mu_kN$.</li>
+          <li>Plano inclinado: $W_\parallel=mg\sin\theta$ (baja la pendiente), $W_\perp=mg\cos\theta$.</li>
+          <li>Fuerza elástica (resorte, Ley de Hooke): $F_{el}=kx$, magnitud proporcional a la deformación $x$ respecto al largo natural, siempre opuesta a esa deformación.</li>
+          <li>Curva peraltada: la normal y el roce se combinan para dar la fuerza centrípeta; existe una rapidez <strong>mínima</strong> (bajo la cual el vehículo resbala hacia el centro/abajo del peralte) y una <strong>máxima</strong> (sobre la cual resbala hacia afuera/arriba) — ver el ejercicio de curva peraltada.</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Segunda ley de Newton</span>$$\sum\vec F=m\vec a\qquad(\text{2ª ley, fuerza neta})$$</div>
+        <div class="formula-card"><span class="etiqueta">Ley de Hooke</span>$$F_{el}=kx\quad(\text{magnitud; el resorte se opone a la deformación})$$</div>
+      </div>
+
+      <div class="animacion" id="anim-plano">
+        <div class="anim-cabecera">
+          <h3>📐 Plano inclinado con DCL</h3>
+          <p class="anim-desc">Bloque de $m=2\text{ kg}$ fijo en un plano inclinado: se compara la componente del peso que lo empuja a bajar con el roce estático máximo disponible.</p>
+        </div>
+        <canvas data-alto="340"></canvas>
+        <div class="controles">
+          <div class="control"><label for="sl-plano-theta">ángulo θ</label><input type="range" id="sl-plano-theta" min="0" max="60" step="1" value="30"><span class="valor"></span></div>
+          <div class="control"><label for="sl-plano-mu">μ (roce)</label><input type="range" id="sl-plano-mu" min="0" max="1" step="0.01" value="0.3"><span class="valor"></span></div>
+          <button type="button" data-accion="jugar">▶ Reproducir</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> los vectores sobre el bloque son peso $W$ (naranjo), normal $N$ (verde) y roce $f$ (violeta). Si $mg\sin\theta>\mu N$ el bloque <strong>desliza</strong> y ▶ anima su caída con $a=g(\sin\theta-\mu\cos\theta)$; si no, queda en <strong>equilibrio</strong> y ▶ no produce movimiento (correcto: $a=0$).</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-equilibrio-resorte">
+          <summary><span class="resumen-ejercicio">6. Un bloque de $5\text{ kg}$ está en reposo sobre un plano liso a $30°$, sujeto por un resorte ($k=200\text{ N/m}$) paralelo al plano. Hallar la deformación del resorte en equilibrio.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>Equilibrio a lo largo del plano: $\sum F_\parallel=0\ \Rightarrow\ kx=mg\sin\theta$</p>
+            <p>$x=\dfrac{mg\sin\theta}{k}=\dfrac{5(9{,}8)(0{,}5)}{200}=\dfrac{24{,}5}{200}=0{,}1225\text{ m}=12{,}25\text{ cm}$</p>
+            <p style="color:var(--tinta-2)">Igual estructura que el Control 3 real: DCL del bloque, ejes paralelo/perpendicular al plano, $\sum F=0$ (equilibrio no significa ausencia de fuerzas).</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-polea">
+          <summary><span class="resumen-ejercicio">7. $m_1=4\text{ kg}$ sobre un plano liso a $30°$ está unido por una cuerda ideal, a través de una polea, a $m_2=6\text{ kg}$ que cuelga verticalmente. Hallar la aceleración del sistema y la tensión.</span> <span class="dificultad dificil">difícil</span></summary>
+          <div class="solucion">
+            <p>DCL de cada bloque, con $m_2$ bajando y $m_1$ subiendo por el plano (misma $a$ para ambos, cuerda inextensible):</p>
+            <p>$m_2$: &nbsp; $m_2g-T=m_2a$</p>
+            <p>$m_1$: &nbsp; $T-m_1g\sin\theta=m_1a$</p>
+            <p>Sumando ambas ecuaciones (se elimina $T$): $a=\dfrac{m_2g-m_1g\sin\theta}{m_1+m_2}=\dfrac{6(9{,}8)-4(9{,}8)(0{,}5)}{10}=\dfrac{58{,}8-19{,}6}{10}=3{,}92\text{ m/s}^2$</p>
+            <p>$T=m_2(g-a)=6(9{,}8-3{,}92)=35{,}28\text{ N}$ &nbsp; (verificación: $T=m_1(a+g\sin\theta)=4(3{,}92+4{,}9)=35{,}28\text{ N}$ ✓)</p>
+            <p style="color:var(--tinta-2)">Misma lógica que el Control 4 real (sistema de bloques con polea): DCL por separado, mismo valor de $a$ para todo el sistema, resolver el sistema de ecuaciones.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 6 · TRABAJO Y ENERGÍA -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u6">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">06</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Trabajo y energía</h2>
+          <p class="unidad-sub">Trabajo, energía cinética y potencial, potencia, y el teorema que los conecta.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-trabajo-energia">
+        <h3>Trabajo y energía</h3>
+        <ul>
+          <li>$W=\vec F\cdot\vec d=Fd\cos\theta$ ($\theta$ entre fuerza y desplazamiento).</li>
+          <li>$U_g=mgh$; &nbsp; $U_e=\tfrac12 k x^{2}$; &nbsp; Potencia: $P=\dfrac{W}{t}=\vec F\cdot\vec v$.</li>
+          <li>Trabajo del roce cinético: siempre $W_{\text{roce}}=-\mu_k N\,d$ (negativo). Teorema trabajo-energía: $W_{\text{neto}}=\Delta K$.</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Energía cinética</span>$$K=\tfrac12 mv^{2}$$</div>
+      </div>
+
+      <div class="materia" id="tema-conservacion-energia">
+        <h3>Conservación de la energía mecánica</h3>
+        <ul>
+          <li>Energía mecánica $E=K+U$. Fuerzas <strong>conservativas</strong> (peso, resorte) vs. <strong>no conservativas</strong> (roce): solo el trabajo de las no conservativas cambia $E$.</li>
+          <li>Si <strong>solo</strong> actúan fuerzas conservativas, la energía mecánica se <strong>conserva</strong>: $K_i+U_i=K_f+U_f$.</li>
+          <li>Con roce u otra fuerza disipativa: $W_{\text{NC}}=\Delta E_{\text{mec}}$ (la fricción disipa energía, $\Delta E\lt0$).</li>
+          <li>El nivel de referencia $U_g=0$ se define <strong>una sola vez</strong> y se mantiene en todo el problema.</li>
+          <li>En un "loop" o pista circular, la condición de no despegarse ($N\ge0$) se evalúa en el punto <strong>más alto</strong> (ahí la normal es mínima).</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Energía mecánica</span>$$E=K+U=\tfrac12 mv^{2}+U$$</div>
+        <div class="formula-card"><span class="etiqueta">Conservación (solo fuerzas conservativas)</span>$$K_i+U_i=K_f+U_f$$</div>
+        <div class="formula-card"><span class="etiqueta">Con fuerzas no conservativas</span>$$W_{\text{NC}}=\Delta E_{\text{mec}}=(K_f+U_f)-(K_i+U_i)$$</div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-rampa-resorte">
+          <h3>5. Rampa con roce y resorte</h3>
+          <p>Un bloque de $m=2\text{ kg}$ se lanza desde la base de una rampa ($\phi=37°$, $\mu_k=0{,}5$)
+          con $v_0=7\text{ m/s}$; a $d=1{,}5\text{ m}$ (dato asumido para completar el cálculo, no
+          especificado en la nota original) hay un resorte con $k=1200\text{ N/m}$. Hallar la deformación máxima del resorte.</p>
+          <p><strong>Solución</strong> — teorema trabajo-energía en dos tramos:</p>
+          <p>$K_0=\tfrac12(2)(7)^2=49\text{ J}$</p>
+          <p>Hasta tocar el resorte: $N=mg\cos\phi=2(9{,}8)\cos37°=15{,}65\text{ N}$, &nbsp; $f=\mu_kN=7{,}83\text{ N}$</p>
+          <p>$K_1=K_0-f\,d-mg\sin\phi\,d=49-7{,}83(1{,}5)-2(9{,}8)\sin37°(1{,}5)\approx19{,}56\text{ J}$</p>
+          <p>Durante la compresión $x$ (hasta $v=0$): $K_1-fx-mg\sin\phi\,x=\tfrac12kx^2$</p>
+          <p>$600x^2+19{,}63x-19{,}56=0\ \Rightarrow\ x\approx0{,}165\text{ m}=16{,}5\text{ cm}$</p>
+          <p style="color:var(--tinta-2)">$W_{\text{roce}}$ es negativo en ambos tramos (se opone al movimiento en todo momento, incluso comprimiendo el resorte). Separar el problema en tramos con roce/sin roce es la estrategia general de $W_{NC}=\Delta E_{\text{mec}}$.</p>
+          <p class="fuente">Fuente: nota "Trabajo y energía" (Unidad 4, adaptado).</p>
+        </div>
+
+        <div class="ejemplo" id="ej-resorte-escala">
+          <h3>6. La altura escala con el cuadrado de la compresión</h3>
+          <p>Un resorte ($k=800\text{ N/m}$) dispara verticalmente una pelota de $m=200\text{ g}$. Comprimido
+          $x_1=6\text{ cm}$, alcanza una altura $h_1$. Si se comprime el doble, $x_2=12\text{ cm}$, ¿qué altura
+          $h_2$ alcanza (sin roce)?</p>
+          <p><strong>Solución</strong> — conservación de la energía mecánica, resorte comprimido → punto más alto ($K=0$ en ambos extremos):</p>
+          <p>$\tfrac12kx^2=mgh\ \Rightarrow\ h=\dfrac{kx^2}{2mg}$</p>
+          <p>$h_1=\dfrac{800(0{,}06)^2}{2(0{,}2)(9{,}8)}=\dfrac{2{,}88}{3{,}92}\approx0{,}735\text{ m}$</p>
+          <p>$h_2=\dfrac{800(0{,}12)^2}{2(0{,}2)(9{,}8)}=\dfrac{11{,}52}{3{,}92}\approx2{,}939\text{ m}$</p>
+          <p>Razón: $h_2/h_1\approx2{,}939/0{,}735\approx4{,}00=(x_2/x_1)^2=2^2$ ✓</p>
+          <p style="color:var(--tinta-2)">La energía elástica escala con el <strong>cuadrado</strong> de la deformación ($U_e=\tfrac12kx^2$): duplicar la compresión cuadruplica la altura alcanzada, no la duplica. Es un resultado general, no depende de los valores numéricos de $k$ o $m$ elegidos.</p>
+          <p class="fuente">Fuente: nota "Conservación de la energía".</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-loop-resorte">
+          <summary><span class="resumen-ejercicio">8. Un bloque de $600\text{ g}$ es lanzado por un resorte ($k=500\text{ N/m}$) y debe completar, sin roce, un loop de radio $R=0{,}15\text{ m}$. Hallar la compresión mínima del resorte.</span> <span class="dificultad dificil">difícil</span></summary>
+          <div class="solucion">
+            <p>Condición límite en el punto más alto del loop ($N=0$, mínimo para no despegarse):</p>
+            <p>$mg=\dfrac{mv_{top}^2}{R}\ \Rightarrow\ v_{top}^2=gR=9{,}8(0{,}15)=1{,}47\text{ m}^2/\text{s}^2$</p>
+            <p>Conservación de energía, base (resorte) → punto más alto (altura $2R$):</p>
+            <p>$\tfrac12kx^2=mg(2R)+\tfrac12mv_{top}^2=0{,}6(9{,}8)(0{,}3)+0{,}5(0{,}6)(1{,}47)=1{,}764+0{,}441=2{,}205\text{ J}$</p>
+            <p>$x=\sqrt{\dfrac{2(2{,}205)}{500}}=\sqrt{0{,}00882}\approx0{,}094\text{ m}=9{,}4\text{ cm}$</p>
+            <p style="color:var(--tinta-2)">Versión simplificada (sin roce) del ejercicio real de Certamen 2, que además incluía un tramo con $\mu_k=0{,}3$ (ahí se resta $\mu_kNd$ en el tramo correspondiente antes de aplicar la misma condición $N\ge0$ en el punto más alto).</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-conservacion-energia">
+          <summary><span class="resumen-ejercicio">9. Un bloque parte del reposo en la parte alta de una rampa sin roce de altura $h_1=6\text{ m}$. Al llegar a la base, cruza un tramo horizontal rugoso ($\mu_k=0{,}25$) de $d=8\text{ m}$ antes de subir por una segunda rampa sin roce. ¿Hasta qué altura $h_2$ sube?</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>Energía en la cima de la primera rampa: $E_i=mgh_1$ (sin roce en la bajada, toda esa energía llega como $K$ a la base).</p>
+            <p>Cruzando el tramo horizontal, el roce disipa $W_{\text{roce}}=-\mu_kN d=-\mu_k mg\,d$ (en el tramo horizontal $N=mg$).</p>
+            <p>Al subir por la segunda rampa (sin roce), toda la energía restante vuelve a ser $U=mgh_2$:</p>
+            <p>$mgh_2=mgh_1-\mu_kmg\,d\ \Rightarrow\ h_2=h_1-\mu_kd=6-0{,}25(8)=6-2=4\text{ m}$</p>
+            <p style="color:var(--tinta-2)">La masa se cancela en toda la ecuación: el resultado depende solo de $h_1$, $\mu_k$ y $d$. Aplicación directa de $W_{\text{NC}}=\Delta E_{\text{mec}}$ con un tramo conservativo antes y después del tramo disipativo.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 7 · MOMENTUM Y COLISIONES -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u7">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">07</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Momentum y colisiones</h2>
+          <p class="unidad-sub">Conservación de energía y momentum, impulso y los tipos de colisiones: elástica, inelástica y perfectamente inelástica.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-conservacion-momentum">
+        <h3>Conservación de energía, momentum y colisiones</h3>
+        <ul>
+          <li>$E=K+U$; sin fuerzas no conservativas: $K_i+U_i=K_f+U_f$. Con roce: $W_{\text{NC}}=\Delta E_{\text{mec}}$.</li>
+          <li>Momentum: $\vec p=m\vec v$; impulso: $\vec J=\vec F\Delta t=\Delta\vec p$; sin fuerzas externas: $\sum\vec p_{\text{antes}}=\sum\vec p_{\text{después}}$.</li>
+          <li>Elástica: se conserva $p$ y $K$. Perfectamente inelástica: $m_1v_{1i}+m_2v_{2i}=(m_1+m_2)v_f$.</li>
+          <li>Coeficiente de restitución $e$ (elástica $e=1$; perfectamente inelástica $e=0$), $0\le e\le1$.</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Coeficiente de restitución</span>$$e=-\frac{v_{2f}-v_{1f}}{v_{2i}-v_{1i}}$$</div>
+      </div>
+
+      <div class="materia" id="tema-impulso-variable">
+        <h3>Impulso con fuerza variable</h3>
+        <ul>
+          <li>Si la fuerza no es constante, el impulso es el <strong>área bajo la curva</strong> $F$ vs. $t$: $\vec J=\displaystyle\int\Sigma\vec F\,dt$ (con $F$ constante, se reduce a $\vec J=\vec F\Delta t$).</li>
+          <li><strong>Aproximación del impulso:</strong> en un choque, la fuerza de contacto es mucho más intensa que las demás (p. ej. el peso) durante un intervalo muy breve; se trabaja con la fuerza promedio $\vec F_{\text{prom}}=\vec J/\Delta t$ y se ignoran las fuerzas "lentas" durante ese intervalo.</li>
+          <li>$\vec p$ y $\vec J$ son vectores: en 1D llevan signo según el sistema de referencia — un rebote invierte el signo de la velocidad.</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Impulso con fuerza variable</span>$$\vec J=\int \Sigma\vec F\,dt\;\approx\;\vec F_{\text{prom}}\,\Delta t=\Delta\vec p$$</div>
+      </div>
+
+      <div class="animacion" id="anim-colision">
+        <div class="anim-cabecera">
+          <h3>💥 Colisión 1D (elástica / perfectamente inelástica)</h3>
+          <p class="anim-desc">Dos bloques 1D que se acercan, chocan y se separan (o quedan pegados), con la opción de comparar colisión elástica vs. perfectamente inelástica.</p>
+        </div>
+        <canvas data-alto="280"></canvas>
+        <div class="controles">
+          <div class="control"><label for="sl-col-m1">m₁</label><input type="range" id="sl-col-m1" min="0.5" max="12" step="0.5" value="2"><span class="valor"></span></div>
+          <div class="control"><label for="sl-col-m2">m₂</label><input type="range" id="sl-col-m2" min="0.5" max="12" step="0.5" value="4"><span class="valor"></span></div>
+          <div class="control"><label for="sl-col-v1i">v₁ᵢ</label><input type="range" id="sl-col-v1i" min="-15" max="15" step="0.5" value="6"><span class="valor"></span></div>
+          <div class="control"><label for="sl-col-v2i">v₂ᵢ</label><input type="range" id="sl-col-v2i" min="-15" max="15" step="0.5" value="-2"><span class="valor"></span></div>
+          <button type="button" class="secundario" data-accion="tipo" id="btn-col-tipo">Tipo: elástica (clic para plástica)</button>
+          <button type="button" data-accion="jugar">▶ Reproducir</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> el momentum $p$ se conserva <strong>siempre</strong> (con las fórmulas reales del choque); la energía cinética $K$ solo se conserva en la colisión <strong>elástica</strong> (los valores de $p$ y $K$ antes/después se muestran abajo). Si $v_{1i}\le v_{2i}$ los bloques no llegan a chocar. Usá ↺ para reiniciar tras un choque.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-impulso-pared">
+          <h3>7. Auto que choca contra una pared</h3>
+          <p>Un automóvil de $m=1500\text{ kg}$ choca contra una pared: $\vec v_i=-15{,}0\hat\imath\text{ m/s}$,
+          $\vec v_f=+2{,}60\hat\imath\text{ m/s}$, con una colisión que dura $\Delta t=0{,}150\text{ s}$. Hallar el
+          impulso y la fuerza promedio sobre el auto.</p>
+          <p><strong>Solución</strong> — teorema del impulso-momentum, $\vec J=\Delta\vec p=m\Delta\vec v$:</p>
+          <p>$\Delta v=v_f-v_i=2{,}60-(-15{,}0)=17{,}6\text{ m/s}$</p>
+          <p>$J=m\Delta v=1500(17{,}6)=26\,400\ \text{kg}\cdot\text{m/s}$</p>
+          <p>$F_{\text{prom}}=\dfrac{J}{\Delta t}=\dfrac{26\,400}{0{,}150}=176\,000\text{ N}=176\text{ kN}$</p>
+          <p style="color:var(--tinta-2)">$\vec F_{\text{prom}}$ es la fuerza promedio que ejerce la pared sobre el auto durante el choque (aproximación del impulso): mucho mayor que el peso del auto ($mg\approx14\,700\text{ N}$), lo que justifica ignorar el peso durante ese intervalo tan breve.</p>
+          <p class="fuente">Fuente: nota "Momentum e impulso".</p>
+        </div>
+
+        <div class="ejemplo" id="ej-loop-choque">
+          <h3>8. Choque plástico en pista semicircular</h3>
+          <p>Un bloque $A$ desliza sin roce desde la parte alta de una pista semicircular de altura $H$ y
+          choca <strong>plásticamente</strong> con $B$ (en reposo, abajo). La nota da la fórmula general de
+          la altura alcanzada tras el choque:</p>
+          <p>$$h=\frac{m_A^2}{(m_A+m_B)^2}\,H$$</p>
+          <p><strong>Aplicación numérica</strong> (valores ilustrativos: $H=2\text{ m}$, $m_A=3\text{ kg}$, $m_B=1\text{ kg}$):</p>
+          <p>Energía (tramo sin roce): $v_A=\sqrt{2gH}=\sqrt{2(9{,}8)(2)}=6{,}26\text{ m/s}$</p>
+          <p>Momentum (choque plástico): $v'=\dfrac{m_Av_A}{m_A+m_B}=\dfrac{3(6{,}26)}{4}=4{,}70\text{ m/s}$</p>
+          <p>Energía (tramo post-choque): $h=\dfrac{v'^2}{2g}=\dfrac{4{,}70^2}{19{,}6}\approx1{,}13\text{ m}$ — coincide con la fórmula: $(3/4)^2\times2=1{,}125\text{ m}$ ✓</p>
+          <p style="color:var(--tinta-2)">Dos análisis <strong>distintos</strong> encadenados por el mismo evento: conservación de energía antes del choque, conservación de momentum durante el choque (instantáneo), y de nuevo energía después. $h\lt H$ siempre: se pierde energía en el choque plástico.</p>
+          <p class="fuente">Fuente: Pauta Examen, 2026-1 (Colisiones).</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-impulso">
+          <summary><span class="resumen-ejercicio">10. Una pelota de tenis de $60\text{ g}$ golpea una pared con $20\text{ m/s}$ y rebota en línea recta con $18\text{ m/s}$. El contacto dura $5\text{ ms}$. Hallar el impulso y la fuerza promedio sobre la pelota.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>Eje positivo en el sentido de la velocidad inicial: $v_i=+20\text{ m/s}$, $v_f=-18\text{ m/s}$ (rebote, cambia de sentido).</p>
+            <p>$\Delta v=v_f-v_i=-18-20=-38\text{ m/s}$</p>
+            <p>$J=m\Delta v=0{,}06(-38)=-2{,}28\ \text{kg}\cdot\text{m/s}$ (magnitud $2{,}28\ \text{kg}\cdot\text{m/s}$, en sentido opuesto al golpe inicial)</p>
+            <p>$F_{\text{prom}}=\dfrac{J}{\Delta t}=\dfrac{-2{,}28}{0{,}005}=-456\text{ N}$ (magnitud $456\text{ N}$)</p>
+            <p style="color:var(--tinta-2)">El signo negativo confirma que tanto el impulso como la fuerza promedio de la pared sobre la pelota apuntan en sentido contrario a la velocidad de llegada — coherente con un rebote.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-restitucion">
+          <summary><span class="resumen-ejercicio">11. Dos carritos chocan de frente: $m_1=2\text{ kg}$, $v_{1i}=3\text{ m/s}$; $m_2=3\text{ kg}$, $v_{2i}=-1\text{ m/s}$; coeficiente de restitución $e=0{,}6$. Hallar $v_{1f}$ y $v_{2f}$.</span> <span class="dificultad dificil">difícil</span></summary>
+          <div class="solucion">
+            <p>Conservación de momentum: $2(3)+3(-1)=2v_{1f}+3v_{2f}\ \Rightarrow\ 3=2v_{1f}+3v_{2f}$ &nbsp; (i)</p>
+            <p>Restitución: $e=-\dfrac{v_{2f}-v_{1f}}{v_{2i}-v_{1i}}=0{,}6\ \Rightarrow\ v_{2f}-v_{1f}=0{,}6(4)=2{,}4$ &nbsp; (ii)</p>
+            <p>De (ii): $v_{2f}=v_{1f}+2{,}4$. Sustituyendo en (i): $2v_{1f}+3(v_{1f}+2{,}4)=3\ \Rightarrow\ 5v_{1f}=-4{,}2\ \Rightarrow\ v_{1f}=-0{,}84\text{ m/s}$</p>
+            <p>$v_{2f}=1{,}56\text{ m/s}$. Verificación de momentum: $2(-0{,}84)+3(1{,}56)=3{,}00$ ✓</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function () {
+
+  function dibujarFlecha(ctx, x0, y0, x1, y1, color, etiqueta) {
+    ctx.save();
+    ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineWidth = 2.4;
+    ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1, y1); ctx.stroke();
+    var ang = Math.atan2(y1 - y0, x1 - x0);
+    var tam = 9;
+    ctx.beginPath();
+    ctx.moveTo(x1, y1);
+    ctx.lineTo(x1 - tam * Math.cos(ang - 0.4), y1 - tam * Math.sin(ang - 0.4));
+    ctx.lineTo(x1 - tam * Math.cos(ang + 0.4), y1 - tam * Math.sin(ang + 0.4));
+    ctx.closePath(); ctx.fill();
+    if (etiqueta) {
+      ctx.font = "12px Consolas, monospace";
+      ctx.fillText(etiqueta, x1 + 6, y1);
+    }
+    ctx.restore();
+  }
+
+  /* ================= 1. Tiro parabólico ================= */
+  Anim.registrar("anim-proyectil", function (sim) {
+    var g = 9.8;
+    var v0 = 20, angulo = 45, y0 = 0;
+
+    function estado() {
+      var rad = angulo * Math.PI / 180;
+      var vx = v0 * Math.cos(rad);
+      var vy0 = v0 * Math.sin(rad);
+      var a = -0.5 * g, b = vy0, c = y0;
+      var disc = b * b - 4 * a * c;
+      var tVuelo = 0;
+      if (disc >= 0) {
+        var t1 = (-b + Math.sqrt(disc)) / (2 * a);
+        var t2 = (-b - Math.sqrt(disc)) / (2 * a);
+        tVuelo = Math.max(t1, t2);
+        if (tVuelo < 0) tVuelo = 0;
+      }
+      var alcance = vx * tVuelo;
+      var tSubida = vy0 > 0 ? vy0 / g : 0;
+      var alturaMax = y0 + vy0 * tSubida - 0.5 * g * tSubida * tSubida;
+      if (alturaMax < y0) alturaMax = y0;
+      return { vx: vx, vy0: vy0, tVuelo: tVuelo, alcance: alcance, alturaMax: alturaMax };
+    }
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var e = estado();
+      var xMax = Math.max(e.alcance, 8) * 1.18;
+      var yMax = Math.max(e.alturaMax, y0, 5) * 1.35;
+      var m = Anim.mapa(w, h, { xMin: 0, xMax: xMax, yMin: 0, yMax: yMax });
+      Anim.ejes(ctx, m, w, h);
+
+      var acento = colorVar("--acento");
+      var s1 = colorVar("--s1");
+      var s3 = colorVar("--s3");
+      var tinta2 = colorVar("--tinta-2");
+      var tinta = colorVar("--tinta");
+
+      ctx.save();
+      ctx.strokeStyle = tinta2; ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.moveTo(0, m.y(0)); ctx.lineTo(w, m.y(0)); ctx.stroke();
+      ctx.restore();
+
+      ctx.save();
+      ctx.strokeStyle = acento; ctx.lineWidth = 2.2;
+      ctx.beginPath();
+      var n = 80;
+      for (var i = 0; i <= n; i++) {
+        var tt = e.tVuelo * i / n;
+        var xx = e.vx * tt;
+        var yy = y0 + e.vy0 * tt - 0.5 * g * tt * tt;
+        var px = m.x(xx), py = m.y(yy);
+        if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+      }
+      ctx.stroke();
+      ctx.restore();
+
+      ctx.save();
+      ctx.strokeStyle = s3; ctx.setLineDash([5, 4]); ctx.lineWidth = 1.3;
+      ctx.beginPath(); ctx.moveTo(m.x(e.alcance), m.y(0)); ctx.lineTo(m.x(e.alcance), m.y(Math.max(e.alturaMax, y0))); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(0, m.y(e.alturaMax)); ctx.lineTo(m.x(e.alcance), m.y(e.alturaMax)); ctx.stroke();
+      ctx.restore();
+
+      var magv0 = Math.sqrt(e.vx * e.vx + e.vy0 * e.vy0) || 1;
+      var ux = e.vx / magv0, uy = e.vy0 / magv0;
+      var ox0 = m.x(0), oy0 = m.y(y0);
+      dibujarFlecha(ctx, ox0, oy0, ox0 + ux * 50, oy0 - uy * 50, acento, "v₀");
+
+      var s = e.tVuelo > 0 ? (t % e.tVuelo) : 0;
+      var xp = e.vx * s, yp = y0 + e.vy0 * s - 0.5 * g * s * s;
+      ctx.save();
+      ctx.fillStyle = s1;
+      ctx.beginPath(); ctx.arc(m.x(xp), m.y(yp), 7, 0, Math.PI * 2); ctx.fill();
+      ctx.restore();
+
+      ctx.save();
+      ctx.fillStyle = tinta; ctx.font = "13px Consolas, monospace";
+      ctx.fillText("Alcance R = " + e.alcance.toFixed(1) + " m", 10, 18);
+      ctx.fillText("Altura máxima H = " + e.alturaMax.toFixed(1) + " m", 10, 36);
+      ctx.fillText("Tiempo de vuelo = " + e.tVuelo.toFixed(2) + " s", 10, 54);
+      ctx.restore();
+    });
+
+    sim.slider("sl-proy-v0", function (v) { v0 = v; sim.redibujar(); }, function (v) { return v.toFixed(0) + " m/s"; });
+    sim.slider("sl-proy-angulo", function (v) { angulo = v; sim.redibujar(); }, function (v) { return v.toFixed(0) + "°"; });
+    sim.slider("sl-proy-y0", function (v) { y0 = v; sim.redibujar(); }, function (v) { return v.toFixed(0) + " m"; });
+    sim.botones();
+  });
+
+  /* ================= 2. Plano inclinado con DCL ================= */
+  Anim.registrar("anim-plano", function (sim) {
+    var g = 9.8, masa = 2;
+    var theta = 30, mu = 0.3;
+    var frac0 = 0.85;
+
+    function vec(x, y) { return { x: x, y: y }; }
+    function resta(a, b) { return vec(a.x - b.x, a.y - b.y); }
+    function norma(v) { return Math.sqrt(v.x * v.x + v.y * v.y); }
+    function normaliza(v) { var n = norma(v) || 1; return vec(v.x / n, v.y / n); }
+    function escalaVec(v, s) { return vec(v.x * s, v.y * s); }
+    function sumar(a, b) { return vec(a.x + b.x, a.y + b.y); }
+
+    function calcular() {
+      var rad = theta * Math.PI / 180;
+      var W = masa * g;
+      var Wpar = W * Math.sin(rad);
+      var Wperp = W * Math.cos(rad);
+      var N = Wperp;
+      var fMax = mu * N;
+      var desliza = Wpar > fMax;
+      var fMostrada = desliza ? fMax : Wpar;
+      var a = desliza ? g * (Math.sin(rad) - mu * Math.cos(rad)) : 0;
+      return { W: W, Wpar: Wpar, Wperp: Wperp, N: N, fMax: fMax, desliza: desliza, fMostrada: fMostrada, a: a, rad: rad };
+    }
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var e = calcular();
+      var s1 = colorVar("--s1"), s3 = colorVar("--s3"),
+          aviso = colorVar("--futuro"), ok = colorVar("--ok"), tinta = colorVar("--tinta"),
+          tinta2 = colorVar("--tinta-2"), suave = colorVar("--acento-tenue");
+
+      var x0 = 55, yBase = h - 45, baseLen = w - 130;
+      if (baseLen < 100) baseLen = 100;
+      var altura = baseLen * Math.tan(e.rad);
+      var pInf = vec(x0, yBase);
+      var pTop = vec(x0 + baseLen, yBase - altura);
+      var pRecto = vec(x0 + baseLen, yBase);
+
+      ctx.save();
+      ctx.fillStyle = suave;
+      ctx.strokeStyle = tinta2; ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(pInf.x, pInf.y); ctx.lineTo(pRecto.x, pRecto.y); ctx.lineTo(pTop.x, pTop.y); ctx.closePath();
+      ctx.fill(); ctx.stroke();
+      ctx.restore();
+
+      var dIncline = resta(pTop, pInf);
+      var longIncline = norma(dIncline);
+      var dirSubida = normaliza(dIncline);
+      var nOut = normaliza(vec(dIncline.y, -dIncline.x));
+
+      var sMundo = e.desliza ? 0.5 * e.a * t * t : 0;
+      var longMetros = 4;
+      var fracActual = frac0 - sMundo / longMetros;
+      if (fracActual < 0) fracActual = 0;
+      if (fracActual > frac0) fracActual = frac0;
+
+      var posBloque = sumar(pInf, escalaVec(dirSubida, longIncline * fracActual));
+
+      var tam = 26;
+      ctx.save();
+      ctx.translate(posBloque.x, posBloque.y);
+      ctx.rotate(-e.rad);
+      ctx.fillStyle = colorVar("--s2");
+      ctx.fillRect(-tam / 2, -tam, tam, tam);
+      ctx.restore();
+
+      var escalaFuerza = 2.2;
+      var ox = posBloque.x, oy = posBloque.y - tam * 0.6;
+
+      dibujarFlecha(ctx, ox, oy, ox, oy + e.W * escalaFuerza * 0.5, aviso, "W=" + e.W.toFixed(1) + "N");
+      dibujarFlecha(ctx, ox, oy, ox + nOut.x * e.N * escalaFuerza * 0.5, oy + nOut.y * e.N * escalaFuerza * 0.5, s1, "N=" + e.N.toFixed(1) + "N");
+      dibujarFlecha(ctx, ox, oy, ox + dirSubida.x * e.fMostrada * escalaFuerza * 0.5, oy + dirSubida.y * e.fMostrada * escalaFuerza * 0.5, s3, "f=" + e.fMostrada.toFixed(1) + "N");
+
+      ctx.save();
+      ctx.font = "13px Consolas, monospace";
+      ctx.fillStyle = tinta;
+      ctx.fillText("mg·sinθ = " + e.Wpar.toFixed(2) + " N   vs.   μ·N = " + e.fMax.toFixed(2) + " N", 12, 20);
+      ctx.fillStyle = e.desliza ? aviso : ok;
+      ctx.font = "bold 14px Consolas, monospace";
+      ctx.fillText(e.desliza ? "⚠ DESLIZA (a = " + e.a.toFixed(2) + " m/s²)" : "✅ EN EQUILIBRIO (a = 0)", 12, 40);
+      ctx.restore();
+    });
+
+    sim.slider("sl-plano-theta", function (v) { theta = v; sim.redibujar(); }, function (v) { return v.toFixed(0) + "°"; });
+    sim.slider("sl-plano-mu", function (v) { mu = v; sim.redibujar(); }, function (v) { return v.toFixed(2); });
+    sim.botones();
+  });
+
+  /* ================= 3. Colisión 1D ================= */
+  Anim.registrar("anim-colision", function (sim) {
+    var m1 = 2, m2 = 4, v1i = 6, v2i = -2, tipo = "elastica";
+
+    function radioMundo(masa) {
+      var r = 0.4 + 0.32 * Math.sqrt(masa);
+      return Math.max(0.55, Math.min(r, 2.2));
+    }
+
+    function velocidadesFinales() {
+      if (tipo === "inelastica") {
+        var vf = (m1 * v1i + m2 * v2i) / (m1 + m2);
+        return { v1f: vf, v2f: vf };
+      }
+      var v1f = ((m1 - m2) * v1i + 2 * m2 * v2i) / (m1 + m2);
+      var v2f = ((m2 - m1) * v2i + 2 * m1 * v1i) / (m1 + m2);
+      return { v1f: v1f, v2f: v2f };
+    }
+
+    function estadoTiempo(t) {
+      var r1 = radioMundo(m1), r2 = radioMundo(m2);
+      var x1_0 = -9, x2_0 = 9;
+      var ts = 0.35;
+      var vw1 = v1i * ts, vw2 = v2i * ts;
+      var gap0 = (x2_0 - x1_0) - (r1 + r2);
+      var rel = vw1 - vw2;
+      var tCol = (rel > 1e-9) ? gap0 / rel : Infinity;
+      if (tCol < 0) tCol = 0;
+      var vf = velocidadesFinales();
+      var x1, x2;
+      if (t < tCol || !isFinite(tCol)) {
+        x1 = x1_0 + vw1 * t; x2 = x2_0 + vw2 * t;
+      } else {
+        var xCol1 = x1_0 + vw1 * tCol, xCol2 = x2_0 + vw2 * tCol;
+        var dt2 = t - tCol;
+        if (tipo === "inelastica") {
+          var vwf = vf.v1f * ts;
+          x1 = xCol1 + vwf * dt2;
+          x2 = x1 + (r1 + r2);
+        } else {
+          x1 = xCol1 + vf.v1f * ts * dt2;
+          x2 = xCol2 + vf.v2f * ts * dt2;
+        }
+      }
+      return { x1: x1, x2: x2, r1: r1, r2: r2 };
+    }
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var m = Anim.mapa(w, h, { xMin: -13, xMax: 13, yMin: -4, yMax: 4 });
+      var s = estadoTiempo(t);
+      var s2c = colorVar("--s2"), s3c = colorVar("--s3"), tinta = colorVar("--tinta"), tinta2 = colorVar("--tinta-2");
+
+      ctx.save(); ctx.strokeStyle = tinta2; ctx.globalAlpha = 0.5; ctx.beginPath();
+      ctx.moveTo(0, m.y(0)); ctx.lineTo(w, m.y(0)); ctx.stroke(); ctx.restore();
+
+      var r1px = s.r1 * m.escalaX, r2px = s.r2 * m.escalaX;
+      ctx.save();
+      ctx.fillStyle = s2c;
+      ctx.beginPath(); ctx.arc(m.x(s.x1), m.y(0), r1px, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = tinta; ctx.font = "12px Consolas, monospace"; ctx.textAlign = "center";
+      ctx.fillText("m₁=" + m1 + "kg", m.x(s.x1), m.y(0) - r1px - 8);
+      ctx.restore();
+
+      ctx.save();
+      ctx.fillStyle = s3c;
+      ctx.beginPath(); ctx.arc(m.x(s.x2), m.y(0), r2px, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = tinta; ctx.font = "12px Consolas, monospace"; ctx.textAlign = "center";
+      ctx.fillText("m₂=" + m2 + "kg", m.x(s.x2), m.y(0) - r2px - 8);
+      ctx.restore();
+      ctx.textAlign = "left";
+
+      var vf = velocidadesFinales();
+      var pAntes = m1 * v1i + m2 * v2i;
+      var pDespues = m1 * vf.v1f + m2 * vf.v2f;
+      var kAntes = 0.5 * m1 * v1i * v1i + 0.5 * m2 * v2i * v2i;
+      var kDespues = 0.5 * m1 * vf.v1f * vf.v1f + 0.5 * m2 * vf.v2f * vf.v2f;
+
+      ctx.save();
+      ctx.font = "13px Consolas, monospace"; ctx.fillStyle = tinta;
+      ctx.fillText("v₁f = " + vf.v1f.toFixed(2) + " m/s     v₂f = " + vf.v2f.toFixed(2) + " m/s", 10, h - 58);
+      ctx.fillText("p antes = " + pAntes.toFixed(2) + " kg·m/s     p después = " + pDespues.toFixed(2) + " kg·m/s", 10, h - 40);
+      ctx.fillText("K antes = " + kAntes.toFixed(2) + " J     K después = " + kDespues.toFixed(2) + " J" + (tipo === "elastica" ? "  (se conserva)" : "  (no se conserva)"), 10, h - 22);
+      ctx.restore();
+    });
+
+    sim.slider("sl-col-m1", function (v) { m1 = v; sim.redibujar(); }, function (v) { return v.toFixed(1) + " kg"; });
+    sim.slider("sl-col-m2", function (v) { m2 = v; sim.redibujar(); }, function (v) { return v.toFixed(1) + " kg"; });
+    sim.slider("sl-col-v1i", function (v) { v1i = v; sim.redibujar(); }, function (v) { return v.toFixed(1) + " m/s"; });
+    sim.slider("sl-col-v2i", function (v) { v2i = v; sim.redibujar(); }, function (v) { return v.toFixed(1) + " m/s"; });
+
+    sim.botones({
+      tipo: function () {
+        tipo = tipo === "elastica" ? "inelastica" : "elastica";
+        var btn = document.getElementById("btn-col-tipo");
+        if (btn) btn.textContent = tipo === "elastica" ? "Tipo: elástica (clic para plástica)" : "Tipo: perfectamente inelástica (clic para elástica)";
+        sim.reiniciar();
+      }
+    });
+  });
+
+  /* ================= 4. Movimiento circular ================= */
+  Anim.registrar("anim-circular", function (sim) {
+    var omega = 2, radio = 1.5;
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var maxRango = 4.2;
+      var escala = Math.min(w, h) / (2 * maxRango);
+      var cx = w / 2, cy = h / 2;
+      function px(x) { return cx + x * escala; }
+      function py(y) { return cy - y * escala; }
+      var mapaFalso = { x: px, y: py, escalaX: escala, escalaY: escala };
+      Anim.ejes(ctx, mapaFalso, w, h);
+
+      var acento = colorVar("--acento"), s3c = colorVar("--s3"), s1c = colorVar("--s1"),
+          tinta = colorVar("--tinta"), tinta2 = colorVar("--tinta-2");
+
+      ctx.save();
+      ctx.strokeStyle = tinta2; ctx.globalAlpha = 0.6; ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.arc(cx, cy, radio * escala, 0, Math.PI * 2); ctx.stroke();
+      ctx.restore();
+
+      var theta = omega * t;
+      var x = radio * Math.cos(theta), y = radio * Math.sin(theta);
+      var v = omega * radio, a = omega * omega * radio;
+
+      var dirV = { x: -Math.sin(theta), y: Math.cos(theta) };
+      var longV = Math.min(v * 7, 140);
+      dibujarFlecha(ctx, px(x), py(y), px(x) + dirV.x * longV, py(y) - dirV.y * longV, s1c, "v=" + v.toFixed(2) + " m/s");
+
+      var dirA = { x: -Math.cos(theta), y: -Math.sin(theta) };
+      var longA = Math.min(a * 1.1, 140);
+      dibujarFlecha(ctx, px(x), py(y), px(x) + dirA.x * longA, py(y) - dirA.y * longA, s3c, "a_c=" + a.toFixed(2) + " m/s²");
+
+      ctx.save();
+      ctx.fillStyle = acento;
+      ctx.beginPath(); ctx.arc(px(x), py(y), 8, 0, Math.PI * 2); ctx.fill();
+      ctx.restore();
+
+      ctx.save();
+      ctx.font = "13px Consolas, monospace"; ctx.fillStyle = tinta;
+      ctx.fillText("ω = " + omega.toFixed(2) + " rad/s   r = " + radio.toFixed(2) + " m", 10, 18);
+      ctx.fillText("v = ω·r = " + v.toFixed(2) + " m/s", 10, 36);
+      ctx.fillText("a_c = ω²·r = " + a.toFixed(2) + " m/s²", 10, 54);
+      ctx.restore();
+    });
+
+    sim.slider("sl-circ-omega", function (v) { omega = v; sim.redibujar(); }, function (v) { return v.toFixed(1) + " rad/s"; });
+    sim.slider("sl-circ-radio", function (v) { radio = v; sim.redibujar(); }, function (v) { return v.toFixed(1) + " m"; });
+    sim.botones();
+  });
+
+})();
+</script>
+
+<script>
+  // entradas escalonadas (GSAP + ScrollTrigger vía Anim.revelar) — no rompe nada si GSAP no cargó
+  Anim.revelar(".curso-hero-v3 > *", { scroll: false, stagger: .08, distancia: 14, duracion: .8 });
+  document.querySelectorAll(".unidad").forEach(function (u) {
+    Anim.revelar(u.querySelectorAll(":scope > .unidad-cabecera, :scope > .materia, :scope > .animacion, :scope > .ejemplos-unidad, :scope > .ejercicios-unidad"), { disparador: u, stagger: .08, distancia: 16 });
+  });
+</script>
+</body>
+</html>

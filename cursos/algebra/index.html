@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="es" data-tema="oscuro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔢 Álgebra — Biblioteca</title>
+<link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../../assets/vendor/fuentes/fuentes.css">
+<link rel="stylesheet" href="../../assets/css/observatorio.css">
+<script>window.RUTA_BASE = "../../";</script>
+<script src="../../assets/vendor/katex/katex.min.js"></script>
+<script src="../../assets/vendor/katex/auto-render.min.js"></script>
+<script src="../../assets/vendor/gsap/gsap.min.js"></script>
+<script src="../../assets/vendor/gsap/ScrollTrigger.min.js"></script>
+<script src="../../assets/js/observatorio.js"></script>
+<script src="indice-curso.js"></script>
+</head>
+<body>
+<div class="progreso-lectura"></div>
+<div class="pagina-curso">
+
+  <aside class="lateral">
+    <a class="volver" href="../../index.html">← Constelación</a>
+    <div class="curso-cabecera"><span class="emoji">🔢</span><h1>Álgebra</h1></div>
+    <span class="semestre-tag" style="color:var(--s1)">Semestre 1</span>
+    <nav>
+      <div class="grupo">Unidades</div>
+      <a href="#u1">01 · Lógica y cuantificadores</a>
+      <a class="sub" href="#anim-tabla">✅ Tabla de verdad</a>
+      <a href="#u2">02 · Conjuntos y cardinalidad</a>
+      <a class="sub" href="#anim-venn">⭕ Diagrama de Venn</a>
+      <a href="#u3">03 · Progresiones, sumatorias e inducción</a>
+      <a class="sub" href="#anim-progresion">📊 Progresiones</a>
+      <a href="#u4">04 · Números complejos</a>
+      <a class="sub" href="#anim-complejos">🌀 Plano complejo</a>
+      <a href="#u5">05 · Polinomios y fracciones parciales</a>
+    </nav>
+    <div class="atajos"><kbd>Ctrl K</kbd> buscar en toda la biblioteca</div>
+  </aside>
+
+  <main class="principal">
+    <div class="principal-cabecera">
+      <span class="relleno"></span>
+      <button class="btn-buscar" type="button">🔍 Buscar <kbd>Ctrl K</kbd></button>
+      <button class="btn-tema" type="button">☀️</button>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CABECERA DEL CURSO -->
+    <!-- ============================================================ -->
+    <header class="curso-hero-v3" id="cheat" style="--ac: var(--s1)">
+      <span class="emoji-grande">🔢</span>
+      <h1>Álgebra — Resumen del curso</h1>
+      <span class="semestre-tag" style="color:var(--s1)">Semestre 1</span>
+      <p class="curso-intro">
+        Curso de <strong>lógica, conjuntos, inducción matemática, números complejos y polinomios</strong>
+        (Álgebra I, Semestre 1 — no confundir con Álgebra Lineal de S3). Secuencia real de evaluaciones
+        2025-1: Control 1 (lógica, equivalencias, cuantificadores) → Control 2 (conjuntos, cardinalidad) →
+        Certamen 1 → Control 3 (progresiones) → Control 4 (sumatorias, binomio) → Certamen 2 (incluye
+        inducción) → Control 5 (complejos: binómica/polar) → Control 6 (De Moivre, raíces, Ruffini) →
+        Certamen 3 → Examen (incluye fracciones parciales).
+      </p>
+      <ul class="mini-indice">
+        <li><a href="#u1">01 · Lógica y cuantificadores</a></li>
+        <li><a href="#u2">02 · Conjuntos y cardinalidad</a></li>
+        <li><a href="#u3">03 · Progresiones e inducción</a></li>
+        <li><a href="#u4">04 · Números complejos</a></li>
+        <li><a href="#u5">05 · Polinomios y fracciones parciales</a></li>
+      </ul>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 1 · LÓGICA Y CUANTIFICADORES -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u1">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">01</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Lógica proposicional y cuantificadores</h2>
+          <p class="unidad-sub">Conectivos, tautologías, leyes lógicas y funciones proposicionales: la base con la que se escribe (y se niega) todo el resto del curso.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-logica">
+        <h3>Lógica proposicional</h3>
+        <p>Una <strong>proposición</strong> tiene valor V o F (no ambos). Axioma = se asume V; teorema = se demuestra.</p>
+        <div class="tabla-scroll">
+          <table>
+            <thead><tr><th>Conectivo</th><th>Símbolo</th><th>Verdadera cuando…</th></tr></thead>
+            <tbody>
+              <tr><td>Negación</td><td>$\neg p$</td><td>$p$ es falsa</td></tr>
+              <tr><td>Conjunción</td><td>$p\wedge q$</td><td>ambas verdaderas</td></tr>
+              <tr><td>Disyunción inclusiva</td><td>$p\vee q$</td><td>al menos una V (F solo si ambas F)</td></tr>
+              <tr><td>Disyunción exclusiva</td><td>$p\veebar q$</td><td>valores distintos</td></tr>
+              <tr><td>Condicional</td><td>$p\rightarrow q$</td><td>F <strong>solo</strong> si $p$=V y $q$=F</td></tr>
+              <tr><td>Bicondicional</td><td>$p\leftrightarrow q$</td><td>$p$ y $q$ igual valor</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <ul>
+          <li><strong>Tautología:</strong> siempre V. <strong>Contradicción:</strong> siempre F. <strong>Contingencia:</strong> ni una ni otra.</li>
+          <li>$p\equiv q$ ⟺ $p\leftrightarrow q$ es tautología. $p\Rightarrow q$ ⟺ $p\rightarrow q$ es tautología.</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Condicional como disyunción</span>$$p\rightarrow q \equiv \neg p \vee q$$</div>
+      </div>
+
+      <div class="materia" id="tema-leyes-cuantificadores">
+        <h3>Leyes lógicas y cuantificadores</h3>
+        <div class="tabla-scroll">
+          <table>
+            <thead><tr><th>Ley</th><th>Fórmula</th></tr></thead>
+            <tbody>
+              <tr><td>Doble negación</td><td>$\neg(\neg p)\equiv p$</td></tr>
+              <tr><td>Conmutativa</td><td>$p\wedge q\equiv q\wedge p,\ p\vee q\equiv q\vee p$</td></tr>
+              <tr><td>Asociativa</td><td>$(p\wedge q)\wedge r\equiv p\wedge(q\wedge r)$</td></tr>
+              <tr><td>Distributiva</td><td>$p\wedge(q\vee r)\equiv(p\wedge q)\vee(p\wedge r)$</td></tr>
+              <tr><td>De Morgan</td><td>$\neg(p\wedge q)\equiv \neg p\vee\neg q,\ \ \neg(p\vee q)\equiv\neg p\wedge\neg q$</td></tr>
+              <tr><td>Idempotencia</td><td>$p\wedge p\equiv p,\ p\vee p\equiv p$</td></tr>
+              <tr><td>Condicional</td><td>$p\rightarrow q\equiv\neg p\vee q$</td></tr>
+              <tr><td>Bicondicional</td><td>$p\leftrightarrow q\equiv(p\rightarrow q)\wedge(q\rightarrow p)$</td></tr>
+              <tr><td>Absorción</td><td>$p\vee(p\wedge q)\equiv p,\ \ p\wedge(p\vee q)\equiv p$</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>Función proposicional</strong> $p(x)$: conjunto de validez $V_p=\{x\in\mathcal U: p(x)\text{ es V}\}$.</p>
+        <ul>
+          <li>$\forall x,\ p(x)$ (universal) · $\exists x,\ p(x)$ (existencial) · $\exists!$ (existe un único)</li>
+          <li>Al negar $p\to q$ el resultado es $p\wedge\neg q$ (no $\neg p\wedge\neg q$).</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Negación del cuantificador universal</span>$$\neg(\forall x,\ p(x)) \equiv \exists x,\ \neg p(x)$$</div>
+        <div class="formula-card"><span class="etiqueta">Negación del cuantificador existencial</span>$$\neg(\exists x,\ p(x)) \equiv \forall x,\ \neg p(x)$$</div>
+      </div>
+
+      <div class="animacion" id="anim-tabla">
+        <div class="anim-cabecera">
+          <h3>✅ Tabla de verdad paso a paso</h3>
+          <p class="anim-desc">Elegí una fórmula: sus columnas se revelan una a una hasta clasificar el resultado final.</p>
+        </div>
+        <canvas data-alto="300"></canvas>
+        <div class="controles">
+          <div class="control">
+            <label for="tabla-formula">Fórmula</label>
+            <select id="tabla-formula">
+              <option value="0">Condicional: p→q ≡ ¬p∨q</option>
+              <option value="1">Leyes de De Morgan: ¬(p∧q) ≡ ¬p∨¬q</option>
+              <option value="2">Contrapositiva: p→q ≡ ¬q→¬p</option>
+              <option value="3">Bicondicional: p↔q</option>
+              <option value="4">Tautología: p∨¬p</option>
+              <option value="5">Contradicción: p∧¬p</option>
+            </select>
+          </div>
+          <button type="button" data-accion="jugar">▶ Reproducir</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> cada columna revelada se clasifica fila a fila en V (verde) o F (rojo). Al llegar a la última columna, el mensaje final dice si es <strong>tautología</strong> (siempre V), <strong>contradicción</strong> (siempre F) o <strong>contingencia</strong>. Las opciones de equivalencia (De Morgan, contrapositiva, condicional≡¬p∨q) agregan una columna bicondicional final que resulta tautología cuando la equivalencia es válida — así se <strong>demuestra</strong> con tabla en vez de solo enunciar la ley.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-tabla-fijo">
+          <h3>1. Tabla de verdad con dato fijo (Control 1)</h3>
+          <p>Con $a,b,c$ proposiciones y $a\equiv F$, evaluar $c \leftrightarrow \{(a\rightarrow\neg b)\vee[c\wedge(\neg a\vee b)]\}$.</p>
+          <p><strong>Solución</strong> — como $a\equiv F$ está fijo, basta variar $b,c$ (4 filas). Se calculan las columnas en orden:</p>
+          <p>①$\,a\to\neg b$: con $a=F$, la condicional es <strong>V vacuamente</strong> para cualquier $b$ (antecedente falso). Columna ① = V siempre.</p>
+          <p>②$\,\neg a\vee b$: $\neg a=V$, así que $V\vee b=V$ siempre, independiente de $b$.</p>
+          <p>③$\,c\wedge$② $= c\wedge V = c$.</p>
+          <p>④$\,①\vee③ = V\vee c = V$ siempre (independiente de $c$ y de $b$).</p>
+          <p>Final: $c\leftrightarrow④ = c\leftrightarrow V \equiv c$.</p>
+          <p style="color:var(--tinta-2)">El resultado es una <strong>contingencia</strong> equivalente a $c$: es V cuando $c=V$ y F cuando $c=F$, y no depende de $b$ en absoluto. La clave es notar que fijar $a\equiv F$ vuelve ① y ② tautológicamente verdaderas por sí solas (antecedente falso en ①, disyunción con $\neg a=V$ en ②), lo que trivializa buena parte de la fórmula.</p>
+          <p class="fuente">Fuente: Pauta Control 1, 2025-1.</p>
+        </div>
+
+        <div class="ejemplo" id="ej-cuantificadores">
+          <h3>2. Negación y evaluación de cuantificadores (Control 1)</h3>
+          <p>Con $S=\{-1,0,1\}$, $T=\{-\tfrac12,\tfrac32\}$ y $u:(\forall x\in S)(\exists y\in T)\big(xy\neq0\to\tfrac{x}{y}\gt0\big)$, negar $u$ y evaluar su valor de verdad.</p>
+          <p><strong>Negación</strong> (se intercambian los cuantificadores y se niega la condicional como $p\wedge\neg q$):</p>
+          <p>$$\neg u:(\exists x\in S)(\forall y\in T)\big(xy\neq0 \wedge \tfrac{x}{y}\le0\big)$$</p>
+          <p><strong>Evaluación de $u$</strong> — se busca, para cada $x$, algún $y\in T$ que haga verdadera la condicional:</p>
+          <p>$x=-1$: con $y=-\tfrac12$, $xy=\tfrac12\neq0$ (V) y $\tfrac{x}{y}=2\gt0$ (V) ⟹ condicional V.</p>
+          <p>$x=0$: $xy=0$ para cualquier $y$, antecedente F ⟹ condicional V <strong>vacuamente</strong>.</p>
+          <p>$x=1$: con $y=\tfrac32$, $xy=\tfrac32\neq0$ (V) y $\tfrac{x}{y}=\tfrac23\gt0$ (V) ⟹ condicional V.</p>
+          <p>Los 3 valores de $x$ tienen algún $y$ que verifica la condicional, así que $u$ es <strong>verdadera</strong>.</p>
+          <p style="color:var(--tinta-2)">Al negar, $\forall\leftrightarrow\exists$ se intercambian en cada cuantificador de la cadena, y $\neg(p\to q)\equiv p\wedge\neg q$ (no $\neg p\wedge\neg q$).</p>
+          <p class="fuente">Fuente: Pauta Control 1, 2025-1.</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-tabla-pvq">
+          <summary><span class="resumen-ejercicio">1. Construir la tabla de verdad de $p\vee\neg q$ y determinar si es tautología, contradicción o contingencia.</span> <span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <p>$p=V,q=V$: $\neg q=F$, $p\vee\neg q=V$. &nbsp; $p=V,q=F$: $\neg q=V$, $p\vee\neg q=V$.</p>
+            <p>$p=F,q=V$: $\neg q=F$, $p\vee\neg q=F$. &nbsp; $p=F,q=F$: $\neg q=V$, $p\vee\neg q=V$.</p>
+            <p>3 filas V y 1 fila F ⟹ es una <strong>contingencia</strong> (no es tautología ni contradicción).</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-negacion-cuantificador">
+          <summary><span class="resumen-ejercicio">2. Negar $(\forall x\in\mathbb R)(\exists y\in\mathbb R)(x+y=0)$ e indicar el valor de verdad de la proposición original.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>Negación (se intercambian los cuantificadores):</p>
+            <p>$$(\exists x\in\mathbb R)(\forall y\in\mathbb R)(x+y\neq0)$$</p>
+            <p>La proposición original es <strong>verdadera</strong>: para cualquier $x$, basta tomar $y=-x$ para que $x+y=0$. Por lo tanto la negación es <strong>falsa</strong>.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 2 · CONJUNTOS Y CARDINALIDAD -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u2">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">02</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Conjuntos y cardinalidad</h2>
+          <p class="unidad-sub">Operaciones entre conjuntos, De Morgan y el principio de inclusión-exclusión para contar sin duplicar.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-conjuntos">
+        <h3>Conjuntos y cardinalidad</h3>
+        <ul>
+          <li>$A\subseteq B \iff (\forall x:\ x\in A \rightarrow x\in B)$; &nbsp; $A=B \iff A\subseteq B \wedge B\subseteq A$</li>
+          <li>$\mathbb{N}\subset \mathbb{Z}\subset \mathbb{Q}\subset \mathbb{R}$; &nbsp; $\mathcal{P}(A)$ tiene $2^{n}$ elementos si $|A|=n$</li>
+          <li>Unión e intersección: $A\cup B=\{x: x\in A \vee x\in B\}$, &nbsp; $A\cap B=\{x: x\in A \wedge x\in B\}$</li>
+          <li>Diferencia y complemento: $A-B=\{x: x\in A \wedge x\notin B\}$, &nbsp; $A^{c}=\mathcal U - A$</li>
+          <li>De Morgan: $(A\cup B)^{c}=A^{c}\cap B^{c}$, &nbsp; $(A\cap B)^{c}=A^{c}\cup B^{c}$</li>
+          <li>Diferencia simétrica: $A\triangle B = (A\cup B)-(A\cap B) = (A-B)\cup(B-A)$</li>
+          <li><strong>Inclusión-exclusión (2 conjuntos):</strong> $N(A\cup B)=N(A)+N(B)-N(A\cap B)$</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Inclusión-exclusión (3 conjuntos)</span>
+          $$N(A\cup B\cup C)=N(A)+N(B)+N(C)$$
+          $$-\,N(A\cap B)-N(A\cap C)-N(B\cap C)+N(A\cap B\cap C)$$
+        </div>
+      </div>
+
+      <div class="animacion" id="anim-venn">
+        <div class="anim-cabecera">
+          <h3>⭕ Diagrama de Venn — operaciones y cardinalidad</h3>
+          <p class="anim-desc">Ajustá el conteo de cada región y mirá cómo se recalcula el total con inclusión-exclusión.</p>
+        </div>
+        <canvas data-alto="380"></canvas>
+        <div class="controles">
+          <div class="control"><label for="venn-operacion">Operación</label>
+            <select id="venn-operacion">
+              <option value="union">A ∪ B (∪ C)</option>
+              <option value="interseccion">A ∩ B (∩ C)</option>
+              <option value="difAB">Diferencia A − B</option>
+              <option value="complementoA">Complemento de A</option>
+              <option value="simetrica">Diferencia simétrica A △ B</option>
+            </select>
+          </div>
+          <div class="control"><label for="venn-modo3">3 conjuntos</label><input type="checkbox" id="venn-modo3"></div>
+          <button type="button" class="secundario" data-accion="reset">↺ Restablecer valores</button>
+        </div>
+        <div class="controles">
+          <div class="control"><label for="venn-a">Solo A</label><input type="range" id="venn-a" min="0" max="80" step="1" value="55"><span class="valor"></span></div>
+          <div class="control"><label for="venn-b">Solo B</label><input type="range" id="venn-b" min="0" max="80" step="1" value="0"><span class="valor"></span></div>
+          <div class="control"><label for="venn-ab">A∩B</label><input type="range" id="venn-ab" min="0" max="80" step="1" value="35"><span class="valor"></span></div>
+          <div class="control"><label for="venn-fuera">Fuera (ninguno)</label><input type="range" id="venn-fuera" min="0" max="80" step="1" value="10"><span class="valor"></span></div>
+        </div>
+        <div class="controles" id="venn-controles-c">
+          <div class="control"><label for="venn-c">Solo C</label><input type="range" id="venn-c" min="0" max="80" step="1" value="15"><span class="valor"></span></div>
+          <div class="control"><label for="venn-ac">A∩C</label><input type="range" id="venn-ac" min="0" max="80" step="1" value="5"><span class="valor"></span></div>
+          <div class="control"><label for="venn-bc">B∩C</label><input type="range" id="venn-bc" min="0" max="80" step="1" value="8"><span class="valor"></span></div>
+          <div class="control"><label for="venn-abc">A∩B∩C</label><input type="range" id="venn-abc" min="0" max="80" step="1" value="4"><span class="valor"></span></div>
+        </div>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> valores por defecto = ejemplo real del Examen (encuesta a 100 estudiantes, $B\subseteq A$, solo individual=55, ambos=35, ninguno=10). Cambiá la operación o los conteos por región y mirá cómo se sombrea (acento) y cómo se recalcula el total con inclusión-exclusión abajo. Activá "3 conjuntos" para el caso de tres conjuntos con las 7 regiones de la nota de Cardinalidad.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-cardinalidad-encuesta">
+          <h3>3. Cardinalidad: encuesta a 100 estudiantes (Examen)</h3>
+          <p>$A$=estudia individual, $B$=estudia grupal, con $B\subseteq A$, $N(A/B)=55$ (solo individual) y $N(A\cup B)=90$, sobre 100 encuestados. Hallar cuántos usan ambos métodos y cuántos no usan ninguno.</p>
+          <p><strong>Solución</strong> — como $B\subseteq A$: $N(A/B)=N(A\cup B)-N(A\cap B)$, luego:</p>
+          <p>$$N(A\cap B)=N(A\cup B)-N(A/B)=90-55=35$$</p>
+          <p>No usan ninguno: $N((A\cup B)^c)=N(\mathcal U)-N(A\cup B)=100-90=10$</p>
+          <p style="color:var(--tinta-2)">Con $B\subseteq A$, "solo individual" es exactamente $A-B$, así que $N(A\cap B)$ sale directo por diferencia. El diagrama de Venn interactivo de arriba usa estos mismos valores por defecto.</p>
+          <p class="fuente">Fuente: Pauta Examen, 2025-1.</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-conjuntos-basico">
+          <summary><span class="resumen-ejercicio">3. Con $\mathcal U=\{1,\dots,10\}$, $A=\{2,4,6,8,10\}$, $B=\{3,6,9\}$, hallar $A\cap B$, $A\cup B$, $A-B$ y $A^c$.</span> <span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <p>$A\cap B=\{6\}$</p>
+            <p>$A\cup B=\{2,3,4,6,8,9,10\}$</p>
+            <p>$A-B=\{2,4,8,10\}$</p>
+            <p>$A^c=\mathcal U-A=\{1,3,5,7,9\}$</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-identidad-conjuntos">
+          <summary><span class="resumen-ejercicio">4. Demostrar, usando leyes de conjuntos, que $(A\cap B)\cup(A\cap B^c)=A$.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>$(A\cap B)\cup(A\cap B^c)$</p>
+            <p>$=A\cap(B\cup B^c)$ &nbsp; (distributiva)</p>
+            <p>$=A\cap\mathcal U$ &nbsp; (complemento: $B\cup B^c=\mathcal U$)</p>
+            <p>$=A$ &nbsp; (identidad)</p>
+            <p style="color:var(--tinta-2)">Misma estructura exigida en el Control 2 real: encadenar leyes con nombre, sin usar diagramas ni ejemplos numéricos como "demostración".</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-cardinalidad-bebidas">
+          <summary><span class="resumen-ejercicio">5. En una encuesta a 150 personas, 80 toman café, 70 toman té y 30 toman ambas. ¿Cuántas no toman ninguna?</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>$N(\text{café}\cup\text{té})=N(\text{café})+N(\text{té})-N(\text{café}\cap\text{té})=80+70-30=120$</p>
+            <p>No toman ninguna: $150-120=30$</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 3 · PROGRESIONES, SUMATORIAS E INDUCCIÓN -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u3">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">03</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Progresiones, sumatorias, binomio e inducción</h2>
+          <p class="unidad-sub">Patrones que se repiten con una regla fija (P.A., P.G.), su empaquetado en sumatorias y binomio, y la técnica que demuestra propiedades para todo $n$.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-progresiones">
+        <h3>Progresiones, sumatorias, binomio, inducción</h3>
+        <ul>
+          <li><strong>P.A.:</strong> $a_n=a_1+(n-1)d$, &nbsp; $S_n=\dfrac{n}{2}(a_1+a_n)$</li>
+          <li><strong>P.G.:</strong> $a_n=a_1r^{n-1}$, &nbsp; $S_n=a_1\dfrac{1-r^{n}}{1-r}\ (r\neq1)$</li>
+          <li>Interés compuesto: $S=C\left(1+\tfrac{i}{100}\right)^{t}$ (P.G. con $a_1=C$, razón $1+\tfrac{i}{100}$)</li>
+          <li>Telescópica: $\sum_{k=1}^{n}(a_{k+1}-a_k)=a_{n+1}-a_1$</li>
+          <li><strong>Propiedades de la sumatoria (linealidad):</strong> $\sum_{i=1}^{n}c=nc$, &nbsp; $\sum_{i=1}^{n}kx_i=k\sum_{i=1}^{n}x_i$, &nbsp; $\sum_{i=1}^{n}(x_i+y_i)=\sum_{i=1}^{n}x_i+\sum_{i=1}^{n}y_i$</li>
+          <li>$\binom{n}{k}=\dfrac{n!}{(n-k)!\,k!}$, &nbsp; $\binom{n}{k}=\binom{n}{n-k}$, &nbsp; Pascal: $\binom{n}{k-1}+\binom{n}{k}=\binom{n+1}{k}$</li>
+          <li>Término general del binomio: $t_{k+1}=\binom{n}{k}a^{n-k}b^{k}$</li>
+          <li><strong>Inducción:</strong> (1) base $p(p_0)$; (2) H.I. $p(k)$; (3) probar $p(k+1)$ usando la H.I. explícitamente.</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Suma de los primeros $n$ naturales</span>$$\sum_{k=1}^{n}k=\frac{n(n+1)}{2}$$</div>
+        <div class="formula-card"><span class="etiqueta">Suma de cuadrados</span>$$\sum_{k=1}^{n}k^{2}=\frac{n(n+1)(2n+1)}{6}$$</div>
+        <div class="formula-card"><span class="etiqueta">Suma de cubos</span>$$\sum_{k=1}^{n}k^{3}=\left[\frac{n(n+1)}{2}\right]^{2}$$</div>
+        <div class="formula-card"><span class="etiqueta">Binomio de Newton</span>$$(a+b)^{n}=\sum_{k=0}^{n}\binom{n}{k}a^{n-k}b^{k}$$</div>
+      </div>
+
+      <div class="animacion" id="anim-progresion">
+        <div class="anim-cabecera">
+          <h3>📊 Progresión aritmética / geométrica término a término</h3>
+          <p class="anim-desc">Revela las barras $a_1,\dots,a_n$ una por una y compara la suma acumulada con la fórmula cerrada $S_n$.</p>
+        </div>
+        <canvas data-alto="340"></canvas>
+        <div class="controles">
+          <button type="button" class="secundario" id="prog-tipo" data-accion="tipo">Tipo: aritmética (clic para geométrica)</button>
+          <div class="control"><label for="prog-a1">a₁</label><input type="range" id="prog-a1" min="-10" max="10" step="0.5" value="3"><span class="valor"></span></div>
+          <div class="control" id="prog-d-control"><label for="prog-d">d (diferencia)</label><input type="range" id="prog-d" min="-5" max="5" step="0.5" value="2"><span class="valor"></span></div>
+          <div class="control" id="prog-r-control" style="display:none"><label for="prog-r">r (razón)</label><input type="range" id="prog-r" min="0.2" max="3" step="0.1" value="1.5"><span class="valor"></span></div>
+          <div class="control"><label for="prog-n">n</label><input type="range" id="prog-n" min="1" max="15" step="1" value="6"><span class="valor"></span></div>
+          <button type="button" data-accion="jugar">▶ Reproducir</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> ▶ revela las barras una por una (acento=positivo, rojo=negativo) acumulando la suma parcial, y al llegar a $n$ compara esa suma "a mano" con la fórmula cerrada $S_n$ (deben coincidir, marcado en verde). Con tipo geométrica, $a_1=27/8$ y $r=2/3$ replica el Control 3 ($a_4=1$, $S_6=665/72$).</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-progresion-geometrica">
+          <h3>4. Progresión geométrica: hallar $a_1$, $r$ y $S_6$ (Control 3)</h3>
+          <p>En una P.G., $a_4=1$ y $a_8=\tfrac{16}{81}$. Hallar $S_6$.</p>
+          <p><strong>Solución</strong> — de $a_4=a_1r^3=1$ y $a_8=a_1r^7=\tfrac{16}{81}$, dividiendo:</p>
+          <p>$$\frac{a_8}{a_4}=r^4=\frac{16}{81}\ \Rightarrow\ r=\frac23\ \text{(se toma la raíz positiva)}$$</p>
+          <p>$a_1=\dfrac{1}{r^3}=\dfrac{1}{8/27}=\dfrac{27}{8}$</p>
+          <p>$$S_6=a_1\frac{1-r^6}{1-r}=\frac{27}{8}\cdot\frac{1-\tfrac{64}{729}}{1-\tfrac23}=\frac{27}{8}\cdot\frac{665/729}{1/3}=\frac{665}{72}\approx9{,}24$$</p>
+          <p style="color:var(--tinta-2)">$r^4=16/81$ tiene dos raíces reales ($\pm\tfrac23$); se elige la que sea consistente con el resto de datos del problema (aquí, positiva).</p>
+          <p class="fuente">Fuente: Pauta Control 3, 2025-1.</p>
+        </div>
+
+        <div class="ejemplo" id="ej-sumatoria-limites">
+          <h3>5. Sumatoria con cambio de límites (Control 4)</h3>
+          <p>Si $\sum_{i=1}^{n}a_i=\dfrac{n(3n-1)}{2}$, calcular $\sum_{i=7}^{15}a_i$.</p>
+          <p><strong>Solución</strong> — se reescribe como diferencia de sumas desde 1:</p>
+          <p>$$\sum_{i=7}^{15}a_i=\sum_{i=1}^{15}a_i-\sum_{i=1}^{6}a_i=\frac{15(44)}{2}-\frac{6(17)}{2}=330-51=279$$</p>
+          <p style="color:var(--tinta-2)">Para sumar desde un índice $p\gt1$ hay que <strong>restar</strong> la suma de los términos $1$ a $p-1$; no se puede aplicar la fórmula "desde 1" directamente empezando en $p$.</p>
+          <p class="fuente">Fuente: Pauta Control 4, 2025-1.</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-interes-compuesto">
+          <summary><span class="resumen-ejercicio">6. Un capital de \$1.000.000 se invierte al 2% mensual durante 6 meses (interés compuesto). Hallar el monto final.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>Es una P.G. con $a_1=C=1.000.000$ y razón $r=1+\tfrac{2}{100}=1{,}02$, evaluada en el término 7 (o, equivalentemente, $S=C(1+i/100)^t$ con $t=6$):</p>
+            <p>$$S=1.000.000\times(1{,}02)^6=1.000.000\times1{,}126162\approx\$1.126.162$$</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-sumatoria-propiedades">
+          <summary>7. <span class="resumen-ejercicio">Calcular $\sum_{i=1}^{5}(3i+2)$ usando las propiedades de la sumatoria (linealidad) y la fórmula de $\sum_{k=1}^{n}k$.</span> <span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <p>Separando la suma por linealidad ($\sum(x_i+y_i)=\sum x_i+\sum y_i$ y $\sum kx_i=k\sum x_i$):</p>
+            <p>$$\sum_{i=1}^{5}(3i+2)=3\sum_{i=1}^{5}i+\sum_{i=1}^{5}2=3\cdot\frac{5(6)}{2}+5\cdot2=3(15)+10=45+10=55$$</p>
+            <p style="color:var(--tinta-2)">Verificación sumando directo: $5+8+11+14+17=55$ ✓. La propiedad $\sum c=nc$ convierte $\sum_{i=1}^5 2$ en $5\cdot2$, y $\sum kx_i=k\sum x_i$ saca la constante $3$ fuera de la suma sobre $i$.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-induccion-impares">
+          <summary><span class="resumen-ejercicio">8. Demostrar por inducción que $1+3+5+\cdots+(2n-1)=n^2$ para todo $n\geq1$.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p><strong>Base</strong> ($n=1$): $1=1^2$ ✓</p>
+            <p><strong>H.I.:</strong> supongamos $1+3+\cdots+(2k-1)=k^2$ para $n=k$.</p>
+            <p><strong>Paso inductivo</strong> ($n=k+1$): sumando el siguiente término impar $2(k+1)-1=2k+1$ a ambos lados de la H.I.:</p>
+            <p>$$1+3+\cdots+(2k-1)+(2k+1)=k^2+(2k+1)=(k+1)^2$$</p>
+            <p>Se verifica $p(k+1)$ usando explícitamente la H.I. Por inducción, vale para todo $n\geq1$. ∎</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-induccion-divisibilidad">
+          <summary><span class="resumen-ejercicio">9. Demostrar por inducción que $7^n-1$ es divisible por 6, para todo $n\geq1$.</span> <span class="dificultad dificil">difícil</span></summary>
+          <div class="solucion">
+            <p><strong>Base</strong> ($n=1$): $7^1-1=6$, divisible por 6 ✓</p>
+            <p><strong>H.I.:</strong> $7^k-1=6m$ para algún entero $m$.</p>
+            <p><strong>Paso inductivo:</strong></p>
+            <p>$$7^{k+1}-1=7\cdot7^k-1=7(7^k-1)+7-1=7(6m)+6=6(7m+1)$$</p>
+            <p>Es múltiplo de 6, usando la H.I. explícitamente en el paso $7(7^k-1)=7(6m)$. Por inducción, vale para todo $n\geq1$. ∎</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-binomio-central">
+          <summary><span class="resumen-ejercicio">10. Hallar el término central del desarrollo de $\left(x-\tfrac1x\right)^{10}$.</span> <span class="dificultad dificil">difícil</span></summary>
+          <div class="solucion">
+            <p>$n=10$ es par ⟹ el desarrollo tiene 11 términos y el central está en la posición $\tfrac{n}{2}+1=6$, es decir $k=5$:</p>
+            <p>$$t_6=\binom{10}{5}x^{10-5}\left(-\frac1x\right)^{5}=\binom{10}{5}x^5\cdot(-1)^5x^{-5}=-\binom{10}{5}=-252$$</p>
+            <p style="color:var(--tinta-2)">Los exponentes de $x$ se cancelan exactamente ($x^5\cdot x^{-5}=x^0$): el término central es una constante. El signo viene de $(-1)^k$ con $k=5$ (impar) ⟹ negativo.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 4 · NÚMEROS COMPLEJOS -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u4">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">04</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Números complejos</h2>
+          <p class="unidad-sub">De la forma binómica a la polar, y de ahí a potencias y raíces con De Moivre.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-complejos">
+        <h3>Números complejos</h3>
+        <ul>
+          <li>$z=a+bi$, &nbsp; $i^2=-1$ (ciclo de potencias de $i$: $i,-1,-i,1$); &nbsp; $\bar z=a-bi$</li>
+          <li>Producto: $z_1z_2=(ac-bd)+(ad+bc)i$</li>
+          <li>Cociente: $\dfrac{z_1}{z_2}=\dfrac{z_1\bar z_2}{|z_2|^{2}}$</li>
+          <li>$|z|=\sqrt{a^2+b^2}$, &nbsp; $|z|^2=z\bar z$, &nbsp; $|z_1z_2|=|z_1||z_2|$</li>
+          <li>Polar: $z=r(\cos\alpha+i\sin\alpha)=r\,\text{cis}\,\alpha=re^{i\alpha}$, con $\alpha=\arctan\tfrac{b}{a}$ <strong>corregido por cuadrante</strong></li>
+          <li>Producto en polar: $z_1z_2=r_1r_2\,\text{cis}(\alpha_1+\alpha_2)$</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">De Moivre (potencias)</span>$$z^n=r^n\,\text{cis}(n\alpha)\quad\text{(De Moivre)}$$</div>
+        <div class="formula-card"><span class="etiqueta">Raíces $n$-ésimas</span>$$\sqrt[n]{z}=\sqrt[n]{r}\,\text{cis}\!\left(\frac{\alpha+360°k}{n}\right),\ \ k=0,\dots,n-1$$</div>
+      </div>
+
+      <div class="animacion" id="anim-complejos">
+        <div class="anim-cabecera">
+          <h3>🌀 Números complejos: binómica ↔ polar y raíces n-ésimas</h3>
+          <p class="anim-desc">Movés $z=a+bi$ y $n$; se recalculan módulo, ángulo y el polígono de raíces n-ésimas (De Moivre).</p>
+        </div>
+        <canvas data-alto="380"></canvas>
+        <div class="controles">
+          <div class="control"><label for="comp-a">a (real)</label><input type="range" id="comp-a" min="-6" max="6" step="0.5" value="3"><span class="valor"></span></div>
+          <div class="control"><label for="comp-b">b (imaginario)</label><input type="range" id="comp-b" min="-6" max="6" step="0.5" value="4"><span class="valor"></span></div>
+          <div class="control"><label for="comp-n">n (raíces)</label><input type="range" id="comp-n" min="2" max="8" step="1" value="3"><span class="valor"></span></div>
+          <button type="button" data-accion="jugar">▶ Reproducir</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> $z=a+bi$ (acento) y su conjugado $\bar z$ (azul) con módulo $r$ (círculo punteado) y ángulo $\theta$ corregido por cuadrante (con <code>atan2</code>, evitando el error típico de $\arctan$). El polígono verde son las $n$ raíces $n$-ésimas de $z$ (De Moivre), equiespaciadas $360°/n$ sobre el círculo de radio $\sqrt[n]{r}$. Probá $n=3$ con $z$ en el eje imaginario negativo (p. ej. $a=0,\ b=-6$) para acercarte a $z^3=-125i$ del Control 6 (raíces cerca de 90°, 210°, 330°).</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-raices-complejas">
+          <h3>6. Raíces cúbicas de $z^3=-125i$ (Control 6)</h3>
+          <p>Resolver $z^3+125i=0$.</p>
+          <p><strong>Solución</strong> — se busca $\sqrt[3]{w}$ con $w=-125i=125\,\text{cis}(270°)$ (módulo 125, argumento 270° por estar sobre el eje imaginario negativo). Con $k=0,1,2$:</p>
+          <p>$$z_k=\sqrt[3]{125}\,\text{cis}\!\left(\frac{270°+360°k}{3}\right)=5\,\text{cis}(90°),\ \ 5\,\text{cis}(210°),\ \ 5\,\text{cis}(330°)$$</p>
+          <p>En binómica: $z_0=5i$, &nbsp; $z_1=-\tfrac{5\sqrt3}{2}-\tfrac52 i$, &nbsp; $z_2=\tfrac{5\sqrt3}{2}-\tfrac52 i$ (la suma de las 3 raíces da $0$, como debe ser al no haber término $z^2$).</p>
+          <p style="color:var(--tinta-2)">Las $n=3$ raíces quedan equiespaciadas $360°/3=120°$ sobre el círculo de radio $5=\sqrt[3]{125}$: usá el visualizador de complejos con $n=3$ para verlas como polígono.</p>
+          <p class="fuente">Fuente: Pauta Control 6, 2025-1.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 5 · POLINOMIOS Y FRACCIONES PARCIALES -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u5">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">05</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Polinomios y fracciones parciales</h2>
+          <p class="unidad-sub">Raíces, Ruffini y el teorema del factor; y cómo descomponer una fracción racional según el tipo de factor del denominador.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-polinomios">
+        <h3>Polinomios y fracciones parciales</h3>
+        <ul>
+          <li>$p(x)=a_nx^n+\cdots+a_1x+a_0,\ a_n\neq0$; división: $p(x)=(x-r)q(x)+R$</li>
+          <li><strong>Teorema del factor:</strong> $r$ raíz $\iff (x-r)$ factor.</li>
+          <li>Grado $n$ ⟹ exactamente $n$ raíces complejas; si $a+bi$ es raíz (coef. reales), $a-bi$ también.</li>
+          <li><strong>Ruffini</strong> solo divide por $(x-r)$ (lineal mónico). Descartes: nº raíces positivas ≤ cambios de signo de $p(x)$ (par la diferencia); negativas con $p(-x)$.</li>
+          <li>Raíz racional $\tfrac{p}{q}$: $p\mid a_0$, $q\mid a_n$.</li>
+          <li>Fracciones parciales requiere fracción propia: $\deg r \lt \deg d$.</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Teorema del resto</span>$$R=p(r)\quad\text{(teorema del resto)}$$</div>
+        <div class="tabla-scroll">
+          <table>
+            <thead><tr><th>Caso del denominador</th><th>Descomposición</th></tr></thead>
+            <tbody>
+              <tr><td>Lineal simple</td><td>$\dfrac{A}{ax+b}$</td></tr>
+              <tr><td>Lineal repetido $k$ veces</td><td>$\displaystyle\sum_{i=1}^k\frac{A_i}{(ax+b)^i}$</td></tr>
+              <tr><td>Cuadrático simple (irreducible)</td><td>$\dfrac{A+Bx}{ax^2+bx+c}$</td></tr>
+              <tr><td>Cuadrático repetido $k$ veces</td><td>$\displaystyle\sum_{i=1}^k\frac{A_i+B_ix}{(ax^2+bx+c)^i}$</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-ruffini-k">
+          <h3>7. Ruffini: hallar $k$ para divisibilidad (Control 6)</h3>
+          <p>Determinar $k\in\mathbb{R}$ para que $p(x)=x^4-12x^3+55x^2+kx+90$ sea divisible por $(x-3)$.</p>
+          <p><strong>Solución</strong> — por el teorema del factor, $p(3)=0$:</p>
+          <p>$$p(3)=81-12(27)+55(9)+3k+90=81-324+495+3k+90=342+3k$$</p>
+          <p>$$342+3k=0\ \Rightarrow\ k=-114$$</p>
+          <p style="color:var(--tinta-2)">Ruffini con $r=3$ da el mismo resto $342+3k$ en la última columna; el teorema del factor evita rehacer todo el esquema si solo se necesita el resto.</p>
+          <p class="fuente">Fuente: Pauta Control 6, 2025-1.</p>
+        </div>
+
+        <div class="ejemplo" id="ej-fracciones-parciales">
+          <h3>8. Fracciones parciales, caso 1 (Examen)</h3>
+          <p>Descomponer $\dfrac{-6}{4x^2-8x+3}$.</p>
+          <p><strong>Solución</strong> — el denominador factoriza en dos lineales distintos: $4x^2-8x+3=(2x-1)(2x-3)$ (Caso 1):</p>
+          <p>$$\frac{-6}{(2x-1)(2x-3)}=\frac{A}{2x-1}+\frac{B}{2x-3}$$</p>
+          <p>Multiplicando por $(2x-1)(2x-3)$: $-6=A(2x-3)+B(2x-1)$. Evaluando en las raíces de cada factor:</p>
+          <p>$x=\tfrac12$: $-6=A(-2)\Rightarrow A=3$. &nbsp;&nbsp; $x=\tfrac32$: $-6=B(2)\Rightarrow B=-3$.</p>
+          <p>$$\frac{-6}{4x^2-8x+3}=\frac{3}{2x-1}-\frac{3}{2x-3}$$</p>
+          <p style="color:var(--tinta-2)">Evaluar $x$ exactamente en las raíces de cada factor lineal anula el otro término y despeja cada constante de forma directa, sin resolver un sistema.</p>
+          <p class="fuente">Fuente: Pauta Examen, 2025-1.</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-complejos-polinomio">
+          <summary><span class="resumen-ejercicio">11. Sabiendo que $2+i$ es raíz de $p(x)=x^3-6x^2+13x-10$ (coeficientes reales), hallar las otras dos raíces.</span> <span class="dificultad dificil">difícil</span></summary>
+          <div class="solucion">
+            <p>Como los coeficientes son reales, el conjugado $2-i$ también es raíz.</p>
+            <p>La suma de las 3 raíces de $x^3-6x^2+13x-10$ es $6$ (coeficiente de $x^2$ con signo cambiado). Si $r_3$ es la tercera raíz:</p>
+            <p>$$(2+i)+(2-i)+r_3=6\ \Rightarrow\ 4+r_3=6\ \Rightarrow\ r_3=2$$</p>
+            <p>Verificación: $p(2)=8-24+26-10=0$ ✓</p>
+            <p style="color:var(--tinta-2)">Las raíces complejas no reales de un polinomio con coeficientes reales siempre vienen en pares conjugados; eso, junto con la relación suma-de-raíces = $-a_{n-1}/a_n$, evita tener que factorizar por Ruffini directamente.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ================= 1. Tabla de verdad paso a paso ================= */
+  var formulasTabla = [
+    {
+      nombre: "Condicional: p→q ≡ ¬p∨q", nvars: 2,
+      columnas: [
+        { t: "p", f: function (v) { return v.p; } },
+        { t: "q", f: function (v) { return v.q; } },
+        { t: "¬p", f: function (v) { return !v.p; } },
+        { t: "¬p∨q", f: function (v) { return !v.p || v.q; } },
+        { t: "p→q", f: function (v) { return !v.p || v.q; } },
+        { t: "(¬p∨q)↔(p→q)", f: function (v) { return (!v.p || v.q) === (!v.p || v.q); } }
+      ]
+    },
+    {
+      nombre: "Leyes de De Morgan: ¬(p∧q) ≡ ¬p∨¬q", nvars: 2,
+      columnas: [
+        { t: "p", f: function (v) { return v.p; } },
+        { t: "q", f: function (v) { return v.q; } },
+        { t: "p∧q", f: function (v) { return v.p && v.q; } },
+        { t: "¬(p∧q)", f: function (v) { return !(v.p && v.q); } },
+        { t: "¬p", f: function (v) { return !v.p; } },
+        { t: "¬q", f: function (v) { return !v.q; } },
+        { t: "¬p∨¬q", f: function (v) { return !v.p || !v.q; } },
+        { t: "¬(p∧q)↔(¬p∨¬q)", f: function (v) { return (!(v.p && v.q)) === (!v.p || !v.q); } }
+      ]
+    },
+    {
+      nombre: "Contrapositiva: p→q ≡ ¬q→¬p", nvars: 2,
+      columnas: [
+        { t: "p", f: function (v) { return v.p; } },
+        { t: "q", f: function (v) { return v.q; } },
+        { t: "p→q", f: function (v) { return !v.p || v.q; } },
+        { t: "¬q", f: function (v) { return !v.q; } },
+        { t: "¬p", f: function (v) { return !v.p; } },
+        { t: "¬q→¬p", f: function (v) { return v.q || !v.p; } },
+        { t: "(p→q)↔(¬q→¬p)", f: function (v) { return (!v.p || v.q) === (v.q || !v.p); } }
+      ]
+    },
+    {
+      nombre: "Bicondicional: p↔q", nvars: 2,
+      columnas: [
+        { t: "p", f: function (v) { return v.p; } },
+        { t: "q", f: function (v) { return v.q; } },
+        { t: "p↔q", f: function (v) { return v.p === v.q; } }
+      ]
+    },
+    {
+      nombre: "Tautología: p∨¬p", nvars: 1,
+      columnas: [
+        { t: "p", f: function (v) { return v.p; } },
+        { t: "¬p", f: function (v) { return !v.p; } },
+        { t: "p∨¬p", f: function (v) { return v.p || !v.p; } }
+      ]
+    },
+    {
+      nombre: "Contradicción: p∧¬p", nvars: 1,
+      columnas: [
+        { t: "p", f: function (v) { return v.p; } },
+        { t: "¬p", f: function (v) { return !v.p; } },
+        { t: "p∧¬p", f: function (v) { return v.p && !v.p; } }
+      ]
+    }
+  ];
+
+  function filasDeTabla(formula) {
+    if (formula.nvars === 1) return [{ p: true }, { p: false }];
+    return [{ p: true, q: true }, { p: true, q: false }, { p: false, q: true }, { p: false, q: false }];
+  }
+
+  Anim.registrar("anim-tabla", function (sim) {
+    var indice = 0;
+    var selector = document.getElementById("tabla-formula");
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var formula = formulasTabla[indice];
+      var filas = filasDeTabla(formula);
+      var columnas = formula.columnas;
+      var totalCols = columnas.length;
+      var segPorCol = 0.55;
+      var revelado = Math.max(1, Math.min(totalCols, Math.floor(t / segPorCol) + 1));
+
+      var borde = colorVar("--borde"), tinta = colorVar("--tinta"), tinta2 = colorVar("--tinta-2"),
+          acentoTenue = colorVar("--acento-tenue"), ok = colorVar("--ok"), error = colorVar("--error");
+
+      var margenIzq = 12, margenSup = 12;
+      var colW = (w - margenIzq * 2) / totalCols;
+      var filasN = filas.length;
+      var rowH = Math.min(32, (h - margenSup - 74) / (filasN + 1));
+      if (rowH < 20) rowH = 20;
+
+      ctx.textAlign = "center"; ctx.textBaseline = "middle";
+
+      for (var j = 0; j < totalCols; j++) {
+        var x0 = margenIzq + j * colW;
+        var revelada = j < revelado;
+        ctx.fillStyle = revelada ? acentoTenue : "transparent";
+        ctx.fillRect(x0, margenSup, colW, rowH);
+        ctx.strokeStyle = borde; ctx.lineWidth = 1;
+        ctx.strokeRect(x0, margenSup, colW, rowH);
+        ctx.fillStyle = revelada ? tinta : tinta2;
+        ctx.font = "bold 12px Consolas, monospace";
+        var etiqueta = revelada ? columnas[j].t : "···";
+        ctx.fillText(etiqueta, x0 + colW / 2, margenSup + rowH / 2);
+
+        for (var i = 0; i < filasN; i++) {
+          var y0 = margenSup + rowH + i * rowH;
+          ctx.strokeStyle = borde;
+          ctx.strokeRect(x0, y0, colW, rowH);
+          if (revelada) {
+            var val = columnas[j].f(filas[i]);
+            ctx.fillStyle = val ? ok : error;
+            ctx.font = "13px Consolas, monospace";
+            ctx.fillText(val ? "V" : "F", x0 + colW / 2, y0 + rowH / 2);
+          }
+        }
+      }
+      ctx.textAlign = "left"; ctx.textBaseline = "alphabetic";
+
+      var yTexto = margenSup + (filasN + 1) * rowH + 24;
+      ctx.font = "13px Consolas, monospace";
+      if (revelado >= totalCols) {
+        var ultima = columnas[totalCols - 1];
+        var valores = filas.map(function (fila) { return ultima.f(fila); });
+        var todasV = valores.every(function (x) { return x; });
+        var todasF = valores.every(function (x) { return !x; });
+        var texto, color;
+        if (todasV) { texto = "✅ Tautología: la última columna es siempre V"; color = ok; }
+        else if (todasF) { texto = "❌ Contradicción: la última columna es siempre F"; color = error; }
+        else { texto = "➖ Contingencia: la última columna depende de los valores"; color = tinta2; }
+        ctx.fillStyle = color;
+        ctx.fillText(texto, margenIzq, yTexto);
+      } else {
+        ctx.fillStyle = tinta2;
+        ctx.fillText("Revelando columnas… presioná ▶ o esperá.", margenIzq, yTexto);
+      }
+    });
+
+    if (selector) {
+      selector.addEventListener("change", function () {
+        indice = parseInt(selector.value, 10) || 0;
+        sim.fijarT(999);
+      });
+    }
+    sim.botones();
+    sim.fijarT(999);
+  });
+
+  /* ================= 2. Diagrama de Venn: operaciones y cardinalidad ================= */
+  Anim.registrar("anim-venn", function (sim) {
+    var selOperacion = document.getElementById("venn-operacion");
+    var chkModo3 = document.getElementById("venn-modo3");
+    var contC = document.getElementById("venn-controles-c");
+
+    var valores = { a: 55, b: 0, ab: 35, fuera: 10, c: 15, ac: 5, bc: 8, abc: 4 };
+
+    function circuloPath(cx, cy, r) {
+      var p = new Path2D();
+      p.arc(cx, cy, r, 0, Math.PI * 2);
+      return p;
+    }
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var modo3 = !!(chkModo3 && chkModo3.checked);
+      var borde = colorVar("--borde"), tinta = colorVar("--tinta"), tinta2 = colorVar("--tinta-2"),
+          acento = colorVar("--acento"), acentoTenue = colorVar("--acento-tenue"),
+          ok = colorVar("--ok"), s3 = colorVar("--s3");
+
+      var margen = 30;
+      var r = modo3 ? Math.min(w, h) * 0.22 : Math.min(w, h) * 0.26;
+      var cA, cB, cC;
+      if (modo3) {
+        cA = { x: w / 2, y: h * 0.30 };
+        cB = { x: w / 2 - r * 0.9, y: h * 0.58 };
+        cC = { x: w / 2 + r * 0.9, y: h * 0.58 };
+      } else {
+        cA = { x: w / 2 - r * 0.55, y: h * 0.40 };
+        cB = { x: w / 2 + r * 0.55, y: h * 0.40 };
+        cC = null;
+      }
+
+      var cajaX = margen * 0.4, cajaY = margen * 0.4,
+          cajaW = w - margen * 0.8, cajaH = h - margen * 0.8 - 50;
+      ctx.save();
+      ctx.strokeStyle = borde; ctx.lineWidth = 1.4;
+      ctx.strokeRect(cajaX, cajaY, cajaW, cajaH);
+      ctx.fillStyle = tinta2; ctx.font = "12px Consolas, monospace";
+      ctx.fillText("U", cajaX + 6, cajaY + 16);
+      ctx.restore();
+
+      var pathA = circuloPath(cA.x, cA.y, r);
+      var pathB = circuloPath(cB.x, cB.y, r);
+      var pathC = modo3 ? circuloPath(cC.x, cC.y, r) : null;
+
+      function pathUnion() {
+        var p = new Path2D();
+        p.addPath(pathA); p.addPath(pathB); if (pathC) p.addPath(pathC);
+        return p;
+      }
+
+      var op = selOperacion ? selOperacion.value : "union";
+
+      ctx.save();
+      if (op === "union") {
+        ctx.fillStyle = acentoTenue;
+        ctx.fill(pathUnion(), "nonzero");
+      } else if (op === "interseccion") {
+        ctx.save();
+        ctx.clip(pathA); ctx.clip(pathB); if (pathC) ctx.clip(pathC);
+        ctx.fillStyle = acentoTenue;
+        ctx.fillRect(0, 0, w, h);
+        ctx.restore();
+      } else if (op === "difAB") {
+        ctx.save();
+        ctx.clip(pathA);
+        ctx.fillStyle = acentoTenue;
+        ctx.fillRect(0, 0, w, h);
+        ctx.globalCompositeOperation = "destination-out";
+        ctx.fill(pathB);
+        ctx.restore();
+      } else if (op === "complementoA") {
+        ctx.fillStyle = acentoTenue;
+        ctx.fillRect(cajaX, cajaY, cajaW, cajaH);
+        ctx.globalCompositeOperation = "destination-out";
+        ctx.fill(pathA);
+        ctx.globalCompositeOperation = "source-over";
+      } else if (op === "simetrica") {
+        ctx.fillStyle = acentoTenue;
+        ctx.fill(pathUnion(), "nonzero");
+        ctx.save();
+        ctx.clip(pathA);
+        ctx.globalCompositeOperation = "destination-out";
+        ctx.fill(pathB);
+        ctx.restore();
+      }
+      ctx.restore();
+
+      ctx.save();
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = acento; ctx.stroke(pathA);
+      ctx.strokeStyle = ok; ctx.stroke(pathB);
+      if (pathC) { ctx.strokeStyle = s3; ctx.stroke(pathC); }
+      ctx.restore();
+
+      ctx.fillStyle = tinta; ctx.font = "bold 14px Consolas, monospace";
+      ctx.fillText("A", cA.x - r * (modo3 ? 0.15 : 0.85), cA.y - r * 0.75);
+      ctx.fillText("B", cB.x + r * (modo3 ? 0.05 : 0.70), cB.y - r * 0.75);
+      if (pathC) ctx.fillText("C", cC.x + r * 0.70, cC.y - r * 0.75);
+
+      ctx.font = "13px Consolas, monospace"; ctx.fillStyle = tinta;
+      function txt(x, y, s) { ctx.fillText(s, x - ctx.measureText(s).width / 2, y); }
+
+      if (!modo3) {
+        txt(cA.x - r * 0.55, cA.y, String(valores.a));
+        txt(cB.x + r * 0.55, cB.y, String(valores.b));
+        txt((cA.x + cB.x) / 2, cA.y, String(valores.ab));
+        ctx.textAlign = "right";
+        ctx.fillText("Fuera: " + valores.fuera, cajaX + cajaW - 8, cajaY + cajaH - 10);
+        ctx.textAlign = "left";
+      } else {
+        txt(cA.x, cA.y - r * 0.30, String(valores.a));
+        txt(cB.x - r * 0.35, cB.y + r * 0.30, String(valores.b));
+        txt(cC.x + r * 0.35, cC.y + r * 0.30, String(valores.c));
+        txt((cA.x + cB.x) / 2 - 6, (cA.y + cB.y) / 2 - 4, String(valores.ab));
+        txt((cA.x + cC.x) / 2 + 6, (cA.y + cC.y) / 2 - 4, String(valores.ac));
+        txt((cB.x + cC.x) / 2, cB.y + r * 0.15, String(valores.bc));
+        txt((cA.x + cB.x + cC.x) / 3, (cA.y + cB.y + cC.y) / 3 + r * 0.10, String(valores.abc));
+        ctx.textAlign = "right";
+        ctx.fillText("Fuera: " + valores.fuera, cajaX + cajaW - 8, cajaY + cajaH - 10);
+        ctx.textAlign = "left";
+      }
+
+      var a = valores.a, b = valores.b, ab = valores.ab, fuera = valores.fuera;
+      var c = modo3 ? valores.c : 0, ac = modo3 ? valores.ac : 0,
+          bc = modo3 ? valores.bc : 0, abc = modo3 ? valores.abc : 0;
+      var NA = a + ab + ac + abc, NB = b + ab + bc + abc, NC = c + ac + bc + abc;
+      var NAB = ab + abc, NAC = ac + abc, NBC = bc + abc, NABC = abc;
+      var total = a + b + c + ab + ac + bc + abc + fuera;
+
+      var linea1, linea2;
+      if (!modo3) {
+        var uni = NA + NB - NAB;
+        linea1 = "N(A)=" + NA + "  N(B)=" + NB + "  N(A∩B)=" + NAB;
+        linea2 = "N(A∪B)=N(A)+N(B)-N(A∩B)=" + NA + "+" + NB + "-" + NAB + "=" + uni + "   ·   Universo=" + total;
+      } else {
+        var uni3 = NA + NB + NC - NAB - NAC - NBC + NABC;
+        linea1 = "N(A)=" + NA + "  N(B)=" + NB + "  N(C)=" + NC + "  N(A∩B∩C)=" + NABC;
+        linea2 = "N(A∪B∪C)=" + NA + "+" + NB + "+" + NC + "-" + NAB + "-" + NAC + "-" + NBC + "+" + NABC + "=" + uni3 + "   ·   Universo=" + total;
+      }
+      ctx.fillStyle = tinta2; ctx.font = "12px Consolas, monospace";
+      ctx.fillText(linea1, cajaX, h - 30);
+      ctx.fillText(linea2, cajaX, h - 12);
+    });
+
+    function actualizar(campo) {
+      return function (v) { valores[campo] = Math.round(v); sim.redibujar(); };
+    }
+    sim.slider("venn-a", actualizar("a"), function (v) { return String(Math.round(v)); });
+    sim.slider("venn-b", actualizar("b"), function (v) { return String(Math.round(v)); });
+    sim.slider("venn-ab", actualizar("ab"), function (v) { return String(Math.round(v)); });
+    sim.slider("venn-fuera", actualizar("fuera"), function (v) { return String(Math.round(v)); });
+    sim.slider("venn-c", actualizar("c"), function (v) { return String(Math.round(v)); });
+    sim.slider("venn-ac", actualizar("ac"), function (v) { return String(Math.round(v)); });
+    sim.slider("venn-bc", actualizar("bc"), function (v) { return String(Math.round(v)); });
+    sim.slider("venn-abc", actualizar("abc"), function (v) { return String(Math.round(v)); });
+
+    if (selOperacion) selOperacion.addEventListener("change", function () { sim.redibujar(); });
+    if (contC) contC.style.display = (chkModo3 && chkModo3.checked) ? "" : "none";
+    if (chkModo3) {
+      chkModo3.addEventListener("change", function () {
+        if (contC) contC.style.display = chkModo3.checked ? "" : "none";
+        sim.redibujar();
+      });
+    }
+
+    sim.botones({
+      reset: function () {
+        var ids = ["venn-a", "venn-b", "venn-ab", "venn-fuera", "venn-c", "venn-ac", "venn-bc", "venn-abc"];
+        for (var i = 0; i < ids.length; i++) {
+          var inp = document.getElementById(ids[i]);
+          if (inp) { inp.value = inp.defaultValue; inp.dispatchEvent(new Event("input")); }
+        }
+        if (chkModo3) { chkModo3.checked = false; if (contC) contC.style.display = "none"; }
+        sim.redibujar();
+      }
+    });
+  });
+
+  /* ================= 3. Números complejos: binómica ↔ polar y raíces n-ésimas ================= */
+  Anim.registrar("anim-complejos", function (sim) {
+    var estado = { a: 3, b: 4, n: 3 };
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var acento = colorVar("--acento"), s2 = colorVar("--s2"), ok = colorVar("--ok"),
+          tinta = colorVar("--tinta"), tinta2 = colorVar("--tinta-2");
+
+      var a = estado.a, b = estado.b, n = estado.n;
+      var r = Math.sqrt(a * a + b * b);
+      var theta = Math.atan2(b, a);
+
+      var limite = Math.max(8, r + 1.5);
+      var margenY = limite * (h / w);
+      var m = Anim.mapa(w, h, { xMin: -limite, xMax: limite, yMin: -margenY, yMax: margenY });
+
+      Anim.ejes(ctx, m, w, h);
+
+      ctx.save();
+      ctx.strokeStyle = tinta2; ctx.setLineDash([4, 4]); ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.arc(m.x(0), m.y(0), r * m.escalaX, 0, Math.PI * 2); ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.restore();
+
+      Anim.flecha(ctx, m.x(0), m.y(0), m.x(a), m.y(b), acento, 2);
+      ctx.fillStyle = acento; ctx.font = "12px Consolas, monospace";
+      ctx.fillText("z", m.x(a) + 6, m.y(b));
+      Anim.flecha(ctx, m.x(0), m.y(0), m.x(a), m.y(-b), s2, 2);
+      ctx.fillStyle = s2;
+      ctx.fillText("z̄", m.x(a) + 6, m.y(-b));
+
+      var segPorRaiz = 0.4;
+      var revelado = Math.max(1, Math.min(n, Math.floor(t / segPorRaiz) + 1));
+
+      var rr = Math.pow(r, 1 / n);
+      var puntos = [];
+      for (var k = 0; k < n; k++) {
+        var ang = (theta + 2 * Math.PI * k) / n;
+        puntos.push({ x: rr * Math.cos(ang), y: rr * Math.sin(ang) });
+      }
+
+      ctx.save();
+      ctx.strokeStyle = ok; ctx.fillStyle = ok; ctx.lineWidth = 1.6;
+      if (revelado >= n && n >= 2) {
+        ctx.beginPath();
+        for (var i = 0; i < n; i++) {
+          var p = puntos[i];
+          if (i === 0) ctx.moveTo(m.x(p.x), m.y(p.y)); else ctx.lineTo(m.x(p.x), m.y(p.y));
+        }
+        ctx.closePath();
+        ctx.stroke();
+      }
+      for (var j = 0; j < revelado; j++) {
+        var pk = puntos[j];
+        ctx.beginPath();
+        ctx.arc(m.x(pk.x), m.y(pk.y), 5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.font = "11px Consolas, monospace";
+        ctx.fillText("z" + j, m.x(pk.x) + 7, m.y(pk.y) - 6);
+      }
+      ctx.restore();
+
+      var gradosT = theta * 180 / Math.PI; if (gradosT < 0) gradosT += 360;
+      ctx.fillStyle = tinta; ctx.font = "13px Consolas, monospace";
+      ctx.fillText("z=" + a.toFixed(1) + (b >= 0 ? "+" : "") + b.toFixed(1) + "i   r=|z|=" + r.toFixed(2) + "   θ=" + gradosT.toFixed(1) + "°", 10, h - 40);
+      ctx.fillText("z̄=" + a.toFixed(1) + (-b >= 0 ? "+" : "") + (-b).toFixed(1) + "i", 10, h - 24);
+      ctx.fillStyle = tinta2;
+      ctx.fillText("Raíces mostradas: " + revelado + "/" + n + "  (radio " + rr.toFixed(2) + ", paso " + (360 / n).toFixed(1) + "°)", 10, h - 8);
+    });
+
+    sim.slider("comp-a", function (v) { estado.a = v; sim.reiniciar(); }, function (v) { return v.toFixed(1); });
+    sim.slider("comp-b", function (v) { estado.b = v; sim.reiniciar(); }, function (v) { return v.toFixed(1); });
+    sim.slider("comp-n", function (v) { estado.n = Math.round(v); sim.reiniciar(); }, function (v) { return String(Math.round(v)); });
+
+    sim.botones();
+    sim.fijarT(999);
+  });
+
+  /* ================= 4. Progresión aritmética / geométrica término a término ================= */
+  Anim.registrar("anim-progresion", function (sim) {
+    var btnTipo = document.getElementById("prog-tipo");
+    var contD = document.getElementById("prog-d-control");
+    var contR = document.getElementById("prog-r-control");
+
+    var estado = { tipo: "aritmetica", a1: 3, d: 2, r: 1.5, n: 6 };
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var acento = colorVar("--acento"), error = colorVar("--error"), tinta = colorVar("--tinta"),
+          tinta2 = colorVar("--tinta-2"), ok = colorVar("--ok");
+
+      var n = Math.round(estado.n);
+      var terminos = [];
+      for (var k = 1; k <= n; k++) {
+        terminos.push(estado.tipo === "aritmetica" ? estado.a1 + (k - 1) * estado.d : estado.a1 * Math.pow(estado.r, k - 1));
+      }
+      var maxV = Math.max.apply(null, terminos.concat([0]));
+      var minV = Math.min.apply(null, terminos.concat([0]));
+      if (maxV === minV) { maxV += 1; minV -= 1; }
+      var margenV = (maxV - minV) * 0.15;
+      var m = Anim.mapa(w, h - 50, { xMin: 0, xMax: n + 1, yMin: minV - margenV, yMax: maxV + margenV });
+
+      var segPorBarra = 0.45;
+      var revelado = Math.max(1, Math.min(n, Math.floor(t / segPorBarra) + 1));
+
+      ctx.save();
+      ctx.strokeStyle = tinta2; ctx.globalAlpha = 0.6; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(0, m.y(0)); ctx.lineTo(w, m.y(0)); ctx.stroke();
+      ctx.restore();
+
+      var anchoBarra = (w / (n + 1)) * 0.6;
+      var sumaParcial = 0;
+      for (var i = 0; i < revelado; i++) {
+        var val = terminos[i];
+        sumaParcial += val;
+        var x = m.x(i + 1) - anchoBarra / 2;
+        var y0 = m.y(0), y1 = m.y(val);
+        var top = Math.min(y0, y1), alto = Math.max(1, Math.abs(y1 - y0));
+        ctx.fillStyle = val >= 0 ? acento : error;
+        ctx.fillRect(x, top, anchoBarra, alto);
+        ctx.fillStyle = tinta; ctx.font = "11px Consolas, monospace"; ctx.textAlign = "center";
+        ctx.fillText(val.toFixed(1), x + anchoBarra / 2, val >= 0 ? top - 6 : top + alto + 14);
+        ctx.textAlign = "left";
+      }
+
+      var Sn;
+      if (estado.tipo === "aritmetica") {
+        var an = estado.a1 + (n - 1) * estado.d;
+        Sn = n / 2 * (estado.a1 + an);
+      } else {
+        Sn = Math.abs(estado.r - 1) < 1e-9 ? estado.a1 * n : estado.a1 * (1 - Math.pow(estado.r, n)) / (1 - estado.r);
+      }
+      ctx.font = "13px Consolas, monospace";
+      ctx.fillStyle = tinta;
+      ctx.fillText("Suma acumulada (barras reveladas) = " + sumaParcial.toFixed(2), 10, h - 32);
+      if (revelado >= n) {
+        var coincide = Math.abs(sumaParcial - Sn) < 0.05;
+        ctx.fillStyle = coincide ? ok : error;
+        ctx.fillText("Fórmula cerrada S" + n + " = " + Sn.toFixed(2) + (coincide ? "  ✅ coinciden" : ""), 10, h - 14);
+      } else {
+        ctx.fillStyle = tinta2;
+        ctx.fillText("Fórmula cerrada S" + n + " = " + Sn.toFixed(2), 10, h - 14);
+      }
+    });
+
+    function refrescarModo() {
+      var esArit = estado.tipo === "aritmetica";
+      if (contD) contD.style.display = esArit ? "" : "none";
+      if (contR) contR.style.display = esArit ? "none" : "";
+      if (btnTipo) btnTipo.textContent = "Tipo: " + (esArit ? "aritmética (clic para geométrica)" : "geométrica (clic para aritmética)");
+    }
+
+    sim.slider("prog-a1", function (v) { estado.a1 = v; sim.reiniciar(); }, function (v) { return v.toFixed(1); });
+    sim.slider("prog-d", function (v) { estado.d = v; sim.reiniciar(); }, function (v) { return v.toFixed(1); });
+    sim.slider("prog-r", function (v) { estado.r = v; sim.reiniciar(); }, function (v) { return v.toFixed(1); });
+    sim.slider("prog-n", function (v) { estado.n = Math.round(v); sim.reiniciar(); }, function (v) { return String(Math.round(v)); });
+
+    sim.botones({
+      tipo: function () {
+        estado.tipo = estado.tipo === "aritmetica" ? "geometrica" : "aritmetica";
+        refrescarModo();
+        sim.reiniciar();
+      }
+    });
+    refrescarModo();
+    sim.fijarT(999);
+  });
+
+})();
+</script>
+
+<script>
+  // entradas escalonadas (GSAP + ScrollTrigger vía Anim.revelar) — no rompe nada si GSAP no cargó
+  Anim.revelar(".curso-hero-v3 > *", { scroll: false, stagger: .08, distancia: 14, duracion: .8 });
+  document.querySelectorAll(".unidad").forEach(function (u) {
+    Anim.revelar(u.querySelectorAll(":scope > .unidad-cabecera, :scope > .materia, :scope > .animacion, :scope > .ejemplos-unidad, :scope > .ejercicios-unidad"), { disparador: u, stagger: .08, distancia: 16 });
+  });
+</script>
+</body>
+</html>

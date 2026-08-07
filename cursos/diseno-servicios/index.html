@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="es" data-tema="oscuro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎨 Taller de Diseño de Servicios y Prototipado — Biblioteca</title>
+<link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../../assets/vendor/fuentes/fuentes.css">
+<link rel="stylesheet" href="../../assets/css/observatorio.css">
+<script>window.RUTA_BASE = "../../";</script>
+<script src="../../assets/vendor/katex/katex.min.js"></script>
+<script src="../../assets/vendor/katex/auto-render.min.js"></script>
+<script src="../../assets/vendor/gsap/gsap.min.js"></script>
+<script src="../../assets/vendor/gsap/ScrollTrigger.min.js"></script>
+<script src="../../assets/js/observatorio.js"></script>
+<script src="indice-curso.js"></script>
+</head>
+<body>
+<div class="progreso-lectura"></div>
+<div class="pagina-curso">
+
+  <aside class="lateral">
+    <a class="volver" href="../../index.html">← Constelación</a>
+    <div class="curso-cabecera"><span class="emoji">🎨</span><h1>Taller de Diseño de Servicios y Prototipado</h1></div>
+    <span class="semestre-tag" style="color:var(--s3)">Semestre 3</span>
+    <nav>
+      <div class="grupo">Unidades</div>
+      <a href="#u1">01 · Investigación y Need Finding</a>
+      <a class="sub" href="#anim-doble-diamante">🔷 Doble diamante</a>
+      <a href="#u2">02 · Del hallazgo al desafío de diseño</a>
+      <a class="sub" href="#anim-journey-peluqueria">📈 Curva de emociones (CJM)</a>
+      <a href="#u3">03 · Ideación, validación y síntesis</a>
+      <a href="#u4">04 · Iniciando un Proyecto Ágil</a>
+      <a class="sub" href="#anim-user-story-invest">📝 User Story + INVEST</a>
+      <a href="#u5">05 · Prototipo Ágil y Story Mapping</a>
+      <a class="sub" href="#anim-story-map-uber">🗺️ Story Map (Uber)</a>
+    </nav>
+    <div class="atajos"><kbd>Ctrl K</kbd> buscar en toda la biblioteca</div>
+  </aside>
+
+  <main class="principal">
+    <div class="principal-cabecera">
+      <span class="relleno"></span>
+      <button class="btn-buscar" type="button">🔍 Buscar <kbd>Ctrl K</kbd></button>
+      <button class="btn-tema" type="button">☀️</button>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CABECERA DEL CURSO -->
+    <!-- ============================================================ -->
+    <header class="curso-hero-v3" id="cheat" style="--ac: var(--s3)">
+      <span class="emoji-grande">🎨</span>
+      <h1>Taller de Diseño de Servicios y Prototipado — Resumen del curso</h1>
+      <span class="semestre-tag" style="color:var(--s3)">Semestre 3 · Service Design Doing + Ágil</span>
+      <p class="curso-intro">
+        Taller altamente práctico (docente: Abraham Retamal). Objetivo: aplicar las etapas y
+        herramientas del <strong>Service Design Doing</strong> (Design Thinking) y de
+        <strong>metodologías ágiles</strong> para construir, en equipo, un prototipo de baja
+        resolución de un producto o servicio digital pertinente para Chile. Organizado en las
+        5 unidades de este resumen, que corresponden a las 3 unidades reales del curso.
+      </p>
+      <ul class="mini-indice">
+        <li><a href="#u1">01 · Investigación y Need Finding</a></li>
+        <li><a href="#u2">02 · Del hallazgo al desafío</a></li>
+        <li><a href="#u3">03 · Ideación y validación</a></li>
+        <li><a href="#u4">04 · Proyecto Ágil</a></li>
+        <li><a href="#u5">05 · Prototipo y Story Mapping</a></li>
+      </ul>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 1 · INVESTIGACIÓN Y NEED FINDING -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u1">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">01</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Investigación y Need Finding</h2>
+          <p class="unidad-sub">"Mirar sin saber lo que se está buscando": el arranque del Diseño de Servicios, desde la investigación de campo hasta el arquetipo de usuario.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-diseno-servicios">
+        <h3>Investigación y síntesis</h3>
+        <ul>
+          <li><strong>Design Thinking y Service Design Doing:</strong> proceso <strong>no lineal</strong> de 5 etapas (Empatizar→Definir→Idear→Prototipar→Probar) que alterna <em>Flare</em> (divergir) y <em>Focus</em> (converger) — el "doble diamante" de la animación de abajo. Antes de ir a terreno se <strong>enmarca el desafío</strong> con 4 preguntas: ¿cuál/por qué es un problema?, ¿quién tiene el problema o la necesidad?, ¿cuándo/dónde ocurre?, ¿cómo se está resolviendo hoy? Regla de oro: "asegurarnos de que vamos a resolver el problema correcto antes de resolverlo correctamente."</li>
+          <li><strong>Investigación y Need Finding:</strong> "mirar sin saber lo que se está buscando". Combina métodos cualitativos (entrevistas contextuales, etnografía, <em>shadowing</em>, <em>safari</em>, observación no participante) y cuantitativos (encuestas, A/B testing). Regla de oro: distinguir siempre <strong>supuestos</strong> de <strong>datos de investigación</strong>.</li>
+          <li><strong>Mapa de Empatía:</strong> 4 cuadrantes — ¿Qué PIENSA/SIENTE?, ¿Qué VE?, ¿Qué OYE?, ¿Qué DICE/HACE? — más Esfuerzos y Resultados. "Dice/hace" es <em>observable</em>; "piensa/siente" es <em>inferido</em> por el equipo.</li>
+          <li><strong>Qué, Cómo, Por Qué:</strong> sobre una foto de campo, 3 preguntas de creciente abstracción (concreto → emocional) que evitan quedarse en la descripción superficial.</li>
+          <li><strong>Jobs to be Done (JTBD):</strong> el "trabajo" real que el usuario quiere lograr, más allá del producto actual. Storytelling de cierre: <em>"En un contexto donde… a las personas… les ocurre que… necesitan… porque… pero hoy no lo pueden resolver porque…"</em>.</li>
+          <li><strong>Stakeholders y Persona:</strong> mapa circular (cercanía al problema) + matriz Poder/Interés para priorizar actores del ecosistema; la Persona es un arquetipo humano que nace <strong>solo</strong> de datos de investigación — "no inventen datos".</li>
+        </ul>
+      </div>
+
+      <div class="animacion" id="anim-doble-diamante">
+        <div class="anim-cabecera">
+          <h3>🔷 Doble diamante: divergir y converger</h3>
+          <p class="anim-desc">El patrón Flare/Focus del proceso completo: cada etapa expande opciones (divergir) o converge en una decisión. Avanza etapa por etapa y descubre qué herramientas del resumen se usan en cada una — el mapa que orienta el resto de esta página.</p>
+        </div>
+        <canvas data-alto="460"></canvas>
+        <div class="controles">
+          <button type="button" data-accion="paso">Paso</button>
+          <button type="button" class="secundario" data-accion="auto">▶ Auto</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p id="diamante-info" style="color:var(--tinta-2); font: 13px Consolas, monospace; margin:0 0 10px; padding:0 28px;">Presiona "Paso" para iniciar el recorrido en Empatizar.</p>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> el Diamante 1 (Empatizar→Definir) busca entender el problema correcto; el Diamante 2 (Idear→Prototipar→Probar) busca la solución correcta. El punto azul es la etapa activa, los puntos verdes son etapas ya recorridas. El proceso real <strong>no es lineal</strong>: Probar puede retroalimentar Definir o Idear.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-problemas-urbanos">
+          <h3>1. Design Thinking en acción: "Buscando el desafío" (problemas urbanos de Chile)</h3>
+          <p>Dinámica real de clase: frente a un collage de fotos de problemas urbanos (tacos, basura, delincuencia, mala accesibilidad para sillas de ruedas, contaminación), el objetivo es generar la <strong>mayor cantidad</strong> de problemas/dolores/oportunidades <strong>sin proponer soluciones</strong> — privilegiando cantidad sobre calidad.</p>
+          <p>Luego, en la dinámica <strong>"Octopus clustering"</strong> (en Miro), esos problemas se agrupan en clusters con nombre, dando inicio al desafío de diseño del equipo.</p>
+          <p style="color:var(--tinta-2)">Regla explícita: no incluir ideas de solución — "faltan semáforos" es casi una solución; mejor "cruzar la calle es peligroso" (queda el problema abierto para idear después).</p>
+          <p class="fuente">Fuente: nota "Design Thinking y Service Design Doing".</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-mapa-empatia">
+          <summary>1. Clasifica en el cuadrante correcto del Mapa de Empatía: 1) "Reviso el precio en 3 apps antes de comprar" 2) "Me preocupa gastar de más y no llegar a fin de mes" 3) "Mis amigos siempre me recomiendan ofertas por WhatsApp" 4) "Sonríe cuando encuentra un descuento grande". <span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <p><strong>1) Dice/Hace</strong> — comportamiento observable (una acción concreta y repetible).</p>
+            <p><strong>2) Piensa/Siente</strong> — es una preocupación interna, inferida a partir de lo que dice o de cómo actúa, no un comportamiento directamente observable.</p>
+            <p><strong>3) Oye</strong> — lo que le dicen personas cercanas (amigos).</p>
+            <p><strong>4) Dice/Hace</strong> — una reacción/comportamiento observable (sonreír), aunque revele algo de su estado emocional.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-stakeholders-matriz">
+          <summary>2. Para una app de transporte escolar, ubica en la matriz Poder/Interés a: (1) Ministerio de Transporte (regulador) (2) apoderados que pagan el servicio (3) el chofer del furgón. <span class="dificultad dificil">dificil</span></summary>
+          <div class="solucion">
+            <p><strong>Ministerio de Transporte:</strong> alto poder (puede regular o restringir la operación), interés variable (bajo salvo que el proyecto escale o infrinja normativa) → mantener satisfecho, monitorear cambios regulatorios.</p>
+            <p><strong>Apoderados:</strong> alto interés (la seguridad de sus hijos depende del servicio) y poder medio-alto (deciden contratar o no, y pueden recomendar/desprestigiar el servicio) → jugador clave, gestionar de cerca.</p>
+            <p><strong>Chofer del furgón:</strong> alto interés (su trabajo depende directamente del servicio) pero poder bajo-medio (ejecuta el servicio, no decide el modelo de negocio) → mantener informado, involucrar en el diseño operativo.</p>
+            <p style="color:var(--tinta-2)">Este ejercicio reproduce por qué el taller exige dos herramientas: el mapa circular ubica cercanía al problema (el chofer y los apoderados están "más cerca" que el Ministerio), y la matriz Poder/Interés revela que el poder de decisión no siempre coincide con esa cercanía.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 2 · DEL HALLAZGO AL DESAFÍO DE DISEÑO -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u2">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">02</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Del hallazgo al desafío de diseño</h2>
+          <p class="unidad-sub">De narrar la experiencia completa del usuario a convertir un hallazgo en una pregunta de diseño abordable.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-desafio-diseno">
+        <h3>De la investigación al desafío de diseño</h3>
+        <ul>
+          <li><strong>Customer Journey Map:</strong> experiencia del usuario en el tiempo, <strong>nunca</strong> el proceso interno de la organización. Componentes mínimos: Persona, etapas, acciones, pensamientos, curva de emociones, oportunidades.</li>
+          <li><strong>QQPF → Key Insight → HMW:</strong> Quién/Qué/Por Qué/Fricción redactado en frases completas → se eligen los insights con tensión real y fricción accionable → se convierten en preguntas <em>"¿Cómo podríamos…?"</em> (ni tan cerradas que traigan la solución, ni tan abiertas que sean inabordables).</li>
+          <li><strong>Laddering y Hierarchical Value Map:</strong> entrevista que "escala" preguntando "¿por qué?" repetidamente: <strong>Atributo</strong> (concreto) → <strong>Consecuencia</strong> → <strong>Valor</strong> personal profundo.</li>
+        </ul>
+      </div>
+
+      <div class="animacion" id="anim-journey-peluqueria">
+        <div class="anim-cabecera">
+          <h3>📈 Curva de emociones: Customer Journey Map (peluquería)</h3>
+          <p class="anim-desc">La estructura real de la plantilla del curso — Pre-servicio → Servicio → Post-servicio, escala -7 a +7 — dibujada punto por punto.</p>
+        </div>
+        <canvas data-alto="360"></canvas>
+        <div class="controles">
+          <button type="button" data-accion="paso">Paso</button>
+          <button type="button" class="secundario" data-accion="auto">▶ Auto</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p id="journey-info" style="color:var(--tinta-2); font: 13px Consolas, monospace; margin:0 0 10px; padding:0 28px;">Presiona "Paso" para dibujar la curva de emociones, punto por punto.</p>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> valores ilustrativos sobre la estructura real de la plantilla (Pre-servicio/Servicio/Post-servicio, eje -7 a +7). Puntos verdes = emoción positiva, rojos = negativa. La caída durante la <strong>Espera</strong> y la subida durante la <strong>Atención</strong> son exactamente el tipo de fricción/momento clave que alimenta el QQPF.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-trayectoria-nino">
+          <h3>2. Mapa de trayectoria: la rutina de un niño de 5 años (Customer Journey etnográfico)</h3>
+          <p>Investigación etnográfica real documentada hora a hora: desde las <strong>6:30 am</strong> (la mamá lo despierta tras prender el calefactor del baño) hasta las <strong>21:35</strong> (duerme). El equipo extrajo 4 insights directamente del mapa:</p>
+          <ul>
+            <li>Las familias planifican el uso de calefacción para disminuir el gasto.</li>
+            <li>Existe preocupación constante por mantener la temperatura de la habitación y la ropa del hijo.</li>
+            <li>La madre prefiere calefaccionar el baño antes que el dormitorio.</li>
+            <li>En algunos momentos usan el secador de pelo para calentar la cama y la ropa, porque su uso es más corto y genera menos gasto que la calefacción central.</li>
+          </ul>
+          <p style="color:var(--tinta-2)">Ningún insight aparece si el mapa se hubiera limitado a las acciones "obvias" (se levanta, se viste, desayuna) — surgen de observar la trayectoria completa hora a hora, incluyendo los detalles de calefacción que a simple vista parecen irrelevantes.</p>
+          <p class="fuente">Fuente: nota "Customer Journey Map" — Merged 3 (mapa de trayectoria real).</p>
+        </div>
+
+        <div class="ejemplo" id="ej-laddering-panales">
+          <h3>3. Laddering: de "no se pasa" al valor de dormir bien</h3>
+          <p>Entrevista real sobre elección de marca de pañal, escalando 3 niveles con "por qué":</p>
+          <ol>
+            <li><em>"¿Por qué usa esta marca de pañal y no otra?"</em> → "Este más tiempo con el pañal en las noches y no se pasa el bebé, en comparación con los otros." → <strong>Atributo: no se pasa</strong>.</li>
+            <li><em>"¿Por qué es importante que no se pase?"</em> → "Porque si se pasa duerme mal la guagua, y me tengo que levantar 20 veces en la noche." → <strong>Consecuencia: me tengo que levantar 20 veces en la noche</strong>.</li>
+            <li><em>"Aunque sea obvio, mil disculpas, pero tengo que entender ¿por qué no quiere levantarse 20 veces en la noche?"</em> → "Porque duermo pésimo, y después ando mal en el trabajo." → <strong>Valor: dormir bien y estar bien en el trabajo</strong>.</li>
+          </ol>
+          <p style="color:var(--tinta-2)">Tres preguntas bastan para pasar de una elección de compra aparentemente trivial a un valor humano universal.</p>
+          <p class="fuente">Fuente: nota "Laddering y Hierarchical Value Map" — Merged 2.</p>
+        </div>
+
+        <div class="ejemplo" id="ej-hmw-beto">
+          <h3>4. De insight a HMW: el caso de Beto y las galletas</h3>
+          <p><strong>Insight:</strong> "Beto quiere comer menos galletas porque quiere bajar de peso, pero las galletas son su aliviador de estrés."</p>
+          <p>Un mismo insight genera múltiples HMW variando el ángulo:</p>
+          <ul>
+            <li><strong>Funcional:</strong> "¿Cómo podríamos ayudar a Beto a comer menos galletas?" / "¿Cómo podríamos ayudar a Beto a estar sano?"</li>
+            <li><strong>Emocional:</strong> "¿Cómo podríamos ayudar a Beto a sentirse bien con su peso?" / "¿Cómo podríamos ayudar a Beto a verse bien?"</li>
+            <li><strong>Sistémico:</strong> "¿Cómo podríamos ayudar a Beto a manejar su estrés?" / "¿Cómo podríamos reducir el estrés en Beto?"</li>
+          </ul>
+          <p class="fuente">Fuente: nota "De Hallazgos a Preguntas de Diseño (QQPF, Key Insights, HMW)" — Ideación.</p>
+        </div>
+
+        <div class="ejemplo" id="ej-preguntas-investigacion">
+          <h3>5. Pregunta de investigación vs. pregunta de diseño (caso real: filas de atención)</h3>
+          <p><strong>Pregunta de investigación</strong> (Grupo 4, Diplomado Negocios Ágiles 2020-21): "¿Tienen los consumidores una experiencia negativa (mal clima, tiempo excesivo, exposición a contagio, etc.) mientras hacen la fila para ser atendidos en algún servicio?"</p>
+          <p><strong>Pregunta de diseño:</strong> "¿Cómo podemos ayudar a las personas a seleccionar un servicio de un sitio de interés (supermercados, farmacias, restaurantes, notaría, Registro Civil, ChileAtiende, Extranjería, etc.), cuya fila sea la menos concurrida y/o la con menor tiempo de espera?"</p>
+          <p>Tipos de pregunta de investigación (Hernández-Sampieri): <strong>descriptivas</strong> ("¿Cómo afecta la edad a la frecuencia de uso de apps de salud en adultos mayores?"), <strong>comparativas</strong> ("¿Hay diferencias en el uso de la app entre hombres y mujeres?"), <strong>exploratorias</strong> ("¿Qué factores podrían influir en la aceptación de una nueva tecnología?"), <strong>explicativas</strong> ("¿Por qué los pacientes prefieren la telemedicina?") y <strong>evaluativas</strong> ("¿Cómo ha impactado nuestro programa de ciberseguridad en la prevención de ataques?").</p>
+          <p class="fuente">Fuente: nota "Investigación y Need Finding" — Clase 3.</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-hmw">
+          <summary>3. Insight: "Marta quiere llegar puntual a su turno pero el paradero más cercano no tiene información confiable de horarios, así que siempre sale con demasiada anticipación." Escribe 3 HMW en ángulos distintos. <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p><strong>Funcional:</strong> "¿Cómo podríamos ayudar a Marta a saber cuánto falta para que llegue su bus?"</p>
+            <p><strong>Emocional:</strong> "¿Cómo podríamos ayudar a Marta a sentirse tranquila mientras espera?"</p>
+            <p><strong>Sistémico:</strong> "¿Cómo podríamos mejorar la confiabilidad de la información de horarios del transporte público?"</p>
+            <p style="color:var(--tinta-2)">Ninguna trae la solución implícita ("hacer una app de horarios" sería demasiado cerrada) ni es inabordable — misma calibración de "medida justa" que el ejemplo de Beto.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-pregunta-investigacion-diseno">
+          <summary>4. Un equipo observa que los adultos mayores abandonan a medio llenar el formulario de una app de salud. Escribe (a) una pregunta de investigación y (b) una pregunta de diseño. <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p><strong>(a) Pregunta de investigación</strong> (explicativa): "¿Por qué los adultos mayores abandonan el formulario de registro de la app de salud antes de completarlo?"</p>
+            <p><strong>(b) Pregunta de diseño:</strong> "¿Cómo podríamos ayudar a los adultos mayores a completar su registro en la app de salud sin sentirse abrumados ni perdidos?"</p>
+            <p style="color:var(--tinta-2)">La (a) busca entender el fenómeno (aún sin proponer nada); la (b) ya abre el espacio de solución — mismo patrón del caso real de las filas de atención.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-laddering">
+          <summary>5. Completa un laddering de 3 pasos partiendo del atributo "la app no se cae nunca durante el pago". Escribe las 3 preguntas y una respuesta plausible en cada nivel. <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>1. <em>"¿Por qué usa esta app y no otra?"</em> → "Porque nunca se cae mientras estoy pagando." → <strong>Atributo: no se cae durante el pago</strong>.</p>
+            <p>2. <em>"¿Por qué es importante que no se caiga durante el pago?"</em> → "Porque si se cae no sé si me cobraron o no, y tengo que revisar el banco." → <strong>Consecuencia: evita la incertidumbre de un cobro duplicado o perdido</strong>.</p>
+            <p>3. <em>"Aunque sea obvio, disculpa, pero ¿por qué te preocupa esa incertidumbre?"</em> → "Porque no quiero estar estresado revisando mi cuenta ni perder tiempo reclamando." → <strong>Valor: tranquilidad y control sobre el propio dinero</strong>.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 3 · IDEACIÓN, VALIDACIÓN Y SÍNTESIS -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u3">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">03</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Ideación, validación y síntesis</h2>
+          <p class="unidad-sub">Generar en volumen, filtrar con método, y validar que la solución sea deseable, viable y factible antes de prototipar.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-ideacion-validacion">
+        <h3>Ideación y validación</h3>
+        <ul>
+          <li><strong>Brainwriting 6-3-5:</strong> 6 personas, 3 ideas, 5 minutos por ronda, en silencio y rotando la hoja — hasta 108 ideas sin el sesgo del brainstorming oral. Luego el <strong>Portfolio de Ideas</strong> organiza todo en una matriz Impacto × Factibilidad (Quick Wins, Apuestas, Rellenos, Evitar).</li>
+          <li><strong>SCAMPER:</strong> 7 verbos aplicados sobre algo que <strong>ya existe</strong> — Sustituir, Combinar, Adaptar, Modificar, Poner en otro uso, Eliminar, Reordenar.</li>
+        </ul>
+      </div>
+
+      <div class="materia" id="tema-value-proposition-canvas">
+        <h3>Value Proposition Canvas</h3>
+        <p>Canvas de Strategyzer (Alexander Osterwalder) que enfrenta, lado a lado, lo que el equipo <strong>ofrece</strong> con lo que el cliente realmente <strong>necesita</strong>. En la secuencia real del curso se llena justo después del Portfolio de Ideas y antes de Prototipado I — "de afuera hacia adentro": primero el Perfil del Cliente (con datos de investigación), recién después el Mapa de Valor.</p>
+        <div class="tabla-scroll">
+          <table>
+            <thead><tr><th>Mapa de Valor (lo que ofrecemos)</th><th>Perfil del Cliente (lo que necesita)</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Products &amp; Services</strong> — productos/servicios ofrecidos</td><td><strong>Customer Jobs</strong> — tareas que el cliente intenta realizar (funcionales, sociales, emocionales)</td></tr>
+              <tr><td><strong>Pain Relievers</strong> — cómo alivian los <em>pains</em> del cliente</td><td><strong>Pains</strong> — dolores, riesgos y frustraciones al intentar esos trabajos</td></tr>
+              <tr><td><strong>Gain Creators</strong> — cómo generan los <em>gains</em> esperados</td><td><strong>Gains</strong> — beneficios y resultados que el cliente espera obtener</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="color:var(--tinta-2)">El <em>fit</em> (encaje) es lo que hace relevante la propuesta: cada Pain Reliever debe apuntar a un Pain concreto y cada Gain Creator a un Gain concreto — no basta con que "suenen bien" por separado.</p>
+      </div>
+
+      <div class="materia" id="tema-business-model-canvas">
+        <h3>Business Model Canvas</h3>
+        <p>Canvas de una página (Strategyzer) que describe cómo una organización crea, entrega y captura valor, en 9 bloques alrededor de la Propuesta de Valor. En el flujo del taller se trabaja <strong>al final</strong> del Diseño de Servicios — después de validar con el Value Proposition Canvas — justo antes de la Historia del Elevator Pitch: verifica que la solución sea viable como <strong>negocio</strong>, no solo deseable para el usuario.</p>
+        <div class="tabla-scroll">
+          <table>
+            <tbody>
+              <tr>
+                <td rowspan="2"><strong>Socios clave</strong><br><span style="color:var(--tinta-2)">Key Partnerships</span></td>
+                <td><strong>Actividades clave</strong><br><span style="color:var(--tinta-2)">Key Activities</span></td>
+                <td rowspan="2" style="background:var(--panel-2)"><strong>Propuesta de Valor</strong><br><span style="color:var(--tinta-2)">Value Propositions</span></td>
+                <td><strong>Relación con clientes</strong><br><span style="color:var(--tinta-2)">Customer Relationships</span></td>
+                <td rowspan="2"><strong>Segmentos de clientes</strong><br><span style="color:var(--tinta-2)">Customer Segments</span></td>
+              </tr>
+              <tr>
+                <td><strong>Recursos clave</strong><br><span style="color:var(--tinta-2)">Key Resources</span></td>
+                <td><strong>Canales</strong><br><span style="color:var(--tinta-2)">Channels</span></td>
+              </tr>
+              <tr>
+                <td colspan="2"><strong>Estructura de costos</strong><br><span style="color:var(--tinta-2)">Cost Structure</span></td>
+                <td></td>
+                <td colspan="2"><strong>Fuentes de ingresos</strong><br><span style="color:var(--tinta-2)">Revenue Streams</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="color:var(--tinta-2)">Para un prototipo de baja resolución (el objetivo declarado del curso) no hace falta precisión financiera — basta con una hipótesis razonable en cada bloque.</p>
+      </div>
+
+      <div class="materia" id="tema-tabla-herramientas">
+        <h3>📊 Tabla-resumen: herramienta → cuándo usarla → salida</h3>
+        <p style="color:var(--tinta-2)">Síntesis de las 16 herramientas de Diseño de Servicios vistas en las unidades 1 a 3, en el orden en que normalmente se aplican.</p>
+        <div class="tabla-scroll">
+          <table>
+            <thead>
+              <tr><th>Herramienta</th><th>Cuándo usarla</th><th>Salida</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Mapa de Empatía</td><td>Después de investigar, para sintetizar observaciones de un usuario</td><td>Retrato del usuario en 4 cuadrantes + esfuerzos/resultados</td></tr>
+              <tr><td>Qué, Cómo, Por Qué</td><td>Al analizar una foto o video de campo</td><td>Interpretación emocional de una situación observada</td></tr>
+              <tr><td>Jobs to be Done (JTBD)</td><td>Tras el Mapa de Empatía, para delimitar el problema real</td><td>Storytelling del "trabajo" que el usuario quiere lograr</td></tr>
+              <tr><td>Stakeholders (mapa circular + matriz)</td><td>Al mapear el ecosistema de actores del desafío</td><td>Actores priorizados por cercanía / poder-interés</td></tr>
+              <tr><td>Persona</td><td>Con datos ya sintetizados de varias entrevistas</td><td>Arquetipo humano concreto que guía el diseño</td></tr>
+              <tr><td>Customer Journey Map</td><td>Para narrar la experiencia completa en el tiempo</td><td>Curva de emociones + fricciones detectadas</td></tr>
+              <tr><td>QQPF</td><td>Al sintetizar hallazgos del CJM</td><td>Insights redactados como frases completas</td></tr>
+              <tr><td>Laddering</td><td>En entrevista, para llegar al valor detrás de una elección</td><td>Hierarchical Value Map (atributo→consecuencia→valor)</td></tr>
+              <tr><td>HMW (How Might We)</td><td>Tras elegir un Key Insight</td><td>Pregunta de diseño abierta para ideación</td></tr>
+              <tr><td>Brainwriting 6-3-5</td><td>Para generar ideas en volumen sin sesgo de grupo</td><td>Decenas de ideas en bruto (hasta 108)</td></tr>
+              <tr><td>Portfolio de Ideas</td><td>Después del 6-3-5, para organizar todas las ideas</td><td>Matriz Impacto × Factibilidad</td></tr>
+              <tr><td>SCAMPER</td><td>Sobre una idea o producto concreto ya existente</td><td>Variaciones sistemáticas en 7 direcciones</td></tr>
+              <tr><td>Value Proposition Canvas</td><td>Antes de prototipar, para validar el encaje solución-cliente</td><td>Mapa de pains/gains alineado con la oferta</td></tr>
+              <tr><td>Business Model Canvas</td><td>Al cierre del Diseño de Servicios</td><td>Modelo de negocio viable en 9 bloques</td></tr>
+              <tr><td>User Stories + INVEST</td><td>Al pasar de la idea a la construcción ágil</td><td>Backlog de historias evaluables</td></tr>
+              <tr><td>Story Mapping</td><td>Con el backlog de historias ya escrito</td><td>Walking Skeleton = alcance del primer Sprint</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-scamper">
+          <h3>6. SCAMPER: un ejemplo real por letra</h3>
+          <div class="tabla-scroll">
+            <table>
+              <thead><tr><th>Letra</th><th>Acción</th><th>Ejemplo real</th></tr></thead>
+              <tbody>
+                <tr><td>S</td><td>Sustituir</td><td>Stevia sustituye al azúcar.</td></tr>
+                <tr><td>C</td><td>Combinar</td><td>Chocolate + Jugar = Kinder Sorpresa.</td></tr>
+                <tr><td>A</td><td>Adaptar</td><td>Notas adhesivas de colores adaptadas a distintos formatos y tamaños.</td></tr>
+                <tr><td>M</td><td>Modificar</td><td>Un alicate modificado en herramienta multiuso (pinzas + destornillador + más).</td></tr>
+                <tr><td>P</td><td>Poner en otro uso</td><td>Un candelabro de metal reutilizado como portavelas decorativo.</td></tr>
+                <tr><td>E</td><td>Eliminar</td><td>Una máquina elíptica elimina el impacto articular de correr.</td></tr>
+                <tr><td>R</td><td>Reordenar</td><td>Las redes sociales reordenan cómo las personas se comunican.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="fuente">Fuente: nota "SCAMPER" — SCAMPER.pdf (THINK Lab).</p>
+        </div>
+
+        <div class="ejemplo" id="ej-value-proposition-canvas">
+          <h3>7. Value Proposition Canvas aplicado a la pregunta de diseño de las filas de atención</h3>
+          <p>Continuando el caso real del Ejemplo 5 (pregunta de diseño: "¿Cómo podemos ayudar a las personas a seleccionar un servicio cuya fila sea la menos concurrida?"), un posible Value Proposition Canvas para una app de estimación de filas:</p>
+          <div class="tabla-scroll">
+            <table>
+              <thead><tr><th>Mapa de Valor (app hipotética)</th><th>Perfil del Cliente</th></tr></thead>
+              <tbody>
+                <tr><td>App que muestra el tiempo de espera estimado en tiempo real de sucursales cercanas</td><td><strong>Customer Job:</strong> elegir un lugar (banco, notaría, farmacia) donde no tenga que esperar mucho</td></tr>
+                <tr><td>Notificación cuando la fila baja; estimación antes de salir de casa</td><td><strong>Pains:</strong> exposición a mal clima o contagio, tiempo perdido, incertidumbre de cuánto durará la espera</td></tr>
+                <tr><td>Sugerencia automática de la sucursal con menor espera</td><td><strong>Gains:</strong> resolver el trámite rápido y volver a su rutina</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="color:var(--tinta-2)">Ejemplo ilustrativo construido sobre la pregunta de diseño real del curso (ninguna nota del vault trae un VPC ya resuelto) para mostrar cómo se llena el canvas de afuera hacia adentro.</p>
+          <p class="fuente">Fuente: nota "Value Proposition Canvas" — aplicado sobre el caso real de "Investigación y Need Finding" (Clase 3).</p>
+        </div>
+
+        <div class="ejemplo" id="ej-business-model-canvas">
+          <h3>8. Business Model Canvas del mismo caso: la app de filas</h3>
+          <p>Siguiendo el mismo caso hipotético, un Business Model Canvas de bajo nivel de resolución (basta una hipótesis razonable por bloque):</p>
+          <ul>
+            <li><strong>Propuesta de Valor:</strong> comparar filas en tiempo real, sin exposición innecesaria a la espera.</li>
+            <li><strong>Segmentos de clientes:</strong> personas que hacen trámites presenciales frecuentes.</li>
+            <li><strong>Canales:</strong> app móvil + notificaciones push.</li>
+            <li><strong>Relación con clientes:</strong> automatizada (self-service) con soporte por chat.</li>
+            <li><strong>Recursos clave:</strong> datos de afluencia en tiempo real (reporte de usuarios o sensores), plataforma de geolocalización.</li>
+            <li><strong>Actividades clave:</strong> mantener y validar la estimación de filas; alianzas con locales.</li>
+            <li><strong>Socios clave:</strong> las sucursales que comparten sus datos de afluencia.</li>
+            <li><strong>Estructura de costos:</strong> desarrollo y mantención de la app, servidores, alianzas.</li>
+            <li><strong>Fuentes de ingresos:</strong> freemium (alertas premium) o acuerdo con las sucursales para destacar su ubicación.</li>
+          </ul>
+          <p class="fuente">Fuente: nota "Business Model Canvas" — Business Model Canvas.pdf (Strategyzer), mismo caso ilustrativo del Ejemplo 7.</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-scamper">
+          <summary>6. Aplica las letras S, C y E de SCAMPER a un cuaderno de apuntes universitario tradicional. Propón una idea por letra. <span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <p><strong>S — Sustituir:</strong> sustituir las hojas de papel por páginas reutilizables tipo Rocketbook (se borran y se escanean a la nube).</p>
+            <p><strong>C — Combinar:</strong> combinar el cuaderno con una grabadora de audio integrada, para sincronizar apuntes escritos con lo que se dijo en clase en ese momento.</p>
+            <p><strong>E — Eliminar:</strong> eliminar la tapa rígida para hacerlo más liviano y fácil de llevar en cualquier mochila.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-value-proposition-canvas">
+          <summary>7. <span class="resumen-ejercicio">Clasifica en Customer Job, Pain o Gain estas frases de un perfil de cliente de una app de delivery de comida: (a) "pedir comida sin salir de casa" (b) "el pedido llega frío" (c) "quiere ver el estado del pedido en tiempo real".</span> <span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <p><strong>(a) Customer Job</strong> — la tarea que el cliente intenta realizar (conseguir comida sin salir).</p>
+            <p><strong>(b) Pain</strong> — un dolor/frustración al intentar ese trabajo (calidad del servicio).</p>
+            <p><strong>(c) Gain</strong> — un beneficio/resultado que espera obtener (visibilidad y control sobre el pedido).</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-business-model-canvas">
+          <summary>8. <span class="resumen-ejercicio">Para una app de tutorías entre estudiantes, ubica cada elemento en su bloque del Business Model Canvas: (a) "comisión del 10% que cobra la plataforma por cada tutoría agendada" (b) "la nube donde se alojan las videollamadas y el historial de tutorías" (c) "universidades que difunden la app entre sus estudiantes a cambio de reportes de uso".</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p><strong>(a) Fuentes de ingresos (Revenue Streams):</strong> es la forma en que la plataforma captura valor de cada transacción.</p>
+            <p><strong>(b) Recursos clave (Key Resources):</strong> infraestructura indispensable para que el servicio funcione, no genera ingreso por sí sola.</p>
+            <p><strong>(c) Socios clave (Key Partnerships):</strong> actores externos que ayudan a operar o distribuir el modelo, no son el cliente final.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 4 · INICIANDO UN PROYECTO ÁGIL -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u4">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">04</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Iniciando un Proyecto Ágil</h2>
+          <p class="unidad-sub">De la fase de diseño a la construcción: metodologías ágiles y user stories como unidad mínima de trabajo.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-iniciando-proyecto">
+        <h3>Iniciando un Proyecto (Ágil)</h3>
+        <ul>
+          <li><strong>Transición de fase:</strong> de Investigación → Definición → Ideación (ya completadas) a la fase técnica de planificación — "trabajaremos con metodologías ágiles y experiencia de usuario, <strong>NO</strong> con arquitectura de software".</li>
+          <li><strong>Agile Inception:</strong> dinámicas para alinear al equipo (objetivos y alcance compartidos) e identificar riesgos <em>antes</em> de gastar tiempo construyendo.</li>
+          <li><strong>User Stories — las 3 C's</strong> (Ron Jeffries, 2001): <em>Card</em> (recordatorio, no especificación completa), <em>Conversation</em> (los detalles se refinan hablando), <em>Confirmation</em> (Criterios de Aceptación acordados).</li>
+          <li><strong>Criterios de Aceptación</strong> en formato <em>Dado/Cuando/Entonces</em>: "Dado un usuario que quiere loguearse… Cuando ingresa usuario y contraseña correctos… Entonces ingresa a la Home."</li>
+          <li><strong>INVEST:</strong> Independent · Negotiable · Valuable · Estimable · Small · Testable — criterio de calidad de una historia.</li>
+          <li><strong>DoR vs. DoD:</strong> <em>Definition of Ready</em> (antes de empezar la historia) vs. <em>Definition of Done</em> (al terminarla) — no son intercambiables.</li>
+          <li><strong>Anatomía de la tarjeta:</strong> código (US-042), título, Como/Quiero/Para, checklist de criterios de aceptación, Prioridad (MoSCoW), Estimación (talla S/M/L o Fibonacci — mide <strong>esfuerzo</strong>, no horas), adjuntos.</li>
+          <li><strong>Slicing vertical:</strong> cada historia corta <strong>todas</strong> las capas (UX/UI, lógica, datos) — nunca una historia solo de "base de datos".</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Plantilla de User Story</span><p>Como [persona o rol] … Quiero [funcionalidad] … Para [motivo / valor obtenido]</p></div>
+      </div>
+
+      <div class="animacion" id="anim-user-story-invest">
+        <div class="anim-cabecera">
+          <h3>📝 Constructor de User Story + validación INVEST</h3>
+          <p class="anim-desc">Las 3 historias reales de la Clase 7 (2 mal escritas, 1 bien escrita). Ensambla Como/Quiero/Para y recorre las 6 letras de INVEST una por una.</p>
+        </div>
+        <canvas data-alto="300"></canvas>
+        <div class="controles">
+          <div class="control">
+            <label for="story-select">Historia</label>
+            <select id="story-select">
+              <option value="tecnica">Ejemplo 1 — demasiado técnica</option>
+              <option value="sinvalor">Ejemplo 2 — sin valor claro</option>
+              <option value="buena">Ejemplo 3 — bien escrita</option>
+            </select>
+          </div>
+          <button type="button" data-accion="paso">Paso</button>
+          <button type="button" class="secundario" data-accion="auto">▶ Auto</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p id="story-info" style="color:var(--tinta-2); font: 13px Consolas, monospace; margin:0 0 10px; padding:0 28px;">Presiona "Paso" para ensamblar la historia y evaluarla con INVEST.</p>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> las 3 cajas superiores son Como/Quiero/Para (roja si falta el "Para"). Los 6 círculos de abajo son I·N·V·E·S·T: verde = cumple, rojo = no cumple, con la razón en el texto de estado. Los 3 ejemplos son reales de la Clase 7 del curso.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-user-stories-mal-escritas">
+          <h3>9. Cómo NO escribir una historia (y cómo cortarla en vertical)</h3>
+          <p><strong>Errores reales de la Clase 7:</strong></p>
+          <ul>
+            <li><em>Demasiado técnica:</em> "Como administrador, quiero almacenar los datos en una BD MySQL." → especifica la solución técnica, no la necesidad real.</li>
+            <li><em>Sin valor claro:</em> "Como operador, quiero acceder a la APP de registro." → no dice para qué sirve; falta el "Para".</li>
+            <li><em>Bien escrita:</em> "Como operador, quiero acceder al registro de solicitudes PARA ver un listado ordenado y priorizar la atención." → Rol, Funcionalidad y Valor explícitos.</li>
+          </ul>
+          <p><strong>Slicing vertical:</strong> "Como usuario, quiero ingresar a la plataforma y generar entradas en el blog" no es independiente ni pequeña. Se separa en:</p>
+          <ol>
+            <li>"Como usuario, quiero poder ingresar a la plataforma."</li>
+            <li>"Como usuario, quiero poder generar entradas en el blog."</li>
+            <li>"Como usuario, quiero poder responder comentarios de lectores."</li>
+          </ol>
+          <p class="fuente">Fuente: nota "Agile Inception y User Stories" — Clase 7.</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-user-stories-errores">
+          <summary>9. Detecta el error en estas 2 historias nuevas: (a) "Como desarrollador, quiero implementar un endpoint REST para el login." (b) "Como usuario, quiero usar la app." <span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <p><strong>(a) Demasiado técnica:</strong> mismo error que "almacenar los datos en una BD MySQL" — expone una solución de implementación (endpoint REST), no la necesidad de un usuario real. Reescrita: "Como usuario registrado, quiero iniciar sesión con mi correo y clave para acceder a mi cuenta de forma segura."</p>
+            <p><strong>(b) Sin valor claro:</strong> mismo error que "acceder a la APP de registro" — no tiene "Para", es tan genérica que no se puede estimar ni testear. Reescrita: "Como usuario, quiero ver mi panel principal PARA revisar mis pedidos recientes de un vistazo."</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-invest">
+          <summary>10. Evalúa con INVEST: "Como usuario y administrador, quiero iniciar sesión y también gestionar todos los reportes del sistema, para tener control total." ¿Qué letra(s) falla(n)? <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>Falla <strong>Independent</strong>: mezcla dos roles (usuario/administrador) y dos funcionalidades (login + gestión de reportes) que no dependen una de la otra para aportar valor.</p>
+            <p>Falla <strong>Small</strong>: es demasiado grande para completarse dentro de un solo Sprint.</p>
+            <p>Debe dividirse en al menos 2 historias: "Como usuario, quiero iniciar sesión para acceder a mi cuenta" y "Como administrador, quiero ver todos los reportes del sistema para supervisar la operación" — mismo principio del caso real "ingresar a la plataforma" + "generar entradas en el blog".</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 5 · PROTOTIPO ÁGIL Y STORY MAPPING -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u5">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">05</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Prototipo Ágil y Story Mapping</h2>
+          <p class="unidad-sub">De un backlog plano a un mapa con dos ejes, y de ahí a un prototipo de baja resolución del flujo completo.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-prototipo-agil">
+        <h3>Prototipo Ágil</h3>
+        <ul>
+          <li><strong>El problema del backlog plano:</strong> una lista vertical de historias pierde "the big picture" y es un caos para planificar releases (Jeff Patton, 2005).</li>
+          <li><strong>Story Mapping:</strong> ordena las historias en 2 ejes independientes — <strong>Tiempo</strong> (horizontal, el viaje del usuario) y <strong>Prioridad</strong> (vertical, arriba lo indispensable, abajo lo opcional).</li>
+          <li><strong>Backbone:</strong> las actividades principales, de izquierda a derecha, forman la columna vertebral del producto.</li>
+          <li><strong>Walking Skeleton:</strong> la fila justa y necesaria bajo el Backbone para que el sistema funcione de punta a punta, aunque sea rústico — el MVP.</li>
+          <li><strong>3 pasos para construir un mapa:</strong> (1) Épicas y viaje, ordenadas de izquierda a derecha; (2) volcar las historias bajo cada épica sin preocuparse aún del orden vertical; (3) ordenar de arriba hacia abajo por prioridad.</li>
+          <li><strong>Prototipado I (digital):</strong> Miro / Figma — wireframes y flujos de pantalla de baja/media fidelidad, iterables y fáciles de compartir de forma remota.</li>
+          <li><strong>Prototipado II (físico):</strong> Lego / Desktop Walkthrough — técnicas de prototipado analógico típicas del Service Design: se arman escenas con bloques armables o figuras que representan actores y espacios físicos (ej. un local, un mesón de atención), y el equipo "camina" la experiencia paso a paso sobre esa maqueta de escritorio, detectando problemas de flujo sin escribir una sola línea de código.</li>
+          <li>Objetivo declarado del curso: prototipo de <strong>baja resolución</strong>, pero que represente el flujo <strong>completo</strong> del servicio — no solo una parte.</li>
+        </ul>
+      </div>
+
+      <div class="animacion" id="anim-story-map-uber">
+        <div class="anim-cabecera">
+          <h3>🗺️ Story Map: corte de release (app estilo Uber)</h3>
+          <p class="anim-desc">El story map real de una app de transporte tipo Uber (4 épicas). Mueve el slider para ver qué historias entran al MVP (Walking Skeleton) y cuáles quedan para releases posteriores.</p>
+        </div>
+        <canvas data-alto="400"></canvas>
+        <div class="controles">
+          <div class="control">
+            <label for="sl-corte">Corte de release</label>
+            <input type="range" id="sl-corte" min="0" max="3" value="0" step="1"><span class="valor"></span>
+          </div>
+          <button type="button" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> las tarjetas con borde azul sólido son el <strong>Walking Skeleton</strong> (siempre incluido: Sprint 1). Las tarjetas con borde verde sólido son historias opcionales ya incluidas en el nivel de release elegido; las tarjetas grises punteadas quedan fuera todavía. Datos reales de "Ejemplo StoryMapping Uber.pdf".</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-story-map-uber">
+          <h3>10. Story Map completo: app de transporte tipo Uber</h3>
+          <p>4 épicas horizontales (columna vertebral) con su Walking Skeleton (primeras filas) e historias opcionales debajo:</p>
+          <div class="tabla-scroll">
+            <table>
+              <thead>
+                <tr><th>Registro e Inicio</th><th>Solicitud de viaje</th><th>Asignación y recorrido</th><th>Finalización y postviaje</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Registrar mis datos</strong> para usar la app.</td>
+                  <td><strong>Ver mi ubicación actual</strong> en el mapa para definir el punto de partida.</td>
+                  <td><strong>Ver los viajes disponibles</strong> cercanos.</td>
+                  <td><strong>Pagar automáticamente</strong> al finalizar el viaje.</td>
+                </tr>
+                <tr>
+                  <td><strong>Registrar métodos de pago</strong> para usar la app.</td>
+                  <td><strong>Ingresar mi destino</strong> para calcular la ruta y costo.</td>
+                  <td><strong>Aceptar o rechazar</strong> un viaje.</td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td><em>(opcional)</em> Ver el <strong>costo estimado</strong> del viaje antes de pedirlo.</td>
+                  <td><em>(opcional)</em> Contactar al conductor <strong>por llamada</strong> para coordinar detalles.</td>
+                  <td><em>(opcional)</em> <strong>Calificar</strong> al conductor.</td>
+                  <td><em>(opcional)</em> Dejar <strong>comentarios</strong> sobre el conductor.</td>
+                </tr>
+                <tr>
+                  <td><em>(opcional)</em> <strong>Guardar destinos favoritos</strong> (casa, trabajo).</td>
+                  <td><em>(opcional)</em> Ver <strong>conductores cercanos</strong> disponibles antes de confirmar.</td>
+                  <td><em>(opcional)</em> Contactar al conductor <strong>por chat</strong>.</td>
+                  <td>—</td>
+                </tr>
+                <tr>
+                  <td>—</td>
+                  <td>—</td>
+                  <td><em>(opcional)</em> <strong>Seguir el recorrido en tiempo real</strong> para sentirme seguro.</td>
+                  <td>—</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="color:var(--tinta-2)">Las 2 primeras filas son el Walking Skeleton: sin ellas, la app no funciona de punta a punta. El resto mejora la experiencia pero puede esperar a releases posteriores — reprodúcelo con el slider del visualizador de arriba.</p>
+          <p class="fuente">Fuente: nota "Story Mapping" — "Ejemplo StoryMapping Uber.pdf".</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-walking-skeleton">
+          <summary>11. Story map de "Reservar mesa" con 4 historias: (A) "ver mesas disponibles para elegir horario" (B) "cancelar mi reserva" (C) "confirmar mi reserva para asegurar el cupo" (D) "recibir un recordatorio por WhatsApp". ¿Cuáles van en el Walking Skeleton? <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p><strong>Walking Skeleton: A y C.</strong> Sin ver disponibilidad ni poder confirmar, el flujo de reserva no funciona de punta a punta — son estrictamente necesarias, aunque sea de forma rústica.</p>
+            <p><strong>Opcionales: B y D.</strong> Cancelar y recibir recordatorios mejoran la experiencia, pero el sistema puede lanzarse (rústicamente) sin ellas y agregarlas en un Sprint posterior.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-prototipado-tipos">
+          <summary>12. <span class="resumen-ejercicio">Clasifica estas técnicas de prototipado en digital o físico/analógico, y explica en una frase qué gana el equipo al usar cada una: (a) Figma (b) Desktop Walkthrough (c) Lego (d) Miro.</span> <span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <p><strong>(a) Figma — digital:</strong> wireframes y flujos de pantalla de media fidelidad, rápidos de iterar y compartir en remoto.</p>
+            <p><strong>(b) Desktop Walkthrough — físico:</strong> representa el servicio completo (actores + espacios) sobre una maqueta de escritorio, detectando problemas de flujo sin escribir código.</p>
+            <p><strong>(c) Lego — físico:</strong> representa espacios y actores de forma tangible, útil para que todo el equipo construya y "camine" la escena en conjunto.</p>
+            <p><strong>(d) Miro — digital:</strong> pizarra colaborativa para wireframes y flujos, similar a Figma pero más orientada al mapeo/diagramas (ej. el "Octopus clustering" de la Unidad 1).</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ============================================================ */
+  /* 1. DOBLE DIAMANTE: RECORRIDO DE LAS 5 ETAPAS                  */
+  /* ============================================================ */
+  Anim.registrar("anim-doble-diamante", function (sim) {
+    var etapas = [
+      { nombre: "Empatizar", tipo: "Divergir", herramientas: ["Investigación y Need Finding", "Mapa de Empatía", "Qué, Cómo, Por Qué"] },
+      { nombre: "Definir", tipo: "Converger", herramientas: ["Jobs to be Done (JTBD)", "Stakeholders y Persona", "Customer Journey Map", "QQPF → Key Insight → HMW", "Laddering"] },
+      { nombre: "Idear", tipo: "Divergir", herramientas: ["Brainwriting 6-3-5", "SCAMPER"] },
+      { nombre: "Prototipar", tipo: "Converger", herramientas: ["Value Proposition Canvas", "Prototipado I (Miro/Figma)", "Prototipado II (Lego/Desktop Walkthrough)"] },
+      { nombre: "Probar", tipo: "Converger", herramientas: ["Testeo con usuarios", "Retroalimenta Definir/Idear (proceso no lineal)"] }
+    ];
+
+    var estado = { indice: -1 };
+    var temporizador = null;
+
+    function detenerAuto() {
+      if (temporizador) { clearInterval(temporizador); temporizador = null; }
+      var btn = sim.cont.querySelector('[data-accion="auto"]');
+      if (btn) btn.textContent = "▶ Auto";
+    }
+    function paso() {
+      if (estado.indice >= etapas.length - 1) { detenerAuto(); return; }
+      estado.indice++;
+      actualizarInfo();
+      sim.redibujar();
+    }
+    function auto() {
+      if (temporizador) { detenerAuto(); return; }
+      var btn = sim.cont.querySelector('[data-accion="auto"]');
+      if (btn) btn.textContent = "⏸ Pausa";
+      temporizador = setInterval(function () {
+        if (estado.indice >= etapas.length - 1) { detenerAuto(); return; }
+        paso();
+      }, 1400);
+    }
+    function reiniciar() {
+      detenerAuto();
+      estado.indice = -1;
+      actualizarInfo();
+      sim.redibujar();
+    }
+    function actualizarInfo() {
+      var info = document.getElementById("diamante-info");
+      if (!info) return;
+      if (estado.indice < 0) { info.textContent = "Presiona \"Paso\" para iniciar el recorrido en Empatizar."; return; }
+      var e = etapas[estado.indice];
+      info.textContent = "Etapa " + (estado.indice + 1) + "/5 — " + e.nombre + " (" + e.tipo + "): " + e.herramientas.join(" · ");
+    }
+
+    function geometria(w, h) {
+      var mid = h * 0.40;
+      var xMid = w * 0.36;
+      return {
+        mid: mid,
+        d1: { left: w * 0.05, right: xMid, top: mid - h * 0.24 },
+        d2: { left: xMid, right: w * 0.94, top: mid - h * 0.28 }
+      };
+    }
+    function outlineY(d, mid, x) {
+      var centro = (d.left + d.right) / 2;
+      if (x <= centro) {
+        var f = (x - d.left) / (centro - d.left);
+        return mid + (d.top - mid) * f;
+      }
+      var f2 = (x - centro) / (d.right - centro);
+      return d.top + (mid - d.top) * f2;
+    }
+    function dibujarDiamante(ctx, d, mid, color) {
+      var centro = (d.left + d.right) / 2;
+      ctx.beginPath();
+      ctx.moveTo(d.left, mid);
+      ctx.lineTo(centro, d.top);
+      ctx.lineTo(d.right, mid);
+      ctx.lineTo(centro, 2 * mid - d.top);
+      ctx.closePath();
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    }
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var geo = geometria(w, h);
+      var borde = colorVar("--borde");
+      var acento = colorVar("--acento");
+      var tinta = colorVar("--tinta");
+      var tinta2 = colorVar("--tinta-2");
+      var ok = colorVar("--ok");
+
+      dibujarDiamante(ctx, geo.d1, geo.mid, borde);
+      dibujarDiamante(ctx, geo.d2, geo.mid, borde);
+
+      ctx.textAlign = "center";
+      ctx.font = "12px system-ui, sans-serif";
+      ctx.fillStyle = tinta2;
+      ctx.fillText("Diamante 1 — entender el problema", (geo.d1.left + geo.d1.right) / 2, 18);
+      ctx.fillText("Diamante 2 — encontrar la solución", (geo.d2.left + geo.d2.right) / 2, 18);
+
+      var diamantes = [geo.d1, geo.d1, geo.d2, geo.d2, geo.d2];
+      var fracciones = [0.28, 0.75, 0.16, 0.5, 0.84];
+      var etapaX = [];
+      for (var i = 0; i < etapas.length; i++) {
+        var d = diamantes[i];
+        etapaX.push(d.left + (d.right - d.left) * fracciones[i]);
+      }
+
+      for (var j = 0; j < etapas.length; j++) {
+        var dj = diamantes[j];
+        var x = etapaX[j];
+        var y = outlineY(dj, geo.mid, x);
+        var completada = j < estado.indice;
+        var activa = j === estado.indice;
+        ctx.beginPath();
+        ctx.arc(x, y, activa ? 8 : 6, 0, Math.PI * 2);
+        ctx.fillStyle = activa ? acento : (completada ? ok : tinta2);
+        ctx.fill();
+        ctx.font = activa ? "bold 12px system-ui, sans-serif" : "12px system-ui, sans-serif";
+        ctx.fillStyle = activa ? tinta : tinta2;
+        ctx.fillText(etapas[j].nombre, x, y - 16);
+      }
+
+      var panelY = h * 0.74;
+      ctx.textAlign = "left";
+      if (estado.indice < 0) {
+        ctx.font = "13px system-ui, sans-serif";
+        ctx.fillStyle = tinta2;
+        ctx.fillText("Presiona \"Paso\" para recorrer las 5 etapas.", w * 0.06, panelY);
+      } else {
+        var actual = etapas[estado.indice];
+        ctx.font = "bold 13px system-ui, sans-serif";
+        ctx.fillStyle = tinta;
+        ctx.fillText(actual.nombre + " — " + actual.tipo + ":", w * 0.06, panelY);
+        ctx.font = "12px system-ui, sans-serif";
+        ctx.fillStyle = tinta2;
+        for (var k = 0; k < actual.herramientas.length; k++) {
+          ctx.fillText("• " + actual.herramientas[k], w * 0.06, panelY + 20 + k * 17);
+        }
+      }
+    });
+
+    sim.botones({ paso: paso, auto: auto, reiniciar: reiniciar });
+    reiniciar();
+  });
+
+  /* ============================================================ */
+  /* 2. CURVA DE EMOCIONES — CUSTOMER JOURNEY (PELUQUERÍA)          */
+  /* ============================================================ */
+  Anim.registrar("anim-journey-peluqueria", function (sim) {
+    var puntos = [
+      { etapa: "Llegada", fase: "Pre-servicio", emocion: -2, texto: "Llega al local: expectativa neutra, algo de incertidumbre por cuánto tomará." },
+      { etapa: "Espera", fase: "Pre-servicio", emocion: -5, texto: "Tiempo de espera antes de ser atendido: la curva cae — el punto de mayor fricción." },
+      { etapa: "Atención", fase: "Servicio", emocion: 6, texto: "Atención propiamente tal: la curva sube fuerte, revierte la frustración inicial." },
+      { etapa: "Pago", fase: "Post-servicio", emocion: 2, texto: "Pago del servicio: satisfacción moderada, con algo de fricción residual al cerrar." }
+    ];
+    var estado = { indice: -1 };
+    var temporizador = null;
+
+    function detenerAuto() {
+      if (temporizador) { clearInterval(temporizador); temporizador = null; }
+      var btn = sim.cont.querySelector('[data-accion="auto"]');
+      if (btn) btn.textContent = "▶ Auto";
+    }
+    function paso() {
+      if (estado.indice >= puntos.length - 1) { detenerAuto(); return; }
+      estado.indice++;
+      actualizarInfo();
+      sim.redibujar();
+    }
+    function auto() {
+      if (temporizador) { detenerAuto(); return; }
+      var btn = sim.cont.querySelector('[data-accion="auto"]');
+      if (btn) btn.textContent = "⏸ Pausa";
+      temporizador = setInterval(function () {
+        if (estado.indice >= puntos.length - 1) { detenerAuto(); return; }
+        paso();
+      }, 1100);
+    }
+    function reiniciar() {
+      detenerAuto();
+      estado.indice = -1;
+      actualizarInfo();
+      sim.redibujar();
+    }
+    function actualizarInfo() {
+      var info = document.getElementById("journey-info");
+      if (!info) return;
+      if (estado.indice < 0) { info.textContent = "Presiona \"Paso\" para dibujar la curva de emociones, punto por punto."; return; }
+      var p = puntos[estado.indice];
+      info.textContent = p.fase + " · " + p.etapa + " (emoción " + (p.emocion > 0 ? "+" : "") + p.emocion + "): " + p.texto;
+    }
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var m = Anim.mapa(w, h, { xMin: -0.6, xMax: puntos.length - 0.4, yMin: -7.5, yMax: 7.5 });
+      Anim.ejes(ctx, m, w, h);
+      var acento = colorVar("--acento");
+      var tinta2 = colorVar("--tinta-2");
+      var ok = colorVar("--ok");
+      var error = colorVar("--error");
+
+      ctx.textAlign = "center";
+      ctx.font = "11px system-ui, sans-serif";
+      ctx.fillStyle = tinta2;
+      for (var i = 0; i < puntos.length; i++) {
+        ctx.fillText(puntos[i].etapa, m.x(i), h - 6);
+      }
+      ctx.textAlign = "left";
+      ctx.fillText("+7", m.x(-0.55), m.y(7));
+      ctx.fillText("-7", m.x(-0.55), m.y(-7));
+
+      if (estado.indice < 0) return;
+
+      ctx.beginPath();
+      for (var j = 0; j <= estado.indice; j++) {
+        var x = m.x(j), y = m.y(puntos[j].emocion);
+        if (j === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+      }
+      ctx.strokeStyle = acento;
+      ctx.lineWidth = 2.5;
+      ctx.stroke();
+
+      for (var k = 0; k <= estado.indice; k++) {
+        var xk = m.x(k), yk = m.y(puntos[k].emocion);
+        ctx.beginPath();
+        ctx.arc(xk, yk, k === estado.indice ? 7 : 5, 0, Math.PI * 2);
+        ctx.fillStyle = puntos[k].emocion >= 0 ? ok : error;
+        ctx.fill();
+      }
+    });
+
+    sim.botones({ paso: paso, auto: auto, reiniciar: reiniciar });
+    reiniciar();
+  });
+
+  /* ============================================================ */
+  /* 3. CONSTRUCTOR DE USER STORY + INVEST                         */
+  /* ============================================================ */
+  Anim.registrar("anim-user-story-invest", function (sim) {
+    var historias = {
+      tecnica: {
+        como: "Administrador", quiero: "almacenar los datos en una BD MySQL", para: null,
+        invest: [
+          { letra: "I", ok: true, motivo: "No depende de otra historia para aportar valor." },
+          { letra: "N", ok: false, motivo: "Impone la solución técnica (MySQL): no queda nada que negociar sobre el 'cómo'." },
+          { letra: "V", ok: false, motivo: "No se aprecia ningún valor para un usuario o el negocio, solo un detalle de implementación." },
+          { letra: "E", ok: true, motivo: "Es estimable, aunque esté mal enfocada." },
+          { letra: "S", ok: true, motivo: "Es pequeña." },
+          { letra: "T", ok: false, motivo: "No hay forma de comprobar 'terminado' desde la perspectiva de un usuario." }
+        ]
+      },
+      sinvalor: {
+        como: "Operador", quiero: "acceder a la APP de registro", para: null,
+        invest: [
+          { letra: "I", ok: true, motivo: "No depende de otra historia." },
+          { letra: "N", ok: true, motivo: "El cómo se puede seguir conversando." },
+          { letra: "V", ok: false, motivo: "Falta el 'Para': no queda claro qué valor aporta acceder a la app." },
+          { letra: "E", ok: false, motivo: "Sin saber el valor buscado, es difícil estimar bien el esfuerzo." },
+          { letra: "S", ok: true, motivo: "Es pequeña." },
+          { letra: "T", ok: false, motivo: "Sin criterios de aceptación no se puede confirmar cuándo está lista." }
+        ]
+      },
+      buena: {
+        como: "Operador", quiero: "acceder al registro de solicitudes", para: "ver un listado ordenado y priorizar la atención",
+        invest: [
+          { letra: "I", ok: true, motivo: "Aporta valor por sí sola, sin depender de otra historia." },
+          { letra: "N", ok: true, motivo: "El cómo (filtros, orden) se puede conversar con el equipo." },
+          { letra: "V", ok: true, motivo: "El 'Para' deja explícito el valor: priorizar la atención." },
+          { letra: "E", ok: true, motivo: "El equipo tiene contexto suficiente para estimarla." },
+          { letra: "S", ok: true, motivo: "Cabe completa dentro de un Sprint." },
+          { letra: "T", ok: true, motivo: "Se puede definir un criterio Dado/Cuando/Entonces claro." }
+        ]
+      }
+    };
+
+    var estado = { clave: "tecnica", paso: -1 };
+    var temporizador = null;
+
+    function pasosTotales() { return 3 + historias[estado.clave].invest.length; }
+
+    function detenerAuto() {
+      if (temporizador) { clearInterval(temporizador); temporizador = null; }
+      var btn = sim.cont.querySelector('[data-accion="auto"]');
+      if (btn) btn.textContent = "▶ Auto";
+    }
+    function paso() {
+      if (estado.paso >= pasosTotales() - 1) { detenerAuto(); return; }
+      estado.paso++;
+      actualizarInfo();
+      sim.redibujar();
+    }
+    function auto() {
+      if (temporizador) { detenerAuto(); return; }
+      var btn = sim.cont.querySelector('[data-accion="auto"]');
+      if (btn) btn.textContent = "⏸ Pausa";
+      temporizador = setInterval(function () {
+        if (estado.paso >= pasosTotales() - 1) { detenerAuto(); return; }
+        paso();
+      }, 900);
+    }
+    function reiniciar() {
+      detenerAuto();
+      var sel = document.getElementById("story-select");
+      estado.clave = sel ? sel.value : "tecnica";
+      estado.paso = -1;
+      actualizarInfo();
+      sim.redibujar();
+    }
+    function actualizarInfo() {
+      var info = document.getElementById("story-info");
+      if (!info) return;
+      var h = historias[estado.clave];
+      if (estado.paso < 0) { info.textContent = "Presiona \"Paso\" para ensamblar la historia y evaluarla con INVEST."; return; }
+      if (estado.paso === 0) { info.textContent = "Como: " + h.como; return; }
+      if (estado.paso === 1) { info.textContent = "Quiero: " + h.quiero; return; }
+      if (estado.paso === 2) { info.textContent = "Para: " + (h.para || "(falta — no está escrito en la historia)"); return; }
+      var it = h.invest[estado.paso - 3];
+      info.textContent = it.letra + ": " + (it.ok ? "✓ cumple. " : "✗ no cumple. ") + it.motivo;
+    }
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var historia = historias[estado.clave];
+      var borde = colorVar("--borde");
+      var tinta = colorVar("--tinta");
+      var tinta2 = colorVar("--tinta-2");
+      var ok = colorVar("--ok");
+      var error = colorVar("--error");
+      var panel2 = colorVar("--panel-2");
+
+      ctx.textAlign = "left";
+      ctx.font = "13px system-ui, sans-serif";
+
+      var campos = [
+        { etiqueta: "Como", valor: historia.como, minPaso: 0 },
+        { etiqueta: "Quiero", valor: historia.quiero, minPaso: 1 },
+        { etiqueta: "Para", valor: historia.para || "(falta este bloque)", minPaso: 2, faltante: !historia.para }
+      ];
+      var y = 34;
+      for (var i = 0; i < campos.length; i++) {
+        var revelado = estado.paso >= campos[i].minPaso;
+        ctx.fillStyle = panel2;
+        ctx.fillRect(20, y - 18, w - 40, 26);
+        ctx.strokeStyle = borde;
+        ctx.strokeRect(20, y - 18, w - 40, 26);
+        ctx.fillStyle = revelado ? (campos[i].faltante ? error : tinta) : tinta2;
+        ctx.fillText(campos[i].etiqueta + ": " + (revelado ? campos[i].valor : "…"), 30, y);
+        y += 38;
+      }
+
+      var letras = historia.invest;
+      var cw = (w - 40) / letras.length;
+      var yBase = y + 22;
+      ctx.textAlign = "center";
+      for (var j = 0; j < letras.length; j++) {
+        var cx = 20 + cw * j + cw / 2;
+        var mostrado = estado.paso >= 3 + j;
+        ctx.beginPath();
+        ctx.arc(cx, yBase, 17, 0, Math.PI * 2);
+        ctx.fillStyle = !mostrado ? panel2 : (letras[j].ok ? ok : error);
+        ctx.fill();
+        ctx.strokeStyle = borde;
+        ctx.lineWidth = 1;
+        ctx.stroke();
+        ctx.fillStyle = !mostrado ? tinta2 : "#ffffff";
+        ctx.font = "bold 13px system-ui, sans-serif";
+        ctx.fillText(letras[j].letra, cx, yBase + 5);
+      }
+      ctx.font = "11px system-ui, sans-serif";
+      ctx.fillStyle = tinta2;
+      ctx.fillText("Independent · Negotiable · Valuable · Estimable · Small · Testable", w / 2, yBase + 34);
+    });
+
+    var sel = document.getElementById("story-select");
+    if (sel) sel.addEventListener("change", reiniciar);
+    sim.botones({ paso: paso, auto: auto, reiniciar: reiniciar });
+    reiniciar();
+  });
+
+  /* ============================================================ */
+  /* 4. STORY MAP: CORTE DE RELEASE (UBER)                         */
+  /* ============================================================ */
+  Anim.registrar("anim-story-map-uber", function (sim) {
+    var epicas = [
+      {
+        nombre: "Registro e Inicio",
+        skeleton: ["Registrar mis datos para usar la app.", "Registrar métodos de pago para usar la app."],
+        opcional: ["Ver el costo estimado del viaje antes de pedirlo.", "Guardar destinos favoritos (casa, trabajo)."]
+      },
+      {
+        nombre: "Solicitud de viaje",
+        skeleton: ["Ver mi ubicación actual en el mapa para definir el punto de partida.", "Ingresar mi destino para calcular la ruta y costo."],
+        opcional: ["Contactar al conductor por llamada para coordinar detalles.", "Ver conductores cercanos disponibles antes de confirmar."]
+      },
+      {
+        nombre: "Asignación y recorrido",
+        skeleton: ["Ver los viajes disponibles cercanos.", "Aceptar o rechazar un viaje."],
+        opcional: ["Calificar al conductor.", "Contactar al conductor por chat.", "Seguir el recorrido en tiempo real para sentirme seguro."]
+      },
+      {
+        nombre: "Finalización y postviaje",
+        skeleton: ["Pagar automáticamente al finalizar el viaje."],
+        opcional: ["Dejar comentarios sobre el conductor."]
+      }
+    ];
+
+    function envolverTexto(ctx, texto, maxAncho) {
+      var palabras = texto.split(" ");
+      var lineas = [];
+      var actual = "";
+      for (var i = 0; i < palabras.length; i++) {
+        var prueba = actual ? actual + " " + palabras[i] : palabras[i];
+        if (ctx.measureText(prueba).width > maxAncho && actual) {
+          lineas.push(actual);
+          actual = palabras[i];
+        } else {
+          actual = prueba;
+        }
+      }
+      if (actual) lineas.push(actual);
+      return lineas;
+    }
+
+    function dibujarTarjeta(ctx, x, y, boxW, texto, activa, colorBorde, colorFondo, colorTexto) {
+      var lineas = envolverTexto(ctx, texto, boxW - 16);
+      var altura = lineas.length * 14 + 12;
+      ctx.fillStyle = colorFondo;
+      ctx.fillRect(x, y, boxW, altura);
+      ctx.strokeStyle = colorBorde;
+      ctx.lineWidth = activa ? 2 : 1;
+      if (!activa) ctx.setLineDash([3, 3]);
+      ctx.strokeRect(x, y, boxW, altura);
+      ctx.setLineDash([]);
+      ctx.fillStyle = colorTexto;
+      for (var i = 0; i < lineas.length; i++) ctx.fillText(lineas[i], x + 8, y + 16 + i * 14);
+      return y + altura + 8;
+    }
+
+    function accionReiniciar() {
+      var inp = document.getElementById("sl-corte");
+      if (!inp) return;
+      inp.value = 0;
+      inp.dispatchEvent(new Event("input"));
+    }
+
+    sim.slider("sl-corte", function () { sim.redibujar(); }, function (v) {
+      return v == 0 ? "solo Walking Skeleton (MVP)" : "nivel " + v;
+    });
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var borde = colorVar("--borde");
+      var acento = colorVar("--acento");
+      var tinta = colorVar("--tinta");
+      var tinta2 = colorVar("--tinta-2");
+      var ok = colorVar("--ok");
+      var panel = colorVar("--panel");
+      var panel2 = colorVar("--panel-2");
+      var inp = document.getElementById("sl-corte");
+      var corte = inp ? parseInt(inp.value, 10) : 0;
+
+      var colW = w / epicas.length;
+      var pad = 10;
+
+      ctx.font = "bold 12px system-ui, sans-serif";
+      ctx.textAlign = "center";
+      for (var i = 0; i < epicas.length; i++) {
+        var cx = colW * i + colW / 2;
+        ctx.fillStyle = tinta;
+        ctx.fillText(epicas[i].nombre, cx, 18);
+      }
+
+      ctx.textAlign = "left";
+      ctx.font = "11px system-ui, sans-serif";
+
+      for (var col = 0; col < epicas.length; col++) {
+        var ep = epicas[col];
+        var x0 = colW * col + pad;
+        var boxW = colW - 2 * pad;
+        var y = 32;
+
+        for (var s = 0; s < ep.skeleton.length; s++) {
+          y = dibujarTarjeta(ctx, x0, y, boxW, ep.skeleton[s], true, acento, panel2, tinta);
+        }
+        for (var r = 0; r < ep.opcional.length; r++) {
+          var incluida = (r + 1) <= corte;
+          y = dibujarTarjeta(ctx, x0, y, boxW, ep.opcional[r], incluida,
+            incluida ? ok : tinta2, incluida ? panel2 : panel, incluida ? tinta : tinta2);
+        }
+      }
+    });
+
+    sim.botones({ reiniciar: accionReiniciar });
+  });
+
+})();
+</script>
+
+<script>
+  // entradas escalonadas (GSAP + ScrollTrigger vía Anim.revelar) — no rompe nada si GSAP no cargó
+  Anim.revelar(".curso-hero-v3 > *", { scroll: false, stagger: .08, distancia: 14, duracion: .8 });
+  document.querySelectorAll(".unidad").forEach(function (u) {
+    Anim.revelar(u.querySelectorAll(":scope > .unidad-cabecera, :scope > .materia, :scope > .animacion, :scope > .ejemplos-unidad, :scope > .ejercicios-unidad"), { disparador: u, stagger: .08, distancia: 16 });
+  });
+</script>
+</body>
+</html>

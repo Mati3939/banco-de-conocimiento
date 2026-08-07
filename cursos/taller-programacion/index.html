@@ -1,0 +1,1656 @@
+<!DOCTYPE html>
+<html lang="es" data-tema="oscuro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💻 Taller de Programación — Biblioteca</title>
+<link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../../assets/vendor/fuentes/fuentes.css">
+<link rel="stylesheet" href="../../assets/css/observatorio.css">
+<script>window.RUTA_BASE = "../../";</script>
+<script src="../../assets/vendor/katex/katex.min.js"></script>
+<script src="../../assets/vendor/katex/auto-render.min.js"></script>
+<script src="../../assets/vendor/gsap/gsap.min.js"></script>
+<script src="../../assets/vendor/gsap/ScrollTrigger.min.js"></script>
+<script src="../../assets/js/observatorio.js"></script>
+<script src="indice-curso.js"></script>
+</head>
+<body>
+<div class="progreso-lectura"></div>
+<div class="pagina-curso">
+
+  <aside class="lateral">
+    <a class="volver" href="../../index.html">← Constelación</a>
+    <div class="curso-cabecera"><span class="emoji">💻</span><h1>Taller de Programación</h1></div>
+    <span class="semestre-tag" style="color:var(--s1)">Semestre 1</span>
+    <nav>
+      <div class="grupo">Unidades</div>
+      <a href="#u1">01 · Pseudocódigo y lógica</a>
+      <a href="#u2">02 · Variables y control</a>
+      <a class="sub" href="#anim-ciclo">🔁 Trazador de ciclo while</a>
+      <a href="#u3">03 · Listas</a>
+      <a class="sub" href="#anim-lista">📋 Operaciones de lista</a>
+      <a href="#u4">04 · Diccionarios, tuplas y sets</a>
+      <a class="sub" href="#anim-diccionario">🗂️ Diccionario</a>
+      <a href="#u5">05 · Strings y estructuras</a>
+      <a href="#u6">06 · Funciones</a>
+      <a class="sub" href="#anim-pila">📚 Pila de llamadas</a>
+      <a href="#u7">07 · Módulos y archivos</a>
+      <a href="#u8">08 · Excepciones y POO</a>
+    </nav>
+    <div class="atajos"><kbd>Ctrl K</kbd> buscar en toda la biblioteca</div>
+  </aside>
+
+  <main class="principal">
+    <div class="principal-cabecera">
+      <span class="relleno"></span>
+      <button class="btn-buscar" type="button">🔍 Buscar <kbd>Ctrl K</kbd></button>
+      <button class="btn-tema" type="button">☀️</button>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CABECERA DEL CURSO -->
+    <!-- ============================================================ -->
+    <header class="curso-hero-v3" id="cheat" style="--ac: var(--s1)">
+      <span class="emoji-grande">💻</span>
+      <h1>Taller de Programación — Resumen del curso</h1>
+      <span class="semestre-tag" style="color:var(--s1)">Semestre 1 · Programación</span>
+      <p class="curso-intro">
+        Taller de <strong>Programación</strong> (UDD), primer semestre. Del pseudocódigo y diagramas de
+        flujo a Python: variables, condicionales y bucles, listas, diccionarios, tuplas y sets, strings,
+        funciones y módulos, manejo de archivos y Programación Orientada a Objetos — con código real de
+        las clases (<code>Radios_planetas</code>, <code>matematicas.py</code>) y de las ayudantías de POO
+        (clase <code>Agente</code> / <code>AgenteEspecial</code>).
+      </p>
+      <ul class="mini-indice">
+        <li><a href="#u1">01 · Pseudocódigo</a></li>
+        <li><a href="#u2">02 · Variables y control</a></li>
+        <li><a href="#u3">03 · Listas</a></li>
+        <li><a href="#u4">04 · Diccionarios, tuplas y sets</a></li>
+        <li><a href="#u5">05 · Strings</a></li>
+        <li><a href="#u6">06 · Funciones</a></li>
+        <li><a href="#u7">07 · Módulos y archivos</a></li>
+        <li><a href="#u8">08 · Excepciones y POO</a></li>
+      </ul>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 1 · PSEUDOCÓDIGO Y LÓGICA DE PROGRAMAS -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u1">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">01</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Pseudocódigo y lógica de programas</h2>
+          <p class="unidad-sub">El lenguaje previo a cualquier código: diagramas de flujo, selección y repetición antes de escribir la primera línea de Python.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-pseudocodigo">
+        <h3>Pseudocódigo y diagramas de flujo</h3>
+        <ul>
+          <li><strong>Selección simple:</strong> <code>Si (condición) entonces ... Fin_si</code>. <strong>Compuesta:</strong> agrega <code>De lo contrario ... Fin_si</code>.</li>
+          <li><strong>Mientras haga:</strong> evalúa la condición <em>antes</em> de entrar (0 o más iteraciones).</li>
+          <li><strong>Haga mientras:</strong> evalúa la condición <em>después</em> de ejecutar (1 o más iteraciones garantizadas).</li>
+          <li><strong>Para:</strong> usa una variable iteradora que va de <code>Vi</code> a <code>Vf</code>, indicando si <code>INC</code>rementa o <code>DEC</code>rementa.</li>
+          <li>Diagrama de flujo: óvalo = inicio/fin, rombo = decisión, rectángulo = proceso, paralelogramo = entrada/salida.</li>
+          <li>Sin <strong>modificador de condición</strong> dentro de un <code>Mientras</code> → ciclo infinito.</li>
+        </ul>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-pseudocodigo">
+          <h3>1. De pseudocódigo a Python: contar pares e impares</h3>
+          <p>Pseudocódigo original (nota de Pseudocódigo y diagramas de flujo), estructura <code>Mientras Haga</code>:</p>
+          <pre><code>cantimp &lt;- 0 ; cantpar &lt;- 0 ; X &lt;- 0
+Mientras (X&lt;N) haga
+    Leer (Num)
+    Si (Num MOD 2 &lt;&gt; 0) entonces
+        cantimp &lt;- cantimp + 1
+    De lo contrario
+        cantpar &lt;- cantpar + 1
+    Fin_Si
+    X &lt;- X + 1
+Fin_Mientras</code></pre>
+          <p><strong>Traducción a Python</strong> (con una lista de números en vez de leer del teclado):</p>
+          <pre><code>numeros = [4, 7, 10, 3, 8]
+cantpar = 0
+cantimp = 0
+x = 0
+while x &lt; len(numeros):
+    num = numeros[x]
+    if num % 2 == 0:
+        cantpar += 1
+    else:
+        cantimp += 1
+    x += 1
+print(cantpar, cantimp)</code></pre>
+          <p>Cada palabra reservada del pseudocódigo tiene su equivalente: <code>Mientras...haga/Fin_Mientras</code> → <code>while:</code> (indentación en vez de <code>Fin_</code>), <code>Si/De lo contrario/Fin_Si</code> → <code>if/else:</code>, <code>&lt;-</code> → <code>=</code>, <code>MOD</code> → <code>%</code>. Con la lista <code>[4, 7, 10, 3, 8]</code> el resultado es <strong>3 pares, 2 impares</strong> — puedes seguir el mismo trazado en el visualizador de la próxima unidad.</p>
+          <p class="fuente">Fuente: nota "Pseudocódigo y diagramas de flujo".</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-traduccion-pseudocodigo">
+          <summary><span class="resumen-ejercicio">1. Traduce a Python: <code>Mientras (cont &lt;= 10) haga / Escribir(cont) / cont &lt;- cont + 2 / Fin_Mientras</code>, con <code>cont</code> iniciando en 0. </span><span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <pre><code>cont = 0
+while cont &lt;= 10:
+    print(cont)
+    cont = cont + 2</code></pre>
+            <p><code>&lt;-</code> se traduce como <code>=</code>, <code>Escribir(...)</code> como <code>print(...)</code>, y el bloque queda delimitado por indentación en vez de <code>Fin_Mientras</code>. Imprime <code>0, 2, 4, 6, 8, 10</code> — al llegar a <code>cont=12</code> la condición <code>12 &lt;= 10</code> es falsa y el ciclo termina.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 2 · VARIABLES, TIPOS DE DATOS Y ESTRUCTURAS DE CONTROL -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u2">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">02</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Variables, tipos de datos y estructuras de control</h2>
+          <p class="unidad-sub">Qué guarda una variable, cómo se castea entre tipos, y las tres formas de controlar el flujo de un programa: si, mientras y para.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-variables">
+        <h3>Variables y tipos de datos</h3>
+        <ul>
+          <li>Tipos básicos: <code>int</code>, <code>float</code>, <code>str</code>, <code>bool</code>. Estructurados: lista, tupla, diccionario, set.</li>
+          <li>Todo dato en Python es un <strong>objeto</strong> con identidad (<code>id(x)</code>), tipo (<code>type(x)</code>) y valor.</li>
+          <li>Operadores aritméticos: <code>+ - * / // % **</code> · comparación: <code>== != &lt; &gt; &lt;= &gt;=</code> · lógicos: <code>and</code>, <code>or</code>, <code>not</code>.</li>
+          <li>Casting: <code>int("3")</code>, <code>str(5)</code>, <code>float("2.5")</code>. Python no "declara" tipos: reasignar cambia el tipo dinámicamente.</li>
+          <li><code>/</code> siempre entrega <code>float</code>; <code>//</code> es división entera; <code>%</code> es el resto.</li>
+        </ul>
+      </div>
+
+      <div class="materia" id="tema-control">
+        <h3>Estructuras de control</h3>
+        <pre><code>if condicion:
+    ...
+elif otra:
+    ...
+else:
+    ...
+
+while condicion:      # nº de iteraciones desconocido
+    ...
+
+for i in range(n):    # nº de iteraciones conocido
+    ...</code></pre>
+        <ul>
+          <li><code>break</code> corta el bucle; <code>continue</code> salta a la siguiente iteración.</li>
+          <li>Python usa <strong>indentación</strong> para delimitar bloques (no <code>Fin_si</code>/<code>Fin_mientras</code> como el pseudocódigo).</li>
+          <li>Preferir <code>for elemento in lista:</code> sobre <code>for i in range(len(lista)):</code> cuando no se necesita el índice.</li>
+        </ul>
+      </div>
+
+      <div class="animacion" id="anim-ciclo">
+        <div class="anim-cabecera">
+          <h3>🔁 Trazador de un ciclo <code>while</code>: contar pares e impares</h3>
+          <p class="anim-desc">Cada clic en "Paso" ejecuta una línea del código, igual que el intérprete de Python.</p>
+        </div>
+        <div class="fila-anim">
+          <pre class="codigo-trazado" id="ciclo-codigo"><code><span class="cl" data-l="1">numeros = [4, 7, 10, 3, 8]</span>
+<span class="cl" data-l="2">cantpar = 0</span>
+<span class="cl" data-l="3">cantimp = 0</span>
+<span class="cl" data-l="4">x = 0</span>
+<span class="cl" data-l="5">while x &lt; len(numeros):</span>
+<span class="cl" data-l="6">    num = numeros[x]</span>
+<span class="cl" data-l="7">    if num % 2 == 0:</span>
+<span class="cl" data-l="8">        cantpar += 1</span>
+<span class="cl" data-l="9">    else:</span>
+<span class="cl" data-l="10">        cantimp += 1</span>
+<span class="cl" data-l="11">    x += 1</span>
+<span class="cl" data-l="12">print(cantpar, cantimp)</span></code></pre>
+          <canvas data-alto="260"></canvas>
+        </div>
+        <div class="controles">
+          <button type="button" data-accion="paso">Paso</button>
+          <button type="button" class="secundario" data-accion="auto">▶ Auto</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p id="ciclo-info" style="color:var(--tinta-2); font: 13px Consolas, monospace; margin:0 0 10px; padding:0 30px;">Presioná Paso para ejecutar la primera línea.</p>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> el recuadro morado marca la posición <code>x</code> que se está leyendo; verde = posiciones ya procesadas. Es la traducción directa a Python del ejemplo de pseudocódigo "Mientras Haga" de la nota de Pseudocódigo.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-identidad">
+          <h3>2. Identidad, tipo y valor</h3>
+          <pre><code>x = 10
+print("Identidad:", id(x))
+print("Tipo:", type(x))
+print("Valor:", x)
+
+# Identidad: 4474035136
+# Tipo: &lt;class 'int'&gt;
+# Valor: 10</code></pre>
+          <p>En Python <strong>todo dato es un objeto</strong>: <code>id(x)</code> retorna su dirección única en memoria, <code>type(x)</code> retorna su clase (<code>int</code> en este caso) y el valor es el contenido. Si luego se hace <code>x = "diez"</code>, el mismo nombre <code>x</code> pasa a apuntar a un objeto <code>str</code> distinto — Python no fija el tipo de la variable, solo del objeto que referencia en cada momento.</p>
+          <p class="fuente">Fuente: nota "Variables y tipos de datos".</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-par-impar">
+          <summary><span class="resumen-ejercicio">2. Determina si un número entero ingresado por teclado es par o impar. </span><span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <pre><code>n = int(input("Ingrese un número entero: "))
+if n % 2 == 0:
+    print(f"{n} es par")
+else:
+    print(f"{n} es impar")</code></pre>
+            <p>El operador <code>%</code> (módulo) entrega el resto de la división entera por 2: si el resto es 0, el número es par.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-casting">
+          <summary><span class="resumen-ejercicio">3. Un valor se ingresa como texto por teclado; súmalo con 10 sin producir <code>TypeError</code>. </span><span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <pre><code>texto = input("Ingrese un número: ")
+numero = int(texto)          # casting de str a int
+resultado = numero + 10
+print(resultado)</code></pre>
+            <p><code>input()</code> siempre retorna un <code>str</code>. Sumar directamente <code>texto + 10</code> lanzaría <code>TypeError</code> (no se puede sumar <code>str</code> con <code>int</code>); hay que convertir primero con <code>int()</code>.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 3 · LISTAS -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u3">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">03</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Listas</h2>
+          <p class="unidad-sub">La estructura de datos más usada del curso: ordenada, mutable, con un método para cada operación.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-listas">
+        <h3>Listas</h3>
+        <ul>
+          <li>Ordenada, mutable, con corchetes <code>[]</code>. Índice desde 0; <code>L[-1]</code> = último elemento. Índice fuera de rango → <code>IndexError</code>.</li>
+          <li><code>L[2:5]</code> = sublista <code>[inicio:fin)</code>, no incluye el fin. <code>elemento in L</code> comprueba pertenencia.</li>
+        </ul>
+        <div class="tabla-scroll">
+          <table>
+            <thead><tr><th>Método / función</th><th>Qué hace</th></tr></thead>
+            <tbody>
+              <tr><td><code>.append(x)</code></td><td>agrega <code>x</code> al final</td></tr>
+              <tr><td><code>.insert(i, x)</code></td><td>inserta <code>x</code> en la posición <code>i</code>, corre el resto a la derecha</td></tr>
+              <tr><td><code>.pop(i)</code></td><td>elimina y retorna el elemento en <code>i</code> (por defecto el último)</td></tr>
+              <tr><td><code>.remove(x)</code></td><td>elimina la primera aparición del valor <code>x</code></td></tr>
+              <tr><td><code>.index(x)</code></td><td>retorna la posición de la primera aparición de <code>x</code></td></tr>
+              <tr><td><code>.sort()</code> / <code>.reverse()</code></td><td>ordena / invierte la lista en el lugar</td></tr>
+              <tr><td><code>.extend(L2)</code></td><td>agrega todos los elementos de <code>L2</code> al final</td></tr>
+              <tr><td><code>len()</code>, <code>sum()</code>, <code>max()</code>, <code>min()</code></td><td>funciones globales sobre la lista</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="animacion" id="anim-lista">
+        <div class="anim-cabecera">
+          <h3>📋 Operaciones de lista: append / insert / pop / slice / index</h3>
+          <p class="anim-desc">Seis operaciones encadenadas sobre la misma lista, una por clic en "Paso".</p>
+        </div>
+        <canvas data-alto="200"></canvas>
+        <div class="controles">
+          <button type="button" data-accion="paso">Paso</button>
+          <button type="button" class="secundario" data-accion="auto">▶ Auto</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p id="lista-info" style="color:var(--tinta-2); font: 13px Consolas, monospace; margin:0 0 10px; padding:0 30px;">L = [11, 3, 5, 7, 2]. Presioná Paso para ejecutar la primera operación.</p>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> se ejecuta, en orden, <code>L.append(100)</code> → <code>L.insert(2, 99)</code> → <code>L.pop()</code> → <code>L.pop(0)</code> → <code>L[1:3]</code> → <code>L.index(7)</code>, sobre la lista de la nota de Listas. Verde = elemento agregado, morado = insertado o encontrado, celeste = rango de un slice (no modifica la lista).</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-lista-promedio">
+          <h3>3. Procesar una lista: máximo y promedio</h3>
+          <pre><code>L = [11, 3, 5, 7, 2]
+
+maxi = L[0]
+for elem in L:
+    if elem &gt; maxi:
+        maxi = elem
+
+suma = 0.0
+for elem in L:
+    suma += elem
+prom = suma / len(L)
+
+print("Máximo:", maxi)     # 11
+print("Promedio:", prom)   # 5.6</code></pre>
+          <p><strong>Máximo:</strong> se parte suponiendo que el primer elemento (<code>L[0]=11</code>) es el mayor, y se compara contra cada elemento; como ninguno supera a 11, <code>maxi</code> se queda en 11.</p>
+          <p><strong>Promedio:</strong> patrón acumulador — <code>suma</code> arranca en <code>0.0</code> (float, para que la división no trunque) y se le suma cada elemento; al final se divide por <code>len(L)</code>. <code>(11+3+5+7+2)/5 = 28/5 = 5.6</code>.</p>
+          <p class="fuente">Fuente: nota "Listas".</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-promedio-teclado">
+          <summary><span class="resumen-ejercicio">4. Pide <code>N</code> notas por teclado, guárdalas en una lista y calcula el promedio. </span><span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <pre><code>N = int(input("¿Cuántas notas vas a ingresar? "))
+notas = []
+for i in range(N):
+    nota = float(input("Ingrese la nota: "))
+    notas.append(nota)
+
+suma = 0.0
+for nota in notas:
+    suma += nota
+promedio = suma / len(notas)
+print(f"Promedio: {promedio}")</code></pre>
+            <p>Primer <code>for</code>: construye la lista leyendo <code>N</code> valores con <code>.append()</code>. Segundo <code>for</code>: patrón acumulador para sumar, luego se divide por <code>len(notas)</code>.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-lista-ops">
+          <summary><span class="resumen-ejercicio">5. Sobre <code>L = [5, 3, 8, 1, 9]</code>: inserta 10 en el índice 2, elimina el último elemento y obtén <code>L[1:4]</code>. Muestra <code>L</code> después de cada paso. </span><span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <pre><code>L = [5, 3, 8, 1, 9]
+print("Original:", L)
+
+L.insert(2, 10)
+print("Tras insert(2, 10):", L)      # [5, 3, 10, 8, 1, 9]
+
+L.pop()
+print("Tras pop():", L)               # [5, 3, 10, 8, 1]
+
+sub = L[1:4]
+print("Sublista L[1:4]:", sub)        # [3, 10, 8]</code></pre>
+            <p><code>insert(2, 10)</code> corre a la derecha todo lo que estaba desde el índice 2. <code>pop()</code> sin argumento elimina el <strong>último</strong>. <code>L[1:4]</code> toma los índices 1, 2 y 3 (no incluye el 4).</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 4 · DICCIONARIOS, TUPLAS Y SETS -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u4">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">04</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Diccionarios, tuplas y sets</h2>
+          <p class="unidad-sub">Tres formas de agrupar datos que no son una lista: por llave, inmutable, o sin duplicados.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-diccionarios">
+        <h3>Diccionarios</h3>
+        <ul>
+          <li><code>{llave: valor, ...}</code>; las llaves son <strong>únicas</strong>. Se accede por llave, no por posición.</li>
+          <li>Se pueden anidar (diccionario de diccionarios) y el valor puede ser de cualquier tipo (lista, tupla, etc.).</li>
+        </ul>
+        <div class="tabla-scroll">
+          <table>
+            <thead><tr><th>Método</th><th>Qué hace</th></tr></thead>
+            <tbody>
+              <tr><td><code>d[llave]</code></td><td>accede; si no existe → <code>KeyError</code></td></tr>
+              <tr><td><code>.get(llave)</code></td><td>accede; si no existe → <code>None</code> (sin error)</td></tr>
+              <tr><td><code>.items()</code></td><td>pares <code>(llave, valor)</code>, ideal para <code>for k, v in d.items():</code></td></tr>
+              <tr><td><code>.keys()</code> / <code>.values()</code></td><td>solo llaves / solo valores</td></tr>
+              <tr><td><code>.pop(llave)</code></td><td>elimina la llave y retorna su valor</td></tr>
+              <tr><td><code>.clear()</code></td><td>vacía el diccionario completo</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-tuplas-sets">
+        <h3>Tuplas y sets</h3>
+        <ul>
+          <li><strong>Tupla</strong> <code>(a, b, c)</code>: ordenada como una lista, pero <strong>inmutable</strong>.</li>
+          <li><strong>Set</strong> <code>{a, b, c}</code>: no ordenado, no indexado, elementos <strong>únicos</strong>; mutable, pero no puede contener listas.</li>
+          <li><code>{}</code> vacío crea un <strong>diccionario</strong>, no un set vacío (usar <code>set()</code>).</li>
+        </ul>
+        <pre><code>A = {1, 2, 3}
+B = {2, 3, 4}
+A | B    # unión           -&gt; {1, 2, 3, 4}
+A &amp; B    # intersección    -&gt; {2, 3}
+A - B    # diferencia      -&gt; {1}
+A ^ B    # dif. simétrica  -&gt; {1, 4}</code></pre>
+      </div>
+
+      <div class="animacion" id="anim-diccionario">
+        <div class="anim-cabecera">
+          <h3>🗂️ Diccionario: inserción, actualización y búsqueda por clave</h3>
+          <p class="anim-desc">Siete operaciones sobre un diccionario <code>notas</code> (estudiante → nota), una por clic en "Paso".</p>
+        </div>
+        <canvas data-alto="200"></canvas>
+        <div class="controles">
+          <button type="button" data-accion="paso">Paso</button>
+          <button type="button" class="secundario" data-accion="auto">▶ Auto</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p id="dict-info" style="color:var(--tinta-2); font: 13px Consolas, monospace; margin:0 0 10px; padding:0 30px;">notas = {}. Presioná Paso para ejecutar la primera operación.</p>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> diccionario <code>notas</code>, inspirado en la Ayudantía 06. Verde = llave insertada o actualizada, morado = búsqueda con <code>.get()</code> exitosa, recuadro punteado dorado = búsqueda de una llave que no existe (retorna <code>None</code>, no <code>KeyError</code>).</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-dict-tuplas-sets">
+          <h3>4. Diccionario anidado con tuplas y sets: ramos en común</h3>
+          <pre><code>estudiantes = {
+    18413160: ('Paula', {'Cálculo', 'Programación'}),
+    18413161: ('Ana', {'Programación', 'Física'})
+}
+
+nombre1, ramos1 = estudiantes[18413160]
+nombre2, ramos2 = estudiantes[18413161]
+comunes = ramos1 &amp; ramos2      # asignaturas en común -&gt; {'Programación'}</code></pre>
+          <p>La llave del diccionario es el RUT del estudiante; el valor es una <strong>tupla</strong> <code>(nombre, set_de_ramos)</code> — se agrupan dos datos relacionados que no cambian de estructura. Cada set adentro guarda los ramos sin duplicados y sin orden.</p>
+          <p><code>nombre1, ramos1 = estudiantes[18413160]</code> hace <strong>desempaquetado de tupla</strong>: extrae el nombre y el set en dos variables de una vez. <code>ramos1 &amp; ramos2</code> es la <strong>intersección</strong> de ambos sets: solo queda <code>{'Programación'}</code>, el único ramo que ambas estudiantes cursan.</p>
+          <p class="fuente">Fuente: notas "Diccionarios" y "Tuplas y sets".</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-inventario">
+          <summary><span class="resumen-ejercicio">6. Con <code>inventario = {"lápices": 120, "cuadernos": 45, "borradores": 6, "reglas": 30}</code>, calcula el total de unidades y el producto con menor stock. </span><span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <pre><code>inventario = {"lápices": 120, "cuadernos": 45, "borradores": 6, "reglas": 30}
+
+total = 0
+for cantidad in inventario.values():
+    total += cantidad
+print("Total de unidades:", total)     # 201
+
+producto_critico = min(inventario, key=inventario.get)
+print("Menor stock:", producto_critico, "con", inventario[producto_critico])  # borradores con 6</code></pre>
+            <p><code>.values()</code> recorre solo los valores para sumarlos: <code>120+45+6+30=201</code>. <code>min(inventario, key=inventario.get)</code> recorre las <strong>llaves</strong> del diccionario y usa <code>inventario.get</code> como criterio de comparación, entregando la llave (no el valor) con el menor stock: <code>"borradores"</code>.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-diferencia-simetrica">
+          <summary><span class="resumen-ejercicio">7. Con <code>estudiantes = {1: ("Ana", {"Cálculo","Programación","Física"}), 2: ("Beto", {"Programación","Química"})}</code>, obtén los ramos en común y los que solo tiene uno de los dos. </span><span class="dificultad dificil">difícil</span></summary>
+          <div class="solucion">
+            <pre><code>estudiantes = {
+    1: ("Ana", {"Cálculo", "Programación", "Física"}),
+    2: ("Beto", {"Programación", "Química"})
+}
+
+nombre1, ramos1 = estudiantes[1]
+nombre2, ramos2 = estudiantes[2]
+
+comunes = ramos1 &amp; ramos2                 # {'Programación'}
+solo_uno = ramos1 ^ ramos2                # {'Cálculo', 'Física', 'Química'}
+
+print(f"En común: {comunes}")
+print(f"Solo uno de los dos: {solo_uno}")</code></pre>
+            <p><code>&amp;</code> es la intersección (ramos que están en ambos sets). <code>^</code> es la <strong>diferencia simétrica</strong>: los elementos que están en uno de los sets pero no en el otro — todo lo que no es común.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 5 · STRINGS Y ESTRUCTURAS DE DATOS -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u5">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">05</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Strings y estructuras de datos</h2>
+          <p class="unidad-sub">Texto como secuencia indexada, y una tabla que resume las cinco estructuras del curso lado a lado.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-strings">
+        <h3>Strings</h3>
+        <ul>
+          <li>Inmutable; admite indexado <code>s[0]</code>, slicing <code>s[2:5]</code> y <code>len(s)</code> igual que una lista.</li>
+          <li><code>.split()</code> → string a lista; <code>.join()</code> → lista a string (proceso inverso).</li>
+          <li><strong>f-strings</strong> (<code>f"..."</code>) insertan variables directamente en el texto: <code>f"Hola {nombre}!"</code> — se usan en la mayoría de los ejemplos del curso para formatear salidas legibles.</li>
+        </ul>
+        <div class="tabla-scroll">
+          <table>
+            <thead><tr><th>Método</th><th>Qué hace</th></tr></thead>
+            <tbody>
+              <tr><td><code>.strip(p)</code> / <code>.lstrip(p)</code> / <code>.rstrip(p)</code></td><td>borra el patrón <code>p</code> al inicio y fin / solo inicio / solo fin</td></tr>
+              <tr><td><code>.replace(a, b)</code></td><td>reemplaza todas las apariciones de <code>a</code> por <code>b</code></td></tr>
+              <tr><td><code>.split(sep)</code></td><td>separa por <code>sep</code> y retorna una lista</td></tr>
+              <tr><td><code>'-'.join(lista)</code></td><td>une los elementos de la lista con <code>'-'</code></td></tr>
+              <tr><td><code>.isdigit()</code></td><td><code>True</code> si el string son solo dígitos</td></tr>
+              <tr><td><code>.lower()</code> / <code>.upper()</code></td><td>convierte a minúsculas / mayúsculas</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-tabla-comparativa">
+        <h3>📊 Tabla comparativa — estructuras de datos</h3>
+        <div class="tabla-scroll">
+          <table>
+            <thead>
+              <tr><th>Estructura</th><th>Sintaxis</th><th>Ordenada</th><th>Mutable</th><th>Indexada</th><th>Duplicados</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Lista</td><td><code>[1, 2, 3]</code></td><td>sí</td><td>sí</td><td>sí</td><td>sí</td></tr>
+              <tr><td>Tupla</td><td><code>(1, 2, 3)</code></td><td>sí</td><td>no</td><td>sí</td><td>sí</td></tr>
+              <tr><td>Set</td><td><code>{1, 2, 3}</code></td><td>no</td><td>sí</td><td>no</td><td>no</td></tr>
+              <tr><td>Diccionario</td><td><code>{k: v}</code></td><td>por inserción</td><td>sí</td><td>por llave</td><td>llaves no, valores sí</td></tr>
+              <tr><td>String</td><td><code>"abc"</code></td><td>sí</td><td>no</td><td>sí</td><td>sí</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-frecuencia-palabras">
+          <summary><span class="resumen-ejercicio">8. Cuenta cuántas veces aparece cada palabra en <code>"el perro corre y el gato corre"</code>, ignorando mayúsculas. </span><span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <pre><code>frase = "el perro corre y el gato corre"
+palabras = frase.split()
+
+frecuencia = {}
+for palabra in palabras:
+    palabra = palabra.lower()
+    frecuencia[palabra] = frecuencia.get(palabra, 0) + 1
+
+print(frecuencia)
+# {'el': 2, 'perro': 1, 'corre': 2, 'y': 1, 'gato': 1}</code></pre>
+            <p><code>.split()</code> sin argumento separa por espacios. <code>frecuencia.get(palabra, 0)</code> retorna el contador actual (o <code>0</code> si es la primera vez que aparece la palabra), y se le suma 1 — patrón típico para contar sin usar <code>if "palabra" in frecuencia:</code>.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 6 · FUNCIONES -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u6">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">06</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Funciones</h2>
+          <p class="unidad-sub">Parámetros, *args y el scope local: cómo dividir un problema en piezas reutilizables — y cómo Python las apila para ejecutarlas.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-funciones">
+        <h3>Funciones</h3>
+        <pre><code>def nombre(parametro1, parametro2=valor_defecto, *args):
+    ...
+    return resultado</code></pre>
+        <ul>
+          <li>Orden obligatorio al definir: posicionales → con valor por defecto → <code>*args</code> → <code>**kwargs</code>.</li>
+          <li>Variables dentro de la función son <strong>locales</strong> (scope): no existen fuera.</li>
+          <li>Sin <code>return</code>, la función entrega <code>None</code>.</li>
+          <li>Principios: <strong>DRY</strong> (no repetir código) y <strong>modularidad</strong> (dividir el problema en funciones pequeñas).</li>
+        </ul>
+      </div>
+
+      <div class="animacion" id="anim-pila">
+        <div class="anim-cabecera">
+          <h3>📚 Pila de llamadas a función</h3>
+          <p class="anim-desc">Traza la pila de llamadas de <code>promedio_cuadrados(a, b)</code>, que a su vez llama a <code>suma_cuadrados</code> y dos veces a <code>cuadrado</code>.</p>
+        </div>
+        <canvas data-alto="260"></canvas>
+        <div class="controles">
+          <div class="control">
+            <label for="pila-a">a</label>
+            <input type="number" id="pila-a" value="3">
+          </div>
+          <div class="control">
+            <label for="pila-b">b</label>
+            <input type="number" id="pila-b" value="4">
+          </div>
+          <button type="button" class="secundario" data-accion="construir">Construir / reiniciar</button>
+          <button type="button" data-accion="paso">Paso</button>
+          <button type="button" class="secundario" data-accion="auto">▶ Auto</button>
+        </div>
+        <p id="pila-info" style="color:var(--tinta-2); font: 13px Consolas, monospace; margin:0 0 10px; padding:0 30px;">Pila vacía.</p>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> cada "Paso" empuja (push) un nuevo frame al llamar una función, o lo saca (pop) al hacer <code>return</code>. Aplica los conceptos de parámetros, <code>return</code> y modularidad de la nota de Funciones.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="materia" id="tema-recursion">
+        <h3>Recursión</h3>
+        <ul>
+          <li>Una función <strong>recursiva</strong> se llama a sí misma. Necesita un <strong>caso base</strong> (no vuelve a llamarse, corta la recursión) y un <strong>caso recursivo</strong> (se acerca al caso base en cada llamada).</li>
+          <li>Sin caso base (o si nunca se alcanza) → recursión infinita → <code>RecursionError: maximum recursion depth exceeded</code>.</li>
+          <li>Cada llamada agrega un nuevo <em>frame</em> a la pila de llamadas — la misma pila de la animación de arriba — hasta llegar al caso base; luego los <code>return</code> se resuelven "de atrás hacia adelante".</li>
+        </ul>
+        <pre><code>def potencia(base, exponente):
+    if exponente == 0:            # caso base
+        return 1
+    return base * potencia(base, exponente - 1)   # caso recursivo
+
+print(potencia(2, 3))    # 8</code></pre>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-funciones-args">
+          <h3>5. Funciones con valores por defecto y <code>*args</code></h3>
+          <pre><code>def crear_perfil(nombre, edad=18, ciudad="Ciudad no especificada"):
+    return f"{nombre}, {edad} años, vive en {ciudad}"
+
+print(crear_perfil("Ana"))                  # Ana, 18 años, vive en Ciudad no especificada
+print(crear_perfil("María", 25, "Madrid"))  # María, 25 años, vive en Madrid
+
+def sumar(*numeros):
+    total = 0
+    for num in numeros:
+        total += num
+    return total
+
+print(sumar(1, 2, 3))        # 6
+print(sumar(1, 2, 3, 4, 5))  # 15</code></pre>
+          <p><code>crear_perfil("Ana")</code> solo pasa el parámetro obligatorio <code>nombre</code>; <code>edad</code> y <code>ciudad</code> toman sus <strong>valores por defecto</strong>. Al llamar con los tres argumentos, se sobrescriben en orden posicional.</p>
+          <p><code>*numeros</code> empaqueta <strong>cualquier cantidad</strong> de argumentos en una tupla dentro de la función; el <code>for</code> los recorre y acumula la suma sin importar cuántos se pasaron.</p>
+          <p class="fuente">Fuente: nota "Funciones".</p>
+        </div>
+
+        <div class="ejemplo" id="ej-recursion">
+          <h3>6. Recursión: calcular una potencia sin usar <code>**</code></h3>
+          <pre><code>def potencia(base, exponente):
+    if exponente == 0:                  # caso base: exponente llegó a 0
+        return 1
+    return base * potencia(base, exponente - 1)
+
+print(potencia(2, 3))    # 8
+print(potencia(5, 0))    # 1  (caso base directo)</code></pre>
+          <p><code>potencia(2, 3)</code> no calcula nada de inmediato: llama a <code>potencia(2, 2)</code>, que llama a <code>potencia(2, 1)</code>, que llama a <code>potencia(2, 0)</code> — ahí el caso base devuelve <code>1</code> sin más llamadas. Desde ahí las multiplicaciones pendientes se resuelven "hacia atrás": <code>2*1=2</code>, <code>2*2=4</code>, <code>2*4=8</code>. Cada llamada pendiente ocupa un frame en la pila (igual que en la animación de arriba) hasta que el caso base la libera.</p>
+          <p class="fuente">Fuente: Calendarización oficial del curso — Unidad 5 "Funciones en Python", actividad "función recursiva para calcular potencias".</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-args-max">
+          <summary><span class="resumen-ejercicio">9. Escribe una función <code>mayor(*numeros)</code> que retorne el mayor valor recibido, sin usar <code>max()</code>. </span><span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <pre><code>def mayor(*numeros):
+    mas_grande = numeros[0]
+    for num in numeros:
+        if num &gt; mas_grande:
+            mas_grande = num
+    return mas_grande
+
+print(mayor(4, 17, 2, 9))    # 17
+print(mayor(-3, -1, -8))     # -1</code></pre>
+            <p><code>*numeros</code> empaqueta los argumentos en una tupla. Se inicializa <code>mas_grande</code> con el primer elemento y se recorre comparando — el mismo patrón que "encontrar el máximo" de una lista, aplicado a un número variable de argumentos.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-recursion">
+          <summary><span class="resumen-ejercicio">10. Escribe una función recursiva <code>factorial(n)</code> que calcule <code>n!</code> (para <code>n ≥ 0</code>), sabiendo que <code>0! = 1</code>. </span><span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <pre><code>def factorial(n):
+    if n == 0:                    # caso base
+        return 1
+    return n * factorial(n - 1)   # caso recursivo
+
+print(factorial(5))    # 120
+print(factorial(0))    # 1</code></pre>
+            <p><code>factorial(5)</code> se descompone en <code>5 * factorial(4)</code>, y así hasta <code>factorial(0)</code>, que devuelve <code>1</code> directamente por el caso base. Desde ahí se resuelve hacia atrás: <code>1*1=1</code>, <code>2*1=2</code>, <code>3*2=6</code>, <code>4*6=24</code>, <code>5*24=120</code>.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 7 · MÓDULOS Y MANEJO DE ARCHIVOS -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u7">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">07</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Módulos y manejo de archivos</h2>
+          <p class="unidad-sub">De un archivo <code>.py</code> reutilizable a leer y escribir datos en disco, con los pasos de Pólya como guía para resolver problemas.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-modulos">
+        <h3>Módulos y librerías</h3>
+        <pre><code>import os                          # os.listdir(...)
+from datetime import datetime      # datetime.now()
+from collections import Counter    # Counter(lista)</code></pre>
+        <ul>
+          <li>Un <strong>módulo</strong> es un archivo <code>.py</code> con funciones/clases/variables reutilizables; una librería agrupa varios módulos.</li>
+          <li>Librería estándar útil: <code>math</code>, <code>random</code>, <code>os</code>, <code>datetime</code>, <code>collections</code>, <code>csv</code>, <code>re</code>.</li>
+          <li>No nombrar un archivo propio igual que un módulo oficial (p. ej. <code>random.py</code>) — se importaría el archivo propio en su lugar.</li>
+        </ul>
+      </div>
+
+      <div class="materia" id="tema-archivos">
+        <h3>Manejo de archivos</h3>
+        <pre><code>with open("datos.txt", "r") as f:
+    for linea in f:
+        ...
+
+with open("salida.csv", "w") as f:
+    f.write("col1,col2\n")</code></pre>
+        <ul>
+          <li>Modos: <code>"r"</code> leer, <code>"w"</code> escribir (borra lo existente), <code>"a"</code> agregar al final.</li>
+          <li><code>with</code> cierra el archivo automáticamente; sin él hay que llamar <code>.close()</code>.</li>
+          <li><code>.rstrip('\n')</code> es clave al leer líneas: quita el salto de línea antes de convertir con <code>int()</code>/<code>float()</code>.</li>
+          <li>Pasos de Pólya para resolver: 1) entender el problema 2) crear un plan 3) llevarlo a cabo 4) revisar el resultado.</li>
+        </ul>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-modulo-propio">
+          <h3>7. Módulo propio: <code>matematicas.py</code></h3>
+          <pre><code># matematicas.py
+def sumar(a, b):
+    return a + b
+
+PI = 3.14159
+
+class Calculadora:
+    def __init__(self):
+        self.historial = []
+
+    def calcular(self, operacion, a, b):
+        if operacion == "+":
+            resultado = sumar(a, b)
+        self.historial.append(f"{a} {operacion} {b} = {resultado}")
+        return resultado
+
+# otro_archivo.py
+import matematicas
+
+c = matematicas.Calculadora()
+print(c.calcular("+", 2, 3))     # 5
+print(matematicas.PI)             # 3.14159</code></pre>
+          <p><code>matematicas.py</code> agrupa una función (<code>sumar</code>), una variable (<code>PI</code>) y una clase (<code>Calculadora</code>) en un único módulo reutilizable. Desde <code>otro_archivo.py</code>, <code>import matematicas</code> trae <strong>todo</strong> el módulo, y se accede a cada elemento con el prefijo <code>matematicas.</code> — evita repetir el código en cada script que lo necesite.</p>
+          <p class="fuente">Fuente: nota "Módulos y librerías" (<code>matematicas.py</code>).</p>
+        </div>
+
+        <div class="ejemplo" id="ej-archivos-radios">
+          <h3>8. Manejo de archivos: <code>Radios_planetas.txt</code> → <code>Areas_planetas.csv</code></h3>
+          <pre><code># 1. Leer el archivo y descubrir el separador de sus columnas
+with open('Radios_planetas.txt', 'r') as datos:
+    for linea in datos:
+        print(linea)
+
+# 2. Extraer y procesar la información dentro del ciclo
+with open('Radios_planetas.txt', 'r') as datos:
+    arreglo_info = []
+    for linea in datos:
+        info = linea.split(' ')[0:2]
+        nombre = info[0]
+        radio = float(info[1].rstrip('\n'))
+        area = 4 * 3.14159 * radio ** 2
+        arreglo_info.append((nombre, area))
+
+# 3. Guardar el resultado en un archivo nuevo
+with open('Areas_planetas.csv', 'w') as archivo_nuevo:
+    archivo_nuevo.write('planeta,area\n')
+    for nombre, area in arreglo_info:
+        archivo_nuevo.write(f'{nombre},{area}\n')</code></pre>
+          <p><strong>Paso 1</strong> (exploración): antes de procesar, se imprime cada línea cruda para descubrir cómo están separadas las columnas — en este caso por un espacio.</p>
+          <p><strong>Paso 2</strong>: <code>linea.split(' ')[0:2]</code> separa la línea por espacios y se queda con las dos primeras columnas (nombre y radio). <code>info[1].rstrip('\n')</code> es imprescindible: sin quitar el salto de línea, <code>float()</code> fallaría o arrastraría un carácter inválido. El área de una esfera <code>A = 4·π·r²</code> se calcula con <code>radio ** 2</code>, y el resultado se guarda como <strong>tupla</strong> <code>(nombre, area)</code> dentro de una lista.</p>
+          <p><strong>Paso 3</strong>: se abre un archivo nuevo en modo <code>"w"</code> (crea o sobrescribe) y se escribe una fila de encabezado más una fila por planeta, con formato CSV separado por comas mediante un f-string.</p>
+          <p class="fuente">Fuente: clase "Manejo de archivos" (<code>Radios_planetas.txt</code>).</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-modulo-geometria">
+          <summary><span class="resumen-ejercicio">11. Crea un módulo propio <code>geometria.py</code> con <code>area_circulo(radio)</code> y una clase <code>Figura</code>; impórtalo desde otro script. </span><span class="dificultad dificil">difícil</span></summary>
+          <div class="solucion">
+            <pre><code># geometria.py
+def area_circulo(radio):
+    return 3.14159 * radio ** 2
+
+class Figura:
+    unidad = "cm²"
+
+    def __init__(self, nombre, area):
+        self.nombre = nombre
+        self.area = area
+
+    def describir(self):
+        return f"{self.nombre}: {self.area} {Figura.unidad}"
+
+
+# main.py
+from geometria import area_circulo, Figura
+
+a = area_circulo(5)
+f = Figura("Círculo", a)
+print(f.describir())     # Círculo: 78.53975 cm²</code></pre>
+            <p><code>from geometria import area_circulo, Figura</code> trae solo esos dos nombres al espacio del script actual (a diferencia de <code>import geometria</code>, que exigiría el prefijo <code>geometria.</code> en cada uso). <code>Figura.unidad</code> se referencia con el nombre de la clase por ser un atributo de clase.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-archivo-temperaturas">
+          <summary><span class="resumen-ejercicio">12. Lee <code>temperaturas.txt</code> (una temperatura por línea) y genera <code>temperaturas_clasificadas.csv</code> con columnas <code>temperatura,categoria</code> (frío &lt;10, templado 10-25, calor &gt;25). </span><span class="dificultad dificil">difícil</span></summary>
+          <div class="solucion">
+            <pre><code>with open("temperaturas.txt", "r") as datos:
+    valores = []
+    for linea in datos:
+        temp = float(linea.rstrip("\n"))
+        valores.append(temp)
+
+with open("temperaturas_clasificadas.csv", "w") as salida:
+    salida.write("temperatura,categoria\n")
+    for temp in valores:
+        if temp &lt; 10:
+            categoria = "frío"
+        elif temp &lt;= 25:
+            categoria = "templado"
+        else:
+            categoria = "calor"
+        salida.write(f"{temp},{categoria}\n")</code></pre>
+            <p>Primer bloque: lee y limpia cada línea con <code>.rstrip("\n")</code> antes de convertir a <code>float</code> (igual que <code>Radios_planetas.txt</code>). Segundo bloque: clasifica cada valor con <code>if/elif/else</code> y escribe una fila CSV por temperatura con un f-string, en modo <code>"w"</code> con encabezado primero.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 8 · MANEJO DE EXCEPCIONES Y PROGRAMACIÓN ORIENTADA A OBJETOS -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u8">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">08</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Manejo de excepciones y Programación Orientada a Objetos</h2>
+          <p class="unidad-sub">Cómo capturar errores sin que el programa se caiga, y luego clases, objetos, herencia y sobre-escritura: el último paso del curso, con el ejemplo real de <code>Agente</code>/<code>AgenteEspecial</code>.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-excepciones">
+        <h3>Manejo de excepciones (<code>try</code>/<code>except</code>/<code>finally</code>)</h3>
+        <ul>
+          <li><code>try:</code> intenta ejecutar código que puede fallar; si ocurre un error del tipo indicado en <code>except</code>, el programa salta a ese bloque en vez de detenerse (<em>traceback</em>).</li>
+          <li>Se pueden encadenar varios <code>except</code> para distintos tipos de error, o usar <code>except Exception as e:</code> como comodín (atrapa cualquier error, pero conviene ser específico primero).</li>
+          <li><code>else:</code> corre solo si <strong>no</strong> hubo excepción; <code>finally:</code> corre <strong>siempre</strong> (haya o no error) — típico para cerrar un archivo o liberar un recurso.</li>
+          <li>Errores comunes: <code>ValueError</code> (conversión inválida, p. ej. <code>int("abc")</code>), <code>ZeroDivisionError</code> (división por cero), <code>KeyError</code> (llave inexistente en un diccionario), <code>IndexError</code> (índice fuera de rango de una lista).</li>
+        </ul>
+        <pre><code>try:
+    n = int(input("Ingrese un número entero: "))
+    resultado = 10 / n
+except ValueError:
+    print("Eso no es un número entero.")
+except ZeroDivisionError:
+    print("No se puede dividir por cero.")
+else:
+    print("Resultado:", resultado)
+finally:
+    print("Fin del intento.")</code></pre>
+      </div>
+
+      <div class="materia" id="tema-poo">
+        <h3>Programación Orientada a Objetos</h3>
+        <ul>
+          <li><strong>Los 4 pilares:</strong> <strong>encapsulamiento</strong> (ocultar el estado interno, acceder vía métodos), <strong>herencia</strong> (una clase hija reutiliza/extiende a una padre), <strong>polimorfismo</strong> (un mismo método —como <code>reporte()</code> en el ejemplo de abajo— se comporta distinto según la clase que lo ejecuta) y <strong>abstracción</strong> (exponer lo esencial, esconder el detalle de implementación).</li>
+          <li><strong>Clase</strong> = plantilla; <strong>objeto</strong> = instancia; <strong>atributo</strong> = dato; <strong>método</strong> = función del objeto (siempre recibe <code>self</code>).</li>
+          <li><strong>Atributo de clase</strong> (compartido por todas las instancias) vs. <strong>atributo de instancia</strong> (propio de cada objeto, se define con <code>self.</code> en <code>__init__</code>).</li>
+          <li><strong>Herencia:</strong> <code>class Hija(Padre):</code> reutiliza/extiende. Llamar <code>Padre.__init__(self, ...)</code> para no perder la inicialización heredada.</li>
+          <li><strong>Override:</strong> redefinir un método del padre en la hija (misma firma, comportamiento distinto) — la forma más simple de polimorfismo en este curso.</li>
+          <li>Dunder methods: <code>__init__</code> (constructor), <code>__str__</code> (texto con <code>print(objeto)</code>), <code>__len__</code>, <code>__del__</code>.</li>
+          <li>Un guion bajo inicial (<code>_metodo</code>) es convención de "privado"; Python no lo impide técnicamente.</li>
+        </ul>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-excepciones">
+          <h3>9. Manejo de excepciones: pedir un número válido con reintento</h3>
+          <pre><code>def pedir_entero(mensaje):
+    while True:
+        try:
+            return int(input(mensaje))
+        except ValueError:
+            print("Entrada inválida, intenta de nuevo.")
+
+edad = pedir_entero("Ingrese su edad: ")
+print(f"Tu edad es {edad}")</code></pre>
+          <p><code>while True</code> + <code>try/except</code> arma un bucle de reintento: si <code>int(input(...))</code> falla (el usuario escribió texto no numérico), Python lanza <code>ValueError</code>, el <code>except</code> lo atrapa, imprime el aviso y el <code>while</code> vuelve a preguntar. Si la conversión funciona, el <code>return</code> dentro del <code>try</code> se ejecuta de inmediato y corta el bucle devolviendo el valor — nunca se llega al <code>except</code> cuando no hay error.</p>
+          <p class="fuente">Fuente: Calendarización oficial del curso — Unidad 7 "Manejo de errores y POO" (<code>try</code>/<code>except</code>/<code>finally</code>).</p>
+        </div>
+
+        <div class="ejemplo" id="ej-poo-agente">
+          <h3>10. POO: clase <code>Agente</code> y subclase <code>AgenteEspecial</code></h3>
+          <pre><code>class Agente:
+    nivel = 'Regular'                       # atributo de clase
+
+    def __init__(self, nombre_real, edad, nombre_clave):
+        self.nombre_real = nombre_real      # atributos de instancia
+        self.edad = edad
+        self.nombre_clave = nombre_clave
+
+    def __str__(self):
+        return f'Agente {self.nombre_clave}.'
+
+    def reporte(self):
+        return f'Mi nombre real es {self.nombre_real}, tengo {self.edad} años.'
+
+
+class AgenteEspecial(Agente):               # hereda de Agente
+    nivel = 'Especial'
+
+    def __init__(self, nombre_real, edad, nombre_clave, mision, pais):
+        Agente.__init__(self, nombre_real, edad, nombre_clave)
+        self.mision = mision
+        self.pais = pais
+
+    def reporte(self):                      # sobre-escribe el método del padre
+        print(f"Puede llamarme {self.nombre_clave}")
+
+    def _mision(self):
+        return f'Misión actual: {self.mision}'
+
+
+b = Agente('Beto', 50, 'Caribú')
+print(b)             # Agente Caribú.  (usa __str__)
+print(b.nivel)        # Regular
+
+n = AgenteEspecial('Norma', 40, 'Nana', 'Keto', 'USA')
+print(n)             # Agente Nana.  (__str__ heredado, sin redefinir)
+n.reporte()          # Puede llamarme Nana  (versión sobre-escrita)</code></pre>
+          <p><code>AgenteEspecial(Agente)</code> hereda todo de <code>Agente</code> y llama a <code>Agente.__init__(self, ...)</code> para no perder la inicialización de los tres primeros atributos, antes de agregar <code>mision</code> y <code>pais</code> propios.</p>
+          <p><code>nivel</code> es un <strong>atributo de clase</strong>: cada clase define su propio valor (<code>'Regular'</code> vs. <code>'Especial'</code>), compartido por todas sus instancias. <code>reporte()</code> se <strong>sobre-escribe</strong> en la subclase (mismo nombre, comportamiento distinto); en cambio <code>__str__</code> no se redefine, así que <code>n</code> usa la versión heredada de <code>Agente</code>. <code>_mision</code> con un guion bajo es una convención de método "privado", solo pensado para usarse dentro de la clase.</p>
+          <p class="fuente">Fuente: ayudantía de POO (clase <code>Agente</code> / <code>AgenteEspecial</code>).</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-excepciones">
+          <summary><span class="resumen-ejercicio">13. Escribe una función <code>division_segura(a, b)</code> que retorne <code>a / b</code>, y si <code>b</code> es 0, capture el error y retorne <code>None</code> en vez de que el programa se caiga. </span><span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <pre><code>def division_segura(a, b):
+    try:
+        return a / b
+    except ZeroDivisionError:
+        return None
+
+print(division_segura(10, 2))    # 5.0
+print(division_segura(10, 0))    # None</code></pre>
+            <p><code>try</code> intenta la división; si <code>b</code> es 0, Python lanza <code>ZeroDivisionError</code> y el <code>except</code> lo captura, retornando <code>None</code> en vez de que el programa termine con un <em>traceback</em>. Cuando <code>b</code> no es 0, el <code>return a / b</code> del <code>try</code> se ejecuta sin problema y el <code>except</code> nunca se alcanza.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-poo-vehiculo">
+          <summary><span class="resumen-ejercicio">14. Crea una clase <code>Vehiculo</code> (atributo de clase <code>ruedas=4</code>) y una subclase <code>VehiculoElectrico</code> que agregue <code>autonomia_km</code> y sobrescriba <code>describir()</code>. </span><span class="dificultad dificil">difícil</span></summary>
+          <div class="solucion">
+            <pre><code>class Vehiculo:
+    ruedas = 4
+
+    def __init__(self, marca, modelo):
+        self.marca = marca
+        self.modelo = modelo
+
+    def describir(self):
+        return f"{self.marca} {self.modelo} ({self.ruedas} ruedas)"
+
+
+class VehiculoElectrico(Vehiculo):
+    def __init__(self, marca, modelo, autonomia_km):
+        Vehiculo.__init__(self, marca, modelo)
+        self.autonomia_km = autonomia_km
+
+    def describir(self):
+        return f"{self.marca} {self.modelo}, eléctrico, autonomía {self.autonomia_km} km"
+
+
+v = Vehiculo("Toyota", "Corolla")
+e = VehiculoElectrico("Tesla", "Model 3", 500)
+print(v.describir())    # Toyota Corolla (4 ruedas)
+print(e.describir())    # Tesla Model 3, eléctrico, autonomía 500 km</code></pre>
+            <p>Mismo patrón que <code>Agente</code>/<code>AgenteEspecial</code>: <code>VehiculoElectrico</code> llama a <code>Vehiculo.__init__</code> para heredar <code>marca</code>/<code>modelo</code>, agrega su propio atributo <code>autonomia_km</code>, y sobrescribe <code>describir()</code> con un mensaje distinto sin tocar la clase padre.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ============================================================ */
+  /* 1. TRAZADOR DE CICLO (while) — contar pares e impares        */
+  /* ============================================================ */
+  Anim.registrar("anim-ciclo", function (sim) {
+    var base = [4, 7, 10, 3, 8];
+    var estado = { gen: null, evento: null, terminado: false, temporizador: null };
+
+    function* traceGen() {
+      function paso(linea, vars, nota) { return { linea: linea, vars: vars, nota: nota }; }
+      var numeros = base;
+      yield paso(1, { numeros: numeros.slice() }, "Se crea la lista de números a analizar.");
+      var cantpar = 0;
+      yield paso(2, { numeros: numeros.slice(), cantpar: cantpar }, "cantpar arranca en 0.");
+      var cantimp = 0;
+      yield paso(3, { numeros: numeros.slice(), cantpar: cantpar, cantimp: cantimp }, "cantimp arranca en 0.");
+      var x = 0;
+      yield paso(4, { numeros: numeros.slice(), cantpar: cantpar, cantimp: cantimp, x: x }, "x es el índice recorrido, arranca en 0.");
+      while (true) {
+        var sigue = x < numeros.length;
+        yield paso(5, { numeros: numeros.slice(), cantpar: cantpar, cantimp: cantimp, x: x }, "¿x < len(numeros)? → " + sigue);
+        if (!sigue) break;
+        var num = numeros[x];
+        yield paso(6, { numeros: numeros.slice(), cantpar: cantpar, cantimp: cantimp, x: x, num: num }, "num = numeros[" + x + "] = " + num);
+        var esPar = num % 2 === 0;
+        yield paso(7, { numeros: numeros.slice(), cantpar: cantpar, cantimp: cantimp, x: x, num: num }, "¿num % 2 == 0? → " + esPar);
+        if (esPar) {
+          cantpar += 1;
+          yield paso(8, { numeros: numeros.slice(), cantpar: cantpar, cantimp: cantimp, x: x, num: num }, "cantpar += 1 → " + cantpar);
+        } else {
+          yield paso(9, { numeros: numeros.slice(), cantpar: cantpar, cantimp: cantimp, x: x, num: num }, "rama else (num es impar).");
+          cantimp += 1;
+          yield paso(10, { numeros: numeros.slice(), cantpar: cantpar, cantimp: cantimp, x: x, num: num }, "cantimp += 1 → " + cantimp);
+        }
+        x += 1;
+        yield paso(11, { numeros: numeros.slice(), cantpar: cantpar, cantimp: cantimp, x: x }, "x += 1 → " + x);
+      }
+      yield paso(12, { numeros: numeros.slice(), cantpar: cantpar, cantimp: cantimp, x: x }, "Fin del ciclo → print(" + cantpar + ", " + cantimp + ")");
+    }
+
+    function resaltarLinea() {
+      var celdas = document.querySelectorAll("#ciclo-codigo .cl");
+      for (var i = 0; i < celdas.length; i++) celdas[i].classList.remove("activa");
+      if (estado.evento && estado.evento.linea) {
+        var el = document.querySelector('#ciclo-codigo .cl[data-l="' + estado.evento.linea + '"]');
+        if (el) el.classList.add("activa");
+      }
+    }
+
+    function actualizarInfo() {
+      var info = document.getElementById("ciclo-info");
+      if (!info) return;
+      if (!estado.evento) { info.textContent = "Presioná Paso para ejecutar la primera línea."; return; }
+      var texto = estado.evento.nota;
+      if (estado.terminado) texto += " · fin de la traza";
+      info.textContent = texto;
+    }
+
+    function detenerAuto() {
+      if (estado.temporizador) { clearInterval(estado.temporizador); estado.temporizador = null; }
+      var btn = sim.cont.querySelector('[data-accion="auto"]');
+      if (btn) btn.textContent = "▶ Auto";
+    }
+
+    function paso() {
+      if (estado.terminado) return;
+      if (!estado.gen) estado.gen = traceGen();
+      var r = estado.gen.next();
+      if (r.done) {
+        estado.terminado = true;
+        detenerAuto();
+      } else {
+        estado.evento = r.value;
+      }
+      resaltarLinea();
+      actualizarInfo();
+      sim.redibujar();
+    }
+
+    function auto() {
+      if (estado.temporizador) { detenerAuto(); return; }
+      var btn = sim.cont.querySelector('[data-accion="auto"]');
+      if (btn) btn.textContent = "⏸ Pausa";
+      estado.temporizador = setInterval(function () {
+        if (estado.terminado) { detenerAuto(); return; }
+        paso();
+      }, 500);
+    }
+
+    function reiniciar() {
+      detenerAuto();
+      estado.gen = null;
+      estado.evento = null;
+      estado.terminado = false;
+      resaltarLinea();
+      actualizarInfo();
+      sim.redibujar();
+    }
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var n = base.length;
+      var gap = 10;
+      var boxW = Math.min(64, (w - gap * (n + 1)) / n);
+      var totalW = boxW * n + gap * (n + 1);
+      var offX = (w - totalW) / 2;
+      var boxY = 16, boxH = 40;
+      var borde = colorVar("--borde");
+      var panel = colorVar("--panel");
+      var s1 = colorVar("--s1");
+      var s3 = colorVar("--s3");
+      var acentoTenue = colorVar("--acento-tenue");
+      var tinta = colorVar("--tinta");
+      var ev = estado.evento;
+      var vars = ev ? ev.vars : {};
+      var xActual = vars.x;
+
+      ctx.font = "12px Consolas, monospace";
+      ctx.textAlign = "center";
+      for (var i = 0; i < n; i++) {
+        var bx = offX + gap + i * (boxW + gap);
+        var relleno = panel, trazo = borde;
+        if (xActual !== undefined && i < xActual) { relleno = acentoTenue; trazo = s1; }
+        if (xActual !== undefined && i === xActual) { relleno = s3; trazo = s3; }
+        ctx.fillStyle = relleno;
+        ctx.fillRect(bx, boxY, boxW, boxH);
+        ctx.lineWidth = 1.6;
+        ctx.strokeStyle = trazo;
+        ctx.strokeRect(bx, boxY, boxW, boxH);
+        ctx.fillStyle = (xActual !== undefined && i === xActual) ? "#fff" : tinta;
+        ctx.fillText(String(base[i]), bx + boxW / 2, boxY + boxH / 2 + 4);
+        ctx.fillStyle = tinta;
+        ctx.font = "10px Consolas, monospace";
+        ctx.fillText(String(i), bx + boxW / 2, boxY + boxH + 13);
+        ctx.font = "12px Consolas, monospace";
+      }
+      if (xActual !== undefined && xActual < n) {
+        var px = offX + gap + xActual * (boxW + gap) + boxW / 2;
+        ctx.fillStyle = s3;
+        ctx.beginPath();
+        ctx.moveTo(px, boxY + boxH + 24);
+        ctx.lineTo(px - 6, boxY + boxH + 34);
+        ctx.lineTo(px + 6, boxY + boxH + 34);
+        ctx.closePath();
+        ctx.fill();
+        ctx.fillText("x", px, boxY + boxH + 48);
+      }
+
+      var filas = [
+        { etiqueta: "num", valor: vars.num, color: colorVar("--acento") },
+        { etiqueta: "cantpar", valor: vars.cantpar, color: s1 },
+        { etiqueta: "cantimp", valor: vars.cantimp, color: colorVar("--futuro") }
+      ];
+      var yVars = boxY + boxH + 70;
+      var wVar = Math.min(160, (w - gap * 4) / 3);
+      ctx.textAlign = "left";
+      for (var j = 0; j < filas.length; j++) {
+        var fx = offX + gap + j * (wVar + gap);
+        if (fx + wVar > w) fx = w - wVar - gap;
+        ctx.fillStyle = panel;
+        ctx.strokeStyle = borde;
+        ctx.fillRect(fx, yVars, wVar, 44);
+        ctx.strokeRect(fx, yVars, wVar, 44);
+        ctx.fillStyle = tinta;
+        ctx.font = "11px Consolas, monospace";
+        ctx.fillText(filas[j].etiqueta, fx + 8, yVars + 16);
+        ctx.fillStyle = filas[j].color;
+        ctx.font = "bold 15px Consolas, monospace";
+        ctx.fillText(filas[j].valor === undefined ? "-" : String(filas[j].valor), fx + 8, yVars + 35);
+      }
+      ctx.textAlign = "center";
+    });
+
+    sim.botones({ paso: paso, auto: auto, reiniciar: reiniciar });
+    actualizarInfo();
+  });
+
+  /* ============================================================ */
+  /* 2. OPERACIONES DE LISTA                                       */
+  /* ============================================================ */
+  Anim.registrar("anim-lista", function (sim) {
+    var base = [11, 3, 5, 7, 2];
+    var ops = [
+      { tipo: "append", valor: 100, codigo: "L.append(100)" },
+      { tipo: "insert", indice: 2, valor: 99, codigo: "L.insert(2, 99)" },
+      { tipo: "pop", codigo: "L.pop()" },
+      { tipo: "pop0", indice: 0, codigo: "L.pop(0)" },
+      { tipo: "slice", inicio: 1, fin: 3, codigo: "L[1:3]" },
+      { tipo: "index", valor: 7, codigo: "L.index(7)" }
+    ];
+    var estado = { L: base.slice(), idx: 0, ultimo: null, terminado: false, temporizador: null };
+
+    function detenerAuto() {
+      if (estado.temporizador) { clearInterval(estado.temporizador); estado.temporizador = null; }
+      var btn = sim.cont.querySelector('[data-accion="auto"]');
+      if (btn) btn.textContent = "▶ Auto";
+    }
+
+    function actualizarInfo() {
+      var info = document.getElementById("lista-info");
+      if (!info) return;
+      if (estado.terminado) {
+        info.textContent = "Todas las operaciones ejecutadas. L final = [" + estado.L.join(", ") + "]";
+        return;
+      }
+      if (estado.ultimo) {
+        var d = estado.ultimo.detalle;
+        var op = estado.ultimo.op;
+        var txt = op.codigo + " → ";
+        if (d.tipo === "append") txt += "se agrega " + d.valor + " al final (índice " + d.pos + ").";
+        else if (d.tipo === "insert") txt += "se inserta " + d.valor + " en el índice " + d.pos + ", el resto se corre a la derecha.";
+        else if (d.tipo === "pop") txt += d.mensaje;
+        else if (d.tipo === "slice") txt += "sublista = [" + d.valores.join(", ") + "] (no modifica L).";
+        else if (d.tipo === "index") txt += (d.pos === -1) ? (d.valor + " no está en L.") : ("el valor " + d.valor + " está en el índice " + d.pos + ".");
+        info.textContent = txt + "  L = [" + estado.L.join(", ") + "]";
+      } else {
+        info.textContent = "L = [" + estado.L.join(", ") + "]. Presioná Paso para ejecutar la primera operación.";
+      }
+    }
+
+    function paso() {
+      if (estado.terminado) return;
+      if (estado.idx >= ops.length) { estado.terminado = true; detenerAuto(); actualizarInfo(); sim.redibujar(); return; }
+      var op = ops[estado.idx];
+      estado.idx++;
+      var detalle;
+      if (op.tipo === "append") {
+        estado.L.push(op.valor);
+        detalle = { tipo: "append", pos: estado.L.length - 1, valor: op.valor };
+      } else if (op.tipo === "insert") {
+        estado.L.splice(op.indice, 0, op.valor);
+        detalle = { tipo: "insert", pos: op.indice, valor: op.valor };
+      } else if (op.tipo === "pop") {
+        var pIdx = estado.L.length - 1;
+        var v = estado.L.pop();
+        detalle = { tipo: "pop", valorRemovido: v, mensaje: "Se eliminó " + v + " del final (índice " + pIdx + ")." };
+      } else if (op.tipo === "pop0") {
+        var v2 = estado.L.splice(op.indice, 1)[0];
+        detalle = { tipo: "pop", valorRemovido: v2, mensaje: "Se eliminó " + v2 + " de la posición " + op.indice + "." };
+      } else if (op.tipo === "slice") {
+        detalle = { tipo: "slice", inicio: op.inicio, fin: op.fin, valores: estado.L.slice(op.inicio, op.fin) };
+      } else if (op.tipo === "index") {
+        var pos = estado.L.indexOf(op.valor);
+        detalle = { tipo: "index", valor: op.valor, pos: pos };
+      }
+      estado.ultimo = { op: op, detalle: detalle };
+      if (estado.idx >= ops.length) { estado.terminado = true; detenerAuto(); }
+      actualizarInfo();
+      sim.redibujar();
+    }
+
+    function auto() {
+      if (estado.temporizador) { detenerAuto(); return; }
+      var btn = sim.cont.querySelector('[data-accion="auto"]');
+      if (btn) btn.textContent = "⏸ Pausa";
+      estado.temporizador = setInterval(function () {
+        if (estado.terminado) { detenerAuto(); return; }
+        paso();
+      }, 900);
+    }
+
+    function reiniciar() {
+      detenerAuto();
+      estado.L = base.slice();
+      estado.idx = 0;
+      estado.ultimo = null;
+      estado.terminado = false;
+      actualizarInfo();
+      sim.redibujar();
+    }
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var L = estado.L;
+      var n = L.length;
+      var gap = 10;
+      var boxW = n > 0 ? Math.min(60, (w - gap * (n + 1)) / n) : 0;
+      var totalW = boxW * n + gap * (n + 1);
+      var offX = Math.max(gap, (w - totalW) / 2);
+      var boxY = 30, boxH = 40;
+      var borde = colorVar("--borde");
+      var panel = colorVar("--panel");
+      var acentoTenue = colorVar("--acento-tenue");
+      var acento = colorVar("--acento");
+      var ok = colorVar("--ok");
+      var s3 = colorVar("--s3");
+      var tinta = colorVar("--tinta");
+      var d = estado.ultimo ? estado.ultimo.detalle : null;
+
+      ctx.font = "13px Consolas, monospace";
+      ctx.textAlign = "center";
+      for (var i = 0; i < n; i++) {
+        var bx = offX + gap + i * (boxW + gap);
+        var relleno = panel, trazo = borde;
+        if (d) {
+          if (d.tipo === "append" && i === d.pos) { relleno = ok; trazo = ok; }
+          else if (d.tipo === "insert" && i === d.pos) { relleno = s3; trazo = s3; }
+          else if (d.tipo === "slice" && i >= d.inicio && i < d.fin) { relleno = acentoTenue; trazo = acento; }
+          else if (d.tipo === "index" && d.pos === i) { relleno = s3; trazo = s3; }
+        }
+        ctx.fillStyle = relleno;
+        ctx.fillRect(bx, boxY, boxW, boxH);
+        ctx.lineWidth = 1.6;
+        ctx.strokeStyle = trazo;
+        ctx.strokeRect(bx, boxY, boxW, boxH);
+        var esClaro = relleno === ok || relleno === s3;
+        ctx.fillStyle = esClaro ? "#fff" : tinta;
+        ctx.fillText(String(L[i]), bx + boxW / 2, boxY + boxH / 2 + 5);
+        ctx.fillStyle = tinta;
+        ctx.font = "10px Consolas, monospace";
+        ctx.fillText(String(i), bx + boxW / 2, boxY + boxH + 14);
+        ctx.font = "13px Consolas, monospace";
+      }
+      ctx.textAlign = "left";
+      ctx.fillStyle = tinta;
+      ctx.font = "12px Consolas, monospace";
+      ctx.fillText("L = [" + L.join(", ") + "]", 10, 16);
+      ctx.textAlign = "center";
+    });
+
+    sim.botones({ paso: paso, auto: auto, reiniciar: reiniciar });
+    actualizarInfo();
+  });
+
+  /* ============================================================ */
+  /* 3. DICCIONARIO: insertar / actualizar / buscar / eliminar     */
+  /* ============================================================ */
+  Anim.registrar("anim-diccionario", function (sim) {
+    var ops = [
+      { tipo: "set", clave: "Ana", valor: 6.5, codigo: 'notas["Ana"] = 6.5' },
+      { tipo: "set", clave: "Beto", valor: 5.0, codigo: 'notas["Beto"] = 5.0' },
+      { tipo: "set", clave: "Carla", valor: 4.2, codigo: 'notas["Carla"] = 4.2' },
+      { tipo: "get", clave: "Beto", codigo: 'notas.get("Beto")' },
+      { tipo: "set", clave: "Beto", valor: 5.8, codigo: 'notas["Beto"] = 5.8' },
+      { tipo: "get", clave: "Duna", codigo: 'notas.get("Duna")' },
+      { tipo: "pop", clave: "Carla", codigo: 'notas.pop("Carla")' }
+    ];
+    var estado = { dict: {}, orden: [], idx: 0, ultimo: null, terminado: false, temporizador: null };
+
+    function detenerAuto() {
+      if (estado.temporizador) { clearInterval(estado.temporizador); estado.temporizador = null; }
+      var btn = sim.cont.querySelector('[data-accion="auto"]');
+      if (btn) btn.textContent = "▶ Auto";
+    }
+
+    function actualizarInfo() {
+      var info = document.getElementById("dict-info");
+      if (!info) return;
+      if (estado.terminado) {
+        var partes = estado.orden.map(function (k) { return k + ": " + estado.dict[k]; });
+        info.textContent = "Todas las operaciones ejecutadas. notas = {" + partes.join(", ") + "}";
+        return;
+      }
+      if (estado.ultimo) {
+        var d = estado.ultimo.detalle;
+        var op = estado.ultimo.op;
+        var txt = op.codigo + " → ";
+        if (d.tipo === "insertar") txt += "se agrega la llave \"" + d.clave + "\" con valor " + d.valor + ".";
+        else if (d.tipo === "actualizar") txt += "la llave \"" + d.clave + "\" ya existía: se sobrescribe su valor a " + d.valor + ".";
+        else if (d.tipo === "buscar") txt += d.encontrado ? ("encontrada → " + d.valor + ".") : "la llave no existe → retorna None (sin error).";
+        else if (d.tipo === "eliminar") txt += "se elimina \"" + d.clave + "\" (tenía valor " + d.valor + ").";
+        info.textContent = txt;
+      } else {
+        info.textContent = "notas = {}. Presioná Paso para ejecutar la primera operación.";
+      }
+    }
+
+    function paso() {
+      if (estado.terminado) return;
+      if (estado.idx >= ops.length) { estado.terminado = true; detenerAuto(); actualizarInfo(); sim.redibujar(); return; }
+      var op = ops[estado.idx];
+      estado.idx++;
+      var detalle;
+      if (op.tipo === "set") {
+        var existia = Object.prototype.hasOwnProperty.call(estado.dict, op.clave);
+        estado.dict[op.clave] = op.valor;
+        if (!existia) estado.orden.push(op.clave);
+        detalle = { tipo: existia ? "actualizar" : "insertar", clave: op.clave, valor: op.valor };
+      } else if (op.tipo === "get") {
+        var existe = Object.prototype.hasOwnProperty.call(estado.dict, op.clave);
+        detalle = { tipo: "buscar", clave: op.clave, encontrado: existe, valor: existe ? estado.dict[op.clave] : null };
+      } else if (op.tipo === "pop") {
+        var val = estado.dict[op.clave];
+        delete estado.dict[op.clave];
+        estado.orden = estado.orden.filter(function (k) { return k !== op.clave; });
+        detalle = { tipo: "eliminar", clave: op.clave, valor: val };
+      }
+      estado.ultimo = { op: op, detalle: detalle };
+      if (estado.idx >= ops.length) { estado.terminado = true; detenerAuto(); }
+      actualizarInfo();
+      sim.redibujar();
+    }
+
+    function auto() {
+      if (estado.temporizador) { detenerAuto(); return; }
+      var btn = sim.cont.querySelector('[data-accion="auto"]');
+      if (btn) btn.textContent = "⏸ Pausa";
+      estado.temporizador = setInterval(function () {
+        if (estado.terminado) { detenerAuto(); return; }
+        paso();
+      }, 900);
+    }
+
+    function reiniciar() {
+      detenerAuto();
+      estado.dict = {};
+      estado.orden = [];
+      estado.idx = 0;
+      estado.ultimo = null;
+      estado.terminado = false;
+      actualizarInfo();
+      sim.redibujar();
+    }
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var claves = estado.orden;
+      var n = claves.length;
+      var gap = 12;
+      var boxW = Math.min(150, (w - gap * (n + 1)) / Math.max(n, 1));
+      var boxH = 44;
+      var boxY = 40;
+      var totalW = n * (boxW + gap) + gap;
+      var offX = Math.max(gap, (w - totalW) / 2);
+      var borde = colorVar("--borde");
+      var panel = colorVar("--panel");
+      var ok = colorVar("--ok");
+      var s3 = colorVar("--s3");
+      var futuro = colorVar("--futuro");
+      var tinta = colorVar("--tinta");
+      var d = estado.ultimo ? estado.ultimo.detalle : null;
+
+      ctx.textAlign = "center";
+      for (var i = 0; i < n; i++) {
+        var k = claves[i];
+        var bx = offX + i * (boxW + gap);
+        var relleno = panel, trazo = borde;
+        if (d && d.clave === k) {
+          if (d.tipo === "insertar" || d.tipo === "actualizar") { relleno = ok; trazo = ok; }
+          else if (d.tipo === "buscar" && d.encontrado) { relleno = s3; trazo = s3; }
+        }
+        ctx.fillStyle = relleno;
+        ctx.fillRect(bx, boxY, boxW, boxH);
+        ctx.lineWidth = 1.6;
+        ctx.strokeStyle = trazo;
+        ctx.strokeRect(bx, boxY, boxW, boxH);
+        var esClaro = relleno === ok || relleno === s3;
+        ctx.fillStyle = esClaro ? "#fff" : tinta;
+        ctx.font = "bold 12px Consolas, monospace";
+        ctx.fillText(k, bx + boxW / 2, boxY + 18);
+        ctx.font = "12px Consolas, monospace";
+        ctx.fillText(String(estado.dict[k]), bx + boxW / 2, boxY + 34);
+      }
+      if (d && d.tipo === "buscar" && !d.encontrado) {
+        var bx2 = offX + n * (boxW + gap);
+        if (bx2 + boxW > w) bx2 = w - boxW - gap;
+        ctx.setLineDash([5, 4]);
+        ctx.strokeStyle = futuro;
+        ctx.lineWidth = 1.6;
+        ctx.strokeRect(bx2, boxY, boxW, boxH);
+        ctx.setLineDash([]);
+        ctx.fillStyle = futuro;
+        ctx.font = "bold 12px Consolas, monospace";
+        ctx.fillText(d.clave, bx2 + boxW / 2, boxY + 18);
+        ctx.font = "12px Consolas, monospace";
+        ctx.fillText("no existe", bx2 + boxW / 2, boxY + 34);
+      }
+      if (n === 0 && !(d && d.tipo === "buscar" && !d.encontrado)) {
+        ctx.fillStyle = tinta;
+        ctx.font = "13px Consolas, monospace";
+        ctx.fillText("notas = {}  (diccionario vacío)", w / 2, boxY + boxH / 2 + 5);
+      }
+      ctx.textAlign = "left";
+    });
+
+    sim.botones({ paso: paso, auto: auto, reiniciar: reiniciar });
+    actualizarInfo();
+  });
+
+  /* ============================================================ */
+  /* 4. PILA DE LLAMADAS A FUNCIÓN                                 */
+  /* ============================================================ */
+  Anim.registrar("anim-pila", function (sim) {
+    function* llamarCuadrado(x, prof) {
+      yield { tipo: "push", fn: "cuadrado", params: { x: x }, prof: prof };
+      var resultado = x * x;
+      yield { tipo: "pop", fn: "cuadrado", retorno: resultado, prof: prof };
+      return resultado;
+    }
+    function* llamarSumaCuadrados(a, b, prof) {
+      yield { tipo: "push", fn: "suma_cuadrados", params: { a: a, b: b }, prof: prof };
+      var r1 = yield* llamarCuadrado(a, prof + 1);
+      var r2 = yield* llamarCuadrado(b, prof + 1);
+      var total = r1 + r2;
+      yield { tipo: "pop", fn: "suma_cuadrados", retorno: total, prof: prof };
+      return total;
+    }
+    function* llamarPromedioCuadrados(a, b) {
+      yield { tipo: "push", fn: "promedio_cuadrados", params: { a: a, b: b }, prof: 0 };
+      var total = yield* llamarSumaCuadrados(a, b, 1);
+      var resultado = total / 2;
+      yield { tipo: "pop", fn: "promedio_cuadrados", retorno: resultado, prof: 0 };
+      return resultado;
+    }
+
+    var estado = { gen: null, pila: [], ultimo: null, resultadoFinal: null, a: 3, b: 4, terminado: false, temporizador: null };
+
+    function paramsTexto(params) {
+      var claves = Object.keys(params);
+      return claves.map(function (k) { return k + "=" + params[k]; }).join(", ");
+    }
+
+    function detenerAuto() {
+      if (estado.temporizador) { clearInterval(estado.temporizador); estado.temporizador = null; }
+      var btn = sim.cont.querySelector('[data-accion="auto"]');
+      if (btn) btn.textContent = "▶ Auto";
+    }
+
+    function actualizarInfo() {
+      var info = document.getElementById("pila-info");
+      if (!info) return;
+      if (estado.terminado) {
+        info.textContent = "Pila vacía. promedio_cuadrados(" + estado.a + ", " + estado.b + ") devolvió " + estado.resultadoFinal + ".";
+      } else if (estado.ultimo) {
+        var ev = estado.ultimo;
+        if (ev.tipo === "push") info.textContent = "push: " + ev.fn + "(" + paramsTexto(ev.params) + ") entra a la pila.";
+        else info.textContent = "pop: " + ev.fn + " retorna " + ev.retorno + " y sale de la pila.";
+      } else {
+        info.textContent = "Pila vacía. Presioná Paso para iniciar promedio_cuadrados(" + estado.a + ", " + estado.b + ").";
+      }
+    }
+
+    function construir() {
+      detenerAuto();
+      var campoA = document.getElementById("pila-a");
+      var campoB = document.getElementById("pila-b");
+      var a = campoA ? parseFloat(campoA.value) : 3;
+      var b = campoB ? parseFloat(campoB.value) : 4;
+      if (isNaN(a)) a = 0;
+      if (isNaN(b)) b = 0;
+      estado.a = a;
+      estado.b = b;
+      estado.gen = llamarPromedioCuadrados(a, b);
+      estado.pila = [];
+      estado.ultimo = null;
+      estado.resultadoFinal = null;
+      estado.terminado = false;
+      actualizarInfo();
+      sim.redibujar();
+    }
+
+    function paso() {
+      if (!estado.gen) construir();
+      if (estado.terminado) return;
+      var r = estado.gen.next();
+      if (r.done) {
+        estado.terminado = true;
+        estado.resultadoFinal = r.value;
+        detenerAuto();
+      } else {
+        var ev = r.value;
+        if (ev.tipo === "push") estado.pila.push({ fn: ev.fn, params: ev.params });
+        else if (ev.tipo === "pop") estado.pila.pop();
+        estado.ultimo = ev;
+      }
+      actualizarInfo();
+      sim.redibujar();
+    }
+
+    function auto() {
+      if (estado.temporizador) { detenerAuto(); return; }
+      var btn = sim.cont.querySelector('[data-accion="auto"]');
+      if (btn) btn.textContent = "⏸ Pausa";
+      estado.temporizador = setInterval(function () {
+        if (estado.terminado) { detenerAuto(); return; }
+        paso();
+      }, 700);
+    }
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var borde = colorVar("--borde");
+      var tinta = colorVar("--tinta");
+      var colores = [colorVar("--acento"), colorVar("--s2"), colorVar("--s3")];
+      var margenX = 20;
+      var altoFrame = 38, gap = 8;
+      var base = h - 16;
+      var pila = estado.pila;
+      if (pila.length === 0) {
+        ctx.fillStyle = tinta;
+        ctx.font = "13px Consolas, monospace";
+        ctx.textAlign = "center";
+        ctx.fillText("pila vacía", w / 2, h / 2);
+        ctx.textAlign = "left";
+        return;
+      }
+      for (var i = 0; i < pila.length; i++) {
+        var frame = pila[i];
+        var y = base - (i + 1) * (altoFrame + gap);
+        ctx.fillStyle = colores[i % colores.length];
+        ctx.fillRect(margenX, y, w - margenX * 2, altoFrame);
+        ctx.strokeStyle = borde;
+        ctx.strokeRect(margenX, y, w - margenX * 2, altoFrame);
+        ctx.fillStyle = "#fff";
+        ctx.font = "13px Consolas, monospace";
+        ctx.textAlign = "left";
+        ctx.fillText(frame.fn + "(" + paramsTexto(frame.params) + ")", margenX + 12, y + altoFrame / 2 + 5);
+        if (i === pila.length - 1) {
+          ctx.textAlign = "right";
+          ctx.fillText("← tope", w - margenX - 10, y + altoFrame / 2 + 5);
+        }
+      }
+      ctx.textAlign = "left";
+    });
+
+    sim.botones({ paso: paso, auto: auto, construir: construir });
+    construir();
+  });
+
+})();
+</script>
+
+<script>
+  // entradas escalonadas (GSAP + ScrollTrigger vía Anim.revelar) — no rompe nada si GSAP no cargó
+  Anim.revelar(".curso-hero-v3 > *", { scroll: false, stagger: .08, distancia: 14, duracion: .8 });
+  document.querySelectorAll(".unidad").forEach(function (u) {
+    Anim.revelar(u.querySelectorAll(":scope > .unidad-cabecera, :scope > .materia, :scope > .animacion, :scope > .ejemplos-unidad, :scope > .ejercicios-unidad"), { disparador: u, stagger: .08, distancia: 16 });
+  });
+</script>
+</body>
+</html>

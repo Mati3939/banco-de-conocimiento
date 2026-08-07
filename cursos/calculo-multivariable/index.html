@@ -1,0 +1,1825 @@
+<!DOCTYPE html>
+<html lang="es" data-tema="oscuro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>∇ Cálculo Multivariable — Biblioteca</title>
+<link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../../assets/vendor/fuentes/fuentes.css">
+<link rel="stylesheet" href="../../assets/css/observatorio.css">
+<script>window.RUTA_BASE = "../../";</script>
+<script src="../../assets/vendor/katex/katex.min.js"></script>
+<script src="../../assets/vendor/katex/auto-render.min.js"></script>
+<script src="../../assets/vendor/gsap/gsap.min.js"></script>
+<script src="../../assets/vendor/gsap/ScrollTrigger.min.js"></script>
+<script src="../../assets/js/observatorio.js"></script>
+<script src="indice-curso.js"></script>
+</head>
+<body>
+<div class="progreso-lectura"></div>
+<div class="pagina-curso">
+
+  <aside class="lateral">
+    <a class="volver" href="../../index.html">← Constelación</a>
+    <div class="curso-cabecera"><span class="emoji">∇</span><h1>Cálculo Multivariable</h1></div>
+    <span class="semestre-tag" style="color:var(--futuro)">Ramo futuro</span>
+    <nav>
+      <div class="grupo">Unidades</div>
+      <a href="#u1">01 · Vectores en el espacio</a>
+      <a class="sub" href="#anim-cuadricas">🪐 Superficies cuádricas</a>
+      <a href="#u2">02 · Curvas en el espacio</a>
+      <a class="sub" href="#anim-frenet">🌀 Triedro de Frenet</a>
+      <a href="#u3">03 · Límites y continuidad</a>
+      <a href="#u4">04 · Derivadas parciales y diferenciales</a>
+      <a href="#u5">05 · Gradiente y plano tangente</a>
+      <a class="sub" href="#anim-gradiente">🧭 Curvas de nivel y gradiente</a>
+      <a class="sub" href="#anim-plano-tangente">🪁 Plano tangente móvil</a>
+      <a href="#u6">06 · Optimización y Lagrange</a>
+      <a href="#u7">07 · Integrales dobles</a>
+      <a class="sub" href="#anim-riemann">🧮 Sumas de Riemann en polares</a>
+      <a href="#u8">08 · Integrales triples y aplicaciones</a>
+      <a href="#u9">09 · Campos, línea y Green</a>
+      <a class="sub" href="#anim-campo-lineal">🌊 Campo vectorial y trabajo</a>
+      <a class="sub" href="#anim-green">🟩 Teorema de Green</a>
+      <a href="#u10">10 · Rotacional, Stokes y Gauss</a>
+    </nav>
+    <div class="atajos"><kbd>Ctrl K</kbd> buscar en toda la biblioteca</div>
+  </aside>
+
+  <main class="principal">
+    <div class="banner-futuro-curso">⚠️ Material de la generación anterior (2024-2025) — el programa puede cambiar cuando curses este ramo.</div>
+
+    <div class="principal-cabecera">
+      <span class="relleno"></span>
+      <button class="btn-buscar" type="button">🔍 Buscar <kbd>Ctrl K</kbd></button>
+      <button class="btn-tema" type="button">☀️</button>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CABECERA DEL CURSO -->
+    <!-- ============================================================ -->
+    <header class="curso-hero-v3" id="cheat" style="--ac: var(--futuro)">
+      <span class="emoji-grande">∇</span>
+      <h1>Cálculo Multivariable — Resumen del curso</h1>
+      <span class="semestre-tag" style="color:var(--futuro)">Ramo futuro</span>
+      <p class="curso-intro">
+        Ramo futuro (2024-2025, material reconstruido a partir de la pauta de un Control 1, una guía de
+        ejercicios resueltos manuscritos ("Estudio Cálculo Multivariable", 208 páginas) y un formulario de
+        apoyo de un compañero — <strong>no cursado por Matías</strong>). Estas 10 unidades auditan ese material
+        contra el temario genérico de Stewart <em>"Cálculo de Varias Variables: Trascendentes Tempranas"</em>
+        (misma familia que los libros de calculo-integral/calculo-diferencial) y completan 5 huecos reales que
+        el material del compañero no cubría: vectores y geometría del espacio (Unidad 1), límites y continuidad
+        (Unidad 3), multiplicadores de Lagrange (Unidad 6), integrales dobles sobre regiones generales antes de
+        pasar a polares (Unidad 7) y el bloque completo de cálculo vectorial — campos, integrales de línea,
+        Green, rotacional, divergencia, Stokes y Gauss (Unidades 9-10) — que es el cierre habitual de todo curso
+        de Cálculo III y no tenía ni una mención. El resto (curvas en el espacio, derivadas parciales, gradiente
+        y plano tangente, puntos críticos, integrales triples) es el contenido original del compañero.
+      </p>
+      <ul class="mini-indice">
+        <li><a href="#u1">01 · Vectores en el espacio</a></li>
+        <li><a href="#u2">02 · Curvas en el espacio</a></li>
+        <li><a href="#u3">03 · Límites y continuidad</a></li>
+        <li><a href="#u4">04 · Derivadas y diferenciales</a></li>
+        <li><a href="#u5">05 · Gradiente y plano tangente</a></li>
+        <li><a href="#u6">06 · Optimización y Lagrange</a></li>
+        <li><a href="#u7">07 · Integrales dobles</a></li>
+        <li><a href="#u8">08 · Integrales triples y aplicaciones</a></li>
+        <li><a href="#u9">09 · Campos, línea y Green</a></li>
+        <li><a href="#u10">10 · Rotacional, Stokes y Gauss</a></li>
+      </ul>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 1 · VECTORES EN EL ESPACIO (agregada en auditoría Fase 5) -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u1">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">01</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Vectores en el espacio</h2>
+          <p class="unidad-sub">El fundamento geométrico de todo el curso: producto punto y cruz, rectas y planos en $\mathbb{R}^3$, y las superficies cuádricas que aparecen una y otra vez como dominios de integración.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-producto-punto-cruz">
+        <h3>Producto punto y producto cruz</h3>
+        <p>El <strong>producto punto</strong> (o escalar) combina dos vectores en un número; mide qué tan
+        alineados están:</p>
+        <div class="formula-card"><span class="etiqueta">Producto punto</span>$$\mathbf{a}\cdot\mathbf{b} = a_1b_1+a_2b_2+a_3b_3 = \lVert\mathbf{a}\rVert\,\lVert\mathbf{b}\rVert\cos\theta$$</div>
+        <p>De ahí salen el ángulo entre vectores, la condición de ortogonalidad ($\mathbf{a}\cdot\mathbf{b}=0$)
+        y la proyección de un vector sobre otro:</p>
+        <div class="formula-card"><span class="etiqueta">Proyección escalar y vectorial</span>$$\mathrm{comp}_{\mathbf b}\mathbf{a} = \frac{\mathbf a\cdot\mathbf b}{\lVert\mathbf b\rVert}, \qquad \mathrm{proy}_{\mathbf b}\mathbf{a} = \frac{\mathbf a\cdot\mathbf b}{\lVert\mathbf b\rVert^2}\,\mathbf b$$</div>
+        <p>El <strong>producto cruz</strong> combina dos vectores de $\mathbb{R}^3$ en un tercer vector,
+        perpendicular a ambos:</p>
+        <div class="formula-card">
+          <span class="etiqueta">Producto cruz (determinante)</span>
+          $$\mathbf{a}\times\mathbf{b} = \begin{vmatrix}\mathbf i & \mathbf j & \mathbf k \\ a_1&a_2&a_3\\ b_1&b_2&b_3\end{vmatrix} = \langle a_2b_3-a_3b_2,\; a_3b_1-a_1b_3,\; a_1b_2-a_2b_1\rangle$$
+        </div>
+        <p>Su magnitud $\lVert\mathbf a\times\mathbf b\rVert=\lVert\mathbf a\rVert\lVert\mathbf b\rVert\sin\theta$
+        es el <strong>área del paralelogramo</strong> que forman $\mathbf a$ y $\mathbf b$; la dirección se
+        obtiene con la regla de la mano derecha. El <strong>triple producto escalar</strong>
+        $\mathbf a\cdot(\mathbf b\times\mathbf c)$ da el volumen (con signo) del paralelepípedo que forman los
+        tres vectores.</p>
+        <ul>
+          <li>$\mathbf{a}\times\mathbf{b}=\mathbf 0$ si y solo si $\mathbf a$ y $\mathbf b$ son paralelos (incluido el caso de que alguno sea $\mathbf 0$).</li>
+          <li>$\mathbf a\times\mathbf b = -(\mathbf b\times\mathbf a)$: el producto cruz <strong>no</strong> es conmutativo, a diferencia del punto.</li>
+          <li>El producto punto da un <strong>escalar</strong>; el cruz da un <strong>vector</strong> — no tiene sentido "sumar" uno con el otro.</li>
+        </ul>
+      </div>
+
+      <div class="materia" id="tema-rectas-planos-espacio">
+        <h3>Rectas y planos en el espacio</h3>
+        <p>Una <strong>recta</strong> en $\mathbb{R}^3$ queda determinada por un punto y un vector director
+        $\mathbf v=\langle a,b,c\rangle$:</p>
+        <div class="formula-card">
+          <span class="etiqueta">Recta — forma vectorial y paramétrica</span>
+          $$\mathbf r(t) = \mathbf r_0 + t\,\mathbf v \qquad\Longleftrightarrow\qquad x=x_0+at,\; y=y_0+bt,\; z=z_0+ct$$
+        </div>
+        <p>Un <strong>plano</strong> queda determinado por un punto $P_0=(x_0,y_0,z_0)$ y un vector normal
+        $\mathbf n=\langle a,b,c\rangle$ (perpendicular a todo el plano):</p>
+        <div class="formula-card"><span class="etiqueta">Plano — punto y normal</span>$$a(x-x_0)+b(y-y_0)+c(z-z_0)=0 \quad\Longleftrightarrow\quad ax+by+cz=d$$</div>
+        <p>Para encontrar el plano que pasa por 3 puntos no colineales, el normal se obtiene con el producto
+        cruz de dos vectores del plano (ver Ejemplo). La <strong>distancia de un punto a un plano</strong>:</p>
+        <div class="formula-card"><span class="etiqueta">Distancia punto-plano</span>$$D = \frac{|a\,x_1+b\,y_1+c\,z_1-d|}{\sqrt{a^2+b^2+c^2}}$$</div>
+        <p>Dos planos son paralelos si sus normales son paralelas; el ángulo entre dos planos es el ángulo
+        entre sus normales (usando producto punto). Dos rectas se cruzan (no son paralelas ni se intersectan)
+        cuando sus vectores directores no son paralelos y no existe $t,s$ que igualen ambas parametrizaciones.</p>
+      </div>
+
+      <div class="materia" id="tema-cuadricas">
+        <h3>Superficies cuádricas</h3>
+        <p>Las <strong>superficies cuádricas</strong> son el análogo 3D de las cónicas: superficies definidas
+        por una ecuación de segundo grado en $x,y,z$. Seis formas canónicas cubren casi todo lo que aparece
+        como dominio de integración en el curso:</p>
+        <div class="formula-card"><span class="etiqueta">Elipsoide</span>$$\frac{x^2}{a^2}+\frac{y^2}{b^2}+\frac{z^2}{c^2}=1$$</div>
+        <div class="formula-card"><span class="etiqueta">Hiperboloide de una hoja</span>$$\frac{x^2}{a^2}+\frac{y^2}{b^2}-\frac{z^2}{c^2}=1$$</div>
+        <div class="formula-card"><span class="etiqueta">Hiperboloide de dos hojas</span>$$-\frac{x^2}{a^2}-\frac{y^2}{b^2}+\frac{z^2}{c^2}=1$$</div>
+        <div class="formula-card"><span class="etiqueta">Paraboloide elíptico</span>$$z=\frac{x^2}{a^2}+\frac{y^2}{b^2}$$</div>
+        <div class="formula-card"><span class="etiqueta">Paraboloide hiperbólico (silla de montar)</span>$$z=\frac{x^2}{a^2}-\frac{y^2}{b^2}$$</div>
+        <div class="formula-card"><span class="etiqueta">Cono elíptico</span>$$z^2=\frac{x^2}{a^2}+\frac{y^2}{b^2}$$</div>
+        <p>El <strong>método de las trazas</strong> es la forma práctica de reconocer/dibujar una cuádrica: se
+        corta con planos $x=k$, $y=k$ o $z=k$ y se identifica qué cónica queda en cada corte (elipse, hipérbola,
+        parábola, o un punto/nada). Cambiar el signo de un solo término en la ecuación general suele bastar para
+        pasar de un elipsoide a un hiperboloide, o de una hoja a dos — vale la pena contar signos con cuidado
+        antes de clasificar.</p>
+      </div>
+
+      <div class="animacion" id="anim-cuadricas">
+        <div class="anim-cabecera">
+          <h3>🪐 Superficies cuádricas rotables en 3D</h3>
+          <p class="anim-desc">Las 6 cuádricas canónicas como malla en proyección isométrica, con rotación automática o manual para inspeccionarlas desde distintos ángulos.</p>
+        </div>
+        <canvas data-alto="420"></canvas>
+        <div class="controles">
+          <div class="control"><label for="sl-cuadrica-tipo">superficie</label><input type="range" id="sl-cuadrica-tipo" min="1" max="6" step="1" value="1"><span class="valor"></span></div>
+          <div class="control"><label for="sl-cuadrica-angulo">rotación manual</label><input type="range" id="sl-cuadrica-angulo" min="0" max="360" step="5" value="35"><span class="valor"></span></div>
+          <button type="button" data-accion="jugar">▶ Rotar automático</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> el slider "superficie" recorre las 6 cuádricas canónicas (elipsoide, hiperboloide de 1 hoja, hiperboloide de 2 hojas — se muestra una sola hoja —, paraboloide elíptico, paraboloide hiperbólico/silla de montar y cono elíptico); su ecuación se lee arriba del canvas. "Rotar automático" gira la superficie sobre su eje vertical para apreciar su forma 3D completa; "rotación manual" da control directo del ángulo cuando no está reproduciendo. Fijate cómo el hiperboloide de una hoja es una superficie conexa (se puede ir de un lado a otro sin salir de ella) mientras que el de dos hojas está partido en dos piezas separadas — esa es la diferencia geométrica clave entre ambos.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+
+        <div class="ejemplo" id="ej-plano-tres-puntos">
+          <h3>1. Plano que pasa por tres puntos</h3>
+          <p>Hallar la ecuación del plano que pasa por $A(1,0,1)$, $B(2,1,0)$ y $C(0,1,2)$.</p>
+          <p><strong>Solución</strong> — dos vectores del plano: $\overrightarrow{AB}=\langle1,1,-1\rangle$,
+          $\overrightarrow{AC}=\langle-1,1,1\rangle$. El normal es su producto cruz:</p>
+          <p>$$\mathbf n = \overrightarrow{AB}\times\overrightarrow{AC} = \langle(1)(1)-(-1)(1),\; (-1)(-1)-(1)(1),\; (1)(1)-(1)(-1)\rangle = \langle2,\,0,\,2\rangle$$</p>
+          <p>Simplificando $\mathbf n=\langle1,0,1\rangle$ y usando el punto $A(1,0,1)$:</p>
+          <p>$$1(x-1)+0(y-0)+1(z-1)=0 \;\Longrightarrow\; x+z=2$$</p>
+          <p style="color:var(--tinta-2)">Verificación: $B(2,1,0)\Rightarrow2+0=2$ ✓; $C(0,1,2)\Rightarrow0+2=2$ ✓. Los tres puntos satisfacen la ecuación, como debe ser.</p>
+          <p class="fuente">Fuente: contenido agregado en auditoría (Stewart, cap. Vectores y geometría del espacio) — no estaba en el material original.</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+
+        <details class="ejercicio" id="ejer-producto-cruz-ortogonal">
+          <summary><span class="resumen-ejercicio">1. Para $\mathbf a=\langle1,2,3\rangle$ y $\mathbf b=\langle4,5,6\rangle$, calcular $\mathbf a\times\mathbf b$ y verificar que es perpendicular a ambos.</span> <span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <p>$$\mathbf a\times\mathbf b = \langle(2)(6)-(3)(5),\; (3)(4)-(1)(6),\; (1)(5)-(2)(4)\rangle = \langle-3,\,6,\,-3\rangle$$</p>
+            <p>Verificación: $\mathbf a\cdot(\mathbf a\times\mathbf b)=(1)(-3)+(2)(6)+(3)(-3)=-3+12-9=0$ ✓</p>
+            <p>$\mathbf b\cdot(\mathbf a\times\mathbf b)=(4)(-3)+(5)(6)+(6)(-3)=-12+30-18=0$ ✓</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-clasificar-cuadrica">
+          <summary><span class="resumen-ejercicio">2. Clasificar la cuádrica $x^2+y^2-z^2=1$ y describir sus trazas en los planos $z=k$, $x=0$ y $y=0$.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>Es un <strong>hiperboloide de una hoja</strong> (eje $z$): un solo término negativo, superficie conexa.</p>
+            <p>Traza en $z=k$: $x^2+y^2=1+k^2$ — circunferencia de radio $\sqrt{1+k^2}$, que crece con $|k|$.</p>
+            <p>Traza en $x=0$: $y^2-z^2=1$ — hipérbola. Traza en $y=0$: $x^2-z^2=1$ — hipérbola.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 2 · CURVAS EN EL ESPACIO -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u2">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">02</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Curvas en el espacio</h2>
+          <p class="unidad-sub">Una función vectorial $\mathbf{r}(t)$ traza una trayectoria en 3D: de ahí salen tangente, longitud de arco y el triedro que describe cómo se dobla la curva.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-curvas-vectoriales">
+        <h3>Funciones vectoriales y curvas en el espacio</h3>
+        <p>Una función vectorial reúne tres funciones escalares en un solo vector que depende de un parámetro
+        $t$ (típicamente el tiempo):</p>
+        <div class="formula-card"><span class="etiqueta">Curva paramétrica en 3D</span>$$\mathbf{r}(t) = \langle f(t),\, g(t),\, h(t)\rangle, \qquad t\in\mathbb{R}$$</div>
+        <p>Derivando componente a componente se obtienen los vectores velocidad y aceleración si $\mathbf{r}(t)$
+        representa una posición:</p>
+        <div class="formula-card"><span class="etiqueta">Derivada = vector tangente</span>$$\mathbf{r}'(t) = \langle f'(t), g'(t), h'(t)\rangle$$</div>
+        <div class="formula-card"><span class="etiqueta">Recta tangente en $t_0$</span>$$\mathbf{R}_T(t) = \mathbf{r}(t_0) + t\,\mathbf{r}'(t_0)$$</div>
+        <p>Con la segunda derivada $\mathbf{r}''(t)$ (aceleración) se puede separar en una componente que
+        cambia la <em>rapidez</em> y otra que cambia la <em>dirección</em>:</p>
+        <div class="formula-card"><span class="etiqueta">Componentes de la aceleración</span>$$a_T = \frac{\mathbf{r}'\cdot \mathbf{r}''}{\lVert\mathbf{r}'\rVert} \quad\text{(tangencial)}, \qquad a_N = \frac{\lVert \mathbf{r}'\times \mathbf{r}''\rVert}{\lVert\mathbf{r}'\rVert} \quad\text{(normal)}$$</div>
+        <ul>
+          <li>$\mathbf{r}'(t_0)$ es un <strong>vector director</strong>, no un punto: la recta tangente lo usa sumado al punto $\mathbf{r}(t_0)$.</li>
+          <li>Que $\mathbf{r}'(t)=\mathbf{0}$ en un instante no implica que la curva "se detenga" geométricamente si se reparametriza — hay que distinguir la curva de su parametrización.</li>
+        </ul>
+      </div>
+
+      <div class="materia" id="tema-longitud-arco">
+        <h3>Longitud de arco y vector tangente unitario</h3>
+        <p>La longitud de una curva entre $t=a$ y $t=b$ se obtiene integrando la <strong>rapidez</strong>
+        $\lVert\mathbf{r}'(t)\rVert$ (no la posición) a lo largo del recorrido:</p>
+        <div class="formula-card"><span class="etiqueta">Longitud de arco</span>$$L = \int_a^b \lVert\mathbf{r}'(t)\rVert\, dt = \int_a^b \sqrt{\big(x'(t)\big)^2+\big(y'(t)\big)^2+\big(z'(t)\big)^2}\; dt$$</div>
+        <div class="formula-card"><span class="etiqueta">Vector tangente unitario</span>$$T(t) = \frac{\mathbf{r}'(t)}{\lVert \mathbf{r}'(t)\rVert}$$</div>
+        <p>$T(t)$ conserva solo la <strong>dirección</strong> del movimiento, sin la rapidez — es la pieza base
+        para construir el triedro de Frenet. Antes de integrar conviene simplificar $\lVert\mathbf{r}'(t)\rVert^2$
+        a un cuadrado perfecto cuando sea posible: evita cargar con una raíz difícil de integrar.</p>
+      </div>
+
+      <div class="materia" id="tema-frenet">
+        <h3>Triedro de Frenet y curvatura</h3>
+        <p>El triedro de Frenet $\{T,N,B\}$ es una base ortonormal que "viaja" con la curva: describe cuánto se
+        dobla (curvatura $\kappa$) y cuánto se retuerce fuera de su plano (torsión $\tau$).</p>
+        <div class="formula-card">
+          <span class="etiqueta">Triedro T, N, B</span>
+          $$T = \frac{\mathbf{r}'}{\lVert\mathbf{r}'\rVert}, \qquad N = \frac{T'}{\lVert T'\rVert}, \qquad B = T\times N$$
+        </div>
+        <div class="formula-card">
+          <span class="etiqueta">Curvatura y torsión</span>
+          $$\kappa = \frac{\lVert \mathbf{r}'\times \mathbf{r}''\rVert}{\lVert \mathbf{r}'\rVert^3}, \qquad \tau = \frac{(\mathbf{r}'\times \mathbf{r}'')\cdot \mathbf{r}'''}{\lVert \mathbf{r}'\times \mathbf{r}''\rVert^2}$$
+        </div>
+        <p><strong>Planos asociados</strong> en un punto de la curva (cada uno definido por su vector normal):</p>
+        <ul>
+          <li>Plano normal: normal $=T$.</li>
+          <li>Plano osculador: normal $=B$.</li>
+          <li>Plano rectificante: normal $=N$.</li>
+        </ul>
+        <p>$\kappa$ mide qué tan "cerrada" es la curva: una recta tiene $\kappa=0$; una circunferencia de radio
+        $r$ tiene $\kappa=1/r$ constante. $N$ se obtiene derivando $T$ (no $\mathbf{r}$ directamente) y
+        normalizando — derivar $\mathbf{r}''$ y normalizar eso pensando que da $N$ es un error común.</p>
+      </div>
+
+      <div class="animacion" id="anim-frenet">
+        <div class="anim-cabecera">
+          <h3>🌀 Triedro de Frenet en una hélice</h3>
+          <p class="anim-desc">Una partícula recorre una hélice $\mathbf{r}(t)=\langle R\cos t, R\sin t, ct\rangle$; en cada instante se dibujan $T$ (tangente), $N$ (normal) y $B$ (binormal).</p>
+        </div>
+        <canvas data-alto="420"></canvas>
+        <div class="controles">
+          <div class="control"><label for="sl-frenet-radio">radio R</label><input type="range" id="sl-frenet-radio" min="0.8" max="2.2" step="0.1" value="1.4"><span class="valor"></span></div>
+          <div class="control"><label for="sl-frenet-paso">paso c</label><input type="range" id="sl-frenet-paso" min="0.1" max="0.6" step="0.05" value="0.3"><span class="valor"></span></div>
+          <button type="button" data-accion="jugar">▶ Reproducir</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> la curva tenue es la hélice completa; el punto de acento es la partícula. $T$ (acento) siempre apunta en la dirección del movimiento; $N$ (verde) apunta horizontalmente hacia el eje de la hélice (hacia el centro de curvatura); $B$ (violeta) es perpendicular a ambos y apunta en la dirección "de subida" del eje. Para una hélice $\kappa=R/(R^2+c^2)$ es <strong>constante</strong>: subí $c$ (el paso) y notá cómo $\kappa$ baja, aunque el radio no cambie.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+
+        <div class="ejemplo" id="ej-tenis">
+          <h3>2. Trayectoria de una pelota de tenis</h3>
+          <p>Un saque tiene aceleración $\mathbf{r}''(t) = \langle 0, \sin t, -10\rangle$ (viento horizontal en
+          $y$ + gravedad en $z$) y velocidad inicial $\mathbf{r}'(0)=\langle 70,0,4\rangle$. Asumiendo una altura
+          de saque $\mathbf{r}(0)=\langle0,0,3\rangle$ (dato no especificado en la nota original, asumido para
+          completar el cálculo), hallar el punto e instante de impacto con el suelo ($z=0$).</p>
+          <p><strong>Solución</strong> — integrar dos veces, componente a componente:</p>
+          <p>$$\mathbf{r}'(t) = \mathbf{r}'(0) + \int_0^t \mathbf{r}''(s)\,ds = \langle 70,\; 1-\cos t,\; 4-10t\rangle$$</p>
+          <p>$$\mathbf{r}(t) = \mathbf{r}(0) + \int_0^t \mathbf{r}'(s)\,ds = \langle 70t,\; t-\sin t,\; 3+4t-5t^2\rangle$$</p>
+          <p>Impacto cuando $z(t)=0$: $\;3+4t-5t^2=0 \Rightarrow 5t^2-4t-3=0 \Rightarrow t=\dfrac{4+\sqrt{16+60}}{10}\approx1{,}27\text{ s}$ (se descarta la raíz negativa).</p>
+          <p>$x(1{,}27)=70(1{,}27)\approx89{,}0\text{ m}$; &nbsp; $y(1{,}27)=1{,}27-\sin(1{,}27)\approx1{,}27-0{,}96\approx0{,}32\text{ m}$</p>
+          <p style="color:var(--tinta-2)">Punto de impacto $\approx(89{,}0,\ 0{,}32,\ 0)$. Método clave: integrar $\mathbf{r}''(t)$ dos veces respetando las condiciones iniciales de cada componente por separado — cada eje es, en el fondo, un problema de una variable.</p>
+          <p class="fuente">Fuente: nota "Funciones vectoriales y curvas en el espacio".</p>
+        </div>
+
+        <div class="ejemplo" id="ej-longitud-jet">
+          <h3>3. Longitud de arco de la trayectoria de un jet</h3>
+          <p>Para $\mathbf{r}(t) = \langle t,\; \sqrt2\,t^3/3,\; t^5/5\rangle$ (trayectoria de un jet de combate),
+          hallar la longitud de arco entre $t=-1$ y $t=1$.</p>
+          <p><strong>Solución:</strong></p>
+          <p>$$\mathbf{r}'(t) = \langle 1,\; \sqrt2\,t^2,\; t^4\rangle \;\Rightarrow\; \lVert\mathbf{r}'(t)\rVert^2 = 1+2t^4+t^8 = (t^4+1)^2$$</p>
+          <p>El cuadrado bajo la raíz simplifica a un cuadrado perfecto, así que $\lVert\mathbf{r}'(t)\rVert=t^4+1$ (siempre positivo):</p>
+          <p>$$L=\int_{-1}^{1}(t^4+1)\,dt = \left[\frac{t^5}{5}+t\right]_{-1}^{1} = \frac25+2 = \frac{12}{5}=2{,}4$$</p>
+          <p style="color:var(--tinta-2)">Detectar que $1+2t^4+t^8$ es $(t^4+1)^2$ (y no una raíz genuinamente difícil) es lo que hace tratable este ejercicio — vale la pena buscar siempre esa simplificación antes de integrar.</p>
+          <p class="fuente">Fuente: nota "Longitud de arco y vector tangente unitario".</p>
+        </div>
+
+        <div class="ejemplo" id="ej-frenet-espiral">
+          <h3>4. Triedro de Frenet de una espiral logarítmica</h3>
+          <p>Para $\mathbf{r}(t) = \langle e^t\cos t,\; e^t\sin t,\; 2\rangle$, hallar $T$, $N$, la recta
+          tangente y el plano rectificante en $t=\pi/2$.</p>
+          <p><strong>Solución</strong> — como $z(t)=2$ es constante, toda la curva vive en el plano $z=2$: es
+          una espiral logarítmica plana.</p>
+          <p>$$\mathbf{r}'(t) = e^t\langle \cos t-\sin t,\; \sin t+\cos t,\; 0\rangle \;\Rightarrow\; \lVert\mathbf{r}'(t)\rVert = e^t\sqrt2$$</p>
+          <p>El factor $e^t$ se cancela al normalizar, así que $T(t)$ no depende de $e^t$:</p>
+          <p>$$T(t) = \frac{1}{\sqrt2}\langle \cos t-\sin t,\; \sin t+\cos t,\; 0\rangle \;\Rightarrow\; T\!\left(\tfrac{\pi}{2}\right) = \frac{1}{\sqrt2}\langle -1,\,1,\,0\rangle$$</p>
+          <p>Derivando $T(t)$ respecto a $t$ y evaluando en $\pi/2$ (ya tiene norma 1, no hace falta reescalar):</p>
+          <p>$$T'\!\left(\tfrac{\pi}{2}\right) = \frac{1}{\sqrt2}\langle -1,-1,0\rangle \;\Rightarrow\; N\!\left(\tfrac{\pi}{2}\right) = \frac{1}{\sqrt2}\langle -1,-1,0\rangle$$</p>
+          <p>Con $\mathbf{r}(\pi/2)=e^{\pi/2}\langle0,1,2\rangle\approx(0,\ 4{,}81,\ 2)$ y dirección tangente simplificada $\langle-1,1,0\rangle$:</p>
+          <p>$$\mathbf{R}_T(s) = (0,\ 4{,}81,\ 2) + s\langle-1,1,0\rangle$$</p>
+          <p>El plano rectificante tiene normal $N=\langle-1,-1,0\rangle$ (dirección $\langle1,1,0\rangle$) y pasa por $\mathbf{r}(\pi/2)$:</p>
+          <p>$$x+y = e^{\pi/2}\approx4{,}81$$</p>
+          <p style="color:var(--tinta-2)">Como $B=T\times N=(0,0,1)$ es constante, el plano osculador de toda la curva es siempre $z=2$: coherente con que la curva es plana. La curvatura resulta $\kappa=e^{-\pi/2}/\sqrt2\approx0{,}147$.</p>
+          <p class="fuente">Fuente: nota "Triedro de Frenet y curvatura".</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+
+        <details class="ejercicio" id="ejer-tangente-curva">
+          <summary><span class="resumen-ejercicio">3. Para $\mathbf{r}(t)=\langle t^2,\; 2t,\; \ln t\rangle$, hallar el vector tangente $\mathbf{r}'(t)$ y la recta tangente en $t=1$.</span> <span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <p>$\mathbf{r}'(t)=\langle 2t,\; 2,\; 1/t\rangle \;\Rightarrow\; \mathbf{r}'(1)=\langle2,2,1\rangle$</p>
+            <p>$\mathbf{r}(1)=\langle1,2,0\rangle$</p>
+            <p>$\mathbf{R}_T(t)=\langle1,2,0\rangle+t\langle2,2,1\rangle$</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-longitud-helice">
+          <summary><span class="resumen-ejercicio">4. Hallar la longitud de la hélice $\mathbf{r}(t)=\langle\cos t,\sin t,t\rangle$ entre $t=0$ y $t=2\pi$.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>$\mathbf{r}'(t)=\langle-\sin t,\cos t,1\rangle \;\Rightarrow\; \lVert\mathbf{r}'(t)\rVert=\sqrt{\sin^2t+\cos^2t+1}=\sqrt2$ (constante)</p>
+            <p>$$L=\int_0^{2\pi}\sqrt2\,dt = 2\sqrt2\,\pi \approx 8{,}886$$</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-curvatura-helice">
+          <summary><span class="resumen-ejercicio">5. Mostrar que la curvatura de $\mathbf{r}(t)=\langle\cos t,\sin t,t\rangle$ es constante e igual a $1/2$.</span> <span class="dificultad dificil">difícil</span></summary>
+          <div class="solucion">
+            <p>$\mathbf{r}'(t)=\langle-\sin t,\cos t,1\rangle$, &nbsp; $\mathbf{r}''(t)=\langle-\cos t,-\sin t,0\rangle$</p>
+            <p>Componente a componente ($\mathbf{r}'\times\mathbf{r}''$):</p>
+            <p>$$x:\; \cos t\cdot0-1\cdot(-\sin t) = \sin t \qquad\quad y:\; 1\cdot(-\cos t)-(-\sin t)\cdot0 = -\cos t$$</p>
+            <p>$$z:\; (-\sin t)(-\sin t)-\cos t(-\cos t) = \sin^2t+\cos^2t = 1$$</p>
+            <p>$$\mathbf{r}'\times\mathbf{r}'' = \langle\sin t,\,-\cos t,\,1\rangle$$</p>
+            <p>$\lVert\mathbf{r}'\times\mathbf{r}''\rVert=\sqrt{\sin^2t+\cos^2t+1}=\sqrt2$; &nbsp; $\lVert\mathbf{r}'\rVert^3=(\sqrt2)^3=2\sqrt2$</p>
+            <p>$$\kappa = \frac{\sqrt2}{2\sqrt2} = \frac12$$</p>
+            <p style="color:var(--tinta-2)">Es el caso particular de la fórmula general de curvatura de una hélice $\kappa=R/(R^2+c^2)$ con $R=1$, $c=1$: $1/(1+1)=1/2$ ✓, la misma que usa la animación de esta unidad.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 3 · LÍMITES Y CONTINUIDAD (agregada en auditoría Fase 5) -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u3">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">03</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Límites y continuidad de funciones de varias variables</h2>
+          <p class="unidad-sub">Antes de derivar hace falta que el límite exista: a diferencia de una variable, acá hay infinitas trayectorias de acercamiento, no solo "por la izquierda" y "por la derecha".</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-limites-multivariables">
+        <h3>Límites de funciones de varias variables</h3>
+        <p>$\displaystyle\lim_{(x,y)\to(a,b)} f(x,y) = L$ significa que $f(x,y)$ se acerca a $L$ sin importar
+        <strong>por qué trayectoria</strong> $(x,y)$ se acerque a $(a,b)$ — no solo por dos lados, como en una
+        variable, sino por infinitos caminos posibles (rectas, parábolas, espirales...).</p>
+        <div class="formula-card"><span class="etiqueta">Prueba de las dos trayectorias (para descartar)</span>$$\text{si } \lim_{\text{por } C_1} f \neq \lim_{\text{por } C_2} f \;\Longrightarrow\; \lim_{(x,y)\to(a,b)} f(x,y) \text{ no existe}$$</div>
+        <p>Encontrar dos trayectorias con límites distintos <strong>prueba</strong> que el límite no existe; pero
+        que todas las rectas $y=mx$ den el mismo valor <strong>no prueba</strong> que el límite exista (hay
+        trayectorias curvas, como $y=x^2$, que pueden dar un valor distinto). Para <strong>probar</strong> que un
+        límite sí existe conviene el cambio a polares:</p>
+        <div class="formula-card"><span class="etiqueta">Truco de polares</span>$$x=r\cos\theta,\; y=r\sin\theta,\; (x,y)\to(0,0) \iff r\to0^+ \quad\text{(para todo $\theta$)}$$</div>
+        <p>Si tras sustituir el resultado no depende de $\theta$ y tiende a $L$ cuando $r\to0$, el límite existe
+        y vale $L$ (equivalente a un teorema del sándwich acotando por una función de $r$ que va a 0).</p>
+      </div>
+
+      <div class="materia" id="tema-continuidad-multivariable">
+        <h3>Continuidad</h3>
+        <p>$f$ es <strong>continua</strong> en $(a,b)$ si el límite existe, $f(a,b)$ está definida, y ambos
+        coinciden:</p>
+        <div class="formula-card"><span class="etiqueta">Continuidad</span>$$\lim_{(x,y)\to(a,b)} f(x,y) = f(a,b)$$</div>
+        <ul>
+          <li>Polinomios en $x,y$ son continuos en todo $\mathbb{R}^2$; funciones racionales son continuas donde el denominador no se anula.</li>
+          <li>La composición de funciones continuas es continua (ej. $\cos(xy)$, $e^{x+y}$, $\sqrt{x^2+y^2}$).</li>
+          <li>Un punto donde $f$ no está definida, o donde el límite no existe, o donde el límite existe pero no coincide con $f(a,b)$, es un punto de <strong>discontinuidad</strong>.</li>
+        </ul>
+        <p>El ejemplo clásico $f(x,y)=\dfrac{xy}{x^2+y^2}$ (indefinida en el origen) es discontinua ahí porque
+        el límite ni siquiera existe: por trayectorias rectas $y=mx$ da un valor distinto para cada pendiente
+        $m$ (ver Ejemplo).</p>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+
+        <div class="ejemplo" id="ej-limite-no-existe">
+          <h3>5. Un límite que no existe (dependiente de la trayectoria)</h3>
+          <p>Mostrar que $\displaystyle\lim_{(x,y)\to(0,0)} \dfrac{xy}{x^2+y^2}$ no existe.</p>
+          <p><strong>Solución</strong> — acercarse por la recta $y=mx$ (con $m$ constante), parametrizando
+          $x=t$, $y=mt$, $t\to0$:</p>
+          <p>$$\frac{xy}{x^2+y^2} = \frac{t\cdot mt}{t^2+m^2t^2} = \frac{mt^2}{t^2(1+m^2)} = \frac{m}{1+m^2}$$</p>
+          <p>El valor <strong>no depende de $t$</strong> (ya se canceló), pero sí depende de $m$: por $y=0$
+          ($m=0$) da $0$; por $y=x$ ($m=1$) da $\tfrac12$; por $y=2x$ ($m=2$) da $\tfrac25$.</p>
+          <p style="color:var(--tinta-2)">Como distintas rectas dan distintos valores límite, el límite <strong>no existe</strong> — no hace falta probar ninguna otra trayectoria una vez que dos ya difieren.</p>
+          <p class="fuente">Fuente: contenido agregado en auditoría (Stewart, cap. Límites y continuidad) — no estaba en el material original.</p>
+        </div>
+
+        <div class="ejemplo" id="ej-limite-existe-sandwich">
+          <h3>6. Un límite que sí existe (sándwich/polares)</h3>
+          <p>Mostrar que $\displaystyle\lim_{(x,y)\to(0,0)} \dfrac{x^2y}{x^2+y^2} = 0$.</p>
+          <p><strong>Solución</strong> — acotar usando que $\dfrac{x^2}{x^2+y^2}\le1$ siempre (el numerador de esa fracción es una de las dos partes del denominador):</p>
+          <p>$$\left|\frac{x^2y}{x^2+y^2}\right| = \frac{x^2}{x^2+y^2}\,|y| \le 1\cdot|y| = |y|$$</p>
+          <p>Como $|y|\to0$ cuando $(x,y)\to(0,0)$, y $0\le\left|\dfrac{x^2y}{x^2+y^2}\right|\le|y|$, el teorema
+          del sándwich fuerza el límite a ser $0$.</p>
+          <p style="color:var(--tinta-2)">Verificación por polares: $x=r\cos\theta,y=r\sin\theta \Rightarrow \dfrac{x^2y}{x^2+y^2}=r\cos^2\theta\sin\theta$, y $|r\cos^2\theta\sin\theta|\le r\to0$ sin importar $\theta$ — mismo resultado, dos caminos.</p>
+          <p class="fuente">Fuente: contenido agregado en auditoría (Stewart, cap. Límites y continuidad) — no estaba en el material original.</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+
+        <details class="ejercicio" id="ejer-limite-trayectorias">
+          <summary><span class="resumen-ejercicio">6. Mostrar que $\displaystyle\lim_{(x,y)\to(0,0)}\dfrac{x^2-y^2}{x^2+y^2}$ no existe, probando con $y=0$ y con $x=0$.</span> <span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <p>Por $y=0$: $\dfrac{x^2-0}{x^2+0}=1$ para todo $x\neq0$.</p>
+            <p>Por $x=0$: $\dfrac{0-y^2}{0+y^2}=-1$ para todo $y\neq0$.</p>
+            <p>$1\neq-1$ &nbsp;⇒&nbsp; el límite no existe.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-continuidad-racional">
+          <summary><span class="resumen-ejercicio">7. ¿En qué puntos es discontinua $f(x,y)=\dfrac{1}{x-y}$?</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>$f$ es una función racional, continua donde el denominador no se anula. Es discontinua exactamente en la recta $x=y$ (donde no está definida).</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 4 · DERIVADAS PARCIALES Y DIFERENCIALES -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u4">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">04</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Derivadas parciales y diferenciales</h2>
+          <p class="unidad-sub">Derivar respecto de una variable a la vez, encadenar composiciones y estimar cambios sin evaluar la función en el punto desplazado.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-derivadas-parciales">
+        <h3>Derivadas parciales</h3>
+        <p>La derivada parcial mide cómo cambia $f$ respecto de <strong>una sola variable</strong>, manteniendo
+        las demás constantes. Para $f(x,y)$:</p>
+        <div class="formula-card"><span class="etiqueta">Definición</span>$$f_x = \frac{\partial f}{\partial x} = \lim_{h\to0}\frac{f(x+h,y)-f(x,y)}{h}, \qquad f_y = \frac{\partial f}{\partial y}$$</div>
+        <div class="formula-card"><span class="etiqueta">Derivadas de orden superior</span>$$f_{xx} = \frac{\partial^2 f}{\partial x^2}, \quad f_{yy} = \frac{\partial^2 f}{\partial y^2}, \quad f_{xy} = \frac{\partial}{\partial y}\!\left(\frac{\partial f}{\partial x}\right), \quad f_{yx} = \frac{\partial}{\partial x}\!\left(\frac{\partial f}{\partial y}\right)$$</div>
+        <p><strong>Teorema de Clairaut</strong>: si $f_{xy}$ y $f_{yx}$ son continuas, entonces $f_{xy}=f_{yx}$
+        (las parciales mixtas cruzadas coinciden). Es la base de todo el curso: gradiente, plano tangente, la
+        matriz Hessiana y las integrales múltiples se construyen a partir de derivadas parciales.</p>
+        <ul>
+          <li>La notación $f_{xy}$ se lee de izquierda a derecha: "derivar primero respecto a $x$, luego esa derivada respecto a $y$" — orden inverso al que muchos asumen.</li>
+          <li>Que $f_{xy}=f_{yx}$ no es automático: requiere continuidad de ambas (Clairaut).</li>
+        </ul>
+      </div>
+
+      <div class="materia" id="tema-regla-cadena">
+        <h3>Regla de la cadena multivariable</h3>
+        <p>Cuando una variable depende de otras que a su vez dependen de terceras, la derivada total se obtiene
+        <strong>sumando todos los caminos</strong> de un diagrama de árbol. Si $z=f(x,y)$ con $x=x(r,\theta)$,
+        $y=y(r,\theta)$:</p>
+        <div class="formula-card"><span class="etiqueta">Regla de la cadena (2 niveles)</span>$$\frac{\partial z}{\partial r} = \frac{\partial z}{\partial x}\frac{\partial x}{\partial r} + \frac{\partial z}{\partial y}\frac{\partial y}{\partial r}$$</div>
+        <p>Se dibuja un árbol: $z$ se ramifica en $x,y$; cada una se ramifica en $r,\theta$. La derivada
+        respecto a una variable "hoja" suma el producto de las derivadas a lo largo de cada camino que llega a
+        ella. Olvidar un camino (una variable que depende de otra por dos rutas distintas) es el error más
+        frecuente — conviene dibujar siempre el árbol antes de escribir la fórmula.</p>
+        <p><strong>Razones de cambio relacionadas</strong>: aplicación directa cuando todo depende del tiempo
+        $t$, por ejemplo para $V=\pi r^2 h$ con $r(t),h(t)$:</p>
+        <div class="formula-card"><span class="etiqueta">Razón de cambio relacionada</span>$$\frac{dV}{dt} = 2\pi r h\,\frac{dr}{dt} + \pi r^2\,\frac{dh}{dt}$$</div>
+      </div>
+
+      <div class="materia" id="tema-diferenciales">
+        <h3>Diferenciales y aproximación lineal</h3>
+        <p>Cerca de un punto, $f(x,y)$ se puede aproximar por su <strong>plano tangente</strong>:</p>
+        <div class="formula-card"><span class="etiqueta">Aproximación lineal</span>$$L(x,y) = f(a,b) + f_x(a,b)(x-a) + f_y(a,b)(y-b)$$</div>
+        <div class="formula-card"><span class="etiqueta">Diferencial total</span>$$dz = f_x(a,b)\,dx + f_y(a,b)\,dy \qquad (dx=\Delta x,\; dy=\Delta y)$$</div>
+        <p>El diferencial $dz$ <strong>estima</strong> el cambio real $\Delta z = f(a+dx,b+dy)-f(a,b)$ sin
+        evaluar $f$ en el punto desplazado. Sirve para estimar valores cercanos a un punto conocido y para
+        <strong>propagar errores</strong>: si $dx,dy$ son errores de medición, $dz$ estima el error resultante
+        en $f$. Nota: $dx=\Delta x$ por definición para variables independientes, pero $dz\neq\Delta z$ en
+        general — $dz$ es solo la aproximación lineal.</p>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+
+        <div class="ejemplo" id="ej-clairaut">
+          <h3>7. Parciales mixtas y verificación de Clairaut</h3>
+          <p>Para $f(x,y) = \ln(x^2+y)$, hallar $f_x$, $f_y$, $f_{xx}$, $f_{xy}$ y $f_{yx}$, y verificar Clairaut.</p>
+          <p><strong>Solución</strong> — derivando la función compuesta $\ln(u)$ con $u=x^2+y$:</p>
+          <p>$$f_x = \frac{2x}{x^2+y}, \qquad f_y = \frac{1}{x^2+y}$$</p>
+          <p>Derivando $f_x$ otra vez, con regla del cociente (o producto: $f_x=2x(x^2+y)^{-1}$):</p>
+          <p>$$f_{xx} = \frac{2(x^2+y)-2x(2x)}{(x^2+y)^2} = \frac{-2x^2+2y}{(x^2+y)^2}$$</p>
+          <p>$$f_{xy} = \frac{\partial}{\partial y}\left[2x(x^2+y)^{-1}\right] = -\frac{2x}{(x^2+y)^2}$$</p>
+          <p>$$f_{yx} = \frac{\partial}{\partial x}\left[(x^2+y)^{-1}\right] = -\frac{2x}{(x^2+y)^2}$$</p>
+          <p style="color:var(--tinta-2)">$f_{xy}=f_{yx}=-\dfrac{2x}{(x^2+y)^2}$: se verifica Clairaut, como corresponde porque ambas son continuas donde $x^2+y\neq0$.</p>
+          <p class="fuente">Fuente: nota "Derivadas parciales".</p>
+        </div>
+
+        <div class="ejemplo" id="ej-cadena-identidad">
+          <h3>8. Una identidad con la regla de la cadena</h3>
+          <p>Si $w=f(u,v)$ con $u=x+y$, $v=x-y$, demostrar que
+          $\;\dfrac{\partial w}{\partial x}\cdot\dfrac{\partial w}{\partial y} = \left(\dfrac{\partial w}{\partial u}\right)^2-\left(\dfrac{\partial w}{\partial v}\right)^2$.</p>
+          <p><strong>Solución</strong> — árbol: $w\to u,v$; $u\to x,y$ con $u_x=1,u_y=1$; $v\to x,y$ con $v_x=1,v_y=-1$:</p>
+          <p>$$w_x = w_u u_x + w_v v_x = w_u + w_v$$</p>
+          <p>$$w_y = w_u u_y + w_v v_y = w_u - w_v$$</p>
+          <p>Multiplicando (diferencia de cuadrados, $(a+b)(a-b)=a^2-b^2$):</p>
+          <p>$$w_x\cdot w_y = (w_u+w_v)(w_u-w_v) = w_u^2-w_v^2 \qquad\blacksquare$$</p>
+          <p style="color:var(--tinta-2)">No hace falta conocer $f$ explícitamente: la identidad sale solo de la estructura del árbol de dependencias. Es el tipo de ejercicio "demostrar sin evaluar" típico de la regla de la cadena.</p>
+          <p class="fuente">Fuente: nota "Regla de la cadena multivariable".</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+
+        <details class="ejercicio" id="ejer-parciales-segundas">
+          <summary><span class="resumen-ejercicio">8. Para $f(x,y)=x^3y^2-2xy$, hallar $f_x$, $f_y$, $f_{xy}$ y $f_{yx}$.</span> <span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <p>$f_x=3x^2y^2-2y$, &nbsp; $f_y=2x^3y-2x$</p>
+            <p>$f_{xy}=\dfrac{\partial}{\partial y}(3x^2y^2-2y)=6x^2y-2$</p>
+            <p>$f_{yx}=\dfrac{\partial}{\partial x}(2x^3y-2x)=6x^2y-2$ &nbsp; ✓ coinciden (Clairaut)</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-razon-cambio-cilindro">
+          <summary><span class="resumen-ejercicio">9. Un cilindro tiene $r(t)=e^t$, $h(t)=e^{-t}$. Hallar $dV/dt$ en $t=1$ usando $V=\pi r^2h$.</span> <span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <p>$\dfrac{dV}{dt} = 2\pi r h\,\dfrac{dr}{dt} + \pi r^2\,\dfrac{dh}{dt}$, con $\dfrac{dr}{dt}=e^t$, $\dfrac{dh}{dt}=-e^{-t}$</p>
+            <p>En $t=1$: $r=e$, $h=e^{-1}$, $\dfrac{dr}{dt}=e$, $\dfrac{dh}{dt}=-e^{-1}$</p>
+            <p>$\dfrac{dV}{dt}\Big|_{t=1} = 2\pi(e)(e^{-1})(e) + \pi(e^2)(-e^{-1}) = 2\pi e - \pi e = \pi e \approx8{,}54$</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-propagacion-error">
+          <summary><span class="resumen-ejercicio">10. Con la ley de gases $P=8{,}31\,nT/V$ y $n=4\text{ mol}$, $T=200\text{ K}$, $V=10\text{ L}$, estimar el error $dP$ si $dn=-1\text{ mol}$ y $dV=0{,}5\text{ L}$ (con $T$ fijo).</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>$dP = \dfrac{\partial P}{\partial n}\,dn + \dfrac{\partial P}{\partial V}\,dV$, con $\dfrac{\partial P}{\partial n}=\dfrac{8{,}31T}{V}$ y $\dfrac{\partial P}{\partial V}=-\dfrac{8{,}31\,nT}{V^2}$</p>
+            <p>$\dfrac{\partial P}{\partial n}=\dfrac{8{,}31(200)}{10}=166{,}2$; &nbsp; $\dfrac{\partial P}{\partial V}=-\dfrac{8{,}31(4)(200)}{100}=-66{,}48$</p>
+            <p>$dP = 166{,}2(-1) + (-66{,}48)(0{,}5) = -166{,}2-33{,}24 = -199{,}44$</p>
+            <p style="color:var(--tinta-2)">La presión estimada baja en cerca de 199 unidades: bajar $n$ (menos moles) y subir $V$ (más volumen) empujan la presión en la misma dirección (hacia abajo), así que los dos términos se suman en magnitud en vez de cancelarse.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 5 · GRADIENTE Y PLANO TANGENTE -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u5">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">05</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Gradiente, derivada direccional y plano tangente</h2>
+          <p class="unidad-sub">El gradiente apunta hacia donde $f$ crece más rápido; con las mismas parciales se construye el plano que mejor aproxima una superficie.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-gradiente">
+        <h3>Gradiente y derivada direccional</h3>
+        <p>El gradiente $\nabla f$ apunta en la dirección de <strong>máximo crecimiento</strong> de $f$; la
+        derivada direccional mide la tasa de cambio de $f$ en cualquier otra dirección.</p>
+        <div class="formula-card"><span class="etiqueta">Gradiente</span>$$\nabla f(x,y) = \langle f_x, f_y\rangle \qquad \nabla f(x,y,z) = \langle f_x,f_y,f_z\rangle$$</div>
+        <div class="formula-card"><span class="etiqueta">Derivada direccional</span>$$D_{\hat u}f = \nabla f \cdot \hat u \qquad (\hat u \text{ vector unitario})$$</div>
+        <ul>
+          <li>Valor máximo de $D_{\hat u}f$: $\lVert\nabla f\rVert$, alcanzado cuando $\hat u = \nabla f/\lVert\nabla f\rVert$.</li>
+          <li>$\nabla f$ es <strong>perpendicular</strong> a las curvas/superficies de nivel de $f$.</li>
+          <li>Si la dirección dada no es unitaria, normalizarla primero — es el error más común al calcular $D_{\hat u}f$.</li>
+        </ul>
+        <p>Responde "¿en qué dirección crece más rápido $f$, y cuánto?" — clave en optimización (moverse en
+        dirección del gradiente) y en física (campos de potencial: $\mathbf{E}=-\nabla V$).</p>
+      </div>
+
+      <div class="materia" id="tema-plano-tangente">
+        <h3>Plano tangente y recta normal</h3>
+        <p>El plano tangente a una superficie $z=f(x,y)$ en un punto es la mejor aproximación plana de la
+        superficie ahí; su normal apunta en la dirección de $\nabla F$, escribiendo la superficie como nivel
+        de una función de 3 variables $F(x,y,z)=f(x,y)-z=0$:</p>
+        <div class="formula-card"><span class="etiqueta">Normal a la superficie</span>$$\nabla F = \langle f_x, f_y, -1\rangle$$</div>
+        <div class="formula-card"><span class="etiqueta">Plano tangente en $(x_0,y_0,z_0)$</span>$$z-z_0 = f_x(x_0,y_0)(x-x_0) + f_y(x_0,y_0)(y-y_0)$$</div>
+        <p><strong>Recta normal</strong>: pasa por $(x_0,y_0,z_0)$ con vector director $\nabla F(x_0,y_0,z_0)$.
+        Generaliza la recta tangente de una curva 2D al caso de una superficie en 3D, y es la base geométrica
+        de la aproximación lineal $L(x,y)$ de la Unidad 2.</p>
+        <p>El signo $-1$ en la componente $z$ de $\nabla F$ viene de escribir $F=f(x,y)-z$; olvidarlo invierte
+        la orientación del plano. No confundir el plano tangente a una <strong>superficie</strong> con el plano
+        rectificante/osculador de una <strong>curva</strong> (Unidad 1) — ambos usan un vector normal, pero son
+        conceptos distintos.</p>
+      </div>
+
+      <div class="animacion" id="anim-gradiente">
+        <div class="anim-cabecera">
+          <h3>🧭 Curvas de nivel y vector gradiente</h3>
+          <p class="anim-desc">Curvas de nivel de $f(x,y)=x^2+2y^2$, el gradiente en un punto móvil y la derivada direccional en una dirección que gira.</p>
+        </div>
+        <canvas data-alto="380"></canvas>
+        <div class="controles">
+          <div class="control"><label for="sl-grad-x0">$x_0$</label><input type="range" id="sl-grad-x0" min="-2" max="2" step="0.1" value="1.2"><span class="valor"></span></div>
+          <div class="control"><label for="sl-grad-y0">$y_0$</label><input type="range" id="sl-grad-y0" min="-2" max="2" step="0.1" value="0.6"><span class="valor"></span></div>
+          <div class="control"><label for="sl-grad-angulo">dirección $\hat u$</label><input type="range" id="sl-grad-angulo" min="0" max="360" step="5" value="0"><span class="valor"></span></div>
+          <button type="button" data-accion="jugar">▶ Reproducir</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> las elipses tenues son curvas de nivel de $f$; el punto violeta es $(x_0,y_0)$. La flecha de acento es $\nabla f(x_0,y_0)$: siempre queda <strong>perpendicular</strong> a la curva de nivel que pasa por el punto. La flecha verde es $\hat u$; al reproducir, gira, y arriba se lee $D_{\hat u}f=\nabla f\cdot\hat u$ — fijate que su valor nunca supera $\lVert\nabla f\rVert$, y lo alcanza justo cuando $\hat u$ queda alineado con $\nabla f$.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="animacion" id="anim-plano-tangente">
+        <div class="anim-cabecera">
+          <h3>🪁 Plano tangente móvil sobre un paraboloide</h3>
+          <p class="anim-desc">Superficie $z=f(x,y)=(x^2+y^2)/4$ en proyección 3D, con el plano tangente en un punto que se puede mover.</p>
+        </div>
+        <canvas data-alto="420"></canvas>
+        <div class="controles">
+          <div class="control"><label for="sl-plano3d-x0">$x_0$</label><input type="range" id="sl-plano3d-x0" min="-2.5" max="2.5" step="0.1" value="1.3"><span class="valor"></span></div>
+          <div class="control"><label for="sl-plano3d-y0">$y_0$</label><input type="range" id="sl-plano3d-y0" min="-2.5" max="2.5" step="0.1" value="-0.8"><span class="valor"></span></div>
+          <button type="button" data-accion="jugar">▶ Orbitar el punto</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Volver a sliders</button>
+        </div>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> la malla tenue es la superficie $z=f(x,y)$; el parche de acento es el plano tangente en $(x_0,y_0,f(x_0,y_0))$, calculado con $f_x=x_0/2$, $f_y=y_0/2$. Cerca del punto, plano y superficie casi se confunden; lejos, se separan — esa separación es justo el error que comete la aproximación lineal $L(x,y)$. "Orbitar" mueve el punto en círculo para ver cómo el plano rota y se inclina de punto a punto; "Volver a sliders" restaura el control manual con $x_0,y_0$.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+
+        <div class="ejemplo" id="ej-gradiente-potencial">
+          <h3>9. Derivada direccional de un potencial eléctrico</h3>
+          <p>Para $V(x,y,z)=5x^2-3xy+xyz$, hallar la razón de cambio en $P(3,4,5)$ en la dirección de
+          $\mathbf{v}=\langle1,1,-1\rangle$.</p>
+          <p><strong>Solución:</strong></p>
+          <p>$$\nabla V = \langle10x-3y+yz,\; -3x+xz,\; xy\rangle$$</p>
+          <p>$$\nabla V(3,4,5) = \langle10(3)-3(4)+4(5),\; -3(3)+3(5),\; 3(4)\rangle = \langle38,\,6,\,12\rangle$$</p>
+          <p>$\mathbf{v}$ no es unitario ($\lVert\mathbf{v}\rVert=\sqrt3$), así que se normaliza primero:</p>
+          <p>$$\hat u = \frac{1}{\sqrt3}\langle1,1,-1\rangle$$</p>
+          <p>$$D_{\hat u}V = \nabla V\cdot\hat u = \frac{38+6-12}{\sqrt3} = \frac{32}{\sqrt3} = \frac{32\sqrt3}{3}\approx18{,}48$$</p>
+          <p style="color:var(--tinta-2)">$P$ crece a razón de $\approx18{,}5$ unidades por unidad de distancia recorrida en esa dirección — bastante menos que el máximo posible $\lVert\nabla V(3,4,5)\rVert=\sqrt{38^2+6^2+12^2}\approx40{,}2$.</p>
+          <p class="fuente">Fuente: nota "Gradiente y derivada direccional".</p>
+        </div>
+
+        <div class="ejemplo" id="ej-plano-tangente-superficie">
+          <h3>10. Plano tangente a un paraboloide hiperbólico</h3>
+          <p>Para $z=f(x,y)=2x^2-y^2$, hallar el plano tangente en el punto $(4,3,23)$.</p>
+          <p><strong>Solución</strong> — se escribe $F(x,y,z)=2x^2-y^2-z=0$:</p>
+          <p>$$\nabla F = \langle4x,\,-2y,\,-1\rangle \;\Rightarrow\; \nabla F(4,3,23) = \langle16,\,-6,\,-1\rangle$$</p>
+          <p>Plano tangente con normal $\langle16,-6,-1\rangle$ pasando por $(4,3,23)$:</p>
+          <p>$$16(x-4)-6(y-3)-1(z-23)=0 \;\Rightarrow\; 16x-6y-z = 16(4)-6(3)-23$$</p>
+          <p>$$16x-6y-z = 23$$</p>
+          <p style="color:var(--tinta-2)">Es consistente: el punto mismo cumple $16(4)-6(3)-23=64-18-23=23$ ✓. La recta normal en ese punto usa la misma dirección $\langle16,-6,-1\rangle$ como vector director.</p>
+          <p class="fuente">Fuente: nota "Plano tangente y recta normal".</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+
+        <details class="ejercicio" id="ejer-max-crecimiento">
+          <summary><span class="resumen-ejercicio">11. Hallar la dirección y magnitud del máximo crecimiento de $f(x,y)=4y\sqrt{x}$ en el punto $(4,1)$.</span> <span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <p>$f_x = \dfrac{2y}{\sqrt x}$, &nbsp; $f_y=4\sqrt x$</p>
+            <p>$\nabla f(4,1) = \left\langle\dfrac{2(1)}{2},\; 4(2)\right\rangle = \langle1,8\rangle$</p>
+            <p>Dirección de máximo crecimiento: $\hat u=\dfrac{1}{\sqrt{65}}\langle1,8\rangle$; magnitud (razón máxima) $=\lVert\nabla f\rVert=\sqrt{1+64}=\sqrt{65}\approx8{,}06$</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 6 · OPTIMIZACIÓN: LIBRE Y CON RESTRICCIÓN (Lagrange agregado en auditoría Fase 5) -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u6">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">06</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Optimización: extremos libres y con restricción</h2>
+          <p class="unidad-sub">El análogo multivariable de "$f'=0$" para encontrar y clasificar extremos libres; y multiplicadores de Lagrange cuando el punto tiene que cumplir además una restricción $g(x,y)=k$.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-puntos-criticos">
+        <h3>Puntos críticos y criterio de la segunda derivada</h3>
+        <p>Un punto crítico de $f(x,y)$ cumple $f_x=f_y=0$; la <strong>matriz Hessiana</strong> decide si ahí
+        hay un mínimo, un máximo o un punto silla.</p>
+        <div class="formula-card">
+          <span class="etiqueta">Matriz Hessiana y determinante</span>
+          $$Hf(a,b) = \begin{bmatrix} f_{xx}(a,b) & f_{xy}(a,b) \\ f_{yx}(a,b) & f_{yy}(a,b)\end{bmatrix}, \qquad D = f_{xx}(a,b)\,f_{yy}(a,b) - \big(f_{xy}(a,b)\big)^2$$
+        </div>
+        <p><strong>Criterio</strong> (en un punto crítico $(a,b)$):</p>
+        <ul>
+          <li>Si $D>0$ y $f_{xx}(a,b)>0$ → mínimo local.</li>
+          <li>Si $D>0$ y $f_{xx}(a,b)<0$ → máximo local.</li>
+          <li>Si $D<0$ → punto silla (ni máximo ni mínimo).</li>
+          <li>Si $D=0$ → el criterio no concluye; hace falta otro método (p. ej. estudiar $f$ restringida a rectas por el punto).</li>
+        </ul>
+        <p><strong>Óptimos absolutos en una región cerrada</strong>: el criterio de la Hessiana solo aplica a
+        puntos críticos <em>interiores</em>. En una región cerrada y acotada también hay que comparar con los
+        valores de $f$ en toda la <strong>frontera</strong> (y sus esquinas) — la Hessiana no cubre eso. Es el
+        análogo 2D del criterio de la segunda derivada de una variable ($f''$), pero hace falta el determinante
+        $D$ porque la "concavidad" puede ser distinta en direcciones distintas — de ahí el punto silla.</p>
+      </div>
+
+      <div class="materia" id="tema-lagrange">
+        <h3>Multiplicadores de Lagrange</h3>
+        <p>Cuando el extremo de $f(x,y)$ tiene que cumplir además una <strong>restricción</strong> $g(x,y)=k$
+        (no todo el plano vale, solo la curva $g=k$), la Hessiana ya no aplica directamente: se usa el
+        <strong>método de Lagrange</strong>.</p>
+        <div class="formula-card"><span class="etiqueta">Condición de Lagrange</span>$$\nabla f(x,y) = \lambda\,\nabla g(x,y), \qquad g(x,y)=k$$</div>
+        <p>Geométricamente: en el extremo, la curva de nivel de $f$ es <strong>tangente</strong> a la curva de
+        restricción $g=k$ (sus gradientes son paralelos). Se resuelve el sistema de 3 ecuaciones
+        ($f_x=\lambda g_x$, $f_y=\lambda g_y$, $g=k$) en las 3 incógnitas $x,y,\lambda$ — $\lambda$ es una
+        variable auxiliar, no un candidato a extremo por sí mismo.</p>
+        <div class="formula-card"><span class="etiqueta">Con dos restricciones (o en $\mathbb R^3$)</span>$$\nabla f = \lambda\,\nabla g + \mu\,\nabla h, \qquad g=k_1,\; h=k_2$$</div>
+        <ul>
+          <li>Cada solución del sistema es un <strong>candidato</strong>; para decidir cuál es máximo y cuál mínimo se comparan los valores de $f$ entre todos los candidatos (no hay un "criterio de la Hessiana" análogo tan directo).</li>
+          <li>Si $g=k$ describe una curva cerrada y acotada (ej. una circunferencia), el máximo y el mínimo absolutos de $f$ sobre ella existen y están entre los candidatos de Lagrange — no hace falta revisar "frontera" aparte, porque la restricción ya es toda la frontera.</li>
+          <li>Dividir por una variable que podría ser $0$ (ej. despejar $\lambda=f_x/g_x$) pierde soluciones — mejor trabajar por casos, como en el Ejemplo.</li>
+        </ul>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+
+        <div class="ejemplo" id="ej-lagrange-elipse">
+          <h3>11. Extremos de $f$ sobre una circunferencia (Lagrange)</h3>
+          <p>Hallar los extremos absolutos de $f(x,y)=x^2+2y^2$ sujeto a la restricción $g(x,y)=x^2+y^2=1$.</p>
+          <p><strong>Solución</strong> — condición de Lagrange $\nabla f=\lambda\nabla g$:</p>
+          <p>$$\langle2x,\,4y\rangle = \lambda\langle2x,\,2y\rangle \;\Longrightarrow\; 2x=2\lambda x, \quad 4y=2\lambda y$$</p>
+          <p>De la primera: $x(1-\lambda)=0 \Rightarrow x=0$ o $\lambda=1$. De la segunda: $y(4-2\lambda)=0 \Rightarrow y=0$ o $\lambda=2$. Como $\lambda$ no puede ser $1$ y $2$ a la vez, no hay solución con $x\neq0$ y $y\neq0$ simultáneamente — se analiza por casos:</p>
+          <p><strong>Caso $x=0$:</strong> restricción $\Rightarrow y^2=1 \Rightarrow y=\pm1$. Puntos $(0,\pm1)$, $f=0+2(1)=2$.</p>
+          <p><strong>Caso $y=0$:</strong> restricción $\Rightarrow x^2=1 \Rightarrow x=\pm1$. Puntos $(\pm1,0)$, $f=1+0=1$.</p>
+          <p style="color:var(--tinta-2)"><strong>Conclusión:</strong> máximo absoluto $f=2$ en $(0,\pm1)$; mínimo absoluto $f=1$ en $(\pm1,0)$ — consistente con que $f$ varía continuamente entre esos dos valores sobre el círculo unitario (verificable evaluando $f$ en cualquier otro punto de la circunferencia, ej. $(\tfrac{1}{\sqrt2},\tfrac{1}{\sqrt2})$: $f=\tfrac12+1=\tfrac32$, entre 1 y 2 ✓).</p>
+          <p class="fuente">Fuente: contenido agregado en auditoría (Stewart, cap. Multiplicadores de Lagrange) — no estaba en el material original.</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+
+        <details class="ejercicio" id="ejer-optimos-region">
+          <summary><span class="resumen-ejercicio">12. Hallar los extremos absolutos de $f(x,y)=xy^2$ en la región $D=\{x\ge0,\,y\ge0,\,x^2+y^2\le3\}$.</span> <span class="dificultad dificil">difícil</span></summary>
+          <div class="solucion">
+            <p><strong>Interior:</strong> $f_x=y^2=0 \Rightarrow y=0$; pero $y=0$ ya está en la frontera de $D$ (no en el interior, donde se exige $y>0$). Así que <strong>no hay puntos críticos en el interior abierto</strong> — todo el análisis se reduce a la frontera.</p>
+            <p><strong>Frontera, lado $x=0$</strong> ($0\le y\le\sqrt3$): $f(0,y)=0$ para todo $y$.</p>
+            <p><strong>Frontera, lado $y=0$</strong> ($0\le x\le\sqrt3$): $f(x,0)=0$ para todo $x$.</p>
+            <p><strong>Frontera, arco $x^2+y^2=3$</strong> (parametrizando $x=\sqrt3\cos\theta$, $y=\sqrt3\sin\theta$, $\theta\in[0,\pi/2]$):</p>
+            <p>$$f = \sqrt3\cos\theta\cdot3\sin^2\theta = 3\sqrt3\cos\theta\sin^2\theta = g(\theta)$$</p>
+            <p>$$g'(\theta) = 3\sqrt3\left(-\sin^3\theta+2\sin\theta\cos^2\theta\right) = 3\sqrt3\sin\theta\left(2\cos^2\theta-\sin^2\theta\right)=0$$</p>
+            <p>Descartando $\sin\theta=0$ (extremo del arco, $g=0$), queda $2\cos^2\theta=\sin^2\theta \Rightarrow \tan^2\theta=2 \Rightarrow \theta=\arctan\sqrt2\approx54{,}7°$, con $\cos\theta=1/\sqrt3$, $\sin\theta=\sqrt{2/3}$:</p>
+            <p>$$x=\sqrt3\cdot\frac{1}{\sqrt3}=1, \qquad y=\sqrt3\cdot\sqrt{\tfrac23}=\sqrt2, \qquad f(1,\sqrt2)=1\cdot2=2$$</p>
+            <p style="color:var(--tinta-2)"><strong>Conclusión:</strong> máximo absoluto $f=2$ en $(1,\sqrt2)$; mínimo absoluto $f=0$, alcanzado en todo el borde $x=0$ y todo el borde $y=0$ (no en un único punto). Ojo: el criterio de la Hessiana no sirve acá porque el candidato ganador vive en la frontera, no en el interior.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-lagrange-producto">
+          <summary><span class="resumen-ejercicio">13. Usar Lagrange para maximizar $f(x,y)=xy$ sujeto a $x+y=10$.</span> <span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <p>$\nabla f=\langle y,x\rangle=\lambda\langle1,1\rangle \Rightarrow y=\lambda,\;x=\lambda \Rightarrow x=y$</p>
+            <p>Con la restricción $x+y=10$: $x=y=5$. Máximo $f=5\cdot5=25$ (el producto de dos números de suma fija se maximiza cuando son iguales).</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-lagrange-amgm">
+          <summary><span class="resumen-ejercicio">14. Con Lagrange en 3 variables, minimizar $f(x,y,z)=x+y+z$ sujeto a $xyz=1$, con $x,y,z>0$.</span> <span class="dificultad dificil">difícil</span></summary>
+          <div class="solucion">
+            <p>$\nabla f=\langle1,1,1\rangle=\lambda\langle yz,xz,xy\rangle \Rightarrow yz=xz=xy=1/\lambda$</p>
+            <p>De $yz=xz$ (con $z\neq0$): $x=y$. De $xz=xy$ (con $x\neq0$): $y=z$. Entonces $x=y=z$.</p>
+            <p>Restricción: $x^3=1 \Rightarrow x=1$. Mínimo $f=1+1+1=3$ en $(1,1,1)$ (caso particular de la desigualdad AM-GM: $x+y+z\ge3\sqrt[3]{xyz}=3$).</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 7 · INTEGRALES DOBLES: REGIONES GENERALES Y POLARES (Fubini agregado en auditoría Fase 5) -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u7">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">07</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Integrales dobles: regiones generales y coordenadas polares</h2>
+          <p class="unidad-sub">Primero cartesianas sobre regiones tipo I/II (Teorema de Fubini); después el cambio a polares cuando la región tiene simetría radial.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-integrales-dobles-generales">
+        <h3>Integrales dobles sobre regiones generales (Teorema de Fubini)</h3>
+        <p>Antes de cambiar de coordenadas, la integral doble se plantea directamente en cartesianas sobre una
+        región $D$ que no es necesariamente un rectángulo. El <strong>Teorema de Fubini</strong> permite
+        calcularla como dos integrales simples anidadas (una integral iterada):</p>
+        <div class="formula-card">
+          <span class="etiqueta">Región tipo I</span>
+          $$D=\{(x,y)\mid a\le x\le b,\; g_1(x)\le y\le g_2(x)\} \;\Longrightarrow\; \iint_D f\,dA = \int_a^b\int_{g_1(x)}^{g_2(x)} f(x,y)\,dy\,dx$$
+        </div>
+        <div class="formula-card">
+          <span class="etiqueta">Región tipo II</span>
+          $$D=\{(x,y)\mid c\le y\le d,\; h_1(y)\le x\le h_2(y)\} \;\Longrightarrow\; \iint_D f\,dA = \int_c^d\int_{h_1(y)}^{h_2(y)} f(x,y)\,dx\,dy$$
+        </div>
+        <p>El primer paso, siempre, es <strong>dibujar la región</strong> $D$: identificar cuál curva queda
+        arriba/abajo (tipo I) o izquierda/derecha (tipo II) determina los límites interiores. Muchas regiones se
+        pueden describir de las dos formas — a veces un orden de integración lleva a una integral imposible de
+        resolver a mano y el otro orden la resuelve fácilmente; cambiar el orden (usando Fubini en la otra
+        dirección) es una técnica válida y frecuente.</p>
+        <ul>
+          <li>Los límites <strong>exteriores</strong> son siempre números (constantes); los límites <strong>interiores</strong> pueden depender de la variable exterior.</li>
+          <li>Fubini exige $f$ continua en $D$ (o al menos acotada con discontinuidades "de medida cero") para garantizar que el orden de integración no cambia el resultado.</li>
+        </ul>
+      </div>
+
+      <div class="materia" id="tema-integrales-polares">
+        <h3>Integrales dobles en coordenadas polares</h3>
+        <p>Cuando la región de integración es un círculo o algo con simetría radial, conviene cambiar a
+        polares: $x=r\cos\theta$, $y=r\sin\theta$, con <strong>jacobiano</strong> $r$.</p>
+        <div class="formula-card"><span class="etiqueta">Cambio a polares</span>$$\iint_D f(x,y)\,dA = \int_\alpha^\beta\int_{r_1(\theta)}^{r_2(\theta)} f(r\cos\theta, r\sin\theta)\; r\,dr\,d\theta$$</div>
+        <p>El factor extra $r$ viene del jacobiano $J(r,\theta)=r$ del cambio de variables. Estrategia:
+        identificar el rango de $\theta$ y, para cada $\theta$ fijo, el rango de $r$ (describir $D$ "en
+        coordenadas polares" antes de integrar, dibujando siempre la región primero). Simplifica enormemente
+        integrales sobre discos, sectores o regiones limitadas por circunferencias, donde la versión cartesiana
+        requeriría límites mucho más complicados. <strong>Olvidar el factor $r$</strong> en $dA=r\,dr\,d\theta$
+        es el error más frecuente al cambiar a polares.</p>
+      </div>
+
+      <div class="animacion" id="anim-riemann">
+        <div class="anim-cabecera">
+          <h3>🧮 Suma de Riemann en polares</h3>
+          <p class="anim-desc">Un cuarto de disco de radio $R$ dividido en celdas polares $\Delta r\times\Delta\theta$, acumulando la suma de $r\cdot\Delta A$ celda a celda para aproximar $\iint_D r\,dA$.</p>
+        </div>
+        <canvas data-alto="380"></canvas>
+        <div class="controles">
+          <div class="control"><label for="sl-riemann-particiones">particiones $n$</label><input type="range" id="sl-riemann-particiones" min="2" max="16" step="1" value="6"><span class="valor"></span></div>
+          <div class="control"><label for="sl-riemann-radio">radio $R$</label><input type="range" id="sl-riemann-radio" min="1" max="3" step="0.1" value="2"><span class="valor"></span></div>
+          <button type="button" data-accion="jugar">▶ Acumular suma</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> la región es un cuarto de disco de radio $R$, cortado en $n\times n$ celdas polares. Cada celda mide $\Delta A\approx r_{\text{medio}}\Delta r\,\Delta\theta$ — notá que las celdas lejos del origen (arriba a la derecha) cubren más área que las cercanas, aunque tengan el mismo $\Delta r,\Delta\theta$: ese es el factor jacobiano $r$ en acción. Al reproducir, las celdas se van rellenando y la suma $\sum r_{\text{medio}}\cdot\Delta A$ (que aproxima $\iint_D r\,dA$, como una masa con densidad proporcional a la distancia al origen) converge al valor exacto $\pi R^3/6$ — subí $n$ y compará qué tan rápido se acerca el error a 0.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+
+        <div class="ejemplo" id="ej-fubini-regiones">
+          <h3>12. Integral doble sobre una región tipo I (Fubini)</h3>
+          <p>Evaluar $\displaystyle\iint_D (x+2y)\,dA$ donde $D$ es la región acotada por $y=2x^2$ y $y=1+x^2$.</p>
+          <p><strong>Solución</strong> — intersección de las curvas: $2x^2=1+x^2 \Rightarrow x^2=1 \Rightarrow x=\pm1$. Para $-1\le x\le1$, $1+x^2\ge2x^2$ (ya que $1-x^2\ge0$ ahí), así que $D$ es tipo I con $2x^2\le y\le1+x^2$:</p>
+          <p>$$\iint_D(x+2y)\,dA = \int_{-1}^{1}\int_{2x^2}^{1+x^2}(x+2y)\,dy\,dx$$</p>
+          <p>Integrando primero en $y$ (antiderivada $xy+y^2$, evaluada entre los dos límites):</p>
+          <p>$$\int_{2x^2}^{1+x^2}(x+2y)\,dy = \big[x(1+x^2)+(1+x^2)^2\big]-\big[x(2x^2)+(2x^2)^2\big] = x-x^3+1+2x^2-3x^4$$</p>
+          <p>Integrando en $x$ de $-1$ a $1$: los términos impares $x$ y $-x^3$ se anulan por simetría; quedan los pares:</p>
+          <p>$$\int_{-1}^1(1+2x^2-3x^4)\,dx = 2\int_0^1(1+2x^2-3x^4)\,dx = 2\left[x+\tfrac23x^3-\tfrac35x^5\right]_0^1 = 2\left(1+\tfrac23-\tfrac35\right)$$</p>
+          <p>$$= 2\cdot\frac{15+10-9}{15} = 2\cdot\frac{16}{15} = \frac{32}{15}\approx2{,}133$$</p>
+          <p style="color:var(--tinta-2)">Verificado también integrando en el otro orden como región tipo II (dividiendo el rango de $y$ en dos tramos): da el mismo $32/15$. Cálculo intermedio verificado dos veces: $x(1{+}x^2){+}(1{+}x^2)^2-2x^3-4x^4=x{-}x^3{+}1{+}2x^2{-}3x^4$ ✓.</p>
+          <p class="fuente">Fuente: contenido agregado en auditoría (Stewart, cap. Integrales dobles) — no estaba en el material original.</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+
+        <details class="ejercicio" id="ejer-fubini-triangulo">
+          <summary><span class="resumen-ejercicio">15. Evaluar $\displaystyle\iint_D xy\,dA$ donde $D$ es el triángulo de vértices $(0,0)$, $(1,0)$, $(1,1)$.</span> <span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <p>Región tipo I: $0\le x\le1$, $0\le y\le x$.</p>
+            <p>$$\int_0^1\int_0^x xy\,dy\,dx = \int_0^1 x\cdot\frac{x^2}{2}\,dx = \int_0^1 \frac{x^3}{2}\,dx = \frac18$$</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-integral-polar-disco">
+          <summary><span class="resumen-ejercicio">16. Calcular $\iint_D (x^2+y^2)\,dA$ donde $D$ es el disco $x^2+y^2\le4$, usando coordenadas polares.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>En polares, $x^2+y^2=r^2$ y $dA=r\,dr\,d\theta$, con $\theta\in[0,2\pi]$, $r\in[0,2]$:</p>
+            <p>$$\iint_D(x^2+y^2)\,dA = \int_0^{2\pi}\int_0^2 r^2\cdot r\,dr\,d\theta = \int_0^{2\pi}d\theta\int_0^2 r^3\,dr$$</p>
+            <p>$$= 2\pi\cdot\left[\frac{r^4}{4}\right]_0^2 = 2\pi\cdot4 = 8\pi\approx25{,}13$$</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 8 · INTEGRALES TRIPLES Y APLICACIONES -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u8">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">08</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Integrales triples y aplicaciones</h2>
+          <p class="unidad-sub">Cambiar de cartesianas a cilíndricas o esféricas convierte sólidos con simetría radial en cajas simples de integrar — y de paso dan masa y centro de gravedad.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-integrales-triples">
+        <h3>Integrales triples y coordenadas cilíndricas-esféricas</h3>
+        <p>Para sólidos con simetría radial (cilindros, esferas, conos) conviene cambiar de $(x,y,z)$ a
+        <strong>cilíndricas</strong> $(r,\theta,z)$ o <strong>esféricas</strong> $(\rho,\theta,\phi)$.</p>
+        <div class="formula-card">
+          <span class="etiqueta">Cilíndricas — jacobiano $r$</span>
+          $$x=r\cos\theta,\; y=r\sin\theta,\; z=z \;\Rightarrow\; \iiint_V f\,dV = \iiint f\; r\,dz\,dr\,d\theta$$
+        </div>
+        <div class="formula-card">
+          <span class="etiqueta">Esféricas — jacobiano $\rho^2\sin\phi$</span>
+          $$x=\rho\sin\phi\cos\theta,\; y=\rho\sin\phi\sin\theta,\; z=\rho\cos\phi \;\Rightarrow\; \iiint_V f\,dV = \iiint f\; \rho^2\sin\phi\;d\rho\,d\theta\,d\phi$$
+        </div>
+        <p>$\rho\ge0$ es la distancia al origen; $\phi\in[0,\pi]$ el ángulo desde el eje $z$ positivo (no desde
+        el plano $xy$ — confundir esta convención invierte los límites); $\theta\in[0,2\pi]$ es el mismo ángulo
+        azimutal de polares. El jacobiano de esféricas es $\rho^2\sin\phi$, <strong>no</strong> $\rho^2$ a
+        secas: omitir el $\sin\phi$ es el error más común.</p>
+      </div>
+
+      <div class="materia" id="tema-aplicaciones-integrales">
+        <h3>Aplicaciones de integrales múltiples</h3>
+        <p>Las integrales dobles/triples no solo dan área o volumen: también dan <strong>masa, centro de
+        gravedad y momentos</strong> cuando se pondera por una función de densidad $\delta(x,y,z)$.</p>
+        <div class="formula-card"><span class="etiqueta">Masa y volumen</span>$$M=\iiint_V \delta\,dV \qquad\qquad \text{Vol}(V)=\iiint_V dV \;\;(\delta=1)$$</div>
+        <div class="formula-card">
+          <span class="etiqueta">Centro de gravedad (sólido homogéneo)</span>
+          $$\bar x = \frac{\iiint_V x\,dV}{\iiint_V dV}, \qquad \bar y = \frac{\iiint_V y\,dV}{\iiint_V dV}, \qquad \bar z = \frac{\iiint_V z\,dV}{\iiint_V dV}$$
+        </div>
+        <p>Para un sólido <strong>homogéneo</strong>, la densidad se cancela en el cociente $\bar x,\bar y,\bar
+        z$ (no depende de su valor); si el sólido no es homogéneo, hay que arrastrar $\delta(x,y,z)$ dentro de
+        las cuatro integrales. Plantear correctamente el orden y los límites de integración (describir la
+        región en el sistema de coordenadas elegido) suele ser la parte más propensa a error, más que el
+        cálculo de las integrales en sí.</p>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+
+        <div class="ejemplo" id="ej-centro-gravedad">
+          <h3>13. Centro de gravedad de un sólido homogéneo</h3>
+          <p>Hallar el centro de gravedad del sólido homogéneo limitado por $y=\sqrt{x}$, $y=2\sqrt{x}$, $z=0$
+          y $z+x=6$.</p>
+          <p><strong>Solución</strong> — la región en el plano $xy$ está entre $y=\sqrt x$ y $y=2\sqrt x$ para
+          $x\in[0,6]$, y $z$ va de $0$ a $6-x$:</p>
+          <p>$$V=\iiint_V dV = \int_0^6\int_{\sqrt x}^{2\sqrt x}\int_0^{6-x} dz\,dy\,dx = \int_0^6 (6-x)\sqrt x\,dx$$</p>
+          <p>$$V=\int_0^6\left(6\sqrt x - x^{3/2}\right)dx = \left[4x^{3/2}-\tfrac25 x^{5/2}\right]_0^6 = 24\sqrt6-\tfrac{72\sqrt6}{5} = \frac{48\sqrt6}{5}\approx23{,}52$$</p>
+          <p>Para $\bar x$ se integra $x\,dV$ con el mismo dominio:</p>
+          <p>$$\iiint_V x\,dV = \int_0^6 x(6-x)\sqrt x\,dx = \int_0^6\left(6x^{3/2}-x^{5/2}\right)dx = \frac{864\sqrt6}{35}$$</p>
+          <p>$$\bar x = \frac{864\sqrt6/35}{48\sqrt6/5} = \frac{864}{35}\cdot\frac{5}{48} = \frac{18}{7}\approx2{,}57$$</p>
+          <p style="color:var(--tinta-2)">Con el mismo método (integrando $y\,dV$ y $z\,dV$ sobre el mismo sólido) se obtiene $\bar y=\dfrac{45}{8}\approx5{,}63$ y $\bar z=\dfrac{12}{7}\approx1{,}71$. Como el sólido es homogéneo, la densidad se cancela en los tres cocientes — solo importa la geometría.</p>
+          <p class="fuente">Fuente: nota "Aplicaciones de integrales múltiples".</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+
+        <details class="ejercicio" id="ejer-volumen-esfera-esfericas">
+          <summary><span class="resumen-ejercicio">17. Deducir el volumen de una esfera de radio $a$ integrando en coordenadas esféricas.</span> <span class="dificultad dificil">difícil</span></summary>
+          <div class="solucion">
+            <p>Con $\rho\in[0,a]$, $\phi\in[0,\pi]$, $\theta\in[0,2\pi]$ y jacobiano $\rho^2\sin\phi$:</p>
+            <p>$$V=\int_0^{2\pi}\int_0^{\pi}\int_0^a \rho^2\sin\phi\,d\rho\,d\phi\,d\theta = \int_0^{2\pi}d\theta\int_0^\pi\sin\phi\,d\phi\int_0^a\rho^2\,d\rho$$</p>
+            <p>$$= 2\pi\cdot\big[-\cos\phi\big]_0^\pi\cdot\left[\frac{\rho^3}{3}\right]_0^a = 2\pi\cdot2\cdot\frac{a^3}{3} = \frac{4}{3}\pi a^3$$</p>
+            <p style="color:var(--tinta-2)">Las tres integrales están completamente separadas (cada una depende de una sola variable), así que el triple integral se factoriza en tres integrales simples — eso es lo que hace tan cómodas las esféricas cuando la región es toda la esfera.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 9 · CÁLCULO VECTORIAL I: CAMPOS, LÍNEA Y GREEN (agregada en auditoría Fase 5) -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u9">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">09</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Cálculo vectorial I: campos, integrales de línea y Teorema de Green</h2>
+          <p class="unidad-sub">Un campo vectorial asigna un vector a cada punto; su integral a lo largo de una curva mide trabajo, y el Teorema de Green conecta esa integral de borde con una integral doble sobre la región que encierra. Cierre habitual de todo curso de Cálculo III, ausente en el material original.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-campos-vectoriales">
+        <h3>Campos vectoriales</h3>
+        <p>Un <strong>campo vectorial</strong> asigna un vector (no un número) a cada punto del plano o del
+        espacio — por ejemplo, velocidad del viento, fuerza gravitacional o eléctrica:</p>
+        <div class="formula-card"><span class="etiqueta">Campo vectorial en el plano y el espacio</span>$$\mathbf F(x,y) = \langle P(x,y),\,Q(x,y)\rangle, \qquad \mathbf F(x,y,z) = \langle P,\,Q,\,R\rangle$$</div>
+        <p>Un campo es <strong>conservativo</strong> si es el gradiente de alguna función escalar $f$ (llamada
+        <strong>función potencial</strong>): $\mathbf F=\nabla f$. En el plano, con dominio simplemente conexo,
+        hay una prueba rápida sin tener que adivinar $f$:</p>
+        <div class="formula-card"><span class="etiqueta">Prueba de campo conservativo (2D)</span>$$\mathbf F=\langle P,Q\rangle \text{ conservativo} \;\Longleftrightarrow\; \frac{\partial P}{\partial y} = \frac{\partial Q}{\partial x}$$</div>
+        <p>Los campos conservativos son importantes porque su integral de línea no depende del camino, solo de
+        los puntos inicial y final (ver siguiente tema) — igual que en física, donde la fuerza gravitacional es
+        conservativa y por eso el trabajo no depende de la trayectoria, solo de la altura.</p>
+      </div>
+
+      <div class="materia" id="tema-integrales-linea">
+        <h3>Integrales de línea</h3>
+        <p>La <strong>integral de línea de un campo escalar</strong> $f$ pondera por la longitud de arco
+        recorrida (no depende de la orientación de la curva):</p>
+        <div class="formula-card"><span class="etiqueta">Integral de línea escalar</span>$$\int_C f\,ds = \int_a^b f(\mathbf r(t))\,\lVert\mathbf r'(t)\rVert\,dt$$</div>
+        <p>La <strong>integral de línea de un campo vectorial</strong> (el "trabajo" hecho por $\mathbf F$ al
+        mover una partícula a lo largo de $C$) sí depende de la orientación — invertir el sentido de recorrido
+        cambia el signo:</p>
+        <div class="formula-card"><span class="etiqueta">Integral de línea vectorial (trabajo)</span>$$\int_C \mathbf F\cdot d\mathbf r = \int_a^b \mathbf F(\mathbf r(t))\cdot \mathbf r'(t)\,dt$$</div>
+        <p>Si $\mathbf F=\nabla f$ es conservativo, el <strong>Teorema Fundamental de las integrales de línea</strong>
+        evita integrar del todo: solo hace falta evaluar el potencial en los extremos:</p>
+        <div class="formula-card"><span class="etiqueta">Teorema Fundamental (campos conservativos)</span>$$\int_C \nabla f\cdot d\mathbf r = f(\mathbf r(b)) - f(\mathbf r(a))$$</div>
+        <p>En particular, la integral de línea de un campo conservativo a lo largo de <strong>cualquier curva
+        cerrada</strong> es siempre $0$ (el punto inicial y final coinciden).</p>
+      </div>
+
+      <div class="animacion" id="anim-campo-lineal">
+        <div class="anim-cabecera">
+          <h3>🌊 Campo vectorial rotacional y trabajo acumulado</h3>
+          <p class="anim-desc">El campo $\mathbf F(x,y)=\langle-y,x\rangle$ como flechas en una grilla; una partícula recorre una circunferencia de radio $R$ acumulando el trabajo $\int_C\mathbf F\cdot d\mathbf r$.</p>
+        </div>
+        <canvas data-alto="400"></canvas>
+        <div class="controles">
+          <div class="control"><label for="sl-campo-radio">radio $R$</label><input type="range" id="sl-campo-radio" min="0.8" max="2.2" step="0.1" value="1.6"><span class="valor"></span></div>
+          <button type="button" data-accion="jugar">▶ Recorrer la curva</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> las flechas tenues son el campo $\mathbf F(x,y)=\langle-y,x\rangle$ en cada punto de la grilla — siempre perpendicular al radio, "empujando" en sentido antihorario. La circunferencia tenue es la curva $C$ de radio $R$; al reproducir, el punto de acento la recorre y la flecha violeta muestra $\mathbf F$ evaluado justo ahí (siempre alineada con el sentido de avance, por eso el trabajo se acumula sin cancelarse). El contador de abajo muestra el trabajo parcial; al completar la vuelta llega exactamente a $2\pi R^2$ — el mismo valor que da el Teorema de Green aplicado a este campo (Unidad 9, tema Green) porque $\partial_x Q-\partial_y P=2$ es constante.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="materia" id="tema-green">
+        <h3>Teorema de Green</h3>
+        <p>El <strong>Teorema de Green</strong> convierte una integral de línea sobre una curva cerrada simple
+        $C$ (borde de una región $D$, orientada positivamente = antihorario) en una integral doble sobre $D$:</p>
+        <div class="formula-card"><span class="etiqueta">Teorema de Green</span>$$\oint_C (P\,dx+Q\,dy) = \iint_D \left(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\right) dA$$</div>
+        <p>Requiere $C$ simple (no se cruza a sí misma), cerrada, orientada positivamente, y $D$ simplemente
+        conexa. Una aplicación clásica es calcular el <strong>área</strong> de $D$ solo recorriendo su borde
+        (útil cuando $D$ es más fácil de parametrizar por su frontera que por su interior):</p>
+        <div class="formula-card"><span class="etiqueta">Área vía Green</span>$$A(D) = \oint_C x\,dy = -\oint_C y\,dx = \frac12\oint_C (x\,dy-y\,dx)$$</div>
+        <p>Green es, en el fondo, el caso particular de Stokes (Unidad 10) cuando la superficie es plana y
+        vive en el plano $xy$ — la cantidad $\partial_xQ-\partial_yP$ es la componente $z$ del rotacional que
+        se formaliza recién en la próxima unidad.</p>
+      </div>
+
+      <div class="animacion" id="anim-green">
+        <div class="anim-cabecera">
+          <h3>🟩 Teorema de Green: área de una elipse por su borde</h3>
+          <p class="anim-desc">Una elipse de semiejes $a,b$ con su borde recorrido en sentido positivo, acumulando $\tfrac12\oint(x\,dy-y\,dx)$ hasta igualar el área $\pi a b$.</p>
+        </div>
+        <canvas data-alto="380"></canvas>
+        <div class="controles">
+          <div class="control"><label for="sl-green-a">semieje $a$</label><input type="range" id="sl-green-a" min="1" max="2.4" step="0.1" value="2"><span class="valor"></span></div>
+          <div class="control"><label for="sl-green-b">semieje $b$</label><input type="range" id="sl-green-b" min="0.6" max="1.8" step="0.1" value="1.2"><span class="valor"></span></div>
+          <button type="button" data-accion="jugar">▶ Recorrer el borde</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> la región sombreada es $D$ (interior de la elipse, lo que integraría $\iint_D dA$); la curva de acento es su borde $C$ recorrido en sentido antihorario. Al reproducir, el punto violeta traza $C$ y abajo se acumula $\tfrac12\oint(x\,dy-y\,dx)$ — al completar la vuelta ese acumulado iguala exactamente el área $\pi a b$ sombreada, sin necesidad de integrar sobre el interior: la integral de borde y la de área dan lo mismo, que es justo lo que dice Green.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+
+        <div class="ejemplo" id="ej-linea-trabajo">
+          <h3>14. Trabajo de un campo a lo largo de una curva parametrizada</h3>
+          <p>Para $\mathbf F(x,y)=\langle x^2,\,xy\rangle$, evaluar $\displaystyle\int_C \mathbf F\cdot d\mathbf r$ a lo largo de $\mathbf r(t)=\langle t,\,t^2\rangle$, $t\in[0,1]$.</p>
+          <p><strong>Solución</strong> — $\mathbf r'(t)=\langle1,2t\rangle$, y sobre la curva $x=t,\,y=t^2$:</p>
+          <p>$$\mathbf F(\mathbf r(t)) = \langle t^2,\; t\cdot t^2\rangle = \langle t^2,\,t^3\rangle$$</p>
+          <p>$$\mathbf F(\mathbf r(t))\cdot\mathbf r'(t) = t^2\cdot1 + t^3\cdot2t = t^2+2t^4$$</p>
+          <p>$$\int_C\mathbf F\cdot d\mathbf r = \int_0^1(t^2+2t^4)\,dt = \left[\frac{t^3}{3}+\frac{2t^5}{5}\right]_0^1 = \frac13+\frac25 = \frac{5+6}{15}=\frac{11}{15}\approx0{,}733$$</p>
+          <p style="color:var(--tinta-2)">Este campo no es conservativo ($P_y=0\neq Q_x=y$ en general), así que el resultado sí depende de la curva elegida — con otra trayectoria entre los mismos puntos $(0,0)$ y $(1,1)$ el trabajo daría otro valor.</p>
+          <p class="fuente">Fuente: contenido agregado en auditoría (Stewart, cap. Integrales de línea) — no estaba en el material original.</p>
+        </div>
+
+        <div class="ejemplo" id="ej-green-triangulo">
+          <h3>15. Teorema de Green sobre un triángulo</h3>
+          <p>Usar el Teorema de Green para evaluar $\displaystyle\oint_C (xy\,dx+x^2\,dy)$, donde $C$ es el borde del triángulo de vértices $(0,0)$, $(1,0)$, $(0,1)$, orientado positivamente.</p>
+          <p><strong>Solución por Green</strong> — con $P=xy$, $Q=x^2$: $\partial Q/\partial x=2x$, $\partial P/\partial y=x$, así que el integrando es $2x-x=x$:</p>
+          <p>$$\oint_C(xy\,dx+x^2\,dy) = \iint_D x\,dA = \int_0^1\int_0^{1-x} x\,dy\,dx = \int_0^1 x(1-x)\,dx = \frac12-\frac13=\frac16$$</p>
+          <p style="color:var(--tinta-2)"><strong>Verificación directa</strong> (sumando la integral de línea en los 3 lados, sin usar Green): en el lado $(0,0)\to(1,0)$ y en el lado $(0,1)\to(0,0)$ el integrando se anula (porque $y=0$ o $x=0$ todo el tramo); en la hipotenusa $(1,0)\to(0,1)$, parametrizando $x=1-t,y=t$, se obtiene $\int_0^1(1-t)(1-2t)\,dt=\tfrac16$. Los tres tramos suman $0+\tfrac16+0=\tfrac16$ — coincide exactamente con el resultado de Green.</p>
+          <p class="fuente">Fuente: contenido agregado en auditoría (Stewart, cap. Teorema de Green) — no estaba en el material original.</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+
+        <details class="ejercicio" id="ejer-linea-escalar">
+          <summary><span class="resumen-ejercicio">18. Calcular $\int_C(x+y)\,ds$ donde $C$ es el segmento de $(0,0)$ a $(1,1)$.</span> <span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <p>Parametrizando $\mathbf r(t)=\langle t,t\rangle$, $t\in[0,1]$: $\mathbf r'(t)=\langle1,1\rangle$, $\lVert\mathbf r'(t)\rVert=\sqrt2$.</p>
+            <p>$$\int_C(x+y)\,ds = \int_0^1 2t\cdot\sqrt2\,dt = \sqrt2\left[t^2\right]_0^1 = \sqrt2\approx1{,}414$$</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-green-elipse">
+          <summary><span class="resumen-ejercicio">19. Usar Green para deducir el área de una elipse $x=a\cos t,\,y=b\sin t$ a partir de $A=\tfrac12\oint(x\,dy-y\,dx)$.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>$dx=-a\sin t\,dt$, $dy=b\cos t\,dt$. Entonces $x\,dy-y\,dx = ab\cos^2t\,dt+ab\sin^2t\,dt = ab\,dt$ (constante).</p>
+            <p>$$A = \frac12\int_0^{2\pi} ab\,dt = \frac12\cdot ab\cdot2\pi = \pi ab$$</p>
+            <p style="color:var(--tinta-2)">Coincide con la fórmula conocida del área de una elipse — es la misma cuenta que hace la animación de esta unidad.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 10 · CÁLCULO VECTORIAL II: ROTACIONAL, STOKES Y GAUSS (agregada en auditoría Fase 5) -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u10">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">10</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Rotacional, divergencia, Stokes y Teorema de la divergencia (Gauss)</h2>
+          <p class="unidad-sub">Rotacional y divergencia miden localmente cómo gira y cómo "se expande" un campo; Stokes generaliza Green a superficies en 3D y Gauss conecta flujo por una superficie cerrada con la divergencia en el volumen que encierra.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-rotacional-divergencia">
+        <h3>Rotacional y divergencia</h3>
+        <p>Para un campo $\mathbf F=\langle P,Q,R\rangle$ en 3D, el <strong>rotacional</strong> mide rotación
+        local (si fuera un campo de velocidades de un fluido, la rotación de una rueda de paletas puesta ahí) y
+        la <strong>divergencia</strong> mide expansión/contracción local (fuente o sumidero):</p>
+        <div class="formula-card">
+          <span class="etiqueta">Rotacional</span>
+          $$\operatorname{rot}\mathbf F = \nabla\times\mathbf F = \left\langle \frac{\partial R}{\partial y}-\frac{\partial Q}{\partial z},\;\; \frac{\partial P}{\partial z}-\frac{\partial R}{\partial x},\;\; \frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\right\rangle$$
+        </div>
+        <div class="formula-card"><span class="etiqueta">Divergencia</span>$$\operatorname{div}\mathbf F = \nabla\cdot\mathbf F = \frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z}$$</div>
+        <p>Dos identidades siempre ciertas (para $f$ y $\mathbf F$ suficientemente derivables):</p>
+        <ul>
+          <li>$\operatorname{rot}(\nabla f) = \mathbf 0$: todo campo conservativo es <strong>irrotacional</strong> — generaliza a 3D la prueba $P_y=Q_x$ de la Unidad 9.</li>
+          <li>$\operatorname{div}(\operatorname{rot}\mathbf F) = 0$: la divergencia de un rotacional siempre es cero.</li>
+          <li>$\operatorname{rot}\mathbf F=\mathbf 0$ en un dominio simplemente conexo $\Longrightarrow$ $\mathbf F$ es conservativo (recíproco de la primera identidad).</li>
+        </ul>
+      </div>
+
+      <div class="materia" id="tema-integrales-superficie">
+        <h3>Integrales de superficie</h3>
+        <p>Así como una integral de línea generaliza una integral simple a una curva, una <strong>integral de
+        superficie</strong> generaliza una integral doble a una superficie curva $S$, parametrizada por
+        $\mathbf r(u,v)$:</p>
+        <div class="formula-card"><span class="etiqueta">Integral de superficie escalar</span>$$\iint_S f\,dS = \iint_{D} f(\mathbf r(u,v))\,\lVert \mathbf r_u\times\mathbf r_v\rVert\,dA$$</div>
+        <p>Cuando $S$ está orientada (tiene un lado "positivo" definido por un normal $\mathbf n$), la
+        <strong>integral de flujo</strong> de un campo vectorial mide cuánto "atraviesa" $\mathbf F$ la
+        superficie:</p>
+        <div class="formula-card"><span class="etiqueta">Integral de flujo</span>$$\iint_S \mathbf F\cdot d\mathbf S = \iint_S \mathbf F\cdot\mathbf n\,dS = \iint_D \mathbf F(\mathbf r(u,v))\cdot(\mathbf r_u\times\mathbf r_v)\,dA$$</div>
+        <p>El factor $\lVert\mathbf r_u\times\mathbf r_v\rVert$ es el análogo del jacobiano de la Unidad 7/8: el
+        "estiramiento" de área que produce la parametrización.</p>
+      </div>
+
+      <div class="materia" id="tema-stokes-gauss">
+        <h3>Teorema de Stokes y Teorema de la divergencia (Gauss)</h3>
+        <p>El <strong>Teorema de Stokes</strong> generaliza Green: convierte una integral de línea sobre el
+        borde $C$ de una superficie $S$ (no necesariamente plana) en una integral de flujo del rotacional a
+        través de $S$:</p>
+        <div class="formula-card"><span class="etiqueta">Teorema de Stokes</span>$$\oint_C \mathbf F\cdot d\mathbf r = \iint_S (\operatorname{rot}\mathbf F)\cdot d\mathbf S$$</div>
+        <p>Si $S$ es plana y vive en el plano $xy$ (con $\mathbf n=\mathbf k$), Stokes se reduce exactamente al
+        Teorema de Green de la Unidad 9. El <strong>Teorema de la divergencia</strong> (Gauss) hace el mismo
+        tipo de conexión, pero un nivel más "arriba": convierte el flujo por una superficie <strong>cerrada</strong>
+        $S$ (borde de un sólido $V$) en una integral triple de la divergencia sobre todo el volumen encerrado:</p>
+        <div class="formula-card"><span class="etiqueta">Teorema de la divergencia (Gauss)</span>$$\iint_S \mathbf F\cdot d\mathbf S = \iiint_V (\operatorname{div}\mathbf F)\,dV$$</div>
+        <p>Los tres teoremas (Green, Stokes, Gauss) siguen el mismo patrón: una integral sobre el <strong>borde</strong>
+        de un objeto se convierte en una integral sobre el objeto <strong>completo</strong> de una derivada del
+        campo (rotacional o divergencia) — el mismo patrón, en 1D, es el Teorema Fundamental del Cálculo.</p>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+
+        <div class="ejemplo" id="ej-rotacional-divergencia">
+          <h3>16. Rotacional y divergencia de un campo</h3>
+          <p>Para $\mathbf F(x,y,z) = \langle xy,\,yz,\,xz\rangle$, calcular $\operatorname{div}\mathbf F$ y $\operatorname{rot}\mathbf F$.</p>
+          <p><strong>Solución</strong> — con $P=xy$, $Q=yz$, $R=xz$:</p>
+          <p>$$\operatorname{div}\mathbf F = \frac{\partial(xy)}{\partial x}+\frac{\partial(yz)}{\partial y}+\frac{\partial(xz)}{\partial z} = y+z+x$$</p>
+          <p>Para el rotacional, componente a componente:</p>
+          <p>$$\left(\frac{\partial R}{\partial y}-\frac{\partial Q}{\partial z}\right) = 0-y=-y$$</p>
+          <p>$$\left(\frac{\partial P}{\partial z}-\frac{\partial R}{\partial x}\right) = 0-z=-z$$</p>
+          <p>$$\left(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\right) = 0-x=-x$$</p>
+          <p>$$\operatorname{rot}\mathbf F = \langle-y,\,-z,\,-x\rangle$$</p>
+          <p style="color:var(--tinta-2)">Como $\operatorname{rot}\mathbf F\neq\mathbf 0$, este campo <strong>no</strong> es conservativo — a diferencia del Ejercicio de esta unidad, donde sí lo es.</p>
+          <p class="fuente">Fuente: contenido agregado en auditoría (Stewart, cap. Rotacional y divergencia) — no estaba en el material original.</p>
+        </div>
+
+        <div class="ejemplo" id="ej-divergencia-esfera">
+          <h3>17. Flujo a través de una esfera (Teorema de la divergencia)</h3>
+          <p>Calcular el flujo de $\mathbf F(x,y,z)=\langle x,y,z\rangle$ a través de la esfera de radio $a$ centrada en el origen, usando el Teorema de la divergencia.</p>
+          <p><strong>Solución por Gauss</strong> — $\operatorname{div}\mathbf F = 1+1+1=3$ (constante), así que:</p>
+          <p>$$\iint_S\mathbf F\cdot d\mathbf S = \iiint_V 3\,dV = 3\cdot\frac43\pi a^3 = 4\pi a^3$$</p>
+          <p style="color:var(--tinta-2)"><strong>Verificación directa</strong> (integral de superficie, sin Gauss): en cada punto de la esfera el normal unitario es $\mathbf n=\mathbf r/a$ (radial), y $\mathbf F=\mathbf r$, así que $\mathbf F\cdot\mathbf n = \mathbf r\cdot\mathbf r/a = a^2/a=a$ (constante en toda la esfera). Entonces $\iint_S\mathbf F\cdot d\mathbf S = a\cdot\text{área}(S) = a\cdot4\pi a^2=4\pi a^3$ — coincide exactamente con el resultado por Gauss.</p>
+          <p class="fuente">Fuente: contenido agregado en auditoría (Stewart, cap. Teorema de la divergencia) — no estaba en el material original.</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+
+        <details class="ejercicio" id="ejer-divergencia-simple">
+          <summary><span class="resumen-ejercicio">20. Calcular $\operatorname{div}\mathbf F$ para $\mathbf F(x,y,z)=\langle x^2,\,y^2,\,z^2\rangle$.</span> <span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <p>$$\operatorname{div}\mathbf F = \frac{\partial(x^2)}{\partial x}+\frac{\partial(y^2)}{\partial y}+\frac{\partial(z^2)}{\partial z} = 2x+2y+2z$$</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-rotacional-conservativo">
+          <summary><span class="resumen-ejercicio">21. Mostrar que $\mathbf F(x,y,z)=\langle yz,\,xz,\,xy\rangle$ es conservativo, calculando su rotacional.</span> <span class="dificultad dificil">difícil</span></summary>
+          <div class="solucion">
+            <p>Con $P=yz,\,Q=xz,\,R=xy$:</p>
+            <p>$$\frac{\partial R}{\partial y}-\frac{\partial Q}{\partial z} = x-x=0, \qquad \frac{\partial P}{\partial z}-\frac{\partial R}{\partial x} = y-y=0, \qquad \frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y} = z-z=0$$</p>
+            <p>$\operatorname{rot}\mathbf F=\mathbf 0$ en todo $\mathbb R^3$ (simplemente conexo) $\Rightarrow$ $\mathbf F$ es conservativo. De hecho $\mathbf F=\nabla(xyz)$: $\partial(xyz)/\partial x=yz=P$, $\partial(xyz)/\partial y=xz=Q$, $\partial(xyz)/\partial z=xy=R$ ✓.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function () {
+
+  /* Ajusta una lista de puntos 2D (ya proyectados) a un mapeo centrado y de escala
+     uniforme dentro del canvas — usado por las animaciones que proyectan geometría 3D. */
+  function ajustarProyeccion(pts, w, h, margenFrac) {
+    var minX = Infinity, maxX = -Infinity, minY = Infinity, maxY = -Infinity;
+    for (var i = 0; i < pts.length; i++) {
+      var p = pts[i];
+      if (p.x < minX) minX = p.x;
+      if (p.x > maxX) maxX = p.x;
+      if (p.y < minY) minY = p.y;
+      if (p.y > maxY) maxY = p.y;
+    }
+    var rx = (maxX - minX) || 1, ry = (maxY - minY) || 1;
+    var cx = (minX + maxX) / 2, cy = (minY + maxY) / 2;
+    var m = margenFrac || 1.15;
+    var escala = Math.min(w / (rx * m), h / (ry * m));
+    var ox = w / 2, oy = h / 2;
+    return function (p) { return { x: ox + (p.x - cx) * escala, y: oy - (p.y - cy) * escala }; };
+  }
+
+  /* ================= 1. Triedro de Frenet en una hélice ================= */
+  Anim.registrar("anim-frenet", function (sim) {
+    var radio = 1.4, paso = 0.3;
+    var tRange = 5 * Math.PI;
+
+    function proyIso(x, y, z) {
+      return { x: (x - y) * 0.8660254, y: (x + y) * 0.5 - z };
+    }
+    function puntoCurva(theta) {
+      return { x: radio * Math.cos(theta), y: radio * Math.sin(theta), z: paso * theta };
+    }
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var n = 90;
+      var mundo = [];
+      for (var i = 0; i <= n; i++) mundo.push(puntoCurva(tRange * i / n));
+
+      var thetaT = (t * 0.9) % tRange;
+      var pActual = puntoCurva(thetaT);
+
+      var L = Math.sqrt(radio * radio + paso * paso);
+      var T = { x: -radio * Math.sin(thetaT) / L, y: radio * Math.cos(thetaT) / L, z: paso / L };
+      var N = { x: -Math.cos(thetaT), y: -Math.sin(thetaT), z: 0 };
+      var B = {
+        x: T.y * N.z - T.z * N.y,
+        y: T.z * N.x - T.x * N.z,
+        z: T.x * N.y - T.y * N.x
+      };
+      var kappa = radio / (radio * radio + paso * paso);
+
+      var escVec = Math.max(radio, 1) * 0.9;
+      var puntas = [
+        pActual,
+        { x: pActual.x + T.x * escVec, y: pActual.y + T.y * escVec, z: pActual.z + T.z * escVec },
+        { x: pActual.x + N.x * escVec, y: pActual.y + N.y * escVec, z: pActual.z + N.z * escVec },
+        { x: pActual.x + B.x * escVec, y: pActual.y + B.y * escVec, z: pActual.z + B.z * escVec }
+      ];
+
+      var proyPts = [];
+      for (var j = 0; j < mundo.length; j++) proyPts.push(proyIso(mundo[j].x, mundo[j].y, mundo[j].z));
+      for (var q = 0; q < puntas.length; q++) proyPts.push(proyIso(puntas[q].x, puntas[q].y, puntas[q].z));
+      var proyectar = ajustarProyeccion(proyPts, w, h, 1.25);
+
+      ctx.save();
+      ctx.strokeStyle = colorVar("--tinta-2"); ctx.globalAlpha = 0.65; ctx.lineWidth = 1.6;
+      ctx.beginPath();
+      for (var k = 0; k < mundo.length; k++) {
+        var pp = proyectar(proyIso(mundo[k].x, mundo[k].y, mundo[k].z));
+        if (k === 0) ctx.moveTo(pp.x, pp.y); else ctx.lineTo(pp.x, pp.y);
+      }
+      ctx.stroke();
+      ctx.restore();
+
+      var pantP = proyectar(proyIso(pActual.x, pActual.y, pActual.z));
+      var pantT = proyectar(proyIso(puntas[1].x, puntas[1].y, puntas[1].z));
+      var pantN = proyectar(proyIso(puntas[2].x, puntas[2].y, puntas[2].z));
+      var pantB = proyectar(proyIso(puntas[3].x, puntas[3].y, puntas[3].z));
+
+      Anim.flecha(ctx, pantP.x, pantP.y, pantT.x, pantT.y, colorVar("--acento"), 2.6);
+      Anim.flecha(ctx, pantP.x, pantP.y, pantN.x, pantN.y, colorVar("--s1"), 2.4);
+      Anim.flecha(ctx, pantP.x, pantP.y, pantB.x, pantB.y, colorVar("--s3"), 2.4);
+
+      ctx.save();
+      ctx.fillStyle = colorVar("--acento");
+      ctx.beginPath(); ctx.arc(pantP.x, pantP.y, 6, 0, Math.PI * 2); ctx.fill();
+      ctx.restore();
+
+      ctx.save();
+      ctx.font = "13px Consolas, monospace"; ctx.fillStyle = colorVar("--tinta");
+      ctx.fillText("R = " + radio.toFixed(2) + " m,  c = " + paso.toFixed(2), 10, 18);
+      ctx.fillText("κ = R/(R²+c²) = " + kappa.toFixed(3), 10, 36);
+      ctx.fillStyle = colorVar("--acento"); ctx.fillText("— T (tangente)", 10, 56);
+      ctx.fillStyle = colorVar("--s1"); ctx.fillText("— N (normal)", 130, 56);
+      ctx.fillStyle = colorVar("--s3"); ctx.fillText("— B (binormal)", 250, 56);
+      ctx.restore();
+    });
+
+    sim.slider("sl-frenet-radio", function (v) { radio = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.slider("sl-frenet-paso", function (v) { paso = v; sim.redibujar(); }, function (v) { return v.toFixed(2); });
+    sim.botones();
+  });
+
+  /* ================= 2. Curvas de nivel y gradiente ================= */
+  Anim.registrar("anim-gradiente", function (sim) {
+    var x0 = 1.2, y0 = 0.6, anguloSlider = 0;
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var rango = 3.4;
+      var escala = Math.min(w, h) / (2 * rango);
+      var cx = w / 2, cy = h / 2;
+      function px(x) { return cx + x * escala; }
+      function py(y) { return cy - y * escala; }
+
+      ctx.save();
+      ctx.strokeStyle = colorVar("--tinta-3"); ctx.globalAlpha = 0.5; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(w, cy); ctx.moveTo(cx, 0); ctx.lineTo(cx, h); ctx.stroke();
+      ctx.restore();
+
+      var niveles = [1, 2, 4, 6, 8];
+      ctx.save();
+      ctx.strokeStyle = colorVar("--tinta-2"); ctx.globalAlpha = 0.6; ctx.lineWidth = 1.4;
+      for (var ni = 0; ni < niveles.length; ni++) {
+        var k = niveles[ni];
+        var a = Math.sqrt(k), b = Math.sqrt(k / 2);
+        ctx.beginPath();
+        for (var i = 0; i <= 72; i++) {
+          var ang = i / 72 * 2 * Math.PI;
+          var X = px(a * Math.cos(ang)), Y = py(b * Math.sin(ang));
+          if (i === 0) ctx.moveTo(X, Y); else ctx.lineTo(X, Y);
+        }
+        ctx.stroke();
+      }
+      ctx.restore();
+
+      var gradX = 2 * x0, gradY = 4 * y0;
+      var magGrad = Math.sqrt(gradX * gradX + gradY * gradY);
+      var anguloRad = anguloSlider * Math.PI / 180 + t * 0.6;
+      var ux = Math.cos(anguloRad), uy = Math.sin(anguloRad);
+      var Duf = gradX * ux + gradY * uy;
+
+      var P = { x: px(x0), y: py(y0) };
+      var escVec = 0.45;
+      Anim.flecha(ctx, P.x, P.y, px(x0 + gradX * escVec), py(y0 + gradY * escVec), colorVar("--acento"), 2.6);
+      Anim.flecha(ctx, P.x, P.y, px(x0 + ux * 1.1), py(y0 + uy * 1.1), colorVar("--s1"), 2.2);
+
+      ctx.save();
+      ctx.fillStyle = colorVar("--s3");
+      ctx.beginPath(); ctx.arc(P.x, P.y, 5, 0, Math.PI * 2); ctx.fill();
+      ctx.restore();
+
+      ctx.save();
+      ctx.font = "13px Consolas, monospace"; ctx.fillStyle = colorVar("--tinta");
+      ctx.fillText("∇f(P) = (" + gradX.toFixed(2) + ", " + gradY.toFixed(2) + "),  |∇f| = " + magGrad.toFixed(2), 10, 18);
+      ctx.fillText("D_u f = ∇f·u = " + Duf.toFixed(2) + "   (máx. posible = " + magGrad.toFixed(2) + ")", 10, 36);
+      ctx.restore();
+    });
+
+    sim.slider("sl-grad-x0", function (v) { x0 = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.slider("sl-grad-y0", function (v) { y0 = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.slider("sl-grad-angulo", function (v) { anguloSlider = v; sim.redibujar(); }, function (v) { return v.toFixed(0) + "°"; });
+    sim.botones();
+  });
+
+  /* ================= 3. Plano tangente móvil ================= */
+  Anim.registrar("anim-plano-tangente", function (sim) {
+    var x0 = 1.3, y0 = -0.8;
+
+    function f(x, y) { return (x * x + y * y) / 4; }
+    function proyIso(x, y, z) { return { x: (x - y) * 0.8660254, y: (x + y) * 0.5 - z }; }
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var orbitando = t > 0;
+      var xa = orbitando ? 1.6 * Math.cos(t * 0.6) : x0;
+      var ya = orbitando ? 1.6 * Math.sin(t * 0.6) : y0;
+
+      var paso = 0.5, lim = 2.5;
+      var malla = [];
+      for (var xi = -lim; xi <= lim + 1e-9; xi += paso) {
+        var fila = [];
+        for (var yi = -lim; yi <= lim + 1e-9; yi += paso) fila.push({ x: xi, y: yi, z: f(xi, yi) });
+        malla.push(fila);
+      }
+
+      var za = f(xa, ya);
+      var fx = xa / 2, fy = ya / 2;
+      var d = 1.1;
+      var esquinas = [
+        { x: xa - d, y: ya - d, z: za + fx * (-d) + fy * (-d) },
+        { x: xa + d, y: ya - d, z: za + fx * (d) + fy * (-d) },
+        { x: xa + d, y: ya + d, z: za + fx * (d) + fy * (d) },
+        { x: xa - d, y: ya + d, z: za + fx * (-d) + fy * (d) }
+      ];
+
+      var pts = [];
+      for (var r = 0; r < malla.length; r++)
+        for (var c = 0; c < malla[r].length; c++) pts.push(proyIso(malla[r][c].x, malla[r][c].y, malla[r][c].z));
+      for (var e = 0; e < esquinas.length; e++) pts.push(proyIso(esquinas[e].x, esquinas[e].y, esquinas[e].z));
+      pts.push(proyIso(xa, ya, za));
+
+      var proyectar = ajustarProyeccion(pts, w, h, 1.2);
+
+      ctx.save();
+      ctx.strokeStyle = colorVar("--tinta-2"); ctx.globalAlpha = 0.5; ctx.lineWidth = 1;
+      for (var r2 = 0; r2 < malla.length; r2++) {
+        ctx.beginPath();
+        for (var c2 = 0; c2 < malla[r2].length; c2++) {
+          var pp = proyectar(proyIso(malla[r2][c2].x, malla[r2][c2].y, malla[r2][c2].z));
+          if (c2 === 0) ctx.moveTo(pp.x, pp.y); else ctx.lineTo(pp.x, pp.y);
+        }
+        ctx.stroke();
+      }
+      for (var c3 = 0; c3 < malla[0].length; c3++) {
+        ctx.beginPath();
+        for (var r3 = 0; r3 < malla.length; r3++) {
+          var pp2 = proyectar(proyIso(malla[r3][c3].x, malla[r3][c3].y, malla[r3][c3].z));
+          if (r3 === 0) ctx.moveTo(pp2.x, pp2.y); else ctx.lineTo(pp2.x, pp2.y);
+        }
+        ctx.stroke();
+      }
+      ctx.restore();
+
+      ctx.save();
+      ctx.fillStyle = colorVar("--acento"); ctx.globalAlpha = 0.28;
+      ctx.strokeStyle = colorVar("--acento"); ctx.lineWidth = 1.6;
+      ctx.beginPath();
+      for (var q = 0; q < esquinas.length; q++) {
+        var pq = proyectar(proyIso(esquinas[q].x, esquinas[q].y, esquinas[q].z));
+        if (q === 0) ctx.moveTo(pq.x, pq.y); else ctx.lineTo(pq.x, pq.y);
+      }
+      ctx.closePath(); ctx.fill();
+      ctx.globalAlpha = 0.9; ctx.stroke();
+      ctx.restore();
+
+      var pPunto = proyectar(proyIso(xa, ya, za));
+      ctx.save();
+      ctx.fillStyle = colorVar("--s1");
+      ctx.beginPath(); ctx.arc(pPunto.x, pPunto.y, 5, 0, Math.PI * 2); ctx.fill();
+      ctx.restore();
+
+      ctx.save();
+      ctx.font = "13px Consolas, monospace"; ctx.fillStyle = colorVar("--tinta");
+      ctx.fillText("(x₀,y₀) = (" + xa.toFixed(2) + ", " + ya.toFixed(2) + "),  f(x₀,y₀) = " + za.toFixed(2), 10, 18);
+      ctx.fillText("plano: z = " + za.toFixed(2) + " + " + fx.toFixed(2) + "(x−x₀) + " + fy.toFixed(2) + "(y−y₀)", 10, 36);
+      ctx.restore();
+    });
+
+    sim.slider("sl-plano3d-x0", function (v) { x0 = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.slider("sl-plano3d-y0", function (v) { y0 = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.botones();
+  });
+
+  /* ================= 4. Suma de Riemann en polares ================= */
+  Anim.registrar("anim-riemann", function (sim) {
+    var n = 6, R = 2;
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var margen = 46;
+      var escala = Math.min((w - 2 * margen) / R, (h - 2 * margen) / R);
+      function px(x) { return margen + x * escala; }
+      function py(y) { return h - margen - y * escala; }
+
+      ctx.save();
+      ctx.strokeStyle = colorVar("--tinta-2"); ctx.globalAlpha = 0.8; ctx.lineWidth = 1.6;
+      ctx.beginPath();
+      ctx.moveTo(px(0), py(0));
+      ctx.lineTo(px(R), py(0));
+      for (var i = 0; i <= 48; i++) {
+        var ang = i / 48 * Math.PI / 2;
+        ctx.lineTo(px(R * Math.cos(ang)), py(R * Math.sin(ang)));
+      }
+      ctx.lineTo(px(0), py(0));
+      ctx.stroke();
+      ctx.restore();
+
+      var dr = R / n, dth = (Math.PI / 2) / n;
+      var totalCeldas = n * n;
+      var velocidad = 4;
+      var reveladas = Math.min(totalCeldas, Math.floor(t * velocidad));
+
+      var suma = 0, idx = 0;
+      ctx.save();
+      for (var ri = 0; ri < n; ri++) {
+        for (var thi = 0; thi < n; thi++) {
+          var rMed = (ri + 0.5) * dr;
+          var thMed = (thi + 0.5) * dth;
+          var areaCelda = rMed * dr * dth;
+          var activa = idx < reveladas;
+          if (activa) suma += rMed * areaCelda;
+
+          var r1 = ri * dr, r2 = r1 + dr, a1 = thi * dth, a2 = a1 + dth;
+          ctx.beginPath();
+          ctx.moveTo(px(r1 * Math.cos(a1)), py(r1 * Math.sin(a1)));
+          ctx.lineTo(px(r2 * Math.cos(a1)), py(r2 * Math.sin(a1)));
+          var pasos = 4;
+          for (var s = 1; s <= pasos; s++) {
+            var aa = a1 + (a2 - a1) * s / pasos;
+            ctx.lineTo(px(r2 * Math.cos(aa)), py(r2 * Math.sin(aa)));
+          }
+          for (var s2 = pasos; s2 >= 0; s2--) {
+            var aa2 = a1 + (a2 - a1) * s2 / pasos;
+            ctx.lineTo(px(r1 * Math.cos(aa2)), py(r1 * Math.sin(aa2)));
+          }
+          ctx.closePath();
+          ctx.fillStyle = activa ? colorVar("--acento") : colorVar("--panel-2");
+          ctx.globalAlpha = activa ? 0.55 : 0.18;
+          ctx.fill();
+          ctx.strokeStyle = colorVar("--tinta-3"); ctx.globalAlpha = 0.5; ctx.lineWidth = 0.8;
+          ctx.stroke();
+          idx++;
+        }
+      }
+      ctx.restore();
+
+      var exacta = Math.PI * R * R * R / 6;
+      ctx.save();
+      ctx.font = "13px Consolas, monospace"; ctx.fillStyle = colorVar("--tinta");
+      ctx.fillText("celdas: " + reveladas + " / " + totalCeldas + "   (n=" + n + ", R=" + R.toFixed(1) + " m)", 10, h - 40);
+      ctx.fillText("suma ≈ " + suma.toFixed(3) + "     exacta πR³/6 = " + exacta.toFixed(3), 10, h - 20);
+      ctx.restore();
+    });
+
+    sim.slider("sl-riemann-particiones", function (v) { n = v; sim.redibujar(); }, function (v) { return v.toFixed(0); });
+    sim.slider("sl-riemann-radio", function (v) { R = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.botones();
+  });
+
+  /* ================= 5. Superficies cuádricas rotables ================= */
+  Anim.registrar("anim-cuadricas", function (sim) {
+    var tipo = 1, anguloManual = 35;
+    var nombres = ["", "Elipsoide", "Hiperboloide de 1 hoja", "Hiperboloide de 2 hojas (1 hoja mostrada)", "Paraboloide elíptico", "Paraboloide hiperbólico (silla)", "Cono elíptico"];
+    var ecuaciones = ["",
+      "x²/a²+y²/b²+z²/c² = 1",
+      "x²/a²+y²/b²-z²/c² = 1",
+      "-x²/a²-y²/b²+z²/c² = 1",
+      "z = x²/a²+y²/b²",
+      "z = x²/a²-y²/b²",
+      "z² = x²/a²+y²/b²"
+    ];
+
+    function punto(tp, u, v) {
+      var theta = v * 2 * Math.PI;
+      if (tp === 1) {
+        var phi = u * Math.PI;
+        return { x: 1.3 * Math.sin(phi) * Math.cos(theta), y: 0.9 * Math.sin(phi) * Math.sin(theta), z: 1.1 * Math.cos(phi) };
+      }
+      if (tp === 2) {
+        var s2 = (u - 0.5) * 2;
+        return { x: 1.1 * Math.cosh(s2) * Math.cos(theta), y: 1.1 * Math.cosh(s2) * Math.sin(theta), z: 1.3 * Math.sinh(s2) };
+      }
+      if (tp === 3) {
+        var s3 = u * 1.2;
+        return { x: 1.0 * Math.sinh(s3) * Math.cos(theta), y: 1.0 * Math.sinh(s3) * Math.sin(theta), z: 1.3 * Math.cosh(s3) };
+      }
+      if (tp === 4) {
+        var r4 = u * 1.4;
+        return { x: r4 * Math.cos(theta), y: r4 * Math.sin(theta) * 0.85, z: r4 * r4 * 0.6 };
+      }
+      if (tp === 5) {
+        var X5 = (u - 0.5) * 3, Y5 = (v - 0.5) * 3;
+        return { x: X5, y: Y5, z: (X5 * X5 - Y5 * Y5) * 0.4 };
+      }
+      var s6 = (u - 0.5) * 3;
+      return { x: 0.7 * s6 * Math.cos(theta), y: 0.7 * s6 * Math.sin(theta), z: s6 };
+    }
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var anguloRad = (t > 0 ? t * 0.5 : anguloManual * Math.PI / 180);
+
+      function proyIso(x, y, z) {
+        var xr = x * Math.cos(anguloRad) - z * Math.sin(anguloRad);
+        var zr = x * Math.sin(anguloRad) + z * Math.cos(anguloRad);
+        return { x: (xr - y) * 0.8660254, y: (xr + y) * 0.5 - zr };
+      }
+
+      var nU = 12, nV = 28;
+      var malla = [];
+      for (var iu = 0; iu <= nU; iu++) {
+        var fila = [];
+        for (var iv = 0; iv <= nV; iv++) fila.push(punto(tipo, iu / nU, iv / nV));
+        malla.push(fila);
+      }
+
+      var pts = [];
+      for (var r = 0; r < malla.length; r++)
+        for (var c = 0; c < malla[r].length; c++) pts.push(proyIso(malla[r][c].x, malla[r][c].y, malla[r][c].z));
+      var proyectar = ajustarProyeccion(pts, w, h, 1.2);
+
+      ctx.save();
+      ctx.strokeStyle = colorVar("--acento"); ctx.globalAlpha = 0.55; ctx.lineWidth = 1;
+      for (var r2 = 0; r2 < malla.length; r2++) {
+        ctx.beginPath();
+        for (var c2 = 0; c2 < malla[r2].length; c2++) {
+          var pp = proyectar(proyIso(malla[r2][c2].x, malla[r2][c2].y, malla[r2][c2].z));
+          if (c2 === 0) ctx.moveTo(pp.x, pp.y); else ctx.lineTo(pp.x, pp.y);
+        }
+        ctx.stroke();
+      }
+      ctx.globalAlpha = 0.35;
+      for (var c3 = 0; c3 <= nV; c3 += 2) {
+        ctx.beginPath();
+        for (var r3 = 0; r3 < malla.length; r3++) {
+          var pp2 = proyectar(proyIso(malla[r3][c3].x, malla[r3][c3].y, malla[r3][c3].z));
+          if (r3 === 0) ctx.moveTo(pp2.x, pp2.y); else ctx.lineTo(pp2.x, pp2.y);
+        }
+        ctx.stroke();
+      }
+      ctx.restore();
+
+      ctx.save();
+      ctx.font = "13px Consolas, monospace"; ctx.fillStyle = colorVar("--tinta");
+      ctx.fillText(tipo + "/6 — " + nombres[tipo], 10, 18);
+      ctx.fillText(ecuaciones[tipo], 10, 36);
+      ctx.restore();
+    });
+
+    sim.slider("sl-cuadrica-tipo", function (v) { tipo = Math.round(v); sim.redibujar(); }, function (v) { return Math.round(v) + " — " + nombres[Math.round(v)]; });
+    sim.slider("sl-cuadrica-angulo", function (v) { anguloManual = v; sim.redibujar(); }, function (v) { return v.toFixed(0) + "°"; });
+    sim.botones();
+  });
+
+  /* ================= 6. Campo vectorial y trabajo acumulado ================= */
+  Anim.registrar("anim-campo-lineal", function (sim) {
+    var R = 1.6;
+
+    function campoF(x, y) { return { x: -y, y: x }; }
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var margen = 55;
+      var rango = 2.4;
+      var escala = Math.min((w - 2 * margen), (h - 2 * margen)) / (2 * rango);
+      var cx = w / 2, cy = h / 2;
+      function px(x) { return cx + x * escala; }
+      function py(y) { return cy - y * escala; }
+
+      ctx.save();
+      ctx.globalAlpha = 0.55;
+      for (var gx = -2; gx <= 2.001; gx += 0.8) {
+        for (var gy = -2; gy <= 2.001; gy += 0.8) {
+          var f = campoF(gx, gy);
+          var mag = Math.sqrt(f.x * f.x + f.y * f.y) || 1;
+          var s = 0.26;
+          var ex = gx + (f.x / mag) * s * Math.min(mag, 2.2);
+          var ey = gy + (f.y / mag) * s * Math.min(mag, 2.2);
+          Anim.flecha(ctx, px(gx), py(gy), px(ex), py(ey), colorVar("--tinta-3"), 1.3);
+        }
+      }
+      ctx.restore();
+
+      ctx.save();
+      ctx.strokeStyle = colorVar("--tinta-2"); ctx.globalAlpha = 0.7; ctx.lineWidth = 1.6;
+      ctx.beginPath();
+      for (var i = 0; i <= 72; i++) {
+        var th = i / 72 * 2 * Math.PI;
+        var X = px(R * Math.cos(th)), Y = py(R * Math.sin(th));
+        if (i === 0) ctx.moveTo(X, Y); else ctx.lineTo(X, Y);
+      }
+      ctx.closePath(); ctx.stroke();
+      ctx.restore();
+
+      var thetaMax = Math.min(t * 0.7, 2 * Math.PI);
+      var trabajo = R * R * thetaMax;
+
+      ctx.save();
+      ctx.strokeStyle = colorVar("--acento"); ctx.lineWidth = 2.8;
+      ctx.beginPath();
+      var pasos = 240, nPasos = Math.floor(pasos * thetaMax / (2 * Math.PI));
+      var dth = 2 * Math.PI / pasos;
+      for (var k = 0; k <= nPasos; k++) {
+        var th2 = k * dth;
+        var X2 = px(R * Math.cos(th2)), Y2 = py(R * Math.sin(th2));
+        if (k === 0) ctx.moveTo(X2, Y2); else ctx.lineTo(X2, Y2);
+      }
+      ctx.stroke();
+      ctx.restore();
+
+      var P = { x: R * Math.cos(thetaMax), y: R * Math.sin(thetaMax) };
+      var Fp = campoF(P.x, P.y);
+      var Pp = px(P.x), Pq = py(P.y);
+      Anim.flecha(ctx, Pp, Pq, px(P.x + Fp.x * 0.35), py(P.y + Fp.y * 0.35), colorVar("--s3"), 2.4);
+      ctx.save();
+      ctx.fillStyle = colorVar("--s1");
+      ctx.beginPath(); ctx.arc(Pp, Pq, 5, 0, Math.PI * 2); ctx.fill();
+      ctx.restore();
+
+      ctx.save();
+      ctx.font = "13px Consolas, monospace"; ctx.fillStyle = colorVar("--tinta");
+      ctx.fillText("F(x,y) = ⟨−y, x⟩   (campo rotacional)", 10, 18);
+      ctx.fillText("trabajo acumulado ∫F·dr ≈ " + trabajo.toFixed(3) + "   (recorrido " + (thetaMax / (2 * Math.PI) * 100).toFixed(0) + "%, R=" + R.toFixed(1) + ")", 10, h - 18);
+      ctx.restore();
+    });
+
+    sim.slider("sl-campo-radio", function (v) { R = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.botones();
+  });
+
+  /* ================= 7. Teorema de Green: área de una elipse ================= */
+  Anim.registrar("anim-green", function (sim) {
+    var a = 2, b = 1.2;
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var margen = 55;
+      var escala = Math.min((w - 2 * margen) / (2 * 2.4), (h - 2 * margen) / (2 * 1.9));
+      var cx = w / 2, cy = h / 2;
+      function px(x) { return cx + x * escala; }
+      function py(y) { return cy - y * escala; }
+
+      ctx.save();
+      ctx.fillStyle = colorVar("--acento"); ctx.globalAlpha = 0.15;
+      ctx.beginPath();
+      for (var i = 0; i <= 72; i++) {
+        var th = i / 72 * 2 * Math.PI;
+        var X = px(a * Math.cos(th)), Y = py(b * Math.sin(th));
+        if (i === 0) ctx.moveTo(X, Y); else ctx.lineTo(X, Y);
+      }
+      ctx.closePath(); ctx.fill();
+      ctx.restore();
+
+      ctx.save();
+      ctx.strokeStyle = colorVar("--tinta-2"); ctx.globalAlpha = 0.6; ctx.lineWidth = 1.2;
+      ctx.beginPath();
+      for (var i2 = 0; i2 <= 72; i2++) {
+        var th2 = i2 / 72 * 2 * Math.PI;
+        var X2 = px(a * Math.cos(th2)), Y2 = py(b * Math.sin(th2));
+        if (i2 === 0) ctx.moveTo(X2, Y2); else ctx.lineTo(X2, Y2);
+      }
+      ctx.closePath(); ctx.stroke();
+      ctx.restore();
+
+      var thetaMax = Math.min(t * 0.7, 2 * Math.PI);
+      var sumaActual = 0.5 * a * b * thetaMax;
+      var areaExacta = Math.PI * a * b;
+
+      ctx.save();
+      ctx.strokeStyle = colorVar("--acento"); ctx.lineWidth = 2.8;
+      ctx.beginPath();
+      var pasos = 240, nPasos = Math.floor(pasos * thetaMax / (2 * Math.PI));
+      var dth = 2 * Math.PI / pasos;
+      for (var k = 0; k <= nPasos; k++) {
+        var th3 = k * dth;
+        var X3 = px(a * Math.cos(th3)), Y3 = py(b * Math.sin(th3));
+        if (k === 0) ctx.moveTo(X3, Y3); else ctx.lineTo(X3, Y3);
+      }
+      ctx.stroke();
+      ctx.restore();
+
+      var pt = { x: px(a * Math.cos(thetaMax)), y: py(b * Math.sin(thetaMax)) };
+      ctx.save();
+      ctx.fillStyle = colorVar("--s1");
+      ctx.beginPath(); ctx.arc(pt.x, pt.y, 5, 0, Math.PI * 2); ctx.fill();
+      ctx.restore();
+
+      ctx.save();
+      ctx.font = "13px Consolas, monospace"; ctx.fillStyle = colorVar("--tinta");
+      ctx.fillText("½∮(x dy − y dx) acumulado ≈ " + sumaActual.toFixed(3) + "   (recorrido " + (thetaMax / (2 * Math.PI) * 100).toFixed(0) + "%)", 10, h - 38);
+      ctx.fillText("área exacta πab = " + areaExacta.toFixed(3) + "   (a=" + a.toFixed(1) + ", b=" + b.toFixed(1) + ")", 10, h - 18);
+      ctx.restore();
+    });
+
+    sim.slider("sl-green-a", function (v) { a = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.slider("sl-green-b", function (v) { b = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.botones();
+  });
+
+})();
+</script>
+
+<script>
+  // entradas escalonadas (GSAP + ScrollTrigger vía Anim.revelar) — no rompe nada si GSAP no cargó
+  Anim.revelar(".curso-hero-v3 > *", { scroll: false, stagger: .08, distancia: 14, duracion: .8 });
+  document.querySelectorAll(".unidad").forEach(function (u) {
+    Anim.revelar(u.querySelectorAll(":scope > .unidad-cabecera, :scope > .materia, :scope > .animacion, :scope > .ejemplos-unidad, :scope > .ejercicios-unidad"), { disparador: u, stagger: .08, distancia: 16 });
+  });
+</script>
+</body>
+</html>

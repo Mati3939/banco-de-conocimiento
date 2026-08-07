@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="es" data-tema="oscuro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📐 Geometría — Biblioteca</title>
+<link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../../assets/vendor/fuentes/fuentes.css">
+<link rel="stylesheet" href="../../assets/css/observatorio.css">
+<script>window.RUTA_BASE = "../../";</script>
+<script src="../../assets/vendor/katex/katex.min.js"></script>
+<script src="../../assets/vendor/katex/auto-render.min.js"></script>
+<script src="../../assets/vendor/gsap/gsap.min.js"></script>
+<script src="../../assets/vendor/gsap/ScrollTrigger.min.js"></script>
+<script src="../../assets/js/observatorio.js"></script>
+<script src="indice-curso.js"></script>
+</head>
+<body>
+<div class="progreso-lectura"></div>
+<div class="pagina-curso">
+
+  <aside class="lateral">
+    <a class="volver" href="../../index.html">← Constelación</a>
+    <div class="curso-cabecera"><span class="emoji">📐</span><h1>Geometría</h1></div>
+    <span class="semestre-tag" style="color:var(--s2)">Semestre 2</span>
+    <nav>
+      <div class="grupo">Unidades</div>
+      <a href="#u1">01 · Funciones trigonométricas</a>
+      <a class="sub" href="#anim-circulo-unitario">⭕ Círculo unitario</a>
+      <a href="#u2">02 · Identidades y ecuaciones trig.</a>
+      <a href="#u3">03 · Teoremas del seno y del coseno</a>
+      <a class="sub" href="#anim-triangulo">📐 Seno/coseno</a>
+      <a href="#u4">04 · Vectores en el plano</a>
+      <a class="sub" href="#anim-vectores">➕ Suma de vectores</a>
+      <a href="#u5">05 · Rectas en el plano</a>
+      <a href="#u6">06 · Cónicas</a>
+      <a class="sub" href="#anim-conicas">🔵 Cónicas</a>
+      <a href="#u7">07 · Vectores, rectas y planos en el espacio</a>
+    </nav>
+    <div class="atajos"><kbd>Ctrl K</kbd> buscar en toda la biblioteca</div>
+  </aside>
+
+  <main class="principal">
+    <div class="principal-cabecera">
+      <span class="relleno"></span>
+      <button class="btn-buscar" type="button">🔍 Buscar <kbd>Ctrl K</kbd></button>
+      <button class="btn-tema" type="button">☀️</button>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CABECERA DEL CURSO -->
+    <!-- ============================================================ -->
+    <header class="curso-hero-v3" id="cheat" style="--ac: var(--s2)">
+      <span class="emoji-grande">📐</span>
+      <h1>Geometría — Resumen del curso</h1>
+      <span class="semestre-tag" style="color:var(--s2)">Semestre 2</span>
+      <p class="curso-intro">
+        Curso IIG127A (Ingeniería UDD), 3 unidades: <strong>trigonometría</strong> (funciones, identidades,
+        ecuaciones, teoremas del seno/coseno) → <strong>geometría analítica en el plano</strong> (vectores,
+        rectas, cónicas) → <strong>rectas y planos en el espacio</strong> ($\mathbb{R}^3$). Evaluación:
+        3 certámenes (25% c/u), 6 controles + 3 talleres (15%), examen (30%). Bibliografía: Swokowski &amp; Cole,
+        <em>Álgebra y Trigonometría con Geometría Analítica</em>.
+      </p>
+      <ul class="mini-indice">
+        <li><a href="#u1">01 · Funciones trigonométricas</a></li>
+        <li><a href="#u2">02 · Identidades y ecuaciones</a></li>
+        <li><a href="#u3">03 · Teoremas seno/coseno</a></li>
+        <li><a href="#u4">04 · Vectores en el plano</a></li>
+        <li><a href="#u5">05 · Rectas en el plano</a></li>
+        <li><a href="#u6">06 · Cónicas</a></li>
+        <li><a href="#u7">07 · Vectores y planos en el espacio</a></li>
+      </ul>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 1 · FUNCIONES TRIGONOMÉTRICAS Y CÍRCULO UNITARIO -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u1">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">01</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Funciones trigonométricas y círculo unitario</h2>
+          <p class="unidad-sub">El círculo unitario define seno, coseno y tangente como coordenadas de un punto: la base de todo lo que sigue.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-funciones-trig">
+        <h3>Unidad I — Funciones trigonométricas y círculo unitario</h3>
+        <ul>
+          <li>Círculo unitario ($x^2+y^2=1$): el punto define $\cos\theta$ y $\operatorname{sen}\theta$ como sus coordenadas; $\tan\theta=y/x$.</li>
+          <li>Ángulo de referencia $\theta_r$: $Q_1\!:\theta_r=\theta$ · $Q_2\!:180°-\theta$ · $Q_3\!:\theta-180°$ · $Q_4\!:360°-\theta$ (signo por cuadrante, regla CAST).</li>
+          <li>Inversas: $\arcsin:[-1,1]\to\left[-\tfrac\pi2,\tfrac\pi2\right]$, $\ \arccos:[-1,1]\to[0,\pi]$, $\ \arctan:\mathbb{R}\to\left(-\tfrac\pi2,\tfrac\pi2\right)$.</li>
+          <li>$\arctan(x)+\arctan\!\left(\tfrac1x\right)=\tfrac\pi2$ para $x>0$; validar siempre el dominio al resolver con inversas.</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Razones trigonométricas en el círculo unitario</span>$$\cos\theta=x,\qquad \operatorname{sen}\theta=y,\qquad \tan\theta=\dfrac{y}{x}$$</div>
+      </div>
+
+      <div class="animacion" id="anim-circulo-unitario">
+        <div class="anim-cabecera">
+          <h3>⭕ Círculo unitario: seno, coseno, tangente y la onda senoidal</h3>
+          <p class="anim-desc">A la izquierda, el punto sobre $x^2+y^2=1$ define $\cos\theta$ y $\operatorname{sen}\theta$; a la derecha, el mismo valor de $\operatorname{sen}\theta$ se traza como la onda $y=\operatorname{sen}\theta$.</p>
+        </div>
+        <canvas data-alto="380"></canvas>
+        <div class="controles">
+          <div class="control"><label for="cu-angulo">ángulo θ</label><input type="range" id="cu-angulo" min="-360" max="360" step="1" value="45"><span class="valor"></span></div>
+          <button type="button" data-accion="jugar">▶ Reproducir</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> el segmento azul (horizontal) mide $\cos\theta$, el verde (vertical) mide $\operatorname{sen}\theta$, y el violeta sobre la recta tangente $x=1$ mide $\tan\theta$. La línea punteada conecta el punto de la izquierda con la onda de la derecha a la misma altura. Con ▶ el ángulo avanza solo: observá cómo $\tan\theta$ "se dispara" cerca de $90°$ y $270°$, y cómo cambia el signo de cada razón según el cuadrante (reducción al primer cuadrante).</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-cuadrante">
+          <h3>1. Razones trigonométricas por cuadrante</h3>
+          <p>Sea $\tan\theta=2$ con $\pi\lt\theta\lt\tfrac{3\pi}{2}$ (tercer cuadrante, $Q_3$). Determinar $\csc\theta$.</p>
+          <p><strong>Solución:</strong></p>
+          <p>Con $1+\tan^2\theta=\sec^2\theta$: $\sec^2\theta=1+4=5\Rightarrow\sec\theta=\pm\sqrt5$. Como $\theta\in Q_3$, $\cos\theta\lt0\Rightarrow\sec\theta=-\sqrt5$.</p>
+          <p>$\operatorname{sen}\theta=\tan\theta\cdot\cos\theta=2\cdot\left(-\tfrac{1}{\sqrt5}\right)=-\tfrac{2}{\sqrt5}$, luego $\csc\theta=\dfrac1{\operatorname{sen}\theta}=-\dfrac{\sqrt5}{2}$.</p>
+          <p style="color:var(--tinta-2)">Clave: el signo de cada razón depende del cuadrante, no del valor absoluto de la identidad — hay que fijar el signo <strong>antes</strong> de despejar la raíz.</p>
+          <p class="fuente">Fuente: nota "Funciones trigonométricas".</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-reduccion">
+          <summary><span class="resumen-ejercicio">1. Hallar $\operatorname{sen}(150°)$ y $\cos(210°)$ usando ángulo de referencia y signo por cuadrante.</span> <span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <p>$150°$ está en $Q_2$: $\theta_r=180°-150°=30°$, seno positivo en $Q_2$ $\Rightarrow\operatorname{sen}(150°)=\operatorname{sen}(30°)=\tfrac12$.</p>
+            <p>$210°$ está en $Q_3$: $\theta_r=210°-180°=30°$, coseno negativo en $Q_3$ $\Rightarrow\cos(210°)=-\cos(30°)=-\dfrac{\sqrt3}{2}$.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 2 · IDENTIDADES Y ECUACIONES TRIGONOMÉTRICAS -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u2">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">02</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Identidades y ecuaciones trigonométricas</h2>
+          <p class="unidad-sub">Las identidades transforman expresiones; las ecuaciones se resuelven reduciéndolas a una sola función.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-identidades">
+        <h3>Unidad I — Identidades trigonométricas</h3>
+        <ul>
+          <li>Fundamentales: $\sin^2x+\cos^2x=1$, $\ 1+\tan^2x=\sec^2x$, $\ 1+\cot^2x=\csc^2x$.</li>
+          <li>Ángulo doble: $\sin2x=2\sin x\cos x$, $\ \cos2x=\cos^2x-\sin^2x=2\cos^2x-1=1-2\sin^2x$.</li>
+          <li>Ángulo medio: $\sin\tfrac x2=\pm\sqrt{\tfrac{1-\cos x}2}$, $\ \cos\tfrac x2=\pm\sqrt{\tfrac{1+\cos x}2}$ (signo según cuadrante).</li>
+          <li>Producto a suma: $\sin a\cos b=\tfrac12[\sin(a+b)+\sin(a-b)]$.</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Suma y diferencia de ángulos — seno</span>$$\sin(a\pm b)=\sin a\cos b\pm\cos a\sin b$$</div>
+        <div class="formula-card"><span class="etiqueta">Suma y diferencia de ángulos — coseno</span>$$\cos(a\pm b)=\cos a\cos b\mp\sin a\sin b$$</div>
+      </div>
+
+      <div class="materia" id="tema-ecuaciones-trig">
+        <h3>Unidad I — Ecuaciones trigonométricas</h3>
+        <ul>
+          <li>Estrategia: identidades → dejar una sola función → resolver algebraicamente (a veces $u=\sin x$) → soluciones en $[0,2\pi)$ → generalizar con el período.</li>
+          <li>No dividir por una expresión que puede anularse (p. ej. $\cos x$) sin analizar ese caso aparte.</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Solución general — seno</span>$$\sin x=k\ \Rightarrow\ x=\arcsin k+2k\pi$$</div>
+        <div class="formula-card"><span class="etiqueta">Segunda familia de soluciones — seno</span>$$\text{ó}\quad x=\pi-\arcsin k+2k\pi$$</div>
+        <div class="formula-card"><span class="etiqueta">Solución general — coseno</span>$$\cos x=k\ \Rightarrow\ x=\pm\arccos k+2k\pi$$</div>
+        <div class="formula-card"><span class="etiqueta">Solución general — tangente</span>$$\tan x=k\ \Rightarrow\ x=\arctan k+k\pi$$</div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-ecuacion-trig">
+          <h3>2. Ecuación trigonométrica con sustitución</h3>
+          <p>Resolver $2\operatorname{sen}^2x-3\cos x=0$ para $x\in[0,2\pi)$.</p>
+          <p><strong>Solución:</strong></p>
+          <p>Usando $\operatorname{sen}^2x=1-\cos^2x$: &nbsp; $2-2\cos^2x-3\cos x=0\ \Rightarrow\ 2\cos^2x+3\cos x-2=0$.</p>
+          <p>Con $u=\cos x$: $2u^2+3u-2=0\Rightarrow u=\dfrac{-3\pm\sqrt{9+16}}{4}=\dfrac{-3\pm5}{4}\Rightarrow u=\tfrac12\ \text{ó}\ u=-2$ (se descarta, $\notin[-1,1]$).</p>
+          <p>De $\cos x=\tfrac12$: $x=\dfrac\pi3\ \lor\ x=\dfrac{5\pi}3$.</p>
+          <p style="color:var(--tinta-2)">Toda raíz de la sustitución algebraica debe validarse contra el rango $[-1,1]$ de $\cos x$ antes de aceptarla.</p>
+          <p class="fuente">Fuente: nota "Ecuaciones trigonométricas", Clase 5.</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-identidad">
+          <summary><span class="resumen-ejercicio">2. Simplificar $\dfrac{1-\cos^2x}{\operatorname{sen}x}$ (con $\operatorname{sen}x\neq0$).</span> <span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <p>Por la identidad fundamental, $1-\cos^2x=\operatorname{sen}^2x$.</p>
+            <p>$\dfrac{\operatorname{sen}^2x}{\operatorname{sen}x}=\operatorname{sen}x$.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-ecuacion-trig">
+          <summary><span class="resumen-ejercicio">3. Resolver $2\cos^2x-\operatorname{sen}x-1=0$ para $x\in[0,2\pi)$.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>Con $\cos^2x=1-\operatorname{sen}^2x$: $2(1-\operatorname{sen}^2x)-\operatorname{sen}x-1=0\Rightarrow-2\operatorname{sen}^2x-\operatorname{sen}x+1=0\Rightarrow2\operatorname{sen}^2x+\operatorname{sen}x-1=0$.</p>
+            <p>Con $u=\operatorname{sen}x$: $2u^2+u-1=0\Rightarrow u=\dfrac{-1\pm3}{4}\Rightarrow u=\tfrac12\ \text{ó}\ u=-1$.</p>
+            <p>$\operatorname{sen}x=\tfrac12\Rightarrow x=\tfrac\pi6,\tfrac{5\pi}6$. &nbsp; $\operatorname{sen}x=-1\Rightarrow x=\tfrac{3\pi}2$.</p>
+            <p>Soluciones: $x\in\left\{\tfrac\pi6,\tfrac{5\pi}6,\tfrac{3\pi}2\right\}$.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 3 · TEOREMAS DEL SENO Y DEL COSENO -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u3">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">03</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Teoremas del seno y del coseno</h2>
+          <p class="unidad-sub">Resolver triángulos oblicuos (sin ángulo recto): cuándo usar cada teorema y el caso ambiguo.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-teoremas-seno-coseno">
+        <h3>Unidad I — Teoremas del seno y del coseno</h3>
+        <ul>
+          <li>Seno: 2 ángulos+1 lado, o 2 lados+1 ángulo opuesto (ojo con el <strong>caso ambiguo</strong> SSA). Coseno: 3 lados, o 2 lados+ángulo <strong>comprendido</strong>.</li>
+          <li>El teorema del coseno generaliza el teorema de Pitágoras (con $C=90°$, $\cos C=0$).</li>
+          <li>En el teorema del seno, $R$ es el radio de la circunferencia circunscrita al triángulo.</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Teorema del seno</span>$$\dfrac{a}{\sin A}=\dfrac{b}{\sin B}=\dfrac{c}{\sin C}=2R$$</div>
+        <div class="formula-card"><span class="etiqueta">Teorema del coseno</span>$$c^2=a^2+b^2-2ab\cos C$$</div>
+        <div class="formula-card"><span class="etiqueta">Área de un triángulo por dos lados y el ángulo comprendido</span>$$\text{Área}=\tfrac12 ab\sin C$$</div>
+      </div>
+
+      <div class="animacion" id="anim-triangulo">
+        <div class="anim-cabecera">
+          <h3>📐 Teoremas del seno y del coseno</h3>
+          <p class="anim-desc">Reconstruye un triángulo a partir de sus 3 lados y verifica el teorema del seno con la circunferencia circunscrita.</p>
+        </div>
+        <canvas data-alto="380"></canvas>
+        <div class="controles">
+          <div class="control"><label for="tri-a">lado a</label><input type="range" id="tri-a" min="2" max="12" step="0.5" value="7"><span class="valor"></span></div>
+          <div class="control"><label for="tri-b">lado b</label><input type="range" id="tri-b" min="2" max="12" step="0.5" value="9"><span class="valor"></span></div>
+          <div class="control"><label for="tri-c">lado c</label><input type="range" id="tri-c" min="2" max="12" step="0.5" value="11"><span class="valor"></span></div>
+        </div>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> $a,b,c$ son los lados <strong>opuestos</strong> a los ángulos $A,B,C$. Los ángulos se calculan con el teorema del coseno ($\cos A=\tfrac{b^2+c^2-a^2}{2bc}$, y análogas) y se verifican con el teorema del seno ($a/\sin A=b/\sin B=c/\sin C=2R$): la circunferencia circunscrita (punteada) pasa por los tres vértices, y un punto la recorre para visualizar que $R$ es el mismo desde cualquier vértice. Si los lados no cumplen la desigualdad triangular, se avisa que el triángulo no existe.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-globo">
+          <h3>3. Aplicación del teorema del seno — el globo</h3>
+          <p>Dos observadores, separados $500\text{ m}$ en línea recta con la base de un globo, ven el globo con
+          ángulos de elevación de $35°$ y $48°$ desde puntos opuestos. Hallar la altura del globo.</p>
+          <p><strong>Solución:</strong></p>
+          <p>En el triángulo (observador 1, observador 2, globo), el ángulo en el globo es $180°-35°-48°=97°$.</p>
+          <p>Teorema del seno: el lado desde el observador de $48°$ hasta el globo (opuesto al ángulo de $35°$) es
+          $\dfrac{d}{\sin35°}=\dfrac{500}{\sin97°}\Rightarrow d=\dfrac{500\sin35°}{\sin97°}\approx289{,}0\text{ m}$.</p>
+          <p>Altura (triángulo rectángulo con el ángulo de elevación $48°$): $h=d\sin48°\approx289{,}0\times0{,}7431\approx214{,}8\text{ m}$.</p>
+          <p style="color:var(--tinta-2)">Dos etapas: primero teorema del seno en el triángulo oblicuo para obtener un lado, luego trigonometría rectangular (o coseno) para proyectar la altura.</p>
+          <p class="fuente">Fuente: nota "Teoremas del seno y del coseno", Clase 8.</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-triangulo-sas">
+          <summary><span class="resumen-ejercicio">4. Con $a=8$, $b=6$, $C=60°$ (caso lado-ángulo-lado), hallar $c$ y el área del triángulo.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>Teorema del coseno: $c^2=a^2+b^2-2ab\cos C=64+36-2(8)(6)\cos60°=100-96(0{,}5)=52\Rightarrow c=\sqrt{52}\approx7{,}21$.</p>
+            <p>Área $=\tfrac12ab\sin C=\tfrac12(8)(6)\sin60°=24\cdot\dfrac{\sqrt3}{2}=12\sqrt3\approx20{,}78$.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 4 · VECTORES EN EL PLANO -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u4">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">04</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Vectores en el plano</h2>
+          <p class="unidad-sub">Suma, módulo y producto punto: la caja de herramientas que se reutiliza en rectas, cónicas y el espacio.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-vectores-plano">
+        <h3>Unidad II — Vectores en el plano</h3>
+        <ul>
+          <li>$\vec u\cdot\vec v=0\iff \vec u\perp\vec v$ (con ambos no nulos); $\ \cos\theta=\dfrac{\vec u\cdot\vec v}{\|\vec u\|\|\vec v\|}$.</li>
+          <li>$\vec{AB}=B-A$ (punto final menos inicial); unitario $\hat v=\vec v/\|\vec v\|$.</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Suma de vectores por componentes</span>$$\vec u+\vec v=(u_1+v_1,\,u_2+v_2)$$</div>
+        <div class="formula-card"><span class="etiqueta">Módulo de un vector</span>$$\|\vec v\|=\sqrt{v_1^2+v_2^2}$$</div>
+        <div class="formula-card"><span class="etiqueta">Producto punto</span>$$\vec u\cdot\vec v=u_1v_1+u_2v_2=\|\vec u\|\|\vec v\|\cos\theta$$</div>
+      </div>
+
+      <div class="animacion" id="anim-vectores">
+        <div class="anim-cabecera">
+          <h3>➕ Suma de vectores en el plano (regla del paralelogramo)</h3>
+          <p class="anim-desc">Cambiás las componentes de $\vec u$ y $\vec v$ y observás la resultante, el paralelogramo y el ángulo entre ambos.</p>
+        </div>
+        <canvas data-alto="340"></canvas>
+        <div class="controles">
+          <div class="control"><label for="vec-u1">u₁</label><input type="range" id="vec-u1" min="-5" max="5" step="0.5" value="4"><span class="valor"></span></div>
+          <div class="control"><label for="vec-u2">u₂</label><input type="range" id="vec-u2" min="-5" max="5" step="0.5" value="1"><span class="valor"></span></div>
+          <div class="control"><label for="vec-v1">v₁</label><input type="range" id="vec-v1" min="-5" max="5" step="0.5" value="1"><span class="valor"></span></div>
+          <div class="control"><label for="vec-v2">v₂</label><input type="range" id="vec-v2" min="-5" max="5" step="0.5" value="3"><span class="valor"></span></div>
+          <button type="button" data-accion="jugar">▶ Reproducir</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> el paralelogramo (líneas punteadas) muestra que $\vec u+\vec v$ es la misma diagonal que se obtiene colocando $\vec v$ a continuación de $\vec u$ ("punta con cola"); con ▶ una flecha violeta anima esa construcción. $\vec u\cdot\vec v=u_1v_1+u_2v_2$ y $\cos\theta=\dfrac{\vec u\cdot\vec v}{\|\vec u\|\|\vec v\|}$ dan el ángulo entre ambos vectores; si el producto punto es $0$, son perpendiculares.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-vector-unitario">
+          <h3>4. Vector unitario a 60° de otro vector</h3>
+          <p>Dado $\vec v=(0,2)$, hallar un vector unitario $\vec u=(u_1,u_2)$ que forme un ángulo de $60°$ con $\vec v$.</p>
+          <p><strong>Solución:</strong></p>
+          <p>$\cos60°=\dfrac{\vec u\cdot\vec v}{\|\vec u\|\|\vec v\|}=\dfrac{2u_2}{1\cdot2}=u_2\Rightarrow u_2=\tfrac12$.</p>
+          <p>Con $u_1^2+u_2^2=1$: $u_1^2=1-\tfrac14=\tfrac34\Rightarrow u_1=\pm\dfrac{\sqrt3}{2}$.</p>
+          <p>Dos soluciones: $\vec u=\left(\tfrac{\sqrt3}{2},\tfrac12\right)$ o $\vec u=\left(-\tfrac{\sqrt3}{2},\tfrac12\right)$ (a cada lado de $\vec v$).</p>
+          <p style="color:var(--tinta-2)">El ángulo entre vectores no distingue "izquierda/derecha": siempre hay (en general) dos soluciones simétricas respecto a $\vec v$.</p>
+          <p class="fuente">Fuente: nota "Vectores en el plano", Taller 1.</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-angulo-vectores">
+          <summary><span class="resumen-ejercicio">5. Hallar el ángulo entre $\vec u=(3,4)$ y $\vec v=(-1,2)$.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>$\vec u\cdot\vec v=3(-1)+4(2)=5$. &nbsp; $\|\vec u\|=5$, $\ \|\vec v\|=\sqrt5$.</p>
+            <p>$\cos\theta=\dfrac{5}{5\sqrt5}=\dfrac{1}{\sqrt5}\approx0{,}4472\Rightarrow\theta=\arccos(0{,}4472)\approx63{,}43°$.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 5 · RECTAS EN EL PLANO -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u5">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">05</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Rectas en el plano</h2>
+          <p class="unidad-sub">Las cinco formas de escribir una recta, sus relaciones (paralela/perpendicular) y la distancia a un punto.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-rectas">
+        <h3>Unidad II — Ecuaciones de la recta</h3>
+        <ul>
+          <li>Vectorial: $(x,y)=(x_0,y_0)+t(a,b)$ &nbsp; Paramétrica: $x=x_0+at,\ y=y_0+bt$.</li>
+          <li>Simétrica: $\dfrac{x-x_0}{a}=\dfrac{y-y_0}{b}$ (requiere $a\neq0,\,b\neq0$) &nbsp; Principal: $y=mx+n$, $m=b/a$ &nbsp; General: $Ax+By+C=0$.</li>
+          <li>Director $\vec d=(a,b)$ ⟂ normal $\vec n=(A,B)$.</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Distancia de un punto a una recta</span>$$d(P,\ell)=\dfrac{|Ax_1+By_1+C|}{\sqrt{A^2+B^2}}$$</div>
+      </div>
+
+      <div class="materia" id="tema-relaciones-rectas">
+        <h3>Unidad II — Relaciones entre rectas</h3>
+        <ul>
+          <li>Paralelas: $m_1=m_2$ (directores proporcionales); si comparten un punto son <strong>coincidentes</strong>.</li>
+          <li>Ángulo entre rectas: siempre agudo (valor absoluto).</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Perpendicularidad entre rectas</span>$$m_1\cdot m_2=-1\iff \vec d_1\cdot\vec d_2=0\;(\perp)$$</div>
+        <div class="formula-card"><span class="etiqueta">Ángulo entre dos rectas</span>$$\tan\theta=\left|\dfrac{m_2-m_1}{1+m_1m_2}\right|$$</div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-distancia-recta">
+          <h3>5. Distancia de un punto a una recta — dos soluciones</h3>
+          <p>Determinar los puntos $P$ cuya distancia a $L:y=\dfrac{x-7}{2}$ sea $4$.</p>
+          <p><strong>Solución:</strong></p>
+          <p>Forma general de $L$: $-x+2y+7=0$, con $A=-1,B=2,C=7$.</p>
+          <p>$d(P,L)=\dfrac{|-x+2y+7|}{\sqrt{1+4}}=4\Rightarrow|-x+2y+7|=4\sqrt5$.</p>
+          <p>Esto da <strong>dos rectas paralelas</strong> solución: $-x+2y=4\sqrt5-7$ y $-x+2y=-4\sqrt5-7$. Con $x=0$ en cada una: $P_1=\left(0,\,2\sqrt5-\tfrac72\right)$ y $P_2=\left(0,\,-2\sqrt5-\tfrac72\right)$.</p>
+          <p style="color:var(--tinta-2)">Hay que pasar la recta a forma <strong>general</strong> antes de aplicar la fórmula de distancia — usar $m,n$ directamente da un resultado incorrecto.</p>
+          <p class="fuente">Fuente: Pauta Control 4 (Ecuaciones de la recta).</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-interseccion-rectas">
+          <summary><span class="resumen-ejercicio">6. Hallar el punto de intersección de $L_1:3x-y+2=0$ y $L_2:x+2y-5=0$, y determinar si son perpendiculares.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>De $L_1$: $y=3x+2$. Sustituyendo en $L_2$: $x+2(3x+2)-5=0\Rightarrow7x-1=0\Rightarrow x=\tfrac17$, $\ y=\tfrac{17}7$.</p>
+            <p>Intersección: $\left(\tfrac17,\tfrac{17}7\right)$.</p>
+            <p>Pendientes: $m_1=3$, $m_2=-\tfrac12$. $m_1m_2=-\tfrac32\neq-1\Rightarrow$ <strong>no</strong> son perpendiculares.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 6 · CÓNICAS -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u6">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">06</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Cónicas: circunferencia, elipse, parábola e hipérbola</h2>
+          <p class="unidad-sub">Cuatro curvas, cuatro definiciones geométricas por distancias — y cómo se leen sus ecuaciones canónicas.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-circunferencia-elipse">
+        <h3>Unidad II — Circunferencia y elipse</h3>
+        <ul>
+          <li>General de la circunferencia: $x^2+y^2+Dx+Ey+F=0$, centro $\left(-\tfrac D2,-\tfrac E2\right)$.</li>
+          <li>Recta vs. circunferencia (comparando $d$ del centro a la recta con $r$): $d\lt r$ secante, $d=r$ tangente, $d>r$ exterior.</li>
+          <li>Elipse: eje mayor = denominador mayor.</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Ecuación canónica de la circunferencia</span>$$(x-h)^2+(y-k)^2=r^2$$</div>
+        <div class="formula-card"><span class="etiqueta">Ecuación canónica de la elipse</span>$$\dfrac{(x-h)^2}{a^2}+\dfrac{(y-k)^2}{b^2}=1$$</div>
+        <div class="formula-card"><span class="etiqueta">Semiejes y excentricidad de la elipse</span>$$b^2=a^2-c^2\qquad e=\dfrac ca\in(0,1)$$</div>
+      </div>
+
+      <div class="materia" id="tema-parabola-hiperbola">
+        <h3>Unidad II — Parábola e hipérbola</h3>
+        <ul>
+          <li>Parábola: foco a $|p|$ del vértice, directriz al lado opuesto, lado recto $=|4p|$.</li>
+          <li>Hipérbola: eje transverso = término positivo; asíntotas (eje horizontal): $y-k=\pm\dfrac ba(x-h)$; lado recto $L=\dfrac{2b^2}{a}$.</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Parábola de eje vertical</span>$$(x-h)^2=4p(y-k)\ \ \text{(eje vertical)}$$</div>
+        <div class="formula-card"><span class="etiqueta">Parábola de eje horizontal</span>$$(y-k)^2=4p(x-h)\ \ \text{(eje horizontal)}$$</div>
+        <div class="formula-card"><span class="etiqueta">Ecuación canónica de la hipérbola</span>$$\dfrac{(x-h)^2}{a^2}-\dfrac{(y-k)^2}{b^2}=1$$</div>
+        <div class="formula-card"><span class="etiqueta">Semiejes y excentricidad de la hipérbola</span>$$c^2=a^2+b^2\qquad e=\dfrac ca>1$$</div>
+      </div>
+
+      <div class="animacion" id="anim-conicas">
+        <div class="anim-cabecera">
+          <h3>🔵 Cónicas: circunferencia, elipse, parábola e hipérbola</h3>
+          <p class="anim-desc">Elegí el tipo de cónica y movés sus parámetros propios; un punto recorre la curva mostrando en vivo su definición geométrica.</p>
+        </div>
+        <canvas data-alto="380"></canvas>
+        <div class="controles">
+          <div class="control">
+            <label for="con-tipo">tipo de cónica</label>
+            <select id="con-tipo">
+              <option value="circunferencia">Circunferencia</option>
+              <option value="elipse">Elipse</option>
+              <option value="parabola">Parábola</option>
+              <option value="hiperbola">Hipérbola</option>
+            </select>
+          </div>
+        </div>
+        <div class="controles" id="con-controles-circunferencia">
+          <div class="control"><label for="con-r">radio r</label><input type="range" id="con-r" min="0.5" max="4" step="0.1" value="2.5"><span class="valor"></span></div>
+        </div>
+        <div class="controles" id="con-controles-elipse" style="display:none">
+          <div class="control"><label for="con-ea">semieje a (x)</label><input type="range" id="con-ea" min="0.5" max="4.5" step="0.1" value="3.5"><span class="valor"></span></div>
+          <div class="control"><label for="con-eb">semieje b (y)</label><input type="range" id="con-eb" min="0.5" max="4.5" step="0.1" value="2"><span class="valor"></span></div>
+        </div>
+        <div class="controles" id="con-controles-parabola" style="display:none">
+          <div class="control"><label for="con-p">parámetro p</label><input type="range" id="con-p" min="-3" max="3" step="0.1" value="1.2"><span class="valor"></span></div>
+          <button type="button" class="secundario" data-accion="orient-parabola">eje: vertical (clic para horizontal)</button>
+        </div>
+        <div class="controles" id="con-controles-hiperbola" style="display:none">
+          <div class="control"><label for="con-ha">a</label><input type="range" id="con-ha" min="0.5" max="3.5" step="0.1" value="2"><span class="valor"></span></div>
+          <div class="control"><label for="con-hb">b</label><input type="range" id="con-hb" min="0.5" max="3.5" step="0.1" value="1.5"><span class="valor"></span></div>
+          <button type="button" class="secundario" data-accion="orient-hiperbola">eje transverso: horizontal (clic para vertical)</button>
+        </div>
+        <div class="controles">
+          <button type="button" data-accion="jugar">▶ Reproducir</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> con ▶ un punto recorre la curva mientras se trazan segmentos punteados a los focos (y a la directriz, en la parábola): en la <strong>elipse</strong> la suma de esas distancias es constante ($2a$, el mayor de los semiejes); en la <strong>hipérbola</strong> es la diferencia ($2a$); en la <strong>parábola</strong> la distancia al foco y a la directriz son siempre iguales (su definición). La excentricidad $e=c/a$ se recalcula en vivo.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-circunferencia">
+          <h3>6. Circunferencia concéntrica y tangente a una recta</h3>
+          <p>Hallar la circunferencia concéntrica a $x^2+y^2-2x-8y+1=0$ y tangente a la recta $2x-y=3$.</p>
+          <p><strong>Solución:</strong></p>
+          <p>Centro de la original: $\left(-\tfrac D2,-\tfrac E2\right)=(1,4)$ (mismo centro para la nueva, por ser concéntrica).</p>
+          <p>Radio = distancia del centro a la recta $2x-y-3=0$: $d=\dfrac{|2(1)-4-3|}{\sqrt{4+1}}=\dfrac{5}{\sqrt5}=\sqrt5$.</p>
+          <p>Ecuación buscada: $(x-1)^2+(y-4)^2=5$.</p>
+          <p style="color:var(--tinta-2)">"Tangente" es la clave: el nuevo radio es exactamente la distancia del centro común a la recta dada.</p>
+          <p class="fuente">Fuente: Pauta Control 4 (Circunferencia).</p>
+        </div>
+
+        <div class="ejemplo" id="ej-elipse">
+          <h3>7. Clasificar una elipse — la "jardinera"</h3>
+          <p>Clasificar $x^2+4y^2-2x+16y+13=0$ y hallar sus elementos.</p>
+          <p><strong>Solución</strong> (completando cuadrados):</p>
+          <p>$(x^2-2x)+4(y^2+4y)+13=0\ \Rightarrow\ (x-1)^2-1+4[(y+2)^2-4]+13=0\ \Rightarrow\ (x-1)^2+4(y+2)^2=4$</p>
+          <p>Dividiendo por 4: $\dfrac{(x-1)^2}{4}+(y+2)^2=1$ — elipse de centro $(1,-2)$, $a^2=4\ (a=2)$, $b^2=1\ (b=1)$, eje mayor horizontal.</p>
+          <p>$c^2=a^2-b^2=3\Rightarrow c=\sqrt3$. Focos: $(1\pm\sqrt3,-2)$. Excentricidad: $e=\dfrac{\sqrt3}{2}\approx0{,}87$.</p>
+          <p style="color:var(--tinta-2)">El eje mayor corresponde siempre al denominador <strong>mayor</strong> ($4>1$), no al que está bajo $x$ por convención.</p>
+          <p class="fuente">Fuente: Pauta Control 4 (Elipse).</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-circunferencia-tangente">
+          <summary><span class="resumen-ejercicio">7. ¿Para qué valores de $m$ la recta $y=mx$ es tangente a $x^2+y^2-6x+5=0$?</span> <span class="dificultad dificil">difícil</span></summary>
+          <div class="solucion">
+            <p>Completando cuadrado: $(x-3)^2+y^2=4$ — centro $(3,0)$, $r=2$.</p>
+            <p>Distancia del centro a $mx-y=0$: $d=\dfrac{|3m|}{\sqrt{m^2+1}}$. Tangente cuando $d=r$:</p>
+            <p>$9m^2=4(m^2+1)\Rightarrow5m^2=4\Rightarrow m^2=\tfrac45\Rightarrow m=\pm\dfrac{2\sqrt5}{5}\approx\pm0{,}894$.</p>
+            <p>Secante si $|m|>\tfrac{2\sqrt5}{5}$; exterior si $|m|\lt\tfrac{2\sqrt5}{5}$.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-tunel-parabolico">
+          <summary><span class="resumen-ejercicio">8. Un túnel parabólico de $6\text{ m}$ de ancho en la base y $5\text{ m}$ de altura. ¿Cuál es la altura máxima libre para un vehículo de $4\text{ m}$ de ancho (centrado)?</span> <span class="dificultad dificil">difícil</span></summary>
+          <div class="solucion">
+            <p>Vértice en $(0,5)$, cóncava hacia abajo, pasa por $(\pm3,0)$: $x^2=4p(y-5)$.</p>
+            <p>Con $(3,0)$: $9=4p(-5)\Rightarrow p=-\tfrac9{20}$, es decir $x^2=-1{,}8(y-5)$.</p>
+            <p>Para el vehículo, $x=\pm2$: $4=-1{,}8(y-5)\Rightarrow y-5=-\tfrac4{1{,}8}\approx-2{,}222\Rightarrow y\approx2{,}78\text{ m}$.</p>
+            <p style="color:var(--tinta-2)">Esa es la altura máxima segura del vehículo bajo el túnel a $2\text{ m}$ del eje central.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-hiperbola-elementos">
+          <summary><span class="resumen-ejercicio">9. Hipérbola centrada en el origen, eje transverso horizontal, con $a=3$, $b=4$. Hallar focos, asíntotas, excentricidad y lado recto.</span> <span class="dificultad dificil">difícil</span></summary>
+          <div class="solucion">
+            <p>$c^2=a^2+b^2=9+16=25\Rightarrow c=5$. Focos: $(\pm5,0)$.</p>
+            <p>Asíntotas: $y=\pm\dfrac ba x=\pm\dfrac43x$.</p>
+            <p>Excentricidad: $e=\dfrac ca=\dfrac53\approx1{,}67$.</p>
+            <p>Lado recto: $L=\dfrac{2b^2}{a}=\dfrac{32}{3}\approx10{,}67$.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 7 · VECTORES, RECTAS Y PLANOS EN EL ESPACIO -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u7">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">07</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Vectores, rectas y planos en el espacio</h2>
+          <p class="unidad-sub">El salto a $\mathbb{R}^3$: producto cruz, planos, y las rectas que ni se cortan ni son paralelas.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-vectores-espacio">
+        <h3>Unidad III — Vectores en el espacio</h3>
+        <ul>
+          <li>$\vec v=(a_1,a_2,a_3)$, $\ \|\vec v\|=\sqrt{a_1^2+a_2^2+a_3^2}$, canónicos $\hat\imath,\hat\jmath,\hat k$.</li>
+          <li>Producto punto igual que en el plano: $\vec u\cdot\vec v=u_1v_1+u_2v_2+u_3v_3$.</li>
+          <li>Producto cruz (nuevo en $\mathbb{R}^3$) es perpendicular a ambos vectores.</li>
+          <li>$\vec u\times\vec v=\vec 0\iff\vec u\parallel\vec v$; $\ \|\vec u\times\vec v\|=$ área del paralelogramo.</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Producto cruz como determinante</span>$$\vec u\times\vec v=\begin{vmatrix}\hat\imath&\hat\jmath&\hat k\\u_1&u_2&u_3\\v_1&v_2&v_3\end{vmatrix}$$</div>
+      </div>
+
+      <div class="materia" id="tema-rectas-planos-espacio">
+        <h3>Unidad III — Rectas y planos en el espacio</h3>
+        <ul>
+          <li>Recta: $\vec r(t)=P_0+t\vec v$; simétrica $\dfrac{x-x_0}{a}=\dfrac{y-y_0}{b}=\dfrac{z-z_0}{c}$.</li>
+          <li>Plano: $ax+by+cz=d$, normal $\vec n=\vec{AB}\times\vec{AC}$ (con 3 puntos).</li>
+          <li>Rectas no paralelas en $\mathbb{R}^3$ pueden ser <strong>alabeadas</strong> (ni se cortan ni son paralelas) — verificar siempre si el sistema tiene solución.</li>
+          <li>Relación recta-plano: si $\vec n\cdot\vec v=0$ son paralelos (verificar si además $P_0\in\pi$ para distinguir "paralela" de "contenida"); si $\vec v\parallel\vec n$, perpendiculares; en otro caso, secantes (se cortan en 1 punto).</li>
+          <li>Dos rectas son coplanares (se cortan o son paralelas) ssi el producto mixto $\overrightarrow{AB}\cdot(\vec u\times\vec v)=0$ (con $A\in L_1$, $B\in L_2$); si no, son alabeadas — más directo que resolver el sistema a mano.</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Distancia de un punto a una recta en el espacio</span>$$d(A,L)=\dfrac{\|\vec v\times\vec{P_0A}\|}{\|\vec v\|}$$</div>
+        <div class="formula-card"><span class="etiqueta">Distancia de un punto a un plano</span>$$d(A,\pi)=\dfrac{|\vec n\cdot\vec{P_0A}|}{\|\vec n\|}$$</div>
+        <div class="formula-card"><span class="etiqueta">Relación entre una recta y un plano</span>$$\vec n\cdot\vec v=0\iff L\parallel\pi \qquad\qquad \vec v=\lambda\vec n\iff L\perp\pi$$</div>
+        <div class="formula-card"><span class="etiqueta">Coplanaridad de dos rectas (producto mixto)</span>$$\overrightarrow{AB}\cdot(\vec u\times\vec v)=0\iff\text{coplanares}\qquad(\neq0\iff\text{alabeadas})$$</div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-plano-espacio">
+          <h3>8. Plano por tres puntos vía producto cruz</h3>
+          <p>Hallar el plano que pasa por $A(1,2,0)$, $B(3,1,2)$, $C(0,-1,1)$, y verificar si $P(2,0,1)$ pertenece a él.</p>
+          <p><strong>Solución:</strong></p>
+          <p>$\vec{AB}=(2,-1,2)$, $\ \vec{AC}=(-1,-3,1)$.</p>
+          <p>$\vec n=\vec{AB}\times\vec{AC}=\begin{vmatrix}\hat\imath&\hat\jmath&\hat k\\2&-1&2\\-1&-3&1\end{vmatrix}=(5,-4,-7)$</p>
+          <p>Con $A$: $d=5(1)-4(2)-7(0)=-3\Rightarrow$ plano: $5x-4y-7z+3=0$.</p>
+          <p>Reemplazando $P(2,0,1)$: $5(2)-4(0)-7(1)+3=6\neq0\Rightarrow P$ <strong>no</strong> pertenece al plano.</p>
+          <p style="color:var(--tinta-2)">El producto cruz de dos vectores directores del plano da directamente su normal; "pertenece" se verifica reemplazando en la ecuación general y comprobando que da 0.</p>
+          <p class="fuente">Fuente: Pauta Control 5 (Rectas y planos en el espacio).</p>
+        </div>
+
+        <div class="ejemplo" id="ej-relacion-recta-plano">
+          <h3>9. Relación entre una recta y un plano</h3>
+          <p>Dados $A(1,2,0)$, $B(3,-1,1)$, $C(0,1,4)$ y la recta $r:(x,y,z)=(2,1,-1)+t(1,-2,3)$, analizar si $r$ es paralela al plano $\pi=ABC$, está contenida en él, o lo interseca.</p>
+          <p><strong>Solución:</strong></p>
+          <p>$\vec{AB}=(2,-3,1)$, $\ \vec{AC}=(-1,-1,4)$. Normal: $\vec n=\vec{AB}\times\vec{AC}=(-11,-9,-5)$, y con $A$: $\pi:11x+9y+5z-29=0$.</p>
+          <p>Director de la recta: $\vec v=(1,-2,3)$. Producto punto con la normal: $\vec n\cdot\vec v=11(1)+9(-2)+5(3)=11-18+15=8\neq0$.</p>
+          <p>Como $\vec n\cdot\vec v\neq0$, la recta <strong>no</strong> es paralela a $\pi$: lo <strong>interseca</strong> (es secante) en exactamente un punto.</p>
+          <p style="color:var(--tinta-2)">Si hubiera dado $\vec n\cdot\vec v=0$, habría que verificar además si $P_0\in\pi$: si pertenece, la recta está <strong>contenida</strong> en el plano; si no, es <strong>paralela</strong> (sin puntos en común).</p>
+          <p class="fuente">Fuente: Pauta Certamen 3 2025-2 (Rectas y planos en el espacio).</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-distancia-recta-espacio">
+          <summary><span class="resumen-ejercicio">10. Hallar la distancia del punto $A(1,1,1)$ a la recta $L:(x,y,z)=(0,0,0)+t(1,1,0)$.</span> <span class="dificultad dificil">difícil</span></summary>
+          <div class="solucion">
+            <p>$\vec v=(1,1,0)$, $\ P_0=(0,0,0)$, $\ \vec{P_0A}=(1,1,1)$.</p>
+            <p>$\vec v\times\vec{P_0A}=\begin{vmatrix}\hat\imath&\hat\jmath&\hat k\\1&1&0\\1&1&1\end{vmatrix}=(1,-1,0)$, &nbsp; $\|\vec v\times\vec{P_0A}\|=\sqrt2$.</p>
+            <p>$\|\vec v\|=\sqrt2$.</p>
+            <p>$d(A,L)=\dfrac{\sqrt2}{\sqrt2}=1$.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-posicion-relativa-rectas">
+          <summary>11. <span class="resumen-ejercicio">Estudiar la posición relativa de $L_1:\dfrac{x+2}{3}=\dfrac{y-1}{2}=z$ y $L_2:\dfrac{x-3}{2}=y+1=\dfrac{z+3}{-1}$.</span> <span class="dificultad dificil">difícil</span></summary>
+          <div class="solucion">
+            <p>$\vec u=(3,2,1)$, $A=(-2,1,0)$ (en $L_1$); $\vec v=(2,1,-1)$, $B=(3,-1,-3)$ (en $L_2$). Como $\vec u,\vec v$ no son proporcionales, las rectas no son paralelas ni coincidentes.</p>
+            <p>$\vec u\times\vec v=\begin{vmatrix}\hat\imath&\hat\jmath&\hat k\\3&2&1\\2&1&-1\end{vmatrix}=(-3,5,-1)$, &nbsp; $\vec{AB}=B-A=(5,-2,-3)$.</p>
+            <p>$\vec{AB}\cdot(\vec u\times\vec v)=5(-3)+(-2)(5)+(-3)(-1)=-15-10+3=-22\neq0$.</p>
+            <p>Como el producto mixto es distinto de cero, las rectas <strong>no</strong> son coplanares: son <strong>alabeadas</strong> (se cruzan sin intersectarse, aunque tampoco son paralelas).</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function () {
+
+  function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+
+  function dibujarFlecha(ctx, x0, y0, x1, y1, color, etiqueta) {
+    ctx.save();
+    ctx.strokeStyle = color; ctx.fillStyle = color; ctx.lineWidth = 2.4;
+    ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1, y1); ctx.stroke();
+    var ang = Math.atan2(y1 - y0, x1 - x0);
+    var tam = 9;
+    ctx.beginPath();
+    ctx.moveTo(x1, y1);
+    ctx.lineTo(x1 - tam * Math.cos(ang - 0.4), y1 - tam * Math.sin(ang - 0.4));
+    ctx.lineTo(x1 - tam * Math.cos(ang + 0.4), y1 - tam * Math.sin(ang + 0.4));
+    ctx.closePath(); ctx.fill();
+    if (etiqueta) {
+      ctx.font = "12px Consolas, monospace";
+      ctx.fillText(etiqueta, x1 + 6, y1);
+    }
+    ctx.restore();
+  }
+
+  function dibujarLineaPunteada(ctx, x0, y0, x1, y1, color) {
+    ctx.save();
+    ctx.strokeStyle = color; ctx.setLineDash([5, 4]); ctx.lineWidth = 1.4;
+    ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1, y1); ctx.stroke();
+    ctx.restore();
+  }
+
+  /* ================= 1. Círculo unitario ================= */
+  Anim.registrar("anim-circulo-unitario", function (sim) {
+    var anguloDeg = 45;
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var acento = colorVar("--acento"), s1 = colorVar("--s1"), s2 = colorVar("--s2"),
+          s3 = colorVar("--s3"), tinta = colorVar("--tinta"), tinta2 = colorVar("--tinta-2"),
+          borde = colorVar("--borde");
+
+      var corriendo = sim.estaCorriendo();
+      var deg = corriendo ? ((t * 40) % 720) - 360 : anguloDeg;
+      var theta = deg * Math.PI / 180;
+      var cosT = Math.cos(theta), senT = Math.sin(theta);
+      var tanT = Math.abs(cosT) < 0.02 ? (senT >= 0 ? 999 : -999) : Math.tan(theta);
+
+      var padding = 16;
+      var leftW = w * 0.46;
+      var rightX0 = w * 0.54;
+      var rightW = w - rightX0 - padding;
+      var R = Math.min(leftW, h - 2 * padding) / 2 - 34;
+      if (R < 20) R = 20;
+      var ccx = leftW / 2 + 6, ccy = h / 2;
+
+      function px(x) { return ccx + x * R; }
+      function py(y) { return ccy - y * R; }
+
+      ctx.save(); ctx.strokeStyle = tinta2; ctx.globalAlpha = 0.5; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(ccx - R - 25, ccy); ctx.lineTo(ccx + R + 25, ccy); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(ccx, ccy - R - 25); ctx.lineTo(ccx, ccy + R + 25); ctx.stroke();
+      ctx.restore();
+
+      ctx.save(); ctx.strokeStyle = tinta2; ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.arc(ccx, ccy, R, 0, Math.PI * 2); ctx.stroke();
+      ctx.restore();
+
+      ctx.save(); ctx.strokeStyle = borde; ctx.setLineDash([3, 3]); ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(px(1), ccy - R - 25); ctx.lineTo(px(1), ccy + R + 25); ctx.stroke();
+      ctx.restore();
+
+      var Px = px(cosT), Py = py(senT);
+
+      dibujarFlecha(ctx, ccx, ccy, Px, Py, acento, "");
+
+      ctx.save(); ctx.strokeStyle = s2; ctx.lineWidth = 3;
+      ctx.beginPath(); ctx.moveTo(ccx, ccy); ctx.lineTo(Px, ccy); ctx.stroke();
+      ctx.restore();
+
+      ctx.save(); ctx.strokeStyle = s1; ctx.lineWidth = 3;
+      ctx.beginPath(); ctx.moveTo(Px, ccy); ctx.lineTo(Px, Py); ctx.stroke();
+      ctx.restore();
+
+      if (Math.abs(cosT) > 0.02) {
+        var tanClamped = clamp(tanT, -3, 3);
+        ctx.save(); ctx.strokeStyle = s3; ctx.lineWidth = 3;
+        ctx.beginPath(); ctx.moveTo(px(1), ccy); ctx.lineTo(px(1), py(tanClamped)); ctx.stroke();
+        ctx.restore();
+      }
+
+      ctx.save(); ctx.fillStyle = acento; ctx.beginPath(); ctx.arc(Px, Py, 6, 0, Math.PI * 2); ctx.fill(); ctx.restore();
+
+      var wx0 = rightX0, wy0 = ccy;
+      var wScaleX = rightW / 720;
+      var wScaleY = R;
+      function wpx(d) { return wx0 + (d + 360) * wScaleX; }
+      function wpy(v) { return wy0 - v * wScaleY; }
+
+      ctx.save(); ctx.strokeStyle = tinta2; ctx.globalAlpha = 0.5; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(wx0, wy0); ctx.lineTo(wx0 + rightW, wy0); ctx.stroke();
+      ctx.restore();
+
+      ctx.save(); ctx.strokeStyle = tinta2; ctx.globalAlpha = 0.35; ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      for (var d = -360; d <= 360; d += 3) {
+        var yy = Math.sin(d * Math.PI / 180);
+        var xx = wpx(d), yp = wpy(yy);
+        if (d === -360) ctx.moveTo(xx, yp); else ctx.lineTo(xx, yp);
+      }
+      ctx.stroke(); ctx.restore();
+
+      ctx.save(); ctx.strokeStyle = acento; ctx.lineWidth = 2.4;
+      ctx.beginPath();
+      var dStart = 0, dEnd = deg, step = dEnd >= dStart ? 3 : -3;
+      var first = true;
+      for (var dd = dStart; (step > 0 ? dd <= dEnd : dd >= dEnd); dd += step) {
+        var yy2 = Math.sin(dd * Math.PI / 180);
+        var xx2 = wpx(dd), yp2 = wpy(yy2);
+        if (first) { ctx.moveTo(xx2, yp2); first = false; } else ctx.lineTo(xx2, yp2);
+      }
+      ctx.stroke(); ctx.restore();
+
+      var wPx = wpx(deg), wPy = wpy(senT);
+      dibujarLineaPunteada(ctx, Px, Py, wPx, wPy, s1);
+      dibujarLineaPunteada(ctx, wPx, wy0, wPx, wPy, tinta2);
+
+      ctx.save(); ctx.fillStyle = acento; ctx.beginPath(); ctx.arc(wPx, wPy, 5, 0, Math.PI * 2); ctx.fill(); ctx.restore();
+
+      ctx.save();
+      ctx.font = "13px Consolas, monospace"; ctx.fillStyle = tinta;
+      ctx.fillText("θ = " + deg.toFixed(1) + "°", 8, 16);
+      ctx.fillText("sen θ = " + senT.toFixed(3), 8, 32);
+      ctx.fillText("cos θ = " + cosT.toFixed(3), 8, 48);
+      ctx.fillText("tan θ = " + (Math.abs(cosT) < 0.02 ? "∞" : tanT.toFixed(3)), 8, 64);
+      ctx.restore();
+    });
+
+    sim.slider("cu-angulo", function (v) { anguloDeg = v; sim.redibujar(); }, function (v) { return v.toFixed(0) + "°"; });
+    sim.botones();
+  });
+
+  /* ================= 2. Cónicas paramétricas ================= */
+  Anim.registrar("anim-conicas", function (sim) {
+    var tipo = "circunferencia";
+    var rCirc = 2.5;
+    var eA = 3.5, eB = 2;
+    var pPar = 1.2, orientParabola = "vertical";
+    var hA = 2, hB = 1.5, orientHiperbola = "horizontal";
+
+    function mostrarControles() {
+      document.getElementById("con-controles-circunferencia").style.display = tipo === "circunferencia" ? "flex" : "none";
+      document.getElementById("con-controles-elipse").style.display = tipo === "elipse" ? "flex" : "none";
+      document.getElementById("con-controles-parabola").style.display = tipo === "parabola" ? "flex" : "none";
+      document.getElementById("con-controles-hiperbola").style.display = tipo === "hiperbola" ? "flex" : "none";
+    }
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var acento = colorVar("--acento"), s1 = colorVar("--s1"), s2 = colorVar("--s2"),
+          s3 = colorVar("--s3"), tinta = colorVar("--tinta"), tinta2 = colorVar("--tinta-2");
+
+      var rango = 7.5;
+      var escala = Math.min(w, h) / (2 * rango);
+      var cx = w / 2, cy = h / 2;
+      function px(x) { return cx + x * escala; }
+      function py(y) { return cy - y * escala; }
+
+      ctx.save(); ctx.strokeStyle = tinta2; ctx.globalAlpha = 0.45; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(w, cy); ctx.moveTo(cx, 0); ctx.lineTo(cx, h); ctx.stroke();
+      ctx.restore();
+
+      var textos = [];
+
+      if (tipo === "circunferencia") {
+        var r = rCirc;
+        ctx.save(); ctx.strokeStyle = acento; ctx.lineWidth = 2; ctx.beginPath();
+        ctx.arc(px(0), py(0), r * escala, 0, Math.PI * 2); ctx.stroke(); ctx.restore();
+
+        var ang = t * 1.1;
+        var P = [r * Math.cos(ang), r * Math.sin(ang)];
+        dibujarLineaPunteada(ctx, px(0), py(0), px(P[0]), py(P[1]), s2);
+        ctx.save(); ctx.fillStyle = s1; ctx.beginPath(); ctx.arc(px(P[0]), py(P[1]), 6, 0, Math.PI * 2); ctx.fill(); ctx.restore();
+
+        textos = ["Circunferencia: (x-h)² + (y-k)² = r²", "r = " + r.toFixed(2), "centro (0,0)"];
+      }
+
+      else if (tipo === "elipse") {
+        var a = eA, b = eB;
+        var mayor = Math.max(a, b), menor = Math.min(a, b);
+        var c = Math.sqrt(Math.max(mayor * mayor - menor * menor, 0));
+        var horizontalMayor = a >= b;
+        var F1 = horizontalMayor ? [c, 0] : [0, c];
+        var F2 = horizontalMayor ? [-c, 0] : [0, -c];
+
+        ctx.save(); ctx.strokeStyle = acento; ctx.lineWidth = 2; ctx.beginPath();
+        for (var u = 0; u <= Math.PI * 2 + 0.001; u += 0.03) {
+          var xx = a * Math.cos(u), yy = b * Math.sin(u);
+          if (u === 0) ctx.moveTo(px(xx), py(yy)); else ctx.lineTo(px(xx), py(yy));
+        }
+        ctx.stroke(); ctx.restore();
+
+        ctx.save(); ctx.fillStyle = s2; ctx.beginPath(); ctx.arc(px(F1[0]), py(F1[1]), 5, 0, Math.PI * 2); ctx.fill(); ctx.restore();
+        ctx.save(); ctx.fillStyle = s3; ctx.beginPath(); ctx.arc(px(F2[0]), py(F2[1]), 5, 0, Math.PI * 2); ctx.fill(); ctx.restore();
+
+        var angE = t * 0.9;
+        var P2 = [a * Math.cos(angE), b * Math.sin(angE)];
+        dibujarLineaPunteada(ctx, px(P2[0]), py(P2[1]), px(F1[0]), py(F1[1]), s2);
+        dibujarLineaPunteada(ctx, px(P2[0]), py(P2[1]), px(F2[0]), py(F2[1]), s3);
+        ctx.save(); ctx.fillStyle = s1; ctx.beginPath(); ctx.arc(px(P2[0]), py(P2[1]), 6, 0, Math.PI * 2); ctx.fill(); ctx.restore();
+
+        var d1 = Math.hypot(P2[0] - F1[0], P2[1] - F1[1]);
+        var d2 = Math.hypot(P2[0] - F2[0], P2[1] - F2[1]);
+        var e = mayor > 0 ? (c / mayor) : 0;
+
+        textos = [
+          "Elipse: a=" + a.toFixed(2) + "  b=" + b.toFixed(2) + "  c=" + c.toFixed(2),
+          "d(P,F1)+d(P,F2) = " + (d1 + d2).toFixed(2) + "  (2a = " + (2 * mayor).toFixed(2) + ")",
+          "excentricidad e = " + e.toFixed(3)
+        ];
+      }
+
+      else if (tipo === "parabola") {
+        var p = pPar;
+        if (Math.abs(p) < 0.2) p = p >= 0 ? 0.2 : -0.2;
+        var vertical = orientParabola === "vertical";
+        var foco;
+
+        ctx.save(); ctx.strokeStyle = acento; ctx.lineWidth = 2; ctx.beginPath();
+        var first = true;
+        if (vertical) {
+          for (var xg = -rango; xg <= rango; xg += 0.08) {
+            var yg = (xg * xg) / (4 * p);
+            if (Math.abs(yg) > rango * 1.6) continue;
+            if (first) { ctx.moveTo(px(xg), py(yg)); first = false; } else ctx.lineTo(px(xg), py(yg));
+          }
+        } else {
+          for (var yg2 = -rango; yg2 <= rango; yg2 += 0.08) {
+            var xg2 = (yg2 * yg2) / (4 * p);
+            if (Math.abs(xg2) > rango * 1.6) continue;
+            if (first) { ctx.moveTo(px(xg2), py(yg2)); first = false; } else ctx.lineTo(px(xg2), py(yg2));
+          }
+        }
+        ctx.stroke(); ctx.restore();
+
+        if (vertical) { foco = [0, p]; } else { foco = [p, 0]; }
+
+        ctx.save(); ctx.strokeStyle = s3; ctx.setLineDash([6, 4]); ctx.lineWidth = 1.6;
+        ctx.beginPath();
+        if (vertical) { ctx.moveTo(0, py(-p)); ctx.lineTo(w, py(-p)); }
+        else { ctx.moveTo(px(-p), 0); ctx.lineTo(px(-p), h); }
+        ctx.stroke(); ctx.restore();
+
+        ctx.save(); ctx.fillStyle = s2; ctx.beginPath(); ctx.arc(px(foco[0]), py(foco[1]), 5, 0, Math.PI * 2); ctx.fill(); ctx.restore();
+
+        var param = ((t * 1.6) % (2 * rango)) - rango;
+        var Pp, distDirectriz;
+        if (vertical) {
+          var yy3 = (param * param) / (4 * p);
+          Pp = [param, yy3];
+          distDirectriz = Math.abs(yy3 - (-p));
+          dibujarLineaPunteada(ctx, px(Pp[0]), py(Pp[1]), px(Pp[0]), py(-p), s3);
+        } else {
+          var xx3 = (param * param) / (4 * p);
+          Pp = [xx3, param];
+          distDirectriz = Math.abs(xx3 - (-p));
+          dibujarLineaPunteada(ctx, px(Pp[0]), py(Pp[1]), px(-p), py(Pp[1]), s3);
+        }
+        dibujarLineaPunteada(ctx, px(Pp[0]), py(Pp[1]), px(foco[0]), py(foco[1]), s2);
+        ctx.save(); ctx.fillStyle = s1; ctx.beginPath(); ctx.arc(px(Pp[0]), py(Pp[1]), 6, 0, Math.PI * 2); ctx.fill(); ctx.restore();
+
+        var dFoco = Math.hypot(Pp[0] - foco[0], Pp[1] - foco[1]);
+
+        textos = [
+          "Parábola: p = " + p.toFixed(2) + "  (" + (vertical ? "eje vertical" : "eje horizontal") + ")",
+          "d(P,foco) = " + dFoco.toFixed(2) + "   d(P,directriz) = " + distDirectriz.toFixed(2),
+          "lado recto = " + Math.abs(4 * p).toFixed(2)
+        ];
+      }
+
+      else if (tipo === "hiperbola") {
+        var ha = hA, hb = hB;
+        var hc = Math.sqrt(ha * ha + hb * hb);
+        var horiz = orientHiperbola === "horizontal";
+        var Fh1 = horiz ? [hc, 0] : [0, hc];
+        var Fh2 = horiz ? [-hc, 0] : [0, -hc];
+
+        ctx.save(); ctx.strokeStyle = tinta2; ctx.setLineDash([4, 4]); ctx.lineWidth = 1.2;
+        ctx.beginPath();
+        var mAs = horiz ? (hb / ha) : (ha / hb);
+        ctx.moveTo(px(-rango), py(-mAs * rango)); ctx.lineTo(px(rango), py(mAs * rango));
+        ctx.moveTo(px(-rango), py(mAs * rango)); ctx.lineTo(px(rango), py(-mAs * rango));
+        ctx.stroke(); ctx.restore();
+
+        ctx.save(); ctx.strokeStyle = acento; ctx.lineWidth = 2;
+        var uu;
+        [1, -1].forEach(function (signo) {
+          ctx.beginPath();
+          var f2 = true;
+          for (uu = -1.8; uu <= 1.8; uu += 0.05) {
+            var xx4, yy4;
+            if (horiz) { xx4 = signo * ha * Math.cosh(uu); yy4 = hb * Math.sinh(uu); }
+            else { yy4 = signo * ha * Math.cosh(uu); xx4 = hb * Math.sinh(uu); }
+            if (f2) { ctx.moveTo(px(xx4), py(yy4)); f2 = false; } else ctx.lineTo(px(xx4), py(yy4));
+          }
+          ctx.stroke();
+        });
+        ctx.restore();
+
+        ctx.save(); ctx.fillStyle = s2; ctx.beginPath(); ctx.arc(px(Fh1[0]), py(Fh1[1]), 5, 0, Math.PI * 2); ctx.fill(); ctx.restore();
+        ctx.save(); ctx.fillStyle = s3; ctx.beginPath(); ctx.arc(px(Fh2[0]), py(Fh2[1]), 5, 0, Math.PI * 2); ctx.fill(); ctx.restore();
+
+        var uAnim = Math.sin(t * 0.7) * 1.8;
+        var Ph;
+        if (horiz) { Ph = [ha * Math.cosh(uAnim), hb * Math.sinh(uAnim)]; }
+        else { Ph = [hb * Math.sinh(uAnim), ha * Math.cosh(uAnim)]; }
+
+        dibujarLineaPunteada(ctx, px(Ph[0]), py(Ph[1]), px(Fh1[0]), py(Fh1[1]), s2);
+        dibujarLineaPunteada(ctx, px(Ph[0]), py(Ph[1]), px(Fh2[0]), py(Fh2[1]), s3);
+        ctx.save(); ctx.fillStyle = s1; ctx.beginPath(); ctx.arc(px(Ph[0]), py(Ph[1]), 6, 0, Math.PI * 2); ctx.fill(); ctx.restore();
+
+        var hd1 = Math.hypot(Ph[0] - Fh1[0], Ph[1] - Fh1[1]);
+        var hd2 = Math.hypot(Ph[0] - Fh2[0], Ph[1] - Fh2[1]);
+        var he = hc / ha;
+
+        textos = [
+          "Hipérbola: a=" + ha.toFixed(2) + "  b=" + hb.toFixed(2) + "  c=" + hc.toFixed(2),
+          "|d(P,F1)-d(P,F2)| = " + Math.abs(hd1 - hd2).toFixed(2) + "  (2a = " + (2 * ha).toFixed(2) + ")",
+          "excentricidad e = " + he.toFixed(3)
+        ];
+      }
+
+      ctx.save();
+      ctx.font = "13px Consolas, monospace"; ctx.fillStyle = tinta;
+      for (var i = 0; i < textos.length; i++) ctx.fillText(textos[i], 8, 16 + i * 16);
+      ctx.restore();
+    });
+
+    sim.slider("con-r", function (v) { rCirc = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.slider("con-ea", function (v) { eA = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.slider("con-eb", function (v) { eB = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.slider("con-p", function (v) { pPar = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.slider("con-ha", function (v) { hA = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.slider("con-hb", function (v) { hB = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+
+    var selTipo = document.getElementById("con-tipo");
+    if (selTipo) {
+      selTipo.addEventListener("change", function () {
+        tipo = selTipo.value;
+        mostrarControles();
+        sim.reiniciar();
+      });
+    }
+
+    sim.botones({
+      "orient-parabola": function () {
+        orientParabola = orientParabola === "vertical" ? "horizontal" : "vertical";
+        var btn = document.querySelector('#anim-conicas [data-accion="orient-parabola"]');
+        if (btn) btn.textContent = orientParabola === "vertical" ? "eje: vertical (clic para horizontal)" : "eje: horizontal (clic para vertical)";
+        sim.redibujar();
+      },
+      "orient-hiperbola": function () {
+        orientHiperbola = orientHiperbola === "horizontal" ? "vertical" : "horizontal";
+        var btn = document.querySelector('#anim-conicas [data-accion="orient-hiperbola"]');
+        if (btn) btn.textContent = orientHiperbola === "horizontal" ? "eje transverso: horizontal (clic para vertical)" : "eje transverso: vertical (clic para horizontal)";
+        sim.redibujar();
+      }
+    });
+
+    mostrarControles();
+  });
+
+  /* ================= 3. Teorema del seno y del coseno ================= */
+  Anim.registrar("anim-triangulo", function (sim) {
+    var ladoA = 7, ladoB = 9, ladoC = 11;
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var acento = colorVar("--acento"), s1 = colorVar("--s1"), s2 = colorVar("--s2"),
+          s3 = colorVar("--s3"), tinta = colorVar("--tinta"), tinta2 = colorVar("--tinta-2"),
+          aviso = colorVar("--futuro");
+
+      var a = ladoA, b = ladoB, c = ladoC;
+
+      if (!(a + b > c && a + c > b && b + c > a)) {
+        ctx.save();
+        ctx.fillStyle = aviso; ctx.font = "bold 15px Consolas, monospace"; ctx.textAlign = "center";
+        ctx.fillText("⚠ No existe un triángulo con estos lados", w / 2, h / 2 - 10);
+        ctx.font = "13px Consolas, monospace";
+        ctx.fillText("(no cumple la desigualdad triangular)", w / 2, h / 2 + 12);
+        ctx.textAlign = "left";
+        ctx.restore();
+        return;
+      }
+
+      var B = [0, 0], C = [a, 0];
+      var xA = (a * a + c * c - b * b) / (2 * a);
+      var yA = Math.sqrt(Math.max(c * c - xA * xA, 0));
+      var A = [xA, yA];
+
+      var cosA = clamp((b * b + c * c - a * a) / (2 * b * c), -1, 1);
+      var cosB = clamp((a * a + c * c - b * b) / (2 * a * c), -1, 1);
+      var cosC = clamp((a * a + b * b - c * c) / (2 * a * b), -1, 1);
+      var Aang = Math.acos(cosA), Bang = Math.acos(cosB), Cang = Math.acos(cosC);
+
+      var Dm = 2 * (A[0] * (B[1] - C[1]) + B[0] * (C[1] - A[1]) + C[0] * (A[1] - B[1]));
+      var Ox = ((A[0] * A[0] + A[1] * A[1]) * (B[1] - C[1]) + (B[0] * B[0] + B[1] * B[1]) * (C[1] - A[1]) + (C[0] * C[0] + C[1] * C[1]) * (A[1] - B[1])) / Dm;
+      var Oy = ((A[0] * A[0] + A[1] * A[1]) * (C[0] - B[0]) + (B[0] * B[0] + B[1] * B[1]) * (A[0] - C[0]) + (C[0] * C[0] + C[1] * C[1]) * (B[0] - A[0])) / Dm;
+      var O = [Ox, Oy];
+      var R = Math.hypot(A[0] - O[0], A[1] - O[1]);
+      var Rsin = a / (2 * Math.sin(Aang));
+
+      var margen = 1.3;
+      var escala = Math.min(w, h - 30) / (2 * R * margen);
+      var cx = w / 2, cy = h / 2 + 6;
+      function px(x) { return cx + (x - O[0]) * escala; }
+      function py(y) { return cy - (y - O[1]) * escala; }
+
+      ctx.save(); ctx.strokeStyle = tinta2; ctx.setLineDash([4, 4]); ctx.lineWidth = 1.3;
+      ctx.beginPath(); ctx.arc(px(O[0]), py(O[1]), R * escala, 0, Math.PI * 2); ctx.stroke();
+      ctx.restore();
+
+      ctx.save(); ctx.strokeStyle = acento; ctx.lineWidth = 2.4;
+      ctx.beginPath();
+      ctx.moveTo(px(A[0]), py(A[1])); ctx.lineTo(px(B[0]), py(B[1]));
+      ctx.lineTo(px(C[0]), py(C[1])); ctx.closePath();
+      ctx.stroke(); ctx.restore();
+
+      function punto(P, color, etiqueta) {
+        ctx.save(); ctx.fillStyle = color; ctx.beginPath(); ctx.arc(px(P[0]), py(P[1]), 5, 0, Math.PI * 2); ctx.fill();
+        ctx.font = "bold 13px Consolas, monospace"; ctx.fillText(etiqueta, px(P[0]) + 8, py(P[1]) - 6);
+        ctx.restore();
+      }
+      punto(A, s1, "A"); punto(B, s2, "B"); punto(C, s3, "C");
+
+      ctx.save(); ctx.fillStyle = tinta2; ctx.font = "12px Consolas, monospace";
+      var mBC = [(B[0] + C[0]) / 2, (B[1] + C[1]) / 2 - 0.35];
+      var mAC = [(A[0] + C[0]) / 2 + 0.2, (A[1] + C[1]) / 2];
+      var mAB = [(A[0] + B[0]) / 2 - 0.35, (A[1] + B[1]) / 2];
+      ctx.fillText("a", px(mBC[0]), py(mBC[1]));
+      ctx.fillText("b", px(mAC[0]), py(mAC[1]));
+      ctx.fillText("c", px(mAB[0]), py(mAB[1]));
+      ctx.restore();
+
+      var angMarcador = Math.atan2(A[1] - O[1], A[0] - O[0]) + t * 0.9;
+      var marcador = [O[0] + R * Math.cos(angMarcador), O[1] + R * Math.sin(angMarcador)];
+      ctx.save(); ctx.fillStyle = acento; ctx.beginPath(); ctx.arc(px(marcador[0]), py(marcador[1]), 5, 0, Math.PI * 2); ctx.fill(); ctx.restore();
+
+      ctx.save();
+      ctx.font = "12px Consolas, monospace"; ctx.fillStyle = tinta;
+      ctx.fillText("a=" + a.toFixed(1) + " b=" + b.toFixed(1) + " c=" + c.toFixed(1), 8, 16);
+      ctx.fillText("A=" + (Aang * 180 / Math.PI).toFixed(1) + "°  B=" + (Bang * 180 / Math.PI).toFixed(1) + "°  C=" + (Cang * 180 / Math.PI).toFixed(1) + "°", 8, 32);
+      ctx.fillText("R (coordenadas) = " + R.toFixed(2) + "   R = a/(2senA) = " + Rsin.toFixed(2), 8, 48);
+      ctx.restore();
+    });
+
+    sim.slider("tri-a", function (v) { ladoA = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.slider("tri-b", function (v) { ladoB = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.slider("tri-c", function (v) { ladoC = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+  });
+
+  /* ================= 4. Suma de vectores (paralelogramo) ================= */
+  Anim.registrar("anim-vectores", function (sim) {
+    var u1 = 4, u2 = 1, v1 = 1, v2 = 3;
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var acento = colorVar("--acento"), s1 = colorVar("--s1"), s2 = colorVar("--s2"),
+          s3 = colorVar("--s3"), tinta = colorVar("--tinta"), tinta2 = colorVar("--tinta-2");
+
+      var rango = 11;
+      var escala = Math.min(w, h) / (2 * rango);
+      var cx = w / 2, cy = h / 2;
+      function px(x) { return cx + x * escala; }
+      function py(y) { return cy - y * escala; }
+
+      ctx.save(); ctx.strokeStyle = tinta2; ctx.globalAlpha = 0.45; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(w, cy); ctx.moveTo(cx, 0); ctx.lineTo(cx, h); ctx.stroke();
+      ctx.restore();
+
+      var r1 = u1 + v1, r2 = u2 + v2;
+
+      ctx.save(); ctx.strokeStyle = tinta2; ctx.setLineDash([5, 4]); ctx.lineWidth = 1.3;
+      ctx.beginPath(); ctx.moveTo(px(u1), py(u2)); ctx.lineTo(px(r1), py(r2)); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(px(v1), py(v2)); ctx.lineTo(px(r1), py(r2)); ctx.stroke();
+      ctx.restore();
+
+      dibujarFlecha(ctx, px(0), py(0), px(u1), py(u2), s1, "u");
+      dibujarFlecha(ctx, px(0), py(0), px(v1), py(v2), s2, "v");
+      dibujarFlecha(ctx, px(0), py(0), px(r1), py(r2), acento, "u+v");
+
+      var fase = (t * 0.5) % 1;
+      var mx = u1 + v1 * fase, my = u2 + v2 * fase;
+      dibujarFlecha(ctx, px(u1), py(u2), px(mx), py(my), s3, "");
+
+      var dot = u1 * v1 + u2 * v2;
+      var magU = Math.hypot(u1, u2), magV = Math.hypot(v1, v2);
+      var cosT = (magU > 1e-9 && magV > 1e-9) ? clamp(dot / (magU * magV), -1, 1) : 0;
+      var angulo = Math.acos(cosT) * 180 / Math.PI;
+
+      ctx.save();
+      ctx.font = "13px Consolas, monospace"; ctx.fillStyle = tinta;
+      ctx.fillText("u=(" + u1.toFixed(1) + "," + u2.toFixed(1) + ")   v=(" + v1.toFixed(1) + "," + v2.toFixed(1) + ")   u+v=(" + r1.toFixed(1) + "," + r2.toFixed(1) + ")", 8, h - 40);
+      ctx.fillText("u·v = " + dot.toFixed(2) + (Math.abs(dot) < 0.05 ? "  (⟂ perpendiculares)" : ""), 8, h - 24);
+      ctx.fillText("ángulo entre u y v = " + angulo.toFixed(1) + "°", 8, h - 8);
+      ctx.restore();
+    });
+
+    sim.slider("vec-u1", function (v) { u1 = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.slider("vec-u2", function (v) { u2 = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.slider("vec-v1", function (v) { v1 = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.slider("vec-v2", function (v) { v2 = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.botones();
+  });
+
+})();
+</script>
+
+<script>
+  // entradas escalonadas (GSAP + ScrollTrigger vía Anim.revelar) — no rompe nada si GSAP no cargó
+  Anim.revelar(".curso-hero-v3 > *", { scroll: false, stagger: .08, distancia: 14, duracion: .8 });
+  document.querySelectorAll(".unidad").forEach(function (u) {
+    Anim.revelar(u.querySelectorAll(":scope > .unidad-cabecera, :scope > .materia, :scope > .animacion, :scope > .ejemplos-unidad, :scope > .ejercicios-unidad"), { disparador: u, stagger: .08, distancia: 16 });
+  });
+</script>
+</body>
+</html>

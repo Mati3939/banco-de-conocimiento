@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="es" data-tema="oscuro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📊 Visualización de Datos — Biblioteca</title>
+<link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../../assets/vendor/fuentes/fuentes.css">
+<link rel="stylesheet" href="../../assets/css/observatorio.css">
+<script>window.RUTA_BASE = "../../";</script>
+<script src="../../assets/vendor/katex/katex.min.js"></script>
+<script src="../../assets/vendor/katex/auto-render.min.js"></script>
+<script src="../../assets/vendor/gsap/gsap.min.js"></script>
+<script src="../../assets/vendor/gsap/ScrollTrigger.min.js"></script>
+<script src="../../assets/js/observatorio.js"></script>
+<script src="indice-curso.js"></script>
+<style>
+  .mini-nota { font: 12px Consolas, monospace; color: var(--tinta-2); margin: 0 0 10px; padding: 0 30px; }
+  .leyenda { display: flex; flex-wrap: wrap; gap: 14px 22px; padding: 0 30px 14px; font-size: .85rem; color: var(--tinta-2); }
+  .leyenda span { display: inline-flex; align-items: center; gap: 6px; }
+  .leyenda i { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+  .fuente-nota { font-size: .8rem; color: var(--tinta-3); margin-top: 6px; }
+</style>
+</head>
+<body>
+<div class="progreso-lectura"></div>
+<div class="pagina-curso">
+
+  <aside class="lateral">
+    <a class="volver" href="../../index.html">← Constelación</a>
+    <div class="curso-cabecera"><span class="emoji">📊</span><h1>Visualización de Datos</h1></div>
+    <span class="semestre-tag" style="color:var(--futuro)">Ramo futuro</span>
+    <nav>
+      <div class="grupo">Unidades</div>
+      <a href="#u1">01 · Flujo de trabajo y preparación de datos</a>
+      <a href="#u2">02 · Buenas prácticas y elección del gráfico</a>
+      <a class="sub" href="#anim-elegir-grafico">🧭 Elegí el gráfico correcto</a>
+      <a class="sub" href="#anim-anatomia-grafico">🩻 Anatomía de un buen gráfico</a>
+      <a href="#u3">03 · Relación y distribución</a>
+      <a class="sub" href="#anim-histograma-bins">📶 Histograma y bins</a>
+      <a href="#u4">04 · Comparación, correlación y multivariados</a>
+      <a class="sub" href="#anim-heatmap-correlacion">🌡️ Correlación interactiva</a>
+      <a href="#u5">05 · Mapas y tablas dinámicas</a>
+      <a href="#u6">06 · Dashboards: Streamlit y Altair</a>
+      <a href="#u7">07 · Storytelling con datos</a>
+      <a class="sub" href="#anim-atencion-preatentiva">👁️ Atención preatentiva</a>
+    </nav>
+    <div class="atajos"><kbd>Ctrl K</kbd> buscar en toda la biblioteca</div>
+  </aside>
+
+  <main class="principal">
+    <div class="banner-futuro-curso">⚠️ Material de la generación anterior (2024-2025) — el programa puede cambiar cuando curses este ramo.</div>
+
+    <div class="principal-cabecera">
+      <span class="relleno"></span>
+      <button class="btn-buscar" type="button">🔍 Buscar <kbd>Ctrl K</kbd></button>
+      <button class="btn-tema" type="button">☀️</button>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CABECERA DEL CURSO -->
+    <!-- ============================================================ -->
+    <header class="curso-hero-v3" id="cheat" style="--ac: var(--futuro)">
+      <span class="emoji-grande">📊</span>
+      <h1>Visualización de Datos — Resumen del curso</h1>
+      <span class="semestre-tag" style="color:var(--futuro)">Ramo futuro</span>
+      <p class="curso-intro">
+        Ramo futuro (2024-2025, material reconstruido a partir de talleres, certámenes y un dashboard final
+        de un compañero — <strong>no cursado por Matías</strong>). De un flujo de preparación → estética →
+        graficar → personalizar (Unidad 1), pasando por cómo elegir y pulir el gráfico correcto (Unidad 2),
+        los cinco grandes tipos de gráfico — relación, distribución, comparación, heatmaps y multivariados
+        (Unidades 3-4) —, mapas coropléticos y tablas dinámicas (Unidad 5), dos formas de armar un
+        dashboard interactivo: <code>Streamlit</code> + <code>Plotly</code> y <code>Altair</code> (Unidad 6),
+        y cierra con las seis lecciones de diseño de Cole Nussbaumer Knaflic — contexto, atención preatentiva,
+        eliminar el desorden y contar una historia con los datos (Unidad 7).
+        Datasets recurrentes: <em>tips</em>, subastas de eBay, <em>World Happiness</em> y el dashboard
+        electoral de las primarias presidenciales de Chile 2025.
+      </p>
+      <ul class="mini-indice">
+        <li><a href="#u1">01 · Preparación</a></li>
+        <li><a href="#u2">02 · Buenas prácticas</a></li>
+        <li><a href="#u3">03 · Relación y distribución</a></li>
+        <li><a href="#u4">04 · Comparación y multivariados</a></li>
+        <li><a href="#u5">05 · Mapas y tablas</a></li>
+        <li><a href="#u6">06 · Dashboards</a></li>
+        <li><a href="#u7">07 · Storytelling</a></li>
+      </ul>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 1 · FLUJO DE TRABAJO Y PREPARACIÓN DE DATOS -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u1">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">01</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Flujo de trabajo y preparación de datos</h2>
+          <p class="unidad-sub">El punto de partida de todo el curso: qué pasos seguir antes de graficar y cómo dejar los datos listos para eso.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-flujo-trabajo">
+        <h3>Flujo de trabajo</h3>
+        <ul>
+          <li><strong>Preparar</strong>: cargar con <code>pandas</code>/<code>polars</code>, inspeccionar con <code>df.info()</code>/<code>df.describe()</code>, tipar columnas.</li>
+          <li><strong>Estética</strong>: fijar estilo antes de graficar, ej. <code>sns.set_style('darkgrid')</code>, y una paleta consistente.</li>
+          <li><strong>Graficar</strong>: elegir el tipo según la pregunta (relación, distribución, comparación, composición, geoespacial).</li>
+          <li><strong>Personalizar</strong>: título, ejes, leyenda, anotaciones — sin esto un gráfico no comunica.</li>
+        </ul>
+        <p>Ecosistema: <code>matplotlib</code> (motor base) · <code>seaborn</code> (estadístico de alto nivel) · <code>plotly.express</code> (interactivo) · <code>altair</code> (declarativo) · <code>streamlit</code> (dashboards web).</p>
+      </div>
+
+      <div class="materia" id="tema-preparacion-datos">
+        <h3>Preparación y limpieza de datos</h3>
+        <ul>
+          <li><strong>Unificación</strong>: <code>pl.concat([df_a, df_b], how="diagonal")</code> (Polars) — rellena con nulos las columnas que faltan en uno de los dos.</li>
+          <li><strong>Casting</strong>: <code>pd.to_numeric(col, errors="coerce").fillna(0)</code> antes de unir tipos incompatibles.</li>
+          <li><strong>Normalización de texto</strong>: mapear variantes a un nombre canónico (ej. región del INE vs. GeoJSON) — imprescindible antes de un mapa.</li>
+          <li><strong>Deduplicación</strong>: <code>df.drop_duplicates()</code> antes de sumar, para no inflar totales.</li>
+          <li><strong>Formato largo</strong>: <code>df.melt(id_vars=, value_vars=, var_name=, value_name=)</code> — necesario para barras apiladas o <code>parallel_categories</code>.</li>
+          <li><strong>Discretización</strong>: <code>pd.cut(col, bins=[...], labels=[...])</code> (rangos fijos) vs. <code>pd.qcut(col, q=3, labels=[...])</code> (cuantiles).</li>
+        </ul>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-preparacion-datos">
+          <h3>1. Unificar y normalizar datos antes de graficar (Polars)</h3>
+          <pre><code>import polars as pl
+
+# limpiar.py: unifica votos de Chile y del extranjero
+votos = pl.concat([votos_chile, votos_extranjero], how="diagonal")  # rellena con null lo que falte en uno
+
+votos = votos.with_columns(pl.col("region").cast(pl.String))  # casting explícito antes de unir
+
+def normalizar_nombre_region(nombre):
+    mapeo = {"DE VALPARAISO": "Valparaíso", "METROPOLITANA DE SANTIAGO": "Metropolitana"}
+    return mapeo.get(nombre.upper(), nombre)
+
+votos = votos.with_columns(
+    pl.col("region").map_elements(normalizar_nombre_region).alias("region_normalizada")
+)</code></pre>
+          <p><code>pl.concat(..., how="diagonal")</code> une dos DataFrames aunque tengan columnas distintas, completando con nulos donde falte una columna en uno de los dos. El <code>cast(pl.String)</code> evita errores de tipo al unir. La normalización de nombres de región es el paso más silenciosamente crítico: un <code>featureidkey</code> de mapa que no encuentre "DE VALPARAISO" en el GeoJSON simplemente deja esa región sin color, sin lanzar ningún error.</p>
+          <p class="fuente">Fuente: nota "Preparación y limpieza de datos para visualización" (script <code>limpiar.py</code> y función <code>load_data</code> de <code>app.py</code>).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 2 · BUENAS PRÁCTICAS Y ELECCIÓN DEL GRÁFICO -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u2">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">02</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Buenas prácticas y elección del gráfico</h2>
+          <p class="unidad-sub">La pregunta define el gráfico, y la personalización define si ese gráfico comunica o no.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-buenas-practicas">
+        <h3>Buenas prácticas y personalización</h3>
+        <ul>
+          <li><strong>Título y ejes</strong>: siempre en español y describiendo la pregunta, no el nombre crudo de la columna.</li>
+          <li><strong>Escala log</strong>: <code>plt.xscale('log')</code>/<code>yscale('log')</code> con outliers extremos o varios órdenes de magnitud.</li>
+          <li><strong>Rotación de etiquetas</strong>: <code>xaxis_tickangle=-45</code> evita superposición con nombres largos.</li>
+          <li><strong>Paleta con significado</strong>: <code>color_discrete_map</code> / <code>alt.Scale(domain=, range=)</code> en vez del color por defecto.</li>
+          <li><strong>Anotaciones</strong>: <code>fig.add_annotation(x=, y=, text=, showarrow=True)</code> para destacar un punto puntual.</li>
+          <li><strong><code>tight_layout()</code></strong> y grillas de <code>subplots</code> para comparar varias variables ordenadamente.</li>
+        </ul>
+      </div>
+
+      <div class="materia" id="tema-guia-graficos">
+        <h3>🧭 Guía de elección de gráfico</h3>
+        <p>Punto de partida antes de graficar: identificá la pregunta y el tipo de dato, y elegí en esta tabla.</p>
+        <div class="tabla-scroll">
+          <table>
+            <thead><tr><th>Pregunta / tipo de dato</th><th>Gráfico correcto</th><th>Función típica</th></tr></thead>
+            <tbody>
+              <tr><td>¿Cómo se reparte 1 variable numérica?</td><td>Histograma / KDE</td><td><code>sns.histplot</code>, <code>sns.kdeplot</code></td></tr>
+              <tr><td>Comparar dispersión entre grupos</td><td>Boxplot / violinplot</td><td><code>sns.boxplot</code>, <code>sns.violinplot</code></td></tr>
+              <tr><td>¿Existe relación entre 2 variables numéricas?</td><td>Scatter (+ tendencia)</td><td><code>sns.scatterplot</code>, <code>px.scatter(trendline=)</code></td></tr>
+              <tr><td>Relación entre muchas variables numéricas a la vez</td><td>Pairplot / matriz de correlación</td><td><code>sns.pairplot</code>, <code>px.imshow(df.corr())</code></td></tr>
+              <tr><td>Comparar una magnitud entre categorías</td><td>Barras (simples/con error)</td><td><code>sns.barplot</code>, <code>px.bar(error_y=)</code></td></tr>
+              <tr><td>Composición de un total en partes</td><td>Barras apiladas / torta (≤5-6 categorías)</td><td><code>px.bar(color=)</code>, <code>plt.pie</code></td></tr>
+              <tr><td>Perfil multivariable entre 2-3 grupos</td><td>Gráfico polar / radar</td><td><code>px.line_polar</code></td></tr>
+              <tr><td>3-5 variables categóricas relacionadas</td><td>Categorías paralelas</td><td><code>px.parallel_categories</code></td></tr>
+              <tr><td>3 variables numéricas continuas</td><td>Scatter 3D</td><td><code>px.scatter_3d</code></td></tr>
+              <tr><td>Patrón espacial por región/país</td><td>Mapa coroplético</td><td><code>px.choropleth_mapbox</code>, <code>px.choropleth</code></td></tr>
+              <tr><td>Resumen por combinación de 2 categorías</td><td>Tabla dinámica (+ heatmap opcional)</td><td><code>df.pivot_table</code></td></tr>
+              <tr><td>Evolución en el tiempo</td><td>Línea</td><td><code>sns.lineplot</code>, <code>px.line</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="animacion" id="anim-elegir-grafico">
+        <div class="anim-cabecera">
+          <h3>🧭 Elegí el gráfico correcto</h3>
+          <p class="anim-desc">Cuatro preguntas típicas (distribución / relación / comparación / evolución) sobre datos de ejemplo distintos; cada botón cambia el dataset Y el gráfico que mejor responde esa pregunta.</p>
+        </div>
+        <canvas data-alto="340"></canvas>
+        <div class="controles">
+          <button type="button" data-accion="distribucion">📊 Distribución</button>
+          <button type="button" data-accion="relacion">🔵 Relación</button>
+          <button type="button" data-accion="comparacion">📶 Comparación</button>
+          <button type="button" data-accion="evolucion">📈 Evolución</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p id="elegir-info" class="mini-nota">Distribución: ¿cómo se reparten los valores de una variable? → histograma.</p>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> el mismo panel dibuja histograma, scatter, barras o línea según la pregunta — no hay un gráfico "universal": la pregunta define la forma.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="animacion" id="anim-anatomia-grafico">
+        <div class="anim-cabecera">
+          <h3>🩻 Anatomía de un buen gráfico</h3>
+          <p class="anim-desc">El mismo scatter (precio vs. superficie) mejora paso a paso: crudo → título → ejes → leyenda/color → sin chartjunk.</p>
+        </div>
+        <canvas data-alto="340"></canvas>
+        <div class="controles">
+          <button type="button" data-accion="paso">➜ Paso siguiente</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p id="anatomia-info" class="mini-nota">Paso 0/4: gráfico crudo, sin ningún elemento de personalización.</p>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> cada "Paso" agrega UN elemento de <a href="#tema-buenas-practicas">buenas prácticas</a>; compará el paso 0 con el paso 4 — mismos datos, comunicación completamente distinta.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-elegir-1">
+          <summary><span class="resumen-ejercicio">1. Para cada pregunta, elegí el gráfico correcto: (a) "¿cómo se reparten los sueldos de la empresa?", (b) "¿hay relación entre horas de estudio y nota?", (c) "¿qué región tuvo más votos?", (d) "¿cómo evolucionó el dólar este año?" </span><span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <p>(a) <strong>Histograma / boxplot</strong> — distribución de 1 variable numérica (<code>sns.histplot</code>). (b) <strong>Scatter</strong> — relación entre 2 variables numéricas, idealmente con tendencia (<code>px.scatter(trendline="ols")</code>). (c) <strong>Barras</strong> (o mapa coroplético si se quiere ubicación geográfica) — comparar una magnitud entre categorías. (d) <strong>Línea</strong> — evolución en el tiempo (<code>px.line</code>). La pregunta define la forma del gráfico, no al revés.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-torta-problema">
+          <summary><span class="resumen-ejercicio">2. Un compañero grafica la participación de 15 candidatos en una elección con un gráfico de torta. ¿Qué está mal y cómo lo arreglarías? </span><span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <p>El ojo humano compara mal ángulos/áreas cuando hay muchas porciones parecidas; con 15 categorías el gráfico de torta se vuelve ilegible (el material lo reserva para comparaciones binarias, ≤5-6 categorías). Alternativa: <strong>barras horizontales ordenadas</strong> (<code>px.bar</code> con <code>x="votos", y="candidato"</code> ordenado descendente), que sí permite comparar magnitudes con precisión y escala a más categorías (mostrando top 10 + "otros" si hace falta).</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 3 · RELACIÓN Y DISTRIBUCIÓN -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u3">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">03</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Gráficos de relación y distribución</h2>
+          <p class="unidad-sub">¿Covarían dos variables numéricas? ¿Cómo se reparte una sola? Las dos preguntas más frecuentes al empezar a explorar un dataset.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-graficos-relacion">
+        <h3>Gráficos de relación</h3>
+        <div class="tabla-scroll">
+          <table>
+            <thead><tr><th>Función</th><th>Uso</th></tr></thead>
+            <tbody>
+              <tr><td><code>sns.scatterplot(data,x,y,hue=)</code></td><td>nube de puntos; <code>hue</code> = 3ª variable</td></tr>
+              <tr><td><code>sns.pairplot(df,hue=)</code></td><td>matriz de scatters + histogramas/KDE en diagonal</td></tr>
+              <tr><td><code>sns.lmplot(...,col=,row=)</code></td><td>scatter + regresión, con facetas</td></tr>
+              <tr><td><code>px.scatter(...,trendline="ols")</code></td><td>scatter interactivo + tendencia OLS</td></tr>
+              <tr><td><code>px.scatter_3d(x,y,z,color=)</code></td><td>dispersión en 3 dimensiones</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Con miles de puntos superpuestos (<em>overplotting</em>) conviene <code>alpha</code> bajo o pasar a heatmap/hexbin. Correlación (tendencia) no implica causalidad.</p>
+      </div>
+
+      <div class="materia" id="tema-graficos-distribucion">
+        <h3>Gráficos de distribución</h3>
+        <ul>
+          <li><code>sns.histplot(df[col], bins=30, kde=True)</code> — histograma + densidad.</li>
+          <li><code>sns.kdeplot(data,x,hue,fill=True,common_norm=False)</code> — comparar <strong>forma</strong>, no magnitud, entre grupos.</li>
+          <li><code>sns.boxplot(data,x,y,showmeans=True)</code> — mediana, cuartiles, bigotes; bueno para muchos grupos.</li>
+          <li><code>sns.violinplot(data,x,y)</code> — revela multimodalidad que el boxplot esconde.</li>
+          <li><code>px.histogram(...,marginal="box")</code> / <code>px.violin(...,box=True,points="outliers")</code> — versión interactiva.</li>
+        </ul>
+        <p><strong>Error común:</strong> <code>common_norm=True</code> (default) hace que el grupo con más datos "domine" el área total.</p>
+      </div>
+
+      <div class="animacion" id="anim-histograma-bins">
+        <div class="anim-cabecera">
+          <h3>📶 Histograma: cuántos bins revelan (u ocultan) la forma real</h3>
+          <p class="anim-desc">40 valores de ejemplo con dos "grupos" naturales (bimodal). Mové el slider de bins y mirá cuándo aparece — o desaparece — la segunda moda.</p>
+        </div>
+        <canvas data-alto="300"></canvas>
+        <div class="controles">
+          <div class="control"><label>nº de bins</label><input type="range" id="sl-bins" min="3" max="25" value="8" step="1"><span class="valor"></span></div>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p id="bins-info" class="mini-nota">Con pocos bins, ambos grupos se funden en una sola "montaña".</p>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> con muy pocos bins (3-4) el histograma esconde la bimodalidad; con muchos (20+) aparece ruido de muestreo. El punto intermedio (≈8-10 acá) muestra la estructura real — <code>sns.histplot(..., bins=N, kde=True)</code> ayuda a decidir con la curva de densidad superpuesta.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-scatter-trendline">
+          <h3>2. Relación con tendencia y marginales (Plotly)</h3>
+          <pre><code>import plotly.express as px
+
+fig = px.scatter(
+    df, x="Economy (GDP per Capita)", y="Happiness Score",
+    trendline="ols",
+    marginal_x="histogram", marginal_y="histogram",
+    title="¿Cuánto 'compra' la felicidad el ingreso?"
+)
+fig.show()
+
+fig3d = px.scatter_3d(
+    df, x="Health", y="Family", z="Happiness Score", color="Region",
+    title="Tríada crítica: salud, familia y felicidad"
+)</code></pre>
+          <p><code>trendline="ols"</code> ajusta una línea de mínimos cuadrados ordinarios sobre el scatter, útil para ver si la relación es aproximadamente lineal y si el retorno marginal del ingreso sobre la felicidad es decreciente. Los histogramas marginales (<code>marginal_x</code>/<code>marginal_y</code>) muestran la distribución de cada eje sin necesitar un gráfico aparte. El <code>scatter_3d</code> explora si tres variables juntas ("tríada") explican mejor el fenómeno que un par a la vez — recordando que correlación no implica causalidad.</p>
+          <p class="fuente">Fuente: nota "Gráficos de relación" (taller <code>Entrega3</code>, dataset World Happiness).</p>
+        </div>
+
+        <div class="ejemplo" id="ej-distribucion-log">
+          <h3>3. Distribución con outliers: boxplot + escala log + KDE comparado</h3>
+          <pre><code>import seaborn as sns
+import matplotlib.pyplot as plt
+
+sns.boxplot(data=df, x="Competitive_label", y="ClosePrice")
+plt.yscale('log')   # sin esto, los outliers aplastan toda la variabilidad "normal"
+plt.title("Precio final de subasta según competitividad")
+plt.xlabel("¿Subasta competitiva?"); plt.ylabel("Precio de cierre (escala log)")
+
+sns.kdeplot(data=df, x="ClosePrice", hue="Competitive_label", fill=True, common_norm=False)
+
+# regla programática de cuándo usar escala log (certamen1)
+for col in variables_numericas:
+    if df[col].max() > df[col].median() * 20:
+        ax.set_yscale('log')</code></pre>
+          <p>El boxplot con <code>yscale('log')</code> evita que precios extremos aplasten la escala y esconda la diferencia real entre subastas competitivas y no competitivas. <code>common_norm=False</code> en el KDE normaliza cada grupo por separado para comparar <strong>forma</strong>, no volumen de datos. La regla <code>max &gt; mediana × 20</code> automatiza la decisión de aplicar escala log en vez de decidirlo a ojo por cada variable.</p>
+          <p class="fuente">Fuente: notas "Gráficos de distribución" y "Buenas prácticas y personalización de gráficos" (<code>certamen1.ipynb</code>, dataset eBay).</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-scatter-hue">
+          <summary><span class="resumen-ejercicio">3. Con el dataset <code>tips</code> de seaborn, escribí un scatterplot de <code>total_bill</code> vs. <code>tip</code> coloreado por <code>time</code> (almuerzo/cena) e interpretá el resultado. </span><span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <pre><code>import seaborn as sns
+tips = sns.load_dataset("tips")
+
+sns.scatterplot(data=tips, x="total_bill", y="tip", hue="time")
+import matplotlib.pyplot as plt
+plt.title("Propina según cuenta total, por horario")
+plt.xlabel("Cuenta total ($)"); plt.ylabel("Propina ($)")</code></pre>
+            <p><code>hue="time"</code> colorea cada punto según si la cuenta fue de almuerzo o cena, permitiendo ver de un vistazo si la relación propina-cuenta cambia entre ambos horarios (por ejemplo, si las cenas tienden a tener cuentas y propinas más altas) sin necesitar dos gráficos separados.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-escala-log">
+          <summary><span class="resumen-ejercicio">4. Un histograma de precios de propiedades muestra casi todas las barras aplastadas cerca de cero, con una barra altísima solitaria a la derecha. ¿Qué ajuste aplicás? </span><span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <pre><code>sns.histplot(df["precio"], bins=30)
+plt.xscale('log')   # o: if df['precio'].max() > df['precio'].median()*20: usar log</code></pre>
+            <p>Ese patrón es la señal clásica de outliers extremos / varios órdenes de magnitud: uno o pocos valores muy altos "estiran" el eje y aplastan la variabilidad real del resto. La solución es <code>xscale('log')</code>, no eliminar el outlier sin analizarlo — puede ser una propiedad real de lujo, no un error de captura.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 4 · COMPARACIÓN, CORRELACIÓN Y MULTIVARIADOS -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u4">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">04</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Comparación, correlación y multivariados</h2>
+          <p class="unidad-sub">Comparar categorías, leer una matriz de correlación y ver muchas variables relacionadas a la vez.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-graficos-comparacion">
+        <h3>Gráficos de comparación categórica</h3>
+        <ul>
+          <li><code>sns.barplot(data,x,y)</code> — media por categoría + IC.</li>
+          <li><code>plt.pie(...)</code> — solo para pocas categorías (≤5-6).</li>
+          <li><code>px.bar(...,error_y=,text_auto=)</code> — barras con incertidumbre.</li>
+          <li>Barras apiladas: <code>groupby([...]).size().unstack().plot(kind="bar",stacked=True)</code> o <code>px.bar(...,color="Factor")</code> con datos <code>melt</code>.</li>
+          <li><code>px.line_polar(r=,theta=,color=,line_close=True)</code> — perfil multivariable entre grupos.</li>
+        </ul>
+      </div>
+
+      <div class="materia" id="tema-heatmaps">
+        <h3>Heatmaps y matrices de correlación</h3>
+        <ul>
+          <li><code>df.corr()</code> — matriz de correlación de Pearson (-1 a 1); ignora columnas no numéricas <strong>en silencio</strong>.</li>
+          <li><code>px.imshow(corr, text_auto=True, color_continuous_scale="RdBu_r")</code> — paleta divergente porque 0 es el punto neutro.</li>
+          <li>Clustering jerárquico: <code>scipy.cluster.hierarchy.linkage</code> (<code>average</code>, <code>euclidean</code>) sobre datos con <code>StandardScaler</code> + <code>create_dendrogram</code> — reordena filas/columnas por similitud.</li>
+        </ul>
+        <p>Correlación mide relación <strong>lineal</strong>; dos variables no lineales pueden dar ≈0 y estar fuertemente relacionadas igual.</p>
+      </div>
+
+      <div class="materia" id="tema-multivariados">
+        <h3>Gráficos multivariados avanzados</h3>
+        <ul>
+          <li><strong>Facetas / small multiples</strong>: <code>lmplot(...,col=,row=)</code>, <code>px.histogram(...,facet_col=)</code>.</li>
+          <li><code>px.parallel_categories(dimensions=[...],color=)</code> — cada observación es una línea que atraviesa columnas categóricas; requiere discretizar antes con <code>qcut</code>.</li>
+          <li><code>px.scatter_3d(x,y,z,color=)</code> — tres ejes numéricos + color como 4ª dimensión.</li>
+          <li><strong>Marginal histograms</strong>: <code>px.scatter(...,marginal_x="histogram",marginal_y="histogram")</code>.</li>
+        </ul>
+        <p><strong>Error común:</strong> más de 4-5 dimensiones en <code>parallel_categories</code> se vuelve "spaghetti" ilegible.</p>
+      </div>
+
+      <div class="animacion" id="anim-heatmap-correlacion">
+        <div class="anim-cabecera">
+          <h3>🌡️ Correlación interactiva: scatter y heatmap a la vez</h3>
+          <p class="anim-desc">Mové el slider de correlación entre dos variables: la nube de puntos se estira/comprime y la celda correspondiente de la mini matriz de correlación cambia de color y valor.</p>
+        </div>
+        <canvas data-alto="320"></canvas>
+        <div class="controles">
+          <div class="control"><label>correlación</label><input type="range" id="sl-corr" min="-90" max="90" value="70" step="5"><span class="valor"></span></div>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <div class="leyenda">
+          <span><i style="background:#c0392b"></i> correlación positiva</span>
+          <span><i style="background:#2e6fe0"></i> correlación negativa</span>
+        </div>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> izquierda, <code>sns.scatterplot</code> de X vs. Y con la correlación elegida; derecha, la matriz <code>df.corr()</code> de 2×2 con <code>px.imshow(color_continuous_scale="RdBu_r")</code> — la diagonal es siempre 1 (gris fuerte), la celda fuera de diagonal responde al slider.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-comparacion-polar">
+          <h3>4. Comparación con incertidumbre y perfil multivariable</h3>
+          <pre><code>fig = px.bar(
+    r5, x="Region", y="Happiness Score", error_y="Standard Error",
+    title="Felicidad promedio por región (con error estándar)"
+)
+fig.update_layout(xaxis_tickangle=-45)
+
+fig_polar = px.line_polar(
+    perfil_latam_mundo, r="Valor", theta="Factor", color="Grupo",
+    line_close=True, title="Perfil LATAM vs. mundial"
+)</code></pre>
+          <p><code>error_y="Standard Error"</code> agrega barras de incertidumbre a cada barra, evitando comparar promedios como si fueran exactos. <code>xaxis_tickangle=-45</code> rota las etiquetas de región para que no se superpongan. El gráfico polar (<code>line_polar</code>) compara el "perfil" de 6 factores (economía, familia, salud, libertad, confianza, generosidad) entre dos grupos en un solo vistazo — algo que 6 barras separadas no logran con la misma claridad.</p>
+          <p class="fuente">Fuente: nota "Gráficos de comparación categórica" (<code>taller_3.ipynb</code>, dataset World Happiness).</p>
+        </div>
+
+        <div class="ejemplo" id="ej-heatmap-cluster">
+          <h3>5. Matriz de correlación y heatmap clusterizado</h3>
+          <pre><code>import numpy as np
+from sklearn.preprocessing import StandardScaler
+from scipy.cluster.hierarchy import linkage
+import plotly.figure_factory as ff
+import plotly.express as px
+
+corr = df.select_dtypes(include=[np.number]).corr()
+fig = px.imshow(corr, text_auto=True, color_continuous_scale="RdBu_r")
+
+datos_norm = StandardScaler().fit_transform(df_paises[factores])
+enlace = linkage(datos_norm, method="average", metric="euclidean")
+dendro = ff.create_dendrogram(datos_norm, linkagefun=lambda x: enlace, labels=paises)</code></pre>
+          <p><code>select_dtypes(include=[np.number])</code> evita que <code>df.corr()</code> ignore silenciosamente columnas de texto. <code>RdBu_r</code> es una paleta divergente adecuada porque la correlación tiene un punto neutro natural (0). El clustering jerárquico agrupa países con perfiles de bienestar parecidos <strong>antes</strong> de dibujar el heatmap final, revelando "familias" no obvias en la tabla cruda (ej. Costa Rica cerca de Nueva Zelanda) — normalizar con <code>StandardScaler</code> es obligatorio o la variable de mayor escala domina la distancia euclidiana.</p>
+          <p class="fuente">Fuente: nota "Heatmaps y matrices de correlación" (<code>app.py</code> y <code>taller_3.ipynb</code>).</p>
+        </div>
+
+        <div class="ejemplo" id="ej-multivariados">
+          <h3>6. Cinco variables en un gráfico: categorías paralelas</h3>
+          <pre><code>for col in ["Economy (GDP per Capita)", "Health", "Freedom", "Trust"]:
+    df[col + "_cat"] = pd.qcut(df[col], q=3, labels=["Bajo", "Medio", "Alto"])
+
+fig = px.parallel_categories(
+    df, dimensions=["Economy (GDP per Capita)_cat", "Health_cat", "Freedom_cat", "Trust_cat", "Felicidad_cat"],
+    color="Happiness Score"
+)</code></pre>
+          <p>Cada dimensión continua se discretiza primero con <code>qcut</code> (cuantiles, grupos de tamaño similar) porque <code>parallel_categories</code> necesita variables categóricas. Cada observación es una línea que atraviesa las columnas; el grosor de cada "banda" indica cuántos países siguen esa ruta. El resultado revela que los países con felicidad alta siguen mayoritariamente "Economía Alta → Salud Alta → Libertad Alta → Confianza Media/Alta" — un patrón que 5 histogramas separados no mostrarían.</p>
+          <p class="fuente">Fuente: nota "Gráficos multivariados avanzados" (<code>taller_3.ipynb</code>, dataset World Happiness).</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-corr-numerico">
+          <summary><span class="resumen-ejercicio">5. <code>df.corr()</code> sobre un DataFrame con columnas de texto (nombre, ciudad) y numéricas (precio, superficie) da un resultado sospechosamente pequeño. ¿Qué pasó y cómo lo corregís? </span><span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <pre><code>import numpy as np
+corr = df.select_dtypes(include=[np.number]).corr()
+fig = px.imshow(corr, text_auto=True, color_continuous_scale="RdBu_r")</code></pre>
+            <p><code>df.corr()</code> ignora columnas no numéricas <strong>en silencio</strong> (no lanza error), así que si el DataFrame tiene pocas columnas numéricas la matriz resultante es más chica de lo esperado y puede pasar desapercibido. Filtrar explícitamente con <code>select_dtypes(include=[np.number])</code> antes de correlacionar hace explícito qué columnas entran al cálculo.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 5 · MAPAS Y TABLAS DINÁMICAS -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u5">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">05</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Mapas y tablas dinámicas</h2>
+          <p class="unidad-sub">Cuando el dato tiene ubicación geográfica, o hay que cruzarlo por dos dimensiones categóricas a la vez.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-mapas">
+        <h3>Mapas coropléticos y geoespaciales</h3>
+        <ul>
+          <li><strong>GeoJSON</strong>: geometrías de regiones/comunas + propiedades (nombre, código).</li>
+          <li><code>px.choropleth_mapbox(df, geojson=, locations=, featureidkey="properties.REGION", color=, mapbox_style="carto-positron")</code> — mapa nacional/regional sobre mapa base real.</li>
+          <li><code>px.choropleth(locations=, locationmode="country names", color=, projection="natural earth")</code> — mapa mundial sin GeoJSON propio.</li>
+        </ul>
+        <p><strong>Trampa silenciosa:</strong> si <code>locations</code> no calza exacto con el GeoJSON, la región queda gris <strong>sin error</strong> — hay que normalizar texto (mayúsculas, tildes, prefijos) antes.</p>
+      </div>
+
+      <div class="materia" id="tema-tablas-dinamicas">
+        <h3>Tablas dinámicas</h3>
+        <pre><code>pivot = df.pivot_table(
+    index=["candidato"], columns=["region"],
+    values="votos", aggfunc="sum", fill_value=0
+)</code></pre>
+        <p><code>index</code>/<code>columns</code> = qué va en filas/columnas; <code>aggfunc</code> = función de resumen; <code>fill_value=0</code> evita <code>NaN</code> en combinaciones sin datos. En Streamlit: <code>st.multiselect</code> elige filas/columnas dinámicamente y <code>st.download_button</code> exporta a CSV.</p>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-mapas-coropleticos">
+          <h3>7. Mapa de Chile por región y mapa mundial</h3>
+          <pre><code>fig_chile = px.choropleth_mapbox(
+    votos_region, geojson=chile_geojson, locations="region_normalizada",
+    featureidkey="properties.REGION", color="total_votos",
+    mapbox_style="carto-positron", zoom=3.2, center={"lat": -35.6, "lon": -71.5},
+    color_continuous_scale="Reds"
+)
+
+fig_mundo = px.choropleth(
+    votos_extranjero, locations="pais", locationmode="country names",
+    color="total_votos", projection="natural earth"
+)</code></pre>
+          <p>El mapa de Chile necesita un GeoJSON propio (<code>chile_regiones.geojson</code>) y que <code>featureidkey</code> ("properties.REGION") calce exactamente con <code>locations</code> — de ahí la normalización de nombres del ejemplo 1. El mapa mundial usa <code>locationmode="country names"</code>: Plotly ya trae las geometrías de países integradas, sin necesitar un GeoJSON externo.</p>
+          <p class="fuente">Fuente: nota "Mapas coropléticos y geoespaciales" (<code>app.py</code>, dashboard electoral 2025).</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-pivot-fillvalue">
+          <summary><span class="resumen-ejercicio">6. Construí una tabla dinámica de ventas totales por vendedor (filas) y mes (columnas), sin que aparezcan <code>NaN</code> en combinaciones sin ventas. </span><span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <pre><code>pivot = df.pivot_table(
+    index="vendedor", columns="mes", values="monto",
+    aggfunc="sum", fill_value=0
+)
+print(pivot)</code></pre>
+            <p><code>fill_value=0</code> es la parte que evita el problema: sin ella, cada combinación vendedor-mes sin ventas queda como <code>NaN</code>, lo que rompe sumas totales por fila/columna y puede fallar al exportar a CSV. Con <code>fill_value=0</code> esas combinaciones quedan en cero, un valor numéricamente correcto ("no vendió ese mes").</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-choropleth-gris">
+          <summary><span class="resumen-ejercicio">7. Un mapa coroplético de regiones de Chile sale con la mitad de las regiones en gris (sin dato), aunque el CSV tiene datos para las 16 regiones. Diagnosticá y corregí. </span><span class="dificultad dificil">dificil</span></summary>
+          <div class="solucion">
+            <pre><code># diagnóstico: comparar los nombres que usa el CSV contra los del GeoJSON
+nombres_csv = set(df["region"].unique())
+nombres_geojson = {f["properties"]["REGION"] for f in chile_geojson["features"]}
+print(nombres_csv - nombres_geojson)   # regiones del CSV que NO calzan
+
+# corrección: normalizar antes de graficar
+mapeo = {"DE VALPARAISO": "Valparaíso", "METROPOLITANA DE SANTIAGO": "Metropolitana", ...}
+df["region_normalizada"] = df["region"].str.upper().map(mapeo).fillna(df["region"])
+
+fig = px.choropleth_mapbox(
+    df, geojson=chile_geojson, locations="region_normalizada",
+    featureidkey="properties.REGION", color="valor"
+)</code></pre>
+            <p>El síntoma (regiones grises sin error) es la firma exacta del problema de <code>featureidkey</code>: <code>locations</code> no calza carácter por carácter con la propiedad del GeoJSON (mayúsculas, tildes, prefijos "DE"). El diagnóstico compara ambos conjuntos de nombres con una diferencia de sets; la corrección aplica el mismo diccionario de normalización usado en la preparación de datos (ejemplo 1) antes de graficar.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 6 · DASHBOARDS: STREAMLIT Y ALTAIR -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u6">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">06</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Dashboards: Streamlit y Altair</h2>
+          <p class="unidad-sub">De un notebook a una app web interactiva: widgets, cache y una gramática declarativa de gráficos.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-streamlit">
+        <h3>Dashboards con Streamlit</h3>
+        <ul>
+          <li><code>st.set_page_config(page_title=,layout="wide")</code>, <code>st.file_uploader</code> + <code>@st.cache_data</code> (evita releer en cada interacción).</li>
+          <li>Widgets: <code>st.sidebar.selectbox</code>, <code>st.multiselect</code>, <code>st.radio</code> — filtran el DataFrame antes de graficar.</li>
+          <li>Layout: <code>st.columns(n)</code>, <code>st.tabs([...])</code>, <code>st.metric(label,valor)</code>.</li>
+          <li>Salida: <code>st.plotly_chart(fig,use_container_width=True)</code>, <code>st.altair_chart</code>, <code>st.dataframe</code>.</li>
+        </ul>
+        <p><strong>Clave:</strong> el script se re-ejecuta completo en cada interacción — sin <code>@st.cache_data</code> un CSV grande se vuelve a leer y limpiar cada vez.</p>
+      </div>
+
+      <div class="materia" id="tema-altair">
+        <h3>Gráficos declarativos con Altair</h3>
+        <pre><code>alt.Chart(df).mark_bar().encode(
+    x=alt.X('col_x', axis=alt.Axis(labelAngle=-45)),
+    y=alt.Y('col_y'),
+    color=alt.Color('col_color', scale=alt.Scale(domain=[...], range=[...])),
+    tooltip=['col1','col2']
+).properties(height=500)</code></pre>
+        <p>Gramática de gráficos: se describe <em>qué</em> mostrar (columnas → canales visuales), no <em>cómo</em> dibujarlo. Se renderiza en Streamlit con <code>st.altair_chart(fig, use_container_width=True)</code>. Límite por defecto: <strong>5000 filas</strong>.</p>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-altair-streamlit">
+          <h3>8. Altair declarativo + Streamlit + tabla dinámica exportable</h3>
+          <pre><code>import altair as alt
+import streamlit as st
+
+grafico = alt.Chart(votos_candidato).mark_bar().encode(
+    x=alt.X("nombre_candidato", axis=alt.Axis(labelAngle=-45)),
+    y="votos",
+    color=alt.Color("bloque", scale=alt.Scale(
+        domain=["rojo", "azul", "morado", "no aplica"],
+        range=["#c0392b", "#2e6fe0", "#8e44ad", "#95a5a6"])),
+    tooltip=["nombre_candidato", "votos"]
+).properties(height=500)
+
+st.altair_chart(grafico, use_container_width=True)
+
+@st.cache_data
+def cargar_datos(archivo):
+    return pd.read_csv(archivo)
+
+filas = st.multiselect("Filas", ["candidato", "region", "bloque"], default=["candidato"])
+columnas = st.multiselect("Columnas", ["region", "bloque", "pais"], default=["region"])
+pivot = df.pivot_table(index=filas, columns=columnas, values="votos", aggfunc="sum", fill_value=0)
+st.dataframe(pivot)
+st.download_button("Descargar CSV", pivot.to_csv(), "tabla_dinamica.csv")</code></pre>
+          <p><code>alt.Scale(domain=, range=)</code> fija manualmente qué color corresponde a cada bloque político, en vez de dejarlo al azar — <code>domain</code> y <code>range</code> deben tener la misma longitud y orden o los colores quedan mal asignados sin error visible. <code>@st.cache_data</code> evita releer y limpiar el CSV (~97 MB en el dashboard real) en cada interacción del usuario. Los <code>st.multiselect</code> arman la <code>pivot_table</code> dinámicamente y <code>st.download_button</code> exporta el resultado.</p>
+          <p class="fuente">Fuente: notas "Gráficos declarativos con Altair", "Dashboards interactivos con Streamlit" y "Tablas dinámicas" (<code>prueba2.py</code> y <code>app.py</code>).</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-cache-data">
+          <summary><span class="resumen-ejercicio">8. Un dashboard Streamlit que lee un CSV de 90 MB se vuelve lentísimo cada vez que el usuario cambia un filtro del sidebar. ¿Cuál es la causa más probable y cómo se arregla? </span><span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <pre><code>@st.cache_data
+def cargar_datos(archivo):
+    df = pd.read_csv(archivo)
+    df = df.drop_duplicates()
+    df["votos"] = df["votos"].astype(int)
+    return df
+
+df = cargar_datos("votos2025.csv")   # ahora solo se lee/limpia una vez</code></pre>
+            <p>Streamlit re-ejecuta el script completo de arriba a abajo en <strong>cada</strong> interacción (cambiar un filtro, mover un slider). Si la función de carga/limpieza no tiene <code>@st.cache_data</code>, el CSV de 90 MB se vuelve a leer y procesar en cada click, no solo la primera vez. Agregar el decorador cachea el resultado por los mismos argumentos de entrada, evitando el recómputo.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-altair-domain">
+          <summary><span class="resumen-ejercicio">9. En un gráfico Altair, el bloque "morado" aparece pintado de gris y el bloque "no aplica" no tiene color asignado. El código usa <code>alt.Scale(domain=["rojo","azul","morado"], range=["#c0392b","#2e6fe0","#95a5a6","#8e44ad"])</code>. Encontrá el bug. </span><span class="dificultad dificil">dificil</span></summary>
+          <div class="solucion">
+            <pre><code># bug: domain tiene 3 elementos, range tiene 4 -> se desalinean
+color=alt.Color("bloque", scale=alt.Scale(
+    domain=["rojo", "azul", "morado"],
+    range=["#c0392b", "#2e6fe0", "#95a5a6", "#8e44ad"]))   # MAL: largos distintos
+
+# corregido: mismo largo y mismo orden en domain y range
+color=alt.Color("bloque", scale=alt.Scale(
+    domain=["rojo", "azul", "morado", "no aplica"],
+    range=["#c0392b", "#2e6fe0", "#8e44ad", "#95a5a6"]))   # BIEN</code></pre>
+            <p>El bug es que <code>domain</code> tiene 3 categorías pero <code>range</code> tiene 4 colores: Altair asigna por posición, así que "morado" (posición 2) termina emparejado con <code>"#95a5a6"</code> (gris, pensado para "no aplica"), y la categoría "no aplica" directamente no está en <code>domain</code> y queda sin mapeo. Altair no lanza un error evidente ante este desajuste — hay que revisar manualmente que ambas listas tengan el mismo largo y el mismo orden.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 7 · STORYTELLING CON DATOS -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u7">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">07</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Storytelling con datos: contexto, atención y narrativa</h2>
+          <p class="unidad-sub">Las seis lecciones de Cole Nussbaumer Knaflic ("Storytelling with Data"): el complemento de diseño a todo lo aprendido con las librerías — un gráfico técnicamente correcto todavía puede no comunicar nada.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-contexto-audiencia">
+        <h3>Entender el contexto y la audiencia</h3>
+        <p>Antes de abrir <code>matplotlib</code>/<code>plotly</code>, la primera lección de Knaflic es responder tres preguntas: <strong>¿quién</strong> es la audiencia (un directorio, la prensa, el propio equipo de análisis)?, <strong>¿qué</strong> necesita saber?, y sobre todo <strong>¿qué necesita hacer</strong> con esa información? Un gráfico sin una acción o decisión asociada rara vez justifica su lugar en un informe.</p>
+        <ul>
+          <li><strong>La "gran idea" (big idea)</strong>: una sola frase que resuma el mensaje central del gráfico, escrita <em>antes</em> de graficar — no un título genérico como "Ventas por región" sino "La región Centro concentra el 60% de las ventas".</li>
+          <li><strong>Mismo dato, presentación distinta según la audiencia</strong>: un mapa coroplético interactivo (<code>px.choropleth_mapbox</code>) sirve para exploración libre en prensa; una tabla dinámica exportable (<code>pivot_table</code> + <code>st.download_button</code>) sirve para que el equipo de campaña la procese en Excel.</li>
+          <li><strong>Menos es más</strong>: si la audiencia tiene 10 segundos, un <code>st.metric</code> con una cifra y una flecha de tendencia comunica más rápido que un dashboard completo.</li>
+        </ul>
+      </div>
+
+      <div class="materia" id="tema-atencion-preatentiva">
+        <h3>Atributos preatentivos: dirigir la mirada antes de que piense</h3>
+        <p>Los <strong>atributos preatentivos</strong> son propiedades visuales que el cerebro procesa de forma automática, en fracciones de segundo y antes del razonamiento consciente: color, tamaño, posición y orientación/negrita. Usarlos con intención es la diferencia entre "acá están todos los datos" y "mirá <em>esto</em>".</p>
+        <ul>
+          <li><strong>Color de énfasis</strong>: pintar gris (<code>"#95a5a6"</code>) todas las categorías salvo la relevante, que queda con el único color saturado del gráfico — el ojo la encuentra sin leer ninguna etiqueta.</li>
+          <li><strong>Tamaño / grosor</strong>: una línea o barra más gruesa que el resto comunica jerarquía sin necesitar texto.</li>
+          <li><strong>Posición</strong>: ordenar barras de mayor a menor (en vez de alfabético) hace que el ranking se lea de un vistazo.</li>
+          <li><strong>Negrita selectiva en texto</strong>: resaltar solo el número que importa dentro de un párrafo cumple la misma función que el color en un gráfico.</li>
+        </ul>
+        <p><strong>Trampa común:</strong> usar 6-7 colores saturados distintos (uno por categoría) es lo opuesto a esto — sin ningún color "por defecto" que actúe de fondo, el ojo no tiene dónde aterrizar primero.</p>
+      </div>
+
+      <div class="materia" id="tema-eliminar-desorden">
+        <h3>Eliminar el desorden: data-ink ratio y chartjunk</h3>
+        <p>El concepto de <strong>data-ink ratio</strong> (Edward Tufte, retomado por Knaflic como lección 3) formaliza una idea que ya apareció en la <a href="#anim-anatomia-grafico">animación de la Unidad 2</a>: cada elemento visual que no representa un dato es candidato a borrarse.</p>
+        <div class="formula-card"><span class="etiqueta">Data-ink ratio (Tufte)</span>$$\text{ratio}=\frac{\text{tinta usada en datos}}{\text{tinta total del gráfico}},\qquad 0\le\text{ratio}\le1$$</div>
+        <p>Cuanto más cerca de 1, menos "ruido" compite con la información real. Categorías típicas de <strong>chartjunk</strong> (tinta que no es dato) a eliminar por defecto:</p>
+        <ul>
+          <li>Grillas de fondo pesadas — <code>ax.grid(alpha=0.15)</code> o directamente quitarlas, nunca al 100% de opacidad.</li>
+          <li>Bordes/marcos gruesos y efectos 3D en barras o tortas (<code>plt.pie(..., shadow=True)</code> es casi siempre chartjunk puro).</li>
+          <li>Leyendas redundantes cuando se puede etiquetar la serie directamente sobre la línea (<code>fig.add_annotation</code> al final de cada línea en vez de una leyenda aparte).</li>
+          <li><code>ax.spines['top'].set_visible(False)</code> / <code>['right'].set_visible(False)</code> — los ejes superior y derecho casi nunca aportan información.</li>
+        </ul>
+      </div>
+
+      <div class="materia" id="tema-pensar-como-disenador">
+        <h3>Pensar como diseñador</h3>
+        <ul>
+          <li><strong>Affordances</strong>: que un elemento interactivo se vea interactivo — un <code>st.selectbox</code> con placeholder claro, un botón con verbo de acción ("Descargar CSV", no "OK").</li>
+          <li><strong>Accesibilidad</strong>: paletas seguras para daltonismo (evitar rojo-verde puro; <code>RdBu</code>/<code>viridis</code> funcionan mejor que rojo/verde saturado), tamaño de fuente legible incluso proyectado, texto alternativo en gráficos exportados.</li>
+          <li><strong>Iterar</strong>: la primera versión de un gráfico casi nunca es la que se presenta — mostrarla a alguien que no conoce el dato y ver qué pregunta primero revela qué falta aclarar.</li>
+        </ul>
+      </div>
+
+      <div class="materia" id="tema-narrativa-datos">
+        <h3>Contar una historia con datos</h3>
+        <p>La última lección de Knaflic: estructurar el análisis igual que una historia, con <strong>contexto → tensión (el hallazgo que sorprende o importa) → resolución (qué hacer al respecto)</strong>, en vez de una sucesión plana de gráficos.</p>
+        <ul>
+          <li><strong>Lógica horizontal</strong>: cada panel/slide comunica UNA idea propia — si hace falta explicarlo con dos oraciones distintas, son dos gráficos, no uno.</li>
+          <li><strong>Lógica vertical</strong>: el título de un gráfico debería ser la conclusión ("La participación cayó 8 puntos en la región Sur"), no una descripción del eje ("Participación por región").</li>
+          <li><strong>Aplicado al dashboard electoral</strong>: en vez de mostrar el mapa de Chile solo, ordenar la narrativa como <code>st.metric</code> con la cifra clave (contexto) → mapa coroplético con la región líder anotada (tensión/hallazgo) → tabla dinámica exportable para profundizar (resolución/acción).</li>
+        </ul>
+      </div>
+
+      <div class="animacion" id="anim-atencion-preatentiva">
+        <div class="anim-cabecera">
+          <h3>👁️ Atención preatentiva: mismo gráfico, dos formas de mirarlo</h3>
+          <p class="anim-desc">Las mismas 7 barras, sin ningún cambio de datos: "Sin atención dirigida" las pinta todas con el mismo color saturado; "Con atención dirigida" apaga el resto a gris y deja un único color + etiqueta en la barra que importa.</p>
+        </div>
+        <canvas data-alto="320"></canvas>
+        <div class="controles">
+          <button type="button" data-accion="sin">◻ Sin atención dirigida</button>
+          <button type="button" data-accion="con">🎯 Con atención dirigida</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p id="preatencion-info" class="mini-nota">Sin atención dirigida: 7 colores saturados compitiendo — el ojo no sabe dónde mirar primero.</p>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> en el segundo estado, ningún dato cambió — solo el color. La región Centro (la del hallazgo) se identifica sin leer ninguna etiqueta, exactamente el efecto que busca un atributo preatentivo bien usado.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-color-preatentivo">
+          <h3>9. Resaltar una sola categoría con color preatentivo</h3>
+          <pre><code>import plotly.express as px
+
+GRIS = "#95a5a6"
+region_destacada = "Centro"
+
+colores = {r: (GRIS if r != region_destacada else "#c0392b") for r in df["region"].unique()}
+
+fig = px.bar(
+    df, x="region", y="votos",
+    color="region", color_discrete_map=colores,
+    title="La región Centro concentró el 60% de los votos"   # la "big idea", no una descripción del eje
+)
+fig.update_layout(showlegend=False)   # el color ya comunica; la leyenda es chartjunk acá</code></pre>
+          <p>El diccionario <code>colores</code> asigna gris a TODAS las regiones salvo la destacada, que recibe el único color saturado del gráfico — el mismo truco de "todo gris salvo uno" funciona igual en <code>matplotlib</code> (<code>ax.bar(..., color=[GRIS if r != destacada else "#c0392b" for r in regiones])</code>). El título ya es la "gran idea" (Lección 1), no una descripción genérica, y la leyenda se quita porque el color ya es autoexplicativo con el título puesto.</p>
+          <p class="fuente">Fuente: principios de diseño de datos (Cole Nussbaumer Knaflic, "Storytelling with Data") aplicados al dataset electoral del proyecto final — no cubiertos explícitamente por las notas originales del compañero.</p>
+        </div>
+
+        <div class="ejemplo" id="ej-narrativa-streamlit">
+          <h3>10. Estructura narrativa en un dashboard Streamlit</h3>
+          <pre><code>import streamlit as st
+import plotly.express as px
+
+st.set_page_config(layout="wide")
+
+# 1. CONTEXTO: la cifra clave primero, sin que el lector tenga que buscarla
+col1, col2 = st.columns(2)
+col1.metric("Participación total", "8.2M votos", delta="+3% vs. 2021")
+
+# 2. TENSIÓN / HALLAZGO: el mapa con el dato que sorprende ya anotado
+fig = px.choropleth_mapbox(
+    votos_region, geojson=chile_geojson, locations="region_normalizada",
+    featureidkey="properties.REGION", color="total_votos",
+    mapbox_style="carto-positron", color_continuous_scale="Reds"
+)
+fig.add_annotation(text="Centro concentra el 60% del padrón", showarrow=True, x=-71, y=-33)
+st.plotly_chart(fig, use_container_width=True)
+
+# 3. RESOLUCIÓN: la tabla exportable para quien necesite profundizar
+with st.expander("Ver y descargar el detalle por región"):
+    pivot = df.pivot_table(index="candidato", columns="region", values="votos", aggfunc="sum", fill_value=0)
+    st.dataframe(pivot)
+    st.download_button("Descargar CSV", pivot.to_csv(), "detalle_regiones.csv")</code></pre>
+          <p>El orden del código sigue deliberadamente el arco narrativo: <code>st.metric</code> da el contexto en un vistazo (Lección 1), el mapa con <code>add_annotation</code> dirige la atención al hallazgo (Lecciones 3-4, sin leyenda redundante ni grilla), y el <code>st.expander</code> con la tabla dinámica queda disponible pero no compite visualmente con el mensaje principal — la resolución está ahí para quien la busque, no impuesta a quien no la necesita.</p>
+          <p class="fuente">Fuente: principios de diseño de datos (Cole Nussbaumer Knaflic, "Storytelling with Data") aplicados al dashboard electoral (<code>app.py</code>) del proyecto final.</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-chartjunk-identificar">
+          <summary><span class="resumen-ejercicio">10. Un gráfico de torta 3D con sombra, 8 colores saturados, grilla de fondo y una leyenda al costado muestra la participación de 4 candidatos. Listá qué elementos son chartjunk y reescribí la llamada a <code>matplotlib</code> sin ellos. </span><span class="dificultad facil">facil</span></summary>
+          <div class="solucion">
+            <pre><code># chartjunk a eliminar: efecto 3D + sombra, grilla de fondo (una torta no la necesita),
+# leyenda aparte (se puede etiquetar cada porción directo)
+
+plt.pie(
+    votos, labels=candidatos, autopct='%1.0f%%',
+    colors=["#c0392b", "#2e6fe0", "#8e44ad", "#95a5a6"]   # 4 colores con intención, no 8 al azar
+)
+plt.title("Distribución de votos por candidato")
+# sin shadow=True, sin plt.grid(), sin plt.legend() aparte -> autopct + labels ya cumplen esa función</code></pre>
+            <p>El efecto 3D y la sombra distorsionan la percepción real de las áreas (el chartjunk más engañoso, no solo decorativo); la grilla de fondo no aporta nada en una torta porque no hay ejes que leer; y la leyenda aparte es redundante si <code>labels</code> + <code>autopct</code> ya identifican cada porción directamente sobre el gráfico. Resultado: mismo dato, data-ink ratio mucho más alto.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-contexto-audiencia">
+          <summary><span class="resumen-ejercicio">11. El mismo resultado ("la región Centro ganó con el 45% de los votos") hay que presentarlo (a) al directorio de campaña en una reunión de 5 minutos y (b) al equipo de analistas que va a auditar el conteo mesa por mesa. Proponé un formato distinto para cada audiencia y justificá por qué. </span><span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>(a) <strong>Directorio (5 minutos, decisión rápida)</strong>: un <code>st.metric</code> con la cifra ("45%") y un mapa coroplético simple con la región líder ya resaltada por color — sin tabla, sin filtros, la "gran idea" tiene que leerse sin interacción. (b) <strong>Analistas (auditoría mesa por mesa)</strong>: la <code>pivot_table</code> completa con <code>st.multiselect</code> para filtrar por mesa/comuna y <code>st.download_button</code> para exportar — acá el objetivo no es una lectura rápida sino poder examinar el detalle, así que el mapa resumen sobra y la tabla exhaustiva es lo que sirve. Mismo dato, formato opuesto, porque cambia la pregunta "¿qué necesita <em>hacer</em> la audiencia con esto?".</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-color-map-roto">
+          <summary><span class="resumen-ejercicio">12. Un compañero arma <code>color_discrete_map</code> con un color saturado distinto para cada una de las 12 regiones "para que se vea completo". El gráfico resultante es ilegible. Aplicá atención preatentiva para arreglarlo. </span><span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <pre><code># antes: 12 colores saturados compitiendo entre sí, ninguno destaca
+colores_mal = {r: color_random() for r in regiones}
+
+# después: gris para las 11 regiones sin protagonismo, un solo color para la que importa
+GRIS = "#95a5a6"
+colores_bien = {r: (GRIS if r != "Centro" else "#c0392b") for r in regiones}</code></pre>
+            <p>Con 12 colores saturados no hay ningún color "de fondo" que ceda protagonismo, así que el ojo no tiene dónde aterrizar primero — es el mismo error del ejercicio de la Unidad 2 sobre el gráfico de torta con demasiadas categorías, aplicado ahora al color en vez de a la forma del gráfico. La corrección usa el mismo truco "todo gris salvo uno" del ejemplo 9: solo la categoría con la "gran idea" recibe color propio.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ============================================================ */
+  /* 1. ELEGÍ EL GRÁFICO CORRECTO                                   */
+  /* ============================================================ */
+  Anim.registrar("anim-elegir-grafico", function (sim) {
+    var estado = { modo: "distribucion" };
+    var info = document.getElementById("elegir-info");
+
+    var datosDist = [12, 14, 15, 16, 16, 17, 18, 18, 19, 20, 21, 22, 23, 24, 26, 30, 33, 38];
+    var datosRel = [];
+    (function () {
+      for (var i = 0; i < 24; i++) {
+        var x = 10 + Math.random() * 80;
+        var y = x * 0.6 + 8 + (Math.random() - 0.5) * 22;
+        datosRel.push([x, y]);
+      }
+    })();
+    var datosComp = [
+      { cat: "Norte", v: 42 }, { cat: "Centro", v: 78 }, { cat: "Sur", v: 55 }, { cat: "Extremo", v: 21 }
+    ];
+    var datosEvol = [3, 5, 4, 7, 9, 8, 11, 14, 13, 17, 20, 19];
+
+    function histograma(ctx, w, h) {
+      var m = Anim.mapa(w, h, { xMin: 0, xMax: 45, yMin: 0, yMax: 6 });
+      Anim.ejes(ctx, m, w, h);
+      var bins = 8, ancho = 45 / bins, cuentas = new Array(bins).fill(0);
+      datosDist.forEach(function (v) { var i = Math.min(bins - 1, Math.floor(v / ancho)); cuentas[i]++; });
+      ctx.fillStyle = colorVar("--acento");
+      cuentas.forEach(function (c, i) {
+        var x0 = m.x(i * ancho), x1 = m.x((i + 1) * ancho);
+        var y0 = m.y(0), y1 = m.y(c);
+        ctx.fillRect(x0 + 1, y1, (x1 - x0) - 2, y0 - y1);
+      });
+      ctx.fillStyle = colorVar("--tinta-2");
+      ctx.font = "12px Consolas, monospace";
+      ctx.textAlign = "left";
+      ctx.fillText("Histograma: distribución de sueldos (miles $)", 10, 16);
+    }
+
+    function scatter(ctx, w, h) {
+      var m = Anim.mapa(w, h, { xMin: 0, xMax: 100, yMin: 0, yMax: 100 });
+      Anim.ejes(ctx, m, w, h);
+      ctx.fillStyle = colorVar("--s2");
+      datosRel.forEach(function (p) {
+        ctx.beginPath();
+        ctx.arc(m.x(p[0]), m.y(p[1]), 4, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      ctx.fillStyle = colorVar("--tinta-2");
+      ctx.font = "12px Consolas, monospace";
+      ctx.textAlign = "left";
+      ctx.fillText("Scatter: horas de estudio vs. nota", 10, 16);
+    }
+
+    function barras(ctx, w, h) {
+      var m = Anim.mapa(w, h, { xMin: 0, xMax: datosComp.length, yMin: 0, yMax: 90 });
+      Anim.ejes(ctx, m, w, h);
+      ctx.font = "12px Consolas, monospace";
+      datosComp.forEach(function (d, i) {
+        var x0 = m.x(i + 0.15), x1 = m.x(i + 0.85);
+        var y0 = m.y(0), y1 = m.y(d.v);
+        ctx.fillStyle = colorVar("--s3");
+        ctx.fillRect(x0, y1, x1 - x0, y0 - y1);
+        ctx.fillStyle = colorVar("--tinta-2");
+        ctx.textAlign = "center";
+        ctx.fillText(d.cat, (x0 + x1) / 2, y0 + 16);
+      });
+      ctx.textAlign = "left";
+      ctx.fillStyle = colorVar("--tinta-2");
+      ctx.fillText("Barras: votos por región", 10, 16);
+    }
+
+    function linea(ctx, w, h) {
+      var m = Anim.mapa(w, h, { xMin: 0, xMax: datosEvol.length - 1, yMin: 0, yMax: 22 });
+      Anim.ejes(ctx, m, w, h);
+      ctx.strokeStyle = colorVar("--s1");
+      ctx.lineWidth = 2.4;
+      ctx.beginPath();
+      datosEvol.forEach(function (v, i) {
+        var x = m.x(i), y = m.y(v);
+        if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+      });
+      ctx.stroke();
+      ctx.fillStyle = colorVar("--s1");
+      datosEvol.forEach(function (v, i) { ctx.beginPath(); ctx.arc(m.x(i), m.y(v), 3, 0, Math.PI * 2); ctx.fill(); });
+      ctx.fillStyle = colorVar("--tinta-2");
+      ctx.font = "12px Consolas, monospace";
+      ctx.textAlign = "left";
+      ctx.fillText("Línea: evolución del dólar (12 meses)", 10, 16);
+    }
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      if (estado.modo === "distribucion") histograma(ctx, w, h);
+      else if (estado.modo === "relacion") scatter(ctx, w, h);
+      else if (estado.modo === "comparacion") barras(ctx, w, h);
+      else linea(ctx, w, h);
+    });
+
+    var textos = {
+      distribucion: "Distribución: ¿cómo se reparten los valores de una variable? → histograma.",
+      relacion: "Relación: ¿covarían dos variables numéricas? → scatter (+ tendencia si aplica).",
+      comparacion: "Comparación: ¿quién tiene más/menos? → barras por categoría.",
+      evolucion: "Evolución: ¿cómo cambia en el tiempo? → línea."
+    };
+
+    function elegir(modo) {
+      estado.modo = modo;
+      if (info) info.textContent = textos[modo];
+      sim.redibujar();
+    }
+
+    sim.botones({
+      distribucion: function () { elegir("distribucion"); },
+      relacion: function () { elegir("relacion"); },
+      comparacion: function () { elegir("comparacion"); },
+      evolucion: function () { elegir("evolucion"); },
+      reiniciar: function () { elegir("distribucion"); }
+    });
+  });
+
+  /* ============================================================ */
+  /* 2. ANATOMÍA DE UN BUEN GRÁFICO                                 */
+  /* ============================================================ */
+  Anim.registrar("anim-anatomia-grafico", function (sim) {
+    var estado = { paso: 0 };
+    var info = document.getElementById("anatomia-info");
+    var puntos = [];
+    (function () {
+      var grupos = ["Norte", "Sur"];
+      for (var i = 0; i < 22; i++) {
+        var sup = 40 + Math.random() * 120;
+        var grupo = i % 2 === 0 ? 0 : 1;
+        var base = grupo === 0 ? 1.9 : 1.4;
+        var precio = sup * base + (Math.random() - 0.5) * 40 + 20;
+        puntos.push({ x: sup, y: precio, g: grupo });
+      }
+    })();
+
+    var descripciones = [
+      "Paso 0/4: gráfico crudo, sin ningún elemento de personalización.",
+      "Paso 1/4: se agrega título — ya se sabe qué pregunta responde.",
+      "Paso 2/4: se agregan etiquetas de ejes con unidades — ya no hay que adivinar qué es cada número.",
+      "Paso 3/4: color con significado (hue) + leyenda — ahora se ve que hay dos grupos distintos.",
+      "Paso 4/4: se quita el chartjunk (grilla pesada, borde grueso) — el foco queda en los datos."
+    ];
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var paso = estado.paso;
+      var m = Anim.mapa(w, h, { xMin: 20, xMax: 180, yMin: 0, yMax: 380 });
+
+      if (paso < 4) {
+        // grilla "chartjunk" pesada en pasos 0-3, más liviana recién en el paso 4
+        ctx.save();
+        ctx.strokeStyle = colorVar("--tinta-3");
+        ctx.globalAlpha = paso < 4 ? 0.35 : 0.12;
+        ctx.lineWidth = paso < 4 ? 1.4 : 0.6;
+        for (var gx = 20; gx <= 180; gx += 20) {
+          ctx.beginPath(); ctx.moveTo(m.x(gx), 0); ctx.lineTo(m.x(gx), h); ctx.stroke();
+        }
+        for (var gy = 0; gy <= 380; gy += 40) {
+          ctx.beginPath(); ctx.moveTo(0, m.y(gy)); ctx.lineTo(w, m.y(gy)); ctx.stroke();
+        }
+        ctx.restore();
+      } else {
+        Anim.ejes(ctx, m, w, h);
+      }
+
+      var colorA = colorVar("--tinta-3"), colorB = colorVar("--tinta-3");
+      if (paso >= 3) { colorA = colorVar("--s2"); colorB = colorVar("--futuro"); }
+
+      puntos.forEach(function (p) {
+        ctx.beginPath();
+        ctx.fillStyle = p.g === 0 ? colorA : colorB;
+        ctx.globalAlpha = 0.85;
+        ctx.arc(m.x(p.x), m.y(p.y), 5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.globalAlpha = 1;
+      });
+
+      ctx.textAlign = "left";
+      ctx.font = "12px Consolas, monospace";
+      if (paso >= 1) {
+        ctx.fillStyle = colorVar("--tinta");
+        ctx.font = "13px Consolas, monospace";
+        ctx.fillText("Precio de venta según superficie", 10, 18);
+      }
+      if (paso >= 2) {
+        ctx.fillStyle = colorVar("--tinta-2");
+        ctx.font = "11px Consolas, monospace";
+        ctx.fillText("Superficie (m²)", w - 110, h - 6);
+        ctx.save();
+        ctx.translate(14, h - 30);
+        ctx.rotate(-Math.PI / 2);
+        ctx.fillText("Precio (miles $)", 0, 0);
+        ctx.restore();
+      }
+      if (paso >= 3) {
+        ctx.fillStyle = colorVar("--panel-2");
+        ctx.fillRect(w - 92, 26, 82, 44);
+        ctx.strokeStyle = colorVar("--borde");
+        ctx.strokeRect(w - 92, 26, 82, 44);
+        ctx.fillStyle = colorA; ctx.beginPath(); ctx.arc(w - 80, 40, 4, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = colorVar("--tinta-2"); ctx.fillText("Norte", w - 70, 44);
+        ctx.fillStyle = colorB; ctx.beginPath(); ctx.arc(w - 80, 58, 4, 0, Math.PI * 2); ctx.fill();
+        ctx.fillStyle = colorVar("--tinta-2"); ctx.fillText("Sur", w - 70, 62);
+      }
+    });
+
+    function fijarPaso(p) {
+      estado.paso = p;
+      if (info) info.textContent = descripciones[p];
+      sim.redibujar();
+    }
+
+    sim.botones({
+      paso: function () { fijarPaso((estado.paso + 1) % 5); },
+      reiniciar: function () { fijarPaso(0); }
+    });
+  });
+
+  /* ============================================================ */
+  /* 3. HEATMAP DE CORRELACIÓN INTERACTIVO                         */
+  /* ============================================================ */
+  Anim.registrar("anim-heatmap-correlacion", function (sim) {
+    var puntosBase = [];
+    (function () {
+      for (var i = 0; i < 60; i++) puntosBase.push([(Math.random() - 0.5) * 2, (Math.random() - 0.5) * 2]);
+    })();
+
+    function colorDivergente(r) {
+      // r en [-1,1]: rojo (positivo) <-> gris (0) <-> azul (negativo), estilo RdBu_r
+      var rojo = [192, 57, 43], azul = [46, 111, 224], gris = [138, 148, 171];
+      var f = Math.abs(r);
+      var base = r >= 0 ? rojo : azul;
+      var mezcla = base.map(function (c, i) { return Math.round(gris[i] + (c - gris[i]) * f); });
+      return "rgb(" + mezcla.join(",") + ")";
+    }
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var r = (sim.corr === undefined ? 0.7 : sim.corr);
+      var anchoIzq = w * 0.6;
+
+      // --- scatter ---
+      var m = Anim.mapa(anchoIzq, h, { xMin: -3, xMax: 3, yMin: -3, yMax: 3 });
+      Anim.ejes(ctx, m, anchoIzq, h);
+      ctx.fillStyle = colorVar("--acento");
+      var raiz = Math.sqrt(1 - Math.min(0.999, r * r));
+      puntosBase.forEach(function (p) {
+        var x = p[0] * 2.4;
+        var y = (r * p[0] + raiz * p[1]) * 2.4;
+        ctx.beginPath();
+        ctx.globalAlpha = 0.75;
+        ctx.arc(m.x(x), m.y(y), 4, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.globalAlpha = 1;
+      });
+      ctx.fillStyle = colorVar("--tinta-2");
+      ctx.font = "12px Consolas, monospace";
+      ctx.textAlign = "left";
+      ctx.fillText("sns.scatterplot(x, y)", 10, 16);
+
+      // --- mini matriz de correlación 2x2 ---
+      var mx = anchoIzq + 30, my = 40, tam = Math.min(w - mx - 20, h - 80);
+      var celda = tam / 2;
+      var etiquetas = ["X", "Y"];
+      var valores = [[1, r], [r, 1]];
+      for (var i = 0; i < 2; i++) {
+        for (var j = 0; j < 2; j++) {
+          var val = valores[i][j];
+          ctx.fillStyle = i === j ? colorVar("--panel-2") : colorDivergente(val);
+          ctx.fillRect(mx + j * celda, my + i * celda, celda - 3, celda - 3);
+          ctx.fillStyle = i === j ? colorVar("--tinta") : "#fff";
+          ctx.globalAlpha = 0.92;
+          ctx.font = "13px Consolas, monospace";
+          ctx.textAlign = "center";
+          ctx.fillText(val.toFixed(2), mx + j * celda + celda / 2, my + i * celda + celda / 2 + 4);
+          ctx.globalAlpha = 1;
+        }
+      }
+      ctx.fillStyle = colorVar("--tinta-2");
+      ctx.textAlign = "center";
+      ctx.font = "12px Consolas, monospace";
+      for (var k = 0; k < 2; k++) {
+        ctx.fillText(etiquetas[k], mx + k * celda + celda / 2, my - 8);
+        ctx.save();
+        ctx.translate(mx - 12, my + k * celda + celda / 2);
+        ctx.rotate(-Math.PI / 2);
+        ctx.fillText(etiquetas[k], 0, 0);
+        ctx.restore();
+      }
+      ctx.textAlign = "left";
+      ctx.fillText("df.corr()", mx, my + tam + 22);
+    });
+
+    sim.corr = 0.7;
+    var inputCorr = sim.slider("sl-corr", function (v) { sim.corr = v / 100; sim.redibujar(); }, function (v) { return (v / 100).toFixed(2); });
+    sim.botones({
+      reiniciar: function () {
+        inputCorr.value = 70;
+        inputCorr.dispatchEvent(new Event("input"));
+      }
+    });
+  });
+
+  /* ============================================================ */
+  /* 4. HISTOGRAMA CON SLIDER DE BINS                               */
+  /* ============================================================ */
+  Anim.registrar("anim-histograma-bins", function (sim) {
+    var datos = [];
+    (function () {
+      for (var i = 0; i < 20; i++) datos.push(8 + Math.random() * 6);
+      for (var i = 0; i < 20; i++) datos.push(24 + Math.random() * 6);
+    })();
+    var minV = 5, maxV = 33;
+    var info = document.getElementById("bins-info");
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var nBins = sim.bins || 8;
+      var m = Anim.mapa(w, h, { xMin: minV, xMax: maxV, yMin: 0, yMax: 14 });
+      Anim.ejes(ctx, m, w, h);
+      var ancho = (maxV - minV) / nBins;
+      var cuentas = new Array(nBins).fill(0);
+      datos.forEach(function (v) {
+        var i = Math.min(nBins - 1, Math.floor((v - minV) / ancho));
+        cuentas[i]++;
+      });
+      var maxCuenta = Math.max.apply(null, cuentas);
+      ctx.fillStyle = colorVar("--acento");
+      cuentas.forEach(function (c, i) {
+        var x0 = m.x(minV + i * ancho), x1 = m.x(minV + (i + 1) * ancho);
+        var y0 = m.y(0), y1 = m.y(c);
+        ctx.fillRect(x0 + 1, y1, (x1 - x0) - 2, y0 - y1);
+      });
+      ctx.fillStyle = colorVar("--tinta-2");
+      ctx.font = "12px Consolas, monospace";
+      ctx.textAlign = "left";
+      ctx.fillText("sns.histplot(datos, bins=" + nBins + ")", 10, 16);
+    });
+
+    sim.bins = 8;
+    var inputBins = sim.slider("sl-bins", function (v) {
+      sim.bins = v;
+      if (info) {
+        if (v <= 5) info.textContent = "Con " + v + " bins, ambos grupos se funden en una sola \"montaña\" — se pierde la bimodalidad.";
+        else if (v <= 12) info.textContent = "Con " + v + " bins ya se distinguen las dos modas: la estructura real del dato aparece.";
+        else info.textContent = "Con " + v + " bins hay demasiado detalle: aparece ruido de muestreo, cuesta ver la forma general.";
+      }
+      sim.redibujar();
+    }, function (v) { return String(v); });
+    sim.botones({
+      reiniciar: function () {
+        inputBins.value = 8;
+        inputBins.dispatchEvent(new Event("input"));
+      }
+    });
+  });
+
+  /* ============================================================ */
+  /* 5. ATENCIÓN PREATENTIVA: ANTES/DESPUÉS                         */
+  /* ============================================================ */
+  Anim.registrar("anim-atencion-preatentiva", function (sim) {
+    var estado = { modo: "sin" };
+    var info = document.getElementById("preatencion-info");
+    var regiones = ["Norte", "Centro", "Sur", "Este", "Oeste", "Andina", "Costa"];
+    var valores = [38, 62, 45, 29, 33, 27, 41];
+    var destacada = 1; // "Centro"
+    var coloresSaturados = ["#c0392b", "#2e6fe0", "#8e44ad", "#16a085", "#d35400", "#27ae60", "#f39c12"];
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var m = Anim.mapa(w, h, { xMin: 0, xMax: regiones.length, yMin: 0, yMax: 72 });
+      Anim.ejes(ctx, m, w, h);
+      var gris = colorVar("--tinta-3");
+
+      regiones.forEach(function (r, i) {
+        var x0 = m.x(i + 0.12), x1 = m.x(i + 0.88);
+        var y0 = m.y(0), y1 = m.y(valores[i]);
+        if (estado.modo === "sin") {
+          ctx.fillStyle = coloresSaturados[i];
+        } else {
+          ctx.fillStyle = i === destacada ? colorVar("--acento") : gris;
+        }
+        ctx.fillRect(x0, y1, x1 - x0, y0 - y1);
+        ctx.fillStyle = colorVar("--tinta-2");
+        ctx.font = "11px Consolas, monospace";
+        ctx.textAlign = "center";
+        ctx.fillText(r, (x0 + x1) / 2, y0 + 16);
+        if (estado.modo === "con" && i === destacada) {
+          ctx.fillStyle = colorVar("--tinta");
+          ctx.font = "bold 13px Consolas, monospace";
+          ctx.fillText(String(valores[i]), (x0 + x1) / 2, y1 - 8);
+        }
+      });
+
+      ctx.textAlign = "left";
+      ctx.fillStyle = colorVar("--tinta-2");
+      ctx.font = "12px Consolas, monospace";
+      ctx.fillText(
+        estado.modo === "sin" ? "color_discrete_map ausente: color por defecto" : "color_discrete_map: gris salvo la región destacada",
+        10, 16
+      );
+    });
+
+    var textos = {
+      sin: "Sin atención dirigida: 7 colores saturados compitiendo — el ojo no sabe dónde mirar primero.",
+      con: "Con atención dirigida: 6 regiones en gris, 1 en color — la región Centro se identifica sin leer ninguna etiqueta."
+    };
+
+    function elegir(modo) {
+      estado.modo = modo;
+      if (info) info.textContent = textos[modo];
+      sim.redibujar();
+    }
+
+    sim.botones({
+      sin: function () { elegir("sin"); },
+      con: function () { elegir("con"); },
+      reiniciar: function () { elegir("sin"); }
+    });
+  });
+
+})();
+</script>
+
+<script>
+  // entradas escalonadas (GSAP + ScrollTrigger vía Anim.revelar) — no rompe nada si GSAP no cargó
+  Anim.revelar(".curso-hero-v3 > *", { scroll: false, stagger: .08, distancia: 14, duracion: .8 });
+  document.querySelectorAll(".unidad").forEach(function (u) {
+    Anim.revelar(u.querySelectorAll(":scope > .unidad-cabecera, :scope > .materia, :scope > .animacion, :scope > .ejemplos-unidad, :scope > .ejercicios-unidad"), { disparador: u, stagger: .08, distancia: 16 });
+  });
+</script>
+</body>
+</html>
+

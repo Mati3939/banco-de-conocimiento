@@ -1,0 +1,46 @@
+window.INDICE = window.INDICE || [];
+window.INDICE.push(
+  { t: "Geometría — Resumen del curso", c: "Geometría", u: "cursos/geometria/index.html#cheat", k: "geometria formulario resumen" },
+  { t: "Animaciones interactivas de Geometría", c: "Geometría", u: "cursos/geometria/index.html#anim-circulo-unitario", k: "geometria animaciones interactivas canvas" },
+  { t: "Ejemplos resueltos de Geometría", c: "Geometría", u: "cursos/geometria/index.html#ej-cuadrante", k: "geometria ejemplos resueltos pautas" },
+  { t: "Ejercicios propuestos de Geometría", c: "Geometría", u: "cursos/geometria/index.html#ejer-reduccion", k: "geometria ejercicios propuestos" },
+
+  { t: "Funciones trigonométricas y círculo unitario", c: "Geometría", u: "cursos/geometria/index.html#tema-funciones-trig", k: "seno coseno tangente circulo unitario cuadrante reduccion inversas arcsin arccos arctan" },
+  { t: "Identidades trigonométricas", c: "Geometría", u: "cursos/geometria/index.html#tema-identidades", k: "identidades fundamentales suma diferencia angulo doble medio producto suma pitagorica" },
+  { t: "Ecuaciones trigonométricas", c: "Geometría", u: "cursos/geometria/index.html#tema-ecuaciones-trig", k: "ecuaciones trigonometricas sustitucion periodo solucion general" },
+  { t: "Teoremas del seno y del coseno", c: "Geometría", u: "cursos/geometria/index.html#tema-teoremas-seno-coseno", k: "teorema seno coseno triangulo area caso ambiguo ssa" },
+  { t: "Vectores en el plano", c: "Geometría", u: "cursos/geometria/index.html#tema-vectores-plano", k: "vectores plano producto punto modulo unitario perpendicular" },
+  { t: "Ecuaciones de la recta", c: "Geometría", u: "cursos/geometria/index.html#tema-rectas", k: "recta vectorial parametrica simetrica general principal distancia punto recta" },
+  { t: "Relaciones entre rectas", c: "Geometría", u: "cursos/geometria/index.html#tema-relaciones-rectas", k: "rectas paralelas perpendiculares angulo entre rectas pendiente" },
+  { t: "Circunferencia y elipse", c: "Geometría", u: "cursos/geometria/index.html#tema-circunferencia-elipse", k: "circunferencia elipse conicas foco excentricidad centro radio" },
+  { t: "Parábola e hipérbola", c: "Geometría", u: "cursos/geometria/index.html#tema-parabola-hiperbola", k: "parabola hiperbola foco directriz asintotas lado recto excentricidad" },
+  { t: "Vectores en el espacio", c: "Geometría", u: "cursos/geometria/index.html#tema-vectores-espacio", k: "vectores espacio r3 producto cruz vectorial producto punto" },
+  { t: "Rectas y planos en el espacio", c: "Geometría", u: "cursos/geometria/index.html#tema-rectas-planos-espacio", k: "recta plano espacio r3 normal distancia alabeadas" },
+
+  { t: "Animación: círculo unitario y onda senoidal", c: "Geometría", u: "cursos/geometria/index.html#anim-circulo-unitario", k: "animacion circulo unitario seno coseno tangente onda senoidal interactiva" },
+  { t: "Animación: cónicas paramétricas", c: "Geometría", u: "cursos/geometria/index.html#anim-conicas", k: "animacion conicas circunferencia elipse parabola hiperbola foco directriz excentricidad interactiva" },
+  { t: "Animación: teorema del seno y del coseno", c: "Geometría", u: "cursos/geometria/index.html#anim-triangulo", k: "animacion triangulo teorema seno coseno circunferencia circunscrita interactiva" },
+  { t: "Animación: suma de vectores (paralelogramo)", c: "Geometría", u: "cursos/geometria/index.html#anim-vectores", k: "animacion vectores suma paralelogramo producto punto angulo interactiva" },
+
+  { t: "Ejemplo: razones trigonométricas por cuadrante", c: "Geometría", u: "cursos/geometria/index.html#ej-cuadrante", k: "ejemplo tangente secante cosecante cuadrante" },
+  { t: "Ejemplo: ecuación trigonométrica con sustitución", c: "Geometría", u: "cursos/geometria/index.html#ej-ecuacion-trig", k: "ejemplo ecuacion trigonometrica sustitucion coseno" },
+  { t: "Ejemplo: teorema del seno — el globo", c: "Geometría", u: "cursos/geometria/index.html#ej-globo", k: "ejemplo teorema seno aplicacion contextualizada globo elevacion" },
+  { t: "Ejemplo: vector unitario a 60°", c: "Geometría", u: "cursos/geometria/index.html#ej-vector-unitario", k: "ejemplo vector unitario angulo producto punto" },
+  { t: "Ejemplo: distancia de un punto a una recta", c: "Geometría", u: "cursos/geometria/index.html#ej-distancia-recta", k: "ejemplo distancia punto recta dos soluciones" },
+  { t: "Ejemplo: circunferencia concéntrica tangente", c: "Geometría", u: "cursos/geometria/index.html#ej-circunferencia", k: "ejemplo circunferencia concentrica tangente radio" },
+  { t: "Ejemplo: clasificar una elipse (jardinera)", c: "Geometría", u: "cursos/geometria/index.html#ej-elipse", k: "ejemplo elipse jardinera completar cuadrados excentricidad" },
+  { t: "Ejemplo: plano por tres puntos (producto cruz)", c: "Geometría", u: "cursos/geometria/index.html#ej-plano-espacio", k: "ejemplo plano espacio producto cruz normal pertenece" },
+  { t: "Ejemplo: relación entre una recta y un plano", c: "Geometría", u: "cursos/geometria/index.html#ej-relacion-recta-plano", k: "ejemplo recta plano paralela secante contenida producto punto normal director" },
+
+  { t: "Ejercicio: reducción al primer cuadrante", c: "Geometría", u: "cursos/geometria/index.html#ejer-reduccion", k: "ejercicio reduccion cuadrante seno coseno" },
+  { t: "Ejercicio: simplificar identidad trigonométrica", c: "Geometría", u: "cursos/geometria/index.html#ejer-identidad", k: "ejercicio identidad trigonometrica simplificar" },
+  { t: "Ejercicio: ecuación trigonométrica", c: "Geometría", u: "cursos/geometria/index.html#ejer-ecuacion-trig", k: "ejercicio ecuacion trigonometrica seno" },
+  { t: "Ejercicio: triángulo lado-ángulo-lado (SAS)", c: "Geometría", u: "cursos/geometria/index.html#ejer-triangulo-sas", k: "ejercicio triangulo teorema coseno area sas" },
+  { t: "Ejercicio: ángulo entre vectores", c: "Geometría", u: "cursos/geometria/index.html#ejer-angulo-vectores", k: "ejercicio angulo vectores producto punto" },
+  { t: "Ejercicio: intersección y perpendicularidad de rectas", c: "Geometría", u: "cursos/geometria/index.html#ejer-interseccion-rectas", k: "ejercicio interseccion rectas perpendicular pendiente" },
+  { t: "Ejercicio: tangencia recta-circunferencia", c: "Geometría", u: "cursos/geometria/index.html#ejer-circunferencia-tangente", k: "ejercicio circunferencia tangente secante exterior distancia" },
+  { t: "Ejercicio: túnel parabólico", c: "Geometría", u: "cursos/geometria/index.html#ejer-tunel-parabolico", k: "ejercicio parabola tunel altura vehiculo" },
+  { t: "Ejercicio: elementos de una hipérbola", c: "Geometría", u: "cursos/geometria/index.html#ejer-hiperbola-elementos", k: "ejercicio hiperbola focos asintotas excentricidad lado recto" },
+  { t: "Ejercicio: distancia de un punto a una recta en el espacio", c: "Geometría", u: "cursos/geometria/index.html#ejer-distancia-recta-espacio", k: "ejercicio distancia punto recta espacio r3 producto cruz" },
+  { t: "Ejercicio: posición relativa de dos rectas (producto mixto)", c: "Geometría", u: "cursos/geometria/index.html#ejer-posicion-relativa-rectas", k: "ejercicio rectas alabeadas coplanares producto mixto triple espacio" }
+);

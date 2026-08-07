@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="es" data-tema="oscuro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔢 Álgebra Lineal — Biblioteca</title>
+<link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../../assets/vendor/fuentes/fuentes.css">
+<link rel="stylesheet" href="../../assets/css/observatorio.css">
+<script>window.RUTA_BASE = "../../";</script>
+<script src="../../assets/vendor/katex/katex.min.js"></script>
+<script src="../../assets/vendor/katex/auto-render.min.js"></script>
+<script src="../../assets/vendor/gsap/gsap.min.js"></script>
+<script src="../../assets/vendor/gsap/ScrollTrigger.min.js"></script>
+<script src="../../assets/js/observatorio.js"></script>
+<script src="indice-curso.js"></script>
+</head>
+<body>
+<div class="progreso-lectura"></div>
+<div class="pagina-curso">
+
+  <aside class="lateral">
+    <a class="volver" href="../../index.html">← Constelación</a>
+    <div class="curso-cabecera"><span class="emoji">🔢</span><h1>Álgebra Lineal</h1></div>
+    <span class="semestre-tag" style="color:var(--s3)">Semestre 3</span>
+    <nav>
+      <div class="grupo">Unidades</div>
+      <a href="#u1">01 · Matrices y determinantes</a>
+      <a class="sub" href="#anim-transformacion">🧭 Transformación lineal</a>
+      <a href="#u2">02 · Sistemas de ecuaciones</a>
+      <a href="#u3">03 · Espacios vectoriales</a>
+      <a class="sub" href="#anim-combinacion">➕ Combinación lineal</a>
+      <a href="#u4">04 · Producto interior</a>
+      <a class="sub" href="#anim-proyeccion">📐 Proyección ortogonal</a>
+      <a href="#u5">05 · Transformaciones lineales</a>
+      <a href="#u6">06 · Autovalores y diagonalización</a>
+      <a class="sub" href="#anim-autovectores">🔁 Autovalores y autovectores</a>
+    </nav>
+    <div class="atajos"><kbd>Ctrl K</kbd> buscar en toda la biblioteca</div>
+  </aside>
+
+  <main class="principal">
+    <div class="principal-cabecera">
+      <span class="relleno"></span>
+      <button class="btn-buscar" type="button">🔍 Buscar <kbd>Ctrl K</kbd></button>
+      <button class="btn-tema" type="button">☀️</button>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CABECERA DEL CURSO -->
+    <!-- ============================================================ -->
+    <header class="curso-hero-v3" id="cheat" style="--ac: var(--s3)">
+      <span class="emoji-grande">🔢</span>
+      <h1>Álgebra Lineal — Resumen del curso</h1>
+      <span class="semestre-tag" style="color:var(--s3)">Semestre 3</span>
+      <p class="curso-intro">
+        Curso de <strong>álgebra lineal</strong> (apuntes Riquelme &amp; Salgado, UDD, sección CCP
+        1-2026). Cinco unidades oficiales: matrices y sistemas → espacios vectoriales → producto
+        interior → transformaciones lineales → valores y vectores propios. Certámenes citados:
+        Certamen 1 (sistemas con parámetro), Certamen 2 (subespacios de $M_2(\mathbb{R})$,
+        dependencia lineal), Certamen 3 (transformaciones lineales, matriz asociada, autovalores).
+      </p>
+      <ul class="mini-indice">
+        <li><a href="#u1">01 · Matrices y determinantes</a></li>
+        <li><a href="#u2">02 · Sistemas de ecuaciones</a></li>
+        <li><a href="#u3">03 · Espacios vectoriales</a></li>
+        <li><a href="#u4">04 · Producto interior</a></li>
+        <li><a href="#u5">05 · Transformaciones lineales</a></li>
+        <li><a href="#u6">06 · Autovalores y diagonalización</a></li>
+      </ul>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 1 · MATRICES Y DETERMINANTES -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u1">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">01</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Matrices y determinantes</h2>
+          <p class="unidad-sub">Operaciones, tipos especiales, determinante, inversa y rango: las herramientas básicas de todo el curso.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-matrices">
+        <h3>Unidad I — Matrices y determinantes</h3>
+        <ul>
+          <li>Matriz $A=[a_{ij}]_{m\times n}$, orden = filas × columnas.</li>
+          <li><strong>Suma</strong> (mismo orden): $(A+B)_{ij}=a_{ij}+b_{ij}$.</li>
+          <li><strong>Producto</strong> $A_{m\times n}B_{n\times p}=C_{m\times p}$, $c_{ij}=\sum_k a_{ik}b_{kj}$. <strong>No conmutativo.</strong></li>
+          <li><strong>Transpuesta:</strong> $(AB)^T=B^TA^T$, $(A^T)^T=A$. Simétrica $A=A^T$; antisimétrica $A=-A^T$ (diagonal nula).</li>
+          <li><strong>Traza:</strong> $\mathrm{Tr}(A)=\sum a_{ii}$, $\mathrm{Tr}(AB)=\mathrm{Tr}(BA)$.</li>
+          <li><strong>Tipos clave:</strong> identidad $I$, diagonal, triangular, ortogonal ($A^{-1}=A^T$), nilpotente ($A^n=\theta$), idempotente ($A^2=A$).</li>
+          <li><strong>Determinante</strong> $n=2$: $|A|=a_{11}a_{22}-a_{12}a_{21}$; $n=3$ por la regla de Sarrus (fórmula completa abajo).</li>
+          <li>Propiedades: intercambiar filas cambia el signo; fila/columna proporcional a otra $\Rightarrow|A|=0$; triangular $\Rightarrow|A|=\prod a_{ii}$; $|AB|=|A||B|$; $|kA|=k^n|A|$; $|A^{-1}|=1/|A|$.</li>
+          <li><strong>Inversa</strong> ($n=2$): $A^{-1}=\dfrac{1}{ad-bc}\begin{bmatrix}d&-b\\-c&a\end{bmatrix}$. General: $[A\mid I]\xrightarrow{\text{op. elem.}}[I\mid A^{-1}]$. $A$ invertible $\iff|A|\neq0$.</li>
+          <li><strong>Rango</strong> $R(A)$ = nº de filas no nulas tras escalonar (F.E.R.F.).</li>
+          <li><strong>Potencia:</strong> $A^0=I$, $A^mA^n=A^{m+n}$. Si $A$ es diagonalizable: $A^n=PD^nP^{-1}$.</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Determinante 3×3 (Sarrus)</span>$$\begin{aligned}|A|=\ &a_{11}a_{22}a_{33}+a_{12}a_{23}a_{31}+a_{13}a_{21}a_{32}\\&-a_{13}a_{22}a_{31}-a_{11}a_{23}a_{32}-a_{12}a_{21}a_{33}\end{aligned}$$</div>
+      </div>
+
+      <div class="materia" id="tema-elementales">
+        <h3>Unidad I — Operaciones elementales y F.E.R.F.</h3>
+        <ul>
+          <li><strong>Operaciones elementales</strong> (por fila): (1) intercambiar dos filas; (2) multiplicar una fila por un escalar no nulo; (3) reemplazar una fila por ella misma más otra fila multiplicada por un escalar.</li>
+          <li><strong>Equivalencia por filas:</strong> $A$ es equivalente por filas a $B$ (notación $A\sim B$) si $B$ se obtiene de $A$ con un número finito de operaciones elementales.</li>
+          <li><strong>Teorema:</strong> $A$ es equivalente por filas a $I$ $\iff$ $A$ es invertible.</li>
+          <li><strong>Corolario (cálculo de la inversa):</strong> aplicando a $I$ la misma sucesión de operaciones que lleva $A\to I$, se obtiene $A^{-1}$ — exactamente el método de Gauss-Jordan de la sección anterior.</li>
+          <li><strong>F.E.R.F.</strong> (Forma Escalonada Reducida por Filas): cada pivote vale $1$, es el único elemento no nulo de su columna, y los pivotes avanzan estrictamente hacia la derecha fila a fila. Es la forma a la que se escalona una matriz (cuadrada o no) para hallar su rango, resolver sistemas por Gauss-Jordan o invertirla.</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Equivalencia e invertibilidad</span>$$A\sim I \iff A\text{ es invertible} \iff \det(A)\neq 0$$</div>
+      </div>
+
+      <div class="materia" id="tema-cofactores">
+        <h3>Unidad I — Menor, cofactor y desarrollo por cofactores</h3>
+        <ul>
+          <li><strong>Menor</strong> $M_{ij}$ de $a_{ij}$: determinante de orden $n-1$ que queda al suprimir la fila $i$ y la columna $j$ de $A$.</li>
+          <li><strong>Cofactor</strong> de $a_{ij}$: $C_{ij}=(-1)^{i+j}M_{ij}$ (el signo alterna en tablero de ajedrez: $+,-,+,-,\dots$).</li>
+          <li><strong>Desarrollo por cofactores</strong> (cualquier fila $i$ o columna $j$: todas dan el mismo valor): $$|A|=\sum_{k=1}^n a_{ik}C_{ik}=\sum_{k=1}^n a_{kj}C_{kj}$$</li>
+          <li>Conviene desarrollar por la fila o columna con <strong>más ceros</strong>: cada $a_{ik}=0$ ahorra calcular ese cofactor entero.</li>
+          <li>Para $n=2,3$ el desarrollo por cofactores se reduce a las fórmulas directas y a Sarrus ya vistas; para $n\ge4$ es el método general (no hay atajo tipo Sarrus).</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Cofactor</span>$$C_{ij}=(-1)^{i+j}M_{ij}$$</div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-producto">
+          <h3>1. Producto de matrices</h3>
+          <p>Calcular $C\cdot A$ con $C=\begin{bmatrix}1&4\\2&3\end{bmatrix}$, $A=\begin{bmatrix}1&2&3\\-1&0&2\end{bmatrix}$.</p>
+          <p><strong>Solución:</strong> $C$ es $2\times2$ y $A$ es $2\times3$, columnas de $C$ = filas de $A$ ⇒ el producto está definido y da $2\times3$. Cada entrada $c_{ij}=\sum_k C_{ik}A_{kj}$:</p>
+          <p>$$C\cdot A=\begin{bmatrix}1(1)+4(-1)&1(2)+4(0)&1(3)+4(2)\\2(1)+3(-1)&2(2)+3(0)&2(3)+3(2)\end{bmatrix}=\begin{bmatrix}-3&2&11\\-1&4&12\end{bmatrix}$$</p>
+          <p class="fuente">Fuente: nota "Operaciones con matrices".</p>
+        </div>
+
+        <div class="ejemplo" id="ej-inversa">
+          <h3>2. Matriz inversa por Gauss</h3>
+          <p>Hallar $A^{-1}$ de $A=\begin{bmatrix}2&1\\4&3\end{bmatrix}$.</p>
+          <p><strong>Solución:</strong> primero $|A|=2(3)-1(4)=2\neq0$, así que es invertible. Con la fórmula de orden 2:
+          $$A^{-1}=\frac{1}{2}\begin{bmatrix}3&-1\\-4&2\end{bmatrix}=\begin{bmatrix}3/2&-1/2\\-2&1\end{bmatrix}$$
+          Equivalente a escalonar $[A\mid I]$ con operaciones elementales hasta obtener $[I\mid A^{-1}]$ (método usado en clase).</p>
+          <p class="fuente">Fuente: nota "Matriz inversa".</p>
+        </div>
+
+        <div class="ejemplo" id="ej-elementales-inversa">
+          <h3>3. Inversa de una matriz 3×3 por Gauss-Jordan</h3>
+          <p>Hallar $A^{-1}$ de $A=\begin{bmatrix}1&2&3\\0&1&4\\5&6&0\end{bmatrix}$ escalonando $[A\mid I]$ hasta $[I\mid A^{-1}]$ con operaciones elementales (sin fórmula de cofactores).</p>
+          <p><strong>Solución:</strong> partiendo de $[A\mid I]$ y aplicando operaciones tipo (3) (sumar a una fila un múltiplo de otra) hasta anular bajo y sobre la diagonal:</p>
+          <p>$$[A\mid I]=\left[\begin{array}{ccc|ccc}1&2&3&1&0&0\\0&1&4&0&1&0\\5&6&0&0&0&1\end{array}\right]$$</p>
+          <p><strong>$f_3\to f_3-5f_1$:</strong></p>
+          <p>$$\left[\begin{array}{ccc|ccc}1&2&3&1&0&0\\0&1&4&0&1&0\\0&-4&-15&-5&0&1\end{array}\right]$$</p>
+          <p><strong>$f_3\to f_3+4f_2$:</strong></p>
+          <p>$$\left[\begin{array}{ccc|ccc}1&2&3&1&0&0\\0&1&4&0&1&0\\0&0&1&-5&4&1\end{array}\right]$$</p>
+          <p><strong>$f_2\to f_2-4f_3$ y $f_1\to f_1-3f_3$:</strong></p>
+          <p>$$\left[\begin{array}{ccc|ccc}1&2&0&16&-12&-3\\0&1&0&20&-15&-4\\0&0&1&-5&4&1\end{array}\right]$$</p>
+          <p><strong>$f_1\to f_1-2f_2$:</strong></p>
+          <p>$$[I\mid A^{-1}]=\left[\begin{array}{ccc|ccc}1&0&0&-24&18&5\\0&1&0&20&-15&-4\\0&0&1&-5&4&1\end{array}\right]\ \Rightarrow\ A^{-1}=\begin{bmatrix}-24&18&5\\20&-15&-4\\-5&4&1\end{bmatrix}$$</p>
+          <p>Se verifica multiplicando $A\cdot A^{-1}$: da $I$ (chequeo directo por filas).</p>
+          <p class="fuente">Fuente: nota "Operaciones elementales y FERF" + "Matriz inversa".</p>
+        </div>
+
+        <div class="ejemplo" id="ej-cofactores">
+          <h3>4. Determinante 4×4 por cofactores</h3>
+          <p>Calcular $|B|$ con $B=\begin{bmatrix}1&0&2&-1\\3&0&0&5\\2&1&4&-3\\1&0&5&0\end{bmatrix}$ usando desarrollo por cofactores.</p>
+          <p><strong>Solución:</strong> la columna 2 tiene tres ceros ($b_{12}=b_{22}=b_{42}=0$), así que conviene desarrollar por ahí: solo sobrevive el término con $b_{32}=1$.
+          $$|B|=b_{32}\cdot C_{32}=1\cdot(-1)^{3+2}M_{32}$$
+          $M_{32}$ es el determinante $3\times3$ que queda al suprimir fila 3 y columna 2:
+          $$M_{32}=\begin{vmatrix}1&2&-1\\3&0&5\\1&5&0\end{vmatrix}=1(0-25)-2(0-5)+(-1)(15-0)=-25+10-15=-30$$
+          $$|B|=1\cdot(-1)^{5}\cdot(-30)=1\cdot(-1)\cdot(-30)=30$$</p>
+          <p>Verificación por otra fila (desarrollo por la fila 1, con $b_{12}=0$ que se anula): $|B|=1\cdot C_{11}+2\cdot C_{13}+(-1)\cdot C_{14}=1(25)+2(-5)+(-1)(-15)=25-10+15=30$ ✓, coincide.</p>
+          <p class="fuente">Fuente: nota "Determinante" (menor, cofactor, desarrollo por cofactores).</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-determinante">
+          <summary><span class="resumen-ejercicio">1. Calcular $\begin{vmatrix}3&5&1\\15&25&5\\1&0&7\end{vmatrix}$ sin desarrollar por Sarrus.</span> <span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <p>La fila 2 es exactamente $5\times$ la fila 1: $(15,25,5)=5\cdot(3,5,1)$. Por la propiedad "si dos filas son proporcionales, el determinante es 0":
+            $$\begin{vmatrix}3&5&1\\15&25&5\\1&0&7\end{vmatrix}=0$$</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-traza">
+          <summary><span class="resumen-ejercicio">2. Sea $A=\begin{bmatrix}0&2&-1\\-2&0&3\\1&-3&0\end{bmatrix}$. Clasificarla (simétrica/antisimétrica) y calcular $\mathrm{Tr}(A)$ y $\mathrm{Tr}(A^T)$.</span> <span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <p>$A^T=\begin{bmatrix}0&-2&1\\2&0&-3\\-1&3&0\end{bmatrix}=-A$, así que $A$ es <strong>antisimétrica</strong> (su diagonal principal es toda cero, como debe ser). $\mathrm{Tr}(A)=0+0+0=0$. Como $\mathrm{Tr}(A)=\mathrm{Tr}(A^T)$ siempre, $\mathrm{Tr}(A^T)=0$ también.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-rango">
+          <summary><span class="resumen-ejercicio">3. Calcular el rango de $A=\begin{bmatrix}2&-1&0&1&3\\1&0&-1&2&3\\3&-1&-1&3&6\\5&-2&-1&4&9\end{bmatrix}$.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>Intercambiando $f_1\leftrightarrow f_2$ y luego $f_2-2f_1$, $f_3-3f_1$, $f_4-5f_1$ (y las reducciones que siguen), se llega a:
+            $$\sim\begin{bmatrix}1&0&-1&2&3\\0&-1&2&-3&-3\\0&0&0&0&0\\0&0&0&0&0\end{bmatrix}$$
+            Quedan 2 filas no nulas ⇒ $R(A)=2$.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-polinomio-matriz">
+          <summary><span class="resumen-ejercicio">4. Sea $A=\begin{bmatrix}1&0\\3&-2\end{bmatrix}$ y $f(x)=2x^3-x^2+2x+5$. Calcular $f(A)$.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>Primero las potencias: $A^2=\begin{bmatrix}1&0\\-3&4\end{bmatrix}$, $A^3=\begin{bmatrix}1&0\\9&-8\end{bmatrix}$.</p>
+            <p>El término independiente se multiplica por $I$ (no por el número suelto):</p>
+            <p>$$f(A)=2A^3-A^2+2A+5I$$</p>
+            <p>$$=2\begin{bmatrix}1&0\\9&-8\end{bmatrix}-\begin{bmatrix}1&0\\-3&4\end{bmatrix}+2\begin{bmatrix}1&0\\3&-2\end{bmatrix}+5\begin{bmatrix}1&0\\0&1\end{bmatrix}$$</p>
+            <p>$$=\begin{bmatrix}8&0\\27&-19\end{bmatrix}$$</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-ferf">
+          <summary><span class="resumen-ejercicio">5. Usando operaciones elementales, determinar para qué valores de $k\in\mathbb{R}$ la matriz $A(k)=\begin{bmatrix}1&0&k\\0&1&2\\k&0&1\end{bmatrix}$ es equivalente por filas a la identidad (es decir, invertible).</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>Aplicando $f_3\to f_3-kf_1$:
+            $$\begin{bmatrix}1&0&k\\0&1&2\\k&0&1\end{bmatrix}\ \xrightarrow{f_3-kf_1}\ \begin{bmatrix}1&0&k\\0&1&2\\0&0&1-k^2\end{bmatrix}$$
+            Ya queda escalonada (triangular superior). Para que sea equivalente por filas a $I$ los 3 pivotes deben ser no nulos; los dos primeros ya lo son, así que la condición recae en el tercero:
+            $$1-k^2\neq0 \iff k\neq\pm1$$
+            Si $k=\pm1$ la tercera fila se anula y el rango baja a 2 (no hay equivalencia con $I$). Coincide con exigir $\det(A(k))=1-k^2\neq0$.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 2 · SISTEMAS DE ECUACIONES -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u2">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">02</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Sistemas de ecuaciones</h2>
+          <p class="unidad-sub">Compatibilidad vía Rouché, métodos de resolución (Gauss, Gauss-Jordan, inversa, Cramer) y discusión de sistemas con parámetro.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-sistemas">
+        <h3>Unidad I — Sistemas de ecuaciones</h3>
+        <p>$AX=B$, matriz ampliada $[A\mid B]$.</p>
+        <ul>
+          <li><strong>Teorema de Rouché:</strong> compatible $\iff R(A)=R(A\mid B)$.</li>
+          <li>Si $R(A)=R(A\mid B)=k$: $k=n\Rightarrow$ solución única; $k\lt n\Rightarrow$ infinitas soluciones.</li>
+          <li>$R(A)\neq R(A\mid B)\Rightarrow$ incompatible (sin solución).</li>
+          <li><strong>Homogéneo</strong> $AX=\theta$: siempre compatible ($X=\theta$ trivial); hay no triviales $\iff R(A)\lt n$.</li>
+          <li><strong>Gauss:</strong> escalonar $[A\mid B]$ + sustitución hacia atrás.</li>
+          <li><strong>Gauss-Jordan:</strong> escalonar hasta F.E.R.F., solución directa.</li>
+          <li><strong>Por inversa:</strong> si $A$ invertible, $X=A^{-1}B$.</li>
+          <li><strong>Regla de Cramer</strong> (si $|A|\neq0$): $x_i=\det(A_i)/\det(A)$, con $A_i=A$ pero con la columna $i$ reemplazada por $B$.</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Regla de Cramer</span>$$x_i=\dfrac{\det(A_i)}{\det(A)}$$</div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-sistema-parametro">
+          <h3>5. Discusión de un sistema con parámetro</h3>
+          <p>Discutir según $a\in\mathbb{R}$: $\begin{cases}x_1+x_2-x_3=3\\x_1-x_2+3x_3=4\\x_1+x_2+(a^2-10)x_3=a\end{cases}$</p>
+          <p><strong>Solución:</strong> al escalonar, el pivote de la tercera fila resulta $(a+3)(a-3)$. Analizando $R(A)$ vs. $R(A\mid B)$:</p>
+          <ul>
+            <li>$a=-3$: $R(A)\neq R(A\mid B)$ ⇒ <strong>sin solución</strong>.</li>
+            <li>$a\neq\pm3$: $R(A)=R(A\mid B)=3=n$ ⇒ <strong>solución única</strong>.</li>
+            <li>$a=3$: $R(A)=R(A\mid B)\lt n$ ⇒ <strong>infinitas soluciones</strong>.</li>
+          </ul>
+          <p class="fuente">Fuente: Pauta Certamen 1, 2026-1.</p>
+        </div>
+
+        <div class="ejemplo" id="ej-cramer">
+          <h3>6. Regla de Cramer</h3>
+          <p>Resolver $\begin{cases}3x_1+2x_2-x_3=-1\\x_1-x_2-x_3=0\\3x_1-2x_2-x_3=3\end{cases}$</p>
+          <p><strong>Solución:</strong> $\det(A)=-8\neq0$, se puede aplicar Cramer. Reemplazando la columna $i$ por $B=(-1,0,3)^T$ y dividiendo por $\det(A)$:
+          $$x_1=\frac{1}{-8}\det\!\begin{bmatrix}-1&2&-1\\0&-1&-1\\3&-2&-1\end{bmatrix}=-1,\quad x_2=1,\quad x_3=2$$
+          $S=\{(-1,\,1,\,2)\}$.</p>
+          <p class="fuente">Fuente: nota "Métodos de resolución de sistemas".</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 3 · ESPACIOS VECTORIALES -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u3">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">03</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Espacios vectoriales</h2>
+          <p class="unidad-sub">Subespacios, combinación lineal, independencia lineal, base y dimensión.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-espacios">
+        <h3>Unidad II — Espacios vectoriales</h3>
+        <ul>
+          <li><strong>Espacio vectorial:</strong> $V$ con suma y producto por escalar cumpliendo 8 axiomas (asociativa, conmutativa, neutro $\theta_V$, inverso $-v$, distributivas, $(\alpha\beta)v=\alpha(\beta v)$, $1v=v$).</li>
+          <li><strong>Subespacio</strong> $S\subseteq V$ $\iff$ (1) $S\neq\varnothing$ (basta $\theta_V\in S$), (2) cerrado bajo suma, (3) cerrado bajo escalar.</li>
+          <li>$S\cap T$ y $S+T=\{s+t\}$ siempre son subespacio; $S\cup T$ solo si uno contiene al otro. <strong>Suma directa</strong> $S\oplus T$ cuando además $S\cap T=\{\theta_V\}$: entonces $\dim(S\oplus T)=\dim S+\dim T$ y cada vector de $S+T$ se escribe de forma <strong>única</strong> como $s+t$.</li>
+          <li><strong>Espacio generado</strong> $\langle\{v_1,\dots,v_k\}\rangle$ = todas las combinaciones lineales de esos vectores (siempre subespacio).</li>
+          <li><strong>L.i. / l.d.:</strong> $\sum\alpha_i v_i=\theta_V$ solo con $\alpha_i=0\Rightarrow$ l.i.; si hay $\alpha_i\neq0\Rightarrow$ l.d. En $\mathbb{R}^n$: $n>m$ vectores $\Rightarrow$ siempre l.d.; columnas de $A_{n\times n}$ l.i. $\iff\det(A)\neq0$.</li>
+          <li><strong>Base:</strong> l.i. + genera $V$. <strong>Dimensión</strong> = nº de vectores de cualquier base (es invariante).</li>
+          <li><strong>Vector de coordenadas</strong> $[v]_B=(\alpha_1,\dots,\alpha_n)^T$ tal que $v=\sum\alpha_iv_i$: depende del orden de $B$.</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Combinación lineal</span>$$v=\sum_{i=1}^{k}\alpha_i v_i\ \in\ \langle\{v_1,\dots,v_k\}\rangle$$</div>
+      </div>
+
+      <div class="animacion" id="anim-combinacion">
+        <div class="anim-cabecera">
+          <h3>➕ Combinación lineal $a\cdot u+b\cdot v$</h3>
+          <p class="anim-desc">$u=(2,1)$ (verde) y $v=(-1,1)$ (violeta) son l.i. (no son paralelos). El paralelogramo punteado muestra $a\cdot u$ y $b\cdot v$; la flecha de acento es la suma.</p>
+        </div>
+        <canvas data-alto="340"></canvas>
+        <div class="controles">
+          <div class="control"><label for="cl-a">a</label><input type="range" id="cl-a" min="-2" max="2" step="0.1" value="1"><span class="valor"></span></div>
+          <div class="control"><label for="cl-b">b</label><input type="range" id="cl-b" min="-2" max="2" step="0.1" value="1"><span class="valor"></span></div>
+        </div>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> como $\{u,v\}$ es l.i. en $\mathbb{R}^2$, moviendo $a,b$ libremente la flecha de acento alcanza <strong>cualquier</strong> punto del plano: $\langle\{u,v\}\rangle=\mathbb{R}^2$. <span id="cl-info"></span></p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-subespacio">
+          <h3>7. Demostración de subespacio vectorial</h3>
+          <p>Probar que $U=\left\{\begin{bmatrix}a&b\\c&d\end{bmatrix}\in M_2(\mathbb{R}): a+2b-c=0\right\}$ es subespacio de $M_2(\mathbb{R})$.</p>
+          <p><strong>Solución</strong> (las 3 condiciones del criterio, con elementos genéricos):</p>
+          <ol>
+            <li><strong>$U\neq\varnothing$:</strong> $\theta_{M_2}=\begin{bmatrix}0&0\\0&0\end{bmatrix}$ cumple $0+2(0)-0=0$, luego $\theta\in U$.</li>
+            <li><strong>Cerrado bajo suma:</strong> si $A_1,A_2\in U$ entonces $(a_1{+}a_2)+2(b_1{+}b_2)-(c_1{+}c_2)=(a_1{+}2b_1{-}c_1)+(a_2{+}2b_2{-}c_2)=0+0=0$, luego $A_1+A_2\in U$.</li>
+            <li><strong>Cerrado bajo escalar:</strong> $\lambda A$ cumple $(\lambda a)+2(\lambda b)-(\lambda c)=\lambda(a+2b-c)=\lambda\cdot0=0$, luego $\lambda A\in U$.</li>
+          </ol>
+          <p>$\therefore\ U$ es subespacio de $M_2(\mathbb{R})$.</p>
+          <p class="fuente">Fuente: Pauta Certamen 2 / Control 3, 2026-1.</p>
+        </div>
+
+        <div class="ejemplo" id="ej-suma-directa">
+          <h3>8. Suma directa: $M_2(\mathbb{R})=$ simétricas $\oplus$ antisimétricas</h3>
+          <p>Sean $S=\{A\in M_2(\mathbb{R}):A=A^T\}$ (simétricas) y $T=\{A\in M_2(\mathbb{R}):A=-A^T\}$ (antisimétricas). Probar que $M_2(\mathbb{R})=S\oplus T$.</p>
+          <p><strong>Solución</strong> — <strong>descomposición:</strong> toda $A=\begin{bmatrix}a&b\\c&d\end{bmatrix}$ se escribe como
+          $$A=\underbrace{\frac{A+A^T}{2}}_{\in S}+\underbrace{\frac{A-A^T}{2}}_{\in T}$$
+          ya que $\left(\frac{A+A^T}{2}\right)^T=\frac{A^T+A}{2}$ (simétrica) y $\left(\frac{A-A^T}{2}\right)^T=\frac{A^T-A}{2}=-\frac{A-A^T}{2}$ (antisimétrica). Esto prueba $S+T=M_2(\mathbb{R})$.</p>
+          <p><strong>$S\cap T=\{\theta\}$:</strong> si $M\in S\cap T$ entonces $M=M^T$ y $M=-M^T$, luego $M^T=-M^T\Rightarrow M=-M\Rightarrow 2M=\theta\Rightarrow M=\theta$.</p>
+          <p>Como $S+T=M_2(\mathbb{R})$ y $S\cap T=\{\theta\}$: $\therefore\ M_2(\mathbb{R})=S\oplus T$. (Consistente con dimensiones: $\dim S=3$, $\dim T=1$, $3+1=4=\dim M_2(\mathbb{R})$.)</p>
+          <p class="fuente">Fuente: nota "Subespacio vectorial" (suma directa) + "Transpuesta y traza" (simétrica/antisimétrica).</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-base-dimension">
+          <summary><span class="resumen-ejercicio">6. Hallar una base y la dimensión de $U=\left\{\begin{bmatrix}a&b\\c&d\end{bmatrix}\in M_2(\mathbb{R}): a+2b-c=0\right\}$.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>De la condición, $c=a+2b$, así que cualquier elemento de $U$ se escribe con $a,b,d$ libres:
+            $$\begin{bmatrix}a&b\\a+2b&d\end{bmatrix}=a\begin{bmatrix}1&0\\1&0\end{bmatrix}+b\begin{bmatrix}0&1\\2&0\end{bmatrix}+d\begin{bmatrix}0&0\\0&1\end{bmatrix}$$
+            Ese conjunto de 3 matrices genera $U$; planteando la combinación lineal igualada a $\theta$ se obtiene $a=b=d=0$ como única solución (l.i.). Por lo tanto es <strong>base</strong> de $U$ y $\dim(U)=3$.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-dependencia-parametro">
+          <summary><span class="resumen-ejercicio">7. Sea $\mathcal{A}=\{v_1,v_2,v_3\}$ base de $V$ y $W=\{v_1-kv_2,\ v_2+v_3,\ v_1+kv_3\}$. ¿Para qué valores de $k$ es $W$ linealmente dependiente?</span> <span class="dificultad dificil">difícil</span></summary>
+          <div class="solucion">
+            <p>Planteando $\alpha_1(v_1-kv_2)+\alpha_2(v_2+v_3)+\alpha_3(v_1+kv_3)=\theta_V$ y agrupando por $v_1,v_2,v_3$ (que son l.i., así que cada coeficiente debe anularse), se obtiene el sistema homogéneo con matriz:
+            $$M=\begin{bmatrix}1&0&1\\-k&1&0\\0&1&k\end{bmatrix}$$
+            $$\det(M)=1(k-0)-0+1(-k-0)=k-k=0\quad\forall k\in\mathbb{R}$$
+            Como el determinante es siempre 0, el sistema homogéneo tiene soluciones no triviales para <strong>todo</strong> $k$. Por lo tanto $W$ es linealmente dependiente para <strong>todo</strong> $k\in\mathbb{R}$.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-subespacio-union">
+          <summary><span class="resumen-ejercicio">8. ¿Es cierto que la unión de dos subespacios siempre es subespacio? Justificar con un contraejemplo en $\mathbb{R}^2$.</span> <span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <p><strong>Falso.</strong> Sean $S=\langle\{(1,0)\}\rangle$ (eje $x$) y $T=\langle\{(0,1)\}\rangle$ (eje $y$), ambos subespacios de $\mathbb{R}^2$. Tomando $u=(1,0)\in S\subseteq S\cup T$ y $w=(0,1)\in T\subseteq S\cup T$, su suma $u+w=(1,1)\notin S\cup T$ (no está en ninguno de los dos ejes). Por lo tanto $S\cup T$ no es cerrado bajo suma ⇒ <strong>no</strong> es subespacio.</p>
+            <p>La unión es subespacio solo en el caso especial en que $S\subseteq T$ o $T\subseteq S$; en general lo que sí siempre es subespacio es la <strong>suma</strong> $S+T$.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-suma-directa">
+          <summary><span class="resumen-ejercicio">9. Sean $S=\langle\{(1,0,0),(0,1,0)\}\rangle$ y $T=\langle\{(1,1,1)\}\rangle$ subespacios de $\mathbb{R}^3$. Demostrar que $\mathbb{R}^3=S\oplus T$.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p><strong>$S\cap T=\{\theta\}$:</strong> un elemento genérico de $T$ es $t(1,1,1)=(t,t,t)$. Para que esté en $S$ (el plano $z=0$) hace falta $t=0$, que da el vector nulo. Luego $S\cap T=\{\theta\}$.</p>
+            <p><strong>$S+T=\mathbb{R}^3$:</strong> $\dim S=2$, $\dim T=1$, y como $S\cap T=\{\theta\}$:
+            $$\dim(S+T)=\dim S+\dim T-\dim(S\cap T)=2+1-0=3=\dim\mathbb{R}^3$$
+            Como $S+T\subseteq\mathbb{R}^3$ y tienen la misma dimensión, $S+T=\mathbb{R}^3$.</p>
+            <p>Ambas condiciones se cumplen $\Rightarrow\ \mathbb{R}^3=S\oplus T$.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 4 · PRODUCTO INTERIOR -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u4">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">04</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Producto interior</h2>
+          <p class="unidad-sub">Norma, ángulo, ortogonalidad, complemento ortogonal, proyecciones y Gram-Schmidt.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-interior">
+        <h3>Unidad III — Producto interior</h3>
+        <ul>
+          <li>$\langle\,,\rangle$ cumple: definida positiva ($\langle v,v\rangle>0$ si $v\neq\theta$), homogénea ($\langle kv,w\rangle=k\langle v,w\rangle$), simétrica ($\langle v,w\rangle=\langle w,v\rangle$).</li>
+          <li>Ejemplos: $\mathbb{R}^n$ usual $\sum u_kv_k$; $M_n(\mathbb{R})$: $\mathrm{Tr}(B^TA)$; $P_n[x]$: evaluación en $n{+}1$ puntos.</li>
+          <li><strong>Norma:</strong> $\|v\|=\sqrt{\langle v,v\rangle}$. <strong>Ángulo:</strong> $\cos\alpha=\dfrac{\langle a,b\rangle}{\|a\|\|b\|}$. Ortogonal $\iff\langle v,w\rangle=0$.</li>
+          <li><strong>Complemento ortogonal</strong> $W^\perp=\{v:\langle v,w\rangle=0\ \forall w\in W\}$: subespacio, $W\cap W^\perp=\{\theta\}$, $\dim W^\perp=n-\dim W$.</li>
+          <li><strong>Proyección sobre $W$</strong> (base ortogonal $\{w_i\}$): $\mathrm{proy}_W(v)=\sum\dfrac{\langle v,w_i\rangle}{\langle w_i,w_i\rangle}w_i$. Distancia a $W$: $\|v-\mathrm{proy}_W(v)\|$.</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Gram-Schmidt</span>$$u_k=v_k-\sum_{i\lt k}\frac{\langle v_k,u_i\rangle}{\langle u_i,u_i\rangle}u_i$$</div>
+        <div class="formula-card"><span class="etiqueta">Normalización</span>$$e_i=u_i/\|u_i\|$$</div>
+      </div>
+
+      <div class="animacion" id="anim-proyeccion">
+        <div class="anim-cabecera">
+          <h3>📐 Proyección ortogonal de $v$ sobre $w$</h3>
+          <p class="anim-desc">$w=(3,1)$ fijo (azul); $v$ (verde, largo 2) gira con el slider. La flecha de acento es $\mathrm{proy}_w(v)$; el segmento violeta punteado es el residuo ortogonal.</p>
+        </div>
+        <canvas data-alto="340"></canvas>
+        <div class="controles">
+          <div class="control"><label for="pr-angulo">ángulo de v</label><input type="range" id="pr-angulo" min="0" max="359" step="1" value="40"><span class="valor"></span></div>
+        </div>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> $\mathrm{proy}_w(v)=\dfrac{\langle v,w\rangle}{\langle w,w\rangle}w$ (acento); el residuo $v-\mathrm{proy}_w(v)$ (violeta punteado) es siempre ortogonal a $w$. <span id="proy-info"></span></p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-gram-schmidt">
+          <h3>9. Gram-Schmidt en $\mathbb{R}^3$</h3>
+          <p>Ortonormalizar $B=\{(1,1,0),(1,0,1),(0,1,1)\}$ con el producto interior usual.</p>
+          <p><strong>Solución:</strong></p>
+          <p>$$u_1=(1,1,0)$$
+          $$u_2=(1,0,1)-\frac{1}{2}(1,1,0)=\left(\tfrac12,-\tfrac12,1\right)\parallel(1,-1,2)$$
+          $$u_3=(0,1,1)-\tfrac12(1,1,0)-\tfrac13(1,-1,2)=\left(-\tfrac23,\tfrac23,\tfrac23\right)\parallel(-1,1,1)$$</p>
+          <p>Normalizando: $e_1=\dfrac{1}{\sqrt2}(1,1,0)$, $e_2=\dfrac{1}{\sqrt6}(1,-1,2)$, $e_3=\dfrac{1}{\sqrt3}(-1,1,1)$ — base ortonormal de $\mathbb{R}^3$.</p>
+          <p class="fuente">Fuente: nota "Ortogonalidad y Gram-Schmidt".</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-proyeccion">
+          <summary><span class="resumen-ejercicio">10. Proyectar $v=(4,3)$ sobre $w=(1,0)$ con el producto interior usual, y calcular la distancia de $v$ a $W=\langle\{w\}\rangle$.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>$$\mathrm{proy}_w(v)=\frac{\langle v,w\rangle}{\langle w,w\rangle}w=\frac{4(1)+3(0)}{1^2+0^2}(1,0)=4(1,0)=(4,0)$$
+            El residuo ortogonal es $v-\mathrm{proy}_w(v)=(4,3)-(4,0)=(0,3)$, que en efecto cumple $\langle(0,3),(1,0)\rangle=0$.</p>
+            <p>La distancia de $v$ a $W$ es $\|v-\mathrm{proy}_w(v)\|=\|(0,3)\|=3$.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 5 · TRANSFORMACIONES LINEALES -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u5">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">05</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Transformaciones lineales</h2>
+          <p class="unidad-sub">Núcleo, imagen, matriz asociada, cambio de base y el teorema de la dimensión.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-transformaciones">
+        <h3>Unidad IV — Transformaciones lineales</h3>
+        <ul>
+          <li>$T:V\to W$ lineal $\iff T(v_1+v_2)=T(v_1)+T(v_2)$ y $T(kv)=kT(v)$.</li>
+          <li><strong>Núcleo</strong> $\ker(T)=\{v:T(v)=\theta_W\}$; <strong>Imagen</strong> $\mathrm{Im}(T)=\{T(v)\}$. Ambos subespacios.</li>
+          <li>$T$ inyectiva $\iff\ker(T)=\{\theta_V\}$; $T$ sobreyectiva $\iff\mathrm{Im}(T)=W$.</li>
+          <li><strong>Matriz asociada</strong> $[T]_{B_1}^{B_2}$: columnas = $[T(v_j)]_{B_2}$. Cumple $[T]_{B_1}^{B_2}[v]_{B_1}=[T(v)]_{B_2}$.</li>
+          <li><strong>Cambio de base:</strong> $P=[I_V]_{B_1}^{B_2}$ matriz de paso. $[T]_{B_1'}^{B_2'}=Q\,[T]_{B_1}^{B_2}\,P^{-1}$.</li>
+          <li><strong>Teorema de la dimensión:</strong> relaciona la dimensión del núcleo, la imagen y el dominio (fórmula abajo).</li>
+          <li><strong>Transformación no singular:</strong> $T:V\to V$ es no singular $\iff$ es invertible $\iff\ker(T)=\{\theta_V\}$ $\iff\det\!\left([T]_B^B\right)\neq0$ (matriz asociada respecto a cualquier base) — equivalente a ser biyectiva.</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Teorema de la dimensión</span>$$\dim(\ker T)+\dim(\mathrm{Im}\,T)=\dim V$$</div>
+      </div>
+
+      <div class="animacion" id="anim-transformacion">
+        <div class="anim-cabecera">
+          <h3>🧭 Transformación lineal en el plano</h3>
+          <p class="anim-desc">$A=\begin{bmatrix}a&b\\c&d\end{bmatrix}$ deforma la grilla y el cuadrado unitario. Las flechas gruesas son las imágenes de $e_1=(1,0)$ y $e_2=(0,1)$: son justo las columnas de $A$.</p>
+        </div>
+        <canvas data-alto="360"></canvas>
+        <div class="controles">
+          <div class="control"><label for="t-a">a</label><input type="range" id="t-a" min="-2" max="2" step="0.1" value="1"><span class="valor"></span></div>
+          <div class="control"><label for="t-b">b</label><input type="range" id="t-b" min="-2" max="2" step="0.1" value="0"><span class="valor"></span></div>
+          <div class="control"><label for="t-c">c</label><input type="range" id="t-c" min="-2" max="2" step="0.1" value="0"><span class="valor"></span></div>
+          <div class="control"><label for="t-d">d</label><input type="range" id="t-d" min="-2" max="2" step="0.1" value="1"><span class="valor"></span></div>
+          <button type="button" data-accion="identidad" class="secundario">↺ Identidad</button>
+        </div>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> el contorno punteado es el cuadrado unitario original; el relleno de acento es su imagen. La flecha verde es $Ae_1$ (1ª columna de $A$), la violeta es $Ae_2$ (2ª columna). <span id="t-det"></span></p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-nucleo-imagen">
+          <h3>10. Núcleo, imagen y sobreyectividad de una T.L.</h3>
+          <p>$T:M_2(\mathbb{R})\to P_2(\mathbb{R})$, $T\begin{bmatrix}a&b\\c&d\end{bmatrix}=(a-d)x^2+(b+c)x+(a+b+c-d)$. Analizar $\ker(T)$ y sobreyectividad.</p>
+          <p><strong>Solución:</strong> igualando la imagen a $0x^2+0x+0$: $a-d=0$, $b+c=0$ y $a+b+c-d=0$ (esta última resulta $0=0$, redundante). Quedan libres $c,d$ (con $a=d$, $b=-c$):
+          $$\ker(T)=\left\langle\left\{\begin{bmatrix}0&-1\\1&0\end{bmatrix},\begin{bmatrix}1&0\\0&1\end{bmatrix}\right\}\right\rangle,\quad \dim(\ker T)=2$$
+          Por el teorema de la dimensión: $\dim(\mathrm{Im}\,T)=\dim(M_2(\mathbb{R}))-\dim(\ker T)=4-2=2\neq\dim(P_2(\mathbb{R}))=3$.
+          $\therefore\ T$ <strong>no</strong> es sobreyectiva.</p>
+          <p class="fuente">Fuente: Pauta Certamen 3, 2026-1.</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-matriz-asociada">
+          <summary><span class="resumen-ejercicio">11. Sea $S:P_2(\mathbb{R})\to P_2(\mathbb{R})$, $S(ax^2+bx+c)=(a-b)x^2+(b+c)x+(a-c)$, con $B_1=\{x^2+x,\ x+1,\ x^2+1\}$ y $B_2=\{x^2,\ x^2+x,\ x^2+x+1\}$. Hallar $[S]_{B_1}^{B_2}$ y usarla para calcular $S(v)$ si $[v]_{B_1}=(2,-1,3)^T$.</span> <span class="dificultad dificil">difícil</span></summary>
+          <div class="solucion">
+            <p>Se evalúa $S$ en cada vector de $B_1$ y se escribe el resultado como combinación lineal de $B_2$; esos coeficientes son las columnas de la matriz:
+            $$[S]_{B_1}^{B_2}=\begin{bmatrix}-1&-3&0\\0&3&1\\1&-1&0\end{bmatrix}$$
+            Con $[v]_{B_1}=(2,-1,3)^T$:
+            $$[S(v)]_{B_2}=[S]_{B_1}^{B_2}\,[v]_{B_1}=\begin{bmatrix}-1&-3&0\\0&3&1\\1&-1&0\end{bmatrix}\begin{bmatrix}2\\-1\\3\end{bmatrix}=\begin{bmatrix}1\\0\\3\end{bmatrix}$$
+            Traduciendo con $B_2=\{x^2,\ x^2+x,\ x^2+x+1\}$: $S(v)=1\cdot x^2+0\cdot(x^2+x)+3\cdot(x^2+x+1)=4x^2+3x+3$.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-no-singular">
+          <summary><span class="resumen-ejercicio">12. Sea $T:\mathbb{R}^3\to\mathbb{R}^3$, $T(x,y,z)=(x+y,\ y+z,\ x+2y+z)$. ¿Es $T$ una transformación no singular?</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>La matriz asociada a $T$ en la base canónica tiene por columnas $T(e_1),T(e_2),T(e_3)$:
+            $$[T]=\begin{bmatrix}1&1&0\\0&1&1\\1&2&1\end{bmatrix}$$
+            $$\det[T]=1(1-2)-1(0-1)+0(0-1)=-1+1+0=0$$
+            Como $\det[T]=0$, $T$ <strong>no</strong> es no singular (es decir, es singular): no es invertible, ni inyectiva ni sobreyectiva. En efecto, resolviendo $T(x,y,z)=\theta$ se obtiene $x=-y,\ z=-y$ con $y$ libre, así que $\ker(T)=\langle\{(-1,1,-1)\}\rangle\neq\{\theta\}$.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 6 · AUTOVALORES Y DIAGONALIZACIÓN -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u6">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">06</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Autovalores y diagonalización</h2>
+          <p class="unidad-sub">Valores y vectores propios, multiplicidad algebraica/geométrica y la condición para diagonalizar.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-autovalores">
+        <h3>Unidad V — Autovalores y diagonalización</h3>
+        <ul>
+          <li>$\lambda$ valor propio de $A$ si $\exists v\neq\theta$: $Av=\lambda v$.</li>
+          <li><strong>Subespacio propio</strong> $S_\lambda=\{v:Av=\lambda v\}$ (contiene vectores propios de $\lambda$).</li>
+          <li><strong>Mult. algebraica</strong> = veces que $\lambda$ es raíz del polinomio característico; <strong>mult. geométrica</strong> $=\dim(S_\lambda)$. Siempre $1\le$ geo $\le$ alg.</li>
+          <li>$\lambda=0$ es valor propio $\iff A$ no invertible.</li>
+          <li><strong>Diagonalizable</strong> $\iff$ tiene $n$ vectores propios l.i. $\iff$ geo = alg para todo $\lambda$. Si los $n$ valores propios son distintos $\Rightarrow$ diagonalizable automáticamente.</li>
+          <li>$D=P^{-1}AP$: columnas de $P$ = vectores propios, en el mismo orden que sus $\lambda_i$ en $D$.</li>
+          <li><strong>Potencias:</strong> $A^n=PD^nP^{-1}$. <strong>Diagonalización ortogonal</strong> (si $A=A^T$): $Q^TAQ=D$ con $Q$ ortogonal ($Q^{-1}=Q^T$), vía Gram-Schmidt.</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Ecuación característica</span>$$\det(A-\lambda I)=0$$</div>
+      </div>
+
+      <div class="animacion" id="anim-autovectores">
+        <div class="anim-cabecera">
+          <h3>🔁 Autovalores y autovectores: direcciones que no rotan</h3>
+          <p class="anim-desc">$v(\theta)=(\cos\theta,\sin\theta)$ gira con el slider (o solo); $Av(\theta)$ es su transformado. Cuando ambos quedan paralelos, esa dirección es un autovector.</p>
+        </div>
+        <canvas data-alto="360"></canvas>
+        <div class="controles">
+          <div class="control"><label for="av-a">a</label><input type="range" id="av-a" min="-2" max="2" step="0.1" value="2"><span class="valor"></span></div>
+          <div class="control"><label for="av-b">b</label><input type="range" id="av-b" min="-2" max="2" step="0.1" value="1"><span class="valor"></span></div>
+          <div class="control"><label for="av-c">c</label><input type="range" id="av-c" min="-2" max="2" step="0.1" value="1"><span class="valor"></span></div>
+          <div class="control"><label for="av-d">d</label><input type="range" id="av-d" min="-2" max="2" step="0.1" value="2"><span class="valor"></span></div>
+          <div class="control"><label for="av-angulo">ángulo θ</label><input type="range" id="av-angulo" min="0" max="359" step="1" value="30"><span class="valor"></span></div>
+          <button type="button" data-accion="jugar">▶ Reproducir</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> $v$ (verde) gira; $Av$ (acento) es su transformado. Las rectas punteadas son las direcciones propias reales de $A$, si existen. Cuando $Av$ queda paralelo a $v$, el factor de estiramiento es el autovalor $\lambda$: <span id="av-info"></span></p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-autovalores-mult">
+          <h3>11. Autovalores con multiplicidad y diagonalización</h3>
+          <p>Para $A=\begin{bmatrix}3&-1&1\\0&2&0\\1&-1&3\end{bmatrix}$, hallar valores/vectores propios y decidir si es diagonalizable.</p>
+          <p><strong>Solución:</strong> desarrollando $\det(A-\lambda I)$ por la 2ª fila:
+          $$p(\lambda)=(2-\lambda)\left[(3-\lambda)^2-1\right]=-(\lambda-2)^2(\lambda-4)$$
+          $\lambda_1=2$ (mult. algebraica 2), $\lambda_2=4$ (mult. algebraica 1).</p>
+          <p>Para $\lambda=2$: escalonando $(A-2I)$ queda $x-y+z=0\Rightarrow S_2=\langle\{(1,1,0),(-1,0,1)\}\rangle$, dimensión 2 (mult. geométrica = algebraica).<br>
+          Para $\lambda=4$: $(A-4I)\Rightarrow x-z=0\wedge y=0\Rightarrow S_4=\langle\{(1,0,1)\}\rangle$, dimensión 1.</p>
+          <p>Ambas multiplicidades coinciden para los dos valores propios ⇒ $A$ tiene 3 vectores propios l.i. ⇒ <strong>es diagonalizable</strong>, con $P=[(1,1,0)\ (-1,0,1)\ (1,0,1)]$ y $D=\mathrm{diag}(2,2,4)$.</p>
+          <p class="fuente">Fuente: nota "Autovalores y autovectores".</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-diagonalizacion">
+          <summary><span class="resumen-ejercicio">13. Diagonalizar $A=\begin{bmatrix}2&0&2\\0&3&0\\0&0&3\end{bmatrix}$ (hallar $P$ y $D$).</span> <span class="dificultad dificil">difícil</span></summary>
+          <div class="solucion">
+            <p>$A$ es triangular superior ⇒ valores propios en la diagonal: $\lambda=2$ y $\lambda=3$.</p>
+            <p>Para $\lambda=2$: $(A-2I)v=\theta\Rightarrow 2z=0,\ y=0$, con $x$ libre ⇒ $S_2=\langle\{(1,0,0)\}\rangle$, dimensión 1.<br>
+            Para $\lambda=3$: $(A-3I)v=\theta\Rightarrow -x+2z=0$, con $y,z$ libres ⇒ $S_3=\langle\{(0,1,0),(2,0,1)\}\rangle$, dimensión 2.</p>
+            <p>Las multiplicidades algebraica y geométrica coinciden (1 y 2) ⇒ $A$ es diagonalizable:
+            $$P=\begin{bmatrix}1&0&2\\0&1&0\\0&0&1\end{bmatrix},\qquad D=\begin{bmatrix}2&0&0\\0&3&0\\0&0&3\end{bmatrix},\qquad D=P^{-1}AP$$</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function () {
+
+  /* ---------- helpers geométricos compartidos ---------- */
+  function transformarCon(A, x, y) { return [A.a * x + A.b * y, A.c * x + A.d * y]; }
+  function linea(ctx, m, p1, p2) {
+    ctx.beginPath();
+    ctx.moveTo(m.x(p1[0]), m.y(p1[1]));
+    ctx.lineTo(m.x(p2[0]), m.y(p2[1]));
+    ctx.stroke();
+  }
+  function poligono(ctx, m, pts) {
+    ctx.beginPath();
+    ctx.moveTo(m.x(pts[0][0]), m.y(pts[0][1]));
+    for (var i = 1; i < pts.length; i++) ctx.lineTo(m.x(pts[i][0]), m.y(pts[i][1]));
+    ctx.closePath();
+  }
+  function rectaOrigen(ctx, m, dir, color) {
+    var t = 12;
+    ctx.save();
+    ctx.strokeStyle = color; ctx.setLineDash([6, 5]); ctx.lineWidth = 1.4; ctx.globalAlpha = 0.75;
+    ctx.beginPath();
+    ctx.moveTo(m.x(-dir[0] * t), m.y(-dir[1] * t));
+    ctx.lineTo(m.x(dir[0] * t), m.y(dir[1] * t));
+    ctx.stroke();
+    ctx.restore();
+  }
+  function eigenvectorDe(A, l) {
+    var vx, vy;
+    if (Math.abs(A.b) > 1e-9) { vx = A.b; vy = l - A.a; }
+    else if (Math.abs(A.c) > 1e-9) { vx = l - A.d; vy = A.c; }
+    else { vx = (Math.abs(A.a - l) < 1e-9) ? 1 : 0; vy = (vx === 1) ? 0 : 1; }
+    var n = Math.hypot(vx, vy) || 1;
+    return [vx / n, vy / n];
+  }
+  function eigen2De(A) {
+    var tr = A.a + A.d, det = A.a * A.d - A.b * A.c;
+    var disc = tr * tr - 4 * det;
+    if (disc < 0) return { real: false };
+    var s = Math.sqrt(disc);
+    var l1 = (tr + s) / 2, l2 = (tr - s) / 2;
+    return { real: true, l1: l1, l2: l2, v1: eigenvectorDe(A, l1), v2: eigenvectorDe(A, l2) };
+  }
+
+  /* ================= 1. Transformación lineal 2D ================= */
+  Anim.registrar("anim-transformacion", function (sim) {
+    var A = { a: 1, b: 0, c: 0, d: 1 };
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var m = Anim.mapa(w, h, { xMin: -3, xMax: 3, yMin: -3, yMax: 3 });
+      Anim.ejes(ctx, m, w, h);
+
+      var tinta2 = colorVar("--tinta-2"), s1 = colorVar("--s1"), s3 = colorVar("--s3"), acento = colorVar("--acento");
+
+      ctx.save();
+      ctx.strokeStyle = tinta2; ctx.globalAlpha = 0.35; ctx.lineWidth = 1;
+      for (var i = -3; i <= 3; i++) {
+        linea(ctx, m, transformarCon(A, i, -3), transformarCon(A, i, 3));
+        linea(ctx, m, transformarCon(A, -3, i), transformarCon(A, 3, i));
+      }
+      ctx.restore();
+
+      ctx.save();
+      ctx.strokeStyle = s1; ctx.setLineDash([5, 4]); ctx.lineWidth = 1.5;
+      poligono(ctx, m, [[0, 0], [1, 0], [1, 1], [0, 1]]);
+      ctx.stroke();
+      ctx.restore();
+
+      var pts = [[0, 0], [1, 0], [1, 1], [0, 1]].map(function (p) { return transformarCon(A, p[0], p[1]); });
+      ctx.save();
+      ctx.fillStyle = acento; ctx.globalAlpha = 0.25;
+      poligono(ctx, m, pts); ctx.fill();
+      ctx.globalAlpha = 1; ctx.strokeStyle = acento; ctx.lineWidth = 2;
+      poligono(ctx, m, pts); ctx.stroke();
+      ctx.restore();
+
+      var im1 = transformarCon(A, 1, 0), im2 = transformarCon(A, 0, 1);
+      Anim.flecha(ctx, m.x(0), m.y(0), m.x(im1[0]), m.y(im1[1]), s1, 2.2);
+      Anim.flecha(ctx, m.x(0), m.y(0), m.x(im2[0]), m.y(im2[1]), s3, 2.2);
+
+      var det = A.a * A.d - A.b * A.c;
+      var orient = det > 1e-9 ? "se conserva" : (det < -1e-9 ? "se invierte (la grilla se da vuelta)" : "colapsa a una recta o punto (A no es invertible)");
+      var info = document.getElementById("t-det");
+      if (info) info.textContent = "det(A) = a·d − b·c = " + det.toFixed(2) + " → área del cuadrado transformado = |det A| = " + Math.abs(det).toFixed(2) + ". Orientación: " + orient + ".";
+    });
+
+    sim.slider("t-a", function (v) { A.a = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.slider("t-b", function (v) { A.b = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.slider("t-c", function (v) { A.c = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.slider("t-d", function (v) { A.d = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+
+    sim.botones({
+      identidad: function () {
+        var vals = { "t-a": 1, "t-b": 0, "t-c": 0, "t-d": 1 };
+        for (var id in vals) {
+          var inp = document.getElementById(id);
+          inp.value = vals[id];
+          inp.dispatchEvent(new Event("input"));
+        }
+      }
+    });
+  });
+
+  /* ================= 2. Autovalores y autovectores ================= */
+  Anim.registrar("anim-autovectores", function (sim) {
+    var A = { a: 2, b: 1, c: 1, d: 2 };
+    var angulo = 30;
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var m = Anim.mapa(w, h, { xMin: -2.6, xMax: 2.6, yMin: -2.6, yMax: 2.6 });
+      Anim.ejes(ctx, m, w, h);
+
+      var ang = angulo;
+      if (sim.estaCorriendo()) {
+        ang = (t * 25) % 360;
+        angulo = ang;
+        var sl = document.getElementById("av-angulo");
+        if (sl) {
+          sl.value = ang.toFixed(0);
+          var et = sl.closest(".control").querySelector(".valor");
+          if (et) et.textContent = ang.toFixed(0) + "°";
+        }
+      }
+      var rad = ang * Math.PI / 180;
+      var v = [Math.cos(rad), Math.sin(rad)];
+      var Av = transformarCon(A, v[0], v[1]);
+
+      var s1 = colorVar("--s1"), s2 = colorVar("--s2"), s3 = colorVar("--s3"),
+          acento = colorVar("--acento"), tinta2 = colorVar("--tinta-2"), ok = colorVar("--ok"), futuro = colorVar("--futuro");
+
+      var eig = eigen2De(A);
+      if (eig.real) {
+        rectaOrigen(ctx, m, eig.v1, s1);
+        rectaOrigen(ctx, m, eig.v2, s3);
+      }
+
+      Anim.flecha(ctx, m.x(0), m.y(0), m.x(v[0]), m.y(v[1]), s2, 2.2);
+      Anim.flecha(ctx, m.x(0), m.y(0), m.x(Av[0]), m.y(Av[1]), acento, 2.6);
+
+      var info = document.getElementById("av-info");
+      if (!eig.real) {
+        if (info) { info.textContent = "esta matriz tiene valores propios complejos: no hay direcciones reales invariantes (rota en vez de estirar)."; info.style.color = futuro; }
+      } else {
+        var cross = v[0] * Av[1] - v[1] * Av[0];
+        var nv = Math.hypot(v[0], v[1]), nav = Math.hypot(Av[0], Av[1]) || 1e-9;
+        var sinAng = Math.abs(cross) / (nv * nav);
+        if (sinAng < 0.025) {
+          var lambda = (v[0] * Av[0] + v[1] * Av[1]) / (v[0] * v[0] + v[1] * v[1]);
+          if (info) { info.textContent = "¡dirección propia! Av queda paralelo a v → λ ≈ " + lambda.toFixed(2) + "."; info.style.color = ok; }
+        } else {
+          if (info) { info.textContent = "Av no es paralelo a v en este ángulo — girá hasta alinearte con una recta punteada."; info.style.color = tinta2; }
+        }
+      }
+    });
+
+    sim.slider("av-a", function (v) { A.a = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.slider("av-b", function (v) { A.b = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.slider("av-c", function (v) { A.c = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.slider("av-d", function (v) { A.d = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.slider("av-angulo", function (v) { angulo = v; sim.redibujar(); }, function (v) { return v.toFixed(0) + "°"; });
+
+    sim.botones({
+      reiniciar: function () {
+        sim.pausar();
+        var vals = { "av-a": 2, "av-b": 1, "av-c": 1, "av-d": 2, "av-angulo": 30 };
+        for (var id in vals) {
+          var inp = document.getElementById(id);
+          inp.value = vals[id];
+          inp.dispatchEvent(new Event("input"));
+        }
+        sim.fijarT(0);
+      }
+    });
+  });
+
+  /* ================= 3. Combinación lineal ================= */
+  Anim.registrar("anim-combinacion", function (sim) {
+    var u = [2, 1], v = [-1, 1];
+    var a = 1, b = 1;
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var m = Anim.mapa(w, h, { xMin: -4, xMax: 4, yMin: -4, yMax: 4 });
+      Anim.ejes(ctx, m, w, h);
+
+      var s1 = colorVar("--s1"), s3 = colorVar("--s3"), acento = colorVar("--acento"), tinta2 = colorVar("--tinta-2");
+
+      var au = [a * u[0], a * u[1]];
+      var bv = [b * v[0], b * v[1]];
+      var suma = [au[0] + bv[0], au[1] + bv[1]];
+
+      ctx.save();
+      ctx.strokeStyle = tinta2; ctx.setLineDash([4, 4]); ctx.globalAlpha = 0.7; ctx.lineWidth = 1.3;
+      linea(ctx, m, au, suma);
+      linea(ctx, m, bv, suma);
+      ctx.restore();
+
+      Anim.flecha(ctx, m.x(0), m.y(0), m.x(au[0]), m.y(au[1]), s1, 2.2);
+      Anim.flecha(ctx, m.x(0), m.y(0), m.x(bv[0]), m.y(bv[1]), s3, 2.2);
+      Anim.flecha(ctx, m.x(0), m.y(0), m.x(suma[0]), m.y(suma[1]), acento, 2.6);
+
+      var info = document.getElementById("cl-info");
+      if (info) info.textContent = "a·u = (" + au[0].toFixed(2) + ", " + au[1].toFixed(2) + ")   b·v = (" + bv[0].toFixed(2) + ", " + bv[1].toFixed(2) + ")   a·u+b·v = (" + suma[0].toFixed(2) + ", " + suma[1].toFixed(2) + ")";
+    });
+
+    sim.slider("cl-a", function (v) { a = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.slider("cl-b", function (v) { b = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+  });
+
+  /* ================= 4. Proyección ortogonal ================= */
+  Anim.registrar("anim-proyeccion", function (sim) {
+    var w0 = [3, 1];
+    var angulo = 40;
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var m = Anim.mapa(w, h, { xMin: -4, xMax: 4, yMin: -4, yMax: 4 });
+      Anim.ejes(ctx, m, w, h);
+
+      var s1 = colorVar("--s1"), s2 = colorVar("--s2"), s3 = colorVar("--s3"),
+          acento = colorVar("--acento"), tinta2 = colorVar("--tinta-2");
+
+      var rad = angulo * Math.PI / 180;
+      var v = [2 * Math.cos(rad), 2 * Math.sin(rad)];
+
+      var dotVW = v[0] * w0[0] + v[1] * w0[1];
+      var dotWW = w0[0] * w0[0] + w0[1] * w0[1];
+      var k = dotVW / dotWW;
+      var proy = [k * w0[0], k * w0[1]];
+      var resid = [v[0] - proy[0], v[1] - proy[1]];
+
+      var wn = Math.hypot(w0[0], w0[1]);
+      rectaOrigen(ctx, m, [w0[0] / wn, w0[1] / wn], tinta2);
+
+      Anim.flecha(ctx, m.x(0), m.y(0), m.x(w0[0]), m.y(w0[1]), s2, 2.2);
+      Anim.flecha(ctx, m.x(0), m.y(0), m.x(v[0]), m.y(v[1]), s1, 2.2);
+      Anim.flecha(ctx, m.x(0), m.y(0), m.x(proy[0]), m.y(proy[1]), acento, 2.6);
+
+      ctx.save();
+      ctx.strokeStyle = s3; ctx.setLineDash([4, 3]); ctx.lineWidth = 1.5;
+      linea(ctx, m, proy, v);
+      ctx.restore();
+
+      var anguloEntre = Math.acos(Math.max(-1, Math.min(1, dotVW / (Math.hypot(v[0], v[1]) * wn)))) * 180 / Math.PI;
+      var info = document.getElementById("proy-info");
+      if (info) info.textContent = "proy_w(v) = (⟨v,w⟩/⟨w,w⟩)·w = (" + k.toFixed(2) + ")·w = (" + proy[0].toFixed(2) + ", " + proy[1].toFixed(2) + ")   |residuo| = " + Math.hypot(resid[0], resid[1]).toFixed(2) + "   ángulo(v,w) = " + anguloEntre.toFixed(1) + "°";
+    });
+
+    sim.slider("pr-angulo", function (v) { angulo = v; sim.redibujar(); }, function (v) { return v.toFixed(0) + "°"; });
+  });
+
+})();
+</script>
+
+<script>
+  // entradas escalonadas (GSAP + ScrollTrigger vía Anim.revelar) — no rompe nada si GSAP no cargó
+  Anim.revelar(".curso-hero-v3 > *", { scroll: false, stagger: .08, distancia: 14, duracion: .8 });
+  document.querySelectorAll(".unidad").forEach(function (u) {
+    Anim.revelar(u.querySelectorAll(":scope > .unidad-cabecera, :scope > .materia, :scope > .animacion, :scope > .ejemplos-unidad, :scope > .ejercicios-unidad"), { disparador: u, stagger: .08, distancia: 16 });
+  });
+</script>
+</body>
+</html>

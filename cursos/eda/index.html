@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html lang="es" data-tema="oscuro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌳 Estructura de Datos y Algoritmos — Biblioteca</title>
+<link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../../assets/vendor/fuentes/fuentes.css">
+<link rel="stylesheet" href="../../assets/css/observatorio.css">
+<script>window.RUTA_BASE = "../../";</script>
+<script src="../../assets/vendor/katex/katex.min.js"></script>
+<script src="../../assets/vendor/katex/auto-render.min.js"></script>
+<script src="../../assets/vendor/gsap/gsap.min.js"></script>
+<script src="../../assets/vendor/gsap/ScrollTrigger.min.js"></script>
+<script src="../../assets/js/observatorio.js"></script>
+<script src="indice-curso.js"></script>
+</head>
+<body>
+<div class="progreso-lectura"></div>
+<div class="pagina-curso">
+
+  <aside class="lateral">
+    <a class="volver" href="../../index.html">← Constelación</a>
+    <div class="curso-cabecera"><span class="emoji">🌳</span><h1>Estructura de Datos y Algoritmos</h1></div>
+    <span class="semestre-tag" style="color:var(--s3)">Semestre 3</span>
+    <nav>
+      <div class="grupo">Unidades</div>
+      <a href="#u1">01 · Complejidad y recursividad</a>
+      <a href="#u2">02 · Estructuras lineales</a>
+      <a href="#u3">03 · Árboles: BST, AVL, B/B+</a>
+      <a class="sub" href="#anim-bst">🌲 Inserción en BST</a>
+      <a href="#u4">04 · Heaps y colas de prioridad</a>
+      <a href="#u5">05 · Árbol de Huffman</a>
+      <a class="sub" href="#anim-huffman">🗜️ Construcción de Huffman</a>
+      <a href="#u6">06 · Grafos</a>
+      <a class="sub" href="#anim-grafo">🕸️ BFS / DFS</a>
+      <a href="#u7">07 · Algoritmos de ordenamiento</a>
+      <a class="sub" href="#anim-ordenamiento">🔀 Ordenamiento</a>
+    </nav>
+    <div class="atajos"><kbd>Ctrl K</kbd> buscar en toda la biblioteca</div>
+  </aside>
+
+  <main class="principal">
+    <div class="principal-cabecera">
+      <span class="relleno"></span>
+      <button class="btn-buscar" type="button">🔍 Buscar <kbd>Ctrl K</kbd></button>
+      <button class="btn-tema" type="button">☀️</button>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CABECERA DEL CURSO -->
+    <!-- ============================================================ -->
+    <header class="curso-hero-v3" id="cheat" style="--ac: var(--s3)">
+      <span class="emoji-grande">🌳</span>
+      <h1>Estructura de Datos y Algoritmos — Resumen del curso</h1>
+      <span class="semestre-tag" style="color:var(--s3)">Semestre 3 · Taller UDD</span>
+      <p class="curso-intro">
+        Taller de <strong>Estructura de Datos y Algoritmos</strong> (UDD). De la complejidad Big-O a
+        estructuras lineales, árboles (BST, AVL, B/B+), heaps, el árbol de Huffman, grafos (BFS/DFS,
+        Dijkstra, Prim/Kruskal) y los algoritmos de ordenamiento clásicos — con código real de las
+        ayudantías en C y Python.
+      </p>
+      <ul class="mini-indice">
+        <li><a href="#u1">01 · Complejidad y recursividad</a></li>
+        <li><a href="#u2">02 · Estructuras lineales</a></li>
+        <li><a href="#u3">03 · Árboles</a></li>
+        <li><a href="#u4">04 · Heaps</a></li>
+        <li><a href="#u5">05 · Huffman</a></li>
+        <li><a href="#u6">06 · Grafos</a></li>
+        <li><a href="#u7">07 · Ordenamiento</a></li>
+      </ul>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 1 · COMPLEJIDAD Y RECURSIVIDAD -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u1">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">01</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Complejidad y recursividad</h2>
+          <p class="unidad-sub">Cómo medir el costo de un algoritmo con notación Big-O y cómo pensar en casos base / casos recursivos — el lenguaje de todo el curso.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-complejidad">
+        <h3>Complejidad algorítmica</h3>
+        <ul>
+          <li>$O(f(n))$ acota el <strong>peor caso</strong> asintótico: se descartan constantes y términos menores.</li>
+          <li>$O(1)$ constante · $O(\log n)$ logarítmico (búsqueda binaria) · $O(n)$ lineal · $O(n\log n)$ (mergesort/quicksort promedio) · $O(n^2)$ cuadrático (burbuja) · $O(2^n)$ exponencial (fuerza bruta).</li>
+          <li>Bucles <strong>anidados</strong> se multiplican ($O(n^2)$); bloques <strong>secuenciales</strong> se suman (queda el de mayor orden).</li>
+          <li>$O(3n^2+5n+2)=O(n^2)$.</li>
+          <li>Si un $O(n\log n)$ tarda 1 s con $n=1000$, uno $O(n^2)$ tarda del orden de $\dfrac{n}{\log_2 n}\approx100$ veces más.</li>
+          <li>$O(2^n)$ y $O(n!)$ son intratables desde $n\approx40$-$50$; no son "manejables" para $n>100$.</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Crecimiento relativo</span>$$\frac{n^2}{n\log n}=\frac{n}{\log n}\qquad(\text{crece sin límite})$$</div>
+      </div>
+
+      <div class="materia" id="tema-recursividad">
+        <h3>Recursividad</h3>
+        <ul>
+          <li><strong>Caso base:</strong> detiene la recursión. <strong>Caso recursivo:</strong> se acerca al caso base.</li>
+          <li>$\text{factorial}(n)=n\cdot\text{factorial}(n-1)$, caso base $n=0\to1$.</li>
+          <li>Torres de Hanoi: $T(n)=2T(n-1)+1\ \Rightarrow\ T(n)=2^n-1$, complejidad $O(2^n)$.</li>
+          <li>Usa la <strong>pila de llamadas</strong> (memoria); Fibonacci ingenuo es $O(2^n)$ — conviene memoización o versión iterativa.</li>
+          <li>Error clásico: olvidar el <code>return</code> en la llamada recursiva cuando debe propagar un valor.</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Torres de Hanoi</span>$$T(n)=2T(n-1)+1\ \Longrightarrow\ T(n)=2^n-1$$</div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-complejidad">
+          <h3>1. Comparación $O(n\log n)$ vs. $O(n^2)$</h3>
+          <p>Si para $n=1000$ un algoritmo $O(n\log n)$ tarda 1 segundo, ¿cuánto tardará uno $O(n^2)$ con el mismo $n$?</p>
+          <p><strong>Solución</strong> — comparando órdenes de magnitud (constantes similares):</p>
+          <p>$$\frac{n^2}{n\log n}=\frac{n}{\log n}=\frac{1000}{\log_2 1000}\approx\frac{1000}{10}=100$$</p>
+          <p>El algoritmo $O(n^2)$ tardaría del orden de <strong>100 veces más</strong> (~100 s) que el $O(n\log n)$.</p>
+          <p style="color:var(--tinta-2)">Para $n$ pequeño esto no siempre se nota (constantes bajas pueden compensar), pero la brecha crece sin límite a medida que $n$ aumenta.</p>
+          <p class="fuente">Fuente: nota "Complejidad algorítmica".</p>
+        </div>
+
+        <div class="ejemplo" id="ej-hanoi">
+          <h3>2. Torres de Hanoi con $n=3$ discos</h3>
+          <p>Traza de <code>hanoi(3, 'A', 'B', 'C')</code> con el código real del curso:</p>
+          <pre><code>void hanoi(int n, char origen, char destino, char libre) {
+    if (n == 0) return;                     // caso base
+    hanoi(n-1, origen, libre, destino);      // paso 1
+    printf("Mover disco %d de %c a %c\n", n, origen, destino);
+    hanoi(n-1, libre, destino, origen);      // paso 3
+}</code></pre>
+          <p><strong>Traza de llamadas</strong> (expandiendo <code>hanoi(3,A,B,C)</code> → <code>hanoi(2,A,C,B)</code>, mover 3, <code>hanoi(2,C,B,A)</code>):</p>
+          <p>1) Mover disco 1 de A a B &nbsp; 2) Mover disco 2 de A a C &nbsp; 3) Mover disco 1 de B a C &nbsp; 4) Mover disco 3 de A a B &nbsp; 5) Mover disco 1 de C a A &nbsp; 6) Mover disco 2 de C a B &nbsp; 7) Mover disco 1 de A a B</p>
+          <p>Total: $2^3-1=7$ movimientos, consistente con $T(n)=2T(n-1)+1\Rightarrow T(n)=2^n-1$.</p>
+          <p class="fuente">Fuente: nota "Recursividad".</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-complejidad">
+          <summary><span class="resumen-ejercicio">1. ¿Cuál es la complejidad Big-O del siguiente fragmento?</span> <span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <pre><code>for i in range(n):
+    for j in range(n):
+        print(i, j)
+for k in range(n):
+    print(k)</code></pre>
+            <p>El primer bloque son dos bucles <strong>anidados</strong> sobre $n$ → se multiplican: $O(n\cdot n)=O(n^2)$.</p>
+            <p>El segundo bloque es <strong>secuencial</strong> (no anidado) y aporta $O(n)$: por la regla de la suma, se queda el término de mayor orden.</p>
+            <p><strong>Total: $O(n^2)+O(n)=O(n^2)$.</strong></p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-hanoi">
+          <summary><span class="resumen-ejercicio">2. ¿Cuántos movimientos requiere Torres de Hanoi para $n=5$ discos?</span> <span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <p>$T(n)=2T(n-1)+1 \Rightarrow T(n)=2^n-1$.</p>
+            <p>$T(5)=2^5-1=32-1=\mathbf{31}$ movimientos.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 2 · ESTRUCTURAS LINEALES -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u2">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">02</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Estructuras lineales</h2>
+          <p class="unidad-sub">Pilas, colas y listas enlazadas: las piezas que sostienen casi todo lo demás (DFS iterativo, BFS, deshacer, buffers).</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-lineales">
+        <h3>Estructuras lineales</h3>
+        <ul>
+          <li><strong>Lista enlazada:</strong> inserción/eliminación $O(1)$ con el nodo dado; acceso por posición $O(n)$.</li>
+          <li><strong>Pila (LIFO):</strong> <code>push</code>/<code>pop</code>/<code>top</code>. Usos: deshacer, pila de llamadas, DFS iterativo, evaluación de expresiones.</li>
+          <li><strong>Cola (FIFO):</strong> <code>enqueue</code>/<code>dequeue</code>. Usos: BFS, buffers, planificación.</li>
+          <li><strong>Lista doble:</strong> punteros <code>next</code> y <code>prev</code>, recorre en ambos sentidos.</li>
+          <li>Arreglo: $O(1)$ acceso indexado, tamaño fijo. Lista: tamaño dinámico, $O(n)$ para llegar a una posición.</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Arreglo</span>$$\text{acceso } O(1)$$</div>
+        <div class="formula-card"><span class="etiqueta">Lista enlazada</span>$$\text{acceso } O(n)$$</div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-pila-parentesis">
+          <summary><span class="resumen-ejercicio">3. Usando una pila, determina si <code>{[()()]}</code> tiene los símbolos balanceados. Muestra el estado de la pila en cada paso.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>Se recorre la cadena; al ver un símbolo de apertura se hace <code>push</code>, al ver uno de cierre se compara con el <code>top</code> y se hace <code>pop</code> si coincide:</p>
+            <p><code>{</code> → push → pila: <code>[{]</code></p>
+            <p><code>[</code> → push → pila: <code>[{, []</code></p>
+            <p><code>(</code> → push → pila: <code>[{, [, (]</code></p>
+            <p><code>)</code> → coincide con <code>(</code> → pop → pila: <code>[{, []</code></p>
+            <p><code>(</code> → push → pila: <code>[{, [, (]</code></p>
+            <p><code>)</code> → coincide → pop → pila: <code>[{, []</code></p>
+            <p><code>]</code> → coincide con <code>[</code> → pop → pila: <code>[{]</code></p>
+            <p><code>}</code> → coincide con <code>{</code> → pop → pila: <code>[]</code> (vacía)</p>
+            <p>La pila queda vacía al terminar → <strong>balanceada</strong>. (Si sobrara algo en la pila, o un cierre no coincidiera con el <code>top</code>, estaría desbalanceada.)</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 3 · ÁRBOLES: BST, AVL, B/B+ -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u3">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">03</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Árboles: BST, AVL, B/B+</h2>
+          <p class="unidad-sub">Búsqueda logarítmica cuando el árbol está balanceado; qué pasa cuando no lo está, y cómo forzar el balance con rotaciones.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-arboles">
+        <h3>Árboles (BST, AVL, B/B+)</h3>
+        <ul>
+          <li><strong>BST:</strong> izq $\lt$ nodo $\lt$ der. Búsqueda/inserción $O(\log n)$ balanceado, $O(n)$ si degenera en lista.</li>
+          <li>Recorridos: <strong>inorden</strong> (izq, raíz, der) → ordenado; <strong>preorden</strong> (raíz, izq, der); <strong>postorden</strong> (izq, der, raíz).</li>
+          <li><strong>AVL:</strong> factor de balance $FB=\text{alt}(izq)-\text{alt}(der)\in\{-1,0,1\}$. Si $|FB|=2$: rotación.</li>
+          <li>4 casos: <strong>LL</strong> → rotación simple derecha · <strong>RR</strong> → simple izquierda · <strong>LR</strong> → doble (izq. luego der.) · <strong>RL</strong> → doble (der. luego izq.)</li>
+          <li>Eliminación AVL: puede desbalancear <strong>varios niveles</strong> al volver de la recursión (a diferencia de la inserción).</li>
+          <li><strong>Árbol B/B+</strong> (grado $t$): $t-1$ a $2t-1$ claves, $t$ a $2t$ hijos por nodo. En <strong>B+</strong> los datos van solo en las hojas, que están <strong>enlazadas</strong>.</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Factor de balance (AVL)</span>$$FB=\text{alt}(izq)-\text{alt}(der)\in\{-1,0,1\}$$</div>
+      </div>
+
+      <div class="animacion" id="anim-bst">
+        <div class="anim-cabecera">
+          <h3>🌲 Inserción en Árbol Binario de Búsqueda (BST)</h3>
+          <p class="anim-desc">Inserción paso a paso: cada clic compara con un nodo hasta encontrar el lugar correcto para el nuevo valor.</p>
+        </div>
+        <canvas data-alto="260"></canvas>
+        <div class="controles">
+          <div class="control">
+            <label for="bst-valor">Valor</label>
+            <input type="number" id="bst-valor" value="15">
+          </div>
+          <button type="button" data-accion="paso">Paso</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar árbol</button>
+        </div>
+        <p id="bst-info" style="color:var(--tinta-2); font: 13px Consolas, monospace; margin:0 0 10px;">Sin inserción en curso.</p>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> morado = nodo comparado ahora. Al llegar a un hueco, el nuevo nodo se dibuja en verde. Sin inserción pendiente, "Paso" toma el valor del campo y la inicia. Probá insertar 15, 8, 20, 3, 10, 17, 25 en ese orden.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-avl-rotacion">
+          <h3>3. Rotación AVL — caso LL</h3>
+          <p>Insertar, en un AVL vacío, la secuencia $30,\ 20,\ 10$ usando el código real de ayudantía:</p>
+          <pre><code>nodo* insertarAVL(nodo* raiz, int dato) {
+    if (raiz == NULL) return crearNodo(dato);
+    if (dato < raiz->data) raiz->left = insertarAVL(raiz->left, dato);
+    else if (dato > raiz->data) raiz->right = insertarAVL(raiz->right, dato);
+    else return raiz;
+
+    int balance = factorBalance(raiz);
+    if (balance > 1 && dato < raiz->left->data)   return rotarRight(raiz);   // LL
+    if (balance < -1 && dato > raiz->right->data) return rotarLeft(raiz);    // RR
+    if (balance > 1 && dato > raiz->left->data)   return rotar2LR(raiz);     // LR
+    if (balance < -1 && dato < raiz->right->data) return rotar2RL(raiz);     // RL
+    return raiz;
+}</code></pre>
+          <p><strong>Traza:</strong> insertar 30 → raíz. Insertar 20 → hijo izquierdo de 30 ($FB(30){=}1$, balanceado). Insertar 10 → hijo izquierdo de 20 (izquierdo de 30).</p>
+          <p>Ahora $FB(30)=\text{alt}(izq){-}\text{alt}(der)=2-0=2$. Como $|FB|>1$ y $\text{dato}(10) \lt raiz{\to}left{\to}data\ (20)$ → caso <strong>LL</strong> → <code>rotarRight(30)</code>.</p>
+          <p>Árbol antes: <code>30(20(10))</code> — una cadena hacia la izquierda. Árbol después de <code>rotarRight</code>: <strong>20</strong> pasa a ser la raíz, con <strong>10</strong> como hijo izquierdo y <strong>30</strong> como hijo derecho. Altura del árbol baja de 3 a 2 y $FB(20)=0$ en todos los nodos.</p>
+          <p class="fuente">Fuente: nota "Árboles" (código real de ayudantía).</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-bst-insercion">
+          <summary><span class="resumen-ejercicio">4. Inserta en un BST vacío, en este orden: 15, 8, 20, 3, 10, 17, 25. Dibuja el árbol y da el recorrido inorden.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <pre><code>            15
+          /    \
+         8      20
+        / \    /  \
+       3  10  17   25</code></pre>
+            <p>Recorrido <strong>inorden</strong> (izq, raíz, der): $3,\ 8,\ 10,\ 15,\ 17,\ 20,\ 25$ — siempre da los elementos ordenados en un BST.</p>
+            <p style="color:var(--tinta-2)">Puedes reproducir esta misma secuencia en el visualizador de BST de arriba.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-avl-rotacion">
+          <summary><span class="resumen-ejercicio">5. Se inserta 20 en un AVL con raíz 10 e hijo derecho 30 (recién insertado). ¿Qué rotación corresponde?</span> <span class="dificultad dificil">difícil</span></summary>
+          <div class="solucion">
+            <p>Antes de insertar 20: raíz 10, hijo derecho 30 (sin hijos), $FB(10)=0-1=-1$ (balanceado).</p>
+            <p>Se inserta 20: como $20>10$ va al subárbol derecho; como $20\lt30$ queda como hijo <strong>izquierdo</strong> de 30.</p>
+            <p>Ahora $FB(10)=\text{alt}(izq){-}\text{alt}(der)=0-2=-2$. Se evalúa con el código real: <code>balance &lt; -1 &amp;&amp; dato &gt; raiz-&gt;right-&gt;data</code> (RR) es falso porque $20 \lt 30$; en cambio <code>balance &lt; -1 &amp;&amp; dato &lt; raiz-&gt;right-&gt;data</code> (RL) es verdadero.</p>
+            <p>Corresponde <strong>RL</strong> → <code>rotar2RL(raiz)</code> (rotación doble: derecha sobre el hijo 30, luego izquierda sobre la raíz 10). Resultado: <strong>20</strong> pasa a ser la nueva raíz, con <strong>10</strong> como hijo izquierdo y <strong>30</strong> como hijo derecho.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 4 · HEAPS Y COLAS DE PRIORIDAD -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u4">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">04</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Heaps y colas de prioridad</h2>
+          <p class="unidad-sub">Un árbol binario completo representado en arreglo, con inserción y extracción en tiempo logarítmico — la base de Huffman y de Dijkstra/Prim.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-heaps">
+        <h3>Heaps y colas de prioridad</h3>
+        <ul>
+          <li><strong>Min-heap:</strong> nodo $\le$ hijos (mínimo en la raíz). <strong>Max-heap:</strong> nodo $\ge$ hijos.</li>
+          <li>Árbol binario <strong>completo</strong> → se representa en arreglo: hijos de $i$ en $2i+1$ y $2i+2$.</li>
+          <li>Insertar: agregar al final y <em>sift-up</em> ($O(\log n)$). Extraer raíz: mover el último elemento a la raíz y <em>sift-down</em> ($O(\log n)$). Ver el mínimo/máximo: $O(1)$.</li>
+          <li>Usos: colas de prioridad, <a href="#tema-huffman">Huffman</a> (extraer los 2 mínimos), Heap Sort, Dijkstra y Prim (extraer mínimo eficientemente).</li>
+          <li>No confundir con BST: en un heap <strong>no</strong> hay orden izquierda/derecha, solo padre/hijo — no se puede recorrer en inorden para ordenar.</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Hijos en el arreglo</span>$$\text{hijos de }i:\ 2i{+}1,\ 2i{+}2$$</div>
+        <div class="formula-card"><span class="etiqueta">Costo de insertar/extraer</span>$$\text{insertar/extraer: } O(\log n)$$</div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-heap-construccion">
+          <summary><span class="resumen-ejercicio">6. Construye un min-heap insertando uno a uno los valores [4, 10, 3, 5, 1]. Da el arreglo final y su árbol.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>Insertar 4 → <code>[4]</code>. Insertar 10 → <code>[4,10]</code> (10≥4, sin sift-up).</p>
+            <p>Insertar 3 → <code>[4,10,3]</code>; padre de 3 (índice 2) es índice 0 (4); $3&lt;4$ → swap → <code>[3,10,4]</code>.</p>
+            <p>Insertar 5 → <code>[3,10,4,5]</code>; padre de 5 (índice 3) es índice 1 (10); $5&lt;10$ → swap → <code>[3,5,4,10]</code>; padre de índice 1 es índice 0 (3); $5\ge3$, se detiene.</p>
+            <p>Insertar 1 → <code>[3,5,4,10,1]</code>; padre de 1 (índice 4) es índice 1 (5); $1&lt;5$ → swap → <code>[3,1,4,10,5]</code>; padre de índice 1 es índice 0 (3); $1&lt;3$ → swap → <code>[1,3,4,10,5]</code>.</p>
+            <p>Arreglo final: <code>[1, 3, 4, 10, 5]</code>.</p>
+            <pre><code>      1
+    /   \
+   3     4
+  / \
+ 10  5</code></pre>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 5 · ÁRBOL DE HUFFMAN -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u5">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">05</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Árbol de Huffman</h2>
+          <p class="unidad-sub">Compresión sin pérdida construida greedy sobre un min-heap: fusionar siempre los dos símbolos menos frecuentes.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-huffman">
+        <h3>Árbol de Huffman</h3>
+        <ul>
+          <li>Compresión sin pérdida: códigos más <strong>cortos</strong> para símbolos más frecuentes.</li>
+          <li>Construcción <em>greedy</em>: extraer del min-heap los 2 nodos de <strong>menor</strong> frecuencia, unirlos bajo un padre (freq = suma), reinsertar. Repetir hasta 1 árbol.</li>
+          <li>Código = camino raíz→hoja (0 izq., 1 der.); es código <strong>prefijo</strong> → se decodifica sin ambigüedad.</li>
+          <li>Ejemplo "ABRACADABRA" (A=5,B=2,R=2,C=1,D=1): códigos $A{=}0,\ C{=}100,\ D{=}101,\ B{=}110,\ R{=}111$.</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Códigos de "ABRACADABRA"</span>$$A{=}0,\ C{=}100,\ D{=}101,\ B{=}110,\ R{=}111$$</div>
+      </div>
+
+      <div class="animacion" id="anim-huffman">
+        <div class="anim-cabecera">
+          <h3>🗜️ Construcción del árbol de Huffman</h3>
+          <p class="anim-desc">Construcción <em>greedy</em>: cada paso fusiona los dos árboles de menor frecuencia del bosque, igual que extraer dos veces el mínimo de un min-heap.</p>
+        </div>
+        <canvas data-alto="260"></canvas>
+        <div class="controles">
+          <div class="control">
+            <label for="huffman-texto">Palabra</label>
+            <input type="text" id="huffman-texto" value="ABRACADABRA" style="text-transform:uppercase;">
+          </div>
+          <button type="button" class="secundario" data-accion="construir">Construir / reiniciar</button>
+          <button type="button" data-accion="paso">Paso (fusionar)</button>
+        </div>
+        <p id="huffman-info" style="color:var(--tinta-2); font: 13px Consolas, monospace; margin:0 0 10px;">Escribe una palabra y presiona Construir.</p>
+        <div id="huffman-codigos"></div>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> morado = árboles fusionados en este paso; verde = nuevo padre. Al quedar un solo árbol se muestra la tabla de códigos (camino raíz→hoja, 0 izquierda / 1 derecha).</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-huffman-abracadabra">
+          <h3>4. Huffman: "ABRACADABRA"</h3>
+          <p>Frecuencias: A=5, B=2, R=2, C=1, D=1.</p>
+          <p>1) $C(1)+D(1)\to CD(2)$ &nbsp; 2) $B(2)+R(2)\to BR(4)$ &nbsp; 3) $CD(2)+BR(4)\to(6)$ &nbsp; 4) $A(5)+(6)\to(11)$ ← raíz</p>
+          <pre><code>        [11]
+       /    \
+    [5]A    [6]
+           /    \
+        [2]CD  [4]BR
+        /  \    /  \
+      [1]C [1]D [2]B [2]R</code></pre>
+          <p>Códigos: $A{=}0,\ C{=}100,\ D{=}101,\ B{=}110,\ R{=}111$. "ABRACADABRA" codificada: <code>0 110 111 0 100 0 101 0 110 111 0</code> — mucho más corto que los $11\times8=88$ bits de ASCII sin comprimir.</p>
+          <p style="color:var(--tinta-2)">Los códigos exactos dependen del orden de construcción cuando hay empates de frecuencia, pero siempre son óptimos (misma longitud total).</p>
+          <p class="fuente">Fuente: nota "Árbol de Huffman".</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-huffman">
+          <summary><span class="resumen-ejercicio">9. Construye el árbol de Huffman para "MISSISSIPPI" y compara el total de bits con ASCII (8 bits/símbolo).</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>Frecuencias (11 letras): M=1, I=4, S=4, P=2.</p>
+            <p>1) $M(1)+P(2)\to MP(3)$ &nbsp; 2) $MP(3)+I(4)\to(7)$ (I elegido por empate con S) &nbsp; 3) $S(4)+(7)\to(11)$ ← raíz</p>
+            <pre><code>        [11]
+       /    \
+     S(4)   [7]
+            /  \
+         [3]MP  I(4)
+         /  \
+       M(1) P(2)</code></pre>
+            <p>Códigos: $S{=}0$ (1 bit), $I{=}11$ (2 bits), $M{=}100$ (3 bits), $P{=}101$ (3 bits).</p>
+            <p>Total de bits: $4(1)+4(2)+1(3)+2(3)=4+8+3+6=\mathbf{21}$ bits, frente a $11\times8=88$ bits en ASCII — una reducción de más del 75%.</p>
+            <p style="color:var(--tinta-2)">Puedes verificar este resultado (con posibles diferencias de 0/1 por el orden de empates, pero igual longitud total) escribiendo "MISSISSIPPI" en el visualizador de Huffman de arriba.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 6 · GRAFOS -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u6">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">06</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Grafos</h2>
+          <p class="unidad-sub">Representación, recorridos BFS/DFS, y los algoritmos clásicos de caminos mínimos y árbol de expansión mínima.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-grafos">
+        <h3>Grafos</h3>
+        <ul>
+          <li>Matriz de adyacencia: $O(n^2)$ memoria, consulta $O(1)$. Lista de adyacencia: mejor para grafos <strong>dispersos</strong>.</li>
+          <li><strong>BFS</strong> (cola, FIFO): por niveles, camino más corto en aristas (grafo no ponderado). <strong>DFS</strong> (pila/recursión): profundiza al máximo, detecta ciclos. Ambos $O(V+E)$.</li>
+          <li><strong>Dijkstra:</strong> pesos <strong>no negativos</strong>; extrae el nodo no visitado con menor distancia y relaja sus vecinos.</li>
+          <li><strong>Prim</strong> (min-heap, crece un árbol, bueno en grafos densos) vs. <strong>Kruskal</strong> (Union-Find, ordena aristas, bueno en dispersos) para el Árbol de Expansión Mínima (MST).</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">BFS y DFS</span>$$\text{BFS, DFS: } O(V{+}E)$$</div>
+        <div class="formula-card"><span class="etiqueta">Dijkstra (con min-heap)</span>$$\text{Dijkstra: } O((V{+}E)\log V)$$</div>
+      </div>
+
+      <div class="animacion" id="anim-grafo">
+        <div class="anim-cabecera">
+          <h3>🕸️ BFS vs. DFS sobre un grafo fijo</h3>
+          <p class="anim-desc">El mismo grafo de 7 nodos recorrido con BFS (cola) o DFS (pila); compará el orden de visita paso a paso.</p>
+        </div>
+        <canvas data-alto="320"></canvas>
+        <div class="controles">
+          <div class="control">
+            <label for="grafo-modo">Recorrido</label>
+            <select id="grafo-modo">
+              <option value="bfs">BFS (cola)</option>
+              <option value="dfs">DFS (pila)</option>
+            </select>
+          </div>
+          <button type="button" data-accion="paso">Paso</button>
+          <button type="button" class="secundario" data-accion="auto">▶ Auto</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p id="grafo-info" style="color:var(--tinta-2); font: 13px Consolas, monospace; margin:0 0 10px;">Cola (BFS): []</p>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> recorrido desde <strong>A</strong>. Morado = nodo en proceso. Celeste = descubierto pero pendiente. Azul sólido = visitado. La línea verde marca la última arista usada para descubrir un nodo. BFS visita por niveles (A,B,C,D,E,F,G); DFS profundiza al máximo antes de retroceder (A,B,D,E,F,C,G).</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-dijkstra">
+          <h3>5. Dijkstra sobre una tabla de distancias</h3>
+          <p>Aplicando el <code>dijkstra()</code> real de <code>GrafoClass.py</code> a un grafo ilustrativo con vértices $S,A,B,C,D$ y aristas $S{-}A{=}2$, $S{-}B{=}5$, $A{-}B{=}1$, $A{-}C{=}7$, $B{-}C{=}3$, $B{-}D{=}8$, $C{-}D{=}2$, partiendo de $S$:</p>
+          <pre><code>def dijkstra(self, inicio):
+    distancias = {v: float('inf') for v in self.grafo}
+    distancias[inicio] = 0
+    visitado = set()
+    while len(visitado) < len(self.grafo):
+        no_visitados = {v: distancias[v] for v in self.grafo if v not in visitado}
+        u = min(no_visitados, key=no_visitados.get)
+        visitado.add(u)
+        for v, peso in self.grafo[u].items():
+            if v not in visitado and distancias[u] + peso < distancias[v]:
+                distancias[v] = distancias[u] + peso</code></pre>
+          <div class="tabla-scroll">
+            <table>
+              <thead><tr><th>Iteración</th><th>$u$ extraído</th><th>$S$</th><th>$A$</th><th>$B$</th><th>$C$</th><th>$D$</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>S (0)</td><td>0</td><td>2</td><td>5</td><td>∞</td><td>∞</td></tr>
+                <tr><td>2</td><td>A (2)</td><td>0</td><td>2</td><td>3</td><td>9</td><td>∞</td></tr>
+                <tr><td>3</td><td>B (3)</td><td>0</td><td>2</td><td>3</td><td>6</td><td>11</td></tr>
+                <tr><td>4</td><td>C (6)</td><td>0</td><td>2</td><td>3</td><td>6</td><td>8</td></tr>
+                <tr><td>5</td><td>D (8)</td><td>0</td><td>2</td><td>3</td><td>6</td><td>8</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Distancias mínimas finales desde $S$: $A{=}2,\ B{=}3,\ C{=}6,\ D{=}8$. En cada iteración <code>min(no_visitados, key=...)</code> es, conceptualmente, el <code>Extraer_Mínimo</code> de un min-heap.</p>
+          <p class="fuente">Fuente: <code>GrafoClass.py</code>, código real de ayudantía.</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-bfs-dfs">
+          <summary><span class="resumen-ejercicio">7. Sobre el grafo del visualizador (A-B, A-C, B-D, B-E, C-F, E-F, F-G), da el orden de visita de BFS y de DFS partiendo de A.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p><strong>BFS</strong> (cola FIFO, por niveles): $A \to B, C$ (nivel 1) $\to D, E$ (vecinos nuevos de B) $\to F$ (vecino nuevo de C) $\to G$ (vecino nuevo de F).</p>
+            <p>Orden BFS: <strong>A, B, C, D, E, F, G</strong>.</p>
+            <p><strong>DFS</strong> (pila/recursión, profundiza al máximo): desde A baja por B, luego por D (sin salida, retrocede), luego por E, F, y desde F baja por C (sin salida nueva) y finalmente G.</p>
+            <p>Orden DFS: <strong>A, B, D, E, F, C, G</strong>.</p>
+            <p style="color:var(--tinta-2)">Verifica ambos órdenes ejecutando el visualizador de arriba con cada modo.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-dijkstra">
+          <summary><span class="resumen-ejercicio">8. Con el mismo grafo del ejemplo resuelto de Dijkstra, ejecuta el algoritmo partiendo de B en vez de S.</span> <span class="dificultad dificil">difícil</span></summary>
+          <div class="solucion">
+            <p>Grafo: $S{-}A{=}2$, $S{-}B{=}5$, $A{-}B{=}1$, $A{-}C{=}7$, $B{-}C{=}3$, $B{-}D{=}8$, $C{-}D{=}2$.</p>
+            <div class="tabla-scroll">
+              <table>
+                <thead><tr><th>Iteración</th><th>$u$ extraído</th><th>$B$</th><th>$S$</th><th>$A$</th><th>$C$</th><th>$D$</th></tr></thead>
+                <tbody>
+                  <tr><td>1</td><td>B (0)</td><td>0</td><td>5</td><td>1</td><td>3</td><td>8</td></tr>
+                  <tr><td>2</td><td>A (1)</td><td>0</td><td>3</td><td>1</td><td>3</td><td>8</td></tr>
+                  <tr><td>3</td><td>S (3)*</td><td>0</td><td>3</td><td>1</td><td>3</td><td>8</td></tr>
+                  <tr><td>4</td><td>C (3)</td><td>0</td><td>3</td><td>1</td><td>3</td><td>5</td></tr>
+                  <tr><td>5</td><td>D (5)</td><td>0</td><td>3</td><td>1</td><td>3</td><td>5</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>*En la iteración 3 hay <strong>empate</strong> entre $S$ y $C$ (ambos con distancia 3): <code>min()</code> elige el primero que encuentra, cualquiera de los dos es válido y no cambia el resultado final.</p>
+            <p>Distancias mínimas desde $B$: $A{=}1,\ S{=}3,\ C{=}3,\ D{=}5$.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 7 · ALGORITMOS DE ORDENAMIENTO -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u7">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">07</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Algoritmos de ordenamiento</h2>
+          <p class="unidad-sub">Comparar, mezclar o particionar: los algoritmos clásicos de ordenamiento y su análisis de complejidad — más la tabla comparativa de todo el curso.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-ordenamiento">
+        <h3>Algoritmos de ordenamiento</h3>
+        <ul>
+          <li><strong>Mergesort:</strong> estable, divide y combina, memoria extra $O(n)$.</li>
+          <li><strong>Quicksort:</strong> in-place, rápido en la práctica; el peor caso $O(n^2)$ se evita con buen pivote (mal pivote en arreglo ordenado → degenera).</li>
+          <li><strong>Inserción:</strong> muy eficiente en datos casi ordenados.</li>
+          <li><strong>Estabilidad</strong> (mantener orden relativo de iguales) ≠ <strong>in-place</strong> (sin memoria extra): mergesort es estable pero no in-place; quicksort es in-place pero no estable.</li>
+          <li>Ver la tabla comparativa completa más abajo.</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Casos $O(n\log n)$</span>$$O(n\log n)\ \text{(merge, quick promedio)}$$</div>
+        <div class="formula-card"><span class="etiqueta">Casos $O(n^2)$</span>$$O(n^2)\ \text{(burbuja, inserción, selección)}$$</div>
+      </div>
+
+      <div class="materia" id="tema-tabla-complejidades">
+        <h3>📊 Tabla comparativa de complejidades — todo el curso</h3>
+        <div class="tabla-scroll">
+          <table>
+            <thead>
+              <tr><th>Estructura / algoritmo</th><th>Mejor</th><th>Promedio</th><th>Peor</th><th>Notas</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Pila — push/pop/top</td><td>$O(1)$</td><td>$O(1)$</td><td>$O(1)$</td><td>por operación</td></tr>
+              <tr><td>Cola — enqueue/dequeue</td><td>$O(1)$</td><td>$O(1)$</td><td>$O(1)$</td><td>por operación</td></tr>
+              <tr><td>Lista enlazada — acceso por posición</td><td>$O(1)$</td><td>$O(n)$</td><td>$O(n)$</td><td>insertar/eliminar $O(1)$ con nodo dado</td></tr>
+              <tr><td>Búsqueda lineal (arreglo)</td><td>$O(1)$</td><td>$O(n)$</td><td>$O(n)$</td><td>—</td></tr>
+              <tr><td>Búsqueda binaria (arreglo ordenado)</td><td>$O(1)$</td><td>$O(\log n)$</td><td>$O(\log n)$</td><td>requiere arreglo ordenado</td></tr>
+              <tr><td>BST — buscar/insertar/eliminar</td><td>$O(\log n)$</td><td>$O(\log n)$</td><td>$O(n)$</td><td>$O(n)$ si degenera en lista</td></tr>
+              <tr><td>AVL — buscar/insertar/eliminar</td><td>$O(\log n)$</td><td>$O(\log n)$</td><td>$O(\log n)$</td><td>balance garantizado por rotaciones</td></tr>
+              <tr><td>Árbol B/B+ (grado $t$)</td><td>$O(\log_t n)$</td><td>$O(\log_t n)$</td><td>$O(\log_t n)$</td><td>optimizado para disco</td></tr>
+              <tr><td>Heap — insertar</td><td>$O(1)$</td><td>$O(\log n)$</td><td>$O(\log n)$</td><td>sift-up</td></tr>
+              <tr><td>Heap — extraer mín/máx</td><td>$O(\log n)$</td><td>$O(\log n)$</td><td>$O(\log n)$</td><td>sift-down</td></tr>
+              <tr><td>Heap — ver mín/máx (peek)</td><td>$O(1)$</td><td>$O(1)$</td><td>$O(1)$</td><td>está en la raíz</td></tr>
+              <tr><td>BFS / DFS</td><td>$O(V{+}E)$</td><td>$O(V{+}E)$</td><td>$O(V{+}E)$</td><td>requieren arreglo de visitados</td></tr>
+              <tr><td>Dijkstra (con min-heap)</td><td>—</td><td>$O((V{+}E)\log V)$</td><td>$O((V{+}E)\log V)$</td><td>pesos no negativos</td></tr>
+              <tr><td>Prim (con min-heap, MST)</td><td>—</td><td>$O(E\log V)$</td><td>$O(E\log V)$</td><td>bueno en grafos densos</td></tr>
+              <tr><td>Kruskal (Union-Find, MST)</td><td>—</td><td>$O(E\log E)$</td><td>$O(E\log E)$</td><td>bueno en grafos dispersos</td></tr>
+              <tr><td>Huffman (construcción, min-heap)</td><td>$O(n\log n)$</td><td>$O(n\log n)$</td><td>$O(n\log n)$</td><td>$n$ = símbolos distintos</td></tr>
+              <tr><td>Ordenamiento burbuja</td><td>$O(n)$</td><td>$O(n^2)$</td><td>$O(n^2)$</td><td>in-place, estable</td></tr>
+              <tr><td>Ordenamiento inserción</td><td>$O(n)$</td><td>$O(n^2)$</td><td>$O(n^2)$</td><td>in-place, estable, bueno casi-ordenado</td></tr>
+              <tr><td>Ordenamiento selección</td><td>$O(n^2)$</td><td>$O(n^2)$</td><td>$O(n^2)$</td><td>in-place, no estable</td></tr>
+              <tr><td>Mergesort</td><td>$O(n\log n)$</td><td>$O(n\log n)$</td><td>$O(n\log n)$</td><td>estable, memoria extra $O(n)$</td></tr>
+              <tr><td>Quicksort</td><td>$O(n\log n)$</td><td>$O(n\log n)$</td><td>$O(n^2)$</td><td>in-place, no estable</td></tr>
+              <tr><td>Heap Sort</td><td>$O(n\log n)$</td><td>$O(n\log n)$</td><td>$O(n\log n)$</td><td>in-place, no estable</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="animacion" id="anim-ordenamiento">
+        <div class="anim-cabecera">
+          <h3>🔀 Ordenamiento: burbuja / inserción / quicksort</h3>
+          <p class="anim-desc">Elegí un algoritmo y avanzá paso a paso: cada clic ejecuta exactamente una comparación o un intercambio, igual que el código real de <code>Sort.c</code> del curso.</p>
+        </div>
+        <canvas data-alto="220"></canvas>
+        <div class="controles">
+          <div class="control">
+            <label for="sort-algo">Algoritmo</label>
+            <select id="sort-algo">
+              <option value="bubble">Burbuja</option>
+              <option value="insertion">Inserción</option>
+              <option value="quick">Quicksort</option>
+            </select>
+          </div>
+          <button type="button" data-accion="paso">Paso</button>
+          <button type="button" class="secundario" data-accion="auto">▶ Auto</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p id="sort-info" style="color:var(--tinta-2); font: 13px Consolas, monospace; margin:0 0 10px;">Comparaciones: 0 · Intercambios/movimientos: 0</p>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> naranja = comparación en curso; morado = intercambio (o desplazamiento en inserción); verde = elemento ya en su posición final.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-quicksort">
+          <h3>6. Quicksort — traza de <code>partition</code>/<code>quickSort</code></h3>
+          <pre><code>int partition(int arr[], int low, int high) {
+    int pivot = arr[high];
+    int i = low - 1;
+    for (int j = low; j < high; j++) {
+        if (arr[j] <= pivot) {
+            i++;
+            swap(&arr[i], &arr[j]);
+        }
+    }
+    swap(&arr[i + 1], &arr[high]);
+    return i + 1;
+}
+
+void quickSort(int arr[], int low, int high) {
+    if (low < high) {
+        int pivotIndex = partition(arr, low, high);
+        quickSort(arr, low, pivotIndex - 1);
+        quickSort(arr, pivotIndex + 1, high);
+    }
+}</code></pre>
+          <p><strong>Traza</strong> sobre <code>[8, 3, 9, 1, 6, 4]</code>:</p>
+          <p><code>partition(arr,0,5)</code>, pivote=4: compara 8 (no), 3≤4 → swap(0,1) → <code>[3,8,9,1,6,4]</code>; 9 (no); 1≤4 → swap(1,3) → <code>[3,1,9,8,6,4]</code>; 6 (no). Swap final(2,5) → <code>[3,1,4,8,6,9]</code>. Pivote 4 queda en índice 2.</p>
+          <p>Recursión izquierda <code>[3,1]</code> (índices 0-1): pivote=1, swap(0,1) → <code>[1,3,4,8,6,9]</code>. Ya ordenado.</p>
+          <p>Recursión derecha <code>[8,6,9]</code> (índices 3-5): pivote=9, ambos ≤9, sin cambios de orden real, queda <code>[8,6,9]</code>, pivote 9 en índice 5. Subrecursión <code>[8,6]</code>: pivote=6, 8&gt;6 no cumple, swap final(3,4) → intercambia 8 y 6 → <code>[6,8]</code>.</p>
+          <p>Arreglo final ordenado: <code>[1, 3, 4, 6, 8, 9]</code>.</p>
+          <p class="fuente">Fuente: <code>Sort.c</code>, código real de ayudantía.</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-ordenamiento">
+          <summary><span class="resumen-ejercicio">10. Cuenta comparaciones e intercambios de Bubble Sort y de Quicksort (pivote = último elemento) al ordenar [5, 1, 4, 2, 8]. ¿Cuál hace menos operaciones aquí?</span> <span class="dificultad dificil">difícil</span></summary>
+          <div class="solucion">
+            <p><strong>Bubble Sort</strong> (sin optimización de corte anticipado, recorre todas las pasadas): pasada 1 hace 4 comparaciones (2 swaps), pasada 2 hace 3 (1 swap), pasada 3 hace 2 (0 swaps), pasada 4 hace 1 (0 swaps).</p>
+            <p>Total: $4+3+2+1=\mathbf{10}$ comparaciones, $\mathbf{4}$ intercambios reales.</p>
+            <p><strong>Quicksort</strong>: <code>partition(0,4)</code> con pivote 8 hace 4 comparaciones (sin cambios visibles, todo ≤8). Recursión izquierda <code>[5,1,4,2]</code>: <code>partition(0,3)</code> con pivote 2 hace 3 comparaciones y 2 intercambios reales, dejando <code>[1,2,4,5]</code>; luego <code>partition(2,3)</code> sobre <code>[4,5]</code> con pivote 5 hace 1 comparación.</p>
+            <p>Total: $4+3+1=\mathbf{8}$ comparaciones.</p>
+            <p><strong>Conclusión:</strong> en este arreglo, Quicksort hace menos comparaciones (8 vs. 10). Para arreglos pequeños la diferencia es poco relevante en la práctica, pero anticipa el comportamiento asintótico $O(n\log n)$ promedio de Quicksort frente al $O(n^2)$ de Bubble Sort.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ============================================================ */
+  /* Helper de layout compartido (BST y Huffman)                   */
+  /* ============================================================ */
+  function layoutArbol(nodo, profundidad, contador, posiciones) {
+    if (!nodo) return;
+    layoutArbol(nodo.izq, profundidad + 1, contador, posiciones);
+    posiciones.push({ nodo: nodo, idx: contador.i, prof: profundidad });
+    contador.i++;
+    layoutArbol(nodo.der, profundidad + 1, contador, posiciones);
+  }
+
+  /* ============================================================ */
+  /* 1. VISUALIZADOR DE ORDENAMIENTO                                */
+  /* ============================================================ */
+  function* bubbleSortGen(arr) {
+    var n = arr.length;
+    for (var i = 0; i < n - 1; i++) {
+      for (var j = 0; j < n - 1 - i; j++) {
+        yield { tipo: "comparar", i: j, j: j + 1 };
+        if (arr[j] > arr[j + 1]) {
+          var tmp = arr[j]; arr[j] = arr[j + 1]; arr[j + 1] = tmp;
+          yield { tipo: "intercambiar", i: j, j: j + 1 };
+        }
+      }
+    }
+    yield { tipo: "fin" };
+  }
+
+  function* insertionSortGen(arr) {
+    var n = arr.length;
+    for (var i = 1; i < n; i++) {
+      var key = arr[i];
+      var j = i - 1;
+      while (j >= 0) {
+        yield { tipo: "comparar", i: j, j: j + 1 };
+        if (arr[j] > key) {
+          arr[j + 1] = arr[j];
+          yield { tipo: "mover", i: j, j: j + 1 };
+          j--;
+        } else break;
+      }
+      arr[j + 1] = key;
+      yield { tipo: "colocar", pos: j + 1 };
+    }
+    yield { tipo: "fin" };
+  }
+
+  function* quickSortGen(arr) {
+    function* qs(low, high) {
+      if (low < high) {
+        var pivot = arr[high];
+        var i = low - 1;
+        for (var j = low; j < high; j++) {
+          yield { tipo: "comparar", i: j, j: high };
+          if (arr[j] <= pivot) {
+            i++;
+            var t1 = arr[i]; arr[i] = arr[j]; arr[j] = t1;
+            yield { tipo: "intercambiar", i: i, j: j };
+          }
+        }
+        var t2 = arr[i + 1]; arr[i + 1] = arr[high]; arr[high] = t2;
+        yield { tipo: "intercambiar", i: i + 1, j: high, pivote: true };
+        var pivotIndex = i + 1;
+        yield* qs(low, pivotIndex - 1);
+        yield* qs(pivotIndex + 1, high);
+      }
+    }
+    yield* qs(0, arr.length - 1);
+    yield { tipo: "fin" };
+  }
+
+  var sortBase = [23, 4, 17, 9, 31, 2, 14, 27, 6, 19];
+
+  Anim.registrar("anim-ordenamiento", function (sim) {
+    var estado = { arr: sortBase.slice(), gen: null, actual: null, comparaciones: 0, intercambios: 0, terminado: false, temporizador: null };
+
+    function crearGenerador() {
+      var copia = estado.arr.slice();
+      var algo = document.getElementById("sort-algo").value;
+      if (algo === "insertion") estado.gen = insertionSortGen(copia);
+      else if (algo === "quick") estado.gen = quickSortGen(copia);
+      else estado.gen = bubbleSortGen(copia);
+      estado.arr = copia;
+    }
+
+    function actualizarInfo() {
+      var info = document.getElementById("sort-info");
+      if (!info) return;
+      var texto = "Comparaciones: " + estado.comparaciones + " · Intercambios/movimientos: " + estado.intercambios;
+      if (estado.terminado) texto += " · ¡Ordenado!";
+      else if (estado.actual) texto += " · último paso: " + estado.actual.tipo;
+      info.textContent = texto;
+    }
+
+    function detenerAuto() {
+      if (estado.temporizador) { clearInterval(estado.temporizador); estado.temporizador = null; }
+      var btn = sim.cont.querySelector('[data-accion="auto"]');
+      if (btn) btn.textContent = "▶ Auto";
+    }
+
+    function paso() {
+      if (estado.terminado) return;
+      if (!estado.gen) crearGenerador();
+      var r = estado.gen.next();
+      if (r.done) {
+        estado.terminado = true;
+        estado.actual = null;
+        detenerAuto();
+      } else {
+        estado.actual = r.value;
+        if (r.value.tipo === "comparar") estado.comparaciones++;
+        if (r.value.tipo === "intercambiar" || r.value.tipo === "mover") estado.intercambios++;
+      }
+      actualizarInfo();
+      sim.redibujar();
+    }
+
+    function auto() {
+      if (estado.temporizador) { detenerAuto(); return; }
+      var btn = sim.cont.querySelector('[data-accion="auto"]');
+      if (btn) btn.textContent = "⏸ Pausa";
+      estado.temporizador = setInterval(function () {
+        if (estado.terminado) { detenerAuto(); return; }
+        paso();
+      }, 450);
+    }
+
+    function reiniciar() {
+      detenerAuto();
+      estado.arr = sortBase.slice();
+      estado.gen = null;
+      estado.actual = null;
+      estado.comparaciones = 0;
+      estado.intercambios = 0;
+      estado.terminado = false;
+      actualizarInfo();
+      sim.redibujar();
+    }
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var arr = estado.arr;
+      var n = arr.length;
+      var max = Math.max.apply(null, sortBase) * 1.15;
+      var gap = 8;
+      var barW = (w - gap * (n + 1)) / n;
+      var base = colorVar("--s2");
+      var comp = colorVar("--futuro");
+      var swap = colorVar("--s3");
+      var ok = colorVar("--ok");
+      var tinta = colorVar("--tinta");
+      var ev = estado.actual;
+      for (var i = 0; i < n; i++) {
+        var x = gap + i * (barW + gap);
+        var barH = (arr[i] / max) * (h - 34);
+        var y = h - barH - 20;
+        var color = base;
+        if (estado.terminado) color = ok;
+        else if (ev) {
+          if ((ev.tipo === "comparar" || ev.tipo === "intercambiar") && (i === ev.i || i === ev.j)) color = ev.tipo === "comparar" ? comp : swap;
+          if (ev.tipo === "mover" && (i === ev.i || i === ev.j)) color = swap;
+          if (ev.tipo === "colocar" && i === ev.pos) color = ok;
+          if (ev.pivote && i === ev.j) color = swap;
+        }
+        ctx.fillStyle = color;
+        ctx.fillRect(x, y, barW, barH);
+        ctx.fillStyle = tinta;
+        ctx.font = "12px Consolas, monospace";
+        ctx.textAlign = "center";
+        ctx.fillText(String(arr[i]), x + barW / 2, h - 6);
+      }
+      ctx.textAlign = "left";
+    });
+
+    document.getElementById("sort-algo").addEventListener("change", reiniciar);
+    sim.botones({ paso: paso, auto: auto, reiniciar: reiniciar });
+    actualizarInfo();
+  });
+
+  /* ============================================================ */
+  /* 2. VISUALIZADOR BFS / DFS                                     */
+  /* ============================================================ */
+  var grafoNodos = {
+    A: { x: 70, y: 170 }, B: { x: 210, y: 70 }, C: { x: 210, y: 270 },
+    D: { x: 360, y: 40 }, E: { x: 360, y: 150 }, F: { x: 420, y: 270 }, G: { x: 550, y: 220 }
+  };
+  var grafoAristasDef = [["A", "B"], ["A", "C"], ["B", "D"], ["B", "E"], ["C", "F"], ["E", "F"], ["F", "G"]];
+  var grafoAdj = {};
+  (function construirAdj() {
+    for (var k in grafoNodos) grafoAdj[k] = [];
+    for (var i = 0; i < grafoAristasDef.length; i++) {
+      var a = grafoAristasDef[i][0], b = grafoAristasDef[i][1];
+      grafoAdj[a].push(b);
+      grafoAdj[b].push(a);
+    }
+  })();
+
+  function* bfsGen(inicio) {
+    var visitado = {}; visitado[inicio] = true;
+    var cola = [inicio];
+    yield { tipo: "inicio", nodo: inicio, estructura: cola.slice() };
+    while (cola.length) {
+      var u = cola.shift();
+      yield { tipo: "procesar", nodo: u, estructura: cola.slice() };
+      var vecinos = grafoAdj[u];
+      for (var k = 0; k < vecinos.length; k++) {
+        var v = vecinos[k];
+        if (!visitado[v]) {
+          visitado[v] = true;
+          cola.push(v);
+          yield { tipo: "visitar", nodo: v, desde: u, estructura: cola.slice() };
+        }
+      }
+    }
+    yield { tipo: "fin" };
+  }
+
+  function* dfsGen(inicio) {
+    var visitado = {};
+    var pila = [inicio];
+    yield { tipo: "inicio", nodo: inicio, estructura: pila.slice() };
+    while (pila.length) {
+      var u = pila.pop();
+      if (visitado[u]) { yield { tipo: "descartar", nodo: u, estructura: pila.slice() }; continue; }
+      visitado[u] = true;
+      yield { tipo: "procesar", nodo: u, estructura: pila.slice() };
+      var vecinos = grafoAdj[u].slice().reverse();
+      for (var k = 0; k < vecinos.length; k++) {
+        var v = vecinos[k];
+        if (!visitado[v]) {
+          pila.push(v);
+          yield { tipo: "apilar", nodo: v, desde: u, estructura: pila.slice() };
+        }
+      }
+    }
+    yield { tipo: "fin" };
+  }
+
+  Anim.registrar("anim-grafo", function (sim) {
+    var estado = { gen: null, visitados: {}, descubiertos: {}, actual: null, ultimaArista: null, estructura: [], terminado: false, temporizador: null };
+
+    function crearGenerador() {
+      var modo = document.getElementById("grafo-modo").value;
+      estado.gen = modo === "dfs" ? dfsGen("A") : bfsGen("A");
+    }
+
+    function actualizarInfo() {
+      var info = document.getElementById("grafo-info");
+      if (!info) return;
+      var modo = document.getElementById("grafo-modo").value === "dfs" ? "Pila (DFS)" : "Cola (BFS)";
+      var texto = modo + ": [" + estado.estructura.join(", ") + "]";
+      if (estado.terminado) texto += " · recorrido completo";
+      info.textContent = texto;
+    }
+
+    function detenerAuto() {
+      if (estado.temporizador) { clearInterval(estado.temporizador); estado.temporizador = null; }
+      var btn = sim.cont.querySelector('[data-accion="auto"]');
+      if (btn) btn.textContent = "▶ Auto";
+    }
+
+    function paso() {
+      if (estado.terminado) return;
+      if (!estado.gen) crearGenerador();
+      var r = estado.gen.next();
+      if (r.done) {
+        estado.terminado = true;
+        estado.actual = null;
+        detenerAuto();
+      } else {
+        var ev = r.value;
+        if (ev.tipo === "inicio") { estado.descubiertos[ev.nodo] = true; estado.estructura = ev.estructura; }
+        if (ev.tipo === "procesar") { estado.actual = ev.nodo; estado.visitados[ev.nodo] = true; estado.estructura = ev.estructura; estado.ultimaArista = null; }
+        if (ev.tipo === "visitar" || ev.tipo === "apilar") { estado.descubiertos[ev.nodo] = true; estado.ultimaArista = [ev.desde, ev.nodo]; estado.estructura = ev.estructura; }
+        if (ev.tipo === "descartar") { estado.estructura = ev.estructura; }
+      }
+      actualizarInfo();
+      sim.redibujar();
+    }
+
+    function auto() {
+      if (estado.temporizador) { detenerAuto(); return; }
+      var btn = sim.cont.querySelector('[data-accion="auto"]');
+      if (btn) btn.textContent = "⏸ Pausa";
+      estado.temporizador = setInterval(function () {
+        if (estado.terminado) { detenerAuto(); return; }
+        paso();
+      }, 600);
+    }
+
+    function reiniciar() {
+      detenerAuto();
+      estado.gen = null;
+      estado.visitados = {};
+      estado.descubiertos = {};
+      estado.actual = null;
+      estado.ultimaArista = null;
+      estado.estructura = [];
+      estado.terminado = false;
+      actualizarInfo();
+      sim.redibujar();
+    }
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var borde = colorVar("--borde");
+      var panel = colorVar("--panel");
+      var acento = colorVar("--acento");
+      var acentoSuave = colorVar("--acento-tenue");
+      var s3 = colorVar("--s3");
+      var ok = colorVar("--ok");
+      var tinta = colorVar("--tinta");
+      var escala = w / 600;
+
+      for (var i = 0; i < grafoAristasDef.length; i++) {
+        var a = grafoNodos[grafoAristasDef[i][0]], b = grafoNodos[grafoAristasDef[i][1]];
+        var esUltima = estado.ultimaArista && (
+          (estado.ultimaArista[0] === grafoAristasDef[i][0] && estado.ultimaArista[1] === grafoAristasDef[i][1]) ||
+          (estado.ultimaArista[0] === grafoAristasDef[i][1] && estado.ultimaArista[1] === grafoAristasDef[i][0]));
+        ctx.strokeStyle = esUltima ? ok : borde;
+        ctx.lineWidth = esUltima ? 3 : 1.6;
+        ctx.beginPath();
+        ctx.moveTo(a.x * escala, a.y * escala);
+        ctx.lineTo(b.x * escala, b.y * escala);
+        ctx.stroke();
+      }
+
+      var r = 20 * escala;
+      for (var k in grafoNodos) {
+        var p = grafoNodos[k];
+        var cx = p.x * escala, cy = p.y * escala;
+        var relleno = panel, trazo = borde;
+        if (estado.visitados[k]) { relleno = acento; trazo = acento; }
+        else if (estado.descubiertos[k]) { relleno = acentoSuave; trazo = acento; }
+        if (estado.actual === k) { relleno = s3; trazo = s3; }
+        ctx.beginPath();
+        ctx.arc(cx, cy, r, 0, Math.PI * 2);
+        ctx.fillStyle = relleno;
+        ctx.fill();
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = trazo;
+        ctx.stroke();
+        ctx.fillStyle = estado.visitados[k] || estado.actual === k ? "#fff" : tinta;
+        ctx.font = "bold 14px Consolas, monospace";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText(k, cx, cy);
+      }
+      ctx.textBaseline = "alphabetic";
+      ctx.textAlign = "left";
+    });
+
+    document.getElementById("grafo-modo").addEventListener("change", reiniciar);
+    sim.botones({ paso: paso, auto: auto, reiniciar: reiniciar });
+    actualizarInfo();
+  });
+
+  /* ============================================================ */
+  /* 3. VISUALIZADOR DE INSERCIÓN EN BST                            */
+  /* ============================================================ */
+  Anim.registrar("anim-bst", function (sim) {
+    var estado = { raiz: null, pendiente: null, ultimoEvento: null };
+
+    function* insertarGen(valor) {
+      if (estado.raiz === null) {
+        estado.raiz = { valor: valor, izq: null, der: null };
+        yield { tipo: "insertado", valor: valor };
+        return;
+      }
+      var actual = estado.raiz;
+      while (true) {
+        yield { tipo: "comparar", nodo: actual };
+        if (valor < actual.valor) {
+          if (actual.izq === null) {
+            actual.izq = { valor: valor, izq: null, der: null };
+            yield { tipo: "insertado", valor: valor, nodoNuevo: actual.izq };
+            return;
+          }
+          actual = actual.izq;
+        } else if (valor > actual.valor) {
+          if (actual.der === null) {
+            actual.der = { valor: valor, izq: null, der: null };
+            yield { tipo: "insertado", valor: valor, nodoNuevo: actual.der };
+            return;
+          }
+          actual = actual.der;
+        } else {
+          yield { tipo: "duplicado", valor: valor };
+          return;
+        }
+      }
+    }
+
+    function actualizarInfo() {
+      var info = document.getElementById("bst-info");
+      if (!info) return;
+      var ev = estado.ultimoEvento;
+      var texto = "Sin inserción en curso. Escribe un valor y presiona Paso.";
+      /* BUG DE LA V1 (corregido acá): la versión anterior decidía qué texto
+         mostrar mirando si `estado.pendiente` seguía activo, y en ese caso
+         asumía siempre `ev.nodo.valor` — pero los eventos "insertado" y
+         "duplicado" NO tienen propiedad `.nodo` (solo "comparar" la tiene).
+         Al insertar un nodo o toparse con un duplicado, `pendiente` sigue
+         siendo verdadero un paso más (el generador recién termina en el
+         siguiente `.next()`), así que ese código leía `undefined.valor` y
+         explotaba con "Cannot read properties of undefined (reading
+         'valor')". Acá se decide el texto mirando `ev.tipo` directamente,
+         nunca `ev.nodo` salvo cuando `ev.tipo === "comparar"`. */
+      if (ev && ev.tipo === "comparar") texto = "Comparando con " + ev.nodo.valor + "…";
+      else if (ev && ev.tipo === "insertado") texto = "Insertado " + ev.valor + ".";
+      else if (ev && ev.tipo === "duplicado") texto = "El valor " + ev.valor + " ya existe (no se permiten duplicados).";
+      else if (estado.pendiente) texto = "Iniciando inserción…";
+      info.textContent = texto;
+    }
+
+    function paso() {
+      if (!estado.pendiente) {
+        var val = parseInt(document.getElementById("bst-valor").value, 10);
+        if (isNaN(val)) return;
+        estado.pendiente = insertarGen(val);
+      }
+      var r = estado.pendiente.next();
+      if (r.done) {
+        estado.pendiente = null;
+      } else {
+        estado.ultimoEvento = r.value;
+      }
+      actualizarInfo();
+      sim.redibujar();
+    }
+
+    function reiniciar() {
+      estado.raiz = null;
+      estado.pendiente = null;
+      estado.ultimoEvento = null;
+      actualizarInfo();
+      sim.redibujar();
+    }
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      if (!estado.raiz) {
+        ctx.fillStyle = colorVar("--tinta-2");
+        ctx.font = "14px Consolas, monospace";
+        ctx.textAlign = "center";
+        ctx.fillText("Árbol vacío — inserta un valor", w / 2, h / 2);
+        ctx.textAlign = "left";
+        return;
+      }
+      var posiciones = [];
+      var contador = { i: 0 };
+      layoutArbol(estado.raiz, 0, contador, posiciones);
+      var n = Math.max(contador.i, 1);
+      var spacingX = (w - 60) / Math.max(n - 1, 1);
+      var spacingY = 62;
+      for (var i = 0; i < posiciones.length; i++) {
+        var pnt = posiciones[i];
+        pnt.x = n === 1 ? w / 2 : 30 + pnt.idx * spacingX;
+        pnt.y = 30 + pnt.prof * spacingY;
+      }
+      var borde = colorVar("--borde");
+      ctx.strokeStyle = borde; ctx.lineWidth = 1.6;
+      function dibujarAristas(nodo) {
+        if (!nodo) return;
+        var p = posiciones.filter(function (q) { return q.nodo === nodo; })[0];
+        if (nodo.izq) {
+          var pi = posiciones.filter(function (q) { return q.nodo === nodo.izq; })[0];
+          ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(pi.x, pi.y); ctx.stroke();
+          dibujarAristas(nodo.izq);
+        }
+        if (nodo.der) {
+          var pd = posiciones.filter(function (q) { return q.nodo === nodo.der; })[0];
+          ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(pd.x, pd.y); ctx.stroke();
+          dibujarAristas(nodo.der);
+        }
+      }
+      dibujarAristas(estado.raiz);
+
+      var panel = colorVar("--panel");
+      var acento = colorVar("--acento");
+      var s3 = colorVar("--s3");
+      var ok = colorVar("--ok");
+      var tinta = colorVar("--tinta");
+      var ev = estado.ultimoEvento;
+      var r2 = 18;
+      for (var j = 0; j < posiciones.length; j++) {
+        var pn = posiciones[j];
+        var relleno = panel, trazo = acento, texto = tinta;
+        if (ev && ev.tipo === "comparar" && ev.nodo === pn.nodo) { relleno = s3; trazo = s3; texto = "#fff"; }
+        if (ev && ev.tipo === "insertado" && ev.nodoNuevo === pn.nodo) { relleno = ok; trazo = ok; texto = "#fff"; }
+        if (ev && ev.tipo === "insertado" && !ev.nodoNuevo && estado.raiz === pn.nodo && ev.valor === pn.nodo.valor) { relleno = ok; trazo = ok; texto = "#fff"; }
+        ctx.beginPath();
+        ctx.arc(pn.x, pn.y, r2, 0, Math.PI * 2);
+        ctx.fillStyle = relleno;
+        ctx.fill();
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = trazo;
+        ctx.stroke();
+        ctx.fillStyle = texto;
+        ctx.font = "bold 13px Consolas, monospace";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText(String(pn.nodo.valor), pn.x, pn.y);
+      }
+      ctx.textBaseline = "alphabetic";
+      ctx.textAlign = "left";
+    });
+
+    sim.botones({ paso: paso, reiniciar: reiniciar });
+    actualizarInfo();
+  });
+
+  /* ============================================================ */
+  /* 4. VISUALIZADOR DE HUFFMAN                                    */
+  /* ============================================================ */
+  Anim.registrar("anim-huffman", function (sim) {
+    var estado = { bosque: [], terminado: false, ultimaFusion: null, siguienteId: 0 };
+
+    function calcularCodigos(nodo, prefijo, out) {
+      if (nodo.simbolo !== null) { out[nodo.simbolo] = prefijo || "0"; return; }
+      if (nodo.izq) calcularCodigos(nodo.izq, prefijo + "0", out);
+      if (nodo.der) calcularCodigos(nodo.der, prefijo + "1", out);
+    }
+
+    function actualizarInfo() {
+      var info = document.getElementById("huffman-info");
+      var tablaDiv = document.getElementById("huffman-codigos");
+      if (info) {
+        if (estado.terminado && estado.bosque.length === 1) info.textContent = "Árbol completo. Códigos calculados abajo.";
+        else info.textContent = "Árboles en el bosque: " + estado.bosque.length + " — presiona Paso para fusionar los dos de menor frecuencia.";
+      }
+      if (!tablaDiv) return;
+      if (estado.terminado && estado.bosque.length === 1) {
+        var codigos = {};
+        calcularCodigos(estado.bosque[0], "", codigos);
+        var filas = Object.keys(codigos).sort().map(function (s) {
+          return "<tr><td>" + s + "</td><td>" + codigos[s] + "</td><td>" + codigos[s].length + " bits</td></tr>";
+        }).join("");
+        tablaDiv.innerHTML = "<div class=\"tabla-scroll\"><table><thead><tr><th>Símbolo</th><th>Código</th><th>Longitud</th></tr></thead><tbody>" + filas + "</tbody></table></div>";
+      } else {
+        tablaDiv.innerHTML = "";
+      }
+    }
+
+    function construir() {
+      var campo = document.getElementById("huffman-texto");
+      var texto = (campo.value || "ABRACADABRA").toUpperCase().replace(/[^A-ZÑ0-9]/g, "");
+      if (!texto) texto = "ABRACADABRA";
+      var frecuencias = {};
+      for (var i = 0; i < texto.length; i++) {
+        var c = texto.charAt(i);
+        frecuencias[c] = (frecuencias[c] || 0) + 1;
+      }
+      var bosque = [];
+      var id = 0;
+      var simbolos = Object.keys(frecuencias).sort();
+      for (var k = 0; k < simbolos.length; k++) {
+        bosque.push({ id: id++, simbolo: simbolos[k], freq: frecuencias[simbolos[k]], izq: null, der: null });
+      }
+      estado.bosque = bosque;
+      estado.siguienteId = id;
+      estado.terminado = bosque.length <= 1;
+      estado.ultimaFusion = null;
+      actualizarInfo();
+      sim.redibujar();
+    }
+
+    function paso() {
+      if (estado.bosque.length === 0) { construir(); return; }
+      if (estado.terminado || estado.bosque.length < 2) { estado.terminado = true; actualizarInfo(); return; }
+      var ordenado = estado.bosque.slice().sort(function (a, b) { return a.freq - b.freq || a.id - b.id; });
+      var n1 = ordenado[0], n2 = ordenado[1];
+      var padre = { id: estado.siguienteId++, simbolo: null, freq: n1.freq + n2.freq, izq: n1, der: n2 };
+      estado.bosque = estado.bosque.filter(function (n) { return n !== n1 && n !== n2; });
+      estado.bosque.push(padre);
+      estado.ultimaFusion = { n1: n1, n2: n2, padre: padre };
+      if (estado.bosque.length === 1) estado.terminado = true;
+      actualizarInfo();
+      sim.redibujar();
+    }
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      if (estado.bosque.length === 0) {
+        ctx.fillStyle = colorVar("--tinta-2");
+        ctx.font = "14px Consolas, monospace";
+        ctx.textAlign = "center";
+        ctx.fillText("Escribe una palabra y presiona Construir", w / 2, h / 2);
+        ctx.textAlign = "left";
+        return;
+      }
+      var ordenado = estado.bosque.slice().sort(function (a, b) { return a.freq - b.freq || a.id - b.id; });
+      var contador = { i: 0 };
+      var posiciones = [];
+      for (var t1 = 0; t1 < ordenado.length; t1++) layoutArbol(ordenado[t1], 0, contador, posiciones);
+      var n = Math.max(contador.i, 1);
+      var spacingX = (w - 50) / Math.max(n - 1, 1);
+      var spacingY = 54;
+      for (var i = 0; i < posiciones.length; i++) {
+        var pnt = posiciones[i];
+        pnt.x = n === 1 ? w / 2 : 25 + pnt.idx * spacingX;
+        pnt.y = 26 + pnt.prof * spacingY;
+      }
+      var borde = colorVar("--borde");
+      ctx.strokeStyle = borde; ctx.lineWidth = 1.4;
+      function buscar(nodo) { return posiciones.filter(function (q) { return q.nodo === nodo; })[0]; }
+      function dibujarAristas(nodo) {
+        if (!nodo) return;
+        var p = buscar(nodo);
+        if (nodo.izq) { var pi = buscar(nodo.izq); ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(pi.x, pi.y); ctx.stroke(); dibujarAristas(nodo.izq); }
+        if (nodo.der) { var pd = buscar(nodo.der); ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(pd.x, pd.y); ctx.stroke(); dibujarAristas(nodo.der); }
+      }
+      for (var r0 = 0; r0 < ordenado.length; r0++) dibujarAristas(ordenado[r0]);
+
+      var panel = colorVar("--panel");
+      var acentoSuave = colorVar("--acento-tenue");
+      var acento = colorVar("--acento");
+      var s3 = colorVar("--s3");
+      var ok = colorVar("--ok");
+      var tinta = colorVar("--tinta");
+      var fus = estado.ultimaFusion;
+      var rad = 17;
+      for (var j = 0; j < posiciones.length; j++) {
+        var pn = posiciones[j];
+        var relleno = pn.nodo.simbolo !== null ? panel : acentoSuave;
+        var trazo = acento, txtColor = tinta;
+        if (fus && (fus.n1 === pn.nodo || fus.n2 === pn.nodo)) { relleno = s3; trazo = s3; txtColor = "#fff"; }
+        if (fus && fus.padre === pn.nodo) { relleno = ok; trazo = ok; txtColor = "#fff"; }
+        ctx.beginPath();
+        ctx.arc(pn.x, pn.y, rad, 0, Math.PI * 2);
+        ctx.fillStyle = relleno;
+        ctx.fill();
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = trazo;
+        ctx.stroke();
+        ctx.fillStyle = txtColor;
+        ctx.font = "bold 11px Consolas, monospace";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        var etiqueta = pn.nodo.simbolo !== null ? pn.nodo.simbolo + ":" + pn.nodo.freq : String(pn.nodo.freq);
+        ctx.fillText(etiqueta, pn.x, pn.y);
+      }
+      ctx.textBaseline = "alphabetic";
+      ctx.textAlign = "left";
+    });
+
+    sim.botones({ paso: paso, construir: construir });
+    construir();
+  });
+
+})();
+</script>
+</body>
+</html>

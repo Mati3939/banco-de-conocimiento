@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="es" data-tema="oscuro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📐 Introducción al Cálculo — Biblioteca</title>
+<link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../../assets/vendor/fuentes/fuentes.css">
+<link rel="stylesheet" href="../../assets/css/observatorio.css">
+<script>window.RUTA_BASE = "../../";</script>
+<script src="../../assets/vendor/katex/katex.min.js"></script>
+<script src="../../assets/vendor/katex/auto-render.min.js"></script>
+<script src="../../assets/vendor/gsap/gsap.min.js"></script>
+<script src="../../assets/vendor/gsap/ScrollTrigger.min.js"></script>
+<script src="../../assets/js/observatorio.js"></script>
+<script src="indice-curso.js"></script>
+</head>
+<body>
+<div class="progreso-lectura"></div>
+<div class="pagina-curso">
+
+  <aside class="lateral">
+    <a class="volver" href="../../index.html">← Constelación</a>
+    <div class="curso-cabecera"><span class="emoji">📐</span><h1>Introducción al Cálculo</h1></div>
+    <span class="semestre-tag" style="color:var(--s1)">Semestre 1</span>
+    <nav>
+      <div class="grupo">Unidades</div>
+      <a href="#u1">01 · Números reales y radicales</a>
+      <a href="#u2">02 · Expresiones y ecuaciones</a>
+      <a href="#u3">03 · Valor absoluto e inecuaciones</a>
+      <a class="sub" href="#anim-valor-absoluto">📏 Valor absoluto</a>
+      <a href="#u4">04 · Trigonometría</a>
+      <a href="#u5">05 · Funciones</a>
+      <a class="sub" href="#anim-transformaciones">🔧 Transformaciones</a>
+      <a href="#u6">06 · Función lineal y cuadrática</a>
+      <a class="sub" href="#anim-parabola">🅿️ Parábola</a>
+      <a href="#u7">07 · Función exponencial y logarítmica</a>
+      <a class="sub" href="#anim-exp-log">📈 Exp. y logaritmo</a>
+      <a href="#u8">08 · Funciones trigonométricas</a>
+    </nav>
+    <div class="atajos"><kbd>Ctrl K</kbd> buscar en toda la biblioteca</div>
+  </aside>
+
+  <main class="principal">
+    <div class="principal-cabecera">
+      <span class="relleno"></span>
+      <button class="btn-buscar" type="button">🔍 Buscar <kbd>Ctrl K</kbd></button>
+      <button class="btn-tema" type="button">☀️</button>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CABECERA DEL CURSO -->
+    <!-- ============================================================ -->
+    <header class="curso-hero-v3" id="cheat" style="--ac: var(--s1)">
+      <span class="emoji-grande">📐</span>
+      <h1>Introducción al Cálculo — Resumen del curso</h1>
+      <span class="semestre-tag" style="color:var(--s1)">Semestre 1</span>
+      <p class="curso-intro">
+        Curso de <strong>pre-cálculo</strong> (Zill y Dewar, <em>Precálculo: con avances de cálculo</em>).
+        Secuencia real de evaluaciones 2025-1: Control 1 → Control 2 (potencias, racionalización,
+        expresiones algebraicas) → Control 3 (ecuaciones con radicales, inecuaciones y valor absoluto)
+        → Certamen 1 (Unidad I completa) → Control 4 (identidades trigonométricas y aplicaciones) →
+        Control 5 (dominio, paridad y lectura de gráficos) → Control 6 (función lineal/cuadrática,
+        biyectividad e inversa) → Control 7 (función exponencial y logarítmica) → Certamen 2
+        (trigonometría + funciones) → Examen. Tres unidades: expresiones/ecuaciones/trigonometría,
+        funciones y gráficos, funciones trigonométricas.
+      </p>
+      <ul class="mini-indice">
+        <li><a href="#u1">01 · Números reales</a></li>
+        <li><a href="#u2">02 · Expresiones y ecuaciones</a></li>
+        <li><a href="#u3">03 · Valor absoluto e inecuaciones</a></li>
+        <li><a href="#u4">04 · Trigonometría</a></li>
+        <li><a href="#u5">05 · Funciones</a></li>
+        <li><a href="#u6">06 · Lineal y cuadrática</a></li>
+        <li><a href="#u7">07 · Exponencial y logarítmica</a></li>
+        <li><a href="#u8">08 · Funciones trigonométricas</a></li>
+      </ul>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 1 · NÚMEROS REALES, EXPONENTES Y RADICALES -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u1">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">01</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Números reales, exponentes y radicales</h2>
+          <p class="unidad-sub">El álgebra de exponentes y raíces que sostiene todas las manipulaciones del curso.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-numeros-reales">
+        <h3>Números reales, exponentes y radicales (Unidad I)</h3>
+        <ul>
+          <li>$\mathbb{N}\subset\mathbb{Z}\subset\mathbb{Q}\subset\mathbb{R}$, con $\mathbb{R}=\mathbb{Q}\cup\mathbb{I}$.</li>
+          <li>$a^{1/n}=\sqrt[n]{a}$, &nbsp; $a^{m/n}=\sqrt[n]{a^{m}}=\left(\sqrt[n]{a}\right)^{m}$</li>
+          <li>$\sqrt[n]{a}\cdot\sqrt[n]{b}=\sqrt[n]{ab}$, &nbsp; $\sqrt[n]{\sqrt[m]{a}}=\sqrt[nm]{a}$</li>
+          <li>Índice par: radicando $\ge0$ y $\sqrt[n]{a^n}=|a|$.</li>
+          <li><strong>Racionalizar</strong> binomio $\sqrt a\pm\sqrt b$: amplificar por el <strong>conjugado</strong> $\sqrt a\mp\sqrt b$.</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Producto y cociente de potencias</span>$$a^{m}\cdot a^{n}=a^{m+n}\qquad \frac{a^{m}}{a^{n}}=a^{m-n}$$</div>
+        <div class="formula-card"><span class="etiqueta">Potencia de potencia y exponente negativo</span>$$(a^{m})^{n}=a^{mn}\qquad a^{-n}=\frac{1}{a^{n}}$$</div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-potencias-radicales">
+          <h3>1. Potencias y racionalización</h3>
+          <p>Reducir a una potencia: $\left[\dfrac{\left(-\frac15\right)^{8}\cdot\left(\frac{1}{5^{-6}}\right)}{\left(0,6-\frac25\right)^{-9}}\right]^{-2}$.</p>
+          <p><strong>Solución:</strong> escribiendo todo en base $5$: $0,6-\tfrac25=\tfrac15$, luego</p>
+          <p>$$\left[\frac{5^{-8}\cdot5^{6}}{(5^{-1})^{-9}}\right]^{-2}=\left[\frac{5^{-2}}{5^{9}}\right]^{-2}=[5^{-11}]^{-2}=5^{22}$$</p>
+          <p>Racionalizar: $\dfrac{\sqrt6+\sqrt3}{\sqrt6-\sqrt3}:\dfrac{1}{3-\sqrt8}$. Amplificando por el conjugado $\sqrt6+\sqrt3$ se obtiene $\dfrac{9+6\sqrt2}{3}\cdot(3-\sqrt8)=(3+2\sqrt2)(3-\sqrt8)=9-8=1$.</p>
+          <p style="color:var(--tinta-2)">Estrategia: reescribir todas las bases distintas como potencias de un mismo número antes de aplicar las propiedades de exponentes.</p>
+          <p class="fuente">Fuente: Pauta Control 2, 2025-1.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 2 · EXPRESIONES ALGEBRAICAS Y ECUACIONES -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u2">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">02</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Expresiones algebraicas y ecuaciones</h2>
+          <p class="unidad-sub">Factorizar, simplificar y resolver: de productos notables a la fórmula general y las ecuaciones con radicales.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-expresiones">
+        <h3>Expresiones algebraicas (Unidad I)</h3>
+        <ul>
+          <li>Factorización: factor común → agrupación → producto notable → trinomio $x^2+bx+c$ (dos números que sumen $b$ y multipliquen $c$).</li>
+          <li>Racionales $\dfrac{p(x)}{q(x)}$ ($q\neq0$): simplificar factorizando; operar con mínimo común denominador.</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Cuadrado de binomio</span>$$(a\pm b)^{2}=a^{2}\pm2ab+b^{2}$$</div>
+        <div class="formula-card"><span class="etiqueta">Suma por diferencia</span>$$(a+b)(a-b)=a^{2}-b^{2}$$</div>
+        <div class="formula-card"><span class="etiqueta">Cubo de binomio</span>$$(a+b)^{3}=a^{3}+3a^{2}b+3ab^{2}+b^{3}$$</div>
+        <div class="formula-card"><span class="etiqueta">Suma y diferencia de cubos</span>$$a^{3}\pm b^{3}=(a\pm b)(a^{2}\mp ab+b^{2})$$</div>
+      </div>
+
+      <div class="materia" id="tema-ecuaciones">
+        <h3>Ecuaciones (Unidad I)</h3>
+        <ul>
+          <li>Lineal: $ax+b=0\Rightarrow x=-\tfrac{b}{a}$</li>
+          <li>$\Delta>0$: 2 raíces reales · $\Delta=0$: raíz doble · $\Delta<0$: 2 complejas conjugadas.</li>
+          <li>Vieta: $x_1+x_2=-\tfrac{b}{a}$, &nbsp; $x_1x_2=\tfrac{c}{a}$</li>
+          <li>Con radicales: aislar la raíz y elevar al cuadrado; <strong>siempre verificar</strong> (soluciones extrañas).</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Fórmula general (cuadrática)</span>$$x=\frac{-b\pm\sqrt{b^{2}-4ac}}{2a},\qquad \Delta=b^{2}-4ac$$</div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-reduccion-algebraica">
+          <h3>2. Reducción de expresión algebraica</h3>
+          <p>Reducir $3(x+4)(x-4)-2(x-5)^{2}-(x+2)(x-1)$.</p>
+          <p><strong>Solución:</strong></p>
+          <p>$$=3(x^{2}-16)-2(x^{2}-10x+25)-(x^{2}+x-2)$$</p>
+          <p>$$=3x^{2}-48-2x^{2}+20x-50-x^{2}-x+2=19x-96$$</p>
+          <p style="color:var(--tinta-2)">Clave: expandir <strong>todos</strong> los productos antes de reducir, cuidando el signo que multiplica a cada paréntesis (el $-2$ y el $-1$ afectan a todos los términos siguientes).</p>
+          <p class="fuente">Fuente: Pauta Control 2, 2025-1.</p>
+        </div>
+
+        <div class="ejemplo" id="ej-ecuacion-radicales">
+          <h3>3. Ecuación con radicales, verificando soluciones</h3>
+          <p>Resolver $\sqrt{x}+\sqrt{2x+4}=\sqrt{7x-12}$.</p>
+          <p><strong>Solución:</strong> elevando al cuadrado dos veces (aislando cada raíz) se llega a $x^2-18x+32=0=(x-16)(x-2)$, con candidatos $x_1=16$, $x_2=2$.</p>
+          <p><strong>Comprobación:</strong> $x_1=16$ cumple ($4+6=10$), pero $x_2=2$ da $\sqrt2+\sqrt8\neq\sqrt2$ y se <strong>descarta</strong>. La solución final es solo $x=16$.</p>
+          <p style="color:var(--tinta-2)">Elevar al cuadrado puede introducir soluciones extrañas: siempre hay que comprobar en la ecuación original.</p>
+          <p class="fuente">Fuente: Pauta Control 3, 2025-1.</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-vieta">
+          <summary><span class="resumen-ejercicio">2. Hallar las raíces de $x^{2}-7x+10=0$ y verificar con las relaciones de Vieta.</span> <span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <p>Factorizando: $(x-2)(x-5)=0 \Rightarrow x_1=2,\ x_2=5$.</p>
+            <p>Vieta: $x_1+x_2=7=-\dfrac{b}{a}=-(-7)$ ✓, &nbsp; $x_1x_2=10=\dfrac{c}{a}=10$ ✓</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 3 · VALOR ABSOLUTO E INECUACIONES -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u3">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">03</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Valor absoluto e inecuaciones</h2>
+          <p class="unidad-sub">Distancia con signo, desigualdades e intervalos: la aritmética que ordena la recta real.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-valor-absoluto">
+        <h3>Valor absoluto (Unidad I)</h3>
+        <ul>
+          <li>$|xy|=|x||y|$, &nbsp; $\left|\tfrac{x}{y}\right|=\tfrac{|x|}{|y|}$, &nbsp; $\sqrt{x^2}=|x|$</li>
+          <li>$|x+y|\le|x|+|y|$ (desigualdad triangular).</li>
+          <li>Si $a<0$: $|x|\lt a$ no tiene solución; $|x|>a$ se cumple para todo $\mathbb R$.</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Definición de valor absoluto</span>$$|x|=\begin{cases}x & x\ge0\\ -x & x<0\end{cases}$$</div>
+        <div class="formula-card"><span class="etiqueta">Ecuación con valor absoluto</span>$$|x|=a\ (a\ge0)\iff x=a\ \text{ó}\ x=-a$$</div>
+        <div class="formula-card"><span class="etiqueta">Inecuación |x| &lt; a</span>$$|x|\lt a \iff -a\lt x\lt a$$</div>
+        <div class="formula-card"><span class="etiqueta">Inecuación |x| &gt; a</span>$$|x|>a \iff x<-a\ \text{ó}\ x>a$$</div>
+      </div>
+
+      <div class="materia" id="tema-inecuaciones">
+        <h3>Inecuaciones (Unidad I)</h3>
+        <ul>
+          <li><strong>Regla de oro:</strong> multiplicar/dividir por negativo <strong>invierte</strong> la desigualdad.</li>
+          <li>Lineal: se despeja como ecuación cuidando el signo.</li>
+          <li>Cuadrática/racional: llevar todo a un lado ($\dots>0$), factorizar y hacer <strong>tabla de signos</strong>.</li>
+          <li>Racional: los ceros del <strong>denominador</strong> se excluyen (paréntesis, nunca corchete).</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Intervalo abierto</span>$$x\in(a,b)\iff a\lt x\lt b$$</div>
+        <div class="formula-card"><span class="etiqueta">Intervalo cerrado</span>$$x\in[a,b]\iff a\le x\le b$$</div>
+      </div>
+
+      <div class="animacion" id="anim-valor-absoluto">
+        <div class="anim-cabecera">
+          <h3>📏 Inecuación $|x-a|\lt b$ en la recta real</h3>
+          <p class="anim-desc">Intervalo solución resaltado sobre la recta real, con un punto que la recorre cambiando de color según cumpla o no.</p>
+        </div>
+        <canvas data-alto="220"></canvas>
+        <div class="controles">
+          <div class="control"><label for="va-a">a</label><input type="range" id="va-a" min="-5" max="5" step="0.5" value="1"><span class="valor"></span></div>
+          <div class="control"><label for="va-b">b</label><input type="range" id="va-b" min="0" max="6" step="0.25" value="2"><span class="valor"></span></div>
+          <button type="button" data-accion="jugar">▶ Reproducir</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> $|x-a|\lt b \iff a-b\lt x\lt a+b$ (intervalo abierto: círculos vacíos en los extremos). ▶ hace recorrer un punto por la recta: se pinta <strong style="color:var(--s1)">verde</strong> cuando cumple la inecuación y gris cuando no. Si $b\le0$ la solución es el <strong>conjunto vacío</strong> (ningún $x$ cumple $|x-a|<0$).</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-inecuacion-racional">
+          <h3>4. Inecuación racional</h3>
+          <p>Resolver $\dfrac{x}{2x+3}<\dfrac{x-3}{2x}$.</p>
+          <p><strong>Solución:</strong> pasando todo a un lado: $\dfrac{3x+9}{(2x+3)(2x)}<0$. Puntos críticos $x=-3,\ -\tfrac32,\ 0$; tabla de signos da</p>
+          <p>$$x\in\left]-\infty,-3\right[\,\cup\,\left]-\tfrac32,0\right[$$</p>
+          <p style="color:var(--tinta-2)">Nunca se multiplica cruzado como si fuera ecuación: se lleva todo a un lado, se factoriza y se arma la tabla de signos (los ceros del denominador quedan excluidos con paréntesis).</p>
+          <p class="fuente">Fuente: Pauta Control 3, 2025-1.</p>
+        </div>
+
+        <div class="ejemplo" id="ej-valor-absoluto-racional">
+          <h3>5. Inecuación con valor absoluto de una expresión racional</h3>
+          <p>Resolver $\left|\dfrac{2x-1}{x+3}\right|\le1$.</p>
+          <p><strong>Solución:</strong> equivale a la doble desigualdad $-1\le\dfrac{2x-1}{x+3}\le1$, con $x\neq-3$. Como el signo de $x+3$ no es fijo, hay que separar en dos casos (no se puede multiplicar cruzado directamente).</p>
+          <p><strong>Caso $x+3>0$</strong> (o sea $x>-3$): multiplicar no invierte las desigualdades.</p>
+          <p>$$-(x+3)\le2x-1\le x+3$$</p>
+          <p>Izquierda: $-x-3\le2x-1\Rightarrow-2\le3x\Rightarrow x\ge-\dfrac23$. Derecha: $2x-1\le x+3\Rightarrow x\le4$.</p>
+          <p>Combinado con $x>-3$: solución parcial $x\in\left[-\dfrac23,4\right]$.</p>
+          <p><strong>Caso $x+3\lt0$</strong> (o sea $x\lt-3$): multiplicar invierte ambas desigualdades: $(x+3)\le2x-1\le-(x+3)$. La izquierda da $x+3\le2x-1\Rightarrow x\ge4$, incompatible con $x\lt-3$: este caso no aporta soluciones.</p>
+          <p>Uniendo ambos casos, la solución es $x\in\left[-\dfrac23,4\right]$.</p>
+          <p style="color:var(--tinta-2)">Con una expresión racional dentro del valor absoluto, la doble desigualdad $-1\le\frac{p(x)}{q(x)}\le1$ no se despeja multiplicando de forma directa: hay que separar en casos según el signo de $q(x)$ (equivalente a llevar todo a un lado y usar tabla de signos).</p>
+          <p class="fuente">Fuente: Guía de inecuaciones con y sin valor absoluto, UDD (ítem 4g).</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-valor-absoluto">
+          <summary><span class="resumen-ejercicio">1. Resolver $|3x-2|=7$.</span> <span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <p>$3x-2=7 \Rightarrow x=3$</p>
+            <p>$3x-2=-7 \Rightarrow x=-\dfrac53$</p>
+            <p>Soluciones: $x=3$ ó $x=-\dfrac53$.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-inecuacion-va">
+          <summary><span class="resumen-ejercicio">3. Resolver $|2x+5|\le9$.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>$|2x+5|\le9 \iff -9\le2x+5\le9$</p>
+            <p>$-14\le2x\le4 \iff -7\le x\le2$</p>
+            <p>Solución: $x\in[-7,2]$.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 4 · TRIGONOMETRÍA -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u4">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">04</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Trigonometría</h2>
+          <p class="unidad-sub">Razones trigonométricas, identidades y el círculo unitario, con aplicaciones a ángulos de elevación.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-trigonometria">
+        <h3>Trigonometría (Unidad I)</h3>
+        <ul>
+          <li>Recíprocas: $\csc=\tfrac1{\sin}$, $\sec=\tfrac1{\cos}$, $\cot=\tfrac1{\tan}$</li>
+          <li>Círculo unitario: punto $(\cos\theta,\sin\theta)$; &nbsp; $180°=\pi$ rad</li>
+          <li>$0°,30°,45°,60°,90°$: $\sin=0,\tfrac12,\tfrac{\sqrt2}{2},\tfrac{\sqrt3}{2},1$; &nbsp; $\cos=1,\tfrac{\sqrt3}{2},\tfrac{\sqrt2}{2},\tfrac12,0$</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Razones trigonométricas básicas</span>$$\sin\theta=\frac{\text{op}}{\text{hip}}\quad \cos\theta=\frac{\text{ady}}{\text{hip}}\quad \tan\theta=\frac{\sin\theta}{\cos\theta}$$</div>
+        <div class="formula-card"><span class="etiqueta">Identidad pitagórica</span>$$\sin^{2}\theta+\cos^{2}\theta=1$$</div>
+        <div class="formula-card"><span class="etiqueta">Identidades pitagóricas derivadas</span>$$1+\tan^{2}\theta=\sec^{2}\theta\qquad 1+\cot^{2}\theta=\csc^{2}\theta$$</div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-identidad-elevacion">
+          <h3>6. Identidad trigonométrica y ángulos de elevación</h3>
+          <p><strong>Identidad:</strong> demostrar $\dfrac{\sec\alpha-\csc\alpha}{\sec\alpha+\csc\alpha}=\dfrac{\tan\alpha-1}{\tan\alpha+1}$. Se escriben $\sec,\csc$ en términos de $\sin,\cos$, se lleva a un común denominador y se simplifica $\cos\alpha\sin\alpha$ hasta llegar al lado derecho.</p>
+          <p><strong>Aplicación (ángulos de elevación):</strong> una torre de 15 m está en el borde de un acantilado; desde el suelo, $\tan\alpha=1{,}26$ (a la punta) y $\tan\beta=1{,}185$ (a la base). Planteando $1{,}26=\frac{15+h}{d}$ y $1{,}185=\frac{h}{d}$ se despeja $d=200$ m y $h=237$ m (altura del acantilado).</p>
+          <p style="color:var(--tinta-2)">Dos incógnitas ($h$ y $d$) requieren <strong>dos</strong> ecuaciones (dos ángulos de observación distintos) resueltas como sistema.</p>
+          <p class="fuente">Fuente: Pauta Control 4, 2025-1.</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-identidad-trig">
+          <summary><span class="resumen-ejercicio">10. Demostrar que $\dfrac{1-\cos^{2}\theta}{\sin\theta\cos\theta}=\tan\theta$.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>Por identidad pitagórica: $1-\cos^2\theta=\sin^2\theta$</p>
+            <p>$$\frac{1-\cos^2\theta}{\sin\theta\cos\theta}=\frac{\sin^2\theta}{\sin\theta\cos\theta}=\frac{\sin\theta}{\cos\theta}=\tan\theta \quad\blacksquare$$</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-elevacion">
+          <summary><span class="resumen-ejercicio">11. Una bandera de 6 m está sobre un edificio. Desde el suelo, el ángulo de elevación a la punta de la bandera cumple $\tan\alpha=1{,}4$ y a la base de la bandera (techo del edificio) $\tan\beta=1{,}2$. Hallar la altura del edificio $h$ y la distancia horizontal $d$.</span> <span class="dificultad dificil">difícil</span></summary>
+          <div class="solucion">
+            <p>Planteando el sistema (mismo punto de observación, misma $d$):</p>
+            <p>$\tan\alpha=\dfrac{h+6}{d}=1{,}4 \Rightarrow h+6=1{,}4d$</p>
+            <p>$\tan\beta=\dfrac{h}{d}=1{,}2 \Rightarrow h=1{,}2d$</p>
+            <p>Sustituyendo: $1{,}2d+6=1{,}4d \Rightarrow 6=0{,}2d \Rightarrow d=30\text{ m}$</p>
+            <p>$h=1{,}2(30)=36\text{ m}$</p>
+            <p>Verificación: $h+6=42$, &nbsp; $1{,}4(30)=42$ ✓</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 5 · FUNCIONES -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u5">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">05</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Funciones</h2>
+          <p class="unidad-sub">Dominio, recorrido, paridad, inyectividad, inversa y transformaciones: el lenguaje común de todo lo que sigue.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-funciones">
+        <h3>Funciones (Unidad II)</h3>
+        <ul>
+          <li>$f:A\to B$ asigna a cada $x\in A$ un único $f(x)\in B$. Dominio (entradas válidas), recorrido (salidas alcanzadas).</li>
+          <li>Par: $f(-x)=f(x)$ · Impar: $f(-x)=-f(x)$ · Inyectiva: test de la recta horizontal.</li>
+          <li>Inversa (si $f$ biyectiva): despejar $x$, intercambiar variables; gráfico reflejado en $y=x$.</li>
+          <li>En general $f\circ g\neq g\circ f$.</li>
+          <li>Álgebra de funciones: dominio de $f\pm g$ y $fg$ es $\text{Dom}(f)\cap\text{Dom}(g)$; en $f/g$ además se excluye donde $g(x)=0$.</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Composición de funciones</span>$$(f\circ g)(x)=f(g(x))$$</div>
+        <div class="formula-card"><span class="etiqueta">Suma, resta y producto de funciones</span>$$(f\pm g)(x)=f(x)\pm g(x)\qquad (fg)(x)=f(x)g(x)$$</div>
+        <div class="formula-card"><span class="etiqueta">Cociente de funciones</span>$$\left(\frac{f}{g}\right)(x)=\frac{f(x)}{g(x)},\quad g(x)\neq0$$</div>
+      </div>
+
+      <div class="animacion" id="anim-transformaciones">
+        <div class="anim-cabecera">
+          <h3>🔧 Transformaciones $y=a\cdot f(x-h)+k$</h3>
+          <p class="anim-desc">Comparación entre la curva base $f(x)$ (punteada) y su transformación (sólida) al variar desplazamiento, escala y reflexión.</p>
+        </div>
+        <canvas data-alto="360"></canvas>
+        <div class="controles">
+          <div class="control">
+            <label>base $f(x)$:</label>
+            <button type="button" class="secundario" id="trans-base-x2">x²</button>
+            <button type="button" class="secundario" id="trans-base-abs">|x|</button>
+            <button type="button" class="secundario" id="trans-base-sqrt">√x</button>
+          </div>
+          <div class="control"><label for="trans-h">h</label><input type="range" id="trans-h" min="-5" max="5" step="0.5" value="0"><span class="valor"></span></div>
+          <div class="control"><label for="trans-k">k</label><input type="range" id="trans-k" min="-5" max="5" step="0.5" value="0"><span class="valor"></span></div>
+          <div class="control"><label for="trans-a">a</label><input type="range" id="trans-a" min="-3" max="3" step="0.1" value="1"><span class="valor"></span></div>
+          <button type="button" data-accion="jugar">▶ Reproducir</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> curva punteada: $f(x)$ base sin transformar. Curva sólida (con punto móvil ▶): $y=a\cdot f(x-h)+k$. $h>0$ desplaza la curva a la <strong>derecha</strong> (porque se evalúa en $x-h$); $k$ desplaza verticalmente; $|a|>1$ estira, $|a|<1$ comprime y $a<0$ refleja respecto al eje $x$. Con $\sqrt x$ el dominio de la curva transformada es $x\ge h$ (si $a$ no la refleja).</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-dominio-paridad">
+          <summary><span class="resumen-ejercicio">4. Hallar el dominio de $f(x)=\dfrac{\sqrt{9-x^{2}}}{x}$ y determinar si es par, impar o ninguna.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>Se necesita $9-x^2\ge0$ (raíz par) y $x\neq0$ (denominador): $-3\le x\le3$ y $x\neq0$.</p>
+            <p>Dominio: $[-3,0)\cup(0,3]$.</p>
+            <p>$f(-x)=\dfrac{\sqrt{9-(-x)^2}}{-x}=\dfrac{\sqrt{9-x^2}}{-x}=-f(x)$</p>
+            <p>Como $f(-x)=-f(x)$, la función es <strong>impar</strong>.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-inversa">
+          <summary><span class="resumen-ejercicio">5. Hallar $f^{-1}(x)$ para $f(x)=\dfrac{2x+1}{x-3}$, $x\neq3$.</span> <span class="dificultad dificil">difícil</span></summary>
+          <div class="solucion">
+            <p>Sea $y=\dfrac{2x+1}{x-3}$. Despejando $x$:</p>
+            <p>$y(x-3)=2x+1 \Rightarrow yx-3y=2x+1 \Rightarrow yx-2x=1+3y \Rightarrow x(y-2)=1+3y$</p>
+            <p>$x=\dfrac{1+3y}{y-2}$</p>
+            <p>Intercambiando variables: $f^{-1}(x)=\dfrac{3x+1}{x-2}$, &nbsp; $x\neq2$.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 6 · FUNCIÓN LINEAL Y CUADRÁTICA -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u6">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">06</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Función lineal y cuadrática</h2>
+          <p class="unidad-sub">Pendiente, vértice y parábola: la base geométrica para optimizar sin derivadas.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-lineal-cuadratica">
+        <h3>Función lineal y cuadrática (Unidad II)</h3>
+        <ul>
+          <li>Lineal: $f(x)=mx+n$, &nbsp; $m=\dfrac{y_2-y_1}{x_2-x_1}$ (pendiente); creciente si $m>0$.</li>
+          <li>$a>0$: parábola hacia arriba, vértice <strong>mínimo</strong>. $a<0$: hacia abajo, vértice <strong>máximo</strong>.</li>
+          <li>Eje de simetría $x=-\tfrac{b}{2a}$; el vértice resuelve problemas de optimización sin derivadas.</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Función cuadrática general</span>$$f(x)=ax^2+bx+c$$</div>
+        <div class="formula-card"><span class="etiqueta">Vértice de la parábola</span>$$V=\left(-\frac{b}{2a},\,f\!\left(-\frac{b}{2a}\right)\right)$$</div>
+      </div>
+
+      <div class="animacion" id="anim-parabola">
+        <div class="anim-cabecera">
+          <h3>🅿️ Parábola $y=ax^2+bx+c$</h3>
+          <p class="anim-desc">Vértice, eje de simetría, discriminante y raíces recalculados en vivo al mover $a$, $b$, $c$.</p>
+        </div>
+        <canvas data-alto="360"></canvas>
+        <div class="controles">
+          <div class="control"><label for="par-a">a</label><input type="range" id="par-a" min="-3" max="3" step="0.1" value="1"><span class="valor"></span></div>
+          <div class="control"><label for="par-b">b</label><input type="range" id="par-b" min="-8" max="8" step="0.1" value="0"><span class="valor"></span></div>
+          <div class="control"><label for="par-c">c</label><input type="range" id="par-c" min="-8" max="8" step="0.1" value="-2"><span class="valor"></span></div>
+          <button type="button" data-accion="jugar">▶ Reproducir</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> ▶ hace recorrer un punto sobre la parábola. Línea punteada: eje de simetría $x=-\tfrac{b}{2a}$ con el vértice marcado. Puntos verdes: raíces reales (si $\Delta=b^2-4ac\ge0$). Probá $a=1,b=0,c=-2$ (raíces irracionales $\pm\sqrt2$) o $a=1,b=-2,c=1$ (raíz doble, $\Delta=0$). Con $a=0$ la curva degenera en una recta: ya no es cuadrática.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-costo-minimo">
+          <h3>7. Costo mínimo con función cuadrática</h3>
+          <p>Los costos (miles de USD) de producir baterías en dos países son $C_A(x)=\dfrac{x+40}{32}$ (lineal) y $C_B(x)=\dfrac{x^{2}-64x+1280}{128}$ (cuadrática).</p>
+          <p><strong>Costo mínimo de $B$:</strong> vértice en $x=-\dfrac{b}{2a}=-\dfrac{-1/2}{2/128}=32$ unidades, con $C_B(32)=2$ (2.000 dólares).</p>
+          <p><strong>Igual costo en ambos países:</strong> resolver $C_A(x)=C_B(x)\Rightarrow x^2-68x+1120=0\Rightarrow x=28$ o $x=40$ unidades.</p>
+          <p style="color:var(--tinta-2)">El costo mínimo es la <strong>ordenada</strong> del vértice ($f(V_x)$), no su abscisa; al igualar dos funciones hay que ordenar la ecuación resultante como $ax^2+bx+c=0$ antes de aplicar la fórmula general.</p>
+          <p class="fuente">Fuente: Pauta Control 6, 2025-1.</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-vertice-parabola">
+          <summary><span class="resumen-ejercicio">6. Hallar el vértice de $f(x)=-2x^{2}+8x-3$ e indicar si es máximo o mínimo.</span> <span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <p>$x_V=-\dfrac{b}{2a}=-\dfrac{8}{2(-2)}=2$</p>
+            <p>$f(2)=-2(4)+8(2)-3=-8+16-3=5$</p>
+            <p>Vértice $V=(2,5)$. Como $a=-2<0$, es un <strong>máximo</strong>.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 7 · FUNCIÓN EXPONENCIAL Y LOGARÍTMICA -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u7">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">07</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Función exponencial y logarítmica</h2>
+          <p class="unidad-sub">Crecimiento exponencial y su inversa logarítmica, con propiedades y aplicaciones.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-exp-log">
+        <h3>Función exponencial y logarítmica (Unidad II)</h3>
+        <ul>
+          <li>$f(x)=a^x$ ($a>0,a\neq1$): crece si $a>1$, decrece si $0\lt a\lt1$; pasa por $(0,1)$.</li>
+          <li>Inversa: $y=\log_a x\iff a^y=x$ ($x>0$); &nbsp; $\ln x=\log_e x$</li>
+          <li>$\log_a1=0,\ \log_aa=1$</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Logaritmo de un producto</span>$$\log_a(xy)=\log_ax+\log_ay$$</div>
+        <div class="formula-card"><span class="etiqueta">Logaritmo de un cociente</span>$$\log_a\tfrac{x}{y}=\log_ax-\log_ay$$</div>
+        <div class="formula-card"><span class="etiqueta">Logaritmo de una potencia y cambio de base</span>$$\log_a(x^n)=n\log_ax\qquad \log_ax=\frac{\log_bx}{\log_ba}$$</div>
+      </div>
+
+      <div class="animacion" id="anim-exp-log">
+        <div class="anim-cabecera">
+          <h3>📈 Exponencial y logaritmo: reflejos en $y=x$</h3>
+          <p class="anim-desc">$y=a^x$ y su inversa $y=\log_a x$ recorridas por dos puntos siempre simétricos respecto a la recta $y=x$.</p>
+        </div>
+        <canvas data-alto="360"></canvas>
+        <div class="controles">
+          <div class="control"><label for="explog-base">base a</label><input type="range" id="explog-base" min="1.1" max="5" step="0.1" value="2"><span class="valor"></span></div>
+          <button type="button" data-accion="jugar">▶ Reproducir</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> $y=a^x$ (acento) y su inversa $y=\log_a x$ (violeta) son <strong>reflejos</strong> uno del otro respecto a la recta $y=x$ (punteada). ▶ mueve un punto sobre cada curva: el par de puntos son siempre simétricos respecto a $y=x$, porque $a^{x_0}=y_0 \iff \log_a y_0=x_0$. A mayor base $a$, más rápido crece la exponencial y más lento crece el logaritmo.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-enfriamiento-newton">
+          <h3>8. Ley de enfriamiento de Newton</h3>
+          <p>$T(t)=45e^{-0,2t}+A$. Si $T(0)=60°C$, entonces $A=15$. ¿Cuándo la temperatura llega a la mitad de la inicial ($30°C$)?</p>
+          <p><strong>Solución:</strong></p>
+          <p>$$30=45e^{-0,2t}+15\Rightarrow \frac13=e^{-0,2t}\Rightarrow t=\frac{\ln3}{0,2}\approx5{,}49\ \text{min}$$</p>
+          <p>Despejando $t$ en función de $T$ (invirtiendo la exponencial con $\ln$): $t=-5\ln\!\left(\dfrac{T-15}{45}\right)$.</p>
+          <p style="color:var(--tinta-2)">Antes de aplicar $\ln$ a ambos lados hay que <strong>aislar</strong> la exponencial ($e^{\Box}$ sola en un lado).</p>
+          <p class="fuente">Fuente: Pauta Control 7, 2025-1.</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-exponencial">
+          <summary><span class="resumen-ejercicio">7. Resolver $3^{2x-1}=27^{x+2}$.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>Como $27=3^3$: $3^{2x-1}=3^{3(x+2)}=3^{3x+6}$</p>
+            <p>Igualando exponentes: $2x-1=3x+6 \Rightarrow -7=x$</p>
+            <p>Verificación: $2(-7)-1=-15$, &nbsp; $3(-7)+6=-15$ ✓</p>
+            <p>Solución: $x=-7$.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-logaritmica">
+          <summary><span class="resumen-ejercicio">8. Resolver $\log_2(x+3)+\log_2(x-1)=5$.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>Dominio: $x+3>0$ y $x-1>0 \Rightarrow x>1$.</p>
+            <p>$\log_2[(x+3)(x-1)]=5 \Rightarrow (x+3)(x-1)=2^5=32$</p>
+            <p>$x^2+2x-3=32 \Rightarrow x^2+2x-35=0 \Rightarrow (x+7)(x-5)=0$</p>
+            <p>$x=-7$ ó $x=5$. Como el dominio exige $x>1$, se descarta $x=-7$.</p>
+            <p>Solución: $x=5$.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 8 · FUNCIONES TRIGONOMÉTRICAS -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u8">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">08</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Funciones trigonométricas</h2>
+          <p class="unidad-sub">Amplitud, período, desfase y las inversas trigonométricas, cerrando el curso.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-funciones-trig">
+        <h3>Funciones trigonométricas (Unidad III)</h3>
+        <ul>
+          <li>$\sin x,\cos x$: dominio $\mathbb R$, recorrido $[-1,1]$, período $2\pi$. &nbsp; $\tan x$: período $\pi$, asíntotas en $x=\tfrac\pi2+k\pi$.</li>
+          <li>Amplitud $=|A|$ · Período $=\dfrac{2\pi}{|B|}$ · Desfase $=-\dfrac{C}{B}$ · $D$ = desplaz. vertical.</li>
+          <li>Inversas: $\arcsin:[-1,1]\to[-\tfrac\pi2,\tfrac\pi2]$, $\arccos:[-1,1]\to[0,\pi]$, $\arctan:\mathbb R\to(-\tfrac\pi2,\tfrac\pi2)$.</li>
+        </ul>
+        <div class="formula-card"><span class="etiqueta">Función sinusoidal general</span>$$f(x)=A\sin(Bx+C)+D$$</div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+        <div class="ejemplo" id="ej-amplitud-periodo">
+          <h3>9. Amplitud, período, desfase y trigonometría inversa</h3>
+          <p>Para $f(x)=5\sin(2x-3\pi)+1$: amplitud $|A|=5$, período $\dfrac{2\pi}{|B|}=\dfrac{2\pi}{2}=\pi$; con $Bx+C=2x-3\pi$, el desfase es $-\dfrac{C}{B}=\dfrac{3\pi}{2}$.</p>
+          <p><strong>Composición con inversas:</strong> $\sec(\arcsin(\tfrac13))$. Si $\theta=\arcsin(\tfrac13)$, entonces $\sin\theta=\tfrac13$ y $\cos\theta=\sqrt{1-\tfrac19}=\dfrac{2\sqrt2}{3}$ (positivo porque $\theta\in[-\tfrac\pi2,\tfrac\pi2]$), luego $\sec\theta=\dfrac{1}{\cos\theta}=\dfrac{3\sqrt2}{4}$.</p>
+          <p style="color:var(--tinta-2)">Para leer $B$ correctamente hay que factorizarlo primero si la expresión no viene en la forma $Bx+C$ directa (ej. $\cos\left(\frac{x+3\pi}{3}\right)\Rightarrow B=\tfrac13$).</p>
+          <p class="fuente">Fuente: Pauta Ayudantía 13, 2025-1.</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+        <details class="ejercicio" id="ejer-periodo-tangente">
+          <summary><span class="resumen-ejercicio">9. Hallar el período de $f(x)=\tan(3x-\tfrac{\pi}{4})$ y su asíntota positiva más cercana a $x=0$.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>Período $=\dfrac{\pi}{|B|}=\dfrac{\pi}{3}$</p>
+            <p>Asíntotas donde $3x-\tfrac{\pi}{4}=\tfrac{\pi}{2}+k\pi \Rightarrow x=\dfrac{\pi}{4}+\dfrac{k\pi}{3}$</p>
+            <p>Con $k=0$: $x=\dfrac{\pi}{4}$ (positiva). Con $k=-1$: $x=-\dfrac{\pi}{12}$ (negativa).</p>
+            <p>La asíntota positiva más cercana a $x=0$ es $x=\dfrac{\pi}{4}$.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function () {
+
+  function clamp(v, lo, hi) {
+    return Math.max(lo, Math.min(hi, v));
+  }
+
+  /* ================= 1. Parábola y = ax² + bx + c ================= */
+  Anim.registrar("anim-parabola", function (sim) {
+    var a = 1, b = 0, c = -2;
+
+    function estado() {
+      var D = b * b - 4 * a * c;
+      var h = (a !== 0) ? -b / (2 * a) : 0;
+      var k = (a !== 0) ? (c - b * b / (4 * a)) : c;
+      var raices = null;
+      if (a !== 0 && D >= 0) {
+        var sq = Math.sqrt(D);
+        raices = [(-b - sq) / (2 * a), (-b + sq) / (2 * a)];
+      }
+      return { D: D, h: h, k: k, raices: raices };
+    }
+
+    sim.alDibujar(function (ctx, t, dt, w, hpx) {
+      var e = estado();
+
+      var xCenter = (a !== 0) ? clamp(e.h, -15, 15) : 0;
+      var xHalfSpan = 8;
+      if (e.raices) xHalfSpan = Math.max(xHalfSpan, Math.abs(e.raices[1] - e.raices[0]) / 2 + 2);
+      xHalfSpan = clamp(xHalfSpan, 6, 15);
+      var xMin = xCenter - xHalfSpan, xMax = xCenter + xHalfSpan;
+
+      var n = 100;
+      var muestras = [];
+      var yMin = Infinity, yMax = -Infinity;
+      for (var i = 0; i <= n; i++) {
+        var x = xMin + (xMax - xMin) * i / n;
+        var y = a * x * x + b * x + c;
+        muestras.push({ x: x, y: y });
+        if (y < yMin) yMin = y;
+        if (y > yMax) yMax = y;
+      }
+      if (yMax - yMin < 4) { var mid = (yMax + yMin) / 2; yMin = mid - 4; yMax = mid + 4; }
+      var pad = (yMax - yMin) * 0.15;
+      yMin -= pad; yMax += pad;
+
+      var m = Anim.mapa(w, hpx, { xMin: xMin, xMax: xMax, yMin: yMin, yMax: yMax });
+      Anim.ejes(ctx, m, w, hpx);
+
+      var acento = colorVar("--acento"), s1 = colorVar("--s1"), s3 = colorVar("--s3"),
+          tinta = colorVar("--tinta");
+
+      ctx.save();
+      ctx.strokeStyle = acento; ctx.lineWidth = 2.4;
+      ctx.beginPath();
+      for (var j = 0; j < muestras.length; j++) {
+        var px = m.x(muestras[j].x), py = m.y(muestras[j].y);
+        if (j === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+      }
+      ctx.stroke();
+      ctx.restore();
+
+      if (a !== 0) {
+        ctx.save();
+        ctx.strokeStyle = s3; ctx.setLineDash([5, 4]); ctx.lineWidth = 1.3;
+        ctx.beginPath();
+        ctx.moveTo(m.x(e.h), 0); ctx.lineTo(m.x(e.h), hpx);
+        ctx.stroke();
+        ctx.restore();
+
+        ctx.save();
+        ctx.fillStyle = s3;
+        ctx.beginPath(); ctx.arc(m.x(e.h), m.y(e.k), 6, 0, Math.PI * 2); ctx.fill();
+        ctx.restore();
+      }
+
+      if (e.raices) {
+        ctx.save();
+        ctx.fillStyle = s1;
+        for (var r = 0; r < 2; r++) {
+          ctx.beginPath(); ctx.arc(m.x(e.raices[r]), m.y(0), 6, 0, Math.PI * 2); ctx.fill();
+        }
+        ctx.restore();
+      }
+
+      var frac = (t * 0.15) % 1;
+      var xMove = xMin + (xMax - xMin) * frac;
+      var yMove = a * xMove * xMove + b * xMove + c;
+      if (yMove >= yMin && yMove <= yMax) {
+        ctx.save();
+        ctx.fillStyle = tinta;
+        ctx.beginPath(); ctx.arc(m.x(xMove), m.y(yMove), 5, 0, Math.PI * 2); ctx.fill();
+        ctx.restore();
+      }
+
+      ctx.save();
+      ctx.font = "13px Consolas, monospace"; ctx.fillStyle = tinta;
+      ctx.fillText("y = " + a.toFixed(1) + "x² + " + b.toFixed(1) + "x + " + c.toFixed(1), 10, 18);
+      if (a !== 0) {
+        ctx.fillText("Δ = " + e.D.toFixed(2) + (e.D > 0 ? "  (2 raíces reales)" : (e.D === 0 ? "  (raíz doble)" : "  (raíces complejas)")), 10, 36);
+        ctx.fillText("Vértice = (" + e.h.toFixed(2) + ", " + e.k.toFixed(2) + ")   Eje: x = " + e.h.toFixed(2), 10, 54);
+        if (e.raices) ctx.fillText("Raíces: x₁ = " + e.raices[0].toFixed(2) + "   x₂ = " + e.raices[1].toFixed(2), 10, 72);
+      } else {
+        ctx.fillText("a = 0 → no es cuadrática (recta y = " + b.toFixed(1) + "x + " + c.toFixed(1) + ")", 10, 36);
+      }
+      ctx.restore();
+    });
+
+    sim.slider("par-a", function (v) { a = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.slider("par-b", function (v) { b = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.slider("par-c", function (v) { c = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.botones();
+  });
+
+  /* ================= 2. Transformaciones de funciones ================= */
+  Anim.registrar("anim-transformaciones", function (sim) {
+    var base = "x2", h = 0, k = 0, a = 1;
+    var xMin = -8, xMax = 8;
+
+    function fBase(nombre, u) {
+      if (nombre === "x2") return u * u;
+      if (nombre === "abs") return Math.abs(u);
+      if (nombre === "sqrt") return u >= 0 ? Math.sqrt(u) : NaN;
+      return NaN;
+    }
+
+    function muestrear(fn, xIni, xFin, n) {
+      var pts = [];
+      for (var i = 0; i <= n; i++) {
+        var x = xIni + (xFin - xIni) * i / n;
+        pts.push({ x: x, y: fn(x) });
+      }
+      return pts;
+    }
+
+    function trazar(ctx, m, pts) {
+      ctx.beginPath();
+      var trazando = false;
+      for (var i = 0; i < pts.length; i++) {
+        var y = pts[i].y;
+        if (y === null || isNaN(y)) { trazando = false; continue; }
+        var px = m.x(pts[i].x), py = m.y(y);
+        if (!trazando) { ctx.moveTo(px, py); trazando = true; } else { ctx.lineTo(px, py); }
+      }
+      ctx.stroke();
+    }
+
+    sim.alDibujar(function (ctx, t, dt, w, hpx) {
+      var n = 140;
+      var baseXIni = (base === "sqrt") ? 0 : xMin;
+      var transXIni = (base === "sqrt") ? Math.max(xMin, h) : xMin;
+
+      var ptsBase = muestrear(function (x) { return fBase(base, x); }, baseXIni, xMax, n);
+      var ptsTrans = muestrear(function (x) { return a * fBase(base, x - h) + k; }, transXIni, xMax, n);
+
+      var yMin = Infinity, yMax = -Infinity;
+      ptsBase.concat(ptsTrans).forEach(function (p) {
+        if (p.y !== null && !isNaN(p.y)) {
+          if (p.y < yMin) yMin = p.y;
+          if (p.y > yMax) yMax = p.y;
+        }
+      });
+      if (!isFinite(yMin) || !isFinite(yMax)) { yMin = -5; yMax = 5; }
+      if (yMax - yMin < 4) { var mid = (yMax + yMin) / 2; yMin = mid - 4; yMax = mid + 4; }
+      var pad = (yMax - yMin) * 0.15;
+      yMin -= pad; yMax += pad;
+      yMin = clamp(yMin, -25, 25); yMax = clamp(yMax, -25, 25);
+
+      var m = Anim.mapa(w, hpx, { xMin: xMin, xMax: xMax, yMin: yMin, yMax: yMax });
+      Anim.ejes(ctx, m, w, hpx);
+
+      var s2 = colorVar("--s2"), acento = colorVar("--acento"), tinta = colorVar("--tinta");
+
+      ctx.save();
+      ctx.strokeStyle = s2; ctx.setLineDash([6, 4]); ctx.lineWidth = 1.8;
+      trazar(ctx, m, ptsBase);
+      ctx.restore();
+
+      ctx.save();
+      ctx.strokeStyle = acento; ctx.lineWidth = 2.4;
+      trazar(ctx, m, ptsTrans);
+      ctx.restore();
+
+      var frac = (t * 0.15) % 1;
+      var xMove = transXIni + (xMax - transXIni) * frac;
+      var yMove = a * fBase(base, xMove - h) + k;
+      if (!isNaN(yMove) && yMove >= yMin && yMove <= yMax) {
+        ctx.save();
+        ctx.fillStyle = tinta;
+        ctx.beginPath(); ctx.arc(m.x(xMove), m.y(yMove), 5, 0, Math.PI * 2); ctx.fill();
+        ctx.restore();
+      }
+
+      var nombreBase = base === "x2" ? "x²" : (base === "abs" ? "|x|" : "√x");
+      ctx.save();
+      ctx.font = "13px Consolas, monospace"; ctx.fillStyle = tinta;
+      ctx.fillText("f(x) = " + nombreBase + "   (punteada)", 10, 18);
+      ctx.fillText("y = " + a.toFixed(1) + "·f(x-(" + h.toFixed(1) + "))+(" + k.toFixed(1) + ")   (sólida)", 10, 36);
+      ctx.restore();
+    });
+
+    function fijarBase(nueva) {
+      base = nueva;
+      var botones = { x2: "trans-base-x2", abs: "trans-base-abs", sqrt: "trans-base-sqrt" };
+      var acento = colorVar("--acento");
+      Object.keys(botones).forEach(function (clave) {
+        var el = document.getElementById(botones[clave]);
+        if (!el) return;
+        if (clave === nueva) {
+          el.style.borderColor = acento; el.style.color = acento; el.style.fontWeight = "700";
+        } else {
+          el.style.borderColor = ""; el.style.color = ""; el.style.fontWeight = "";
+        }
+      });
+      sim.redibujar();
+    }
+
+    var btnX2 = document.getElementById("trans-base-x2");
+    var btnAbs = document.getElementById("trans-base-abs");
+    var btnSqrt = document.getElementById("trans-base-sqrt");
+    if (btnX2) btnX2.addEventListener("click", function () { fijarBase("x2"); });
+    if (btnAbs) btnAbs.addEventListener("click", function () { fijarBase("abs"); });
+    if (btnSqrt) btnSqrt.addEventListener("click", function () { fijarBase("sqrt"); });
+    fijarBase("x2");
+
+    sim.slider("trans-h", function (v) { h = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.slider("trans-k", function (v) { k = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.slider("trans-a", function (v) { a = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.botones();
+  });
+
+  /* ================= 3. Exponencial vs logaritmo ================= */
+  Anim.registrar("anim-exp-log", function (sim) {
+    var baseA = 2;
+    var xMinV = -4, xMaxV = 6, yMinV = -4, yMaxV = 8;
+
+    function trazar(ctx, m, fn, xIni, xFin, n, yLo, yHi) {
+      ctx.beginPath();
+      var trazando = false;
+      for (var i = 0; i <= n; i++) {
+        var x = xIni + (xFin - xIni) * i / n;
+        var y = fn(x);
+        if (y === null || isNaN(y) || y < yLo || y > yHi) { trazando = false; continue; }
+        var px = m.x(x), py = m.y(y);
+        if (!trazando) { ctx.moveTo(px, py); trazando = true; } else { ctx.lineTo(px, py); }
+      }
+      ctx.stroke();
+    }
+
+    sim.alDibujar(function (ctx, t, dt, w, hpx) {
+      var m = Anim.mapa(w, hpx, { xMin: xMinV, xMax: xMaxV, yMin: yMinV, yMax: yMaxV });
+      Anim.ejes(ctx, m, w, hpx);
+
+      var acento = colorVar("--acento"), s3 = colorVar("--s3"), tinta2 = colorVar("--tinta-2"), tinta = colorVar("--tinta");
+
+      ctx.save();
+      ctx.strokeStyle = tinta2; ctx.setLineDash([5, 4]); ctx.lineWidth = 1.3; ctx.globalAlpha = 0.7;
+      ctx.beginPath();
+      ctx.moveTo(m.x(xMinV), m.y(xMinV)); ctx.lineTo(m.x(xMaxV), m.y(xMaxV));
+      ctx.stroke();
+      ctx.restore();
+
+      ctx.save();
+      ctx.strokeStyle = acento; ctx.lineWidth = 2.4;
+      trazar(ctx, m, function (x) { return Math.pow(baseA, x); }, xMinV, xMaxV, 150, yMinV - 1, yMaxV + 1);
+      ctx.restore();
+
+      ctx.save();
+      ctx.strokeStyle = s3; ctx.lineWidth = 2.4;
+      trazar(ctx, m, function (x) { return x > 0 ? Math.log(x) / Math.log(baseA) : null; }, 0.02, xMaxV, 150, yMinV - 1, yMaxV + 1);
+      ctx.restore();
+
+      var xEMax = Math.min(xMaxV, Math.log(yMaxV) / Math.log(baseA));
+      var xEMin = xMinV;
+      var frac = (t * 0.12) % 1;
+      var xE = xEMin + (xEMax - xEMin) * frac;
+      var yE = Math.pow(baseA, xE);
+
+      ctx.save();
+      ctx.fillStyle = acento;
+      ctx.beginPath(); ctx.arc(m.x(xE), m.y(yE), 6, 0, Math.PI * 2); ctx.fill();
+      ctx.restore();
+
+      if (yE >= xMinV && yE <= xMaxV && xE >= yMinV && xE <= yMaxV) {
+        ctx.save();
+        ctx.fillStyle = s3;
+        ctx.beginPath(); ctx.arc(m.x(yE), m.y(xE), 6, 0, Math.PI * 2); ctx.fill();
+        ctx.restore();
+      }
+
+      ctx.save();
+      ctx.font = "13px Consolas, monospace"; ctx.fillStyle = tinta;
+      ctx.fillText("a = " + baseA.toFixed(1), 10, 18);
+      ctx.fillText("y = " + baseA.toFixed(1) + "^x   (acento)", 10, 36);
+      ctx.fillText("y = log_" + baseA.toFixed(1) + "(x)   (violeta)", 10, 54);
+      ctx.restore();
+    });
+
+    sim.slider("explog-base", function (v) { baseA = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.botones();
+  });
+
+  /* ================= 4. |x - a| < b en la recta real ================= */
+  Anim.registrar("anim-valor-absoluto", function (sim) {
+    var a = 1, b = 2;
+    var xMin = -12, xMax = 12;
+
+    function px(x, w) { return (x - xMin) / (xMax - xMin) * w; }
+
+    sim.alDibujar(function (ctx, t, dt, w, hpx) {
+      var yLinea = hpx / 2;
+      var s1 = colorVar("--s1"), acento = colorVar("--acento"), tinta = colorVar("--tinta"),
+          tinta2 = colorVar("--tinta-2");
+
+      ctx.save();
+      ctx.strokeStyle = tinta2; ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.moveTo(0, yLinea); ctx.lineTo(w, yLinea); ctx.stroke();
+      for (var xi = Math.ceil(xMin); xi <= xMax; xi++) {
+        var xp = px(xi, w);
+        ctx.beginPath(); ctx.moveTo(xp, yLinea - 5); ctx.lineTo(xp, yLinea + 5); ctx.stroke();
+        if (xi % 2 === 0) {
+          ctx.fillStyle = tinta2; ctx.font = "11px Consolas, monospace"; ctx.textAlign = "center";
+          ctx.fillText(String(xi), xp, yLinea + 20);
+        }
+      }
+      ctx.textAlign = "left";
+      ctx.restore();
+
+      var hayInterval = b > 0;
+      if (hayInterval) {
+        var xIzq = a - b, xDer = a + b;
+        ctx.save();
+        ctx.strokeStyle = s1; ctx.lineWidth = 5;
+        ctx.beginPath(); ctx.moveTo(px(xIzq, w), yLinea); ctx.lineTo(px(xDer, w), yLinea); ctx.stroke();
+        ctx.restore();
+
+        ctx.save();
+        ctx.strokeStyle = s1; ctx.fillStyle = colorVar("--fondo"); ctx.lineWidth = 2.5;
+        [xIzq, xDer].forEach(function (xv) {
+          ctx.beginPath(); ctx.arc(px(xv, w), yLinea, 6, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+        });
+        ctx.restore();
+      }
+
+      ctx.save();
+      ctx.fillStyle = acento;
+      ctx.beginPath(); ctx.arc(px(a, w), yLinea, 4, 0, Math.PI * 2); ctx.fill();
+      ctx.font = "11px Consolas, monospace"; ctx.textAlign = "center";
+      ctx.fillText("a", px(a, w), yLinea - 12);
+      ctx.textAlign = "left";
+      ctx.restore();
+
+      var frac = (t * 0.1) % 1;
+      var xMovil = xMin + (xMax - xMin) * frac;
+      var cumple = hayInterval && xMovil > (a - b) && xMovil < (a + b);
+      ctx.save();
+      ctx.fillStyle = cumple ? s1 : tinta2;
+      ctx.beginPath(); ctx.arc(px(xMovil, w), yLinea, 8, 0, Math.PI * 2); ctx.fill();
+      ctx.restore();
+
+      ctx.save();
+      ctx.font = "13px Consolas, monospace"; ctx.fillStyle = tinta;
+      var texto = hayInterval
+        ? "Solución: x ∈ (" + (a - b).toFixed(2) + ", " + (a + b).toFixed(2) + ")"
+        : "Solución: ∅ (b ≤ 0)";
+      ctx.fillText(texto, 10, 20);
+      ctx.restore();
+    });
+
+    sim.slider("va-a", function (v) { a = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.slider("va-b", function (v) { b = v; sim.redibujar(); }, function (v) { return v.toFixed(2); });
+    sim.botones();
+  });
+
+})();
+</script>
+
+<script>
+  // entradas escalonadas (GSAP + ScrollTrigger vía Anim.revelar) — no rompe nada si GSAP no cargó
+  Anim.revelar(".curso-hero-v3 > *", { scroll: false, stagger: .08, distancia: 14, duracion: .8 });
+  document.querySelectorAll(".unidad").forEach(function (u) {
+    Anim.revelar(u.querySelectorAll(":scope > .unidad-cabecera, :scope > .materia, :scope > .animacion, :scope > .ejemplos-unidad, :scope > .ejercicios-unidad"), { disparador: u, stagger: .08, distancia: 16 });
+  });
+</script>
+
+</body>
+</html>

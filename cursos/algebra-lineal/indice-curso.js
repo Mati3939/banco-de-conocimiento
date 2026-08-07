@@ -1,0 +1,42 @@
+window.INDICE = window.INDICE || [];
+window.INDICE.push(
+  { t: "Matrices y determinantes (cheat sheet)", c: "Álgebra Lineal", u: "cursos/algebra-lineal/index.html#tema-matrices", k: "matriz orden suma producto transpuesta traza determinante sarrus cofactor inversa rango potencia" },
+  { t: "Sistemas de ecuaciones (cheat sheet)", c: "Álgebra Lineal", u: "cursos/algebra-lineal/index.html#tema-sistemas", k: "sistema ecuaciones lineales rouche gauss gauss-jordan cramer compatible incompatible homogeneo" },
+  { t: "Espacios vectoriales (cheat sheet)", c: "Álgebra Lineal", u: "cursos/algebra-lineal/index.html#tema-espacios", k: "espacio vectorial subespacio combinacion lineal espacio generado dependencia independencia base dimension coordenadas" },
+  { t: "Producto interior (cheat sheet)", c: "Álgebra Lineal", u: "cursos/algebra-lineal/index.html#tema-interior", k: "producto interior norma angulo ortogonal complemento ortogonal gram schmidt proyeccion distancia" },
+  { t: "Transformaciones lineales (cheat sheet)", c: "Álgebra Lineal", u: "cursos/algebra-lineal/index.html#tema-transformaciones", k: "transformacion lineal nucleo kernel imagen dimension inyectiva sobreyectiva matriz asociada cambio de base matriz de paso" },
+  { t: "Autovalores y diagonalización (cheat sheet)", c: "Álgebra Lineal", u: "cursos/algebra-lineal/index.html#tema-autovalores", k: "valor propio vector propio autovalor autovector ecuacion caracteristica subespacio propio multiplicidad diagonalizable diagonalizacion ortogonal" },
+  { t: "Operaciones elementales y F.E.R.F. (cheat sheet)", c: "Álgebra Lineal", u: "cursos/algebra-lineal/index.html#tema-elementales", k: "operaciones elementales equivalencia por filas ferf forma escalonada reducida teorema invertible gauss jordan" },
+  { t: "Menor, cofactor y desarrollo por cofactores (cheat sheet)", c: "Álgebra Lineal", u: "cursos/algebra-lineal/index.html#tema-cofactores", k: "menor cofactor desarrollo por cofactores determinante 4x4 signo tablero de ajedrez" },
+
+  { t: "Animación: transformación lineal 2D", c: "Álgebra Lineal", u: "cursos/algebra-lineal/index.html#anim-transformacion", k: "transformacion lineal matriz grilla cuadrado unitario determinante area orientacion sliders" },
+  { t: "Animación: autovalores y autovectores", c: "Álgebra Lineal", u: "cursos/algebra-lineal/index.html#anim-autovectores", k: "autovalor autovector direccion propia vector girando angulo lambda" },
+  { t: "Animación: combinación lineal", c: "Álgebra Lineal", u: "cursos/algebra-lineal/index.html#anim-combinacion", k: "combinacion lineal paralelogramo espacio generado vectores independientes" },
+  { t: "Animación: proyección ortogonal", c: "Álgebra Lineal", u: "cursos/algebra-lineal/index.html#anim-proyeccion", k: "proyeccion ortogonal residuo distancia producto interior angulo" },
+
+  { t: "Ejemplo: producto de matrices", c: "Álgebra Lineal", u: "cursos/algebra-lineal/index.html#ej-producto", k: "producto de matrices ejemplo resuelto multiplicacion" },
+  { t: "Ejemplo: matriz inversa por Gauss", c: "Álgebra Lineal", u: "cursos/algebra-lineal/index.html#ej-inversa", k: "matriz inversa metodo de gauss ejemplo resuelto orden 2" },
+  { t: "Ejemplo: sistema con parámetro (Certamen 1)", c: "Álgebra Lineal", u: "cursos/algebra-lineal/index.html#ej-sistema-parametro", k: "sistema parametro a discusion rouche certamen 1 ejemplo resuelto" },
+  { t: "Ejemplo: regla de Cramer", c: "Álgebra Lineal", u: "cursos/algebra-lineal/index.html#ej-cramer", k: "regla de cramer sistema 3x3 ejemplo resuelto determinante" },
+  { t: "Ejemplo: demostración de subespacio en M2(R) (Certamen 2)", c: "Álgebra Lineal", u: "cursos/algebra-lineal/index.html#ej-subespacio", k: "subespacio vectorial demostracion criterio certamen 2 m2 matrices" },
+  { t: "Ejemplo: Gram-Schmidt en R3", c: "Álgebra Lineal", u: "cursos/algebra-lineal/index.html#ej-gram-schmidt", k: "gram schmidt ortonormalizacion base ortonormal r3 ejemplo resuelto" },
+  { t: "Ejemplo: núcleo, imagen y sobreyectividad (Certamen 3)", c: "Álgebra Lineal", u: "cursos/algebra-lineal/index.html#ej-nucleo-imagen", k: "nucleo kernel imagen sobreyectiva transformacion lineal certamen 3 m2 p2" },
+  { t: "Ejemplo: autovalores con multiplicidad y diagonalización", c: "Álgebra Lineal", u: "cursos/algebra-lineal/index.html#ej-autovalores-mult", k: "autovalores multiplicidad algebraica geometrica diagonalizable ejemplo resuelto 3x3" },
+  { t: "Ejemplo: inversa 3x3 por Gauss-Jordan (FERF)", c: "Álgebra Lineal", u: "cursos/algebra-lineal/index.html#ej-elementales-inversa", k: "matriz inversa gauss jordan operaciones elementales ferf ejemplo resuelto 3x3" },
+  { t: "Ejemplo: determinante 4x4 por cofactores", c: "Álgebra Lineal", u: "cursos/algebra-lineal/index.html#ej-cofactores", k: "determinante 4x4 desarrollo por cofactores menor ejemplo resuelto" },
+  { t: "Ejemplo: suma directa M2(R) = simétricas ⊕ antisimétricas", c: "Álgebra Lineal", u: "cursos/algebra-lineal/index.html#ej-suma-directa", k: "suma directa subespacios simetrica antisimetrica m2 descomposicion ejemplo resuelto" },
+
+  { t: "Ejercicio: determinante con filas proporcionales", c: "Álgebra Lineal", u: "cursos/algebra-lineal/index.html#ejer-determinante", k: "ejercicio determinante sarrus filas proporcionales facil" },
+  { t: "Ejercicio: matriz antisimétrica y traza", c: "Álgebra Lineal", u: "cursos/algebra-lineal/index.html#ejer-traza", k: "ejercicio matriz simetrica antisimetrica traza facil" },
+  { t: "Ejercicio: rango de una matriz 4x5", c: "Álgebra Lineal", u: "cursos/algebra-lineal/index.html#ejer-rango", k: "ejercicio rango matriz escalonamiento media" },
+  { t: "Ejercicio: polinomio de matriz f(A)", c: "Álgebra Lineal", u: "cursos/algebra-lineal/index.html#ejer-polinomio-matriz", k: "ejercicio potencia de matrices polinomio de matriz media" },
+  { t: "Ejercicio: base y dimensión de subespacio de M2(R)", c: "Álgebra Lineal", u: "cursos/algebra-lineal/index.html#ejer-base-dimension", k: "ejercicio base dimension subespacio m2 media" },
+  { t: "Ejercicio: dependencia lineal con parámetro k", c: "Álgebra Lineal", u: "cursos/algebra-lineal/index.html#ejer-dependencia-parametro", k: "ejercicio dependencia lineal parametro k dificil determinante" },
+  { t: "Ejercicio: matriz asociada y cambio de base (Certamen 3)", c: "Álgebra Lineal", u: "cursos/algebra-lineal/index.html#ejer-matriz-asociada", k: "ejercicio matriz asociada cambio de base p2 dificil" },
+  { t: "Ejercicio: diagonalización de una matriz 3x3", c: "Álgebra Lineal", u: "cursos/algebra-lineal/index.html#ejer-diagonalizacion", k: "ejercicio diagonalizacion matriz p d dificil" },
+  { t: "Ejercicio: proyección ortogonal y distancia a un subespacio", c: "Álgebra Lineal", u: "cursos/algebra-lineal/index.html#ejer-proyeccion", k: "ejercicio proyeccion ortogonal distancia subespacio media" },
+  { t: "Ejercicio: unión de subespacios (contraejemplo)", c: "Álgebra Lineal", u: "cursos/algebra-lineal/index.html#ejer-subespacio-union", k: "ejercicio union de subespacios contraejemplo facil" },
+  { t: "Ejercicio: invertibilidad por operaciones elementales con parámetro k", c: "Álgebra Lineal", u: "cursos/algebra-lineal/index.html#ejer-ferf", k: "ejercicio operaciones elementales ferf equivalencia por filas parametro k media" },
+  { t: "Ejercicio: suma directa en R3", c: "Álgebra Lineal", u: "cursos/algebra-lineal/index.html#ejer-suma-directa", k: "ejercicio suma directa subespacios r3 dimension media" },
+  { t: "Ejercicio: transformación no singular", c: "Álgebra Lineal", u: "cursos/algebra-lineal/index.html#ejer-no-singular", k: "ejercicio transformacion no singular invertible nucleo determinante media" }
+);
