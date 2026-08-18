@@ -13,6 +13,11 @@ cursos/*/RESUMEN.md
 # Backups de versiones anteriores
 index-v*.html
 cursos/*/index-v*.html
+# excepción: en los 3 ramos migrados a app, index-v3.html es el puente vivo
+# al que apuntan las fichas de los temas todavía no escritos
+!cursos/probabilidades/index-v3.html
+!cursos/calculo-multivariable/index-v3.html
+!cursos/ecuaciones-diferenciales/index-v3.html
 
 # Sistema
 Thumbs.db

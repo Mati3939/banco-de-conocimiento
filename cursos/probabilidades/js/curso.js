@@ -1,0 +1,59 @@
+window.CURSO={
+  slug:'probabilidades',
+  titulo:'Probabilidades y Estadística',
+  emoji:'🎲',
+  codigo:'IIP227A (IPLC215)',
+  semestre:'2026-2',
+  bibliografia:'Walpole y Myers, «Probabilidad y Estadística», 4.ª ed.',
+  unidades:{
+    inicio:'',
+    I:'Probabilidad',
+    II:'Variables aleatorias',
+    III:'Estadística y convergencia',
+    IV:'Inferencia'
+  },
+  evaluaciones:[
+    {id:'control-1',nombre:'Control 1',fecha:'18/08 (CCP) · 19/08 (SCL)',
+     temas:['Introducción y conteo','Fundamentos de probabilidad: axiomas, Bonferroni, condicional, probabilidad total, independencia, Bayes']},
+    {id:'control-2',nombre:'Control 2',fecha:'01/09 (CCP) · 02/09 (SCL)',
+     temas:['Variables aleatorias discretas y continuas','Modelos discretos']},
+    {id:'certamen-1',nombre:'Certamen 1',fecha:'11/09/2026',
+     temas:['Introducción y conteo','Fundamentos de probabilidad','Variables aleatorias discretas y continuas','Modelos discretos','Modelos continuos: uniforme, exponencial y normal']},
+    {id:'control-3',nombre:'Control 3',fecha:'semana 10',
+     temas:['Modelos continuos: uniforme, exponencial y normal','Teoremas de convergencia: LGN, TLC, distribución de media, varianza y proporción muestral']},
+    {id:'control-4',nombre:'Control 4',fecha:'semana 12',
+     temas:['Estimación puntual: insesgados, momentos, máxima verosimilitud, ECM, cota de Cramér-Rao','Intervalos de confianza para media, varianza y proporción']},
+    {id:'certamen-2',nombre:'Certamen 2',fecha:'06/11/2026',
+     temas:['Teoremas de convergencia','Estimación puntual','Estimación intervalar','Test de hipótesis: errores I y II, significancia, potencia, tests para proporción, media y varianza']},
+    {id:'control-5',nombre:'Control 5',fecha:'semana 16',
+     temas:['Regresión lineal simple (OLS)','Interpretación de coeficientes','Valor ajustado','Coeficiente de determinación','Intervalo de confianza para beta','ANOVA']}
+  ],
+  reglas:[
+    '5 controles presenciales de 70 min; se elimina la peor nota. La inasistencia no se justifica: se califica 1,0.',
+    'Horario de controles: Santiago H8 (17:50), Concepción H2 (09:50).',
+    '2 certámenes de 120 min, a libro cerrado. Sin calculadora programable ni dispositivos con funciones de cálculo.',
+    'Examen final acumulativo con nota mínima 3,0.',
+    'Eximición: nota de presentación ≥ 5,5, estar en el 20 % más alto del grupo y 4,0 o más en cada certamen. Este semestre además hace falta 5,0 o más en el Control 5.'
+  ],
+  semanas:[
+    {n:1,desde:'03-08',hasta:'09-08',hito:'Inicio de clases',tema:'espacio-muestral'},
+    {n:2,desde:'10-08',hasta:'16-08',hito:'Elimina/agrega · 15/08 feriado',tema:'axiomas'},
+    {n:3,desde:'17-08',hasta:'23-08',hito:'Control 1',tema:'va-discretas'},
+    {n:4,desde:'24-08',hasta:'30-08',hito:'',tema:'modelos-discretos'},
+    {n:5,desde:'31-08',hasta:'06-09',hito:'Control 2',tema:'modelos-continuos'},
+    {n:6,desde:'07-09',hasta:'13-09',hito:'Certamen 1 · 11/09',tema:null},
+    {n:7,desde:'14-09',hasta:'20-09',hito:'Fiestas Patrias — sin actividades',tema:null},
+    {n:8,desde:'21-09',hasta:'27-09',hito:'',tema:'descriptiva'},
+    {n:9,desde:'28-09',hasta:'04-10',hito:'',tema:'convergencia'},
+    {n:10,desde:'05-10',hasta:'11-10',hito:'Semana i · Control 3',tema:'estimacion-puntual'},
+    {n:11,desde:'12-10',hasta:'18-10',hito:'12/10 feriado',tema:'intervalos'},
+    {n:12,desde:'19-10',hasta:'25-10',hito:'Control 4',tema:'hipotesis'},
+    {n:13,desde:'26-10',hasta:'01-11',hito:'31/10 feriado',tema:'hipotesis'},
+    {n:14,desde:'02-11',hasta:'08-11',hito:'Certamen 2 · 06/11',tema:null},
+    {n:15,desde:'09-11',hasta:'15-11',hito:'',tema:'regresion'},
+    {n:16,desde:'16-11',hasta:'22-11',hito:'Control 5 · fin de clases 21/11',tema:'regresion'},
+    {n:17,desde:'23-11',hasta:'29-11',hito:'Exámenes finales',tema:null},
+    {n:18,desde:'30-11',hasta:'06-12',hito:'Exámenes finales',tema:null},
+    {n:19,desde:'07-12',hasta:'11-12',hito:'Recuperativos',tema:null}
+  ]
+};
