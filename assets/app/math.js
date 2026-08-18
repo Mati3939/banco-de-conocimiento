@@ -175,7 +175,12 @@ function Pasos(mount, lineas, opts){
 }
 
 /* Wireframe 3D con proyección ortográfica y rotación por arrastre.
-   Todos los puntos son arrays [x,y,z]. */
+   Todos los puntos son arrays [x,y,z]. Dimensionar: el rango que entra en el
+   canvas es aprox. ±(alto/2)/escala unidades de mundo alrededor del origen
+   (más ancho en X si el canvas es más ancho que alto); una coordenada de
+   magnitud mayor que eso —incluida la punta de un eje o una etiqueta— queda
+   recortada fuera del lienzo. Si algo se corta arriba/abajo, subí `alto`
+   o bajá `escala` (o ambos) hasta que quepa. */
 function Espacio(mount, opts){
   const o=Object.assign({alto:360,escala:60,theta:0.6,phi:0.35,rotable:true},opts||{});
   const L=lienzo(mount,o.alto);
@@ -294,8 +299,19 @@ function Espacio(mount, opts){
   return E;
 }
 
+/* Decodifica entidades HTML ('&part;' -> '∂') a texto plano, sin dependencias.
+   Uso: contenido de <text> en SVG, que no interpreta HTML como innerHTML. */
+function decodificarEntidad(s){
+  const d=document.createElement('textarea');
+  d.innerHTML=s;
+  return d.value;
+}
+
 /* Árbol de cajas y flechas en DOM+SVG. nodos: [{id,texto,fila,col}] con fila/col
-   en una grilla lógica; aristas: [[idA,idB,'etiqueta']]. */
+   en una grilla lógica; aristas: [[idA,idB,'etiqueta']]. La etiqueta admite la
+   misma clase de marcado que el texto de nodo (entidades HTML tipo '&part;'):
+   como el nodo va por el() con html: y la arista es un <text> SVG (que no
+   decodifica entidades via textContent), acá se decodifica antes de asignarla. */
 function Arbol(mount, opts){
   const o=Object.assign({alto:260},opts||{});
   const wrap=el('div',{class:'arbol',style:'position:relative'});
@@ -331,7 +347,7 @@ function Arbol(mount, opts){
         const t=document.createElementNS('http://www.w3.org/2000/svg','text');
         t.setAttribute('x',(x1+x2)/2+4); t.setAttribute('y',(y1+y2)/2);
         t.setAttribute('fill',colorVar('--muted')); t.setAttribute('font-size','11');
-        t.textContent=etq; svg.append(t);
+        t.textContent=decodificarEntidad(etq); svg.append(t);
       }
     });
   }
