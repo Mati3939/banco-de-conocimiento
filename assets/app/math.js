@@ -319,13 +319,23 @@ function Arbol(mount, opts){
   svg.setAttribute('style','position:absolute;inset:0;width:100%;height:100%;pointer-events:none');
   wrap.append(svg);
   const filas=Math.max(...o.nodos.map(n=>n.fila))+1;
-  const cols=Math.max(...o.nodos.map(n=>n.col))+1;
+  /* grid-column exige enteros, pero un padre centrado sobre un número PAR de
+     hijos cae en una columna ".5" (p.ej. una raíz sobre 4 hojas en 0,1,2,3
+     está en la columna 1.5). En vez de forzar a los módulos a inventar columnas
+     enteras, acá se detecta si algún nodo pide una columna fraccionaria y, solo
+     en ese caso, se duplica la resolución interna de la grilla (todo *2): los
+     enteros existentes pasan a números pares y las mitades caen exactas en las
+     columnas impares intermedias. Con cols enteras (caso mayoritario, y el que
+     usa el fixture) el factor queda en 1 y el layout no cambia un píxel. */
+  const colFactor=o.nodos.some(n=>Math.abs(n.col-Math.round(n.col))>1e-9)?2:1;
+  const colEsc=n=>Math.round(n.col*colFactor);
+  const cols=Math.max(...o.nodos.map(colEsc))+1;
   const grid=el('div',{style:`display:grid;grid-template-rows:repeat(${filas},1fr);`+
     `grid-template-columns:repeat(${cols},1fr);gap:.6rem 1rem;min-height:${o.alto}px;position:relative`});
   const porId={};
   o.nodos.forEach(n=>{
     const d=el('div',{class:'arbol-nodo',html:n.texto,
-      style:`grid-row:${n.fila+1};grid-column:${n.col+1};justify-self:center;align-self:center`});
+      style:`grid-row:${n.fila+1};grid-column:${colEsc(n)+1};justify-self:center;align-self:center`});
     porId[n.id]=d; grid.append(d);
   });
   wrap.append(grid); mount.append(wrap);
