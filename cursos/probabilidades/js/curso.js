@@ -43,7 +43,7 @@ window.CURSO={
     {n:5,desde:'31-08',hasta:'06-09',hito:'Control 2',tema:'modelos-continuos'},
     {n:6,desde:'07-09',hasta:'13-09',hito:'Certamen 1 · 11/09',tema:null},
     {n:7,desde:'14-09',hasta:'20-09',hito:'Fiestas Patrias — sin actividades',tema:null},
-    {n:8,desde:'21-09',hasta:'27-09',hito:'',tema:'descriptiva'},
+    {n:8,desde:'21-09',hasta:'27-09',hito:'',tema:['descriptiva','convergencia']},
     {n:9,desde:'28-09',hasta:'04-10',hito:'Control 3',tema:'estimacion-puntual'},
     {n:10,desde:'05-10',hasta:'11-10',hito:'Semana i',tema:'estimacion-puntual'},
     {n:11,desde:'12-10',hasta:'18-10',hito:'12/10 feriado',tema:'intervalos'},
