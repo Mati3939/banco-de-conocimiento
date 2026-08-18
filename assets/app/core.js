@@ -274,6 +274,17 @@ document.addEventListener('DOMContentLoaded',()=>{
     }
     else if(e.key==='Home'&&MODULES[0]){activate(MODULES[0].id);}
   });
+  /* relayout() remide y repinta TODOS los canvases/árboles registrados via
+     addRelayout — dispararlo en cada evento 'resize' (decenas por segundo
+     durante un arrastre de ventana o una rotación de pantalla) sería carísimo
+     y redundante. 150ms es el clásico "esperar a que el usuario termine de
+     mover/rotar" antes de remedir: imperceptible como demora, pero evita
+     recalcular en cada píxel intermedio. */
+  let resizeTO=null;
+  window.addEventListener('resize',()=>{
+    clearTimeout(resizeTO);
+    resizeTO=setTimeout(relayout,150);
+  });
   buildShell();
 });
 
