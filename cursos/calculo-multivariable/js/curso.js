@@ -48,7 +48,7 @@ window.CURSO={
     {n:12,desde:'19-10',hasta:'25-10',hito:'Test 4 · Certamen 2 el 24/10',tema:'integral-linea'},
     {n:13,desde:'26-10',hasta:'01-11',hito:'31/10 feriado',tema:'green'},
     {n:14,desde:'02-11',hasta:'08-11',hito:'Segunda ronda de certámenes',tema:null},
-    {n:15,desde:'09-11',hasta:'15-11',hito:'',tema:'superficies'},
+    {n:15,desde:'09-11',hasta:'15-11',hito:'Elimina extraordinaria 10/11 · Feria de las Ciencias 10-12/11',tema:'superficies'},
     {n:16,desde:'16-11',hasta:'22-11',hito:'Test 5 · fin de clases 21/11',tema:'stokes-gauss'},
     {n:17,desde:'23-11',hasta:'29-11',hito:'Exámenes finales',tema:null},
     {n:18,desde:'30-11',hasta:'06-12',hito:'Exámenes finales',tema:null},

@@ -15,7 +15,7 @@ registerModule({id:'triedro-tnb',title:'Triedro móvil T, N, B',
     /* -------- Card 2: N y B -------- */
     const c2=el('div',{class:'card'});
     c2.append(el('h3',{},'N y B: el procedimiento de la Guía de Ayudantía'));
-    c2.append(el('p',{},'La Guía de Ayudantía 1 da un orden de cálculo que evita el error más común (derivar $\\mathbf T$ para sacar $\\mathbf N$, que es innecesariamente largo):'));
+    c2.append(el('p',{},'La Guía de Ayudantía 1 da este orden de cálculo, que tiene una ventaja: no hace falta derivar $\\mathbf T$ para sacar $\\mathbf N$ (lo que sería más largo):'));
     c2.append(el('div',{class:'formula',html:'$$\\mathbf T\\sim\\mathbf r\'(t_0)\\qquad \\mathbf B\\sim\\mathbf r\'(t_0)\\times\\mathbf r\'\'(t_0)\\qquad \\mathbf N=\\mathbf B\\times\\mathbf T$$'}));
     c2.append(el('p',{},'Primero se consigue $\\mathbf B$ con un solo producto cruz (usando $\\mathbf r\'$ y $\\mathbf r\'\'$, que ya hay que calcular igual), y con $\\mathbf T$ y $\\mathbf B$ ya calculados, $\\mathbf N=\\mathbf B\\times\\mathbf T$ sale gratis — sin derivar $\\mathbf T$.'));
     c2.append(el('div',{class:'card',style:'background:color-mix(in srgb, var(--s1) 7%, var(--surface)); border-left:3px solid var(--s1)'},
@@ -91,14 +91,14 @@ registerModule({id:'triedro-tnb',title:'Triedro móvil T, N, B',
     /* -------- Card 6: errores que descuentan -------- */
     const c6=el('div',{class:'card'});
     c6.append(el('h3',{},'Errores que descuentan puntaje'));
-    c6.append(el('p',{},'Lista literal de la Guía de Ayudantía 1, columna "Triedro TNB":'));
+    c6.append(el('p',{},'La Guía de Ayudantía 1 trae un recuadro "Errores que descuentan" para TIPO 1 (longitud de arco), pero no uno equivalente para TIPO 2. La lista de abajo es elaboración propia a partir de los pasos y la advertencia que sí da la guía para el triedro TNB:'));
     c6.append(el('ul',{class:'note'},
       el('li',{},'Normalizar T, N o B cuando no lo piden — trabajo extra que no cambia la recta ni el plano.'),
       el('li',{},'Derivar T para sacar N, en vez de usar $\\mathbf N=\\mathbf B\\times\\mathbf T$ una vez que ya se tiene $\\mathbf B$.'),
       el('li',{},'Confundir qué vector es la normal de cada plano — revisar siempre la tabla: osculador ⟂ B, normal ⟂ T, rectificante ⟂ N.'),
       el('li',{},'Evaluar en $t_0$ antes de derivar, en vez de derivar $\\mathbf r(t)$ como función y recién ahí reemplazar $t_0$.')
     ));
-    c6.append(el('p',{class:'fuente'},'Fuente: Guía de Ayudantía 1 — Cálculo Multivariable, recuadro "Errores que descuentan" (columna TIPO 2), Canvas 2026-2.'));
+    c6.append(el('p',{class:'fuente'},'Fuente: elaboración propia a partir de los pasos ("Derivar y después evaluar", paso 2) y la advertencia de no normalizar de la Guía de Ayudantía 1 — Cálculo Multivariable, "TIPO 2: Triedro TNB", Canvas 2026-2. La guía no incluye un recuadro "Errores que descuentan" para TIPO 2 (a diferencia de TIPO 1, ver mod-longitud-arco.js).'));
     sec.append(c6);
 
     /* -------- Card 7: ejercicios -------- */
