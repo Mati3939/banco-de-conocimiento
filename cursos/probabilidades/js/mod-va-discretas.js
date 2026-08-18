@@ -100,7 +100,8 @@ registerModule({id:'va-discretas',title:'Variables aleatorias discretas',
       {tex:'E(X)=0+0{,}50+0{,}50=1',nota:'En promedio, 1 cara en 2 lanzamientos — coincide con la intuición (np=2×0,5=1, pensando X como Binomial(2; 0,5)).'},
       {tex:'E(X^2)=0^2(0{,}25)+1^2(0{,}50)+2^2(0{,}25)=0+0{,}50+1=1{,}5',nota:'Se necesita E(X²) para la varianza.'},
       {tex:'\\text{Var}(X)=E(X^2)-\\big(E(X)\\big)^2=1{,}5-1^2=0{,}5',nota:'Fórmula de cálculo — la que conviene usar en la práctica.'},
-      {tex:'\\text{Var}(X)=\\sum_x(x-1)^2p(x)=(0-1)^2(0{,}25)+(1-1)^2(0{,}50)+(2-1)^2(0{,}25)=0{,}5',nota:'Verificación con la definición directa (desviaciones al cuadrado, ponderadas): da el mismo 0,5 por otro camino.'}
+      {tex:'\\text{Var}(X)=\\sum_x(x-1)^2p(x)',nota:'Verificación con la definición directa: se pondera cada desviación al cuadrado por su probabilidad.'},
+      {tex:'\\text{Var}(X)=(0-1)^2(0{,}25)+(1-1)^2(0{,}50)+(2-1)^2(0{,}25)=0{,}5',nota:'Se reemplazan los valores de X=0,1,2: da el mismo 0,5 que la fórmula de cálculo, por otro camino.'}
     ],{modId:'va-discretas',titulo:'E(X) y Var(X) de X = número de caras en 2 monedas'});
     c4.append(el('p',{class:'fuente'},FUENTE_PROVISORIA));
     sec.append(c4);

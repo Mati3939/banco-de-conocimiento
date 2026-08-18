@@ -33,7 +33,8 @@ registerModule({id:'axiomas',title:'Axiomas de probabilidad y Bonferroni',
       {tex:'A\\cup B=A\\cup(B\\setminus A),\\quad A\\cap(B\\setminus A)=\\emptyset',nota:'Se parte A∪B en dos trozos que no se superponen.'},
       {tex:'P(A\\cup B)=P(A)+P(B\\setminus A)',nota:'Axioma 3 (aditividad para eventos mutuamente excluyentes).'},
       {tex:'B=(A\\cap B)\\cup(B\\setminus A)',nota:'B también se parte en dos trozos disjuntos.'},
-      {tex:'P(B)=P(A\\cap B)+P(B\\setminus A)\\ \\Rightarrow\\ P(B\\setminus A)=P(B)-P(A\\cap B)',nota:'Axioma 3 otra vez; de aquí se despeja P(B\\A).'},
+      {tex:'P(B)=P(A\\cap B)+P(B\\setminus A)',nota:'Axioma 3 otra vez, ahora aplicado a B.'},
+      {tex:'P(B\\setminus A)=P(B)-P(A\\cap B)',nota:'Se despeja P(B\\A) de la igualdad anterior.'},
       {tex:'P(A\\cup B)=P(A)+P(B)-P(A\\cap B)',nota:'Se sustituye P(B\\A) en el paso 2. Queda demostrada la regla de la suma.'}
     ],{modId:'axiomas',titulo:'Deducción desde los axiomas'});
     c2.append(el('p',{class:'fuente'},'Fuente: apunte Semana 1 (teoremas 1, 2, 5 y 6), Teresa Salgado — Canvas 2026-2. La deducción paso a paso es propia, construida con esas mismas propiedades.'));
