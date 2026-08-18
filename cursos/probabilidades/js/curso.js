@@ -36,9 +36,9 @@ window.CURSO={
     'Eximición: nota de presentación ≥ 5,5, estar en el 20 % más alto del grupo y 4,0 o más en cada certamen. Este semestre además hace falta 5,0 o más en el Control 5.'
   ],
   semanas:[
-    {n:1,desde:'03-08',hasta:'09-08',hito:'Inicio de clases',tema:'espacio-muestral'},
-    {n:2,desde:'10-08',hasta:'16-08',hito:'Elimina/agrega · 15/08 feriado',tema:'axiomas'},
-    {n:3,desde:'17-08',hasta:'23-08',hito:'Control 1',tema:'va-discretas'},
+    {n:1,desde:'03-08',hasta:'09-08',hito:'Inicio de clases',tema:['espacio-muestral','conteo']},
+    {n:2,desde:'10-08',hasta:'16-08',hito:'Elimina/agrega · 15/08 feriado',tema:['axiomas','condicional','bayes']},
+    {n:3,desde:'17-08',hasta:'23-08',hito:'Control 1',tema:['va-discretas','va-continuas']},
     {n:4,desde:'24-08',hasta:'30-08',hito:'',tema:'modelos-discretos'},
     {n:5,desde:'31-08',hasta:'06-09',hito:'Control 2',tema:'modelos-continuos'},
     {n:6,desde:'07-09',hasta:'13-09',hito:'Certamen 1 · 11/09',tema:null},
