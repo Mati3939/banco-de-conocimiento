@@ -237,6 +237,14 @@ document.addEventListener('DOMContentLoaded',()=>{
   const aplicarTema=v=>{
     if(v)document.documentElement.dataset.theme=v; else delete document.documentElement.dataset.theme;
     btnTheme.textContent=(THEMES.find(t=>t[0]===v)||THEMES[0])[1];
+    /* mismo patrón que assets/js/observatorio.js:34 — Plano (math.js) escucha
+       este evento para volver a leer colorVar() y redibujar el canvas; sin
+       este dispatch el lienzo queda pintado con el tema anterior hasta el
+       próximo resize. Se dispara también en la aplicación inicial (carga):
+       en ese momento todavía no hay canvases con addRelayout (los módulos
+       se construyen recién al activarlos), así que es inocuo, y deja un
+       único punto de disparo en vez de duplicar la llamada. */
+    document.dispatchEvent(new CustomEvent('temacambiado'));
   };
   /* el tema elegido sobrevive a la recarga: en una sala clara no hay que reclicar */
   let themeIdx=Math.max(0,THEMES.findIndex(t=>t[0]===leerTema()));
