@@ -18,10 +18,25 @@ registerModule({id:'modelos-discretos',title:'Modelos discretos',
       for(let i=0;i<count;i++){ const x=i+1; out[i]=p*Math.pow(1-p,x-1); }
       return out;
     }
-    function pmfBinomialNegativa(r,p,count){ // índice i ↔ x=i+1
-      const out=new Array(count).fill(0);
-      for(let i=0;i<count;i++){ const x=i+1; if(x<r)continue; out[i]=comb(x-1,r-1)*Math.pow(p,r)*Math.pow(1-p,x-r); }
+    function pmfBinomialNegativa(r,p,xMax){ // x=0..xMax (0 para x<r)
+      const out=new Array(xMax+1).fill(0);
+      for(let x=r;x<=xMax;x++) out[x]=comb(x-1,r-1)*Math.pow(p,r)*Math.pow(1-p,x-r);
       return out;
+    }
+    /* Rango adaptativo del eje x para Binomial negativa: r y p determinan juntos
+       dónde cae el pico (media r/p), así que un rango fijo se ve bien con los
+       valores por defecto pero corta el gráfico a mitad de subida en el peor caso
+       combinado (r y p en extremos opuestos: r=6, p=0,25 → media=24, pico en x=20,
+       con un rango fijo de 24 el 42% de la masa quedaba fuera y sin decaimiento
+       visible). Extender hasta media + 2,8 desviaciones estándar deja, en ese
+       mismo peor caso, ~99% de la masa visible con la barra del borde ya al ~4%
+       del pico — decaimiento claro, mismo criterio que Geométrica. Piso de 10
+       para que combinaciones muy concentradas (r chico, p grande) no den un
+       gráfico de 2-3 barras.
+       */
+    function xMaxBN(r,p){
+      const media=r/p, de=Math.sqrt(r*(1-p))/p;
+      return Math.max(10, Math.ceil(media + 2.8*de));
     }
     function pmfHipergeometrica(N,K,n,xMax){ // x=0..xMax
       const out=new Array(xMax+1).fill(0);
@@ -98,14 +113,14 @@ registerModule({id:'modelos-discretos',title:'Modelos discretos',
     c3.append(el('div',{class:'formula',html:'$$E(X)=\\dfrac{r}{p}, \\qquad \\text{Var}(X)=\\dfrac{r(1-p)}{p^2}$$'}));
     c3.append(el('p',{class:'note'},'Verificado a mano: con r=3, p=0,5, ',el('span',{html:'$p(5)=\\binom{4}{2}(0{,}5)^3(0{,}5)^2=6\\times0{,}125\\times0{,}25=0{,}1875$'}),' (barra x=5 resaltada por defecto).'));
     let r3=3,p3=0.5;
-    const etqBN=Array.from({length:24},(_, i)=>String(i+1));
-    const barrasBN=Barras(c3,{etiquetas:etqBN,valores:pmfBinomialNegativa(r3,p3,24),alto:220,formato:x=>x.toFixed(3)});
-    barrasBN.marcar(4,'ok');
+    const barrasBN=Barras(c3,{valores:pmfBinomialNegativa(r3,p3,xMaxBN(r3,p3)),alto:220,formato:x=>x.toFixed(3)});
+    barrasBN.marcar(5,'ok');
     const notaBN=el('p',{class:'note'});
     function actualizarBN(){
-      barrasBN.setValores(pmfBinomialNegativa(r3,p3,24));
-      if(r3===3&&Math.abs(p3-0.5)<1e-9)barrasBN.marcar(4,'ok'); else barrasBN.limpiarMarcas();
-      notaBN.innerHTML='r='+r3+', p='+nf(p3,2)+' → E(X)=r/p='+nf(r3/p3,3)+', Var(X)=r(1−p)/p²='+nf(r3*(1-p3)/(p3*p3),3)+'.';
+      const xmBN=xMaxBN(r3,p3);
+      barrasBN.setValores(pmfBinomialNegativa(r3,p3,xmBN));
+      if(r3===3&&Math.abs(p3-0.5)<1e-9)barrasBN.marcar(5,'ok'); else barrasBN.limpiarMarcas();
+      notaBN.innerHTML='r='+r3+', p='+nf(p3,2)+' → E(X)=r/p='+nf(r3/p3,3)+', Var(X)=r(1−p)/p²='+nf(r3*(1-p3)/(p3*p3),3)+' (gráfico hasta x='+xmBN+').';
     }
     actualizarBN();
     c3.append(notaBN);
@@ -115,7 +130,7 @@ registerModule({id:'modelos-discretos',title:'Modelos discretos',
       el('label',{},'p:'),
       el('input',{type:'range',min:'0.25',max:'0.9',step:'0.05',value:String(p3),oninput:e=>{ p3=parseFloat(e.target.value); actualizarBN(); }})
     ));
-    c3.append(el('p',{class:'note'},'El gráfico muestra x hasta 24; con r grande y p chico la media r/p puede superar ese rango y parte de la cola derecha queda fuera de vista.'));
+    c3.append(el('p',{class:'note'},'El eje x se adapta a r y p (hasta la media más ~2,8 desviaciones estándar) para que el pico y el decaimiento posterior se vean completos con cualquier combinación de sliders: en el caso por defecto llega hasta x='+xMaxBN(3,0.5)+', y en el peor caso combinado (r=6, p=0,25, donde la media r/p=24 es la más alta alcanzable) llega hasta x=48, mostrando ≈99% de la masa de probabilidad.'));
     c3.append(el('p',{class:'fuente'},FUENTE_PROVISORIA));
     sec.append(c3);
 
