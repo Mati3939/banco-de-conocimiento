@@ -4,4 +4,4 @@ registerModule({id:'regresion',title:'Regresión lineal simple y ANOVA',unidad:'
   contenidoOficial:['Regresión lineal simple (OLS)','Interpretación de los coeficientes de regresión',
     'Estimación del valor ajustado','Coeficiente de determinación',
     'Intervalo de confianza para beta','ANOVA'],
-  puenteV3:'#tema-regresion-lineal'});
+  puenteV3:'#u9'});

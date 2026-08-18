@@ -5,4 +5,4 @@ registerModule({id:'descriptiva',title:'Estadística descriptiva y visualizació
     'Frecuencia y frecuencia relativa','Media, mediana, moda',
     'Varianza poblacional y muestral, desviación estándar','Percentiles',
     'Visualización: scatterplot, boxplot, histogramas, barras, diagrama de torta. R'],
-  puenteV3:'#tema-medidas-centrales'});
+  puenteV3:'#u1'});
