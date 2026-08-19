@@ -1,0 +1,63 @@
+window.CURSO={
+  slug:'ecuaciones-diferenciales',
+  titulo:'Ecuaciones Diferenciales',
+  emoji:'∂',
+  codigo:'IIM317A (IPLC224)',
+  semestre:'2026-2',
+  bibliografia:'Campbell, «Introducción a las Ecuaciones Diferenciales» · Zill, «Ecuaciones Diferenciales con Aplicaciones de Modelado» · Ayres (complementaria)',
+  unidades:{
+    inicio:'',
+    I:'Teoría general y primer orden',
+    II:'Segundo orden',
+    III:'Transformada de Laplace',
+    IV:'Sistemas'
+  },
+  evaluaciones:[
+    {id:'control-1',nombre:'Control 1',fecha:'semana 3, en ayudantía',
+     temas:['Variables separables','Lineales con factor integrante','Ecuaciones exactas']},
+    {id:'control-2',nombre:'Control 2',fecha:'semana 5, en ayudantía',
+     temas:['Homogéneas','Bernoulli','Aplicaciones de primer orden']},
+    {id:'certamen-1',nombre:'Certamen 1',fecha:'04/09/2026 · 08:50–10:50',
+     temas:['Unidad I completa']},
+    {id:'control-3',nombre:'Control 3',fecha:'semana 9, en ayudantía',
+     temas:['Variación de parámetros','Reducción de orden','Coeficientes indeterminados']},
+    {id:'taller-1',nombre:'Taller 1',fecha:'semana 10, en ayudantía',
+     temas:['Segundo orden y vibraciones · grupos de hasta 4']},
+    {id:'certamen-2',nombre:'Certamen 2',fecha:'17/10/2026 · 08:50–10:50',
+     temas:['Unidad II completa','inicio de Laplace']},
+    {id:'control-4',nombre:'Control 4',fecha:'semana 13, en ayudantía',
+     temas:['Transformada de Laplace y su inversa','Convolución','Heaviside']},
+    {id:'taller-2',nombre:'Taller 2',fecha:'semana 15, en ayudantía',
+     temas:['Sistemas de EDO · grupos de hasta 4']},
+    {id:'control-5',nombre:'Control 5',fecha:'semana 16, en ayudantía',
+     temas:['Métodos de resolución de sistemas lineales','Valores propios']}
+  ],
+  reglas:[
+    '5 controles (20 % en conjunto); se elimina la peor nota. No hay justificación de inasistencia.',
+    '2 talleres aplicados con tecnología (10 % en conjunto), en grupos de hasta 4 alumnos.',
+    'Certamen 1 y Certamen 2 valen 35 % cada uno, en las semanas fijadas por la Facultad.',
+    'Examen final acumulativo 30 %, con nota mínima 3,0: bajo 3,0 se reprueba el ramo con esa nota.',
+    'Asistencia: 70 %, no obligatoria.'
+  ],
+  semanas:[
+    {n:1,desde:'03-08',hasta:'09-08',hito:'Inicio de clases',tema:'que-es-una-edo'},
+    {n:2,desde:'10-08',hasta:'16-08',hito:'Elimina/agrega · 15/08 feriado',tema:'separables'},
+    {n:3,desde:'17-08',hasta:'23-08',hito:'Control 1',tema:'exactas'},
+    {n:4,desde:'24-08',hasta:'30-08',hito:'',tema:'homogeneas-bernoulli'},
+    {n:5,desde:'31-08',hasta:'06-09',hito:'Control 2 · Certamen 1 el 04/09',tema:'aplicaciones-primer-orden'},
+    {n:6,desde:'07-09',hasta:'13-09',hito:'Ronda de certámenes',tema:null},
+    {n:7,desde:'14-09',hasta:'20-09',hito:'Fiestas Patrias — sin actividades',tema:null},
+    {n:8,desde:'21-09',hasta:'27-09',hito:'',tema:'variacion-parametros'},
+    {n:9,desde:'28-09',hasta:'04-10',hito:'Control 3',tema:'reduccion-orden'},
+    {n:10,desde:'05-10',hasta:'11-10',hito:'Semana i · Taller 1',tema:['euler','vibraciones']},
+    {n:11,desde:'12-10',hasta:'18-10',hito:'12/10 feriado · Certamen 2 el 17/10',tema:'laplace-definicion'},
+    {n:12,desde:'19-10',hasta:'25-10',hito:'',tema:'laplace-propiedades'},
+    {n:13,desde:'26-10',hasta:'01-11',hito:'Control 4 · 31/10 feriado',tema:'laplace-edo'},
+    {n:14,desde:'02-11',hasta:'08-11',hito:'Segunda ronda de certámenes',tema:null},
+    {n:15,desde:'09-11',hasta:'15-11',hito:'Elimina extraordinaria 10/11 · Feria de las Ciencias 10-12/11 · Taller 2',tema:'sistemas'},
+    {n:16,desde:'16-11',hasta:'22-11',hito:'Control 5 · fin de clases 21/11',tema:'valores-propios'},
+    {n:17,desde:'23-11',hasta:'29-11',hito:'Exámenes finales',tema:null},
+    {n:18,desde:'30-11',hasta:'06-12',hito:'Exámenes finales',tema:null},
+    {n:19,desde:'07-12',hasta:'11-12',hito:'Recuperativos',tema:null}
+  ]
+};

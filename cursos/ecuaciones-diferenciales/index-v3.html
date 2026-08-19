@@ -1,0 +1,1983 @@
+<!DOCTYPE html>
+<html lang="es" data-tema="oscuro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📉 Ecuaciones Diferenciales — Biblioteca</title>
+<link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../../assets/vendor/fuentes/fuentes.css">
+<link rel="stylesheet" href="../../assets/css/observatorio.css">
+<script>window.RUTA_BASE = "../../";</script>
+<script src="../../assets/vendor/katex/katex.min.js"></script>
+<script src="../../assets/vendor/katex/auto-render.min.js"></script>
+<script src="../../assets/vendor/gsap/gsap.min.js"></script>
+<script src="../../assets/vendor/gsap/ScrollTrigger.min.js"></script>
+<script src="../../assets/js/observatorio.js"></script>
+<script src="indice-curso.js"></script>
+</head>
+<body>
+<div class="progreso-lectura"></div>
+<div class="pagina-curso">
+
+  <aside class="lateral">
+    <a class="volver" href="../../index.html">← Constelación</a>
+    <div class="curso-cabecera"><span class="emoji">📉</span><h1>Ecuaciones Diferenciales</h1></div>
+    <span class="semestre-tag" style="color:var(--futuro)">Ramo futuro</span>
+    <nav>
+      <div class="grupo">Unidades</div>
+      <a href="#u1">01 · Primeros métodos de primer orden</a>
+      <a class="sub" href="#anim-separables">📈 Familia de curvas separables</a>
+      <a href="#u2">02 · EDO lineal de primer orden</a>
+      <a class="sub" href="#anim-campo-direcciones">🧭 Campo de direcciones</a>
+      <a href="#u3">03 · Segundo orden homogéneas</a>
+      <a class="sub" href="#anim-raices-caracteristica">🌗 Raíces características</a>
+      <a href="#u4">04 · Solución particular</a>
+      <a href="#u5">05 · Masa-resorte</a>
+      <a class="sub" href="#anim-masa-resorte">🪀 Masa-resorte amortiguado</a>
+      <a href="#u6">06 · Transformada de Laplace</a>
+      <a href="#u7">07 · Forzamiento discontinuo e impulsivo</a>
+      <a class="sub" href="#anim-forzamiento-discontinuo">💥 Escalón e impulso</a>
+      <a href="#u8">08 · Transformada inversa y PVI</a>
+      <a href="#u9">09 · Sistemas de EDO</a>
+      <a class="sub" href="#anim-plano-fase">🌀 Plano de fase</a>
+    </nav>
+    <div class="atajos"><kbd>Ctrl K</kbd> buscar en toda la biblioteca</div>
+  </aside>
+
+  <main class="principal">
+    <div class="banner-futuro-curso">⚠️ Material de la generación anterior (2024-2025) — el programa puede cambiar cuando curses este ramo.</div>
+
+    <div class="principal-cabecera">
+      <span class="relleno"></span>
+      <button class="btn-buscar" type="button">🔍 Buscar <kbd>Ctrl K</kbd></button>
+      <button class="btn-tema" type="button">☀️</button>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- CABECERA DEL CURSO -->
+    <!-- ============================================================ -->
+    <header class="curso-hero-v3" id="cheat" style="--ac: var(--futuro)">
+      <span class="emoji-grande">📉</span>
+      <h1>Ecuaciones Diferenciales — Resumen del curso</h1>
+      <span class="semestre-tag" style="color:var(--futuro)">Ramo futuro</span>
+      <p class="curso-intro">
+        Ramo futuro (2024-2025, material reconstruido a partir de "Estudio EDO.pdf", una guía manuscrita de
+        80 páginas con pautas de certamen y examen de un compañero — <strong>no cursado por Matías</strong>),
+        ampliado tras auditar el temario contra el estándar universal de un primer curso de EDO (Boyce &amp;
+        DiPrima / Zill &amp; Wright) para cubrir también los métodos clásicos de primer orden, Euler-Cauchy y
+        el forzamiento discontinuo que el material manuscrito original no traía. Recorre las ecuaciones
+        diferenciales ordinarias desde los primeros métodos de primer orden — variables separables,
+        homogéneas, exactas y Bernoulli (Unidad 1) — pasando por la EDO lineal con factor integrante y su
+        aplicación a modelos de mezclas (Unidad 2), las EDO lineales de segundo orden homogéneas con
+        coeficientes constantes o variables — ecuación característica, reducción de orden y Euler-Cauchy
+        (Unidad 3) —, cómo construir la solución particular cuando hay forzamiento — coeficientes
+        indeterminados y variación de parámetros (Unidad 4) —, el sistema masa-resorte como aplicación física
+        canónica de segundo orden (Unidad 5), la transformada de Laplace como atajo algebraico para resolver
+        problemas de valor inicial de una sola pasada (Unidad 6), el forzamiento discontinuo e impulsivo con
+        función escalón, impulso de Dirac y convolución (Unidad 7), la transformada inversa aplicada a un PVI
+        completo (Unidad 8), y sistemas de EDO lineales resueltos con valores y vectores propios (Unidad 9).
+      </p>
+      <ul class="mini-indice">
+        <li><a href="#u1">01 · Primeros métodos de primer orden</a></li>
+        <li><a href="#u2">02 · EDO lineal de primer orden</a></li>
+        <li><a href="#u3">03 · Segundo orden homogéneas</a></li>
+        <li><a href="#u4">04 · Solución particular</a></li>
+        <li><a href="#u5">05 · Masa-resorte</a></li>
+        <li><a href="#u6">06 · Transformada de Laplace</a></li>
+        <li><a href="#u7">07 · Forzamiento discontinuo e impulsivo</a></li>
+        <li><a href="#u8">08 · Transformada inversa y PVI</a></li>
+        <li><a href="#u9">09 · Sistemas de EDO</a></li>
+      </ul>
+    </header>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 1 · PRIMEROS MÉTODOS DE PRIMER ORDEN -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u1">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">01</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Primeros métodos de EDO de primer orden</h2>
+          <p class="unidad-sub">Cuatro formas de reconocer y resolver una EDO de primer orden antes de llegar al caso lineal general: separar variables, sustituir $y=vx$, verificar exactitud o convertir una ecuación no lineal en lineal.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-separables">
+        <h3>Variables separables</h3>
+        <p>Es históricamente el <strong>primer método</strong> que se enseña en todo curso de EDO: una
+        ecuación de primer orden es <strong>separable</strong> cuando puede reescribirse de modo que todos
+        los términos en $y$ (incluyendo $dy$) queden de un lado y todos los términos en $x$ (incluyendo $dx$)
+        del otro.</p>
+        <div class="formula-card"><span class="etiqueta">Forma separable</span>$$\frac{dy}{dx} = g(x)\,h(y) \;\Longrightarrow\; \frac{dy}{h(y)} = g(x)\,dx$$</div>
+        <p>Integrando ambos lados por separado se obtiene la solución, generalmente en forma
+        <strong>implícita</strong>:</p>
+        <div class="formula-card"><span class="etiqueta">Solución</span>$$\int \frac{dy}{h(y)} = \int g(x)\,dx + C$$</div>
+        <ul>
+          <li>Si $h(y_0)=0$ para algún valor $y_0$, la función constante $y=y_0$ también es solución (una
+          <strong>solución singular</strong>) — se pierde al dividir por $h(y)$, hay que agregarla aparte.</li>
+          <li>A diferencia de la EDO lineal (Unidad 2), la solución de una separable no lineal puede tener un
+          <strong>tiempo de escape finito</strong>: la curva se va a $\pm\infty$ en un $x$ finito en lugar de
+          estar definida para todo $x$ (ver Ejemplo 1).</li>
+          <li>Es el caso más simple pero también el más restrictivo: solo aplica cuando la ecuación se puede
+          factorizar completamente como $g(x)h(y)$ — si no, hace falta uno de los otros métodos de esta
+          unidad o el factor integrante (Unidad 2).</li>
+        </ul>
+      </div>
+
+      <div class="materia" id="tema-homogeneas">
+        <h3>Ecuaciones homogéneas (sustitución $y=vx$)</h3>
+        <p>En el sentido de EDO (no confundir con "homogénea" = sin forzamiento de la Unidad 3), una ecuación
+        $M(x,y)\,dx+N(x,y)\,dy=0$ es <strong>homogénea de grado $n$</strong> cuando $M$ y $N$ son funciones
+        homogéneas del mismo grado:</p>
+        <div class="formula-card"><span class="etiqueta">Función homogénea de grado $n$</span>$$M(tx,ty) = t^n M(x,y), \qquad N(tx,ty) = t^n N(x,y)$$</div>
+        <p>La sustitución $y=vx$ (con $v=v(x)$ una nueva función) convierte <strong>siempre</strong> una
+        ecuación homogénea en una separable en $v$: como $dy=v\,dx+x\,dv$, los grados $n$ de $x$ se cancelan
+        entre $M$ y $N$ y queda solo dependencia en $v$:</p>
+        <div class="formula-card"><span class="etiqueta">Sustitución</span>$$y = vx, \qquad dy = v\,dx + x\,dv \;\Longrightarrow\; \frac{dv}{h(v)-v} = \frac{dx}{x} \text{ (separable en } v\text{)}$$</div>
+        <p>Una vez resuelta la separable en $v(x)$, se deshace la sustitución con $v=y/x$ para volver a
+        $x,y$.</p>
+        <ul>
+          <li>El chequeo rápido de homogeneidad: cada término de $M$ y de $N$ debe tener el <strong>mismo
+          grado total</strong> en $x,y$ (ej. $x^2$, $xy$, $y^2$ son todos grado 2).</li>
+          <li>Tras integrar en $v$, no olvidar deshacer la sustitución ($v=y/x$) — dejar la respuesta en
+          términos de $v$ es una respuesta incompleta.</li>
+          <li>Si además la ecuación resulta ser exacta o admite factor integrante evidente, cualquiera de los
+          métodos de esta unidad llega al mismo resultado — conviene usar el que dé la integral más simple.</li>
+        </ul>
+      </div>
+
+      <div class="materia" id="tema-exactas">
+        <h3>Ecuaciones exactas y factor integrante para volverlas exactas</h3>
+        <p>Una ecuación $M(x,y)\,dx+N(x,y)\,dy=0$ es <strong>exacta</strong> si existe una función $F(x,y)$ tal
+        que $F_x=M$ y $F_y=N$ — entonces la solución es simplemente $F(x,y)=C$. El criterio para verificarlo
+        sin tener que adivinar $F$:</p>
+        <div class="formula-card"><span class="etiqueta">Criterio de exactitud</span>$$\frac{\partial M}{\partial y} = \frac{\partial N}{\partial x}$$</div>
+        <p>Si se cumple, $F$ se reconstruye integrando $M$ respecto a $x$ (dejando $h(y)$ como constante de
+        integración por determinar) y ajustando $h(y)$ para que $F_y=N$:</p>
+        <div class="formula-card"><span class="etiqueta">Reconstrucción</span>$$F(x,y) = \int M\,dx + h(y), \qquad h'(y) = N - \frac{\partial}{\partial y}\int M\,dx$$</div>
+        <p><strong>Cuando no es exacta de entrada</strong>, a veces existe un <strong>factor integrante</strong>
+        $\mu$ que, al multiplicar toda la ecuación, la vuelve exacta — sin ser necesariamente el mismo $\mu(x)$
+        de la EDO lineal (Unidad 2), acá puede depender solo de $x$ o solo de $y$:</p>
+        <div class="formula-card"><span class="etiqueta">$\mu$ depende solo de $x$</span>$$\text{si } \frac{M_y-N_x}{N} = f(x) \text{ (solo } x\text{)}, \quad \mu(x)=e^{\int f(x)\,dx}$$</div>
+        <div class="formula-card"><span class="etiqueta">$\mu$ depende solo de $y$</span>$$\text{si } \frac{N_x-M_y}{M} = g(y) \text{ (solo } y\text{)}, \quad \mu(y)=e^{\int g(y)\,dy}$$</div>
+        <ul>
+          <li>Antes de buscar $\mu$, siempre probar primero si $M_y=N_x$ directamente — buscar un factor
+          integrante innecesario complica el cálculo.</li>
+          <li>Si ni $(M_y-N_x)/N$ depende solo de $x$ ni $(N_x-M_y)/M$ depende solo de $y$, este método no
+          aplica con un $\mu$ de una sola variable — haría falta un $\mu(x,y)$ más general, fuera del alcance
+          de este curso.</li>
+          <li>Tras multiplicar por $\mu$, hay que <strong>volver a verificar</strong> $M_y=N_x$ con la
+          ecuación ya multiplicada antes de reconstruir $F$.</li>
+        </ul>
+      </div>
+
+      <div class="materia" id="tema-bernoulli">
+        <h3>Ecuación de Bernoulli</h3>
+        <p>Es una EDO de primer orden <strong>no lineal</strong> pero con una forma especial que se reduce a
+        lineal con una sustitución:</p>
+        <div class="formula-card"><span class="etiqueta">Forma de Bernoulli</span>$$\frac{dy}{dx} + P(x)\,y = Q(x)\,y^n, \qquad n\neq0,1$$</div>
+        <p>(con $n=0$ o $n=1$ la ecuación ya es lineal, se resuelve directo con factor integrante — Unidad 2).
+        La sustitución $v=y^{1-n}$ la convierte en <strong>lineal en $v$</strong>:</p>
+        <div class="formula-card"><span class="etiqueta">Sustitución</span>$$v = y^{1-n} \;\Longrightarrow\; \frac{dv}{dx} + (1-n)P(x)\,v = (1-n)Q(x)$$</div>
+        <p>Esta última ya es una EDO lineal de primer orden (Unidad 2): se resuelve con factor integrante
+        $\mu(x)=e^{\int(1-n)P(x)\,dx}$ y, al final, se deshace la sustitución $y=v^{1/(1-n)}$.</p>
+        <ul>
+          <li>Si $n\gt0$, se pierde la solución singular $y=0$ al dividir la ecuación original por $y^n$ para
+          obtener $v$ — hay que agregarla aparte si el problema lo requiere.</li>
+          <li>Es fácil equivocar el exponente al deshacer la sustitución: $v=y^{1-n}$ implica
+          $y=v^{1/(1-n)}$, no $y=v^{1-n}$.</li>
+          <li>Bernoulli es el puente natural hacia la Unidad 2: toda ecuación de Bernoulli se resuelve
+          exactamente con la misma herramienta (factor integrante), solo que aplicada a $v$ en lugar de $y$.</li>
+        </ul>
+      </div>
+
+      <div class="animacion" id="anim-separables">
+        <div class="anim-cabecera">
+          <h3>📈 Familia de curvas separables (crecimiento logístico)</h3>
+          <p class="anim-desc">Campo de pendientes de la EDO separable $y'=ry(1-y/K)$ (crecimiento logístico) y la curva que pasa por el punto inicial elegido, junto a otras curvas de referencia con distinto $y_0$.</p>
+        </div>
+        <canvas data-alto="380"></canvas>
+        <div class="controles">
+          <div class="control"><label for="sl-sep-r">$r$</label><input type="range" id="sl-sep-r" min="0.2" max="2" step="0.1" value="0.9"><span class="valor"></span></div>
+          <div class="control"><label for="sl-sep-k">$K$</label><input type="range" id="sl-sep-k" min="3" max="9" step="0.5" value="6"><span class="valor"></span></div>
+          <div class="control"><label for="sl-sep-y0">$y_0$</label><input type="range" id="sl-sep-y0" min="0.2" max="9" step="0.2" value="1"><span class="valor"></span></div>
+          <button type="button" data-accion="jugar">▶ Reproducir</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> cada segmento tenue es la pendiente
+        $y'=ry(1-y/K)$ en ese punto (el campo de la EDO separable). La línea violeta punteada es la
+        capacidad de carga $y=K$ (solución de equilibrio $h(y)=0$, se pierde al separar variables y hay que
+        agregarla aparte). Las curvas grises finas son soluciones de referencia con otros $y_0$; la curva de
+        acento es la que pasa por el $y_0$ elegido con el slider — separando variables e integrando se
+        obtiene su fórmula cerrada. Todas convergen a $K$ tanto si parten por debajo como por encima. ▶ anima
+        un punto recorriendo la curva de acento.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+
+        <div class="ejemplo" id="ej-separables">
+          <h3>1. Variables separables y tiempo de escape finito</h3>
+          <p>Resolver el PVI $y'=xy^2$, $y(0)=1$, y determinar el dominio máximo de la solución.</p>
+          <p><strong>Solución</strong> — separando variables ($y\neq0$):</p>
+          <p>$$\frac{dy}{y^2} = x\,dx \;\Longrightarrow\; -\frac{1}{y} = \frac{x^2}{2}+C$$</p>
+          <p>Con $y(0)=1$: $\,-1=0+C \Rightarrow C=-1$. Despejando $y$:</p>
+          <p>$$y(x) = \frac{1}{1-\frac{x^2}{2}} = \frac{2}{2-x^2}$$</p>
+          <p style="color:var(--tinta-2)">A diferencia de una EDO lineal (Unidad 2), cuya solución con estos
+          datos estaría definida para todo $x$, esta solución <strong>no lineal</strong> tiene un
+          <strong>tiempo de escape finito</strong>: el denominador se anula en $x=\pm\sqrt2$, así que el
+          dominio máximo de validez es $-\sqrt2\lt x\lt\sqrt2$ — la curva diverge a $+\infty$ cuando
+          $x\to\sqrt2^-$, aunque la ecuación en sí no tenga nada especial en ese punto.</p>
+          <p class="fuente">Fuente: elaboración propia (auditoría de contenidos, tema ausente en la nota original).</p>
+        </div>
+
+        <div class="ejemplo" id="ej-homogeneas">
+          <h3>2. Ecuación homogénea con sustitución $y=vx$</h3>
+          <p>Resolver $(x^2+y^2)\,dx+xy\,dy=0$.</p>
+          <p><strong>Solución</strong> — $M=x^2+y^2$ y $N=xy$ son ambas homogéneas de grado 2. Con $y=vx$,
+          $dy=v\,dx+x\,dv$:</p>
+          <p>$$(x^2+v^2x^2)\,dx+vx^2(v\,dx+x\,dv) = 0 \;\Longrightarrow\; x^2(1+2v^2)\,dx+vx^3\,dv=0$$</p>
+          <p>Dividiendo por $x^2$ y separando variables:</p>
+          <p>$$\frac{v}{1+2v^2}\,dv = -\frac{dx}{x}$$</p>
+          <p>Integrando ambos lados ($u=1+2v^2$, $du=4v\,dv$ en el izquierdo):</p>
+          <p>$$\frac14\ln(1+2v^2) = -\ln|x|+C_1 \;\Longrightarrow\; 1+2v^2 = \frac{K}{x^4}$$</p>
+          <p>Multiplicando por $x^4$ y deshaciendo $v=y/x$ (entonces $v^2x^4=x^2y^2$):</p>
+          <p>$$x^4+2x^2y^2 = K$$</p>
+          <p style="color:var(--tinta-2)">La solución queda implícita (no conviene despejar $y$): es habitual
+          en ecuaciones homogéneas que la forma más simple de presentar la respuesta sea $F(x,y)=C$, igual que
+          en las ecuaciones exactas del próximo tema.</p>
+          <p class="fuente">Fuente: elaboración propia (auditoría de contenidos, tema ausente en la nota original).</p>
+        </div>
+
+        <div class="ejemplo" id="ej-exactas">
+          <h3>3. Ecuación exacta, y una que no lo es hasta multiplicar por $\mu(x)$</h3>
+          <p><strong>(a)</strong> Resolver $(2xy-3)\,dx+(x^2+4y)\,dy=0$.</p>
+          <p><strong>Solución (a)</strong> — $M=2xy-3$, $N=x^2+4y$: $M_y=2x=N_x$, exacta. Integrando $M$
+          respecto a $x$: $F=x^2y-3x+h(y)$. Derivando respecto a $y$ e igualando a $N$:
+          $x^2+h'(y)=x^2+4y \Rightarrow h'(y)=4y \Rightarrow h(y)=2y^2$. Solución:</p>
+          <p>$$x^2y-3x+2y^2 = C$$</p>
+          <p><strong>(b)</strong> Resolver $(3xy+y^2)\,dx+(x^2+xy)\,dy=0$.</p>
+          <p><strong>Solución (b)</strong> — $M=3xy+y^2$, $N=x^2+xy$: $M_y=3x+2y$, $N_x=2x+y$, distintos: no
+          es exacta. Se prueba $(M_y-N_x)/N$:</p>
+          <p>$$\frac{M_y-N_x}{N} = \frac{(3x+2y)-(2x+y)}{x^2+xy} = \frac{x+y}{x(x+y)} = \frac1x$$</p>
+          <p>Depende solo de $x$: $\mu(x)=e^{\int\frac1x dx}=x$. Multiplicando toda la ecuación por $\mu=x$:</p>
+          <p>$$(3x^2y+xy^2)\,dx+(x^3+x^2y)\,dy=0$$</p>
+          <p>Verificando: nuevo $M_y=3x^2+2xy=$ nuevo $N_x$ ✓, ya es exacta. Integrando el nuevo $M$ respecto a
+          $x$: $F=x^3y+\tfrac12x^2y^2+h(y)$; derivando respecto a $y$: $x^3+x^2y+h'(y)=x^3+x^2y \Rightarrow
+          h'(y)=0$. Solución:</p>
+          <p>$$x^3y+\frac12x^2y^2 = C$$</p>
+          <p style="color:var(--tinta-2)">El factor integrante $\mu(x)=x$ del caso (b) es distinto en espíritu
+          del $\mu(x)=e^{\int P\,dx}$ de la Unidad 2: acá vuelve <strong>exacta</strong> una ecuación que no lo
+          era, en vez de colapsar el lado izquierdo en la derivada de un producto — son dos usos relacionados
+          pero no idénticos de la misma palabra "factor integrante".</p>
+          <p class="fuente">Fuente: elaboración propia (auditoría de contenidos, tema ausente en la nota original).</p>
+        </div>
+
+        <div class="ejemplo" id="ej-bernoulli">
+          <h3>4. Ecuación de Bernoulli</h3>
+          <p>Resolver el PVI $y'+\dfrac1x y = x^2y^2$, $y(1)=1$.</p>
+          <p><strong>Solución</strong> — es Bernoulli con $n=2$: $v=y^{1-2}=y^{-1}$. Dividiendo la ecuación
+          por $y^2$:</p>
+          <p>$$y^{-2}y' + \frac1x y^{-1} = x^2$$</p>
+          <p>Con $v=y^{-1}$, $v'=-y^{-2}y'$, así que $y^{-2}y'=-v'$:</p>
+          <p>$$-v' + \frac1x v = x^2 \;\Longrightarrow\; v' - \frac1x v = -x^2$$</p>
+          <p>Lineal en $v$: $P(x)=-1/x$, $\mu(x)=e^{\int-\frac1x dx}=e^{-\ln x}=\dfrac1x$. Multiplicando:</p>
+          <p>$$\frac{d}{dx}\left[\frac{v}{x}\right] = -x^2\cdot\frac1x = -x \;\Longrightarrow\; \frac{v}{x} = -\frac{x^2}{2}+C$$</p>
+          <p>$$v = -\frac{x^3}{2}+Cx$$</p>
+          <p>Con $y(1)=1 \Rightarrow v(1)=1$: $\,1=-\tfrac12+C \Rightarrow C=\tfrac32$. Deshaciendo $y=1/v$:</p>
+          <p>$$y(x) = \frac{1}{\frac32x-\frac{x^3}{2}} = \frac{2}{3x-x^3}$$</p>
+          <p style="color:var(--tinta-2)"><strong>Verificación:</strong> en $x=1$, $y(1)=2/(3-1)=1$ ✓.
+          Sustituyendo en la ecuación original en $x=1{,}4$ (derivada numérica vs. lado derecho
+          $x^2y^2-\tfrac1xy$) ambos lados coinciden — confirmado antes de dar el resultado por bueno.</p>
+          <p class="fuente">Fuente: elaboración propia (auditoría de contenidos, tema ausente en la nota original).</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+
+        <details class="ejercicio" id="ejer-separables">
+          <summary><span class="resumen-ejercicio">1. Resolver el PVI $y'=x^2/y$, $y(1)=2$.</span> <span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <p>Separando: $y\,dy=x^2\,dx \;\Rightarrow\; \dfrac{y^2}{2}=\dfrac{x^3}{3}+C$.</p>
+            <p>Con $y(1)=2$: $\,2=\tfrac13+C \Rightarrow C=\tfrac53$.</p>
+            <p>$$y(x) = \sqrt{\frac{2x^3+10}{3}}$$</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-homogenea">
+          <summary><span class="resumen-ejercicio">2. Resolver $(x+y)\,dx-x\,dy=0$.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>$\dfrac{dy}{dx}=\dfrac{x+y}{x}=1+\dfrac yx$. Con $y=vx$: $v+xv'=1+v \Rightarrow xv'=1 \Rightarrow v'=\dfrac1x$.</p>
+            <p>$v=\ln|x|+C$. Deshaciendo $v=y/x$:</p>
+            <p>$$y(x) = x\big(\ln|x|+C\big)$$</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-exacta">
+          <summary><span class="resumen-ejercicio">3. Resolver $(y^2+2xy)\,dx+(x^2+2xy)\,dy=0$.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>$M=y^2+2xy$, $N=x^2+2xy$: $M_y=2y+2x=N_x$, exacta.</p>
+            <p>Integrando $M$ respecto a $x$: $F=xy^2+x^2y+h(y)$. Derivando: $2xy+x^2+h'(y)=x^2+2xy \Rightarrow h'(y)=0$.</p>
+            <p>$$xy^2+x^2y = C \quad\text{es decir}\quad xy(x+y)=C$$</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-bernoulli">
+          <summary><span class="resumen-ejercicio">4. Resolver $y'-y=xy^2$.</span> <span class="dificultad dificil">difícil</span></summary>
+          <div class="solucion">
+            <p>Bernoulli con $n=2$: $v=y^{-1}$. Dividiendo por $y^2$: $y^{-2}y'-y^{-1}=x$. Con $v'=-y^{-2}y'$: $-v'-v=x \Rightarrow v'+v=-x$.</p>
+            <p>Lineal: $\mu=e^x$. $(ve^x)'=-xe^x \Rightarrow ve^x=-\big(xe^x-e^x\big)+C=-xe^x+e^x+C$.</p>
+            <p>$v=-x+1+Ce^{-x}$. Deshaciendo $y=1/v$:</p>
+            <p>$$y(x) = \frac{1}{1-x+Ce^{-x}}$$</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 2 · EDO LINEAL DE PRIMER ORDEN -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u2">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">02</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">EDO lineal de primer orden y aplicaciones</h2>
+          <p class="unidad-sub">El factor integrante convierte cualquier EDO lineal de primer orden en una integración directa; el modelo de mezclas es la aplicación que la motiva.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-factor-integrante">
+        <h3>EDO lineal de primer orden y factor integrante</h3>
+        <p>Una EDO de primer orden es <strong>lineal</strong> cuando $y$ y $y'$ aparecen sin multiplicarse
+        entre sí ni estar dentro de otra función. En forma estándar (coeficiente 1 en $y'$):</p>
+        <div class="formula-card"><span class="etiqueta">Forma estándar</span>$$\frac{dy}{dx} + P(x)\,y = Q(x)$$</div>
+        <p>La idea del <strong>factor integrante</strong> $\mu(x)$ es multiplicar toda la ecuación por una
+        función que convierta el lado izquierdo en la derivada de un producto $\big(\mu(x)y\big)'$. Por la
+        regla del producto, $\big(\mu y\big)' = \mu y' + \mu' y$; comparando con $\mu y' + \mu P y$ (la
+        ecuación ya multiplicada por $\mu$), se necesita $\mu' = \mu P$, una EDO separable en $\mu$ cuya
+        solución es:</p>
+        <div class="formula-card"><span class="etiqueta">Factor integrante</span>$$\mu(x) = e^{\int P(x)\,dx}$$</div>
+        <p>Con ese $\mu(x)$, el lado izquierdo se colapsa a una sola derivada y todo el problema se reduce a
+        integrar:</p>
+        <div class="formula-card"><span class="etiqueta">Solución general</span>$$\frac{d}{dx}\big[\mu(x)\,y\big] = \mu(x)\,Q(x) \;\Longrightarrow\; y = \frac{1}{\mu(x)}\int \mu(x)\,Q(x)\,dx$$</div>
+        <ul>
+          <li>La ecuación debe estar en forma estándar <strong>antes</strong> de leer $P(x)$: si el
+          coeficiente de $y'$ no es 1, hay que dividir toda la ecuación primero.</li>
+          <li>No hace falta agregar constante de integración al calcular $\mu(x)=e^{\int P\,dx}$: cualquier
+          antiderivada de $P$ sirve, la constante se cancela.</li>
+          <li>El método funciona para <strong>cualquier</strong> EDO lineal de primer orden, incluso cuando
+          no es separable — es más general que separación de variables.</li>
+        </ul>
+      </div>
+
+      <div class="materia" id="tema-aplicaciones-primer-orden">
+        <h3>Aplicaciones: modelos de mezclas</h3>
+        <p>Muchos fenómenos (mezclas en un estanque, crecimiento poblacional, enfriamiento) se modelan con
+        una EDO lineal de primer orden con la misma estructura conceptual: <strong>tasa de cambio = entrada
+        − salida</strong>. El caso más trabajado en el material es el de un estanque con volumen $V(t)$ en
+        el que entra y sale líquido con cierta concentración de soluto:</p>
+        <div class="formula-card"><span class="etiqueta">Modelo de mezclas</span>$$\frac{dQ}{dt} = (\text{tasa entrada})\cdot(\text{conc. entrada}) - (\text{tasa salida})\cdot\frac{Q(t)}{V(t)}$$</div>
+        <p>donde $Q(t)$ es la cantidad de soluto (kg) y $V(t)$ el volumen del estanque (L). Si las tasas de
+        entrada y salida son iguales, $V(t)$ es constante y $P(t)=\text{tasa salida}/V$ también lo es; si son
+        distintas, $V(t)$ cambia con $t$ y hay que escribirlo explícitamente antes de identificar $P(t)$.
+        Una vez planteada, la ecuación se resuelve exactamente igual que cualquier EDO lineal de primer
+        orden: factor integrante, y luego se evalúa en el tiempo o volumen pedido.</p>
+        <ul>
+          <li>El paso que más se pierde no es la resolución algebraica sino el <strong>planteo</strong>: identificar tasa de entrada, tasa de salida y cómo cambia $V(t)$ antes de escribir la ecuación.</li>
+          <li>Antes de responder, verificar que la variable pedida se despeja de $Q(t)$ (o de la concentración $Q(t)/V(t)$) y no se confunde una con otra.</li>
+        </ul>
+      </div>
+
+      <div class="animacion" id="anim-campo-direcciones">
+        <div class="anim-cabecera">
+          <h3>🧭 Campo de direcciones de $y'+Py=Q$</h3>
+          <p class="anim-desc">Campo de pendientes de la EDO lineal $y'=Q-Py$ y la curva solución que pasa por el punto inicial $(0,y_0)$, calculada con la fórmula cerrada del factor integrante.</p>
+        </div>
+        <canvas data-alto="380"></canvas>
+        <div class="controles">
+          <div class="control"><label for="sl-campo-p">$P$</label><input type="range" id="sl-campo-p" min="-1.5" max="1.5" step="0.1" value="0.8"><span class="valor"></span></div>
+          <div class="control"><label for="sl-campo-q">$Q$</label><input type="range" id="sl-campo-q" min="-5" max="5" step="0.5" value="2"><span class="valor"></span></div>
+          <div class="control"><label for="sl-campo-y0">$y_0$</label><input type="range" id="sl-campo-y0" min="-6" max="6" step="0.5" value="-2"><span class="valor"></span></div>
+          <button type="button" data-accion="jugar">▶ Reproducir</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> cada segmento tenue es la pendiente $y'=Q-Py$ en ese punto; la curva de acento es la solución exacta $y(x)=\tfrac{Q}{P}+\big(y_0-\tfrac{Q}{P}\big)e^{-Px}$ que pasa por el punto inicial (verde). La línea violeta punteada es el equilibrio $y=Q/P$ (donde el campo es horizontal): con $P\gt0$ todas las curvas son <strong>atraídas</strong> hacia ella; probá $P\lt0$ y notá cómo se alejan en cambio. ▶ anima un punto recorriendo la curva.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+
+        <div class="ejemplo" id="ej-factor-integrante">
+          <h3>5. PVI lineal con factor integrante</h3>
+          <p>Resolver el problema de valor inicial $(1+t)\dfrac{dy}{dt}+2y=6t^2$, $y(0)=5$.</p>
+          <p><strong>Solución</strong> — primero se lleva a forma estándar dividiendo por $(1+t)$:</p>
+          <p>$$\frac{dy}{dt} + \frac{2}{1+t}\,y = \frac{6t^2}{1+t}$$</p>
+          <p>Se identifica $P(t)=\dfrac{2}{1+t}$, así que $\displaystyle\int P(t)\,dt = 2\ln(1+t)$ y:</p>
+          <p>$$\mu(t) = e^{2\ln(1+t)} = (1+t)^2$$</p>
+          <p>Multiplicando la ecuación <em>original</em> (sin dividir) por $\mu(t)$ directamente es más
+          simple: $(1+t)^2\big[(1+t)y'+2y\big] / (1+t) = 6t^2(1+t)$, es decir:</p>
+          <p>$$\frac{d}{dt}\big[(1+t)^2 y\big] = 6t^2(1+t) = 6t^2+6t^3$$</p>
+          <p>Integrando ambos lados respecto a $t$:</p>
+          <p>$$(1+t)^2 y = 2t^3+\tfrac{3}{2}t^4+C$$</p>
+          <p>Con $y(0)=5$: $(1)^2(5)=0+0+C \;\Rightarrow\; C=5$. La solución del PVI es:</p>
+          <p>$$y(t) = \frac{2t^3+\frac32t^4+5}{(1+t)^2}$$</p>
+          <p style="color:var(--tinta-2)">El punto clave es identificar $P(t)$ recién <strong>después</strong> de dividir por el coeficiente de $y'$ — hacerlo sobre la ecuación sin dividir es el error más común de este método.</p>
+          <p class="fuente">Fuente: nota "EDO lineal de primer orden y factor integrante".</p>
+        </div>
+
+        <div class="ejemplo" id="ej-mezclas-tanque">
+          <h3>6. Modelo de mezclas con volumen variable</h3>
+          <p>Un estanque tiene inicialmente $V_0=100\text{ L}$ de agua pura ($Q(0)=0$). Entra salmuera con
+          concentración $1\text{ kg/L}$ a razón de $4\text{ L/min}$, y la mezcla bien agitada sale a razón de
+          $3\text{ L/min}$ (dato asumido para completar el cálculo: la nota original conserva solo que
+          $V(t)=100+t$ y la conclusión "el estanque debe tener al menos 200 L"). Como entra más de lo que
+          sale, el volumen crece: $V(t)=100+t$. Hallar $Q(t)$ y el volumen mínimo del estanque a los 100
+          minutos.</p>
+          <p><strong>Solución</strong> — planteando el balance entrada − salida:</p>
+          <p>$$\frac{dQ}{dt} = 4(1) - 3\cdot\frac{Q}{100+t} \;\Longrightarrow\; \frac{dQ}{dt}+\frac{3}{100+t}\,Q = 4$$</p>
+          <p>Factor integrante: $\mu(t)=e^{\int\frac{3}{100+t}dt}=e^{3\ln(100+t)}=(100+t)^3$. Multiplicando:</p>
+          <p>$$\frac{d}{dt}\big[(100+t)^3 Q\big] = 4(100+t)^3 \;\Longrightarrow\; (100+t)^3 Q = (100+t)^4+C$$</p>
+          <p>Con $Q(0)=0$ y $(100+0)^3(0)=0$: $\;0=100^4+C \;\Rightarrow\; C=-10^8$. Entonces:</p>
+          <p>$$Q(t) = (100+t) - \frac{10^8}{(100+t)^3}$$</p>
+          <p>A los $t=100\text{ min}$, $V(100)=200\text{ L}$:</p>
+          <p>$$Q(100) = 200 - \frac{10^8}{200^3} = 200 - \frac{10^8}{8\times10^6} = 200-12{,}5 = 187{,}5\text{ kg}$$</p>
+          <p>La concentración en ese instante es $Q(100)/V(100)=187{,}5/200=15/16\text{ kg/L}$.</p>
+          <p style="color:var(--tinta-2)">Igual que en la nota original: como $V(t)=100+t$ crece sin límite, el estanque físico necesita capacidad para contener al menos $V(100)=200\text{ L}$ en ese instante — el volumen mínimo se lee directamente de $V(t)$, no de $Q(t)$.</p>
+          <p class="fuente">Fuente: nota "Aplicaciones de EDO de primer orden" (enunciado numérico reconstruido; la nota original conserva solo un fragmento del planteo).</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+
+        <details class="ejercicio" id="ejer-factor-integrante-ivp">
+          <summary><span class="resumen-ejercicio">5. Resolver el PVI $y'-2y=4x$, $y(0)=1$.</span> <span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <p>$P=-2$, $Q=4x$, $\mu(x)=e^{-2x}$. Con integración por partes, $\displaystyle\int 4x\,e^{-2x}\,dx = -2x\,e^{-2x}-e^{-2x}+C$.</p>
+            <p>$$e^{-2x}y = -2x\,e^{-2x}-e^{-2x}+C \;\Longrightarrow\; y = -2x-1+Ce^{2x}$$</p>
+            <p>Con $y(0)=1$: $1=-1+C \;\Rightarrow\; C=2$. Solución: $y(x)=-2x-1+2e^{2x}$.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-mezclas-estanque">
+          <summary><span class="resumen-ejercicio">6. Un estanque de $100\text{ L}$ contiene $5\text{ kg}$ de sal disuelta. Entra salmuera con concentración $0{,}2\text{ kg/L}$ a $4\text{ L/min}$, y la mezcla sale a la misma razón (volumen constante). Hallar $Q(t)$ y la cantidad de sal a los 10 minutos.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>Volumen constante ($V=100$): $\dfrac{dQ}{dt}=4(0{,}2)-4\dfrac{Q}{100}=0{,}8-0{,}04Q \;\Longrightarrow\; Q'+0{,}04Q=0{,}8$</p>
+            <p>$\mu(t)=e^{0{,}04t}$. $\;(e^{0{,}04t}Q)'=0{,}8\,e^{0{,}04t} \;\Rightarrow\; e^{0{,}04t}Q=20\,e^{0{,}04t}+C \;\Rightarrow\; Q(t)=20+Ce^{-0{,}04t}$</p>
+            <p>$Q(0)=5 \Rightarrow C=-15$. $\;Q(t)=20-15e^{-0{,}04t}$.</p>
+            <p>A los 10 min: $Q(10)=20-15e^{-0{,}4}=20-15(0{,}6703)\approx9{,}95\text{ kg}$.</p>
+            <p style="color:var(--tinta-2)">$Q(t)\to20$ kg cuando $t\to\infty$: el estanque tiende a la concentración de entrada ($0{,}2\text{ kg/L}\times100\text{ L}=20\text{ kg}$), como es de esperar a volumen constante.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+    <!-- ============================================================ -->
+    <!-- UNIDAD 3 · SEGUNDO ORDEN HOMOGÉNEAS -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u3">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">03</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">EDO lineales de segundo orden homogéneas</h2>
+          <p class="unidad-sub">La ecuación característica clasifica toda EDO lineal de segundo orden con coeficientes constantes en tres familias de soluciones; reducción de orden y Euler-Cauchy cubren los casos con coeficientes variables.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-edo-segundo-orden-homogeneas">
+        <h3>Ecuación característica y los tres casos</h3>
+        <p>Para $ay''+by'+cy=0$ con $a,b,c$ constantes, se propone $y=e^{\lambda x}$. Sustituyendo,
+        $a\lambda^2e^{\lambda x}+b\lambda e^{\lambda x}+ce^{\lambda x}=0$, y como $e^{\lambda x}\neq0$
+        siempre, el problema se reduce a resolver una ecuación algebraica en $\lambda$:</p>
+        <div class="formula-card"><span class="etiqueta">Ecuación característica</span>$$a\lambda^2+b\lambda+c=0$$</div>
+        <p>El discriminante $b^2-4ac$ determina cuál de tres familias de solución complementaria $y_h$
+        aparece:</p>
+        <div class="formula-card"><span class="etiqueta">1. Raíces reales distintas $\lambda_1\neq\lambda_2$</span>$$y_h = c_1e^{\lambda_1 x}+c_2e^{\lambda_2 x}$$</div>
+        <div class="formula-card"><span class="etiqueta">2. Raíz real repetida (doble) $\lambda$</span>$$y_h = c_1e^{\lambda x}+c_2xe^{\lambda x}$$</div>
+        <div class="formula-card"><span class="etiqueta">3. Raíces complejas conjugadas $\lambda=\alpha\pm\beta i$</span>$$y_h = e^{\alpha x}\big(c_1\cos(\beta x)+c_2\sin(\beta x)\big)$$</div>
+        <ul>
+          <li>En el caso 2, olvidar el factor $x$ en el segundo término ($c_2xe^{\lambda x}$, no
+          $c_2e^{\lambda x}$) hace que las dos "soluciones" sean linealmente dependientes — no formarían una
+          base para $y_h$.</li>
+          <li>En el caso 3, $\beta$ es la parte imaginaria de $\lambda$ (sin la $i$) al escribir
+          $\cos(\beta x)$, $\sin(\beta x)$: $\lambda=\alpha\pm\beta i$, no $\lambda=\alpha\pm i\beta i$.</li>
+          <li>$y_h$ (también llamada $y_c$, complementaria) es la solución "sin forzamiento"; cuando la
+          ecuación tiene un término no homogéneo se combina con una solución particular $y_p$ (Unidad 3).</li>
+        </ul>
+      </div>
+
+      <div class="materia" id="tema-reduccion-orden">
+        <h3>Reducción de orden</h3>
+        <p>Si la EDO no tiene coeficientes constantes, no hay ecuación característica que resolver. Pero si
+        ya se conoce <strong>una</strong> solución $y_1$ de $y''+P(x)y'+Q(x)y=0$, se puede construir la
+        segunda solución independiente proponiendo $y_2=v(x)\,y_1(x)$:</p>
+        <div class="formula-card"><span class="etiqueta">Sustitución</span>$$y = v(x)\,y_1(x), \qquad y'=v'y_1+vy_1', \qquad y''=v''y_1+2v'y_1'+vy_1''$$</div>
+        <p>Al sustituir en la EDO, todos los términos que multiplican a $v$ (sin derivar) se cancelan
+        automáticamente — porque $y_1$ ya es solución. Queda una ecuación de <strong>primer orden</strong>
+        en $w=v'$ (separable o resoluble con factor integrante). Una vez hallado $w$:</p>
+        <div class="formula-card"><span class="etiqueta">Reconstrucción</span>$$v = \int w\,dx \qquad\Longrightarrow\qquad y_2 = v\cdot y_1$$</div>
+        <p>El proceso completo tiene un atajo cerrado (fórmula de Abel), útil para verificar el resultado sin
+        rehacer toda la sustitución:</p>
+        <div class="formula-card"><span class="etiqueta">Fórmula general (Abel)</span>$$y_2 = y_1\int \frac{e^{-\int P(x)\,dx}}{y_1(x)^2}\,dx$$</div>
+        <ul>
+          <li>Es fácil perder un término al derivar $y=vy_1$ dos veces (regla del producto) — conviene
+          escribir $y'$ e $y''$ explícitamente antes de sustituir, como arriba.</li>
+          <li>La $y_2$ obtenida debe ser <strong>linealmente independiente</strong> de $y_1$: el método lo
+          garantiza si $w\neq0$, pero conviene verificar el resultado final (Wronskiano no nulo).</li>
+          <li>Evita "adivinar" la segunda solución cuando la ecuación no tiene coeficientes constantes pero
+          se conoce una solución por inspección.</li>
+        </ul>
+      </div>
+
+      <div class="materia" id="tema-euler-cauchy">
+        <h3>Ecuación de Euler-Cauchy (coeficientes variables)</h3>
+        <p>Es el caso más importante de EDO de segundo orden con <strong>coeficientes variables</strong> que
+        aun así tiene solución cerrada sencilla, sin necesitar reducción de orden desde una solución conocida:</p>
+        <div class="formula-card"><span class="etiqueta">Forma de Euler-Cauchy</span>$$x^2y''+bxy'+cy=0, \qquad x\gt0$$</div>
+        <p>Se propone $y=x^r$: como $y'=rx^{r-1}$ y $y''=r(r-1)x^{r-2}$, sustituyendo y factorizando $x^r$
+        (que nunca es cero para $x\gt0$), el problema se reduce a una <strong>ecuación indicial</strong>
+        algebraica en $r$ — el análogo exacto de la ecuación característica, pero para este tipo de ecuación:</p>
+        <div class="formula-card"><span class="etiqueta">Ecuación indicial</span>$$r(r-1)+br+c=0 \;\Longleftrightarrow\; r^2+(b-1)r+c=0$$</div>
+        <p>El discriminante de esta cuadrática en $r$ clasifica, igual que en la Unidad 2, tres familias de
+        solución:</p>
+        <div class="formula-card"><span class="etiqueta">1. Raíces reales distintas $r_1\neq r_2$</span>$$y = c_1x^{r_1}+c_2x^{r_2}$$</div>
+        <div class="formula-card"><span class="etiqueta">2. Raíz real repetida (doble) $r$</span>$$y = (c_1+c_2\ln x)\,x^{r}$$</div>
+        <div class="formula-card"><span class="etiqueta">3. Raíces complejas conjugadas $r=\alpha\pm\beta i$</span>$$y = x^\alpha\big(c_1\cos(\beta\ln x)+c_2\sin(\beta\ln x)\big)$$</div>
+        <ul>
+          <li>La sustitución $t=\ln x$ convierte la ecuación de Euler-Cauchy en una de coeficientes
+          <strong>constantes</strong> en la variable $t$ — por eso la estructura de los tres casos es
+          idéntica a la de la ecuación característica, solo que con $x^r$ en vez de $e^{\lambda x}$ y
+          $\ln x$ en vez de $x$.</li>
+          <li>Válida tal como está para $x\gt0$; para $x\lt0$ se reemplaza $x$ por $|x|$ en las fórmulas.</li>
+          <li>En el caso 2, igual que en la Unidad 2, olvidar el factor $\ln x$ en el segundo término deja
+          dos "soluciones" linealmente dependientes.</li>
+        </ul>
+      </div>
+
+      <div class="animacion" id="anim-raices-caracteristica">
+        <div class="anim-cabecera">
+          <h3>🌗 Familia de soluciones según la ecuación característica</h3>
+          <p class="anim-desc">Solución de $y''+by'+9y=0$, $y(0)=1$, $y'(0)=0$, variando $b$: recorre los tres casos (raíces reales distintas, repetida, complejas) de la unidad.</p>
+        </div>
+        <canvas data-alto="380"></canvas>
+        <div class="controles">
+          <div class="control"><label for="sl-raices-b">$b$</label><input type="range" id="sl-raices-b" min="0" max="10" step="0.1" value="2"><span class="valor"></span></div>
+          <button type="button" data-accion="jugar">▶ Reproducir</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> con $c=9$ fijo, el umbral está en $b=6$ ($b^2=4c=36$). Con $b\lt6$ el discriminante es negativo: raíces complejas (curva violeta, oscila mientras decae). En $b=6$ exacto: raíz doble (curva dorada, caso límite). Con $b\gt6$: raíces reales distintas (curva verde, decae sin oscilar). Arriba a la izquierda se leen $\lambda$ y la clasificación vigente. ▶ anima un punto recorriendo la curva actual.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+
+        <div class="ejemplo" id="ej-raices-caracteristica">
+          <h3>7. Clasificación de raíces características</h3>
+          <p>Hallar la solución complementaria $y_h$ de (a) $y''-2y'+y=\dfrac{e^x}{x}$ y (b)
+          $y''+3y'+2y=\sin(e^x)$.</p>
+          <p><strong>Solución (a)</strong> — ecuación característica $\lambda^2-2\lambda+1=0$:</p>
+          <p>$$(\lambda-1)^2=0 \;\Longrightarrow\; \lambda=1 \text{ (raíz doble)}$$</p>
+          <p>Caso 2 (raíz repetida): $\;y_h=c_1e^x+c_2xe^x$.</p>
+          <p><strong>Solución (b)</strong> — ecuación característica $\lambda^2+3\lambda+2=0$:</p>
+          <p>$$(\lambda+1)(\lambda+2)=0 \;\Longrightarrow\; \lambda=-1,\,-2 \text{ (reales distintas)}$$</p>
+          <p>Caso 1 (raíces distintas): $\;y_h=c_1e^{-x}+c_2e^{-2x}$.</p>
+          <p style="color:var(--tinta-2)">En ninguno de los dos casos importa qué tan complicado sea el lado
+          derecho ($e^x/x$, $\sin(e^x)$): $y_h$ solo depende de los coeficientes constantes del lado
+          izquierdo. El lado derecho recién entra en juego al buscar $y_p$ (Unidad 3) — con estos lados
+          derechos, de hecho, ni coeficientes indeterminados ni variación de parámetros son triviales, pero
+          $y_h$ ya está resuelto.</p>
+          <p class="fuente">Fuente: nota "EDO lineales de segundo orden homogéneas".</p>
+        </div>
+
+        <div class="ejemplo" id="ej-reduccion-orden">
+          <h3>8. Reducción de orden</h3>
+          <p>Dado que $y_1=\ln(x)$ es solución de $xy''+y'=0$, hallar la solución general.</p>
+          <p><strong>Solución</strong> — se sustituye $y=v\ln(x)$. Con $y_1=\ln x$, $y_1'=1/x$,
+          $y_1''=-1/x^2$:</p>
+          <p>$$y'=v'\ln x+\frac{v}{x}, \qquad y''=v''\ln x+\frac{2v'}{x}-\frac{v}{x^2}$$</p>
+          <p>Sustituyendo en $xy''+y'=0$:</p>
+          <p>$$x\left(v''\ln x+\frac{2v'}{x}-\frac{v}{x^2}\right)+\left(v'\ln x+\frac{v}{x}\right)=0$$</p>
+          <p>Los términos en $v$ (sin derivar) se cancelan, como espera el método ($-v/x+v/x=0$), quedando
+          solo términos en $v'$ y $v''$:</p>
+          <p>$$xv''\ln x+2v'+v'\ln x=0 \;\Longrightarrow\; x\ln(x)\,v''+(2+\ln x)\,v'=0$$</p>
+          <p>Es de primer orden en $w=v'$: $\;x\ln(x)\,w'+(2+\ln x)w=0$, separable:</p>
+          <p>$$\frac{w'}{w}=-\frac{2+\ln x}{x\ln x} \;\Longrightarrow\; w=\frac{1}{x\,(\ln x)^2}$$</p>
+          <p>Integrando ($u=\ln x$, $du=dx/x$): $\;v=\displaystyle\int\frac{dx}{x(\ln x)^2}=\int u^{-2}\,du=-\frac{1}{\ln x}$.</p>
+          <p>$$y_2 = v\cdot y_1 = -\frac{1}{\ln x}\cdot\ln x = -1$$</p>
+          <p>Solución general (absorbiendo el signo en la constante): $\;y(x)=c_1\ln(x)+c_2$.</p>
+          <p style="color:var(--tinta-2)">Que $y_2$ sea una función tan simple (una constante) es un buen
+          recordatorio de que la "segunda solución" no siempre se ve complicada: acá $y_2=1$ es, de hecho,
+          fácil de verificar por inspección ($y=1\Rightarrow y'=y''=0$, satisface $xy''+y'=0$ trivialmente).</p>
+          <p class="fuente">Fuente: nota "Reducción de orden".</p>
+        </div>
+
+        <div class="ejemplo" id="ej-euler-cauchy">
+          <h3>9. Ecuación de Euler-Cauchy: los tres casos</h3>
+          <p>Hallar la solución general de (a) $x^2y''-2y=0$, (b) $x^2y''-3xy'+4y=0$ y (c)
+          $x^2y''+xy'+y=0$.</p>
+          <p><strong>Solución (a)</strong> — ecuación indicial $r(r-1)-2=0$:</p>
+          <p>$$r^2-r-2=0 \;\Longrightarrow\; (r-2)(r+1)=0 \;\Longrightarrow\; r=2,-1 \text{ (reales distintas)}$$</p>
+          <p>Caso 1: $\;y=c_1x^2+c_2x^{-1}$.</p>
+          <p><strong>Solución (b)</strong> — ecuación indicial $r(r-1)-3r+4=0$:</p>
+          <p>$$r^2-4r+4=0 \;\Longrightarrow\; (r-2)^2=0 \;\Longrightarrow\; r=2 \text{ (doble)}$$</p>
+          <p>Caso 2: $\;y=(c_1+c_2\ln x)\,x^2$.</p>
+          <p><strong>Solución (c)</strong> — ecuación indicial $r(r-1)+r+1=0$:</p>
+          <p>$$r^2+1=0 \;\Longrightarrow\; r=\pm i \text{ (complejas, } \alpha=0,\beta=1\text{)}$$</p>
+          <p>Caso 3: $\;y=c_1\cos(\ln x)+c_2\sin(\ln x)$.</p>
+          <p style="color:var(--tinta-2)">Los tres casos son estructuralmente idénticos a los de la ecuación
+          característica (Unidad 3, tema anterior): mismo discriminante, misma clasificación, solo que la
+          "base" de la solución es $x^r$ en vez de $e^{\lambda x}$ — consistente con que la sustitución
+          $t=\ln x$ convierte Euler-Cauchy en coeficientes constantes.</p>
+          <p class="fuente">Fuente: elaboración propia (auditoría de contenidos, tema ausente en la nota original).</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+
+        <details class="ejercicio" id="ejer-raices-distintas">
+          <summary><span class="resumen-ejercicio">7. Resolver $y''-5y'+6y=0$.</span> <span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <p>$\lambda^2-5\lambda+6=0 \;\Longrightarrow\; (\lambda-2)(\lambda-3)=0 \;\Longrightarrow\; \lambda=2,3$</p>
+            <p>$y(x)=c_1e^{2x}+c_2e^{3x}$</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-raiz-repetida">
+          <summary><span class="resumen-ejercicio">8. Resolver el PVI $y''+4y'+4y=0$, $y(0)=1$, $y'(0)=0$.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>$\lambda^2+4\lambda+4=0 \;\Longrightarrow\; (\lambda+2)^2=0 \;\Longrightarrow\; \lambda=-2$ (doble)</p>
+            <p>$y=(c_1+c_2x)e^{-2x}$. $\;y(0)=c_1=1$.</p>
+            <p>$y'=c_2e^{-2x}-2(c_1+c_2x)e^{-2x}$. $\;y'(0)=c_2-2c_1=0 \;\Rightarrow\; c_2=2$.</p>
+            <p>$y(x)=(1+2x)e^{-2x}$</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-reduccion-euler">
+          <summary><span class="resumen-ejercicio">9. Sabiendo que $y_1=x$ es solución de $x^2y''+xy'-y=0$, hallar la solución general por reducción de orden.</span> <span class="dificultad dificil">difícil</span></summary>
+          <div class="solucion">
+            <p>Forma estándar: $y''+\dfrac{1}{x}y'-\dfrac{1}{x^2}y=0 \;\Rightarrow\; P(x)=1/x$.</p>
+            <p>Con la fórmula de Abel: $\displaystyle y_2=y_1\int\frac{e^{-\int P\,dx}}{y_1^2}\,dx = x\int\frac{e^{-\ln x}}{x^2}\,dx = x\int\frac{1/x}{x^2}\,dx = x\int x^{-3}\,dx$</p>
+            <p>$$y_2 = x\cdot\left(-\frac{x^{-2}}{2}\right) = -\frac{1}{2x}$$</p>
+            <p>Descartando la constante $-1/2$ (no aporta independencia lineal nueva), $y_2=1/x$. Solución general:</p>
+            <p>$$y(x) = c_1x+\frac{c_2}{x}$$</p>
+            <p style="color:var(--tinta-2)">Es la ecuación de Euler-Cauchy $x^2y''+xy'-y=0$: su ecuación indicial $r(r-1)+r-1=r^2-1=0$ da $r=\pm1$ directamente, coincidiendo con $y_1=x$ y $y_2=1/x$ — reducción de orden reconstruye el mismo resultado sin necesitar ese atajo.</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-euler-cauchy">
+          <summary><span class="resumen-ejercicio">10. Resolver $x^2y''+5xy'+4y=0$.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>Ecuación indicial: $r(r-1)+5r+4=0 \;\Rightarrow\; r^2+4r+4=0 \;\Rightarrow\; (r+2)^2=0 \;\Rightarrow\; r=-2$ (doble).</p>
+            <p>$$y(x) = (c_1+c_2\ln x)\,x^{-2}$$</p>
+          </div>
+        </details>
+      </div>
+    </section>
+    <!-- ============================================================ -->
+    <!-- UNIDAD 4 · SOLUCIÓN PARTICULAR -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u4">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">04</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Solución particular: coeficientes indeterminados y variación de parámetros</h2>
+          <p class="unidad-sub">Dos formas de hallar $y_p$ cuando la EDO de segundo orden tiene un término no homogéneo: una rápida pero restringida, otra general pero con integrales.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-coeficientes-indeterminados">
+        <h3>Coeficientes indeterminados</h3>
+        <p>Para $ay''+by'+cy=g(x)$ con $g(x)$ de forma "simple" (polinomio, exponencial, seno/coseno, o
+        combinaciones), se propone una solución particular $y_p$ con la <strong>misma forma</strong> que
+        $g(x)$, con coeficientes a determinar:</p>
+        <div class="tabla-scroll">
+        <table>
+        <thead><tr><th>$g(x)$</th><th>Forma propuesta de $y_p$</th></tr></thead>
+        <tbody>
+        <tr><td>polinomio grado $n$</td><td>polinomio grado $n$</td></tr>
+        <tr><td>$e^{rx}$</td><td>$Ae^{rx}$</td></tr>
+        <tr><td>$\sin(kx)$ o $\cos(kx)$</td><td>$A\sin(kx)+B\cos(kx)$</td></tr>
+        </tbody>
+        </table>
+        </div>
+        <p><strong>Regla de modificación</strong>: si la forma propuesta ya aparece en $y_h$, se multiplica
+        por $x$ (o por $x^2$ si sigue coincidiendo) hasta que deje de solaparse. Se sustituye $y_p$ con sus
+        derivadas en la EDO completa y se igualan coeficientes término a término.</p>
+        <ul>
+          <li>Olvidar la regla de modificación cuando la forma propuesta coincide con un término de $y_h$
+          lleva a un sistema de ecuaciones sin solución (algo como $0=$ constante distinta de 0).</li>
+          <li>Si $g(x)$ es una suma de varios tipos (ej. polinomio + exponencial), $y_p$ se propone como la
+          suma de las formas correspondientes a cada término.</li>
+          <li>Es más rápido que variación de parámetros cuando aplica, pero <strong>solo</strong> funciona
+          para ese tipo restringido de $g(x)$ — con $\tan x$, $\ln x$, $1/x$, no hay tabla que consultar.</li>
+        </ul>
+      </div>
+
+      <div class="materia" id="tema-variacion-parametros">
+        <h3>Variación de parámetros</h3>
+        <p>Método general para hallar $y_p$ de $y''+P(x)y'+Q(x)y=f(x)$ <strong>sin restricción</strong> sobre
+        la forma de $f(x)$ — a diferencia de coeficientes indeterminados, sirve incluso con $\sec x$, $\ln
+        x$, $1/x$. Con $y_h=c_1y_1+c_2y_2$ conocida, se propone:</p>
+        <div class="formula-card"><span class="etiqueta">Propuesta</span>$$y_p = u_1(x)\,y_1+u_2(x)\,y_2$$</div>
+        <p>Exigiendo que $u_1,u_2$ satisfagan el sistema (la primera ecuación es una elección conveniente que
+        simplifica $y_p'$; la segunda sale de sustituir en la EDO):</p>
+        <div class="formula-card"><span class="etiqueta">Sistema en $u_1',u_2'$</span>$$\begin{cases} u_1'y_1+u_2'y_2 = 0\\ u_1'y_1'+u_2'y_2' = f(x)\end{cases}$$</div>
+        <p>Resolviendo con el <strong>Wronskiano</strong> $W(x)=\begin{vmatrix}y_1 & y_2\\y_1' &
+        y_2'\end{vmatrix}=y_1y_2'-y_2y_1'$:</p>
+        <div class="formula-card"><span class="etiqueta">Derivadas de $u_1,u_2$</span>$$u_1' = -\frac{y_2\,f(x)}{W}, \qquad u_2' = \frac{y_1\,f(x)}{W}$$</div>
+        <p>Luego $u_1=\int u_1'\,dx$, $u_2=\int u_2'\,dx$, y $y_p=u_1y_1+u_2y_2$.</p>
+        <ul>
+          <li>La ecuación debe estar en <strong>forma estándar</strong> (coeficiente 1 en $y''$) antes de
+          leer $f(x)$ — si no lo está, dividir toda la ecuación primero.</li>
+          <li>Las integrales de $u_1',u_2'$ pueden requerir técnicas de integración avanzadas (por partes,
+          sustitución trigonométrica); es el costo de no tener restricciones sobre $f(x)$.</li>
+        </ul>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+
+        <div class="ejemplo" id="ej-coef-indeterminados">
+          <h3>10. Coeficientes indeterminados en un sistema forzado</h3>
+          <p>Hallar la solución general de $\ddot y+14\dot y+49y=48\sin t$.</p>
+          <p><strong>Solución</strong> — ecuación característica $\lambda^2+14\lambda+49=0$:</p>
+          <p>$$(\lambda+7)^2=0 \;\Longrightarrow\; \lambda=-7 \text{ (doble)} \;\Longrightarrow\; y_h=(C_0+C_1t)e^{-7t}$$</p>
+          <p>Como $\sin t$ (con frecuencia 1) no aparece en $y_h$ (que decae con $e^{-7t}$, sin oscilar), se
+          propone $y_p=a_1\sin t+a_2\cos t$ directamente, sin modificar:</p>
+          <p>$$y_p'=a_1\cos t-a_2\sin t, \qquad y_p''=-a_1\sin t-a_2\cos t$$</p>
+          <p>Sustituyendo en la ecuación y agrupando por $\sin t$ y $\cos t$:</p>
+          <p>$$\sin t:\;\; -a_1-14a_2+49a_1=48 \;\Longrightarrow\; 48a_1-14a_2=48$$</p>
+          <p>$$\cos t:\;\; -a_2+14a_1+49a_2=0 \;\Longrightarrow\; 14a_1+48a_2=0$$</p>
+          <p>De la segunda ecuación: $a_2=-\dfrac{7}{24}a_1$. Sustituyendo en la primera:</p>
+          <p>$$48a_1-14\left(-\frac{7}{24}a_1\right)=48 \;\Longrightarrow\; 48a_1+\frac{98}{24}a_1=48 \;\Longrightarrow\; \frac{1250}{24}a_1=48$$</p>
+          <p>$$a_1=\frac{48\times24}{1250}=\frac{576}{625}\approx0{,}9216, \qquad a_2=-\frac{7}{24}a_1=-\frac{168}{625}\approx-0{,}2688$$</p>
+          <p>Solución general: $\;y(t)=(C_0+C_1t)e^{-7t}+\dfrac{576}{625}\sin t-\dfrac{168}{625}\cos t$.</p>
+          <p style="color:var(--tinta-2)">$y_h$ describe el transitorio (se extingue por el factor
+          $e^{-7t}$); $y_p$ describe el régimen permanente forzado por $\sin t$, con la misma frecuencia que
+          la excitación pero desfasado (combinación de $\sin t$ y $\cos t$) — distinguir ambas partes es
+          clave para interpretar la respuesta.</p>
+          <p class="fuente">Fuente: nota "Coeficientes indeterminados" (= nota "Aplicaciones de EDO de segundo orden — sistema masa-resorte", mismo sistema).</p>
+        </div>
+
+        <div class="ejemplo" id="ej-variacion-parametros">
+          <h3>11. Variación de parámetros con $\sec x$</h3>
+          <p>Resolver $y''+y=\sec(x)$.</p>
+          <p><strong>Solución</strong> — $y_h=c_1\cos x+c_2\sin x$ (raíces $\lambda=\pm i$), así que
+          $y_1=\cos x$, $y_2=\sin x$. Wronskiano:</p>
+          <p>$$W = \cos x(\cos x)-\sin x(-\sin x) = \cos^2x+\sin^2x = 1$$</p>
+          <p>Con $f(x)=\sec x$:</p>
+          <p>$$u_1'=-\frac{\sin x\sec x}{1}=-\tan x \;\Longrightarrow\; u_1=\ln|\cos x|$$</p>
+          <p>$$u_2'=\frac{\cos x\sec x}{1}=1 \;\Longrightarrow\; u_2=x$$</p>
+          <p>Entonces $y_p=u_1y_1+u_2y_2$:</p>
+          <p>$$y_p = \cos(x)\ln|\cos x| + x\sin x$$</p>
+          <p>Solución general: $\;y(x)=c_1\cos x+c_2\sin x+\cos(x)\ln|\cos x|+x\sin x$.</p>
+          <p style="color:var(--tinta-2)">$\sec x$ no es polinomio, exponencial ni seno/coseno puro: no hay
+          fila de tabla que consultar en coeficientes indeterminados, así que variación de parámetros es
+          <strong>obligatorio</strong> acá, no solo una alternativa.</p>
+          <p class="fuente">Fuente: nota "Variación de parámetros".</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+
+        <details class="ejercicio" id="ejer-coef-polinomio">
+          <summary><span class="resumen-ejercicio">11. Hallar una solución particular de $y''-y'-2y=4x^2$.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>$\lambda^2-\lambda-2=(\lambda-2)(\lambda+1)=0 \;\Rightarrow\; y_h=c_1e^{2x}+c_2e^{-x}$ (no hay polinomios en $y_h$: sin modificación)</p>
+            <p>Se propone $y_p=Ax^2+Bx+C$: $\;y_p'=2Ax+B$, $\;y_p''=2A$.</p>
+            <p>$2A-(2Ax+B)-2(Ax^2+Bx+C)=4x^2 \;\Rightarrow\; -2Ax^2+(-2A-2B)x+(2A-B-2C)=4x^2$</p>
+            <p>$x^2:\;-2A=4\Rightarrow A=-2$. &nbsp; $x^1:\;-2A-2B=0\Rightarrow B=2$. &nbsp; $x^0:\;2A-B-2C=0\Rightarrow C=-3$</p>
+            <p>$y_p(x)=-2x^2+2x-3$</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-variacion-tan">
+          <summary><span class="resumen-ejercicio">12. Hallar una solución particular de $y''+4y=\tan(2x)$ por variación de parámetros.</span> <span class="dificultad dificil">difícil</span></summary>
+          <div class="solucion">
+            <p>$y_h=c_1\cos2x+c_2\sin2x$ (raíces $\lambda=\pm2i$). $\;y_1=\cos2x$, $y_2=\sin2x$, $W=2\cos^22x+2\sin^22x=2$.</p>
+            <p>$u_1'=-\dfrac{\sin2x\tan2x}{2}=-\dfrac{\sin^22x}{2\cos2x}=-\dfrac{1-\cos^22x}{2\cos2x}=-\dfrac12\sec2x+\dfrac12\cos2x$</p>
+            <p>$u_1=-\dfrac14\ln|\sec2x+\tan2x|+\dfrac14\sin2x$</p>
+            <p>$u_2'=\dfrac{\cos2x\tan2x}{2}=\dfrac{\sin2x}{2} \;\Rightarrow\; u_2=-\dfrac14\cos2x$</p>
+            <p>$y_p=u_1y_1+u_2y_2 = \left(-\dfrac14\ln|\sec2x+\tan2x|+\dfrac14\sin2x\right)\cos2x-\dfrac14\cos2x\sin2x$</p>
+            <p>Los términos $\tfrac14\sin2x\cos2x$ se cancelan entre sí, quedando:</p>
+            <p>$$y_p(x) = -\frac14\cos(2x)\,\ln|\sec2x+\tan2x|$$</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 5 · APLICACIONES DE SEGUNDO ORDEN: MASA-RESORTE -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u5">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">05</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Aplicaciones de segundo orden: sistema masa-resorte</h2>
+          <p class="unidad-sub">El ejemplo físico canónico de EDO lineal de segundo orden: cada técnica de las unidades 2 y 3 tiene una lectura directa en términos de frecuencia natural y amortiguamiento.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-masa-resorte">
+        <h3>El modelo masa-resorte-amortiguador</h3>
+        <p>Un bloque de masa $m$ colgado de un resorte de constante $k$ (ley de Hooke), con amortiguamiento
+        $c$ (proporcional a la velocidad, opuesto al movimiento) y una fuerza externa $F(t)$, se modela
+        aplicando la segunda ley de Newton con $y(t)$ el desplazamiento respecto al equilibrio estático:</p>
+        <div class="formula-card"><span class="etiqueta">Ecuación del sistema</span>$$m\ddot y = -ky-c\dot y+F(t) \;\Longrightarrow\; m\ddot y+c\dot y+ky=F(t)$$</div>
+        <p>Es exactamente la EDO lineal de segundo orden de las Unidades 2 y 3, con coeficientes constantes
+        $m,c,k$. Su ecuación característica $m\lambda^2+c\lambda+k=0$ tiene discriminante
+        $c^2-4mk$, que clasifica el comportamiento libre ($F=0$) en tres regímenes:</p>
+        <div class="formula-card"><span class="etiqueta">Clasificación por amortiguamiento</span>$$c^2\lt4mk:\ \text{subamortiguado} \qquad c^2=4mk:\ \text{crítico} \qquad c^2\gt4mk:\ \text{sobreamortiguado}$$</div>
+        <ul>
+          <li>Sin amortiguamiento ($c=0$): raíces complejas puras $\lambda=\pm i\sqrt{k/m}$ — movimiento
+          armónico simple, oscila indefinidamente sin decaer.</li>
+          <li><strong>Subamortiguado</strong> ($c^2\lt4mk$): raíces complejas $\lambda=\alpha\pm\beta i$ con
+          $\alpha\lt0$ — oscila mientras decae exponencialmente (caso 3 de la Unidad 2).</li>
+          <li><strong>Críticamente amortiguado</strong> ($c^2=4mk$): raíz real doble — vuelve al equilibrio
+          lo más rápido posible <strong>sin</strong> oscilar (caso 2).</li>
+          <li><strong>Sobreamortiguado</strong> ($c^2\gt4mk$): raíces reales distintas, ambas negativas —
+          vuelve al equilibrio más lento que el caso crítico, sin oscilar (caso 1).</li>
+          <li>El primer paso (plantear la ecuación desde el diagrama de cuerpo libre con las tres fuerzas
+          $ky$, $c\dot y$, $F(t)$) es donde más se pierden puntos, no la resolución algebraica posterior.</li>
+        </ul>
+      </div>
+
+      <div class="animacion" id="anim-masa-resorte">
+        <div class="anim-cabecera">
+          <h3>🪀 Masa-resorte amortiguado</h3>
+          <p class="anim-desc">Bloque de $m=1\text{ kg}$ en un resorte de $k=25\text{ N/m}$ ($c_{\text{crít}}=10$), soltado desde $y_0$ con velocidad inicial 0. El bloque a la izquierda y el gráfico $y(t)$ a la derecha comparten el mismo instante.</p>
+        </div>
+        <canvas data-alto="360"></canvas>
+        <div class="controles">
+          <div class="control"><label for="sl-resorte-c">amortiguamiento $c$</label><input type="range" id="sl-resorte-c" min="0" max="20" step="0.2" value="2"><span class="valor"></span></div>
+          <div class="control"><label for="sl-resorte-y0">$y_0$</label><input type="range" id="sl-resorte-y0" min="0.1" max="0.6" step="0.05" value="0.4"><span class="valor"></span></div>
+          <button type="button" data-accion="jugar">▶ Soltar</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> con $c\lt10$ (subamortiguado, verde) el
+        bloque oscila mientras decae; en $c=10$ (crítico, dorado) vuelve al equilibrio lo más rápido posible
+        sin cruzarlo; con $c\gt10$ (sobreamortiguado, violeta) vuelve aún más lento, tampoco oscila. Arriba a
+        la izquierda se leen $\lambda$ (o $\alpha\pm\beta i$) y el régimen vigente. La curva punteada del
+        panel derecho es $y(t)$ completa; el punto marca el instante actual.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+
+        <div class="ejemplo" id="ej-clasificacion-amortiguamiento">
+          <h3>12. Los tres regímenes con los mismos $m,k$</h3>
+          <p>Para $m=1\text{ kg}$, $k=25\text{ N/m}$ (sistema libre, $F=0$), $y(0)=0{,}4\text{ m}$,
+          $\dot y(0)=0$, comparar la respuesta con $c=6$, $c=10$ y $c=16$ (dato asumido para completar el
+          cálculo: la nota original no fija valores numéricos de $c$, solo describe la clasificación).</p>
+          <p><strong>Solución</strong> — umbral crítico: $c_{\text{crít}}^2=4mk=4(1)(25)=100
+          \Rightarrow c_{\text{crít}}=10$.</p>
+          <p><strong>$c=6$ (subamortiguado, $c^2=36\lt100$)</strong>: $\;\lambda=\dfrac{-6\pm\sqrt{36-100}}{2}=-3\pm4i$.</p>
+          <p>$$y(t)=e^{-3t}\left(0{,}4\cos4t-\frac{(-3)(0{,}4)}{4}\sin4t\right)=e^{-3t}\big(0{,}4\cos4t+0{,}3\sin4t\big)$$</p>
+          <p><strong>$c=10$ (crítico, $c^2=100$)</strong>: $\;\lambda=-5$ (doble). Con $y(0)=0{,}4$,
+          $\dot y(0)=0=c_2-5c_1 \Rightarrow c_2=2$:</p>
+          <p>$$y(t)=(0{,}4+2t)e^{-5t}$$</p>
+          <p><strong>$c=16$ (sobreamortiguado, $c^2=256\gt100$)</strong>: $\;\lambda=\dfrac{-16\pm\sqrt{256-100}}{2}=\dfrac{-16\pm12{,}49}{2}$, es decir $\lambda_1\approx-1{,}75$, $\lambda_2\approx-14{,}25$.</p>
+          <p>Con $y(0)=c_1+c_2=0{,}4$ y $\dot y(0)=\lambda_1c_1+\lambda_2c_2=0$: resolviendo el sistema,
+          $c_1\approx0{,}456$, $c_2\approx-0{,}056$, así:</p>
+          <p>$$y(t)\approx0{,}456\,e^{-1{,}75t}-0{,}056\,e^{-14{,}25t}$$</p>
+          <p style="color:var(--tinta-2)">Los tres parten del mismo punto $y(0)=0{,}4$ con velocidad 0, pero
+          solo el subamortiguado ($c=6$) cruza el equilibrio ($y=0$) más de una vez. El crítico ($c=10$) es
+          el que vuelve más rápido a $y\approx0$ sin cruzarlo — es la frontera exacta que separa "oscila" de
+          "no oscila", el mismo valor que se puede explorar en la animación de esta unidad.</p>
+          <p class="fuente">Fuente: nota "Aplicaciones de EDO de segundo orden: sistema masa-resorte" (valores numéricos de $c$ asumidos para ilustrar los tres casos descritos en la nota).</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+
+        <details class="ejercicio" id="ejer-shm-periodo">
+          <summary><span class="resumen-ejercicio">13. Un bloque de $m=0{,}5\text{ kg}$ en un resorte de $k=8\text{ N/m}$ (sin amortiguamiento) se suelta desde $y_0=0{,}1\text{ m}$ con velocidad 0. Hallar $y(t)$ y el período de oscilación.</span> <span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <p>Sin amortiguamiento: $m\ddot y+ky=0 \;\Rightarrow\; \ddot y+\dfrac{k}{m}y=0$, con $\omega=\sqrt{k/m}=\sqrt{8/0{,}5}=\sqrt{16}=4\text{ rad/s}$</p>
+            <p>Raíces $\lambda=\pm4i$ (caso 3, $\alpha=0$): $\;y(t)=y_0\cos(4t)=0{,}1\cos(4t)\text{ m}$ (velocidad inicial 0 anula el término en $\sin$)</p>
+            <p>Período: $T=\dfrac{2\pi}{\omega}=\dfrac{2\pi}{4}=\dfrac{\pi}{2}\approx1{,}57\text{ s}$</p>
+          </div>
+        </details>
+      </div>
+    </section>
+    <!-- ============================================================ -->
+    <!-- UNIDAD 6 · TRANSFORMADA DE LAPLACE -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u6">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">06</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Transformada de Laplace</h2>
+          <p class="unidad-sub">Traduce toda la EDO (derivadas y condiciones iniciales incluidas) a un problema de álgebra en el dominio de $s$, resolviendo un PVI de una sola pasada.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-transformada-laplace">
+        <h3>Definición y transformadas básicas</h3>
+        <p>La transformada de Laplace convierte una función $f(t)$ en una función $F(s)=\mathcal{L}\{f(t)\}$
+        que transforma derivadas en operaciones algebraicas:</p>
+        <div class="formula-card"><span class="etiqueta">Definición</span>$$\mathcal{L}\{f(t)\} = F(s) = \int_0^\infty e^{-st}f(t)\,dt$$</div>
+        <p>Con esta definición se calculan, una vez, las transformadas de las funciones que aparecen todo el
+        tiempo al resolver EDO — y después se usan como tabla, sin volver a integrar:</p>
+        <div class="tabla-scroll">
+        <table>
+        <thead><tr><th>$f(t)$</th><th>$F(s)=\mathcal{L}\{f(t)\}$</th></tr></thead>
+        <tbody>
+        <tr><td>$\sin(kt)$</td><td>$\dfrac{k}{s^2+k^2}$</td></tr>
+        <tr><td>$\cos(kt)$</td><td>$\dfrac{s}{s^2+k^2}$</td></tr>
+        <tr><td>$e^{at}$</td><td>$\dfrac{1}{s-a}$</td></tr>
+        <tr><td>$e^{at}f(t)$</td><td>$F(s-a)$ &nbsp;(desplazamiento en $s$)</td></tr>
+        <tr><td>$t\,f(t)$</td><td>$-\dfrac{d}{ds}F(s)$</td></tr>
+        <tr><td>$af(t)+bg(t)$</td><td>$aF(s)+bG(s)$ &nbsp;(linealidad)</td></tr>
+        </tbody>
+        </table>
+        </div>
+        <p>La propiedad de multiplicación por $t$ se extiende a $t^nf(t)\to(-1)^nF^{(n)}(s)$: cada potencia
+        de $t$ agrega una derivada respecto a $s$, con un signo alternante. Por ejemplo, para
+        $\mathcal{L}\{t\cos(2t)\}$, con $F(s)=\dfrac{s}{s^2+4}$:</p>
+        <p>$$\mathcal{L}\{t\cos2t\} = -\frac{d}{ds}\left(\frac{s}{s^2+4}\right) = \frac{s^2-4}{(s^2+4)^2}$$</p>
+        <p>y para $\mathcal{L}\{t^2e^t\}$, con $F(s)=\dfrac{1}{s-1}$, aplicando la regla dos veces (segunda
+        derivada, signo $(-1)^2=+1$):</p>
+        <p>$$\mathcal{L}\{t^2e^t\} = \frac{d^2}{ds^2}\left(\frac{1}{s-1}\right) = \frac{2}{(s-1)^3}$$</p>
+        <ul>
+          <li>La integral que define $\mathcal{L}\{f\}$ solo converge si $f(t)$ no crece más rápido que una
+          exponencial — no toda función tiene transformada de Laplace.</li>
+          <li>Al derivar $F(s)$ respecto a $s$ para el caso $t\,f(t)$, no olvidar el signo negativo.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 7 · FORZAMIENTO DISCONTINUO E IMPULSIVO -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u7">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">07</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Forzamiento discontinuo e impulsivo</h2>
+          <p class="unidad-sub">Forzamientos que se encienden de golpe o actúan en un instante — la transformada de Laplace los maneja con el mismo álgebra que cualquier otro forzamiento, vía traslación en $t$ y el teorema de convolución.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-escalon-unitario">
+        <h3>Función escalón unitario (Heaviside) y traslación en $t$</h3>
+        <p>Muchos forzamientos reales se "encienden" en un instante $t=a$ y no antes — un interruptor, una
+        fuerza que empieza a aplicarse recién en cierto momento. La <strong>función escalón unitario</strong>
+        (o de Heaviside) modela justamente eso:</p>
+        <div class="formula-card"><span class="etiqueta">Función escalón unitario</span>$$u(t-a) = \begin{cases} 0, & t\lt a \\ 1, & t\geq a \end{cases}$$</div>
+        <p>Su transformada es directa desde la definición (la integral solo "arranca" en $t=a$):</p>
+        <div class="formula-card"><span class="etiqueta">Transformada del escalón</span>$$\mathcal{L}\{u(t-a)\} = \frac{e^{-as}}{s}$$</div>
+        <p>Más útil todavía es el <strong>segundo teorema de traslación</strong>, que dice cómo transformar
+        (o antitransformar) cualquier función <strong>retrasada</strong> $a$ unidades y "apagada" antes de
+        $t=a$:</p>
+        <div class="formula-card"><span class="etiqueta">Segundo teorema de traslación</span>$$\mathcal{L}\{f(t-a)\,u(t-a)\} = e^{-as}F(s) \qquad\Longleftrightarrow\qquad \mathcal{L}^{-1}\{e^{-as}F(s)\} = f(t-a)\,u(t-a)$$</div>
+        <p>con $F(s)=\mathcal{L}\{f(t)\}$ la transformada de la función <strong>sin</strong> retraso.</p>
+        <ul>
+          <li>Un pulso rectangular de altura $A$ entre $t=a$ y $t=b$ se escribe como
+          $A\big[u(t-a)-u(t-b)\big]$ — una resta de dos escalones, cada uno con su propia transformada
+          $e^{-as}/s$ y $e^{-bs}/s$.</li>
+          <li>El error más común: aplicar el teorema con $f(t)$ en vez de $f(t-a)$. Antes de transformar hay
+          que reescribir <strong>todo</strong> en términos de $(t-a)$, no dejar $t$ suelto.</li>
+          <li>Para antitransformar $e^{-as}G(s)$, primero se identifica $G(s)=F(s)$ de alguna función
+          conocida $f(t)$, se halla $f(t)$, y recién después se sustituye $t\to t-a$ y se multiplica por
+          $u(t-a)$ — nunca al revés.</li>
+        </ul>
+      </div>
+
+      <div class="materia" id="tema-impulso-convolucion">
+        <h3>Función impulso (delta de Dirac) y teorema de convolución</h3>
+        <p>Un golpe de martillo o un choque son fuerzas de <strong>magnitud enorme durante un instante
+        brevísimo</strong>, con área (impulso) finita. La <strong>función delta de Dirac</strong> $\delta(t-a)$
+        idealiza ese límite: es "cero en todas partes salvo en $t=a$", con la propiedad de cernido (sifting)</p>
+        <div class="formula-card"><span class="etiqueta">Propiedad de cernido</span>$$\int_{-\infty}^{\infty} f(t)\,\delta(t-a)\,dt = f(a)$$</div>
+        <p>que aplicada a $f(t)=e^{-st}$ da directamente su transformada:</p>
+        <div class="formula-card"><span class="etiqueta">Transformada del impulso</span>$$\mathcal{L}\{\delta(t-a)\} = e^{-as} \qquad (\mathcal{L}\{\delta(t)\}=1)$$</div>
+        <p>Físicamente, un impulso en $t=a$ sobre $mx''+cx'+kx=F(t)$ produce un <strong>salto instantáneo en
+        la velocidad</strong> (no en la posición): la solución sigue siendo continua en $x$, pero $x'$ da un
+        salto igual al impulso dividido por el coeficiente de $x''$.</p>
+        <p>Cuando el lado derecho de una transformada es un <strong>producto</strong> $F(s)G(s)$ que no
+        aparece tal cual en ninguna tabla, el <strong>teorema de convolución</strong> permite antitransformarlo
+        sin fracciones parciales, a partir de las antitransformadas $f(t)$ y $g(t)$ ya conocidas por separado:</p>
+        <div class="formula-card"><span class="etiqueta">Convolución</span>$$(f*g)(t) = \int_0^t f(\tau)\,g(t-\tau)\,d\tau$$</div>
+        <div class="formula-card"><span class="etiqueta">Teorema de convolución</span>$$\mathcal{L}\{f*g\} = F(s)\,G(s) \qquad\Longleftrightarrow\qquad \mathcal{L}^{-1}\{F(s)G(s)\} = (f*g)(t)$$</div>
+        <ul>
+          <li>La convolución $(f*g)(t)$ es <strong>conmutativa</strong>: $(f*g)(t)=(g*f)(t)$, aunque las
+          funciones dentro de la integral no lo sean.</li>
+          <li>Es la herramienta natural cuando $Y(s)$ queda como producto de dos transformadas "simples" pero
+          la respuesta impulso del sistema $\big(\mathcal{L}^{-1}\{1/(\text{polinomio característico})\}\big)$
+          se conoce de antemano — evita rehacer fracciones parciales completas.</li>
+          <li>No confundir con el producto ordinario $f(t)g(t)$: la convolución integra un desplazamiento
+          relativo $\tau \to t-\tau$, no multiplica punto a punto.</li>
+        </ul>
+      </div>
+
+      <div class="animacion" id="anim-forzamiento-discontinuo">
+        <div class="anim-cabecera">
+          <h3>💥 Masa-resorte con forzamiento escalón o impulso</h3>
+          <p class="anim-desc">El mismo sistema masa-resorte de la Unidad 5 ($m=1$, $k=4$, $c=1$, subamortiguado), en reposo, recibe una fuerza que se enciende de golpe en $t=a$ (escalón) o un golpe instantáneo en $t=a$ (impulso). El bloque a la izquierda y el gráfico $x(t)$ a la derecha comparten el mismo instante.</p>
+        </div>
+        <canvas data-alto="360"></canvas>
+        <div class="controles">
+          <div class="control"><label for="sl-forz-tipo">tipo</label><input type="range" id="sl-forz-tipo" min="0" max="1" step="1" value="0"><span class="valor"></span></div>
+          <div class="control"><label for="sl-forz-a">instante $a$</label><input type="range" id="sl-forz-a" min="1" max="3.5" step="0.1" value="1.5"><span class="valor"></span></div>
+          <button type="button" data-accion="jugar">▶ Reproducir</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> antes de $t=a$ (línea vertical punteada) el
+        bloque está quieto en $x=0$: no hay forzamiento todavía. Con <strong>escalón</strong> (tipo=0), a
+        partir de $a$ una fuerza constante empuja al sistema y $x(t)$ oscila amortiguadamente hacia un nuevo
+        equilibrio (línea horizontal punteada) — exactamente la traslación $e^{-as}F(s)$ de esta unidad. Con
+        <strong>impulso</strong> (tipo=1), en $a$ la velocidad da un salto instantáneo y el sistema queda
+        oscilando libremente alrededor de $x=0$ (sin nuevo equilibrio) — la transformada $e^{-as}$ sin el
+        factor $1/s$ del escalón.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+
+        <div class="ejemplo" id="ej-escalon-resorte">
+          <h3>13. Sistema masa-resorte con forzamiento escalón</h3>
+          <p>Resolver $x''+4x'+5x=3u(t-2)$, $x(0)=0$, $x'(0)=0$.</p>
+          <p><strong>Solución</strong> — transformando (condiciones iniciales nulas simplifican
+          $\mathcal{L}\{x''\}=s^2X$, $\mathcal{L}\{x'\}=sX$) y usando $\mathcal{L}\{u(t-2)\}=e^{-2s}/s$:</p>
+          <p>$$(s^2+4s+5)\,X = \frac{3e^{-2s}}{s} \;\Longrightarrow\; X(s) = 3e^{-2s}\cdot\frac{1}{s(s^2+4s+5)}$$</p>
+          <p>Fracciones parciales de $\dfrac{1}{s(s^2+4s+5)}$ (sin la exponencial todavía): con
+          $s^2+4s+5=(s+2)^2+1$,</p>
+          <p>$$\frac{1}{s(s^2+4s+5)} = \frac{1/5}{s} - \frac{1}{5}\cdot\frac{(s+2)+2}{(s+2)^2+1} = \frac15\cdot\frac1s - \frac15\cdot\frac{s+2}{(s+2)^2+1} - \frac25\cdot\frac{1}{(s+2)^2+1}$$</p>
+          <p>Antitransformando esta parte (llamarla $g(t)$):</p>
+          <p>$$g(t) = \frac15 - \frac15e^{-2t}\cos t - \frac25e^{-2t}\sin t$$</p>
+          <p>Por el segundo teorema de traslación, $X(s)=3e^{-2s}G(s) \Rightarrow x(t)=3\,g(t-2)\,u(t-2)$:</p>
+          <p>$$x(t) = \begin{cases} 0, & t\lt2 \\[4pt] \dfrac35 - \dfrac35e^{-2(t-2)}\cos(t-2) - \dfrac65e^{-2(t-2)}\sin(t-2), & t\geq2 \end{cases}$$</p>
+          <p style="color:var(--tinta-2)"><strong>Verificación numérica:</strong> integrando la EDO original
+          paso a paso (Runge-Kutta) hasta $t=3{,}5$ se obtiene $x(3{,}5)\approx0{,}5383$, y la fórmula cerrada
+          da $x(3{,}5)\approx0{,}5383$ — coinciden. El sistema queda quieto hasta $t=2$ y luego oscila
+          amortiguadamente hacia el nuevo equilibrio $x=3/5$ (el valor final $F_0/k=3/5$, coherente con "fuerza
+          constante sobre resorte").</p>
+          <p class="fuente">Fuente: elaboración propia (auditoría de contenidos, tema ausente en la nota original).</p>
+        </div>
+
+        <div class="ejemplo" id="ej-impulso-convolucion">
+          <h3>14. Respuesta a un impulso y verificación del teorema de convolución</h3>
+          <p><strong>(a)</strong> Resolver $y''+y=\delta(t-\pi)$, $y(0)=0$, $y'(0)=0$.</p>
+          <p><strong>Solución (a)</strong> — transformando con $\mathcal{L}\{\delta(t-\pi)\}=e^{-\pi s}$:</p>
+          <p>$$(s^2+1)Y = e^{-\pi s} \;\Longrightarrow\; Y(s) = \frac{e^{-\pi s}}{s^2+1}$$</p>
+          <p>Como $\mathcal{L}^{-1}\{1/(s^2+1)\}=\sin t$, por traslación $y(t)=\sin(t-\pi)\,u(t-\pi)$. Usando
+          $\sin(t-\pi)=-\sin t$:</p>
+          <p>$$y(t) = \begin{cases} 0, & t\lt\pi \\ -\sin t, & t\geq\pi \end{cases}$$</p>
+          <p style="color:var(--tinta-2)">El impulso no mueve la posición en $t=\pi$ ($y$ sigue siendo 0 ahí,
+          continua), pero sí produce un salto de velocidad: $y'(\pi^-)=0$ y $y'(\pi^+)=-\cos(\pi)=1$, un salto
+          de $1$ — exactamente el impulso aplicado, coherente con $mx''+\cdots=F(t)$ con $m=1$.</p>
+          <p><strong>(b)</strong> Verificar el teorema de convolución con $f(t)=t$, $g(t)=e^t$.</p>
+          <p><strong>Solución (b)</strong> — por definición, integrando por partes:</p>
+          <p>$$(f*g)(t) = \int_0^t \tau\,e^{t-\tau}\,d\tau = e^t\int_0^t \tau e^{-\tau}\,d\tau = e^t-t-1$$</p>
+          <p>Por otro lado, $F(s)=1/s^2$, $G(s)=1/(s-1)$, y las fracciones parciales de su producto dan:</p>
+          <p>$$F(s)G(s) = \frac{1}{s^2(s-1)} = -\frac1s-\frac{1}{s^2}+\frac{1}{s-1} \;\Longrightarrow\; \mathcal{L}^{-1}\{F(s)G(s)\} = -1-t+e^t$$</p>
+          <p style="color:var(--tinta-2)">Ambos caminos dan $e^t-t-1$: la convolución directa (integral) y el
+          producto de transformadas antitransformado por separado coinciden, confirmando el teorema en este
+          caso concreto.</p>
+          <p class="fuente">Fuente: elaboración propia (auditoría de contenidos, tema ausente en la nota original).</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+
+        <details class="ejercicio" id="ejer-escalon-simple">
+          <summary><span class="resumen-ejercicio">14. Resolver $y'+2y=u(t-1)$, $y(0)=0$, con la transformada de Laplace.</span> <span class="dificultad media">media</span></summary>
+          <div class="solucion">
+            <p>$\mathcal{L}\{y'\}+2\mathcal{L}\{y\}=\mathcal{L}\{u(t-1)\} \;\Rightarrow\; (s+2)Y=\dfrac{e^{-s}}{s} \;\Rightarrow\; Y(s)=e^{-s}\cdot\dfrac{1}{s(s+2)}$</p>
+            <p>Fracciones parciales: $\dfrac{1}{s(s+2)}=\dfrac{1/2}{s}-\dfrac{1/2}{s+2} \;\Rightarrow\; g(t)=\dfrac12-\dfrac12e^{-2t}$</p>
+            <p>Por traslación, $y(t)=g(t-1)u(t-1)$:</p>
+            <p>$$y(t) = \begin{cases} 0, & t\lt1 \\ \dfrac12\big(1-e^{-2(t-1)}\big), & t\geq1 \end{cases}$$</p>
+          </div>
+        </details>
+
+        <details class="ejercicio" id="ejer-impulso-simple">
+          <summary><span class="resumen-ejercicio">15. Resolver $y''+4y=\delta(t-1)$, $y(0)=0$, $y'(0)=0$.</span> <span class="dificultad dificil">difícil</span></summary>
+          <div class="solucion">
+            <p>$(s^2+4)Y=e^{-s} \;\Rightarrow\; Y(s)=\dfrac{e^{-s}}{s^2+4}$. Con $\mathcal{L}^{-1}\{2/(s^2+4)\}=\sin(2t) \;\Rightarrow\; \mathcal{L}^{-1}\{1/(s^2+4)\}=\tfrac12\sin(2t)$.</p>
+            <p>Por traslación:</p>
+            <p>$$y(t) = \begin{cases} 0, & t\lt1 \\ \dfrac12\sin\big(2(t-1)\big), & t\geq1 \end{cases}$$</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 8 · TRANSFORMADA INVERSA Y PVI -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u8">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">08</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Transformada inversa y solución de PVI</h2>
+          <p class="unidad-sub">El tercer paso del método de Laplace: antitransformar de vuelta a $y(t)$, completando cuadrados y usando fracciones parciales.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-laplace-inversa-pvi">
+        <h3>Transformada inversa y solución de un PVI</h3>
+        <p>La estrategia para resolver un problema de valor inicial con Laplace tiene tres pasos:
+        <strong>transformar la EDO completa → despejar $Y(s)$ algebraicamente → antitransformar</strong>. Las
+        condiciones iniciales entran ya en el primer paso, al transformar las derivadas:</p>
+        <div class="formula-card"><span class="etiqueta">Transformada de derivadas</span>$$\mathcal{L}\{y'(t)\} = sY(s)-y(0), \qquad \mathcal{L}\{y''(t)\} = s^2Y(s)-sy(0)-y'(0)$$</div>
+        <p>Para antitransformar, suele hacer falta <strong>completar cuadrados</strong> en el denominador
+        (para reconocer la forma de $\sin$/$\cos$ desplazados por el corrimiento $F(s-a)$) y
+        <strong>fracciones parciales</strong>. Por ejemplo, para $\mathcal{L}^{-1}\Big\{\dfrac{s}{s^2+4s+5}\Big\}$,
+        completando el cuadrado $s^2+4s+5=(s+2)^2+1$ y separando el numerador para que aparezcan $(s+2)$ y una
+        constante:</p>
+        <p>$$\mathcal{L}^{-1}\left\{\frac{s}{s^2+4s+5}\right\} = \mathcal{L}^{-1}\left\{\frac{(s+2)-2}{(s+2)^2+1}\right\} = e^{-2t}\cos t - 2e^{-2t}\sin t$$</p>
+        <p>Otro caso típico, cuando falta completar el cuadrado de forma distinta: $\mathcal{L}^{-1}\Big\{\dfrac{1}{4s^2+1}\Big\}$
+        se reescribe sacando el 4 de factor común, $\dfrac{1}{4}\cdot\dfrac{1}{s^2+1/4}=\dfrac12\cdot\dfrac{1/2}{s^2+1/4}$,
+        dando $\dfrac12\sin\!\big(\tfrac12t\big)$.</p>
+        <ul>
+          <li>Olvidar los términos con las condiciones iniciales al transformar $y'$ y $y''$ (escribir
+          $\mathcal{L}\{y''\}=s^2Y(s)$ sin restar $sy(0)+y'(0)$) invalida todo el resultado.</li>
+          <li>Antes de antitransformar, siempre conviene completar cuadrados en denominadores cuadráticos
+          irreducibles — de lo contrario no se reconoce la forma estándar de seno/coseno desplazado.</li>
+          <li>Resuelve el PVI de una sola pasada: no hace falta calcular $y_h$ y $y_p$ por separado como en
+          coeficientes indeterminados o variación de parámetros (Unidad 3) — las condiciones iniciales se
+          incorporan desde el principio.</li>
+        </ul>
+      </div>
+
+      <div class="ejemplos-unidad">
+        <p class="grupo-kicker">💡 Ejemplos resueltos</p>
+
+        <div class="ejemplo" id="ej-pvi-laplace">
+          <h3>15. PVI completo resuelto con Laplace</h3>
+          <p>Resolver $y''(t)+y'(t)-6y(t)=e^t\cos(2t)$, $y(0)=1$, $y'(0)=1/8$.</p>
+          <p><strong>Solución</strong> — se transforma toda la ecuación, usando
+          $\mathcal{L}\{y''\}=s^2Y-sy(0)-y'(0)$, $\mathcal{L}\{y'\}=sY-y(0)$, y
+          $\mathcal{L}\{e^t\cos2t\}=\dfrac{s-1}{(s-1)^2+4}$ (desplazamiento en $s$):</p>
+          <p>$$\Big(s^2Y-s-\tfrac18\Big)+\big(sY-1\big)-6Y = \frac{s-1}{(s-1)^2+4}$$</p>
+          <p>Agrupando los términos en $Y$ y pasando el resto al lado derecho:</p>
+          <p>$$(s^2+s-6)\,Y = s+\frac98+\frac{s-1}{(s-1)^2+4}$$</p>
+          <p>El polinomio característico factoriza igual que en la Unidad 2: $s^2+s-6=(s+3)(s-2)$. Despejando
+          $Y(s)$ y descomponiendo en fracciones parciales (completando el cuadrado ya hecho en
+          $(s-1)^2+4$ para separar la parte real de la compleja):</p>
+          <p>$$Y(s) = \frac{83/200}{s+3} + \frac{133/200}{s-2} - \frac{2}{25}\cdot\frac{s-1}{(s-1)^2+4} + \frac{3}{50}\cdot\frac{2}{(s-1)^2+4}$$</p>
+          <p>Antitransformando término a término ($\mathcal{L}^{-1}\{1/(s+3)\}=e^{-3t}$,
+          $\mathcal{L}^{-1}\{1/(s-2)\}=e^{2t}$, $\mathcal{L}^{-1}\{(s-1)/((s-1)^2+4)\}=e^t\cos2t$,
+          $\mathcal{L}^{-1}\{2/((s-1)^2+4)\}=e^t\sin2t$):</p>
+          <p>$$y(t) = \frac{83}{200}e^{-3t} + \frac{133}{200}e^{2t} - \frac{2}{25}e^t\cos2t + \frac{3}{50}e^t\sin2t$$</p>
+          <p>que es la misma solución que $\;y(t)=\dfrac{83}{200}e^{-3t}+\dfrac{133}{200}e^{2t}+\dfrac{1}{50}e^t\{3\sin2t-4\cos2t\}$
+          (agrupando los dos últimos términos sobre denominador común 50).</p>
+          <p style="color:var(--tinta-2)"><strong>Verificación:</strong> en $t=0$,
+          $y(0)=\tfrac{83}{200}+\tfrac{133}{200}+\tfrac{1}{50}(0-4)=1{,}08-0{,}08=1$ ✓. Derivando y evaluando
+          en $t=0$ se obtiene $y'(0)=\tfrac{1}{8}$ ✓ — confirmar las condiciones iniciales al final es la
+          forma más rápida de detectar un error de álgebra en las fracciones parciales.</p>
+          <p class="fuente">Fuente: nota "Transformada inversa de Laplace y solución de PVI".</p>
+        </div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+
+        <details class="ejercicio" id="ejer-laplace-simple">
+          <summary><span class="resumen-ejercicio">16. Resolver $y''+4y=0$, $y(0)=0$, $y'(0)=2$ usando la transformada de Laplace.</span> <span class="dificultad facil">fácil</span></summary>
+          <div class="solucion">
+            <p>$\mathcal{L}\{y''\}+4\mathcal{L}\{y\}=0 \;\Rightarrow\; \big(s^2Y-s(0)-2\big)+4Y=0 \;\Rightarrow\; (s^2+4)Y=2$</p>
+            <p>$$Y(s)=\frac{2}{s^2+4}$$</p>
+            <p>Comparando con la tabla ($k/(s^2+k^2)\to\sin(kt)$, aquí $k=2$): $\;y(t)=\sin(2t)$</p>
+            <p style="color:var(--tinta-2)">Coincide con resolverlo por ecuación característica ($\lambda=\pm2i$, $y=c_1\cos2t+c_2\sin2t$, $y(0)=0\Rightarrow c_1=0$, $y'(0)=2c_2=2\Rightarrow c_2=1$): Laplace llega al mismo resultado sin calcular $y_h$ por separado.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- UNIDAD 9 · SISTEMAS DE EDO LINEALES -->
+    <!-- ============================================================ -->
+    <section class="unidad" id="u9">
+      <div class="unidad-cabecera">
+        <span class="unidad-numero">09</span>
+        <div class="unidad-titulo-grupo">
+          <h2 class="unidad-titulo">Sistemas de EDO lineales</h2>
+          <p class="unidad-sub">Un sistema de EDO acopladas se resuelve como una EDO escalar $y'=\lambda y$, pero con los valores y vectores propios de la matriz de coeficientes.</p>
+        </div>
+      </div>
+
+      <div class="materia" id="tema-sistemas-edo">
+        <h3>Sistemas $\mathbf{x}'=A\mathbf{x}$: valores y vectores propios</h3>
+        <p>Un sistema de EDO lineales con coeficientes constantes se escribe en forma matricial
+        $\mathbf{x}'(t)=A\,\mathbf{x}(t)$, con $A$ una matriz $n\times n$. Modela varias cantidades que
+        cambian simultáneamente e interactúan entre sí (poblaciones que compiten, corrientes en circuitos
+        acoplados), donde cada ecuación depende de las demás variables. Se resuelve en tres pasos:</p>
+        <div class="formula-card"><span class="etiqueta">1. Valores propios</span>$$\det(A-\lambda I)=0$$</div>
+        <div class="formula-card"><span class="etiqueta">2. Vector propio para cada $\lambda_i$</span>$$(A-\lambda_i I)\,v^{(i)}=0$$</div>
+        <div class="formula-card"><span class="etiqueta">3. Solución general</span>$$\mathbf{x}(t) = C_1e^{\lambda_1t}v^{(1)} + C_2e^{\lambda_2t}v^{(2)} + \cdots + C_ne^{\lambda_nt}v^{(n)}$$</div>
+        <p>El caso más simple es cuando $A$ ya es diagonal: cada ecuación queda desacoplada. Por ejemplo,
+        para $x'=x$, $y'=-2y$ (matriz $A=\begin{pmatrix}1&0\\0&-2\end{pmatrix}$), los valores propios son
+        $\lambda_1=1,\lambda_2=-2$ con vectores propios $v^{(1)}=(1,0)$, $v^{(2)}=(0,1)$ — la solución general
+        es simplemente $x(t)=C_1e^t$, $y(t)=C_2e^{-2t}$, cada una resuelta por separado. Para un sistema
+        $3\times3$ con valores propios $4,2,-1$, la solución general en componentes queda
+        $x_1(t)=C_1e^{4t}+C_2e^{2t}$, $x_2(t)=-2C_2e^{2t}$, $x_3(t)=C_3e^{-t}$ (la estructura triangular de
+        $A$ hace que $x_1$ dependa de $x_2$, pero no al revés).</p>
+        <ul>
+          <li>Si $A$ tiene un valor propio repetido con <strong>menos</strong> vectores propios
+          independientes que su multiplicidad, la solución general requiere vectores propios generalizados
+          (no basta con $e^{\lambda t}v$ para todas las soluciones) — caso no cubierto en el material
+          revisado.</li>
+          <li>Verificar siempre que cada vector propio calculado satisface $(A-\lambda I)v=0$ en
+          <strong>todas</strong> las filas del sistema, no solo una.</li>
+        </ul>
+      </div>
+
+      <div class="animacion" id="anim-plano-fase">
+        <div class="anim-cabecera">
+          <h3>🌀 Plano de fase de un sistema 2×2</h3>
+          <p class="anim-desc">Retrato de fase de $\mathbf{x}'=A\mathbf{x}$ con $A=\begin{pmatrix}0&1\\-\Delta&\tau\end{pmatrix}$ (traza $\tau$, determinante $\Delta$): las flechas muestran el campo de velocidades y las curvas, trayectorias reales calculadas por integración numérica.</p>
+        </div>
+        <canvas data-alto="420"></canvas>
+        <div class="controles">
+          <div class="control"><label for="sl-fase-tau">traza $\tau$</label><input type="range" id="sl-fase-tau" min="-6" max="6" step="0.2" value="0.5"><span class="valor"></span></div>
+          <div class="control"><label for="sl-fase-delta">det $\Delta$</label><input type="range" id="sl-fase-delta" min="-8" max="8" step="0.2" value="2"><span class="valor"></span></div>
+          <button type="button" data-accion="jugar">▶ Reproducir</button>
+          <button type="button" class="secundario" data-accion="reiniciar">↺ Reiniciar</button>
+        </div>
+        <p class="anim-lectura"><strong>Leé el gráfico:</strong> los valores propios son
+        $\lambda=\big(\tau\pm\sqrt{\tau^2-4\Delta}\big)/2$. Con $\Delta\lt0$: valores propios reales de
+        signo opuesto → <strong>punto silla</strong> (inestable, casi todas las trayectorias se alejan). Con
+        $\Delta\gt0$ y $\tau^2\gt4\Delta$: valores propios reales del mismo signo → <strong>nodo</strong>
+        (estable si $\tau\lt0$). Con $\Delta\gt0$ y $\tau^2\lt4\Delta$: valores propios complejos →
+        <strong>foco</strong> en espiral ($\tau\neq0$) o <strong>centro</strong> con órbitas cerradas
+        ($\tau=0$ exacto). ▶ anima un punto recorriendo una trayectoria desde un punto cercano al origen.</p>
+        <div class="anim-error"></div>
+      </div>
+
+      <div class="ejercicios-unidad">
+        <p class="grupo-kicker">✏️ Ejercicios</p>
+
+        <details class="ejercicio" id="ejer-sistema-silla">
+          <summary><span class="resumen-ejercicio">17. Resolver $\mathbf{x}'=A\mathbf{x}$ con $A=\begin{pmatrix}3&-2\\2&-2\end{pmatrix}$.</span> <span class="dificultad dificil">difícil</span></summary>
+          <div class="solucion">
+            <p>Valores propios: $\det(A-\lambda I)=(3-\lambda)(-2-\lambda)-(-2)(2)=\lambda^2-\lambda-2=(\lambda-2)(\lambda+1)=0 \;\Rightarrow\; \lambda=2,-1$</p>
+            <p>Para $\lambda=2$: $(A-2I)v=0 \;\Rightarrow\; \begin{pmatrix}1&-2\\2&-4\end{pmatrix}v=0 \;\Rightarrow\; v_1=2v_2 \;\Rightarrow\; v^{(1)}=(2,1)$</p>
+            <p>Para $\lambda=-1$: $(A+I)v=0 \;\Rightarrow\; \begin{pmatrix}4&-2\\2&-1\end{pmatrix}v=0 \;\Rightarrow\; v_2=2v_1 \;\Rightarrow\; v^{(2)}=(1,2)$</p>
+            <p>$$\mathbf{x}(t) = C_1e^{2t}\begin{pmatrix}2\\1\end{pmatrix} + C_2e^{-t}\begin{pmatrix}1\\2\end{pmatrix}$$</p>
+            <p style="color:var(--tinta-2)">Valores propios reales de signo opuesto ($2$ y $-1$): en el
+            plano de fase de esta unidad, esto es exactamente un <strong>punto silla</strong> — con
+            $\tau=\lambda_1+\lambda_2=1$ y $\Delta=\lambda_1\lambda_2=-2\lt0$.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+(function () {
+
+  /* ================= 1. Familia de curvas separables (Unidad 1) ================= */
+  Anim.registrar("anim-separables", function (sim) {
+    var r = 0.9, K = 6, y0 = 1;
+    var tMax = 8, yMax = 9;
+
+    function solucion(rr, KK, yy0, tt) {
+      /* logística: y(t) = K / (1 + ((K-y0)/y0) e^{-rt}) */
+      var A = (KK - yy0) / yy0;
+      return KK / (1 + A * Math.exp(-rr * tt));
+    }
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var m = Anim.mapa(w, h, { xMin: 0, xMax: tMax, yMin: 0, yMax: yMax });
+      Anim.ejes(ctx, m, w, h);
+
+      var tinta = colorVar("--tinta");
+      var tinta2 = colorVar("--tinta-2");
+      var acento = colorVar("--acento");
+      var s3 = colorVar("--s3");
+
+      /* campo de pendientes de fondo: y' = r y (1 - y/K) */
+      ctx.save();
+      ctx.strokeStyle = tinta2;
+      ctx.globalAlpha = 0.55;
+      ctx.lineWidth = 1.2;
+      var nx = 15, ny = 11;
+      for (var i = 0; i <= nx; i++) {
+        for (var j = 0; j <= ny; j++) {
+          var gx = tMax * i / nx;
+          var gy = yMax * j / ny;
+          var pend = r * gy * (1 - gy / K);
+          var norma = Math.sqrt(1 + pend * pend);
+          var largo = 10;
+          var dx = (largo / norma);
+          var dy = (largo * pend / norma);
+          var cx = m.x(gx), cy = m.y(gy);
+          ctx.beginPath();
+          ctx.moveTo(cx - dx, cy + dy);
+          ctx.lineTo(cx + dx, cy - dy);
+          ctx.stroke();
+        }
+      }
+      ctx.restore();
+
+      /* línea de capacidad de carga y = K */
+      ctx.save();
+      ctx.strokeStyle = s3;
+      ctx.setLineDash([6, 5]);
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(0, m.y(K));
+      ctx.lineTo(w, m.y(K));
+      ctx.stroke();
+      ctx.restore();
+
+      /* curvas de referencia con otros y0 */
+      var referencias = [K * 0.15, K * 0.5, K * 1.6];
+      ctx.save();
+      ctx.strokeStyle = tinta2;
+      ctx.globalAlpha = 0.5;
+      ctx.lineWidth = 1.3;
+      for (var rIdx = 0; rIdx < referencias.length; rIdx++) {
+        ctx.beginPath();
+        var n = 100;
+        for (var k = 0; k <= n; k++) {
+          var xx = tMax * k / n;
+          var yy = solucion(r, K, referencias[rIdx], xx);
+          var px = m.x(xx), py = m.y(yy);
+          if (k === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+        }
+        ctx.stroke();
+      }
+      ctx.restore();
+
+      /* curva de acento: y0 elegido */
+      ctx.save();
+      ctx.strokeStyle = acento;
+      ctx.lineWidth = 2.4;
+      ctx.beginPath();
+      var n2 = 140;
+      for (var k2 = 0; k2 <= n2; k2++) {
+        var xx2 = tMax * k2 / n2;
+        var yy2 = solucion(r, K, y0, xx2);
+        var px2 = m.x(xx2), py2 = m.y(yy2);
+        if (k2 === 0) ctx.moveTo(px2, py2); else ctx.lineTo(px2, py2);
+      }
+      ctx.stroke();
+      ctx.restore();
+
+      /* punto inicial */
+      ctx.save();
+      ctx.fillStyle = colorVar("--s1");
+      ctx.beginPath();
+      ctx.arc(m.x(0), m.y(y0), 6, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+
+      /* punto animado */
+      var xp = (t * 1.1) % tMax;
+      var yp = solucion(r, K, y0, xp);
+      ctx.save();
+      ctx.fillStyle = tinta;
+      ctx.beginPath();
+      ctx.arc(m.x(xp), m.y(yp), 5, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+
+      ctx.save();
+      ctx.fillStyle = tinta;
+      ctx.font = "13px Consolas, monospace";
+      ctx.fillText("y' = " + r.toFixed(1) + " y (1 - y/" + K.toFixed(1) + ")", 10, 18);
+      ctx.fillText("y0 = " + y0.toFixed(1) + "   K = " + K.toFixed(1), 10, 36);
+      ctx.restore();
+    });
+
+    sim.slider("sl-sep-r", function (v) { r = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.slider("sl-sep-k", function (v) { K = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.slider("sl-sep-y0", function (v) { y0 = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.botones();
+  });
+
+  /* ================= 2. Campo de direcciones (Unidad 2) ================= */
+  Anim.registrar("anim-campo-direcciones", function (sim) {
+    var P = 0.8, Q = 2, y0 = -2;
+    var xMax = 6, yMin = -6, yMax = 6;
+
+    function solucion(x) {
+      if (Math.abs(P) < 1e-6) return y0 + Q * x;
+      var eq = Q / P;
+      return eq + (y0 - eq) * Math.exp(-P * x);
+    }
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var m = Anim.mapa(w, h, { xMin: 0, xMax: xMax, yMin: yMin, yMax: yMax });
+      Anim.ejes(ctx, m, w, h);
+
+      var tinta2 = colorVar("--tinta-2");
+      var acento = colorVar("--acento");
+      var s1 = colorVar("--s1");
+      var s3 = colorVar("--s3");
+      var tinta = colorVar("--tinta");
+
+      /* campo de pendientes */
+      ctx.save();
+      ctx.strokeStyle = tinta2;
+      ctx.globalAlpha = 0.6;
+      ctx.lineWidth = 1.3;
+      var nx = 13, ny = 11;
+      for (var i = 0; i <= nx; i++) {
+        for (var j = 0; j <= ny; j++) {
+          var gx = xMax * i / nx;
+          var gy = yMin + (yMax - yMin) * j / ny;
+          var pend = Q - P * gy;
+          var ang = Math.atan2(-pend, 1);
+          var largo = 11;
+          var dx = Math.cos(ang) * largo, dy = Math.sin(ang) * largo;
+          var cx = m.x(gx), cy = m.y(gy);
+          ctx.beginPath();
+          ctx.moveTo(cx - dx, cy - dy);
+          ctx.lineTo(cx + dx, cy + dy);
+          ctx.stroke();
+        }
+      }
+      ctx.restore();
+
+      /* línea de equilibrio y = Q/P */
+      if (Math.abs(P) > 1e-6) {
+        var eq = Q / P;
+        if (eq >= yMin && eq <= yMax) {
+          ctx.save();
+          ctx.strokeStyle = s3;
+          ctx.setLineDash([6, 5]);
+          ctx.lineWidth = 1.5;
+          ctx.beginPath();
+          ctx.moveTo(0, m.y(eq));
+          ctx.lineTo(w, m.y(eq));
+          ctx.stroke();
+          ctx.restore();
+        }
+      }
+
+      /* curva solución */
+      ctx.save();
+      ctx.strokeStyle = acento;
+      ctx.lineWidth = 2.4;
+      ctx.beginPath();
+      var n = 120;
+      for (var k = 0; k <= n; k++) {
+        var xx = xMax * k / n;
+        var yy = solucion(xx);
+        if (yy < yMin - 2) yy = yMin - 2;
+        if (yy > yMax + 2) yy = yMax + 2;
+        var px = m.x(xx), py = m.y(yy);
+        if (k === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+      }
+      ctx.stroke();
+      ctx.restore();
+
+      /* punto inicial */
+      ctx.save();
+      ctx.fillStyle = s1;
+      ctx.beginPath();
+      ctx.arc(m.x(0), m.y(y0), 6, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+
+      /* punto animado recorriendo la curva */
+      var xp = (t * 1.4) % xMax;
+      var yp = solucion(xp);
+      if (yp >= yMin && yp <= yMax) {
+        ctx.save();
+        ctx.fillStyle = tinta;
+        ctx.beginPath();
+        ctx.arc(m.x(xp), m.y(yp), 5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+
+      ctx.save();
+      ctx.fillStyle = tinta;
+      ctx.font = "13px Consolas, monospace";
+      ctx.fillText("y' = " + Q.toFixed(1) + " - (" + P.toFixed(1) + ")y", 10, 18);
+      if (Math.abs(P) > 1e-6) {
+        ctx.fillText("equilibrio y = " + (Q / P).toFixed(2) + (P > 0 ? "  (atractor)" : "  (repulsor)"), 10, 36);
+      }
+      ctx.restore();
+    });
+
+    sim.slider("sl-campo-p", function (v) { P = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.slider("sl-campo-q", function (v) { Q = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.slider("sl-campo-y0", function (v) { y0 = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.botones();
+  });
+
+  /* ================= 3. Raíces características (Unidad 3) ================= */
+  Anim.registrar("anim-raices-caracteristica", function (sim) {
+    var b = 2, c = 9;
+    var xMax = 4;
+
+    function evaluar(x) {
+      var disc = b * b - 4 * c;
+      if (Math.abs(disc) < 1e-4) {
+        var lam = -b / 2;
+        var c2 = -lam;
+        return (1 + c2 * x) * Math.exp(lam * x);
+      } else if (disc > 0) {
+        var raiz = Math.sqrt(disc);
+        var l1 = (-b + raiz) / 2, l2 = (-b - raiz) / 2;
+        var c1 = l2 / (l2 - l1), cc2 = 1 - c1;
+        return c1 * Math.exp(l1 * x) + cc2 * Math.exp(l2 * x);
+      } else {
+        var alpha = -b / 2, beta = Math.sqrt(-disc) / 2;
+        var k = -alpha / beta;
+        return Math.exp(alpha * x) * (Math.cos(beta * x) + k * Math.sin(beta * x));
+      }
+    }
+
+    function clasificar() {
+      var disc = b * b - 4 * c;
+      if (Math.abs(disc) < 1e-4) return { tipo: "repetida", color: colorVar("--futuro") };
+      if (disc > 0) return { tipo: "reales distintas", color: colorVar("--s1") };
+      return { tipo: "complejas", color: colorVar("--s3") };
+    }
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var yVals = [];
+      var n = 140;
+      var yMin = -1.5, yMax = 1.5;
+      for (var k = 0; k <= n; k++) {
+        var xx = xMax * k / n;
+        var yy = evaluar(xx);
+        yVals.push(yy);
+        if (yy < yMin) yMin = yy;
+        if (yy > yMax) yMax = yy;
+      }
+      yMin -= 0.2; yMax += 0.2;
+
+      var m = Anim.mapa(w, h, { xMin: 0, xMax: xMax, yMin: yMin, yMax: yMax });
+      Anim.ejes(ctx, m, w, h);
+
+      var info = clasificar();
+      var tinta = colorVar("--tinta");
+
+      ctx.save();
+      ctx.strokeStyle = info.color;
+      ctx.lineWidth = 2.6;
+      ctx.beginPath();
+      for (var i = 0; i <= n; i++) {
+        var xx2 = xMax * i / n;
+        var px = m.x(xx2), py = m.y(yVals[i]);
+        if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+      }
+      ctx.stroke();
+      ctx.restore();
+
+      var xp = (t * 0.9) % xMax;
+      var yp = evaluar(xp);
+      ctx.save();
+      ctx.fillStyle = info.color;
+      ctx.beginPath();
+      ctx.arc(m.x(xp), m.y(yp), 6, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+
+      var disc = b * b - 4 * c;
+      ctx.save();
+      ctx.fillStyle = tinta;
+      ctx.font = "13px Consolas, monospace";
+      if (Math.abs(disc) < 1e-4) {
+        ctx.fillText("λ = " + (-b / 2).toFixed(2) + " (doble)", 10, 18);
+      } else if (disc > 0) {
+        var raiz = Math.sqrt(disc);
+        ctx.fillText("λ = " + ((-b + raiz) / 2).toFixed(2) + ", " + ((-b - raiz) / 2).toFixed(2), 10, 18);
+      } else {
+        var alpha = -b / 2, beta = Math.sqrt(-disc) / 2;
+        ctx.fillText("λ = " + alpha.toFixed(2) + " ± " + beta.toFixed(2) + "i", 10, 18);
+      }
+      ctx.fillText("caso: " + info.tipo, 10, 36);
+      ctx.restore();
+    });
+
+    sim.slider("sl-raices-b", function (v) { b = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.botones();
+  });
+
+  /* ================= 4. Masa-resorte amortiguado (Unidad 5) ================= */
+  Anim.registrar("anim-masa-resorte", function (sim) {
+    var m = 1, k = 25;
+    var c = 2, y0v = 0.4;
+    var tMax = 5;
+
+    function posicion(tt) {
+      var disc = c * c - 4 * m * k;
+      if (Math.abs(disc) < 1e-3) {
+        var lam = -c / (2 * m);
+        var c2 = -lam * y0v;
+        return (y0v + c2 * tt) * Math.exp(lam * tt);
+      } else if (disc < 0) {
+        var alpha = -c / (2 * m), beta = Math.sqrt(-disc) / (2 * m);
+        var kk = -alpha * y0v / beta;
+        return Math.exp(alpha * tt) * (y0v * Math.cos(beta * tt) + kk * Math.sin(beta * tt));
+      } else {
+        var raiz = Math.sqrt(disc);
+        var l1 = (-c + raiz) / (2 * m), l2 = (-c - raiz) / (2 * m);
+        var c1v = (l2 * y0v) / (l2 - l1), c2v = y0v - c1v;
+        return c1v * Math.exp(l1 * tt) + c2v * Math.exp(l2 * tt);
+      }
+    }
+
+    function regimen() {
+      var disc = c * c - 4 * m * k;
+      if (Math.abs(disc) < 1e-3) return { nombre: "crítico", color: colorVar("--futuro") };
+      if (disc < 0) return { nombre: "subamortiguado", color: colorVar("--s1") };
+      return { nombre: "sobreamortiguado", color: colorVar("--s3") };
+    }
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var tw = t % tMax;
+      var reg = regimen();
+      var tinta = colorVar("--tinta"), tinta2 = colorVar("--tinta-2"), acento = colorVar("--acento");
+
+      var wIzq = Math.min(180, w * 0.32);
+      var wDer = w - wIzq - 20;
+
+      /* --- panel izquierdo: bloque en el resorte --- */
+      ctx.save();
+      ctx.translate(0, 0);
+      var techoY = 24, ejeY = h / 2, escala = (h / 2 - 50) / 0.6;
+      var yPos = posicion(tw);
+      var blockY = ejeY + yPos * escala;
+
+      ctx.strokeStyle = tinta2;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(wIzq / 2 - 30, techoY);
+      ctx.lineTo(wIzq / 2 + 30, techoY);
+      ctx.stroke();
+
+      var nZig = 12;
+      ctx.strokeStyle = tinta2;
+      ctx.beginPath();
+      ctx.moveTo(wIzq / 2, techoY);
+      for (var i = 1; i < nZig; i++) {
+        var yy = techoY + (blockY - 22 - techoY) * i / nZig;
+        var xx = wIzq / 2 + (i % 2 === 0 ? -14 : 14);
+        ctx.lineTo(xx, yy);
+      }
+      ctx.lineTo(wIzq / 2, blockY - 22);
+      ctx.stroke();
+
+      ctx.fillStyle = acento;
+      ctx.fillRect(wIzq / 2 - 22, blockY - 22, 44, 44);
+
+      ctx.strokeStyle = tinta2;
+      ctx.setLineDash([3, 4]);
+      ctx.beginPath();
+      ctx.moveTo(10, ejeY);
+      ctx.lineTo(wIzq - 10, ejeY);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.restore();
+
+      /* --- panel derecho: y(t) --- */
+      var m2 = Anim.mapa(wDer, h, { xMin: 0, xMax: tMax, yMin: -0.6, yMax: 0.6 });
+      ctx.save();
+      ctx.translate(wIzq + 20, 0);
+      Anim.ejes(ctx, m2, wDer, h);
+
+      ctx.strokeStyle = reg.color;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      var n = 140;
+      for (var j = 0; j <= n; j++) {
+        var xt = tMax * j / n;
+        var yv = posicion(xt);
+        var px = m2.x(xt), py = m2.y(yv);
+        if (j === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+      }
+      ctx.stroke();
+
+      ctx.fillStyle = tinta;
+      ctx.beginPath();
+      ctx.arc(m2.x(tw), m2.y(yPos), 5, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+
+      ctx.save();
+      ctx.fillStyle = tinta;
+      ctx.font = "13px Consolas, monospace";
+      var disc = c * c - 4 * m * k;
+      if (Math.abs(disc) < 1e-3) {
+        ctx.fillText("λ = " + (-c / (2 * m)).toFixed(2) + " (doble)", 10, h - 40);
+      } else if (disc < 0) {
+        var alpha = -c / (2 * m), beta = Math.sqrt(-disc) / (2 * m);
+        ctx.fillText("λ = " + alpha.toFixed(2) + " ± " + beta.toFixed(2) + "i", 10, h - 40);
+      } else {
+        var raiz = Math.sqrt(disc);
+        ctx.fillText("λ = " + ((-c + raiz) / (2 * m)).toFixed(2) + ", " + ((-c - raiz) / (2 * m)).toFixed(2), 10, h - 40);
+      }
+      ctx.fillStyle = reg.color;
+      ctx.font = "bold 14px Consolas, monospace";
+      ctx.fillText("régimen: " + reg.nombre + " (c=" + c.toFixed(1) + ", c_crít=" + Math.sqrt(4 * m * k).toFixed(1) + ")", 10, h - 20);
+      ctx.restore();
+    });
+
+    sim.slider("sl-resorte-c", function (v) { c = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.slider("sl-resorte-y0", function (v) { y0v = v; sim.redibujar(); }, function (v) { return v.toFixed(2) + " m"; });
+    sim.botones();
+  });
+
+  /* ================= 5. Masa-resorte con forzamiento discontinuo (Unidad 7) ================= */
+  Anim.registrar("anim-forzamiento-discontinuo", function (sim) {
+    var tipo = 0, aInst = 1.5;
+    var mm = 1, cc = 1, kk = 4;
+    var A = 1, I = 0.8;
+    var tMax = 6;
+
+    function campo(tt, x, v, yaAplicoImpulso) {
+      var F = 0;
+      if (tipo === 0) {
+        F = tt >= aInst ? A : 0;
+      }
+      return [v, F - cc * v - kk * x];
+    }
+
+    function posicion(tObjetivo) {
+      var dt = 0.005;
+      var t = 0, x = 0, v = 0;
+      var impulsoAplicado = false;
+      while (t < tObjetivo - 1e-9) {
+        var paso = Math.min(dt, tObjetivo - t);
+        var k1 = campo(t, x, v);
+        var k2 = campo(t + paso / 2, x + paso / 2 * k1[0], v + paso / 2 * k1[1]);
+        var k3 = campo(t + paso / 2, x + paso / 2 * k2[0], v + paso / 2 * k2[1]);
+        var k4 = campo(t + paso, x + paso * k3[0], v + paso * k3[1]);
+        x += paso / 6 * (k1[0] + 2 * k2[0] + 2 * k3[0] + k4[0]);
+        v += paso / 6 * (k1[1] + 2 * k2[1] + 2 * k3[1] + k4[1]);
+        t += paso;
+        if (tipo === 1 && !impulsoAplicado && t >= aInst) {
+          v += I / mm;
+          impulsoAplicado = true;
+        }
+      }
+      return [x, v];
+    }
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var tw = t % tMax;
+      var estado = posicion(tw);
+      var xPos = estado[0];
+      var tinta = colorVar("--tinta"), tinta2 = colorVar("--tinta-2"), acento = colorVar("--acento");
+      var s3 = colorVar("--s3");
+
+      var wIzq = Math.min(180, w * 0.32);
+      var wDer = w - wIzq - 20;
+
+      /* --- panel izquierdo: bloque en el resorte --- */
+      ctx.save();
+      var techoY = 24, ejeY = h / 2, escala = (h / 2 - 50) / 0.9;
+      var blockY = ejeY + xPos * escala;
+
+      ctx.strokeStyle = tinta2;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(wIzq / 2 - 30, techoY);
+      ctx.lineTo(wIzq / 2 + 30, techoY);
+      ctx.stroke();
+
+      var nZig = 12;
+      ctx.strokeStyle = tinta2;
+      ctx.beginPath();
+      ctx.moveTo(wIzq / 2, techoY);
+      for (var i = 1; i < nZig; i++) {
+        var yy = techoY + (blockY - 22 - techoY) * i / nZig;
+        var xx = wIzq / 2 + (i % 2 === 0 ? -14 : 14);
+        ctx.lineTo(xx, yy);
+      }
+      ctx.lineTo(wIzq / 2, blockY - 22);
+      ctx.stroke();
+
+      ctx.fillStyle = acento;
+      ctx.fillRect(wIzq / 2 - 22, blockY - 22, 44, 44);
+
+      ctx.strokeStyle = tinta2;
+      ctx.setLineDash([3, 4]);
+      ctx.beginPath();
+      ctx.moveTo(10, ejeY);
+      ctx.lineTo(wIzq - 10, ejeY);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.restore();
+
+      /* --- panel derecho: x(t) --- */
+      var m2 = Anim.mapa(wDer, h, { xMin: 0, xMax: tMax, yMin: -0.9, yMax: 0.9 });
+      ctx.save();
+      ctx.translate(wIzq + 20, 0);
+      Anim.ejes(ctx, m2, wDer, h);
+
+      /* línea vertical del instante a */
+      ctx.save();
+      ctx.strokeStyle = s3;
+      ctx.setLineDash([5, 4]);
+      ctx.lineWidth = 1.4;
+      ctx.beginPath();
+      ctx.moveTo(m2.x(aInst), 0);
+      ctx.lineTo(m2.x(aInst), h);
+      ctx.stroke();
+      /* equilibrio nuevo si es escalón */
+      if (tipo === 0) {
+        var xeq = A / kk;
+        ctx.beginPath();
+        ctx.moveTo(0, m2.y(xeq));
+        ctx.lineTo(wDer, m2.y(xeq));
+        ctx.stroke();
+      }
+      ctx.setLineDash([]);
+      ctx.restore();
+
+      ctx.strokeStyle = acento;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      var n = 130;
+      for (var j = 0; j <= n; j++) {
+        var xt = tMax * j / n;
+        var est = posicion(xt);
+        var px = m2.x(xt), py = m2.y(est[0]);
+        if (j === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+      }
+      ctx.stroke();
+
+      ctx.fillStyle = tinta;
+      ctx.beginPath();
+      ctx.arc(m2.x(tw), m2.y(xPos), 5, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+
+      ctx.save();
+      ctx.fillStyle = tinta;
+      ctx.font = "13px Consolas, monospace";
+      ctx.fillText("tipo: " + (tipo === 0 ? "escalón" : "impulso") + "   a = " + aInst.toFixed(1), 10, h - 20);
+      ctx.restore();
+    });
+
+    sim.slider("sl-forz-tipo", function (v) { tipo = Math.round(v); sim.reiniciar(); }, function (v) { return Math.round(v) === 0 ? "escalón" : "impulso"; });
+    sim.slider("sl-forz-a", function (v) { aInst = v; sim.reiniciar(); }, function (v) { return v.toFixed(1); });
+    sim.botones();
+  });
+
+  /* ================= 6. Plano de fase (Unidad 9) ================= */
+  Anim.registrar("anim-plano-fase", function (sim) {
+    var tau = 0.5, delta = 2;
+
+    function campo(x, y) {
+      return [y, -delta * x + tau * y];
+    }
+
+    function rk4(x, y, dt) {
+      var k1 = campo(x, y);
+      var k2 = campo(x + dt / 2 * k1[0], y + dt / 2 * k1[1]);
+      var k3 = campo(x + dt / 2 * k2[0], y + dt / 2 * k2[1]);
+      var k4 = campo(x + dt * k3[0], y + dt * k3[1]);
+      return [
+        x + dt / 6 * (k1[0] + 2 * k2[0] + 2 * k3[0] + k4[0]),
+        y + dt / 6 * (k1[1] + 2 * k2[1] + 2 * k3[1] + k4[1])
+      ];
+    }
+
+    function trayectoria(x0, y0, pasos, dt) {
+      var pts = [[x0, y0]];
+      var cur = [x0, y0];
+      for (var i = 0; i < pasos; i++) {
+        cur = rk4(cur[0], cur[1], dt);
+        pts.push(cur);
+        if (Math.abs(cur[0]) > 40 || Math.abs(cur[1]) > 40 || !isFinite(cur[0]) || !isFinite(cur[1])) break;
+      }
+      return pts;
+    }
+
+    function clasificar() {
+      var disc = tau * tau - 4 * delta;
+      if (delta < 0) return "punto silla (inestable)";
+      if (Math.abs(disc) < 1e-3) return "nodo degenerado";
+      if (disc > 0) return tau < 0 ? "nodo estable" : (tau > 0 ? "nodo inestable" : "nodo límite");
+      if (Math.abs(tau) < 1e-3) return "centro (órbitas cerradas)";
+      return tau < 0 ? "foco estable (espiral)" : "foco inestable (espiral)";
+    }
+
+    sim.alDibujar(function (ctx, t, dt, w, h) {
+      var m = Anim.mapa(w, h, { xMin: -3, xMax: 3, yMin: -3, yMax: 3 });
+      Anim.ejes(ctx, m, w, h);
+
+      var tinta2 = colorVar("--tinta-2");
+      var acento = colorVar("--acento");
+      var s1 = colorVar("--s1");
+      var tinta = colorVar("--tinta");
+
+      ctx.save();
+      ctx.strokeStyle = tinta2;
+      ctx.globalAlpha = 0.55;
+      ctx.lineWidth = 1.2;
+      for (var gx = -2.5; gx <= 2.5; gx += 0.5) {
+        for (var gy = -2.5; gy <= 2.5; gy += 0.5) {
+          var v = campo(gx, gy);
+          var norma = Math.sqrt(v[0] * v[0] + v[1] * v[1]) || 1;
+          var ux = v[0] / norma, uy = v[1] / norma;
+          var largo = 0.16;
+          var x0p = m.x(gx), y0p = m.y(gy);
+          var x1p = m.x(gx + ux * largo), y1p = m.y(gy + uy * largo);
+          ctx.beginPath();
+          ctx.moveTo(x0p, y0p);
+          ctx.lineTo(x1p, y1p);
+          ctx.stroke();
+        }
+      }
+      ctx.restore();
+
+      ctx.save();
+      ctx.strokeStyle = acento;
+      ctx.globalAlpha = 0.55;
+      ctx.lineWidth = 1.4;
+      var nCurvas = 8;
+      for (var i = 0; i < nCurvas; i++) {
+        var ang = i * 2 * Math.PI / nCurvas;
+        var sx = 0.35 * Math.cos(ang), sy = 0.35 * Math.sin(ang);
+        var pts = trayectoria(sx, sy, 300, 0.025);
+        ctx.beginPath();
+        for (var j = 0; j < pts.length; j++) {
+          var px = m.x(pts[j][0]), py = m.y(pts[j][1]);
+          if (j === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+        }
+        ctx.stroke();
+      }
+      ctx.restore();
+
+      var tw = t % 7.5;
+      var pasos = Math.min(Math.floor(tw / 0.025), 300);
+      var puntoIni = [0.35, 0];
+      var recorrido = trayectoria(puntoIni[0], puntoIni[1], pasos, 0.025);
+      var ultimo = recorrido[recorrido.length - 1];
+      ctx.save();
+      ctx.fillStyle = s1;
+      ctx.beginPath();
+      ctx.arc(m.x(ultimo[0]), m.y(ultimo[1]), 6, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+
+      ctx.save();
+      ctx.fillStyle = tinta;
+      ctx.font = "13px Consolas, monospace";
+      ctx.fillText("τ = " + tau.toFixed(1) + "   Δ = " + delta.toFixed(1), 10, 18);
+      ctx.fillText("clasificación: " + clasificar(), 10, 36);
+      ctx.restore();
+    });
+
+    sim.slider("sl-fase-tau", function (v) { tau = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.slider("sl-fase-delta", function (v) { delta = v; sim.redibujar(); }, function (v) { return v.toFixed(1); });
+    sim.botones();
+  });
+
+})();
+</script>
+</body>
+</html>
