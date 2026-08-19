@@ -273,5 +273,44 @@ kbd{border:1px solid var(--border); border-bottom-width:2px; border-radius:5px; 
 @media (max-width:700px){
   .semana{grid-template-columns:2rem 1fr; }
   .semana .fechas{grid-column:2; }
+  /* .pasos-linea pasa a columna en el teléfono (una caja de fórmula arriba,
+     la nota abajo — no entran una al lado de la otra). Eso cambia el eje
+     principal del flex de horizontal a vertical, y flex:1 1 20rem/16rem
+     (pensado como ancho mínimo en la disposición horizontal) pasa a leerse
+     como ALTO mínimo: cada caja queda fija en 320px/256px de alto sin
+     importar que el contenido real mida ~24px. flex:0 1 auto vuelve a
+     dimensionar por el contenido (alto natural), en las dos disposiciones. */
   .pasos-linea{flex-direction:column; gap:.2rem;}
+  .pasos-tex,.pasos-nota{flex:0 1 auto;}
+  /* Indicio visual de scroll horizontal en .pasos-tex: una fórmula KaTeX
+     más ancha que la pantalla del teléfono va a existir siempre, por más
+     que Pasos() la parta en pasos cortos, y .pasos-tex ya tiene scroll
+     interno (overflow-x:auto, ver arriba) — pero sin ninguna señal el
+     usuario no sabe que puede deslizar y la lee como "cortada". Técnica de
+     sombra de scroll con doble capa de degradé por borde: una capa con
+     background-attachment:local (viaja con el CONTENIDO, ancla en sus dos
+     extremos verdaderos) tapa la sombra; otra con :scroll (fija al
+     VIEWPORT de la caja, ancla en sus dos bordes visibles) la dibuja. Donde
+     el contenido no excede la caja ambos extremos coinciden y la tapa cubre
+     toda sombra; donde sí excede, la tapa del lado ya recorrido se corre
+     fuera de vista y deja ver la sombra de ESE lado nomás. Sin JS: la caja
+     de arriba (--pasos-cover) sigue el fondo real detrás de .pasos-tex,
+     que cambia con .actual (franja ámbar) — ver override debajo. */
+  .pasos-tex,.formula{
+    --pasos-cover:var(--surface);
+    background-repeat:no-repeat;
+    background-size:22px 100%, 22px 100%, 10px 100%, 10px 100%;
+    background-position:left, right, left, right;
+    background-attachment:local, local, scroll, scroll;
+    background-image:
+      linear-gradient(to right, var(--pasos-cover) 45%, transparent),
+      linear-gradient(to left, var(--pasos-cover) 45%, transparent),
+      linear-gradient(to right, color-mix(in srgb, var(--ink) 25%, transparent), transparent),
+      linear-gradient(to left, color-mix(in srgb, var(--ink) 25%, transparent), transparent);
+  }
+  .pasos-linea.actual .pasos-tex{--pasos-cover:color-mix(in srgb, var(--s4) 16%, var(--surface));}
+  /* .formula tiene su propio fondo (celeste, no var(--surface) liso) — la
+     tapa que oculta la sombra en los bordes sin scroll debe seguir ESE
+     color, si no repite el mismo desajuste visto en .pasos-tex. */
+  .formula{--pasos-cover:color-mix(in srgb, var(--s1) 7%, var(--surface));}
 }
