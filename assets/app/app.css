@@ -100,6 +100,14 @@ input[type=range]{accent-color:var(--s1); vertical-align:middle;}
   line-height:1.55;
 }
 .code b{color:var(--s1); font-weight:700;}
+/* Fórmula inline (dentro de un <li>/<p>, no en .formula/.pasos-tex) cuyo KaTeX
+   no tiene ningún punto de quiebre propio (p.ej. un conjunto enumerado largo,
+   $\{CCCC,\ CCCS,\dots\}$): sin esta clase, el span inline no puede encogerse
+   ni partirse, y si no entra en el ancho disponible se sale de la página en
+   vez de ajustarse. display:inline-block + overflow-x:auto le da scroll
+   interno propio (mismo patrón que .formula/.pasos-tex/.code), sin tocar la
+   fórmula en sí ni la tipografía.  */
+.mathinline{display:inline-block; max-width:100%; overflow-x:auto; vertical-align:bottom;}
 .note{color:var(--ink2); font-size:.88rem; max-width:75ch;}
 .note b{color:var(--ink);}
 .msg{font-size:.9rem; font-weight:600; min-height:1.4em; margin:.4rem 0;}
@@ -190,8 +198,18 @@ kbd{border:1px solid var(--border); border-bottom-width:2px; border-radius:5px; 
 }
 .pasos-linea.vista{opacity:1;}
 .pasos-linea.actual{background:color-mix(in srgb, var(--s4) 16%, transparent);}
-.pasos-tex{flex:1 1 20rem; min-width:0; overflow-x:auto; overflow-y:hidden;}
-.pasos-nota{flex:1 1 16rem; font-size:.86rem; color:var(--ink2); min-width:0;}
+/* max-width:100% además de min-width:0: cuando .pasos-tex queda solo en su
+   propia línea (envuelto por flex-wrap) y su fórmula KaTeX no tiene ningún
+   punto de quiebre (una sola línea sin \qquad ni fracciones separables), el
+   navegador la dimensiona por el ancho de su contenido en vez de encogerla
+   al espacio disponible — el scroll interno (overflow-x:auto) nunca llega a
+   activarse porque la caja ya creció para no necesitarlo, y esa caja de más
+   se sale de .pasos-linea (que sí tiene overflow visible) hacia el resto de
+   la página. max-width:100% fuerza la caja al ancho del contenedor, y ahí
+   overflow-x:auto sí entra a tallar. Visto en fórmulas largas de una sola
+   línea (p.ej. "dP=166,2(-1)+...=-199,44") en viewport de teléfono. */
+.pasos-tex{flex:1 1 20rem; min-width:0; max-width:100%; overflow-x:auto; overflow-y:hidden;}
+.pasos-nota{flex:1 1 16rem; font-size:.86rem; color:var(--ink2); min-width:0; max-width:100%;}
 .pasos-nota b{color:var(--ink);}
 
 /* ============ Lienzos de las primitivas ============ */

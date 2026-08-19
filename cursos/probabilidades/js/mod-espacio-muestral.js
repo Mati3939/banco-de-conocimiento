@@ -45,7 +45,7 @@ registerModule({id:'espacio-muestral',title:'Experimento, espacio muestral y eve
     c3.append(el('ul',{},
       el('li',{html:'$A_1$: Un número que ocurre; esto es, $A_1=\\{2,4,6\\}$ (experimento 1).'}),
       el('li',{html:'$A_2=\\{2\\}$; es decir, ocurren dos caras (experimento 2).'}),
-      el('li',{html:'$A_3=\\{CCCC,\\ CCCS,\\ CCSC,\\ CSCC,\\ SCCC\\}$; es decir, salen más caras que sellos (experimento 3).'}),
+      el('li',{},el('span',{class:'mathinline',html:'$A_3=\\{CCCC,\\ CCCS,\\ CCSC,\\ CSCC,\\ SCCC\\}$'}),'; es decir, salen más caras que sellos (experimento 3).'),
       el('li',{html:'$A_4=\\{0\\}$; es decir, todos los artículos fueron no defectuosos (experimento 4).'})
     ));
     c3.append(el('p',{class:'fuente'},'Fuente: apunte Semana 1, Teresa Salgado — Canvas 2026-2.'));

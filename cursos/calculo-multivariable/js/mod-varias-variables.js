@@ -1,5 +1,5 @@
 registerModule({id:'varias-variables',title:'Funciones de varias variables',unidad:'II',semanas:[3],
-  evaluacion:['test-2','certamen-1'],
+  evaluacion:['test-1','certamen-1'],
   lead:'Antes de derivar hace falta poder describir una función de dos variables: dónde vive, cómo se ve su gráfica en el espacio, y qué corte queda al fijar su altura.',
   build(sec){
 
@@ -161,7 +161,7 @@ registerModule({id:'varias-variables',title:'Funciones de varias variables',unid
     /* -------- Card 7: ejercicios -------- */
     const c7=el('div',{class:'card'});
     c7.append(el('h3',{},'Ejercicios'));
-    c7.append(el('p',{class:'note'},'El Listado 1 de Canvas 2026-2 no trae ítems de esta unidad (sus 25 ítems son de funciones vectoriales y el triedro TNB, ver los otros temas de la Unidad I). Los ejercicios 1 y 2 de abajo son elaboración propia; los ejercicios 3 y 4 reutilizan contenido ya auditado de index-v3.html.'));
+    c7.append(el('p',{class:'note'},'El Listado 1 de Canvas 2026-2 no trae ítems de esta unidad (sus 25 ítems son de funciones vectoriales y el triedro TNB, ver los otros temas de la Unidad I). Los ejercicios 1, 2 y 4 de abajo son elaboración propia; solo el ejercicio 3 reutiliza contenido ya auditado de index-v3.html.'));
 
     const ej1=el('details',{},
       el('summary',{},'Ejercicio 1 — Determine el dominio de $p(x,y)=\\sqrt{x^2-y}$ y de $q(x,y)=\\ln(4-x^2-y^2)$.'),
@@ -189,7 +189,7 @@ registerModule({id:'varias-variables',title:'Funciones de varias variables',unid
       el('summary',{},'Ejercicio 4 — Para $F(x,y,z)=x^2-y^2+z^2-1=0$, ¿dónde falla la condición del teorema de la función implícita para despejar $z$?'),
       el('div',{},
         el('div',{class:'formula',html:'$$\\dfrac{\\partial F}{\\partial z}=2z=0\\iff z=0$$'}),
-        el('p',{class:'note'},'En todo punto con $z=0$ sobre la superficie (p.ej. $(1,0,0)$, ya que $1-0+0=1$ ✓) el teorema no garantiza que $z$ se pueda despejar como función de $x,y$ — coherente con que $F=0$ es un hiperboloide de una hoja (eje $y$, por el signo negativo en $y^2$), y en su "cintura" ($z=0$) la superficie no es la gráfica de una sola función $z=f(x,y)$.')));
+        el('p',{class:'note'},'En todo punto con $z=0$ sobre la superficie (p.ej. $(1,0,0)$, ya que $1-0+0=1$ ✓) el teorema no garantiza que $z$ se pueda despejar como función de $x,y$: ahí $F=0$ se reduce a $x^2-y^2=1$, y las dos ramas $z=\\pm\\sqrt{1-x^2+y^2}$ se tocan en $z=0$ — mismo fenómeno que en el ecuador de la esfera. (Este plano $z=0$ ',el('i',{},'no'),' es la "cintura" del hiperboloide: $F=0$ es un hiperboloide de una hoja de eje $y$ —por el signo negativo en $y^2$—, y su cintura, la sección circular de radio mínimo perpendicular al eje, está en $y=0$: ahí $x^2+z^2=1$.)')));
     c7.append(ej4);
 
     c7.append(el('p',{class:'fuente'},'Fuente: ejercicios 1 y 2, elaboración propia. Ejercicio 3: index-v3.html (contenido auditado), ejercicio "Clasificar la cuádrica x²+y²-z²=1" de la Unidad 1. Ejercicio 4: elaboración propia, aplicando el teorema de la función implícita de la card anterior a una cuádrica.'));
