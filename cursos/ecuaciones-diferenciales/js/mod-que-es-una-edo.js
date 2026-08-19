@@ -91,7 +91,7 @@ registerModule({id:'que-es-una-edo',title:'Qué es una EDO',unidad:'I',semanas:[
       [-2,-1,1,2].forEach(k=>P.curva(x=>k*Math.sqrt(x*x+4),{color:'--s1',grosor:2}));
       P.curva(()=>0,{color:'--s6',grosor:2});
     });
-    c6.append(el('p',{class:'note'},'El campo (rayitas) es el de $y\'=\\dfrac{xy}{x^2+4}$ — la misma EDO de la card anterior. Encima, cuatro curvas de la familia $y=C\\sqrt{x^2+4}$ (azul) y la solución trivial $y=0$ (naranjo, $C=0$): las cinco quedan tangentes a las rayitas en cada punto por el que pasan, que es justamente lo que significa ser solución de $y\'=f(x,y)$.'));
+    c6.append(el('p',{class:'note'},'El campo (rayitas) es el de $y\'=\\dfrac{xy}{x^2+4}$ — la misma EDO de la card "Solución general y particular". Encima, cuatro curvas de la familia $y=C\\sqrt{x^2+4}$ (azul) y la solución trivial $y=0$ (naranjo, $C=0$): las cinco quedan tangentes a las rayitas en cada punto por el que pasan, que es justamente lo que significa ser solución de $y\'=f(x,y)$.'));
     c6.append(el('p',{class:'fuente'},'Fuente: EDO y familia de soluciones del Ejemplo 1 del apunte "Variables separables", profesor Miguel Borbolla; el campo de direcciones como herramienta de visualización es elaboración propia (no aparece dibujado en el apunte, que solo entrega la fórmula).'));
     sec.append(c6);
   }});

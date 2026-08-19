@@ -34,7 +34,7 @@ registerModule({id:'existencia-unicidad',title:'Operadores lineales, existencia 
     /* -------- Card 3: ecuación diferencial lineal -------- */
     const c3=el('div',{class:'card'});
     c3.append(el('h3',{},'Ecuación diferencial lineal'));
-    c3.append(el('p',{},'Con el operador $L$ de la card anterior, una EDO lineal de orden $n$ es $L[y]=g(x)$, es decir:'));
+    c3.append(el('p',{},'Con el operador $L$ de la card "Operadores diferenciales lineales", una EDO lineal de orden $n$ es $L[y]=g(x)$, es decir:'));
     c3.append(el('div',{class:'formula',html:'$$a_n(x)\\,y^{(n)}+a_{n-1}(x)\\,y^{(n-1)}+\\cdots+a_1(x)\\,y\'+a_0(x)\\,y=g(x)$$'}));
     c3.append(el('p',{},'Lo que la distingue de una no lineal: $y$ y todas sus derivadas aparecen solo a la primera potencia, sin productos entre ellas ($y\\cdot y\'$, por ejemplo) ni dentro de funciones no lineales ($\\sin y$, $e^y$, $\\sqrt y$). Los coeficientes $a_i(x)$ pueden depender de $x$ libremente — eso no rompe la linealidad.'));
     Tabla(c3,{columnas:['Ecuación','¿Lineal?','Por qué'],filas:[
@@ -91,6 +91,6 @@ registerModule({id:'existencia-unicidad',title:'Operadores lineales, existencia 
       el('div',{},el('p',{},'$f(x,y)=x^2+y^2$ y $\\partial f/\\partial y=2y$ son continuas en todo el plano — en particular en un rectángulo alrededor de $(0,1)$. El teorema garantiza que existe una única solución en algún intervalo alrededor de $x=0$, aunque no diga cuál es esa solución ni qué tan grande es el intervalo (esta EDO en particular no tiene solución elemental en términos de funciones conocidas).')));
     c5.append(ej4);
 
-    c5.append(el('p',{class:'fuente'},'Fuente: ejercicios de clasificación y verificación, elaboración propia siguiendo las definiciones y el teorema de las cards anteriores de este tema.'));
+    c5.append(el('p',{class:'fuente'},'Fuente: ejercicios de clasificación y verificación, elaboración propia siguiendo las definiciones de las cards "Operadores diferenciales lineales" y "Ecuación diferencial lineal", y el teorema de la card "Teorema de existencia y unicidad".'));
     sec.append(c5);
   }});
