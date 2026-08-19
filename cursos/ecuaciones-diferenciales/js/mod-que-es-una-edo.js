@@ -24,7 +24,7 @@ registerModule({id:'que-es-una-edo',title:'Qué es una EDO',unidad:'I',semanas:[
       ['$\\dfrac{dS}{dt}=rS$','1','1','Sí'],
       ['$y\'+P(x)y=Q(x)$','1','1','Sí (forma general de EDO lineal de primer orden)']
     ]});
-    c2.append(el('p',{class:'note'},'Las filas 2 y 4 son ecuaciones reales del curso (Pauta de Control 1, semana 1 2026, y el apunte de variables separables — ver cards siguientes); las filas 1, 3 y 5 son elaboración propia, elegidas para mostrar los distintos casos de la tabla.'));
+    c2.append(el('p',{class:'note'},'Las filas 2 y 4 son ecuaciones reales del curso (Pauta de Control 1, semana 1 2026, y el apunte de variables separables); la fila 4 ($dS/dt=rS$) se resuelve en el tema "Variables separables", card "Actividad inicial: crecimiento del dinero". Las filas 1, 3 y 5 son elaboración propia, elegidas para mostrar los distintos casos de la tabla.'));
     c2.append(el('p',{class:'fuente'},'Fuente: definiciones estándar de orden/grado/linealidad (bibliografía del curso: Campbell, Zill); ecuaciones de las filas 2 y 4 tomadas de fuentes citadas en las cards de este tema.'));
     sec.append(c2);
 
@@ -72,7 +72,7 @@ registerModule({id:'que-es-una-edo',title:'Qué es una EDO',unidad:'I',semanas:[
     c5.append(el('h3',{},'Problema de valor inicial'));
     c5.append(el('p',{},'Un ',el('b',{},'problema de valor inicial'),' (PVI) es una EDO más una condición $y(x_0)=y_0$ que fija un punto por el que debe pasar la solución:'));
     c5.append(el('div',{class:'formula',html:'$$y\'=f(x,y),\\qquad y(x_0)=y_0$$'}));
-    c5.append(el('p',{},'Ejemplo real, Control 1 semana 1 2026: $y\'=\\dfrac{x(1+y)}{1+x^2}$, $y(0)=e-1$. La pauta entrega $y=e\\sqrt{1+x^2}-1$ (se deriva con la técnica del próximo tema, variables separables); acá se verifica que en efecto cumple el PVI. Derivando la candidata:'));
+    c5.append(el('p',{},'Ejemplo real, Control 1 semana 1 2026: $y\'=\\dfrac{x(1+y)}{1+x^2}$, $y(0)=e-1$. La pauta entrega $y=e\\sqrt{1+x^2}-1$ (se deriva con la técnica de variables separables, más adelante en esta biblioteca); acá se verifica que en efecto cumple el PVI. Derivando la candidata:'));
     c5.append(el('div',{class:'formula',html:'$$y\'=e\\cdot\\dfrac{x}{\\sqrt{1+x^2}}$$'}));
     c5.append(el('p',{},'Y evaluando el lado derecho de la EDO con la misma candidata (usando $1+y=e\\sqrt{1+x^2}$):'));
     c5.append(el('div',{class:'formula',html:'$$\\dfrac{x(1+y)}{1+x^2}=\\dfrac{ex}{\\sqrt{1+x^2}}$$'}));

@@ -74,7 +74,7 @@ registerModule({id:'separables',title:'Variables separables',unidad:'I',semanas:
       {tex:'y=5\\sqrt{1+x^2}-1',nota:'Solución particular que cumple y(0)=4.'}
     ],{modId:'separables',titulo:'Ejemplo 2 del apunte: y′=x(1+y)/(1+x²), y(0)=4'});
     c4.append(el('p',{class:'note'},el('b',{},'Verificación por sustitución: '),'con $y=5\\sqrt{1+x^2}-1$, $y\'=\\dfrac{5x}{\\sqrt{1+x^2}}$. Lado derecho: $\\dfrac{x(1+y)}{1+x^2}=\\dfrac{x\\cdot5\\sqrt{1+x^2}}{1+x^2}=\\dfrac{5x}{\\sqrt{1+x^2}}$ — coincide con y′. Y $y(0)=5\\sqrt1-1=4$, la condición pedida.'));
-    c4.append(el('p',{class:'fuente'},'Fuente: apunte "Variables separables", profesor Miguel Borbolla, sección 3.2 (Ejemplos desarrollados 1 y 2), Ecuaciones Diferenciales, Canvas 2026-2. La misma EDO del Ejemplo 2 es, además, la pregunta 2 de la Pauta Control 1 semana 1 2026 (con y(0)=e−1 en vez de y(0)=4) — ver el tema anterior.'));
+    c4.append(el('p',{class:'fuente'},'Fuente: apunte "Variables separables", profesor Miguel Borbolla, sección 3.2 (Ejemplos desarrollados 1 y 2), Ecuaciones Diferenciales, Canvas 2026-2. La misma EDO del Ejemplo 2 es, además, la pregunta 2 de la Pauta Control 1 semana 1 2026 (con y(0)=e−1 en vez de y(0)=4) — ver el tema "Qué es una EDO".'));
     sec.append(c4);
 
     /* -------- Card 5: ley de enfriamiento de Newton -------- */
@@ -130,7 +130,7 @@ registerModule({id:'separables',title:'Variables separables',unidad:'I',semanas:
     mk('Apunte, ejercicio 1 — Dada y′=y(1−y): (a) solución general explícita; (b) solución particular con y(0)=1/2.',
       el('div',{},
         el('div',{class:'formula',html:'$$\\text{(a) }y=\\dfrac{c}{c+e^{-x}}\\qquad\\text{(b) }y=\\dfrac{1}{1+e^{-x}}$$'}),
-        el('p',{class:'note'},'La misma familia de soluciones $y=\\dfrac{1}{1+Ke^{-x}}$ (equivalente a la del apunte con $K=1/c$) reaparece verificada en el tema de existencia y unicidad de operadores — y en la Pauta Control 1 semana 2 2026, que pide demostrar exactamente que esta función resuelve y′=y(1−y).')));
+        el('p',{class:'note'},'La misma familia de soluciones $y=\\dfrac{1}{1+Ke^{-x}}$ (equivalente a la del apunte con $K=1/c$) es, además, la pregunta 2 de una Pauta Control 1 de Ecuaciones Diferenciales (archivo PAUTA_CONTROL 1_EDO_SEM2_2026 — comparte el encabezado "Primer Semestre 2026" con la pauta de la semana 1, pero no se pudo confirmar en qué semana se publicó este archivo en Canvas), que pide demostrar exactamente que esta función resuelve y′=y(1−y).')));
 
     mk('Apunte, ejercicio 2a — Determinar la solución general de dy/dx = −(4x+xy²)/(y+x²y).',
       el('div',{},

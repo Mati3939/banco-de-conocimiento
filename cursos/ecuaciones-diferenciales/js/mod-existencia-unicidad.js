@@ -41,7 +41,7 @@ registerModule({id:'existencia-unicidad',title:'Operadores lineales, existencia 
       ['$y\'\'+2xy\'-y=e^x$','Sí','Coeficientes dependen de x; y, y′, y′′ a la primera potencia'],
       ['$yy\'\'+y\'=0$','No','Producto y·y″'],
       ['$y\'+\\sin(y)=x$','No','y aparece dentro de sin(·)'],
-      ['$y\'+P(x)y=Q(x)$','Sí','Es la forma general de EDO lineal de primer orden (próximo tema)']
+      ['$y\'+P(x)y=Q(x)$','Sí','Es la forma general de EDO lineal de primer orden (tema "Lineal de primer orden y factor integrante", más adelante)']
     ]});
     c3.append(el('p',{class:'fuente'},'Fuente: Calendarización oficial 2026-2 de Ecuaciones Diferenciales, Unidad I, semana 1 ("Ecuaciones diferenciales lineales"); ejemplos de la tabla, elaboración propia.'));
     sec.append(c3);

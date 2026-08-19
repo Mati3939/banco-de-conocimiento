@@ -84,7 +84,7 @@ registerModule({id:'lineal-factor-integrante',title:'Lineal de primer orden y fa
       el('div',{},
         el('div',{class:'formula',html:'$$\\mu(x)=e^{3x}\\ \\Longrightarrow\\ \\dfrac{d}{dx}[e^{3x}y]=e^{3x}e^{-3x}=1\\ \\Longrightarrow\\ e^{3x}y=x+C$$'}),
         el('div',{class:'formula',html:'$$y=(x+C)e^{-3x},\\quad y(0)=2\\Rightarrow C=2\\ \\Longrightarrow\\ y=(x+2)e^{-3x}$$'}),
-        el('p',{class:'note'},'Verificación: $y\'=e^{-3x}(1-3x-6)=e^{-3x}(-3x-5)$; y $-3y=-3(x+2)e^{-3x}=e^{-3x}(-3x-6)$, así que $y\'+3y=e^{-3x}(-3x-5+3x+6)=e^{-3x}$ ✓.')));
+        el('p',{class:'note'},'Verificación: $y\'=e^{-3x}(1-3x-6)=e^{-3x}(-3x-5)$; y $3y=3(x+2)e^{-3x}=e^{-3x}(3x+6)$, así que $y\'+3y=e^{-3x}(-3x-5+3x+6)=e^{-3x}$ ✓.')));
 
     mk('xy′ − y = x², x>0.',
       el('div',{},
