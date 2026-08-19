@@ -42,7 +42,7 @@ window.CURSO={
   semanas:[
     {n:1,desde:'03-08',hasta:'09-08',hito:'Inicio de clases',tema:['que-es-una-edo','existencia-unicidad']},
     {n:2,desde:'10-08',hasta:'16-08',hito:'Elimina/agrega · 15/08 feriado',tema:['separables','lineal-factor-integrante']},
-    {n:3,desde:'17-08',hasta:'23-08',hito:'Control 1',tema:'exactas'},
+    {n:3,desde:'17-08',hasta:'23-08',hito:'Control 1',tema:['exactas','no-exactas']},
     {n:4,desde:'24-08',hasta:'30-08',hito:'',tema:'homogeneas-bernoulli'},
     {n:5,desde:'31-08',hasta:'06-09',hito:'Control 2 · Certamen 1 el 04/09',tema:'aplicaciones-primer-orden'},
     {n:6,desde:'07-09',hasta:'13-09',hito:'Ronda de certámenes',tema:null},
