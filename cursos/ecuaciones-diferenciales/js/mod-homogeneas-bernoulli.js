@@ -33,7 +33,7 @@ registerModule({id:'homogeneas-bernoulli',title:'Homogéneas, coeficientes const
     /* -------- Card 3: ejemplo resuelto de homogénea -------- */
     const c3=el('div',{class:'card'});
     c3.append(el('h3',{},'Ejemplo resuelto de homogénea'));
-    c3.append(el('p',{},'Un problema real de Control 1: la Pauta Control 1 EDO (PAUTA 02-2024), pregunta 2, pide resolver $(x+y)y\'+x-y=0$. La pauta original lo resuelve con una sustitución algebraica ad hoc; acá se resuelve con el método general de este tema, porque la ecuación es homogénea: escrita como $(x-y)\\,dx+(x+y)\\,dy=0$, tanto $M=x-y$ como $N=x+y$ son homogéneas de grado 1.'));
+    c3.append(el('p',{},'Ejemplo: resolver $(x+y)y\'+x-y=0$ con el método de esta card, porque la ecuación es homogénea: escrita como $(x-y)\\,dx+(x+y)\\,dy=0$, tanto $M=x-y$ como $N=x+y$ son homogéneas de grado 1.'));
     Pasos(c3,[
       {tex:'\\dfrac{dy}{dx}=\\dfrac{y-x}{x+y}',nota:'Despejando y′ de (x+y)y′+x−y=0.'},
       {tex:'y=vx\\ \\Longrightarrow\\ v+x\\dfrac{dv}{dx}=\\dfrac{vx-x}{x+vx}=\\dfrac{v-1}{1+v}',nota:'Sustituyendo y=vx (dy/dx=v+x dv/dx, card "EDO homogénea y la sustitución") y simplificando x.'},
@@ -42,7 +42,7 @@ registerModule({id:'homogeneas-bernoulli',title:'Homogéneas, coeficientes const
       {tex:'\\arctan(v)+\\tfrac12\\ln(1+v^2)=-\\ln|x|+C',nota:'Integrando: 1/(1+v²) da arctan(v), y v/(1+v²) da (1/2)ln(1+v²).'},
       {tex:'\\arctan\\Big(\\dfrac yx\\Big)+\\tfrac12\\ln\\Big(\\dfrac{x^2+y^2}{x^2}\\Big)+\\ln|x|=C',nota:'Deshaciendo la sustitución v=y/x.'},
       {tex:'\\arctan\\Big(\\dfrac yx\\Big)+\\tfrac12\\ln(x^2+y^2)=C',nota:'El −ln|x| de adentro del logaritmo se cancela con el +ln|x| de afuera: queda la solución general.'}
-    ],{modId:'homogeneas-bernoulli',titulo:'(x+y)y′+x−y=0, Control 1 real'});
+    ],{modId:'homogeneas-bernoulli',titulo:'(x+y)y′+x−y=0, ejemplo homogéneo'});
     c3.append(el('p',{class:'note'},el('b',{},'Verificación (derivando implícitamente): '),'de $\\arctan(y/x)+\\frac12\\ln(x^2+y^2)=C$, derivando respecto de x: $\\dfrac{y\'x-y}{x^2+y^2}+\\dfrac{x+yy\'}{x^2+y^2}=0$, es decir $y\'(x+y)+(x-y)=0$ — exactamente $(x+y)y\'+x-y=0$, la ecuación original. Se verificó además con una segunda sustitución independiente (x=uy en vez de y=vx), que llega a la misma familia de soluciones por otro camino.'));
     c3.append(el('p',{class:'note'},el('b',{},'Curiosidad geométrica: '),'en coordenadas polares ($x=r\\cos\\theta$, $y=r\\sin\\theta$), la solución es $\\theta+\\ln r=C$, es decir $r=Ae^{-\\theta}$ — una espiral logarítmica. El campo de direcciones y una de esas espirales (con A=1):'));
     const planoHom=Plano(c3,{xMin:-4,xMax:4,yMin:-4,yMax:4,alto:300});
@@ -52,7 +52,7 @@ registerModule({id:'homogeneas-bernoulli',title:'Homogéneas, coeficientes const
       P.parametrica(t=>{const r=Math.exp(-t); return [r*Math.cos(t),r*Math.sin(t)];},-1.3,1.3,{color:'--s1',grosor:2.5});
     });
     c3.append(el('p',{class:'note'},'Los trazos grises son el campo de direcciones (la pendiente y′ en cada punto, según la ecuación original); la curva azul es la espiral $r=e^{-\\theta}$, una de las soluciones — se ve cómo en cada punto es tangente a los trazos del campo.'));
-    c3.append(el('p',{class:'fuente'},'Fuente: Pauta Control 1 EDO (PAUTA 02-2024), pregunta 2, Canvas 2026-2 — la pauta original resuelve esta misma ecuación con una sustitución algebraica distinta (agrupando u=y−1, w=1+x) y llega a una expresión implícita de aspecto diferente; acá se resolvió con el método estándar de sustitución homogénea y=vx de la card "EDO homogénea y la sustitución", verificado de forma independiente por derivación implícita y por una segunda sustitución.'));
+    c3.append(el('p',{class:'fuente'},'Fuente: ejemplo de elaboración propia para ilustrar el método de sustitución y=vx de la card "EDO homogénea y la sustitución" (no proviene de un PDF de Canvas ni de una pauta oficial), verificado de forma independiente por derivación implícita y por una segunda sustitución.'));
     sec.append(c3);
 
     /* -------- Card 4: coeficientes constantes -------- */
