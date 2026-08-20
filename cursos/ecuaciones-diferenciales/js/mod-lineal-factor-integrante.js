@@ -9,7 +9,7 @@ registerModule({id:'lineal-factor-integrante',title:'Lineal de primer orden y fa
     c1.append(el('div',{class:'formula',html:'$$y\'+P(x)\\,y=Q(x)$$'}));
     c1.append(el('p',{},'Reconocerla: si la ecuación viene como $a(x)y\'+b(x)y=c(x)$, hay que ',el('b',{},'dividir por $a(x)$'),' antes de leer $P(x)=b(x)/a(x)$ y $Q(x)=c(x)/a(x)$ — es el error más común del método. Ejemplo (se resuelve completo en la card "Ejemplo resuelto de una pauta de Control 1 real"): $(1+t)\\dfrac{dy}{dt}+2y=6t^2$ se lleva a forma estándar dividiendo por $(1+t)$:'));
     c1.append(el('div',{class:'formula',html:'$$\\dfrac{dy}{dt}+\\dfrac{2}{1+t}\\,y=\\dfrac{6t^2}{1+t},\\qquad t\\ne-1$$'}));
-    c1.append(el('p',{class:'fuente'},'Fuente: Calendarización oficial 2026-2 de Ecuaciones Diferenciales, Unidad I, semana 2 ("Lineales con factor integrante"); ecuación de ejemplo tomada de la Pauta Control 1 EDO (PAUTA 02-2024), pregunta 1 — desarrollada completa en la card "Ejemplo resuelto" de este tema.'));
+    c1.append(el('p',{class:'fuente'},'Fuente: Calendarización oficial 2026-2 de Ecuaciones Diferenciales, Unidad I, semana 2 ("Lineales con factor integrante"); ecuación de ejemplo tomada de la Pauta Control 1 EDO (PAUTA 02-2024), pregunta 1 — desarrollada completa en la card "Ejemplo resuelto de una pauta de Control 1 real" de este tema.'));
     sec.append(c1);
 
     /* -------- Card 2: de dónde sale el factor integrante -------- */

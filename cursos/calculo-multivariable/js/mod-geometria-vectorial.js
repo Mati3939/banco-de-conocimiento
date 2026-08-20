@@ -21,7 +21,7 @@ registerModule({id:'geometria-vectorial',title:'Geometría vectorial en R² y R�
       E.linea3([-1,2,1],[1,3,3],{color:'--grid',guiones:true});
     });
     c1.append(el('p',{class:'note'},'Los guiones marcan el paralelogramo: u+v es la diagonal, exactamente la regla del paralelogramo de siempre, ahora en R³.'));
-    c1.append(el('p',{class:'fuente'},'Fuente: apunte Semana 1 (vectores en R²/R³: suma, ponderación, norma, vector unitario), Cálculo Multivariable — Canvas 2026-2.'));
+    c1.append(el('p',{class:'fuente'},'Fuente: "Geometría vectorial en IR2 y IR3", contenido de la Semana 1 según la calendarización oficial (suma, ponderación, norma y vector unitario son desarrollo estándar de Stewart/Larson), Cálculo Multivariable — Canvas 2026-2.'));
     sec.append(c1);
 
     /* -------- Card 2: producto punto -------- */
@@ -39,7 +39,7 @@ registerModule({id:'geometria-vectorial',title:'Geometría vectorial en R² y R�
       {tex:'\\mathbf a\\cdot\\mathbf b_{\\perp}=(2)(-1)+(1)(0)+(2)(1)=-2+0+2=0',nota:'Verificación: el producto punto da 0, confirmando que (-1,0,1) es ortogonal a a.'}
     ],{modId:'geometria-vectorial',titulo:'Ítem 2 — descomposición de b respecto de a'});
     c2.append(el('p',{},'Entonces $\\mathbf b=(2,1,2)+(-1,0,1)$, con el primer sumando paralelo a $\\mathbf a$ y el segundo ortogonal a $\\mathbf a$.'));
-    c2.append(el('p',{class:'fuente'},'Fuente: apunte Semana 1 (producto punto, ángulo, proyección); ítem 2, Listado 1, Canvas 2026-2.'));
+    c2.append(el('p',{class:'fuente'},'Fuente: "Geometría vectorial en IR2 y IR3", contenido de la Semana 1 según la calendarización oficial (producto punto, ángulo y proyección son desarrollo estándar de Stewart/Larson); ítem 2, Listado 1, Canvas 2026-2.'));
     sec.append(c2);
 
     /* -------- Card 3: producto cruz -------- */
@@ -57,7 +57,7 @@ registerModule({id:'geometria-vectorial',title:'Geometría vectorial en R² y R�
     c3.append(el('p',{},'Ítem 6 pide demostrar tres propiedades generales. La identidad de Lagrange (6c) relaciona los dos productos:'));
     c3.append(el('div',{class:'formula',html:'$$\\lVert\\mathbf a\\times\\mathbf b\\rVert^2+(\\mathbf a\\cdot\\mathbf b)^2=\\lVert\\mathbf a\\rVert^2\\lVert\\mathbf b\\rVert^2$$'}));
     c3.append(el('p',{class:'note'},'Verificación numérica con $\\mathbf a=(1,3,4)$, $\\mathbf b=(2,7,-5)$ del ítem 4: $\\mathbf a\\times\\mathbf b=(-43,13,1)$, así que $\\lVert\\mathbf a\\times\\mathbf b\\rVert^2=1849+169+1=2019$. Además $\\mathbf a\\cdot\\mathbf b=2+21-20=3$, así que $(\\mathbf a\\cdot\\mathbf b)^2=9$. Suma: $2019+9=2028$. Por otro lado $\\lVert\\mathbf a\\rVert^2\\lVert\\mathbf b\\rVert^2=26\\times78=2028$ — coinciden.'));
-    c3.append(el('p',{class:'fuente'},'Fuente: apunte Semana 1 (producto cruz, área, identidad de Lagrange); ítems 4, 5 y 6c, Listado 1, Canvas 2026-2. La verificación numérica de la identidad de Lagrange se agregó acá reutilizando los vectores del ítem 4.'));
+    c3.append(el('p',{class:'fuente'},'Fuente: "Geometría vectorial en IR2 y IR3", contenido de la Semana 1 según la calendarización oficial (producto cruz, área e identidad de Lagrange son desarrollo estándar de Stewart/Larson); ítems 4, 5 y 6c, Listado 1, Canvas 2026-2. La verificación numérica de la identidad de Lagrange se agregó acá reutilizando los vectores del ítem 4.'));
     sec.append(c3);
 
     /* -------- Card 4: triple producto y coplanaridad -------- */
@@ -72,7 +72,7 @@ registerModule({id:'geometria-vectorial',title:'Geometría vectorial en R² y R�
       {tex:'V=|0|=0',nota:'Volumen nulo: los tres vectores SÍ son coplanares.'}
     ],{modId:'geometria-vectorial',titulo:'Ítem 1 — ¿son coplanares a, b y c?'});
     c4.append(el('p',{class:'note'},'Que el volumen dé exactamente 0 no es casualidad del redondeo — es el resultado exacto, y es la respuesta que pide el ítem: los tres vectores son coplanares.'));
-    c4.append(el('p',{class:'fuente'},'Fuente: apunte Semana 1 (triple producto escalar y volumen); ítem 1, Listado 1, Canvas 2026-2.'));
+    c4.append(el('p',{class:'fuente'},'Fuente: desarrollo estándar de Stewart/Larson (triple producto escalar, volumen y coplanaridad — no figuran con ese nombre en la calendarización 2026-2, que solo lista "Geometría vectorial en IR2 y IR3" para la Semana 1); ítem 1, Listado 1, Canvas 2026-2.'));
     sec.append(c4);
 
     /* -------- Card 5: rectas en el espacio -------- */
@@ -91,7 +91,7 @@ registerModule({id:'geometria-vectorial',title:'Geometría vectorial en R² y R�
       E.vector3([1,-2,4],[1.2,0.4,-0.8],{color:'--s1',etiqueta:'d'});
     });
     c5.append(el('p',{class:'note'},'La recta (en verde) pasa por $P_0$ con la dirección de $\\mathbf d$ (flecha azul, escalada para que se vea); el tramo dibujado corresponde a $t\\in[-1,1]$.'));
-    c5.append(el('p',{class:'fuente'},'Fuente: apunte Semana 1 (ecuaciones de la recta en R³); ítem 7, Listado 1, Canvas 2026-2.'));
+    c5.append(el('p',{class:'fuente'},'Fuente: desarrollo estándar de Stewart/Larson (ecuaciones paramétrica y simétrica de la recta en R³ — no figuran con ese nombre en la calendarización 2026-2, que solo lista "Geometría vectorial en IR2 y IR3" para la Semana 1); ítem 7, Listado 1, Canvas 2026-2.'));
     sec.append(c5);
 
     /* -------- Card 6: planos -------- */
@@ -115,7 +115,7 @@ registerModule({id:'geometria-vectorial',title:'Geometría vectorial en R² y R�
     c6.append(el('div',{class:'formula',html:'$$\\cos\\theta=\\dfrac{(1,1,1)\\cdot(1,-2,3)}{\\lVert(1,1,1)\\rVert\\lVert(1,-2,3)\\rVert}=\\dfrac{2}{\\sqrt3\\sqrt{14}}=\\dfrac{2}{\\sqrt{42}}\\ \\Rightarrow\\ \\theta\\approx72{,}0°$$'}));
     c6.append(el('p',{},el('b',{},'Ítem 12:'),' la recta de intersección de esos dos planos tiene como dirección $\\mathbf n_1\\times\\mathbf n_2$, y un punto se obtiene fijando una variable (aquí $z=0$):'));
     c6.append(el('div',{class:'formula',html:'$$\\mathbf n_1\\times\\mathbf n_2=(5,-2,-3)\\qquad z=0\\Rightarrow x+y=1,\\ x-2y=1\\Rightarrow(1,0,0)\\qquad X(t)=(1,0,0)+t(5,-2,-3)$$'}));
-    c6.append(el('p',{class:'fuente'},'Fuente: apunte Semana 1 (ecuación del plano, posición relativa recta-plano, ángulo entre planos, recta de intersección); ítems 8–12, Listado 1, Canvas 2026-2.'));
+    c6.append(el('p',{class:'fuente'},'Fuente: desarrollo estándar de Stewart/Larson (ecuación del plano, posición relativa recta-plano, ángulo entre planos y recta de intersección — no figuran con ese nombre en la calendarización 2026-2, que solo lista "Geometría vectorial en IR2 y IR3" para la Semana 1); ítems 8–12, Listado 1, Canvas 2026-2.'));
     sec.append(c6);
 
     /* -------- Card 7: ejercicios -------- */

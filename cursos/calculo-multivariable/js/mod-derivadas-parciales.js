@@ -21,7 +21,7 @@ registerModule({id:'derivadas-parciales',title:'Derivadas parciales',unidad:'II'
     /* -------- Card 2: interpretación geométrica -------- */
     const c2=el('div',{class:'card'});
     c2.append(el('h3',{},'Interpretación geométrica'));
-    c2.append(el('p',{},'Cortando la gráfica de $z=f(x,y)$ con el plano vertical $y=y_0$ queda una curva 2D (una sección de la superficie); $f_x(x_0,y_0)$ es la pendiente de esa curva en $x=x_0$. Mismo paraboloide $f(x,y)=x^2+y^2$ de la semana pasada, cortado en $y=y_0$:'));
+    c2.append(el('p',{},'Cortando la gráfica de $z=f(x,y)$ con el plano vertical $y=y_0$ queda una curva 2D (una sección de la superficie); $f_x(x_0,y_0)$ es la pendiente de esa curva en $x=x_0$. Mismo paraboloide $f(x,y)=x^2+y^2$ de la card "Interpretación geométrica en $\\mathbb R^3$" (tema "Funciones de varias variables"), cortado en $y=y_0$:'));
     let x0Der=1, y0Der=0.6;
     const espDer=Espacio(c2,{alto:440,escala:28});
     espDer.dibujar(E=>{
@@ -137,7 +137,7 @@ registerModule({id:'derivadas-parciales',title:'Derivadas parciales',unidad:'II'
     /* -------- Card 6: derivación implícita -------- */
     const c6=el('div',{class:'card'});
     c6.append(el('h3',{},'Derivación implícita'));
-    c6.append(el('p',{},'Cuando $F(x,y)=0$ define $y$ como función de $x$ (aunque no se pueda despejar a mano), se puede hallar $dy/dx$ aplicando la regla de la cadena de la card anterior directamente sobre $F$, sin despejar $y$ nunca:'));
+    c6.append(el('p',{},'Cuando $F(x,y)=0$ define $y$ como función de $x$ (aunque no se pueda despejar a mano), se puede hallar $dy/dx$ aplicando la regla de la cadena de la card "Regla de la cadena" directamente sobre $F$, sin despejar $y$ nunca:'));
     Pasos(c6,[
       {tex:'F(x,y(x))=0\\quad\\text{para todo }x\\text{ en el dominio}',nota:'Punto de partida: la ecuación vale idénticamente, con y visto como función de x.'},
       {tex:'\\dfrac{d}{dx}\\big[F(x,y(x))\\big]=0',nota:'Se deriva ambos lados respecto de x (el lado derecho, 0, tiene derivada 0).'},
@@ -148,7 +148,7 @@ registerModule({id:'derivadas-parciales',title:'Derivadas parciales',unidad:'II'
     c6.append(el('div',{class:'formula',html:'$$F=x^2+y^2-25\\ \\Rightarrow\\ F_x=2x,\\ F_y=2y\\ \\Rightarrow\\ \\dfrac{dy}{dx}=-\\dfrac{2x}{2y}=-\\dfrac xy$$'}));
     c6.append(el('div',{class:'formula',html:'$$\\text{en }(3,4):\\quad \\dfrac{dy}{dx}=-\\dfrac34$$'}));
     c6.append(el('p',{class:'note'},el('b',{},'Verificación (dos caminos): '),'despejando explícitamente $y=\\sqrt{25-x^2}$ (rama superior, válida en $(3,4)$ porque $y=4\\gt0$) y derivando directo: $dy/dx=-x/\\sqrt{25-x^2}=-x/y$, que en $(3,4)$ da $-3/4$ — mismo resultado que con la fórmula implícita, sin necesidad de despejar $y$ para llegar ahí.'));
-    c6.append(el('p',{class:'fuente'},'Fuente: elaboración propia (derivación implícita como aplicación directa de la regla de la cadena de la card anterior a $F(x,y)=0$, Stewart) — no hay Guía ni Control de Canvas 2026-2 que cubra esta unidad; el ejemplo de la circunferencia es estándar.'));
+    c6.append(el('p',{class:'fuente'},'Fuente: elaboración propia (derivación implícita como aplicación directa de la regla de la cadena de la card "Regla de la cadena" a $F(x,y)=0$, Stewart) — no hay Guía ni Control de Canvas 2026-2 que cubra esta unidad; el ejemplo de la circunferencia es estándar.'));
     sec.append(c6);
 
     /* -------- Card 7: ejercicios -------- */
@@ -192,6 +192,6 @@ registerModule({id:'derivadas-parciales',title:'Derivadas parciales',unidad:'II'
         el('p',{class:'note'},'Verificación con la forma factorizada $dy/dx=-\\dfrac{x^2-2y}{y^2-2x}$: en $(3,3)$ da $-\\dfrac{9-6}{9-6}=-\\dfrac33=-1$ — mismo resultado por el otro camino.')));
     c7.append(ej5);
 
-    c7.append(el('p',{class:'fuente'},'Fuente: ejercicios 1 y 2, index-v3.html (contenido auditado), Unidad 4. Ejercicios 3 y 4: mismas cuentas de las cards anteriores de este módulo. Ejercicio 5: elaboración propia (folium de Descartes, ejemplo estándar de derivación implícita).'));
+    c7.append(el('p',{class:'fuente'},'Fuente: ejercicios 1 y 2, index-v3.html (contenido auditado), Unidad 4. Ejercicios 3 y 4: mismas cuentas de las cards "Regla de la cadena" y "Diferencial y diferencial total" de este módulo. Ejercicio 5: elaboración propia (folium de Descartes, ejemplo estándar de derivación implícita).'));
     sec.append(c7);
   }});

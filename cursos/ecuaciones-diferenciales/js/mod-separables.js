@@ -25,14 +25,14 @@ registerModule({id:'separables',title:'Variables separables',unidad:'I',semanas:
     c2.append(el('p',{},'El apunte trae dos listas para afinar el ojo — cuáles ecuaciones ',el('b',{},'son'),' de este tipo y cuáles no, aunque a primera vista se parezcan:'));
     c2.append(el('p',{class:'note'},el('b',{},'Son de variables separables:')));
     c2.append(el('ol',{},
-      el('li',{html:'$\\dfrac{dy}{dx}=\\dfrac{x}{y}$ — ya está separada: $y\\,dy=x\\,dx$.'}),
+      el('li',{html:'$\\dfrac{dy}{dx}=-\\dfrac{x}{y}$ — ya está separada: $y\\,dy=-x\\,dx$.'}),
       el('li',{html:'$3x(y^2+1)\\,dx+y(x^2+2)\\,dy=0$ — se reordena a $\\dfrac{y}{y^2+1}\\,dy=-\\dfrac{3x}{x^2+2}\\,dx$.'}),
       el('li',{html:'$y\'=\\dfrac{x+xy^2}{4y}$ — el numerador factoriza como $x(1+y^2)$, y el denominador $4y$ es puramente de y: $f(x)=x$, $g(y)=\\dfrac{1+y^2}{4y}$.'})
     ));
     c2.append(el('p',{class:'note'},el('b',{},'No son de variables separables:')));
     c2.append(el('ol',{},
       el('li',{html:'$\\dfrac{dy}{dx}=x-y$ — es una diferencia, no un producto $f(x)g(y)$.'}),
-      el('li',{html:'$\\dfrac{dy}{dx}=\\dfrac{x+2y}{x-5y}$ — numerador y denominador mezclan x e y linealmente; no se puede aislar una función pura de x de una pura de y.'}),
+      el('li',{html:'$\\dfrac{dy}{dx}=-\\dfrac{x+2y}{x-5y}$ — numerador y denominador mezclan x e y linealmente; no se puede aislar una función pura de x de una pura de y.'}),
       el('li',{html:'$y\'=\\dfrac{x+xy^2}{x+4y}$ — el numerador sí factoriza como $x(1+y^2)$, pero el denominador $x+4y$ NO es puramente de y (a diferencia del ítem 3 de la lista de arriba, donde el denominador era $4y$): no se puede separar.'})
     ));
     c2.append(el('p',{class:'fuente'},'Fuente: apunte "Variables separables", profesor Miguel Borbolla, sección 3 (definición y las dos listas de ejemplos), Ecuaciones Diferenciales, Canvas 2026-2.'));

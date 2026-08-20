@@ -50,7 +50,7 @@ registerModule({id:'que-es-una-edo',title:'Qué es una EDO',unidad:'I',semanas:[
     const c4=el('div',{class:'card'});
     c4.append(el('h3',{},'Solución general y particular'));
     c4.append(el('p',{},'La solución de una EDO de primer orden trae, en general, una constante arbitraria $C$: no es una única función sino una ',el('b',{},'familia'),' de curvas, una por cada valor de $C$ — la ',el('b',{},'solución general'),'. Una condición $y(x_0)=y_0$ elige, de esa familia, la curva que pasa exactamente por ese punto: la ',el('b',{},'solución particular'),'.'));
-    c4.append(el('p',{},'Adelanto del tema de variables separables: la EDO $(x^2+4)y\'=xy$ (Ejemplo 1 del apunte, que se resuelve paso a paso más adelante) tiene solución general $y=C\\sqrt{x^2+4}$. Moveé $C$ y mirá cómo cada valor traza una curva distinta de la misma familia:'));
+    c4.append(el('p',{},'Adelanto del tema "Variables separables": la EDO $(x^2+4)y\'=xy$ (Ejemplo 1 del apunte, que se resuelve paso a paso en ese tema) tiene solución general $y=C\\sqrt{x^2+4}$. Moveé $C$ y mirá cómo cada valor traza una curva distinta de la misma familia:'));
     const planoFam=Plano(c4,{xMin:-6,xMax:6,yMin:-14,yMax:14,alto:300});
     let Cfam=1;
     planoFam.dibujar(P=>{
@@ -72,7 +72,7 @@ registerModule({id:'que-es-una-edo',title:'Qué es una EDO',unidad:'I',semanas:[
     c5.append(el('h3',{},'Problema de valor inicial'));
     c5.append(el('p',{},'Un ',el('b',{},'problema de valor inicial'),' (PVI) es una EDO más una condición $y(x_0)=y_0$ que fija un punto por el que debe pasar la solución:'));
     c5.append(el('div',{class:'formula',html:'$$y\'=f(x,y),\\qquad y(x_0)=y_0$$'}));
-    c5.append(el('p',{},'Ejemplo real, Control 1 semana 1 2026: $y\'=\\dfrac{x(1+y)}{1+x^2}$, $y(0)=e-1$. La pauta entrega $y=e\\sqrt{1+x^2}-1$ (se deriva con la técnica de variables separables, más adelante en esta biblioteca); acá se verifica que en efecto cumple el PVI. Derivando la candidata:'));
+    c5.append(el('p',{},'Ejemplo real, Control 1 semana 1 2026: $y\'=\\dfrac{x(1+y)}{1+x^2}$, $y(0)=e-1$. La pauta entrega $y=e\\sqrt{1+x^2}-1$ (se deriva con la técnica del tema "Variables separables"); acá se verifica que en efecto cumple el PVI. Derivando la candidata:'));
     c5.append(el('div',{class:'formula',html:'$$y\'=e\\cdot\\dfrac{x}{\\sqrt{1+x^2}}$$'}));
     c5.append(el('p',{},'Y evaluando el lado derecho de la EDO con la misma candidata (usando $1+y=e\\sqrt{1+x^2}$):'));
     c5.append(el('div',{class:'formula',html:'$$\\dfrac{x(1+y)}{1+x^2}=\\dfrac{ex}{\\sqrt{1+x^2}}$$'}));

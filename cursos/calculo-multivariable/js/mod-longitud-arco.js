@@ -89,7 +89,7 @@ registerModule({id:'longitud-arco',title:'Longitud de arco, reparametrización, 
       el('input',{type:'range',min:'-1',max:'1',step:'0.02',value:String(xOsc),oninput:e=>{ xOsc=parseFloat(e.target.value); planoOsc.redibujar(); actualizarOsc(); }})
     ));
     c4.append(el('p',{class:'note'},'Verificación en $x=0$: $y\'(0)=0$, $y\'\'=1$, así que $\\kappa(0)=1/(1+0)^{3/2}=1$ y el radio es exactamente 1 — el círculo osculador en el vértice de $y=x^2/2$ tiene radio 1, centrado en $(0,1)$, justo lo que muestra el control al llevar el slider a $x=0$.'));
-    c4.append(el('p',{class:'fuente'},'Fuente: apunte Semana 2 (curvatura y círculo osculador), Cálculo Multivariable — Canvas 2026-2. La parábola y=x²/2 es un ejemplo propio para ilustrar la fórmula (no viene de un ítem del Listado 1).'));
+    c4.append(el('p',{class:'fuente'},'Fuente: "Torsión y Curvatura", contenido de la Semana 2 según la calendarización oficial (el círculo osculador no figura con ese nombre en la calendarización; es desarrollo estándar de Stewart/Larson), Cálculo Multivariable — Canvas 2026-2. La parábola y=x²/2 es un ejemplo propio para ilustrar la fórmula (no viene de un ítem del Listado 1).'));
     sec.append(c4);
 
     /* -------- Card 5: torsión -------- */
@@ -98,7 +98,7 @@ registerModule({id:'longitud-arco',title:'Longitud de arco, reparametrización, 
     c5.append(el('p',{},'Mientras la curvatura mide cuánto se dobla la curva dentro de su plano osculador, la torsión $\\tau$ mide cuánto se ',el('b',{},'sale'),' de ese plano — cuánto se retuerce en la tercera dimensión:'));
     c5.append(el('div',{class:'formula',html:'$$\\tau(t)=\\dfrac{\\big[\\mathbf r\'(t)\\times\\mathbf r\'\'(t)\\big]\\cdot\\mathbf r\'\'\'(t)}{\\lVert\\mathbf r\'(t)\\times\\mathbf r\'\'(t)\\rVert^2}$$'}));
     c5.append(el('p',{class:'note'},'Si $\\tau=0$ en todo punto, la curva es plana — vive enteramente dentro de un único plano osculador (por ejemplo, cualquier curva con $z=0$ tiene torsión nula). En una hélice, en cambio, $\\tau$ es constante y distinta de 0: el plano osculador va rotando parejo a medida que la curva sube, sin nunca aplanarse.'));
-    c5.append(el('p',{class:'fuente'},'Fuente: apunte Semana 2 (torsión e interpretación geométrica), Cálculo Multivariable — Canvas 2026-2.'));
+    c5.append(el('p',{class:'fuente'},'Fuente: "Torsión y Curvatura", contenido de la Semana 2 según la calendarización oficial (interpretación geométrica: desarrollo estándar de Stewart/Larson), Cálculo Multivariable — Canvas 2026-2.'));
     sec.append(c5);
 
     /* -------- Card 6: errores que descuentan -------- */

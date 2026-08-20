@@ -116,7 +116,7 @@ registerModule({id:'bayes',title:'Probabilidad total y teorema de Bayes',
         el('p',{},'Falso negativo = 1 − sensibilidad = 8%.'),
         el('div',{class:'formula',html:'$$P(-)=0{,}08\\times0{,}08+0{,}92\\times0{,}96=0{,}0064+0{,}8832=0{,}8896$$'}),
         el('div',{class:'formula',html:'$$P(\\text{falla}\\mid -)=\\dfrac{0{,}0064}{0{,}8896}\\approx 0{,}72\\%$$'}),
-        el('p',{class:'note'},'Contraste con la card anterior: ahí un positivo era mayormente falso (8,76%); acá un negativo sí es confiable (solo 0,72% de falla real), porque la especificidad es alta y jugar con el complemento cambia todo.')));
+        el('p',{class:'note'},'Contraste con la card "El ejemplo del test médico": ahí un positivo era mayormente falso (8,76%); acá un negativo sí es confiable (solo 0,72% de falla real), porque la especificidad es alta y jugar con el complemento cambia todo.')));
     c5.append(ej12);
 
     const ej17=el('details',{},

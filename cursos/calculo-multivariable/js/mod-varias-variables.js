@@ -104,7 +104,7 @@ registerModule({id:'varias-variables',title:'Funciones de varias variables',unid
       el('input',{type:'range',min:'0.25',max:'3',step:'0.25',value:String(kNivel),oninput:e=>{ kNivel=parseFloat(e.target.value); planoNivel.redibujar(); espNivel.redibujar(); actualizarNivel(); }})
     ));
     c4.append(el('p',{class:'note'},'Verificación en $k=1$: $x^2+y^2=1$ es la circunferencia unitaria, radio $\\sqrt1=1$; llevando el slider a $k=1$ el radio mostrado en el mapa coincide con el radio del corte en la superficie 3D, como debe ser por construcción (ambos vienen de la misma fórmula $r=\\sqrt k$).'));
-    c4.append(el('p',{class:'fuente'},'Fuente: elaboración propia — misma función $f(x,y)=x^2+y^2$ de las dos cards anteriores; "mapa de curvas de nivel" está en la calendarización oficial de la semana 3 (Canvas 2026-2).'));
+    c4.append(el('p',{class:'fuente'},'Fuente: elaboración propia — misma función $f(x,y)=x^2+y^2$ de las cards "Interpretación geométrica en $\\mathbb R^3$" y "Tabla de doble entrada"; "mapa de curvas de nivel" está en la calendarización oficial de la semana 3 (Canvas 2026-2).'));
     sec.append(c4);
 
     /* -------- Card 5: funciones implícitas -------- */
@@ -192,6 +192,6 @@ registerModule({id:'varias-variables',title:'Funciones de varias variables',unid
         el('p',{class:'note'},'En todo punto con $z=0$ sobre la superficie (p.ej. $(1,0,0)$, ya que $1-0+0=1$ ✓) el teorema no garantiza que $z$ se pueda despejar como función de $x,y$: ahí $F=0$ se reduce a $x^2-y^2=1$, y las dos ramas $z=\\pm\\sqrt{1-x^2+y^2}$ se tocan en $z=0$ — mismo fenómeno que en el ecuador de la esfera. (Este plano $z=0$ ',el('i',{},'no'),' es la "cintura" del hiperboloide: $F=0$ es un hiperboloide de una hoja de eje $y$ —por el signo negativo en $y^2$—, y su cintura, la sección circular de radio mínimo perpendicular al eje, está en $y=0$: ahí $x^2+z^2=1$.)')));
     c7.append(ej4);
 
-    c7.append(el('p',{class:'fuente'},'Fuente: ejercicios 1 y 2, elaboración propia. Ejercicio 3: index-v3.html (contenido auditado), ejercicio "Clasificar la cuádrica x²+y²-z²=1" de la Unidad 1. Ejercicio 4: elaboración propia, aplicando el teorema de la función implícita de la card anterior a una cuádrica.'));
+    c7.append(el('p',{class:'fuente'},'Fuente: ejercicios 1 y 2, elaboración propia. Ejercicio 3: index-v3.html (contenido auditado), ejercicio "Clasificar la cuádrica x²+y²-z²=1" de la Unidad 1. Ejercicio 4: elaboración propia, aplicando el teorema de la función implícita de la card "Funciones implícitas" a una cuádrica.'));
     sec.append(c7);
   }});

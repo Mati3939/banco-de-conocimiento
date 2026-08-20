@@ -33,7 +33,7 @@ registerModule({id:'va-discretas',title:'Variables aleatorias discretas',
     c2.append(el('h3',{},'Función de masa de probabilidad'));
     c2.append(el('p',{},'La función de masa de probabilidad (fmp) de una variable aleatoria discreta X, $p(x)=P(X=x)$, debe cumplir:'));
     c2.append(el('div',{class:'formula',html:'$$p(x)\\ge 0\\ \\ \\forall x, \\qquad \\sum_x p(x)=1$$'}));
-    c2.append(el('p',{},'Con el ejemplo de la card anterior — X = número de caras en 2 lanzamientos, con las 4 combinaciones de Ω equiprobables (probabilidad 1/4 cada una) —, la fmp queda:'));
+    c2.append(el('p',{},'Con el ejemplo de la card "Qué es una variable aleatoria" — X = número de caras en 2 lanzamientos, con las 4 combinaciones de Ω equiprobables (probabilidad 1/4 cada una) —, la fmp queda:'));
     Tabla(c2,{columnas:['x','p(x)'],filas:[
       ['0','0,25'],
       ['1','0,50'],
@@ -111,7 +111,7 @@ registerModule({id:'va-discretas',title:'Variables aleatorias discretas',
     c5.append(el('h3',{},'Momentos y percentiles'));
     c5.append(el('p',{},'El momento de orden k respecto al origen y el momento central de orden k se definen:'));
     c5.append(el('div',{class:'formula',html:'$$\\mu\'_k=E(X^k)=\\sum_x x^k\\,p(x), \\qquad \\mu_k=E\\big[(X-\\mu)^k\\big]=\\sum_x (x-\\mu)^k\\,p(x)$$'}));
-    c5.append(el('p',{class:'note'},'El momento de orden 1 respecto al origen es la esperanza ($\\mu\'_1=E(X)$); el momento central de orden 2 es la varianza ($\\mu_2=\\text{Var}(X)$) — ambos ya calculados en la card anterior con este mismo ejemplo.'));
+    c5.append(el('p',{class:'note'},'El momento de orden 1 respecto al origen es la esperanza ($\\mu\'_1=E(X)$); el momento central de orden 2 es la varianza ($\\mu_2=\\text{Var}(X)$) — ambos ya calculados en la card "Valor esperado y varianza" con este mismo ejemplo.'));
     c5.append(el('p',{},'El percentil p de X es el menor valor $x_p$ tal que F alcanza (o supera) p:'));
     c5.append(el('div',{class:'formula',html:'$$x_p=\\min\\{x : F(x)\\ge p\\}$$'}));
     c5.append(el('p',{},'Con la tabla de F(x) del ejemplo:'));
