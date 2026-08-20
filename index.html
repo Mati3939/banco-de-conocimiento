@@ -163,7 +163,7 @@
     <span class="leyenda"><span class="lucero s1"></span> Semestre 1</span>
     <span class="leyenda"><span class="lucero s2"></span> Semestre 2</span>
     <span class="leyenda"><span class="lucero s3"></span> Semestre 3</span>
-    <span class="leyenda"><span class="lucero futuro"></span> Ramos futuros</span>
+    <span class="leyenda"><span class="lucero futuro"></span> Semestre 4</span>
     <span class="leyenda">↓ o desplazate para ver la lista completa</span>
   </div>
 
@@ -222,13 +222,16 @@
 
   <section class="semestre-grupo" data-sem="futuro">
     <header class="semestre-cabecera">
-      <span class="semestre-numero">＋</span>
+      <span class="semestre-numero">04</span>
       <div class="semestre-titulo-grupo">
-        <h2><span class="lucero futuro"></span> Ramos futuros</h2>
-        <p class="semestre-sub">4 ramos · material referencial</p>
+        <h2><span class="lucero futuro"></span> Semestre 4</h2>
+        <p class="semestre-sub">4 ramos · en curso (2026-2)</p>
       </div>
     </header>
-    <div class="banner-futuro">⚠️ Material referencial de la generación anterior (2024-2025) — el programa puede cambiar cuando curses estos ramos.</div>
+    <!-- El identificador interno del grupo sigue siendo "futuro" (data-sem, la
+         clase .curso-card y la variable --futuro de estilo.css, que además usa
+         .dificultad.media). Renombrarlo tocaría tres hojas de estilo sin cambiar
+         nada visible: acá "futuro" se lee como "el cuarto anillo". -->
     <div class="cursos-grid">
       <a class="curso-card futuro" href="cursos/visualizacion-datos/index.html"><span class="emoji">📊</span><span><h3>Visualización de Datos</h3><p>Gráficos · Dashboards · Streamlit · Altair</p></span><span class="ir">→</span></a>
       <a class="curso-card futuro" href="cursos/calculo-multivariable/index.html"><span class="emoji">∇</span><span><h3>Cálculo Multivariable</h3><p>Parciales · Gradiente · Integrales múltiples</p></span><span class="ir">→</span></a>
@@ -458,10 +461,8 @@
       ctx.ellipse(cx - px, cyB - py, FR[g] * maxRx, FR[g] * maxRy, 0, 0, 7);
       ctx.strokeStyle = col[g];
       ctx.globalAlpha = 0.13 * pa;
-      ctx.setLineDash(g === "futuro" ? [5, 7] : []);
       ctx.lineWidth = 1;
       ctx.stroke();
-      ctx.setLineDash([]);
       ctx.globalAlpha = 1;
     });
 
@@ -617,7 +618,7 @@
         preview.querySelector("h3").textContent = n.c.e + " " + n.c.n;
         preview.querySelector("p").textContent = n.c.d;
         preview.querySelector(".datos").textContent =
-          (n.c.g === "futuro" ? "Ramo futuro (material referencial) · " : "") + "clic para abrir";
+          "clic para abrir";
         preview.classList.add("visible");
       } else {
         preview.classList.remove("visible");
