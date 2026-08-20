@@ -16,7 +16,7 @@
     color-scheme:dark;
     --bg:#0d0d0d; --surface:#1a1a19; --ink:#ffffff; --ink2:#c3c2b7; --muted:#898781;
     --grid:#2c2c2a; --axis:#383835; --border:rgba(255,255,255,.10);
-    --s1:#3987e5; --s3:#d55181; --s4:#c98500; --s5:#199e70; --s6:#d95926; --s7:#9085e9; --s8:#e66767;
+    --s1:#3987e5; --s2:#00a300; --s3:#d55181; --s4:#c98500; --s5:#199e70; --s6:#d95926; --s7:#9085e9; --s8:#e66767;
     /* acentos de semestre — NO confundir con --s1..--s8, que son colores de serie */
     --sem1:#1baf7a; --sem2:#2a78d6; --sem3:#4a3aa7; --sem-actual:#eda100;
     --pendiente:#8b8a85;
@@ -26,7 +26,7 @@
   color-scheme:dark;
   --bg:#0d0d0d; --surface:#1a1a19; --ink:#ffffff; --ink2:#c3c2b7; --muted:#898781;
   --grid:#2c2c2a; --axis:#383835; --border:rgba(255,255,255,.10);
-  --s1:#3987e5; --s3:#d55181; --s4:#c98500; --s5:#199e70; --s6:#d95926; --s7:#9085e9; --s8:#e66767;
+  --s1:#3987e5; --s2:#00a300; --s3:#d55181; --s4:#c98500; --s5:#199e70; --s6:#d95926; --s7:#9085e9; --s8:#e66767;
   /* acentos de semestre — NO confundir con --s1..--s8, que son colores de serie */
   --sem1:#1baf7a; --sem2:#2a78d6; --sem3:#4a3aa7; --sem-actual:#eda100;
   --pendiente:#8b8a85;
@@ -143,8 +143,20 @@ kbd{border:1px solid var(--border); border-bottom-width:2px; border-radius:5px; 
   header h1{font-size:.95rem;}
   header h1 small{display:none;}
   #btnPres{display:none;} /* el modo proyector no aplica en un celular */
-  nav{flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none; order:3; flex-basis:100%;}
-  nav::-webkit-scrollbar{display:none;}
+  /* nav es el contenedor de .unidad-nav y .tema-nav (ver core.js, buildShell:
+     ambas filas se agregan como hijos de #nav). En escritorio nav queda con
+     flex-wrap:wrap (regla base más arriba) y cada fila ocupa su propia línea
+     porque tiene flex-basis:100%. Si acá se le pone nowrap a nav (como en
+     una versión anterior de esta regla), las dos filas completas quedan
+     forzadas a compartir una sola línea — se solapan y una queda recortada
+     fuera de vista. El scroll horizontal por celular va en cada FILA, no en
+     nav: por eso nav solo fija su propia posición dentro de header.
+     min-width:0 es igual de imprescindible acá que en .unidad-nav/.tema-nav
+     más abajo: sin él, nav (flex item de header) no encoge más allá del
+     min-content de SUS hijos —que, con nowrap adentro de cada fila, es
+     enorme— y termina empujando el ancho de toda la página aunque cada fila
+     tenga su propio scroll interno resuelto. */
+  nav{order:3; flex-basis:100%; min-width:0;}
   nav button{white-space:nowrap; flex:0 0 auto;}
   main{padding:.6rem .7rem 3rem;}
   .module>h2{font-size:1.25rem;}
@@ -181,6 +193,22 @@ kbd{border:1px solid var(--border); border-bottom-width:2px; border-radius:5px; 
 }
 .tema-nav button.pend{color:var(--pendiente); font-style:italic;}
 .tema-nav button.pend::before{content:"○ ";}
+
+@media (max-width:700px){
+  /* En celular no entran todos los botones de una fila: cada fila (unidades,
+     temas) scrollea horizontal por su cuenta, en vez de que nav las obligue
+     a compartir una sola línea (ver nota en la sección "Móvil" más arriba).
+     Esta regla va DESPUÉS de las declaraciones base de .unidad-nav/.tema-nav
+     (mismo nivel de especificidad: gana la que aparece último en la hoja). */
+  /* min-width:0 es imprescindible: por default un flex item no encoge más
+     allá de su min-content (acá, la suma de los anchos de TODOS los botones
+     en una sola línea, porque nowrap les prohíbe envolver) — con flex-basis:
+     100% pero sin esto, la fila se renderiza a su ancho de contenido completo
+     (>1000px) en vez de encoger a los ~380px disponibles, y overflow-x:auto
+     nunca llega a activarse porque no hay contenedor angosto que recortar. */
+  .unidad-nav,.tema-nav{flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none; min-width:0;}
+  .unidad-nav::-webkit-scrollbar,.tema-nav::-webkit-scrollbar{display:none;}
+}
 
 /* ============ Fórmulas y derivaciones ============ */
 .formula{
