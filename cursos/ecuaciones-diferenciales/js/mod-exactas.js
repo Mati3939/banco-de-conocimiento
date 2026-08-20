@@ -1,5 +1,5 @@
 registerModule({id:'exactas',title:'Ecuaciones exactas',unidad:'I',semanas:[3],evaluacion:['control-1','certamen-1'],
-  lead:'Cuando M dx + N dy = 0 viene de una función potencial F, resolverla es solo reconstruir esa F paso a paso. Entra en el Control 1 de la semana 3.',
+  lead:'Cuando M dx + N dy = 0 viene de una función potencial F, resolverla es solo reconstruir esa F paso a paso.',
   build(sec){
 
     /* -------- Card 1: la idea -------- */
@@ -54,7 +54,7 @@ registerModule({id:'exactas',title:'Ecuaciones exactas',unidad:'I',semanas:[3],e
       {tex:'x^3+x^2y+y^2=7',nota:'Solución particular (implícita) del PVI.'}
     ],{modId:'exactas',titulo:'PVI: (3x²+2xy)dx+(x²+2y)dy=0, y(1)=2'});
     c4.append(el('p',{class:'note'},el('b',{},'Verificación: '),'por construcción, $F_x=3x^2+2xy=M$ y $F_y=x^2+2y=N$. Y sustituyendo en la ecuación original: derivando implícitamente $x^3+x^2y+y^2=7$ respecto de x, $3x^2+(2xy+x^2y\')+2yy\'=0$, es decir $y\'(x^2+2y)=-(3x^2+2xy)$, o sea $\\dfrac{dy}{dx}=-\\dfrac{3x^2+2xy}{x^2+2y}$ — exactamente lo que dice la ecuación original escrita como $\\frac{dy}{dx}=-M/N$.'));
-    c4.append(el('p',{class:'fuente'},'Fuente: elaboración propia. Se revisaron a fondo las cuatro pautas de Control 1 reales disponibles en Canvas 2026-2 (PAUTA_CONTROL 1_EDO_SEM1_2026, PAUTA_CONTROL 1_EDO_SEM2_2026, Pauta Control 1 EDO / PAUTA 02-2024, y Control 1 01-24) y ninguna trae un ejercicio de ecuaciones exactas — todas sus preguntas son de variables separables, lineales con factor integrante, o verificación de soluciones — pese a que "Ecuaciones exactas" figura en el temario de ese control según la calendarización oficial. Se deja esta nota para que quede registrado.'));
+    c4.append(el('p',{class:'fuente'},'Fuente: elaboración propia. Se revisaron a fondo las cuatro pautas de Control 1 reales disponibles en Canvas 2026-2 (PAUTA_CONTROL 1_EDO_SEM1_2026, PAUTA_CONTROL 1_EDO_SEM2_2026, Pauta Control 1 EDO / PAUTA 02-2024, y Control 1 01-24) y ninguna trae un ejercicio de ecuaciones exactas — todas sus preguntas son de variables separables, lineales con factor integrante, o verificación de soluciones — pese a que "Ecuaciones exactas" figura en el temario oficial de ese control. Se deja esta nota para que quede registrado.'));
     sec.append(c4);
 
     /* -------- Card 5: ejercicios -------- */

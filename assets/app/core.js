@@ -13,7 +13,7 @@
      activate(id) — muestra un módulo y arma su nav de unidad/tema
      renderMath(nodo) — KaTeX por módulo (se construyen en diferido)
    Convenciones CSS: ver Biblioteca/CONVENCIONES.md y assets/app/app.css
-   (.unidad-nav .tema-nav .tema-nav button.pend .ficha-pendiente .evaluacion …)
+   (.unidad-nav .tema-nav .tema-nav button.pend .ficha-pendiente .fuente …)
    ===================================================================== */
 const $=(s,r=document)=>r.querySelector(s);
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
@@ -97,10 +97,11 @@ function setHashParams(obj){
      id            slug ASCII, es el ancla en la URL
      title         nombre visible
      unidad        'inicio' | 'I' | 'II' | 'III' | 'IV'
-     semanas       [3] o [3,4] — semanas oficiales del tema
+     semanas       [3] o [3,4] — semanas oficiales del tema (ordena, no se muestra)
      lead          una frase de orientación
-     evaluacion    ['control-1','certamen-1'] — ids de CURSO.evaluaciones
-     contenidoOficial  ['...','...'] — bullets literales de la calendarización
+     evaluacion    ['control-1','certamen-1'] — ids de CURSO.evaluaciones (delimita
+                   el alcance del tema; no se muestra en pantalla)
+     contenidoOficial  ['...','...'] — bullets literales del temario oficial
      puenteV3      '#ancla' dentro de index-v3.html, o null si no hay equivalente
      pendiente     true = todavía no se pasó la materia; no lleva build()
      build(sec)    construye el contenido; ausente si pendiente
@@ -111,28 +112,18 @@ const unidadesDe=()=>[...new Set(MODULES.map(m=>m.unidad))];
 const temasDe=u=>MODULES.filter(m=>m.unidad===u);
 const moduloPorId=id=>MODULES.find(m=>m.id===id);
 
-/* Ficha de un tema que todavía no se cursa: fechas oficiales, contenidos
-   literales de la calendarización, en qué evaluación entra, y el puente a la
-   página v3, que en casi todos los casos ya tiene material escrito. */
+/* Ficha de un tema que todavía no se cursa: qué va a cubrir y el puente a la
+   página v3, que en casi todos los casos ya tiene material escrito.
+   NO muestra semanas, fechas ni evaluaciones: esos datos siguen viviendo en
+   curso.js y en los metadatos del módulo (semanas, evaluacion) porque son los
+   que ordenan y delimitan el contenido —qué tema va en qué unidad, hasta dónde
+   llega cada uno—, pero al lector le sirve el temario, no el calendario. */
 function fichaPendiente(m){
-  const C=window.CURSO;
-  const sem=m.semanas.map(n=>{
-    const s=(C.semanas||[]).find(x=>x.n===n);
-    return s?`Semana ${n} (${s.desde} al ${s.hasta})`:`Semana ${n}`;
-  }).join(' · ');
   const caja=el('div',{class:'ficha-pendiente'},
-    el('h3',{},'Todavía no pasamos esta materia'),
-    el('p',{class:'note'},sem));
+    el('h3',{},'Todavía no pasamos esta materia'));
   if(m.contenidoOficial&&m.contenidoOficial.length){
-    caja.append(el('p',{class:'note',style:'font-weight:600;margin-bottom:.2rem'},
-      'Contenidos según la calendarización oficial:'));
+    caja.append(el('p',{class:'note'},'Cuando la veamos, va a cubrir:'));
     caja.append(el('ul',{},m.contenidoOficial.map(t=>el('li',{},t))));
-  }
-  const evs=(m.evaluacion||[]).map(id=>(C.evaluaciones||[]).find(e=>e.id===id)).filter(Boolean);
-  if(evs.length){
-    caja.append(el('div',{},evs.map(e=>el('span',
-      {class:'evaluacion'+(/certamen/.test(e.id)?' certamen':'')},
-      e.nombre+' · '+e.fecha))));
   }
   if(m.puenteV3){
     caja.append(el('a',{class:'puente',href:'index-v3.html'+m.puenteV3},

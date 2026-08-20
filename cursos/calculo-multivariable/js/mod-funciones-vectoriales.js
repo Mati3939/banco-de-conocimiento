@@ -30,7 +30,7 @@ registerModule({id:'funciones-vectoriales',title:'Funciones vectoriales: dominio
       el('input',{type:'range',min:String(-Math.PI),max:String(Math.PI),step:'0.05',value:String(tTraza),oninput:e=>{ tTraza=parseFloat(e.target.value); pintarTraza(); actualizarTraza(); }})
     ));
     actualizarTraza();
-    c1.append(el('p',{class:'fuente'},'Fuente: desarrollo estándar de Stewart/Larson (definición de función vectorial — la calendarización 2026-2 solo lista "Derivada de funciones vectoriales" para la Semana 1, sin un ítem separado de definición); curva del ítem 20, Listado 1, Canvas 2026-2.'));
+    c1.append(el('p',{class:'fuente'},'Fuente: desarrollo estándar de Stewart/Larson (definición de función vectorial — el temario oficial solo lista "Derivada de funciones vectoriales", sin un ítem separado de definición); curva del ítem 20, Listado 1, Canvas 2026-2.'));
     sec.append(c1);
 
     /* -------- Card 2: dominio -------- */
@@ -43,7 +43,7 @@ registerModule({id:'funciones-vectoriales',title:'Funciones vectoriales: dominio
     c2.append(el('p',{},el('b',{},'Ítem 13(b):'),' $\\mathbf r(t)=\\big(\\ln(t-1),\\ \\sqrt{4-t^2},\\ e^t\\big)$.'));
     c2.append(el('div',{class:'formula',html:'$$\\ln(t-1):\\ t\\gt1\\qquad \\sqrt{4-t^2}:\\ 4-t^2\\ge0\\iff -2\\le t\\le2\\qquad e^t:\\ \\mathbb R$$'}));
     c2.append(el('div',{class:'formula',html:'$$\\text{Dom}(\\mathbf r)=(1,\\infty)\\cap[-2,2]\\cap\\mathbb R=(1,2]$$'}));
-    c2.append(el('p',{class:'fuente'},'Fuente: desarrollo estándar de Stewart/Larson (dominio de una función vectorial como intersección de dominios — no figura como ítem propio en la calendarización 2026-2); ítem 13, Listado 1, Canvas 2026-2.'));
+    c2.append(el('p',{class:'fuente'},'Fuente: desarrollo estándar de Stewart/Larson (dominio de una función vectorial como intersección de dominios — no figura como ítem propio en el temario oficial); ítem 13, Listado 1, Canvas 2026-2.'));
     sec.append(c2);
 
     /* -------- Card 3: derivada componente a componente -------- */
@@ -52,7 +52,7 @@ registerModule({id:'funciones-vectoriales',title:'Funciones vectoriales: dominio
     c3.append(el('p',{},'Igual que en una variable, la derivada es el límite del cociente incremental — solo que ahora el cociente es un vector:'));
     c3.append(el('div',{class:'formula',html:'$$\\mathbf r\'(t)=\\lim_{h\\to0}\\dfrac{\\mathbf r(t+h)-\\mathbf r(t)}{h}=\\big(x\'(t),\\,y\'(t),\\,z\'(t)\\big)$$'}));
     c3.append(el('p',{},'El límite existe si y solo si existen los tres límites de las componentes por separado — de ahí que derivar una función vectorial sea simplemente derivar cada componente. Geométricamente, $\\mathbf r\'(t_0)$ es el vector ',el('b',{},'tangente'),' a la curva en $\\mathbf r(t_0)$: apunta en la dirección en la que se mueve el punto al crecer $t$, y su norma es la rapidez con la que se recorre la curva.'));
-    c3.append(el('p',{class:'fuente'},'Fuente: "Derivada de funciones vectoriales", contenido de la Semana 1 según la calendarización oficial, Cálculo Multivariable — Canvas 2026-2.'));
+    c3.append(el('p',{class:'fuente'},'Fuente: "Derivada de funciones vectoriales", contenido del temario oficial, Cálculo Multivariable — Canvas 2026-2.'));
     sec.append(c3);
 
     /* -------- Card 4: reglas de derivación de productos -------- */
@@ -75,7 +75,7 @@ registerModule({id:'funciones-vectoriales',title:'Funciones vectoriales: dominio
       {tex:'\\dfrac{d}{dt}\\big(\\mathbf r\'(t)\\times\\mathbf r\'\'(t)\\big)=\\mathbf r\'\'(t)\\times\\mathbf r\'\'(t)+\\mathbf r\'(t)\\times\\mathbf r\'\'\'(t)=\\mathbf r\'(t)\\times\\mathbf r\'\'\'(t)',nota:'Regla del producto cruz; el primer término se anula porque todo vector cruz consigo mismo da 0.'},
       {tex:'u\'(t)=0+\\mathbf r(t)\\cdot\\big(\\mathbf r\'(t)\\times\\mathbf r\'\'\'(t)\\big)=\\mathbf r(t)\\cdot\\big(\\mathbf r\'(t)\\times\\mathbf r\'\'\'(t)\\big)',nota:'Se reemplazan los dos resultados anteriores y queda lo pedido.'}
     ],{modId:'funciones-vectoriales',titulo:'Ítem 19(b) — demostración'});
-    c4.append(el('p',{class:'fuente'},'Fuente: "Derivada de productos vectoriales", contenido de la Semana 1 según la calendarización oficial; ítem 19, Listado 1, Cálculo Multivariable — Canvas 2026-2.'));
+    c4.append(el('p',{class:'fuente'},'Fuente: "Derivada de productos vectoriales", contenido del temario oficial; ítem 19, Listado 1, Cálculo Multivariable — Canvas 2026-2.'));
     sec.append(c4);
 
     /* -------- Card 5: recta tangente -------- */
@@ -94,7 +94,7 @@ registerModule({id:'funciones-vectoriales',title:'Funciones vectoriales: dominio
       {tex:'\\mathbf r\'(t)=(-2\\sin t,\\,\\cos t,\\,1)\\ \\Rightarrow\\ \\mathbf r\'(\\pi/2)=(-2,\\,0,\\,1)',nota:'Se deriva y se evalúa en t₀=π/2.'},
       {tex:'R_T(t)=(0,1,\\pi/2)+t(-2,0,1)',nota:'Recta tangente en forma paramétrica: x=-2t, y=1, z=π/2+t.'}
     ],{modId:'funciones-vectoriales',titulo:'Ítem 17 — tangente a la hélice'});
-    c5.append(el('p',{class:'fuente'},'Fuente: desarrollo estándar de Stewart/Larson (recta tangente a una curva paramétrica, consecuencia directa de "Derivada de funciones vectoriales", Semana 1 según la calendarización oficial); ítems 14, 15 y 17, Listado 1, Canvas 2026-2.'));
+    c5.append(el('p',{class:'fuente'},'Fuente: desarrollo estándar de Stewart/Larson (recta tangente a una curva paramétrica, consecuencia directa de "Derivada de funciones vectoriales", temario oficial); ítems 14, 15 y 17, Listado 1, Canvas 2026-2.'));
     sec.append(c5);
 
     /* -------- Card 6: aplicación — el dron -------- */

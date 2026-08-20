@@ -56,7 +56,7 @@ registerModule({id:'varias-variables',title:'Funciones de varias variables',unid
     /* -------- Card 3: tabla de doble entrada -------- */
     const c3=el('div',{class:'card'});
     c3.append(el('h3',{},'Tabla de doble entrada'));
-    c3.append(el('p',{},'"Visualización gráfica, tabla de doble entrada" está en la calendarización oficial de esta semana: antes de imaginar la superficie completa, conviene ver algunos de sus valores en una grilla. Misma $f(x,y)=x^2+y^2$ de la card anterior:'));
+    c3.append(el('p',{},'"Visualización gráfica, tabla de doble entrada" está en el temario oficial: antes de imaginar la superficie completa, conviene ver algunos de sus valores en una grilla. Misma $f(x,y)=x^2+y^2$ de la card anterior:'));
     Tabla(c3,{columnas:['y \\ x','-2','-1','0','1','2'],filas:[
       ['2','8','5','4','5','8'],
       ['1','5','2','1','2','5'],
@@ -65,7 +65,7 @@ registerModule({id:'varias-variables',title:'Funciones de varias variables',unid
       ['-2','8','5','4','5','8']
     ]});
     c3.append(el('p',{class:'note'},'Cada celda es $x^2+y^2$ para esa fila y columna — p.ej. la esquina superior izquierda es $(-2)^2+2^2=4+4=8$. La tabla es simétrica en las cuatro direcciones porque $f(x,y)=f(-x,y)=f(x,-y)$: los cuatro "8" de las esquinas son justo los cuatro puntos más altos de la malla que se vio en la card anterior.'));
-    c3.append(el('p',{class:'fuente'},'Fuente: elaboración propia — misma función $f(x,y)=x^2+y^2$ de la card "Interpretación geométrica"; la tabla de doble entrada la pide la calendarización oficial de la semana 3 (Canvas 2026-2), pero sin valores concretos asignados.'));
+    c3.append(el('p',{class:'fuente'},'Fuente: elaboración propia — misma función $f(x,y)=x^2+y^2$ de la card "Interpretación geométrica"; la tabla de doble entrada la pide el temario oficial (Canvas 2026-2), pero sin valores concretos asignados.'));
     sec.append(c3);
 
     /* -------- Card 4: curvas de nivel -------- */
@@ -104,7 +104,7 @@ registerModule({id:'varias-variables',title:'Funciones de varias variables',unid
       el('input',{type:'range',min:'0.25',max:'3',step:'0.25',value:String(kNivel),oninput:e=>{ kNivel=parseFloat(e.target.value); planoNivel.redibujar(); espNivel.redibujar(); actualizarNivel(); }})
     ));
     c4.append(el('p',{class:'note'},'Verificación en $k=1$: $x^2+y^2=1$ es la circunferencia unitaria, radio $\\sqrt1=1$; llevando el slider a $k=1$ el radio mostrado en el mapa coincide con el radio del corte en la superficie 3D, como debe ser por construcción (ambos vienen de la misma fórmula $r=\\sqrt k$).'));
-    c4.append(el('p',{class:'fuente'},'Fuente: elaboración propia — misma función $f(x,y)=x^2+y^2$ de las cards "Interpretación geométrica en $\\mathbb R^3$" y "Tabla de doble entrada"; "mapa de curvas de nivel" está en la calendarización oficial de la semana 3 (Canvas 2026-2).'));
+    c4.append(el('p',{class:'fuente'},'Fuente: elaboración propia — misma función $f(x,y)=x^2+y^2$ de las cards "Interpretación geométrica en $\\mathbb R^3$" y "Tabla de doble entrada"; "mapa de curvas de nivel" está en el temario oficial (Canvas 2026-2).'));
     sec.append(c4);
 
     /* -------- Card 5: funciones implícitas -------- */
@@ -117,8 +117,8 @@ registerModule({id:'varias-variables',title:'Funciones de varias variables',unid
       el('li',{},'En el polo norte $(0,0,2)$: $\\partial F/\\partial z=4\\ne0$ → cerca de ahí la esfera sí es la gráfica de una función, $z=\\sqrt{4-x^2-y^2}$ (el hemisferio superior).'),
       el('li',{},'En el ecuador, p.ej. $(2,0,0)$: $\\partial F/\\partial z=0$ → el teorema no garantiza nada ahí. Y en efecto, cerca del ecuador un mismo $(x,y)$ tiene dos alturas posibles (arriba y abajo de la esfera): la superficie no es la gráfica de ninguna función $z=f(x,y)$ en esa zona.')
     ));
-    c5.append(el('p',{class:'note'},'Este resultado es el puente hacia la Semana 4: una vez que se sabe que $z=f(x,y)$ existe cerca de un punto (aunque no se pueda despejar a mano), se puede hallar $\\partial z/\\partial x$ y $\\partial z/\\partial y$ derivando $F$ implícitamente — sin despejar nunca $f$ explícitamente.'));
-    c5.append(el('p',{class:'fuente'},'Fuente: elaboración propia (teorema de la función implícita, Stewart) — no está cubierto en Canvas 2026-2 ni en el material de la generación anterior del vault; sirve de puente hacia "Derivación implícita" (Unidad II, semana 4).'));
+    c5.append(el('p',{class:'note'},'Este resultado es el puente hacia la derivación implícita: una vez que se sabe que $z=f(x,y)$ existe cerca de un punto (aunque no se pueda despejar a mano), se puede hallar $\\partial z/\\partial x$ y $\\partial z/\\partial y$ derivando $F$ implícitamente — sin despejar nunca $f$ explícitamente.'));
+    c5.append(el('p',{class:'fuente'},'Fuente: elaboración propia (teorema de la función implícita, Stewart) — no está cubierto en Canvas 2026-2 ni en el material de la generación anterior del vault; sirve de puente hacia "Derivación implícita", en el tema "Derivadas parciales".'));
     sec.append(c5);
 
     /* -------- Card 6: superficies cuádricas -------- */

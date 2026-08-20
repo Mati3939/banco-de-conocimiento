@@ -39,7 +39,10 @@
 body{
   margin:0; background:var(--bg); color:var(--ink);
   font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
-  line-height:1.5;
+  /* 1.65 y no 1.5: estas páginas son texto técnico denso (definición + nota +
+     fórmula, una tras otra). Con 1.5 el interlineado quedaba casi igual al
+     espacio entre párrafos y todo se leía como un bloque continuo. */
+  line-height:1.65;
 }
 /* ============ Encabezado y navegación ============ */
 header{
@@ -68,15 +71,54 @@ main{max-width:1150px; margin:0 auto; padding:1rem 1.2rem 4rem;}
 .module{display:none;}
 .module.active{display:block; animation:fadein .25s ease;}
 @keyframes fadein{from{opacity:0; transform:translateY(4px)} to{opacity:1}}
-.module>h2{margin:.9rem 0 .1rem; font-size:1.45rem;}
-.lead{color:var(--ink2); margin:.2rem 0 1rem; max-width:70ch;}
+.module>h2{margin:1.6rem 0 .4rem; font-size:1.75rem; line-height:1.2; letter-spacing:-.02em;}
+.lead{color:var(--ink2); font-size:1.06rem; line-height:1.6; margin:.4rem 0 2.2rem; max-width:62ch;}
 
 /* ============ Tarjetas y controles ============ */
-.card{background:var(--surface); border:1px solid var(--border); border-radius:14px;
-  padding:1rem 1.2rem 1.2rem; margin:1rem 0;}
-.card>h3{margin:.1rem 0 .3rem; font-size:1.1rem;}
+.card{background:var(--surface); border:1px solid var(--border); border-radius:16px;
+  padding:1.5rem 1.7rem; margin:1.6rem 0;}
+/* La barrita de color marca "esto es el título de una tarjeta" de un vistazo,
+   sin subir el tamaño de fuente: en una página con h2 (tema), h3 (tarjeta) y
+   <b> dentro del cuerpo, el peso solo no alcanzaba para separar los niveles. */
+.card>h3{margin:0 0 1.1rem; font-size:1.18rem; font-weight:700;
+  letter-spacing:-.01em; line-height:1.3; padding-left:.95rem; position:relative;}
+.card>h3::before{
+  content:""; position:absolute; left:0; top:.18em;
+  width:.28rem; height:1em; border-radius:2px; background:var(--s1);
+}
 .card>h3 code{font-size:.95em;}
-.controls{display:flex; flex-wrap:wrap; gap:.45rem; align-items:center; margin:.6rem 0;}
+
+/* ---- Ritmo de lectura dentro de una tarjeta ----
+   Tres registros, y hay que poder distinguirlos sin leerlos:
+     principal  <p> suelto        — 1rem, var(--ink), medida corta
+     secundario .note             — .9rem, var(--ink2)
+     fuente     .fuente           — .78rem, var(--muted), separada por filete
+   El agrupamiento lo hace el espacio, no más decoración: cada bloque abre
+   1.15rem, pero un bloque seguido por su .note cierra el aire (regla :has más
+   abajo) para que "afirmación + su comentario" se lean como una sola unidad y
+   el aire grande caiga ENTRE unidades. */
+.card p{margin:0 0 1.15rem; max-width:66ch;}
+.card ul,.card ol{margin:0 0 1.25rem; padding-left:1.45rem; max-width:68ch;}
+.card li{margin:0 0 .55rem;}
+.card li:last-child{margin-bottom:0;}
+.card li>ul,.card li>ol{margin:.5rem 0 0;}
+.card>*:last-child{margin-bottom:0;}
+
+/* Ejercicios plegables: sin caja propia se leían como texto suelto pegado al
+   resto de la tarjeta. El marcador del <summary> queda en color de acento. */
+.card details{
+  border:1px solid var(--border); border-radius:12px;
+  background:color-mix(in srgb, var(--ink) 2%, transparent);
+  padding:.9rem 1.1rem; margin:0 0 .7rem;
+}
+.card details[open]{background:color-mix(in srgb, var(--ink) 3.5%, transparent);}
+.card summary{cursor:pointer; font-weight:600; color:var(--ink); line-height:1.5;}
+.card summary::marker{color:var(--s1);}
+.card details[open]>summary{
+  margin-bottom:.95rem; padding-bottom:.75rem; border-bottom:1px solid var(--border);
+}
+.card details>*:last-child{margin-bottom:0;}
+.controls{display:flex; flex-wrap:wrap; gap:.5rem; align-items:center; margin:1.1rem 0;}
 .controls label{font-size:.85rem; color:var(--ink2);}
 .btn{
   border:1px solid var(--border); background:var(--surface); color:var(--ink);
@@ -108,8 +150,15 @@ input[type=range]{accent-color:var(--s1); vertical-align:middle;}
    interno propio (mismo patrón que .formula/.pasos-tex/.code), sin tocar la
    fórmula en sí ni la tipografía.  */
 .mathinline{display:inline-block; max-width:100%; overflow-x:auto; vertical-align:bottom;}
-.note{color:var(--ink2); font-size:.88rem; max-width:75ch;}
+.note{color:var(--ink2); font-size:.9rem; line-height:1.65; max-width:70ch;}
 .note b{color:var(--ink);}
+/* una .note cierra su grupo: el aire grande va DESPUÉS de ella, no antes */
+.card .note{margin-bottom:1.8rem;}
+/* Lo que precede a una .note se le pega. Va después de .card p / .card .note a
+   propósito: misma especificidad (0,2,0 — :has() toma la de su argumento), así
+   que gana por orden de aparición. Alcanza también a .note+.note (notas
+   encadenadas: una sola unidad) y a h3+.note (bajada de la tarjeta). */
+.card *:has(+ .note){margin-bottom:.55rem;}
 .msg{font-size:.9rem; font-weight:600; min-height:1.4em; margin:.4rem 0;}
 .msg.err{color:var(--s8);}
 .msg.okc{color:var(--s2);}
@@ -121,9 +170,9 @@ input[type=range]{accent-color:var(--s1); vertical-align:middle;}
 @keyframes shake{20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
 
 /* ============ Stepper ============ */
-.stepper{display:flex; flex-wrap:wrap; gap:.5rem; align-items:center; margin:.6rem 0;}
+.stepper{display:flex; flex-wrap:wrap; gap:.5rem; align-items:center; margin:1.1rem 0 .4rem;}
 .stepper .cnt{font-size:.8rem; color:var(--muted); min-width:5.2em; text-align:center;}
-.stepdesc{font-size:.92rem; color:var(--ink2); min-height:2.6em; margin:.3rem 0;}
+.stepdesc{font-size:.94rem; color:var(--ink2); min-height:2.6em; margin:.4rem 0 1.1rem; max-width:72ch;}
 .stepdesc b{color:var(--ink);}
 
 /* ============ SVG ============ */
@@ -159,8 +208,13 @@ kbd{border:1px solid var(--border); border-bottom-width:2px; border-radius:5px; 
   nav{order:3; flex-basis:100%; min-width:0;}
   nav button{white-space:nowrap; flex:0 0 auto;}
   main{padding:.6rem .7rem 3rem;}
-  .module>h2{font-size:1.25rem;}
-  .card{padding:.8rem .8rem 1rem; border-radius:12px;}
+  .module>h2{font-size:1.4rem; margin-top:1rem;}
+  .lead{font-size:1rem; margin-bottom:1.5rem;}
+  .card{padding:1.1rem 1.05rem; border-radius:14px; margin:1.2rem 0;}
+  .card>h3{font-size:1.08rem; margin-bottom:.9rem;}
+  .card details{padding:.75rem .85rem;}
+  .fuente{padding-right:0;}
+  .temas-lista{grid-template-columns:1fr;}
   .flexcols{gap:.9rem;}
   .code{font-size:.78rem;}
   .kbdhint{display:none;} /* atajos de teclado no aplican en táctil */
@@ -214,14 +268,14 @@ kbd{border:1px solid var(--border); border-bottom-width:2px; border-radius:5px; 
 .formula{
   background:color-mix(in srgb, var(--s1) 7%, var(--surface));
   border-left:3px solid color-mix(in srgb, var(--s1) 60%, transparent);
-  border-radius:0 10px 10px 0; padding:1rem 1.2rem; margin:1rem 0;
+  border-radius:0 12px 12px 0; padding:1.15rem 1.35rem; margin:1.5rem 0;
   overflow-x:auto; overflow-y:hidden;
 }
 .formula .katex-display{margin:0;}
-.pasos{display:flex; flex-direction:column; gap:.1rem; margin:.8rem 0;}
+.pasos{display:flex; flex-direction:column; gap:.3rem; margin:1.3rem 0;}
 .pasos-linea{
-  display:flex; flex-wrap:wrap; gap:.4rem 1.2rem; align-items:baseline;
-  padding:.5rem .8rem; border-radius:8px;
+  display:flex; flex-wrap:wrap; gap:.5rem 1.4rem; align-items:baseline;
+  padding:.62rem .9rem; border-radius:8px;
   opacity:.18; transition:opacity .35s, background .35s;
 }
 .pasos-linea.vista{opacity:1;}
@@ -237,22 +291,22 @@ kbd{border:1px solid var(--border); border-bottom-width:2px; border-radius:5px; 
    overflow-x:auto sí entra a tallar. Visto en fórmulas largas de una sola
    línea (p.ej. "dP=166,2(-1)+...=-199,44") en viewport de teléfono. */
 .pasos-tex{flex:1 1 20rem; min-width:0; max-width:100%; overflow-x:auto; overflow-y:hidden;}
-.pasos-nota{flex:1 1 16rem; font-size:.86rem; color:var(--ink2); min-width:0; max-width:100%;}
+.pasos-nota{flex:1 1 16rem; font-size:.88rem; line-height:1.6; color:var(--ink2); min-width:0; max-width:100%;}
 .pasos-nota b{color:var(--ink);}
 
 /* ============ Lienzos de las primitivas ============ */
 .lienzo{
   display:block; width:100%; border:1px solid var(--border); border-radius:10px;
-  background:color-mix(in srgb, var(--ink) 2%, var(--surface)); margin:.8rem 0;
+  background:color-mix(in srgb, var(--ink) 2%, var(--surface)); margin:1.2rem 0;
 }
-.arbol{margin:.8rem 0; overflow-x:auto;}
+.arbol{margin:1.2rem 0; overflow-x:auto;}
 .arbol-nodo{
   display:inline-flex; align-items:center; justify-content:center; text-align:center;
   border:1px solid var(--border); border-radius:9px; padding:.35rem .7rem;
   background:var(--surface); font-size:.88rem; transition:background .3s, box-shadow .3s;
 }
 .arbol-nodo.hl{background:color-mix(in srgb, var(--s4) 26%, var(--surface)); box-shadow:0 0 0 2px var(--s4);}
-.tabla-va{overflow-x:auto; margin:.8rem 0;}
+.tabla-va{overflow-x:auto; margin:1.2rem 0;}
 .tabla-va table{border-collapse:collapse; font-variant-numeric:tabular-nums;}
 .tabla-va th,.tabla-va td{
   border:1px solid var(--border); padding:.35rem .7rem; font-size:.88rem;
@@ -261,46 +315,53 @@ kbd{border:1px solid var(--border); border-bottom-width:2px; border-radius:5px; 
 .tabla-va th{background:color-mix(in srgb, var(--s1) 14%, var(--surface)); font-weight:700;}
 .tabla-va td.hl{background:color-mix(in srgb, var(--s4) 28%, var(--surface)); box-shadow:inset 0 0 0 2px var(--s4);}
 .tabla-va td.ok{background:color-mix(in srgb, var(--s2) 20%, var(--surface));}
-.barras{margin:.8rem 0;}
+.barras{margin:1.2rem 0;}
 
-/* ============ Fichas pendientes y evaluaciones ============ */
+/* ============ Fichas de temas pendientes ============ */
 .ficha-pendiente{
-  border:1px dashed var(--axis); border-radius:14px; padding:1.1rem 1.3rem; margin:1rem 0;
+  border:1px dashed var(--axis); border-radius:16px; padding:1.5rem 1.7rem; margin:1.5rem 0;
   background:color-mix(in srgb, var(--ink) 2.5%, var(--surface));
 }
-.ficha-pendiente h3{margin:.1rem 0 .5rem; font-size:1.05rem; color:var(--ink2);}
-.ficha-pendiente ul{margin:.3rem 0 .8rem; padding-left:1.2rem; color:var(--ink2); font-size:.9rem;}
+.ficha-pendiente h3{margin:0 0 .9rem; font-size:1.05rem; color:var(--ink2);}
+.ficha-pendiente ul{margin:.5rem 0 1.3rem; padding-left:1.3rem; color:var(--ink2); font-size:.92rem;}
+.ficha-pendiente li{margin-bottom:.45rem;}
 .ficha-pendiente .puente{
-  display:inline-block; margin-top:.5rem; font-size:.88rem; font-weight:600;
+  display:inline-block; margin-top:.3rem; font-size:.88rem; font-weight:600;
   color:var(--s1); text-decoration:none; border-bottom:1px solid currentColor;
 }
-.evaluacion{
-  display:inline-flex; align-items:center; gap:.35rem; font-size:.76rem; font-weight:700;
-  padding:.14rem .6rem; border-radius:999px; margin:.1rem .25rem .1rem 0;
-  background:color-mix(in srgb, var(--s8) 15%, var(--surface));
-  border:1px solid color-mix(in srgb, var(--s8) 45%, transparent); color:var(--ink);
+/* Tercer registro: la atribución. El filete la despega del contenido y la
+   marca como pie de tarjeta; sin cursiva, porque son párrafos largos y la
+   cursiva los vuelve más difíciles de leer, no menos importantes. */
+.fuente{
+  margin:1.9rem 0 0; padding-top:.75rem; border-top:1px solid var(--border);
+  font-size:.78rem; line-height:1.55; color:var(--muted);
+  /* El filete tiene que cruzar la tarjeta entera (es el pie de la tarjeta),
+     pero el texto no debe llegar a 150 caracteres por línea. max-width cortaría
+     también el borde; el padding-right no: border-top abarca la caja de borde,
+     así que la línea sigue completa y solo el texto se angosta. El max() lo
+     desactiva en pantallas donde la tarjeta ya mide menos de 86ch. */
+  max-width:none; padding-right:max(0px, calc(100% - 86ch));
 }
-.evaluacion.certamen{background:color-mix(in srgb, var(--s7) 16%, var(--surface));
-  border-color:color-mix(in srgb, var(--s7) 50%, transparent);}
-.fuente{font-size:.8rem; color:var(--muted); font-style:italic; margin:.5rem 0 0;}
+.fuente.suelta{border-top:none; padding-top:0; margin-top:1.2rem;}
 
-/* ============ Mapa del semestre (módulo Inicio) ============ */
-.semanas{display:flex; flex-direction:column; gap:.2rem; margin:1rem 0;}
-.semana{
-  display:grid; grid-template-columns:2.6rem 7rem 1fr; gap:.6rem; align-items:baseline;
-  padding:.4rem .6rem; border-radius:8px; border-left:3px solid transparent;
+/* ============ Mapa del curso (módulo Inicio) ============ */
+/* Índice por unidad: solo los nombres de los temas, en columnas. Es una
+   pantalla para orientarse de un vistazo, así que no lleva descripciones —
+   el texto largo vive dentro de cada tema. */
+.temas-lista{display:grid; grid-template-columns:repeat(auto-fill,minmax(16.5rem,1fr)); gap:.35rem;}
+.tema-item{
+  display:block; padding:.6rem .8rem; border-radius:10px; text-decoration:none;
+  color:var(--ink); border:1px solid transparent; font-size:.96rem; font-weight:600;
+  transition:background .15s, border-color .15s;
 }
-.semana:hover{background:color-mix(in srgb, var(--ink) 4%, transparent);}
-.semana.actual{border-left-color:var(--sem-actual); background:color-mix(in srgb, var(--sem-actual) 10%, transparent);}
-.semana .num{font-weight:800; color:var(--muted); font-variant-numeric:tabular-nums;}
-.semana .fechas{font-size:.82rem; color:var(--muted); font-variant-numeric:tabular-nums;}
-.semana a{color:var(--ink); text-decoration:none; border-bottom:1px solid var(--border);}
-.semana a:hover{border-bottom-color:var(--s1);}
-.semana.libre .num,.semana.libre a{color:var(--muted); font-style:italic;}
+.tema-item:hover{
+  background:color-mix(in srgb, var(--s1) 8%, transparent);
+  border-color:color-mix(in srgb, var(--s1) 30%, transparent);
+}
+.tema-item.pend{color:var(--pendiente); font-weight:500; font-style:italic;}
+.tema-item.pend::before{content:"○ ";}
 
 @media (max-width:700px){
-  .semana{grid-template-columns:2rem 1fr; }
-  .semana .fechas{grid-column:2; }
   /* .pasos-linea pasa a columna en el teléfono (una caja de fórmula arriba,
      la nota abajo — no entran una al lado de la otra). Eso cambia el eje
      principal del flex de horizontal a vertical, y flex:1 1 20rem/16rem

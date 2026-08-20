@@ -2,7 +2,7 @@ registerModule({id:'modelos-discretos',title:'Modelos discretos',
   unidad:'II',semanas:[4],evaluacion:['control-2','certamen-1'],
   lead:'Cinco familias de variables aleatorias que aparecen una y otra vez — reconocer cuál usar es la mitad del problema.',
   build(sec){
-    const FUENTE_PROVISORIA='Fuente provisoria: calendarización oficial + Walpole cap. IV. Reemplazar cuando el profesor suba el apunte de la semana.';
+    const FUENTE_PROVISORIA='Fuente provisoria: temario oficial + Walpole cap. IV. Reemplazar cuando el profesor suba el apunte de la semana.';
     const nf=(x,d=4)=>x.toFixed(d).replace('.',',');
 
     /* ---- pmf, todas estables numéricamente (recurrencia o comb() acotado) ---- */

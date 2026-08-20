@@ -2,7 +2,7 @@ registerModule({id:'va-discretas',title:'Variables aleatorias discretas',
   unidad:'II',semanas:[3],evaluacion:['control-2','certamen-1'],
   lead:'De los resultados de un experimento a un número: la función de masa, la acumulada, y los dos valores que resumen toda variable — su promedio y su dispersión.',
   build(sec){
-    const FUENTE_PROVISORIA='Fuente provisoria: calendarización oficial + Walpole cap. III. Reemplazar cuando el profesor suba el apunte de la semana.';
+    const FUENTE_PROVISORIA='Fuente provisoria: temario oficial + Walpole cap. III. Reemplazar cuando el profesor suba el apunte de la semana.';
 
     /* Ejemplo que recorre todo el módulo: X = número de caras en 2 lanzamientos
        de una moneda. Ω={CC,CS,SC,SS} equiprobable (cada resultado con prob. 1/4). */

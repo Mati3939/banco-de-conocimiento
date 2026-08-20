@@ -5,7 +5,7 @@ registerModule({id:'existencia-unicidad',title:'Operadores lineales, existencia 
     /* -------- Card 1: de dónde salen las EDO -------- */
     const c1=el('div',{class:'card'});
     c1.append(el('h3',{},'De dónde salen las EDO'));
-    c1.append(el('p',{},'La calendarización oficial de la Unidad I lista, como ejemplos de planteamiento, la segunda ley de Newton y la ley de enfriamiento de Newton. A esos se suma el ejemplo con el que arranca el apunte del curso: el interés compuesto continuo.'));
+    c1.append(el('p',{},'El temario oficial de la Unidad I lista, como ejemplos de planteamiento, la segunda ley de Newton y la ley de enfriamiento de Newton. A esos se suma el ejemplo con el que arranca el apunte del curso: el interés compuesto continuo.'));
     Tabla(c1,{columnas:['Fenómeno','Ecuación'],filas:[
       ['Segunda ley de Newton ($F=ma$, con $F$ conocida)','$m\\dfrac{d^2x}{dt^2}=F\\Big(t,x,\\dfrac{dx}{dt}\\Big)$'],
       ['Ley de enfriamiento de Newton','$\\dfrac{dT}{dt}=k(T-T_{amb})$'],

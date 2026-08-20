@@ -1,6 +1,6 @@
 registerModule({id:'triedro-tnb',title:'Triedro móvil T, N, B',
   unidad:'I',semanas:[2],evaluacion:['test-1','certamen-1'],
-  lead:'Tres vectores ortogonales que viajan pegados a la curva — tangente, normal y binormal — y que definen tres rectas y tres planos en cada punto. El procedimiento exacto que pide el Control 1.',
+  lead:'Tres vectores ortogonales que viajan pegados a la curva — tangente, normal y binormal — y que definen tres rectas y tres planos en cada punto. El procedimiento se hace siempre en el mismo orden.',
   build(sec){
 
     /* -------- Card 1: vector tangente unitario T -------- */
@@ -9,7 +9,7 @@ registerModule({id:'triedro-tnb',title:'Triedro móvil T, N, B',
     c1.append(el('p',{},'Ya se vio que $\\mathbf r\'(t)$ es tangente a la curva. Normalizándolo se obtiene el primer vector del triedro:'));
     c1.append(el('div',{class:'formula',html:'$$\\mathbf T(t)=\\dfrac{\\mathbf r\'(t)}{\\lVert\\mathbf r\'(t)\\rVert}$$'}));
     c1.append(el('p',{class:'note'},'$\\mathbf T$ apunta siempre en la dirección en la que se recorre la curva, y por construcción tiene norma 1 en todo punto donde $\\mathbf r\'(t)\\ne\\mathbf 0$.'));
-    c1.append(el('p',{class:'fuente'},'Fuente: "Vectores Tangente, Normal y Binormal", contenido de la calendarización oficial (definición del vector tangente unitario: desarrollo estándar de Stewart/Larson), Cálculo Multivariable — Canvas 2026-2.'));
+    c1.append(el('p',{class:'fuente'},'Fuente: "Vectores Tangente, Normal y Binormal", contenido del temario oficial (definición del vector tangente unitario: desarrollo estándar de Stewart/Larson), Cálculo Multivariable — Canvas 2026-2.'));
     sec.append(c1);
 
     /* -------- Card 2: N y B -------- */

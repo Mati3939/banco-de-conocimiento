@@ -2,7 +2,7 @@ registerModule({id:'va-continuas',title:'Variables aleatorias continuas',
   unidad:'II',semanas:[3],evaluacion:['control-2','certamen-1'],
   lead:'Cuando el soporte de X ya no se puede enumerar: p(x) se convierte en densidad f(x), las sumas se vuelven integrales, y la probabilidad pasa a ser área bajo la curva.',
   build(sec){
-    const FUENTE_PROVISORIA='Fuente provisoria: calendarización oficial + Walpole cap. III. Reemplazar cuando el profesor suba el apunte de la semana.';
+    const FUENTE_PROVISORIA='Fuente provisoria: temario oficial + Walpole cap. III. Reemplazar cuando el profesor suba el apunte de la semana.';
 
     /* Ejemplo que recorre casi todo el módulo: densidad Exponencial de media θ=2,
        f(x)=(1/2)e^{-x/2}, x≥0. F(x)=1-e^{-x/2}. */
