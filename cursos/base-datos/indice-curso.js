@@ -1,0 +1,25 @@
+window.INDICE = window.INDICE || [];
+window.INDICE.push(
+  { t: "¿Qué es una base de datos?", c: "Base de Datos", u: "cursos/base-datos/index.html#que-es", k: "base de datos coleccion organizada datos estructurados tematica sistema de informacion hollerith censo tarjetas perforadas" },
+  { t: "Centralización: ventajas y punto único de falla", c: "Base de Datos", u: "cursos/base-datos/index.html#que-es", k: "centralizacion congruencia disponibilidad confidencialidad punto unico de falla propagacion" },
+  { t: "RDBMS: qué significa \"relacional\"", c: "Base de Datos", u: "cursos/base-datos/index.html#rdbms", k: "rdbms sistema de gestion de bases de datos relacionales oracle db2 mysql postgresql sentido logico" },
+  { t: "Entidades maestras y de transacción", c: "Base de Datos", u: "cursos/base-datos/index.html#rdbms", k: "maestro transaccion entidad inmutable univoco activos fecha y hora prestamo financiera" },
+  { t: "Relacional vs. no relacional (SQL y NoSQL)", c: "Base de Datos", u: "cursos/base-datos/index.html#relacional-vs-nosql", k: "sql nosql documental integridad referencial indexacion texto operaciones estadisticas dato registro entidad" },
+  { t: "El modelo entidad-relación", c: "Base de Datos", u: "cursos/base-datos/index.html#mer", k: "mer modelo entidad relacion peter chen 1976 bachman brown martin uml diagrama er sustantivos verbos" },
+  { t: "Tipos de MER: conceptual, lógico y físico", c: "Base de Datos", u: "cursos/base-datos/index.html#mer", k: "modelo conceptual logico fisico tipos de mer independiente de la tecnologia" },
+  { t: "Simbología y notación del MER", c: "Base de Datos", u: "cursos/base-datos/index.html#simbologia", k: "simbologia notacion chen barker patas de gallo rectangulo rombo elipse entidad fuerte debil atributo multivaluado derivado compuesto" },
+  { t: "Entidad fuerte y entidad débil", c: "Base de Datos", u: "cursos/base-datos/index.html#simbologia", k: "entidad debil fuerte doble borde depende de otra para existir" },
+  { t: "Claves primarias y foráneas", c: "Base de Datos", u: "cursos/base-datos/index.html#claves", k: "clave primaria foranea pk fk simple compuesta univoco integridad referencial maestro detalle" },
+  { t: "Cardinalidades: 1:1, 1:N y N:M", c: "Base de Datos", u: "cursos/base-datos/index.html#cardinalidades", k: "cardinalidad uno a uno uno a muchos muchos a muchos entidad intermedia dos preguntas" },
+  { t: "Cómo se construye un MER", c: "Base de Datos", u: "cursos/base-datos/index.html#proceso-mer", k: "levantamiento agrupacion diagramacion depuracion proceso construccion mer caso pensiones aporte previsional" },
+  { t: "Diccionario de datos", c: "Base de Datos", u: "cursos/base-datos/index.html#diccionario", k: "diccionario de datos tipo de datos descripcion pk fk nulo calculo de espacio en disco bytes megabytes" },
+  { t: "Banco de ejercicios MER", c: "Base de Datos", u: "cursos/base-datos/index.html#ejercicios-mer", k: "ejercicios mer veterinaria restaurante streaming biblioteca taller inmobiliaria colegio hotel tienda banco cines bomberos cuentas corrientes drawio" },
+  { t: "Normalización (1FN a 5FN y Boyce-Codd)", c: "Base de Datos", u: "cursos/base-datos/index.html#normalizacion", k: "normalizacion primera segunda tercera forma normal boyce codd bcnf cuarta quinta ficha" },
+  { t: "DDL: crear, alterar y eliminar", c: "Base de Datos", u: "cursos/base-datos/index.html#ddl", k: "ddl create alter drop tablas indices usuarios relaciones ficha" },
+  { t: "DML: insertar, actualizar y borrar", c: "Base de Datos", u: "cursos/base-datos/index.html#dml-datos", k: "dml insert update delete use ficha" },
+  { t: "DML: consultas", c: "Base de Datos", u: "cursos/base-datos/index.html#dml-consultas", k: "select consultas anidadas order by group by subconsultas comparaciones de conjuntos ficha" },
+  { t: "Funciones agregadas y vistas", c: "Base de Datos", u: "cursos/base-datos/index.html#funciones-vistas", k: "funciones agregadas count sum avg vistas materializadas upsert merge ficha" },
+  { t: "DCL: permisos", c: "Base de Datos", u: "cursos/base-datos/index.html#dcl", k: "dcl grant revoke permisos ficha" },
+  { t: "Cursores y triggers", c: "Base de Datos", u: "cursos/base-datos/index.html#cursores-triggers", k: "cursores triggers disparadores fila por fila ficha" },
+  { t: "T-SQL: programar dentro de la base", c: "Base de Datos", u: "cursos/base-datos/index.html#tsql", k: "tsql variables estructuras de control ciclos funciones procedimientos almacenados ben-gan ficha" }
+);

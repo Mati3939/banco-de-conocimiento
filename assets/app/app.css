@@ -213,7 +213,9 @@ kbd{border:1px solid var(--border); border-bottom-width:2px; border-radius:5px; 
   .card{padding:1.1rem 1.05rem; border-radius:14px; margin:1.2rem 0;}
   .card>h3{font-size:1.08rem; margin-bottom:.9rem;}
   .card details{padding:.75rem .85rem;}
-  .fuente{padding-right:0;}
+  /* .fuente no lleva override acá: su padding-right es max(0px, 100%-86ch),
+     que en un teléfono ya da 0. Una regla en este bloque además perdería, porque
+     la declaración de .card .fuente aparece más abajo en la hoja. */
   .temas-lista{grid-template-columns:1fr;}
   .flexcols{gap:.9rem;}
   .code{font-size:.78rem;}
@@ -317,6 +319,50 @@ kbd{border:1px solid var(--border); border-bottom-width:2px; border-radius:5px; 
 .tabla-va td.ok{background:color-mix(in srgb, var(--s2) 20%, var(--surface));}
 .barras{margin:1.2rem 0;}
 
+/* ============ Diagramas entidad-relación (mer.js) ============ */
+/* El SVG tiene viewBox de 1000 unidades de ancho y escala solo, así que no
+   necesita repintado ni al cambiar de tema ni al redimensionar: los colores
+   son var() y el navegador reescala el viewBox. Lo único que sí necesita es
+   un ancho mínimo — a 400px de pantalla, un texto de 15 unidades del viewBox
+   quedaría en 6px, ilegible. Por eso min-width + scroll horizontal propio,
+   igual que .tabla-va: el diagrama se desliza, la página no. */
+.mer{margin:1.4rem 0; overflow-x:auto;}
+.mer-svg{display:block; width:100%; min-width:660px; height:auto;}
+
+.mer-entidad{fill:var(--surface); stroke:var(--s1); stroke-width:2;}
+.mer-rel{fill:color-mix(in srgb, var(--s4) 14%, var(--surface)); stroke:var(--s4); stroke-width:2;}
+.mer-attr{fill:color-mix(in srgb, var(--s5) 12%, var(--surface)); stroke:var(--s5); stroke-width:1.6;}
+.mer-attr.derivado{stroke-dasharray:5 4;}
+.mer-linea{stroke:var(--axis); stroke-width:1.6;}
+.mer-linea.punteada{stroke-dasharray:5 4;}
+.mer-cardfondo{fill:var(--surface); stroke:var(--border); stroke-width:1;}
+
+.mer-txt{fill:var(--ink); font-family:inherit; font-size:15px;}
+.mer-txt.fuerte{font-weight:700;}
+.mer-txt.pk{text-decoration:underline; text-underline-offset:2px;}
+.mer-txt.comp{font-style:italic;}
+.mer-txt.card{font-weight:800; font-size:14px;}
+
+/* Un nodo resaltado por el Stepper: mismo ámbar que .arbol-nodo.hl y
+   .tabla-va td.hl, para que "esto es lo que estamos mirando ahora" se lea
+   igual en las tres primitivas. */
+.mer-nodo :is(.mer-entidad,.mer-rel,.mer-attr){transition:fill .3s, stroke .3s;}
+.mer-nodo.hl :is(.mer-entidad,.mer-rel,.mer-attr){
+  fill:color-mix(in srgb, var(--s4) 30%, var(--surface)); stroke:var(--s4); stroke-width:3;
+}
+/* Revelado paso a paso: visibility además de opacity para que un nodo todavía
+   no revelado tampoco lo lea un lector de pantalla. */
+.mer-nodo,.mer-linea{transition:opacity .35s;}
+.oculto{opacity:0; visibility:hidden;}
+
+/* ============ Diccionario de datos (mer.js) ============ */
+/* .tabla-va centra todo (está pensada para tablas de probabilidad, que son
+   numéricas). Acá las tres primeras columnas son texto y se leen mucho mejor
+   alineadas a la izquierda; solo PK/FK/Nulo quedan centradas. */
+.dicc td{text-align:left;}
+.dicc td.centro{text-align:center; font-weight:700;}
+.dicc th{white-space:nowrap;}
+
 /* ============ Fichas de temas pendientes ============ */
 .ficha-pendiente{
   border:1px dashed var(--axis); border-radius:16px; padding:1.5rem 1.7rem; margin:1.5rem 0;
@@ -335,11 +381,18 @@ kbd{border:1px solid var(--border); border-bottom-width:2px; border-radius:5px; 
 .fuente{
   margin:1.9rem 0 0; padding-top:.75rem; border-top:1px solid var(--border);
   font-size:.78rem; line-height:1.55; color:var(--muted);
-  /* El filete tiene que cruzar la tarjeta entera (es el pie de la tarjeta),
-     pero el texto no debe llegar a 150 caracteres por línea. max-width cortaría
-     también el borde; el padding-right no: border-top abarca la caja de borde,
-     así que la línea sigue completa y solo el texto se angosta. El max() lo
-     desactiva en pantallas donde la tarjeta ya mide menos de 86ch. */
+}
+/* El filete tiene que cruzar la tarjeta entera (es el pie de la tarjeta), pero
+   el texto no debe llegar a 150 caracteres por línea. max-width cortaría también
+   el borde; el padding-right no: border-top abarca la caja de borde, así que la
+   línea sigue completa y solo el texto se angosta. El max() lo desactiva en
+   pantallas donde la tarjeta ya mide menos de 86ch.
+   OJO con la especificidad: tiene que ser `.card .fuente` (0,2,0) y no `.fuente`
+   (0,1,0), porque `.card p` (0,1,1) le gana a esta última. Con `.fuente` a
+   secas, max-width:66ch seguía vigente y, como todo el sitio es border-box, el
+   padding-right se comía la caja entera: el texto salía a una palabra por
+   línea. */
+.card .fuente{
   max-width:none; padding-right:max(0px, calc(100% - 86ch));
 }
 .fuente.suelta{border-top:none; padding-top:0; margin-top:1.2rem;}

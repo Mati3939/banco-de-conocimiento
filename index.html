@@ -116,6 +116,7 @@
 <script src="assets/vendor/gsap/gsap.min.js"></script>
 <script src="assets/vendor/gsap/ScrollTrigger.min.js"></script>
 <script src="assets/js/observatorio.js"></script>
+<script src="cursos/base-datos/indice-curso.js"></script>
 <script src="cursos/fisica/indice-curso.js"></script>
 <script src="cursos/algebra-lineal/indice-curso.js"></script>
 <script src="cursos/calculo-integral/indice-curso.js"></script>
@@ -225,7 +226,7 @@
       <span class="semestre-numero">04</span>
       <div class="semestre-titulo-grupo">
         <h2><span class="lucero futuro"></span> Semestre 4</h2>
-        <p class="semestre-sub">4 ramos · en curso (2026-2)</p>
+        <p class="semestre-sub">5 ramos · en curso (2026-2)</p>
       </div>
     </header>
     <!-- El identificador interno del grupo sigue siendo "futuro" (data-sem, la
@@ -233,6 +234,7 @@
          .dificultad.media). Renombrarlo tocaría tres hojas de estilo sin cambiar
          nada visible: acá "futuro" se lee como "el cuarto anillo". -->
     <div class="cursos-grid">
+      <a class="curso-card futuro" href="cursos/base-datos/index.html"><span class="emoji">🗃️</span><span><h3>Base de Datos</h3><p>MER · Normalización · SQL · T-SQL</p></span><span class="ir">→</span></a>
       <a class="curso-card futuro" href="cursos/visualizacion-datos/index.html"><span class="emoji">📊</span><span><h3>Visualización de Datos</h3><p>Gráficos · Dashboards · Streamlit · Altair</p></span><span class="ir">→</span></a>
       <a class="curso-card futuro" href="cursos/calculo-multivariable/index.html"><span class="emoji">∇</span><span><h3>Cálculo Multivariable</h3><p>Parciales · Gradiente · Integrales múltiples</p></span><span class="ir">→</span></a>
       <a class="curso-card futuro" href="cursos/ecuaciones-diferenciales/index.html"><span class="emoji">📉</span><span><h3>Ecuaciones Diferenciales</h3><p>1er y 2º orden · Laplace · Sistemas</p></span><span class="ir">→</span></a>
@@ -261,6 +263,7 @@
     { slug: "fisica",                   n: "Física",                  e: "⚛️", g: "s3", d: "Del movimiento a las colisiones, con Newton de guía." },
     { slug: "eda",                      n: "EDA",                     e: "🌳", g: "s3", d: "Árboles, grafos, heaps y algoritmos de ordenamiento." },
     { slug: "diseno-servicios",         n: "Diseño de Servicios",     e: "🎨", g: "s3", d: "Design thinking, journey maps y prototipado." },
+    { slug: "base-datos",               n: "Base de Datos",           e: "🗃️", g: "futuro", d: "Del modelo entidad-relación al SQL." },
     { slug: "visualizacion-datos",      n: "Visualización de Datos",  e: "📊", g: "futuro", d: "Gráficos y dashboards que cuentan historias." },
     { slug: "calculo-multivariable",    n: "Multivariable",           e: "∇",  g: "futuro", d: "Derivadas parciales, gradiente e integrales múltiples." },
     { slug: "ecuaciones-diferenciales", n: "Ecs. Diferenciales",      e: "📉", g: "futuro", d: "Modelar el cambio: EDO, Laplace y sistemas." },
