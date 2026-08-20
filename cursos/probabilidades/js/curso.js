@@ -33,7 +33,8 @@ window.CURSO={
     'Horario de controles: Santiago H8 (17:50), Concepción H2 (09:50).',
     '2 certámenes de 120 min, a libro cerrado. Sin calculadora programable ni dispositivos con funciones de cálculo.',
     'Examen final acumulativo con nota mínima 3,0.',
-    'Eximición: nota de presentación ≥ 5,5, estar en el 20 % más alto del grupo y 4,0 o más en cada certamen. Este semestre además hace falta 5,0 o más en el Control 5.'
+    'Eximición: nota de presentación ≥ 5,5, estar en el 20 % más alto del grupo y 4,0 o más en cada certamen. Este semestre además hace falta 5,0 o más en el Control 5.',
+    'Ponderación de la nota de presentación: Certamen 1 35 %, Certamen 2 35 %, Controles 25 %, Proyecto 5 % (nota de presentación 70 % + examen 30 % de la nota final). Fuente: Calendarización 2026-2, punto 4.'
   ],
   semanas:[
     {n:1,desde:'03-08',hasta:'09-08',hito:'Inicio de clases',tema:['espacio-muestral','conteo']},
@@ -43,7 +44,7 @@ window.CURSO={
     {n:5,desde:'31-08',hasta:'06-09',hito:'Control 2',tema:'modelos-continuos'},
     {n:6,desde:'07-09',hasta:'13-09',hito:'Certamen 1 · 11/09',tema:null},
     {n:7,desde:'14-09',hasta:'20-09',hito:'Fiestas Patrias — sin actividades',tema:null},
-    {n:8,desde:'21-09',hasta:'27-09',hito:'',tema:['descriptiva','convergencia']},
+    {n:8,desde:'21-09',hasta:'27-09',hito:'Proyecto 5%',tema:['descriptiva','convergencia']},
     {n:9,desde:'28-09',hasta:'04-10',hito:'Control 3',tema:'estimacion-puntual'},
     {n:10,desde:'05-10',hasta:'11-10',hito:'Semana i',tema:'estimacion-puntual'},
     {n:11,desde:'12-10',hasta:'18-10',hito:'12/10 feriado',tema:'intervalos'},
